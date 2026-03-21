@@ -1,0 +1,1794 @@
+{
+  "square_conjecture": [
+    {
+      "N": 2,
+      "n_coprime_fractions": 1,
+      "n_all_fractions": 1,
+      "n_unique_roots": 1,
+      "multiplicities": [
+        1
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 1,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 1
+      }
+    },
+    {
+      "N": 3,
+      "n_coprime_fractions": 3,
+      "n_all_fractions": 3,
+      "n_unique_roots": 3,
+      "multiplicities": [
+        1
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 1,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 3
+      }
+    },
+    {
+      "N": 4,
+      "n_coprime_fractions": 5,
+      "n_all_fractions": 6,
+      "n_unique_roots": 5,
+      "multiplicities": [
+        1,
+        2
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 2,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 4,
+        "2": 1
+      }
+    },
+    {
+      "N": 5,
+      "n_coprime_fractions": 9,
+      "n_all_fractions": 10,
+      "n_unique_roots": 9,
+      "multiplicities": [
+        1,
+        2
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 2,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 8,
+        "2": 1
+      }
+    },
+    {
+      "N": 6,
+      "n_coprime_fractions": 11,
+      "n_all_fractions": 15,
+      "n_unique_roots": 11,
+      "multiplicities": [
+        1,
+        2,
+        3
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 3,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 8,
+        "2": 2,
+        "3": 1
+      }
+    },
+    {
+      "N": 7,
+      "n_coprime_fractions": 17,
+      "n_all_fractions": 21,
+      "n_unique_roots": 17,
+      "multiplicities": [
+        1,
+        2,
+        3
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 3,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 14,
+        "2": 2,
+        "3": 1
+      }
+    },
+    {
+      "N": 8,
+      "n_coprime_fractions": 21,
+      "n_all_fractions": 28,
+      "n_unique_roots": 21,
+      "multiplicities": [
+        1,
+        2,
+        4
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 4,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 16,
+        "2": 4,
+        "4": 1
+      }
+    },
+    {
+      "N": 9,
+      "n_coprime_fractions": 27,
+      "n_all_fractions": 36,
+      "n_unique_roots": 27,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 4,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 22,
+        "2": 2,
+        "3": 2,
+        "4": 1
+      }
+    },
+    {
+      "N": 10,
+      "n_coprime_fractions": 31,
+      "n_all_fractions": 45,
+      "n_unique_roots": 31,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 5,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 22,
+        "2": 6,
+        "3": 2,
+        "5": 1
+      }
+    },
+    {
+      "N": 11,
+      "n_coprime_fractions": 41,
+      "n_all_fractions": 55,
+      "n_unique_roots": 41,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 5,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 32,
+        "2": 6,
+        "3": 2,
+        "5": 1
+      }
+    },
+    {
+      "N": 12,
+      "n_coprime_fractions": 45,
+      "n_all_fractions": 66,
+      "n_unique_roots": 45,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        6
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 6,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 34,
+        "2": 6,
+        "3": 2,
+        "4": 2,
+        "6": 1
+      }
+    },
+    {
+      "N": 13,
+      "n_coprime_fractions": 57,
+      "n_all_fractions": 78,
+      "n_unique_roots": 57,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        6
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 6,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 46,
+        "2": 6,
+        "3": 2,
+        "4": 2,
+        "6": 1
+      }
+    },
+    {
+      "N": 14,
+      "n_coprime_fractions": 63,
+      "n_all_fractions": 91,
+      "n_unique_roots": 63,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        7
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 7,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 46,
+        "2": 12,
+        "3": 2,
+        "4": 2,
+        "7": 1
+      }
+    },
+    {
+      "N": 15,
+      "n_coprime_fractions": 71,
+      "n_all_fractions": 105,
+      "n_unique_roots": 71,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        5,
+        7
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 7,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 54,
+        "2": 8,
+        "3": 6,
+        "5": 2,
+        "7": 1
+      }
+    },
+    {
+      "N": 16,
+      "n_coprime_fractions": 79,
+      "n_all_fractions": 120,
+      "n_unique_roots": 79,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        8
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 8,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 58,
+        "2": 12,
+        "3": 4,
+        "4": 2,
+        "5": 2,
+        "8": 1
+      }
+    },
+    {
+      "N": 17,
+      "n_coprime_fractions": 95,
+      "n_all_fractions": 136,
+      "n_unique_roots": 95,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        8
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 8,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 74,
+        "2": 12,
+        "3": 4,
+        "4": 2,
+        "5": 2,
+        "8": 1
+      }
+    },
+    {
+      "N": 18,
+      "n_coprime_fractions": 101,
+      "n_all_fractions": 153,
+      "n_unique_roots": 101,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        9
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 9,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 74,
+        "2": 16,
+        "3": 6,
+        "4": 2,
+        "6": 2,
+        "9": 1
+      }
+    },
+    {
+      "N": 19,
+      "n_coprime_fractions": 119,
+      "n_all_fractions": 171,
+      "n_unique_roots": 119,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        9
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 9,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 92,
+        "2": 16,
+        "3": 6,
+        "4": 2,
+        "6": 2,
+        "9": 1
+      }
+    },
+    {
+      "N": 20,
+      "n_coprime_fractions": 127,
+      "n_all_fractions": 190,
+      "n_unique_roots": 127,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        10
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 10,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 96,
+        "2": 20,
+        "3": 2,
+        "4": 4,
+        "5": 2,
+        "6": 2,
+        "10": 1
+      }
+    },
+    {
+      "N": 21,
+      "n_coprime_fractions": 139,
+      "n_all_fractions": 210,
+      "n_unique_roots": 139,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        10
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 10,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 108,
+        "2": 14,
+        "3": 8,
+        "4": 4,
+        "5": 2,
+        "7": 2,
+        "10": 1
+      }
+    },
+    {
+      "N": 22,
+      "n_coprime_fractions": 149,
+      "n_all_fractions": 231,
+      "n_unique_roots": 149,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        11
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 11,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 108,
+        "2": 24,
+        "3": 8,
+        "4": 4,
+        "5": 2,
+        "7": 2,
+        "11": 1
+      }
+    },
+    {
+      "N": 23,
+      "n_coprime_fractions": 171,
+      "n_all_fractions": 253,
+      "n_unique_roots": 171,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        11
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 11,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 130,
+        "2": 24,
+        "3": 8,
+        "4": 4,
+        "5": 2,
+        "7": 2,
+        "11": 1
+      }
+    },
+    {
+      "N": 24,
+      "n_coprime_fractions": 179,
+      "n_all_fractions": 276,
+      "n_unique_roots": 179,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        8,
+        12
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 12,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 134,
+        "2": 24,
+        "3": 10,
+        "4": 6,
+        "6": 2,
+        "8": 2,
+        "12": 1
+      }
+    },
+    {
+      "N": 25,
+      "n_coprime_fractions": 199,
+      "n_all_fractions": 300,
+      "n_unique_roots": 199,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        12
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 12,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 154,
+        "2": 24,
+        "3": 10,
+        "4": 2,
+        "5": 4,
+        "6": 2,
+        "8": 2,
+        "12": 1
+      }
+    },
+    {
+      "N": 26,
+      "n_coprime_fractions": 211,
+      "n_all_fractions": 325,
+      "n_unique_roots": 211,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        13
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 13,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 154,
+        "2": 36,
+        "3": 10,
+        "4": 2,
+        "5": 4,
+        "6": 2,
+        "8": 2,
+        "13": 1
+      }
+    },
+    {
+      "N": 27,
+      "n_coprime_fractions": 229,
+      "n_all_fractions": 351,
+      "n_unique_roots": 229,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        9,
+        13
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 13,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 172,
+        "2": 30,
+        "3": 16,
+        "4": 2,
+        "5": 4,
+        "6": 2,
+        "9": 2,
+        "13": 1
+      }
+    },
+    {
+      "N": 28,
+      "n_coprime_fractions": 241,
+      "n_all_fractions": 378,
+      "n_unique_roots": 241,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        9,
+        14
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 14,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 178,
+        "2": 36,
+        "3": 10,
+        "4": 8,
+        "5": 4,
+        "7": 2,
+        "9": 2,
+        "14": 1
+      }
+    },
+    {
+      "N": 29,
+      "n_coprime_fractions": 269,
+      "n_all_fractions": 406,
+      "n_unique_roots": 269,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        9,
+        14
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 14,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 206,
+        "2": 36,
+        "3": 10,
+        "4": 8,
+        "5": 4,
+        "7": 2,
+        "9": 2,
+        "14": 1
+      }
+    },
+    {
+      "N": 30,
+      "n_coprime_fractions": 277,
+      "n_all_fractions": 435,
+      "n_unique_roots": 277,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        10,
+        15
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 15,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 206,
+        "2": 40,
+        "3": 14,
+        "4": 6,
+        "5": 2,
+        "6": 4,
+        "7": 2,
+        "10": 2,
+        "15": 1
+      }
+    },
+    {
+      "N": 31,
+      "n_coprime_fractions": 307,
+      "n_all_fractions": 465,
+      "n_unique_roots": 307,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        10,
+        15
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 15,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 236,
+        "2": 40,
+        "3": 14,
+        "4": 6,
+        "5": 2,
+        "6": 4,
+        "7": 2,
+        "10": 2,
+        "15": 1
+      }
+    },
+    {
+      "N": 32,
+      "n_coprime_fractions": 323,
+      "n_all_fractions": 496,
+      "n_unique_roots": 323,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        10,
+        16
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 16,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 244,
+        "2": 48,
+        "3": 10,
+        "4": 10,
+        "5": 2,
+        "6": 4,
+        "8": 2,
+        "10": 2,
+        "16": 1
+      }
+    },
+    {
+      "N": 33,
+      "n_coprime_fractions": 343,
+      "n_all_fractions": 528,
+      "n_unique_roots": 343,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        11,
+        16
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 16,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 264,
+        "2": 38,
+        "3": 20,
+        "4": 10,
+        "5": 2,
+        "6": 4,
+        "8": 2,
+        "11": 2,
+        "16": 1
+      }
+    },
+    {
+      "N": 34,
+      "n_coprime_fractions": 359,
+      "n_all_fractions": 561,
+      "n_unique_roots": 359,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        11,
+        17
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 17,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 264,
+        "2": 54,
+        "3": 20,
+        "4": 10,
+        "5": 2,
+        "6": 4,
+        "8": 2,
+        "11": 2,
+        "17": 1
+      }
+    },
+    {
+      "N": 35,
+      "n_coprime_fractions": 383,
+      "n_all_fractions": 595,
+      "n_unique_roots": 383,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        11,
+        17
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 17,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 288,
+        "2": 54,
+        "3": 20,
+        "4": 4,
+        "5": 8,
+        "7": 4,
+        "8": 2,
+        "11": 2,
+        "17": 1
+      }
+    },
+    {
+      "N": 36,
+      "n_coprime_fractions": 395,
+      "n_all_fractions": 630,
+      "n_unique_roots": 395,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        12,
+        18
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 18,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 294,
+        "2": 56,
+        "3": 18,
+        "4": 10,
+        "5": 6,
+        "6": 2,
+        "7": 4,
+        "9": 2,
+        "12": 2,
+        "18": 1
+      }
+    },
+    {
+      "N": 37,
+      "n_coprime_fractions": 431,
+      "n_all_fractions": 666,
+      "n_unique_roots": 431,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        12,
+        18
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 18,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 330,
+        "2": 56,
+        "3": 18,
+        "4": 10,
+        "5": 6,
+        "6": 2,
+        "7": 4,
+        "9": 2,
+        "12": 2,
+        "18": 1
+      }
+    },
+    {
+      "N": 38,
+      "n_coprime_fractions": 449,
+      "n_all_fractions": 703,
+      "n_unique_roots": 449,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        12,
+        19
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 19,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 330,
+        "2": 74,
+        "3": 18,
+        "4": 10,
+        "5": 6,
+        "6": 2,
+        "7": 4,
+        "9": 2,
+        "12": 2,
+        "19": 1
+      }
+    },
+    {
+      "N": 39,
+      "n_coprime_fractions": 473,
+      "n_all_fractions": 741,
+      "n_unique_roots": 473,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        13,
+        19
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 19,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 354,
+        "2": 62,
+        "3": 30,
+        "4": 10,
+        "5": 6,
+        "6": 2,
+        "7": 4,
+        "9": 2,
+        "13": 2,
+        "19": 1
+      }
+    },
+    {
+      "N": 40,
+      "n_coprime_fractions": 489,
+      "n_all_fractions": 780,
+      "n_unique_roots": 489,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        10,
+        13,
+        20
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 20,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 362,
+        "2": 70,
+        "3": 26,
+        "4": 10,
+        "5": 10,
+        "6": 2,
+        "8": 4,
+        "10": 2,
+        "13": 2,
+        "20": 1
+      }
+    },
+    {
+      "N": 41,
+      "n_coprime_fractions": 529,
+      "n_all_fractions": 820,
+      "n_unique_roots": 529,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        10,
+        13,
+        20
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 20,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 402,
+        "2": 70,
+        "3": 26,
+        "4": 10,
+        "5": 10,
+        "6": 2,
+        "8": 4,
+        "10": 2,
+        "13": 2,
+        "20": 1
+      }
+    },
+    {
+      "N": 42,
+      "n_coprime_fractions": 541,
+      "n_all_fractions": 861,
+      "n_unique_roots": 541,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        10,
+        14,
+        21
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 21,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 402,
+        "2": 76,
+        "3": 32,
+        "4": 10,
+        "5": 4,
+        "6": 6,
+        "7": 2,
+        "8": 4,
+        "10": 2,
+        "14": 2,
+        "21": 1
+      }
+    },
+    {
+      "N": 43,
+      "n_coprime_fractions": 583,
+      "n_all_fractions": 903,
+      "n_unique_roots": 583,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        10,
+        14,
+        21
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 21,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 444,
+        "2": 76,
+        "3": 32,
+        "4": 10,
+        "5": 4,
+        "6": 6,
+        "7": 2,
+        "8": 4,
+        "10": 2,
+        "14": 2,
+        "21": 1
+      }
+    },
+    {
+      "N": 44,
+      "n_coprime_fractions": 603,
+      "n_all_fractions": 946,
+      "n_unique_roots": 603,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        11,
+        14,
+        22
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 22,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 454,
+        "2": 86,
+        "3": 22,
+        "4": 20,
+        "5": 4,
+        "6": 6,
+        "7": 2,
+        "8": 4,
+        "11": 2,
+        "14": 2,
+        "22": 1
+      }
+    },
+    {
+      "N": 45,
+      "n_coprime_fractions": 627,
+      "n_all_fractions": 990,
+      "n_unique_roots": 627,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        11,
+        15,
+        22
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 22,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 478,
+        "2": 78,
+        "3": 30,
+        "4": 14,
+        "5": 10,
+        "6": 6,
+        "7": 2,
+        "9": 4,
+        "11": 2,
+        "15": 2,
+        "22": 1
+      }
+    },
+    {
+      "N": 46,
+      "n_coprime_fractions": 649,
+      "n_all_fractions": 1035,
+      "n_unique_roots": 649,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        11,
+        15,
+        23
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 23,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 478,
+        "2": 100,
+        "3": 30,
+        "4": 14,
+        "5": 10,
+        "6": 6,
+        "7": 2,
+        "9": 4,
+        "11": 2,
+        "15": 2,
+        "23": 1
+      }
+    },
+    {
+      "N": 47,
+      "n_coprime_fractions": 695,
+      "n_all_fractions": 1081,
+      "n_unique_roots": 695,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        11,
+        15,
+        23
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 23,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 524,
+        "2": 100,
+        "3": 30,
+        "4": 14,
+        "5": 10,
+        "6": 6,
+        "7": 2,
+        "9": 4,
+        "11": 2,
+        "15": 2,
+        "23": 1
+      }
+    },
+    {
+      "N": 48,
+      "n_coprime_fractions": 711,
+      "n_all_fractions": 1128,
+      "n_unique_roots": 711,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9,
+        12,
+        16,
+        24
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 24,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 532,
+        "2": 100,
+        "3": 34,
+        "4": 18,
+        "5": 6,
+        "6": 10,
+        "8": 2,
+        "9": 4,
+        "12": 2,
+        "16": 2,
+        "24": 1
+      }
+    },
+    {
+      "N": 49,
+      "n_coprime_fractions": 753,
+      "n_all_fractions": 1176,
+      "n_unique_roots": 753,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        12,
+        16,
+        24
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 24,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 574,
+        "2": 100,
+        "3": 34,
+        "4": 18,
+        "5": 6,
+        "6": 4,
+        "7": 6,
+        "8": 2,
+        "9": 4,
+        "12": 2,
+        "16": 2,
+        "24": 1
+      }
+    },
+    {
+      "N": 50,
+      "n_coprime_fractions": 773,
+      "n_all_fractions": 1225,
+      "n_unique_roots": 773,
+      "multiplicities": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        10,
+        12,
+        16,
+        25
+      ],
+      "all_multiplicities_even": false,
+      "max_multiplicity": 25,
+      "min_multiplicity": 1,
+      "mult_distribution": {
+        "1": 574,
+        "2": 120,
+        "3": 34,
+        "4": 14,
+        "5": 10,
+        "6": 4,
+        "7": 6,
+        "8": 2,
+        "10": 4,
+        "12": 2,
+        "16": 2,
+        "25": 1
+      }
+    }
+  ],
+  "coefficient_analysis": [
+    {
+      "N": 2,
+      "degree": 1,
+      "max_imag_part": 1.2246467991473532e-16,
+      "max_rounding_error": 0.0,
+      "coefficients_are_integers": true,
+      "leading_coeff": 1.0,
+      "constant_term": 1.0,
+      "max_abs_coeff": 1.0,
+      "mahler_measure": 0.9341142557364792
+    },
+    {
+      "N": 3,
+      "degree": 3,
+      "max_imag_part": 1.2212453270876722e-15,
+      "max_rounding_error": 0.0,
+      "coefficients_are_integers": true,
+      "leading_coeff": 1.0,
+      "constant_term": 1.0,
+      "max_abs_coeff": 2.0,
+      "mahler_measure": 0.997316032503056
+    },
+    {
+      "N": 4,
+      "degree": 5,
+      "max_imag_part": 1.7763568394002505e-15,
+      "max_rounding_error": 8.881784197001252e-16,
+      "coefficients_are_integers": true,
+      "leading_coeff": 1.0,
+      "constant_term": 0.9999999999999999,
+      "max_abs_coeff": 3.000000000000001,
+      "mahler_measure": 0.9921918994560192
+    },
+    {
+      "N": 5,
+      "degree": 9,
+      "max_imag_part": 1.2434497875801753e-14,
+      "max_rounding_error": 7.105427357601002e-15,
+      "coefficients_are_integers": true,
+      "leading_coeff": 1.0,
+      "constant_term": 0.9999999999999999,
+      "max_abs_coeff": 11.000000000000007,
+      "mahler_measure": 0.9827271571778348
+    },
+    {
+      "N": 6,
+      "degree": 11,
+      "max_imag_part": 1.865174681370263e-14,
+      "max_rounding_error": 1.5987211554602254e-14,
+      "coefficients_are_integers": true,
+      "leading_coeff": 1.0,
+      "constant_term": 1.0,
+      "max_abs_coeff": 9.000000000000016,
+      "mahler_measure": 0.9835005502453905
+    },
+    {
+      "N": 7,
+      "degree": 17,
+      "max_imag_part": 4.192202140984591e-13,
+      "max_rounding_error": 4.689582056016661e-13,
+      "coefficients_are_integers": true,
+      "leading_coeff": 1.0,
+      "constant_term": 1.0,
+      "max_abs_coeff": 50.00000000000047,
+      "mahler_measure": 0.9853819087131244
+    },
+    {
+      "N": 8,
+      "degree": 21,
+      "max_imag_part": 3.282707439211663e-12,
+      "max_rounding_error": 3.552713678800501e-12,
+      "coefficients_are_integers": true,
+      "leading_coeff": 1.0,
+      "constant_term": 1.0000000000000002,
+      "max_abs_coeff": 85.00000000000209,
+      "mahler_measure": 0.9782664252906692
+    },
+    {
+      "N": 9,
+      "degree": 27,
+      "max_imag_part": 9.873701856122352e-11,
+      "max_rounding_error": 1.0749090506578796e-10,
+      "coefficients_are_integers": true,
+      "leading_coeff": 1.0,
+      "constant_term": 0.9999999999999999,
+      "max_abs_coeff": 215.0000000000892,
+      "mahler_measure": 0.9811233533226184
+    },
+    {
+      "N": 10,
+      "degree": 31,
+      "max_imag_part": 1.1536371857800987e-09,
+      "max_rounding_error": 9.679581580712693e-10,
+      "coefficients_are_integers": true,
+      "leading_coeff": 1.0,
+      "constant_term": 1.0,
+      "max_abs_coeff": 189.00000000039492,
+      "mahler_measure": 0.9757270008081769
+    },
+    {
+      "N": 11,
+      "degree": 41,
+      "max_imag_part": 7.775624908390455e-07,
+      "max_rounding_error": 7.718151664448669e-07,
+      "coefficients_are_integers": true,
+      "leading_coeff": 1.0,
+      "constant_term": 1.0,
+      "max_abs_coeff": 1780.0000003679377,
+      "mahler_measure": 0.9825586304899013
+    },
+    {
+      "N": 12,
+      "degree": 45,
+      "max_imag_part": 4.2318933992646635e-06,
+      "max_rounding_error": 4.508692200033693e-06,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 1.0000000000000007,
+      "max_abs_coeff": 1610.9999983386083,
+      "mahler_measure": 0.9846081552710039
+    },
+    {
+      "N": 13,
+      "degree": 57,
+      "max_imag_part": 0.00949245713854907,
+      "max_rounding_error": 0.009067675429832889,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 0.9999999999999998,
+      "max_abs_coeff": 18333.009067676834,
+      "mahler_measure": 0.997080751809701
+    },
+    {
+      "N": 14,
+      "degree": 63,
+      "max_imag_part": 0.15654536779038608,
+      "max_rounding_error": 0.15287945277668769,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 0.9999999999999998,
+      "max_abs_coeff": 16706.139257511542,
+      "mahler_measure": 1.5404930794152212
+    },
+    {
+      "N": 15,
+      "degree": 71,
+      "max_imag_part": 19.848727222633897,
+      "max_rounding_error": 0.4695168945418118,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 1.0,
+      "max_abs_coeff": 15122.428147009829,
+      "mahler_measure": 6.185019222221997
+    },
+    {
+      "N": 16,
+      "degree": 79,
+      "max_imag_part": 2134.011265524081,
+      "max_rounding_error": 0.49911441719086724,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 1.0,
+      "max_abs_coeff": 29279.803179121405,
+      "mahler_measure": 43.70213829564528
+    },
+    {
+      "N": 17,
+      "degree": 95,
+      "max_imag_part": 27001771.54674177,
+      "max_rounding_error": 0.49170681089162827,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 0.9999999999999998,
+      "max_abs_coeff": 28355251.349158555,
+      "mahler_measure": 5362.931349674512
+    },
+    {
+      "N": 18,
+      "degree": 101,
+      "max_imag_part": 644547071.6366013,
+      "max_rounding_error": 0.496900591544545,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 0.9999999999999999,
+      "max_abs_coeff": 664821612.5968951,
+      "mahler_measure": 33318.24673660904
+    },
+    {
+      "N": 19,
+      "degree": 119,
+      "max_imag_part": 56117750021619.14,
+      "max_rounding_error": 0.4978395700454712,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 0.9999999999999993,
+      "max_abs_coeff": 56125977797631.17,
+      "mahler_measure": 25288293.2560958
+    },
+    {
+      "N": 20,
+      "degree": 127,
+      "max_imag_part": 2318966837316311.5,
+      "max_rounding_error": 0.5,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 1.0000000000000002,
+      "max_abs_coeff": 3081972621383431.0,
+      "mahler_measure": 352368713.38083154
+    },
+    {
+      "N": 21,
+      "degree": 139,
+      "max_imag_part": 2.3014242506018058e+18,
+      "max_rounding_error": 0.5,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 0.9999999999999998,
+      "max_abs_coeff": 2.322171709894278e+18,
+      "mahler_measure": 97393948848.55843
+    },
+    {
+      "N": 22,
+      "degree": 149,
+      "max_imag_part": 9.107299065044852e+20,
+      "max_rounding_error": 0.5,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 0.999999999999999,
+      "max_abs_coeff": 1.1385432610173374e+21,
+      "mahler_measure": 16678808245058.727
+    },
+    {
+      "N": 23,
+      "degree": 171,
+      "max_imag_part": 8.071470097462233e+26,
+      "max_rounding_error": 0.5,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 1.0000000000000004,
+      "max_abs_coeff": 8.421815356002499e+26,
+      "mahler_measure": 3.9436631887050803e+18
+    },
+    {
+      "N": 24,
+      "degree": 179,
+      "max_imag_part": 3.8496441862709365e+28,
+      "max_rounding_error": 0.5,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 1.0000000000000007,
+      "max_abs_coeff": 4.009267904623549e+28,
+      "mahler_measure": 3.0778663679706654e+20
+    },
+    {
+      "N": 25,
+      "degree": 199,
+      "max_imag_part": 1.768481250768441e+33,
+      "max_rounding_error": 0.5,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 1.0000000000000004,
+      "max_abs_coeff": 1.9054956097388244e+33,
+      "mahler_measure": 1.9178960449905016e+25
+    },
+    {
+      "N": 26,
+      "degree": 211,
+      "max_imag_part": 5.391301085321399e+36,
+      "max_rounding_error": 0.5,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 0.9999999999999998,
+      "max_abs_coeff": 6.165708422591946e+36,
+      "mahler_measure": 2.568441562765152e+28
+    },
+    {
+      "N": 27,
+      "degree": 229,
+      "max_imag_part": 2.751208350172745e+41,
+      "max_rounding_error": 0.4913611076772213,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 1.000000000000001,
+      "max_abs_coeff": 3.0165846559930444e+41,
+      "mahler_measure": 7.371002542389282e+32
+    },
+    {
+      "N": 28,
+      "degree": 241,
+      "max_imag_part": 1.2106808163068806e+44,
+      "max_rounding_error": 0.5,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 0.9999999999999996,
+      "max_abs_coeff": 1.3008460038828653e+44,
+      "mahler_measure": 3.2318411426934323e+35
+    },
+    {
+      "N": 29,
+      "degree": 269,
+      "max_imag_part": 5.013069673235105e+51,
+      "max_rounding_error": 0.5,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 0.9999999999999996,
+      "max_abs_coeff": 5.105129308949177e+51,
+      "mahler_measure": 5.557036667082084e+42
+    },
+    {
+      "N": 30,
+      "degree": 277,
+      "max_imag_part": 3.2246730285595645e+53,
+      "max_rounding_error": 0.4921875,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 0.9999999999999992,
+      "max_abs_coeff": 3.25590445166394e+53,
+      "mahler_measure": 2.7036052285720816e+44
+    },
+    {
+      "N": 31,
+      "degree": 307,
+      "max_imag_part": 3.058689480709615e+61,
+      "max_rounding_error": 0.5,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 1.0000000000000002,
+      "max_abs_coeff": 3.2434919150681533e+61,
+      "mahler_measure": 2.1659474521177484e+52
+    },
+    {
+      "N": 32,
+      "degree": 323,
+      "max_imag_part": 1.2511950868444438e+65,
+      "max_rounding_error": 0.4996564197317639,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 1.0000000000000004,
+      "max_abs_coeff": 1.2532453916481316e+65,
+      "mahler_measure": 1.3395175536674405e+56
+    },
+    {
+      "N": 33,
+      "degree": 343,
+      "max_imag_part": 1.2169285619198277e+70,
+      "max_rounding_error": 0.5,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 1.0000000000000002,
+      "max_abs_coeff": 1.2573766308567297e+70,
+      "mahler_measure": 1.1111511041275843e+61
+    },
+    {
+      "N": 34,
+      "degree": 359,
+      "max_imag_part": 1.3165875188287824e+74,
+      "max_rounding_error": 0.4872348917367617,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 0.9999999999999988,
+      "max_abs_coeff": 1.4505449485954255e+74,
+      "mahler_measure": 1.288391726704519e+65
+    },
+    {
+      "N": 35,
+      "degree": 383,
+      "max_imag_part": 1.7790884852496027e+80,
+      "max_rounding_error": 0.4981125593185425,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 0.9999999999999994,
+      "max_abs_coeff": 1.9076390599937214e+80,
+      "mahler_measure": 2.213770239204317e+71
+    },
+    {
+      "N": 36,
+      "degree": 395,
+      "max_imag_part": 1.2382838914157484e+83,
+      "max_rounding_error": 0.5,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 0.9999999999999989,
+      "max_abs_coeff": 1.332642993916022e+83,
+      "mahler_measure": 1.6501935572880137e+74
+    },
+    {
+      "N": 37,
+      "degree": 431,
+      "max_imag_part": 3.941953476650773e+92,
+      "max_rounding_error": 0.5,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 0.9999999999999981,
+      "max_abs_coeff": 4.2754382773956266e+92,
+      "mahler_measure": 4.6993934217861006e+83
+    },
+    {
+      "N": 38,
+      "degree": 449,
+      "max_imag_part": 1.8016375359512652e+97,
+      "max_rounding_error": 0.5,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 0.999999999999999,
+      "max_abs_coeff": 2.003915626757519e+97,
+      "mahler_measure": 1.932015624262872e+88
+    },
+    {
+      "N": 39,
+      "degree": 473,
+      "max_imag_part": 1.0883919030600762e+103,
+      "max_rounding_error": 0.4976344108581543,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 0.9999999999999988,
+      "max_abs_coeff": 1.5133933967154318e+103,
+      "mahler_measure": 2.2825323275730795e+94
+    },
+    {
+      "N": 40,
+      "degree": 489,
+      "max_imag_part": 2.6050995201561574e+107,
+      "max_rounding_error": 0.46875,
+      "coefficients_are_integers": false,
+      "leading_coeff": 1.0,
+      "constant_term": 1.0000000000000002,
+      "max_abs_coeff": 2.638825357692758e+107,
+      "mahler_measure": 3.5396272773186153e+98
+    }
+  ]
+}
