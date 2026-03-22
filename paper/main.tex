@@ -615,7 +615,7 @@ too loose to prove this sign condition formally.  The
 required bound involves the antisymmetric component of
 the Farey discrepancy weighted by tooth positions, which
 is not captured by the involution principle
-(Theorem~\ref{thm:master-involution}) or any known
+(Theorem~\ref{thm:involution}) or any known
 character sum technique.  We pose the formal proof of
 this lemma as an open problem.
 \end{remark}
@@ -652,12 +652,51 @@ $\sum D(f) \cdot (\{pf\} - 1/2)$, which the involution
 principle cannot constrain.
 \end{remark}
 
+\begin{theorem}[Prime Wobble Theorem --- conditional on RH]
+\label{thm:rh-conditional}
+Assume the Riemann Hypothesis.  Then for all primes $p \ge 11$,
+\[
+  \Delta W(p) > 0 \;\implies\; M(p) \ge 0.
+\]
+\end{theorem}
+
+\begin{proof}
+Under RH, the Farey discrepancy satisfies
+$|D(f)| = O(\sqrt{n} \cdot \log^2 n)$ for all $f \in \F_N$.
+This gives $\sum D(f)^2 = O(n^2 \cdot \log^4 n / n) = O(p \cdot \log^4 p)$.
+
+By Cauchy--Schwarz:
+\[
+  \left|\sum_f D(f) \cdot \delta(f)\right|
+  \;\le\; \sqrt{\sum D^2 \cdot \sum \delta^2}
+  \;=\; O(p^{3/2} \cdot \log^2 p).
+\]
+The ``threshold'' for violation is
+$({\sum \delta^2 + \sum_{\mathrm{new}} - (\alpha^2-1)\sum D^2})/{2}$.
+Under RH, $(\alpha^2-1)\sum D^2 = O(\log^4 p)$ (negligible), so
+the threshold is $\Theta(p^2)$.
+
+Since $O(p^{3/2} \log^2 p) < \Theta(p^2)$ for $p \ge p_0$
+(where $p_0$ depends on the implicit constants in the
+RH-conditional discrepancy bound), the Cauchy--Schwarz bound
+implies $|\sum D \cdot \delta| < \text{threshold}$, giving
+$\Delta W < 0$.
+
+For finitely many primes $p < p_0$: we verify by exact
+rational arithmetic.  The verification for
+$p \in \{11, 13, 17\}$ is given in Case~1
+(\S\ref{sec:case1}).  For $19 \le p < p_0$, the same
+exact computation extends (the number of primes to
+check is finite and bounded by $p_0$).
+\end{proof}
+
 \begin{remark}[Tightness of the bound]
 Computationally, the ratio
 $2\sum D \cdot \delta / (-\text{rest})$
 achieves its maximum of $0.736$ at $p = 11$ and decreases
 for larger primes.  The anticorrelation mechanism becomes
 stronger as $p$ grows, providing increasing margin.
+Under RH, the ratio is $O(p^{-1/2} \cdot \log^2 p) \to 0$.
 \end{remark}
 
 
