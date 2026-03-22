@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farey Circle: Primes, Mertens Bias & Wobble</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a1a; color: #e0e0e0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px; }
+  h1 { font-size: 1.5em; margin-bottom: 5px; color: #7eb8ff; }
+  .subtitle { font-size: 0.85em; color: #888; margin-bottom: 15px; }
+  .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1200px; }
+  .circle-panel { position: relative; }
+  canvas { border-radius: 12px; background: #12122a; }
+  .controls { background: #1a1a2e; border-radius: 12px; padding: 20px; width: 320px; }
+  .control-group { margin-bottom: 15px; }
+  .control-group label { display: block; font-size: 0.85em; color: #aaa; margin-bottom: 5px; }
+  .control-group .value { font-size: 1.4em; font-weight: bold; color: #7eb8ff; }
+  input[type="range"] { width: 100%; accent-color: #7eb8ff; }
+  .stats { background: #16162e; border-radius: 8px; padding: 12px; margin-top: 10px; font-size: 0.82em; line-height: 1.7; }
+  .stats .label { color: #888; }
+  .stats .num { color: #7eb8ff; font-weight: bold; }
+  .pos { color: #ff6b6b; }
+  .neg { color: #4ecdc4; }
+  .zero { color: #888; }
+  .legend { display: flex; gap: 15px; margin-top: 10px; font-size: 0.8em; }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .explanation { max-width: 700px; margin-top: 20px; background: #1a1a2e; border-radius: 12px; padding: 20px; font-size: 0.85em; line-height: 1.6; color: #aaa; }
+  .explanation h3 { color: #7eb8ff; margin-bottom: 8px; }
+  .highlight { color: #ff6b6b; font-weight: bold; }
+  .highlight2 { color: #4ecdc4; font-weight: bold; }
+  button { background: #2a2a4e; color: #7eb8ff; border: 1px solid #3a3a5e; border-radius: 6px; padding: 6px 14px; cursor: pointer; font-size: 0.85em; margin: 3px; }
+  button:hover { background: #3a3a5e; }
+  button.active { background: #4a4a7e; border-color: #7eb8ff; }
+</style>
+</head>
+<body>
+
+<h1>The Farey Circle</h1>
+<p class="subtitle">How primes heal (or disrupt) the uniformity of fractions</p>
+
+<div class="container">
+  <div class="circle-panel">
+    <canvas id="circle" width="520" height="520"></canvas>
+  </div>
+
+  <div class="controls">
+    <div class="control-group">
+      <label>N (Farey order) — slide to add denominators</label>
+      <input type="range" id="nSlider" min="2" max="120" value="10">
+      <div>F<sub><span id="nValue">10</span></sub> &nbsp; <span id="nFractions" class="value"></span> fractions</div>
+    </div>
+
+    <div class="control-group">
+      <label>Color mode</label>
+      <div>
+        <button id="btnBias" class="active" onclick="setMode('bias')">Mertens Bias</button>
+        <button id="btnDenom" onclick="setMode('denom')">By Denominator</button>
+        <button id="btnNew" onclick="setMode('new')">New vs Old</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div><span class="label">M(N) = </span><span id="mertens" class="num"></span> <span id="mertensLabel"></span></div>
+      <div><span class="label">μ(N) = </span><span id="mobius" class="num"></span> <span id="mobiusLabel"></span></div>
+      <div><span class="label">φ(N) = </span><span id="totient" class="num"></span> <span class="label"> new fractions</span></div>
+      <div><span class="label">N is </span><span id="primeStatus" class="num"></span></div>
+      <div><span class="label">Grid fill: </span><span id="gridFill" class="num"></span></div>
+      <div style="margin-top:8px"><span class="label">Σ cos = </span><span id="cosSum" class="num"></span> <span class="label">(bridge: M+2 = <span id="bridge"></span>)</span></div>
+      <div><span class="label">ΔW = </span><span id="deltaW" class="num"></span></div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#ff6b6b"></div> cos &gt; 0 (top)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#4ecdc4"></div> cos &lt; 0 (bottom)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#fff3"></div> new fractions</div>
+    </div>
+  </div>
+</div>
+
+<div class="explanation">
+  <h3>What you're seeing</h3>
+  <p>Each dot is a fraction a/b placed at angle 2π·(a/b) on the circle.
+  The <span class="highlight">red dots</span> are near the top (cos > 0, fractions near 0 or 1).
+  The <span class="highlight2">teal dots</span> are near the bottom (cos < 0, fractions near 1/2).</p>
+  <p>When <b>M(N) > 0</b>: more red than teal — the "even personality" numbers are winning, creating a <span class="highlight">top-heavy bias</span>. A prime arriving with its uniform grid can heal this.</p>
+  <p>When <b>M(N) < 0</b>: more teal than red — <span class="highlight2">bottom-heavy bias</span>. A prime's uniform grid can't help here.</p>
+  <p>When N is <b>prime</b>: it fills ALL N−1 grid positions (100% fill). When N is <b>composite</b>: it only fills φ(N) positions, leaving holes.</p>
+</div>
+
+<script>
+const canvas = document.getElementById('circle');
+const ctx = canvas.getContext('2d');
+const W = canvas.width, H = canvas.height;
+const CX = W/2, CY = H/2, R = 220;
+
+let colorMode = 'bias';
+let currentN = 10;
+
+// Number theory functions
+function gcd(a, b) { while(b) { [a,b] = [b, a%b]; } return a; }
+
+function sieve(max) {
+  const mu = new Int8Array(max+1);
+  const phi = new Int32Array(max+1);
+  const isPrime = new Uint8Array(max+1);
+  const primes = [];
+  mu[1] = 1;
+  for(let i=0;i<=max;i++) phi[i]=i;
+  isPrime.fill(1); isPrime[0]=isPrime[1]=0;
+  for(let i=2;i<=max;i++) {
+    if(isPrime[i]) { primes.push(i); mu[i]=-1; }
+    for(const p of primes) {
+      if(i*p>max) break;
+      isPrime[i*p]=0;
+      if(i%p===0) { mu[i*p]=0; break; }
+      else mu[i*p]=-mu[i];
+    }
+    if(phi[i]===i) for(let k=i;k<=max;k+=i) phi[k]-=Math.floor(phi[k]/i);
+  }
+  const M = new Int32Array(max+1);
+  for(let k=1;k<=max;k++) M[k]=M[k-1]+mu[k];
+  return {mu, phi, isPrime, M};
+}
+
+const MAX = 130;
+const {mu, phi, isPrime, M} = sieve(MAX);
+
+function fareySequence(N) {
+  const fracs = [];
+  for(let b=1;b<=N;b++) {
+    for(let a=0;a<=b;a++) {
+      if(gcd(a,b)===1) fracs.push({a, b, f: a/b});
+    }
+  }
+  fracs.sort((x,y) => x.f - y.f);
+  return fracs;
+}
+
+function setMode(mode) {
+  colorMode = mode;
+  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn' + mode.charAt(0).toUpperCase() + mode.slice(1)).classList.add('active');
+  draw();
+}
+
+function draw() {
+  const N = currentN;
+  const fracs = fareySequence(N);
+  const prevFracs = N > 1 ? new Set(fareySequence(N-1).map(f => f.a+'/'+f.b)) : new Set();
+  const n = fracs.length;
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Draw circle
+  ctx.strokeStyle = '#2a2a4e';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.arc(CX, CY, R, 0, 2*Math.PI);
+  ctx.stroke();
+
+  // Draw faint grid lines for the p-grid if N is prime
+  if(isPrime[N] && N <= 60) {
+    ctx.strokeStyle = '#ffffff08';
+    ctx.lineWidth = 0.5;
+    for(let k=1; k<N; k++) {
+      const angle = 2*Math.PI*k/N - Math.PI/2;
+      ctx.beginPath();
+      ctx.moveTo(CX, CY);
+      ctx.lineTo(CX + (R+15)*Math.cos(angle), CY + (R+15)*Math.sin(angle));
+      ctx.stroke();
+    }
+  }
+
+  // Draw reference marks
+  ctx.fillStyle = '#ffffff30';
+  ctx.font = '11px sans-serif';
+  ctx.textAlign = 'center';
+  const labels = [{f:0, l:'0'}, {f:0.25, l:'1/4'}, {f:0.5, l:'1/2'}, {f:0.75, l:'3/4'}];
+  for(const {f, l} of labels) {
+    const angle = 2*Math.PI*f - Math.PI/2;
+    const lx = CX + (R+25)*Math.cos(angle);
+    const ly = CY + (R+25)*Math.sin(angle);
+    ctx.fillText(l, lx, ly+4);
+  }
+
+  // Compute cos sum and wobble
+  let cosSum = 0;
+  for(const fr of fracs) cosSum += Math.cos(2*Math.PI*N*fr.f);
+
+  // Compute wobble change
+  let W_old = 0, W_new = 0;
+  if(N > 2) {
+    const prevF = fareySequence(N-1);
+    const nOld = prevF.length;
+    for(let j=0; j<nOld; j++) W_old += (prevF[j].f - j/nOld)**2;
+    for(let j=0; j<n; j++) W_new += (fracs[j].f - j/n)**2;
+  }
+  const dW = W_old - W_new;
+
+  // Draw dots
+  const dotSize = Math.max(1.5, Math.min(5, 200/n));
+
+  for(let j=0; j<fracs.length; j++) {
+    const fr = fracs[j];
+    const angle = 2*Math.PI*fr.f - Math.PI/2;
+    const x = CX + R*Math.cos(angle);
+    const y = CY + R*Math.sin(angle);
+    const isNew = !prevFracs.has(fr.a+'/'+fr.b);
+    const cosVal = Math.cos(2*Math.PI*fr.f);
+
+    let color;
+    if(colorMode === 'bias') {
+      if(cosVal > 0.1) color = `rgba(255,107,107,${0.4+0.6*cosVal})`;
+      else if(cosVal < -0.1) color = `rgba(78,205,196,${0.4+0.6*Math.abs(cosVal)})`;
+      else color = 'rgba(200,200,200,0.5)';
+    } else if(colorMode === 'denom') {
+      const hue = (fr.b * 137) % 360;
+      color = `hsla(${hue},70%,60%,0.8)`;
+    } else { // new vs old
+      color = isNew ? '#ffdd57' : 'rgba(120,120,180,0.5)';
+    }
+
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(x, y, isNew && colorMode==='new' ? dotSize*1.5 : dotSize, 0, 2*Math.PI);
+    ctx.fill();
+  }
+
+  // Draw center info
+  ctx.fillStyle = '#ffffff20';
+  ctx.font = 'bold 48px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(`F${N}`, CX, CY-5);
+  ctx.font = '16px sans-serif';
+  ctx.fillText(`${n} fractions`, CX, CY+22);
+
+  // M indicator
+  const mVal = M[N];
+  const mColor = mVal > 0 ? '#ff6b6b' : mVal < 0 ? '#4ecdc4' : '#888';
+  ctx.fillStyle = mColor;
+  ctx.font = 'bold 18px sans-serif';
+  ctx.fillText(`M(${N}) = ${mVal > 0 ? '+' : ''}${mVal}`, CX, CY+48);
+
+  // Update stats
+  document.getElementById('nValue').textContent = N;
+  document.getElementById('nFractions').textContent = n;
+  document.getElementById('mertens').textContent = (mVal>0?'+':'') + mVal;
+  document.getElementById('mertens').className = 'num ' + (mVal>0?'pos':mVal<0?'neg':'zero');
+  document.getElementById('mertensLabel').textContent = mVal>0?'(top-heavy bias)':mVal<0?'(bottom-heavy bias)':'(balanced)';
+  document.getElementById('mertensLabel').className = mVal>0?'pos':mVal<0?'neg':'zero';
+  document.getElementById('mobius').textContent = mu[N];
+  document.getElementById('mobiusLabel').textContent = mu[N]===-1?'(prime)':mu[N]===1?'(even factors)':'(repeated factor)';
+  document.getElementById('totient').textContent = phi[N];
+  document.getElementById('primeStatus').textContent = isPrime[N] ? 'PRIME ★' : 'composite';
+  document.getElementById('primeStatus').className = 'num ' + (isPrime[N]?'pos':'');
+  document.getElementById('gridFill').textContent = `${phi[N]}/${N-1} = ${Math.round(100*phi[N]/(N-1))}%`;
+  document.getElementById('cosSum').textContent = cosSum.toFixed(2);
+  document.getElementById('bridge').textContent = mVal + 2;
+  document.getElementById('deltaW').textContent = dW > 0.0001 ? `+${dW.toFixed(6)} (VIOLATION!)` : dW.toFixed(6);
+  document.getElementById('deltaW').className = 'num ' + (dW > 0.0001 ? 'pos' : 'neg');
+}
+
+document.getElementById('nSlider').addEventListener('input', function() {
+  currentN = parseInt(this.value);
+  draw();
+});
+
+draw();
+</script>
+</body>
+</html>
