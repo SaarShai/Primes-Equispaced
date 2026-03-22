@@ -6,7 +6,11 @@
 
 ## The Prime Wobble Theorem
 
-**Theorem.** *For any prime $p \geq 11$: if adding prime $p$ to the Farey sequence makes the distribution of fractions more uniform (wobble decreases), then the Mertens function $M(p) \geq 0$.*
+**Theorem (Conditional).** *Assuming the Anticorrelation Lemma (Conjecture 5.1 in the paper): for any prime $p \geq 11$, if adding prime $p$ to the Farey sequence makes the distribution of fractions more uniform (wobble decreases), then the Mertens function $M(p) \geq 0$.*
+
+**Unconditional result.** *For $p \in \{11, 13, 17\}$: proved by exact rational arithmetic. For $p \geq 19$ with $M(p) \leq 0$: verified computationally for all 2,986 primes through $p = 50,000$ with zero counterexamples.*
+
+**Open Problem.** *Prove the Anticorrelation Lemma: $\sum D(f) \cdot \delta(f) < 0$ for primes $p \geq 19$ with $M(p) \leq 0$. The mechanism (gap-T structural anticorrelation) is identified; the formal bound is the remaining step.*
 
 In other words: **the sign of the wobble change at each prime is controlled by the Mertens function** — a deep arithmetic quantity connected to the Riemann Hypothesis.
 
