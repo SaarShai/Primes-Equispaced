@@ -11,6 +11,16 @@ This repository contains the code, data, formal proofs, and computational experi
 
 This conjecture connects the **geometry** of fraction distribution on a circle to the **arithmetic** of the Möbius function, with implications for the Riemann Hypothesis through the Franel-Landau theorem.
 
+## Why This Matters
+
+The value of this work is not in any single identity — each one follows from known number theory. The value is in **looking where nobody looked before**: decomposing Farey discrepancy one prime at a time, and discovering that the sign of each prime's geometric contribution is controlled by the Mertens function.
+
+This creates a **bridge between two research communities** that have had limited overlap: researchers studying Farey sequence geometry/discrepancy, and researchers studying the Mertens function and Möbius arithmetic. Our bridge identity (Σ cos(2πpf) = M(p) + 2) says their objects are literally equal — a result about M(p) immediately implies something about Farey geometry, and vice versa. The master involution principle, the per-step wobble decomposition, the violation-Mertens correlation, and the exact formula chain form an interconnected framework where the bridge identity is the keystone that makes the whole arch stand.
+
+## Interactive Demo
+
+Open [`demo/index.html`](demo/index.html) in a browser to see an interactive visualization of the Farey circle. Slide through values of N and watch how primes (100% grid fill) vs composites (partial fill) affect the distribution, and how the Mertens bias (red = top-heavy, teal = bottom-heavy) controls whether primes heal or disrupt uniformity.
+
 ## Key Results
 
 ### Novel Discoveries
