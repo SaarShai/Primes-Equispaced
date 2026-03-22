@@ -1,0 +1,11 @@
+=== Phase 1: N=100K ===
+Primes-Only Wobble Analysis up to N = 100000
+=============================================================
+Computing sieves...
+Sieves done.
+Primes >= 11 up to 100000: 9588
+
+  p=  3607  [ 500/9588]  viol=33  M(p)=   +0  M/√p=+0.0000  [5s, ~91s left]
+  p=  7949  [1000/9588]  viol=59  M(p)=   -4  M/√p=-0.0449  [49s, ~421s left]
+  p= 12589  [1500/9588]  viol=195  M(p)=   -1  M/√p=-0.0089  [184s, ~992s left]
+  p= 17419  [2000/9588]  viol=232  M(p)=  -15  M/√p=-0.1137  [471s, ~1787s left]
