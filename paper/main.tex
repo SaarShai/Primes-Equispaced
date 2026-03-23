@@ -275,11 +275,11 @@ Summing over denominators gives $(n - 2)/2$.
 
 \subsection{Universal $\delta$-Symmetric Identity}
 
-\begin{theorem}\label{thm:delta-sym}
-For any symmetric function $g$ on $\F_{p-1}$ and any
-prime $p \ge 2$:
+\begin{theorem}[Universal $\delta$-Symmetric Identity]\label{thm:delta-sym}
+For any symmetric function $g$ (with $g(f) = g(1-f)$) on $\F_{p-1}$
+and any prime $p \ge 2$:
 \begin{equation}\label{eq:delta-sym}
-  \sum_{f \in \F_{p-1}} \delta(f) \cdot g(f) \;=\; -g(1),
+  \sum_{f \in \F_{p-1}} \delta(f) \cdot g(f) \;=\; g(1),
 \end{equation}
 where $\delta(f) = f - \fpart{pf}$.
 \end{theorem}
@@ -287,8 +287,9 @@ where $\delta(f) = f - \fpart{pf}$.
 \begin{proof}[Proof sketch]
 The shift satisfies $\delta(1-f) = -\delta(f)$ for
 $f \notin \{0,1\}$ (antisymmetric), so all interior terms
-cancel pairwise by the symmetry of $g$.  The surviving
-boundary contribution at $f = 1$ gives $-g(1)$.
+cancel pairwise by the symmetry of~$g$.  The boundary
+contributions are $\delta(0)\,g(0) + \delta(1)\,g(1) =
+0 + 1 \cdot g(1) = g(1)$.
 \end{proof}
 
 \subsection{Compact Cross-Term Formula}
@@ -369,8 +370,7 @@ $p = 100{,}000$.
 \subsection{The $M = -2$ boundary}
 
 The counterexample lies at the shallowest possible negative
-Mertens value: $M(p) = -2$ (note $M(p)$ is always even at primes $p \ge 3$
-since $\mu(p) = -1$).  The normalized Mertens value
+Mertens value: $M(p) = -2$ (since $\mu(p) = -1$, each prime decreases $M$ by exactly one).  The normalized Mertens value
 $M/\sqrt{p} = -0.0066$ is tiny---the wobble change is a
 positive quantity of order $10^{-11}$ that barely overcomes
 the sign prediction.
@@ -389,12 +389,11 @@ Zero counterexamples.  The tightest case has
 $|\Delta W| \approx 10^{-12}$, still safely negative.
 \end{observation}
 
-This suggests a refined conjecture:
-
-\begin{conjecture}\label{conj:refined}
-There exists a threshold $M_0 \le -3$ such that for all primes
-$p$ with $M(p) \le M_0$, we have $\Delta W(p) \le 0$.
-\end{conjecture}
+Whether a threshold $M_0$ exists such that $M(p) \le M_0$
+guarantees $\Delta W(p) \le 0$ for all primes remains open.
+The data is consistent with $M_0 = -3$, but the counterexample
+at $p = 92{,}173$ counsels caution---it appeared far beyond the
+range where the original conjecture seemed secure.
 
 \subsection{Rubinstein--Sarnak connection}
 
@@ -612,9 +611,10 @@ J.~Franel,
 \emph{G\"ottinger Nachrichten}, pp.~198--201, 1924.
 
 \bibitem{Garcia2025}
-S.~R.~Garc\'ia,
-``New analytical formulas for the rank of Farey fractions,''
-\emph{MDPI Mathematics}, vol.~13, no.~1, p.~140, 2025.
+R.~Tom\'as Garc\'ia,
+``New analytical formulas for the rank of Farey fractions
+and estimates of the local discrepancy,''
+\emph{Mathematics}, vol.~13, no.~1, art.~140, 2025.
 
 \bibitem{Landau1924}
 E.~Landau,
