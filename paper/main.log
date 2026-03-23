@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.1)  23 MAR 2026 08:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.1)  23 MAR 2026 08:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -498,71 +498,71 @@ Package pdftex.def Info: ../figures/fig_void_filling.png  used on input line 14
 File: ../figures/fig_bridge_vectors.png Graphic file (type png)
 <use ../figures/fig_bridge_vectors.png>
 Package pdftex.def Info: ../figures/fig_bridge_vectors.png  used on input line 
-232.
+230.
 (pdftex.def)             Requested size: 469.75502pt x 236.47443pt.
 
 [4 <../figures/fig_bridge_vectors.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 298.
+(hyperref)                removing `math shift' on input line 296.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\delta' on input line 298.
+(hyperref)                removing `\delta' on input line 296.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 298.
+(hyperref)                removing `math shift' on input line 296.
 
 [5]
 <../figures/fig_mertens_violations.png, id=203, 853.87006pt x 560.8152pt>
 File: ../figures/fig_mertens_violations.png Graphic file (type png)
 <use ../figures/fig_mertens_violations.png>
 Package pdftex.def Info: ../figures/fig_mertens_violations.png  used on input l
-ine 365.
+ine 363.
 (pdftex.def)             Requested size: 469.75502pt x 308.53488pt.
  [6 <../figures/fig_mertens_violations.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 403.
+(hyperref)                removing `math shift' on input line 401.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 403.
+(hyperref)                removing `math shift' on input line 401.
 
 <../figures/fig_mertens_bias_circle.png, id=210, 862.9038pt x 428.5611pt>
 File: ../figures/fig_mertens_bias_circle.png Graphic file (type png)
 <use ../figures/fig_mertens_bias_circle.png>
 Package pdftex.def Info: ../figures/fig_mertens_bias_circle.png  used on input 
-line 407.
+line 405.
 (pdftex.def)             Requested size: 469.75502pt x 233.3094pt.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 425.
+(hyperref)                removing `math shift' on input line 423.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\le' on input line 425.
+(hyperref)                removing `\le' on input line 423.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 425.
+(hyperref)                removing `math shift' on input line 423.
 
 [7 <../figures/fig_mertens_bias_circle.png>]
 <../figures/fig_delta_w_signs.png, id=223, 856.3995pt x 397.12366pt>
 File: ../figures/fig_delta_w_signs.png Graphic file (type png)
 <use ../figures/fig_delta_w_signs.png>
 Package pdftex.def Info: ../figures/fig_delta_w_signs.png  used on input line 4
-47.
+45.
 (pdftex.def)             Requested size: 469.75502pt x 217.83696pt.
 <../figures/fig_shift_map.png, id=225, 872.66025pt x 428.5611pt>
 File: ../figures/fig_shift_map.png Graphic file (type png)
 <use ../figures/fig_shift_map.png>
-Package pdftex.def Info: ../figures/fig_shift_map.png  used on input line 486.
+Package pdftex.def Info: ../figures/fig_shift_map.png  used on input line 484.
 (pdftex.def)             Requested size: 469.75502pt x 230.69368pt.
  [8 <../figures/fig_delta_w_signs.png>] [9 <../figures/fig_shift_map.png>] [10]
 
-Underfull \hbox (badness 2689) in paragraph at lines 670--673
+Underfull \hbox (badness 2689) in paragraph at lines 668--671
 []\OT1/cmr/m/n/10.95 A. Cox, A. Ghosh, and J. Sul-tanow, ``On Farey se-quence a
 nd its com-pan-ions,''
  []
@@ -578,11 +578,11 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Here is how much of TeX's memory you used:
  11805 strings out of 469006
  181793 string characters out of 5454814
- 605235 words of memory out of 5000000
+ 605091 words of memory out of 5000000
  40250 multiletter control sequences out of 15000+600000
  640689 words of font info for 90 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 75i,11n,79p,573b,606s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,541b,606s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/new/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/
 tcrm0600.600pk> </Users/new/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour
 /jknappen/ec/tcrm0800.600pk></usr/local/texlive/2026basic/texmf-dist/fonts/type
@@ -607,7 +607,7 @@ b></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
 0.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mtt10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmtt9.pfb>
-Output written on main.pdf (12 pages, 1618811 bytes).
+Output written on main.pdf (12 pages, 1618687 bytes).
 PDF statistics:
  418 PDF objects out of 1000 (max. 8388607)
  342 compressed objects within 4 object streams
