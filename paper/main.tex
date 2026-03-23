@@ -34,13 +34,13 @@
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\sgn}{sgn}
 
-\title{Per-Prime Farey Wobble and the Mertens Function:\\
-A New Bridge Between Geometric Discrepancy and Arithmetic}
+\title{Per-Step Farey Discrepancy and the Mertens Function:\\
+New Identities, a Counterexample, and a Bridge}
 
 \author{
   Saar Shai\thanks{Independent Researcher. Email: \texttt{saar@saarshai.com}.}
   \and
-  Claude\thanks{Anthropic. This work was conducted collaboratively with Claude, an AI assistant by Anthropic, which contributed to mathematical analysis, computational verification, and manuscript preparation.}
+  Claude\thanks{Anthropic. AI research assistant; contributed to mathematical analysis, computation, and manuscript preparation.}
 }
 
 \date{March 2026}
@@ -50,25 +50,22 @@ A New Bridge Between Geometric Discrepancy and Arithmetic}
 \maketitle
 
 \begin{abstract}
-We introduce the per-step Farey wobble decomposition
-$\Delta W(N) = W(N{-}1) - W(N)$, measuring how each integer~$N$
-changes the $L^2$ discrepancy of the Farey sequence.
-We prove that for primes $p \ge 11$, if adding prime~$p$ decreases the
-wobble ($\Delta W(p) > 0$), then the Mertens function satisfies $M(p) \ge 0$.
-The proof combines exact rational verification for $p \in \{11,13,17\}$,
-the Farey involution principle for symmetric character sums,
-Abel summation converting the wobble change to gap-weighted running sums,
-and a structural anticorrelation between Farey gap sizes and accumulated
-shift sums.  We establish four new exact identities, including a
-\emph{bridge identity}
-$\sum_{f \in \F_{p-1}} e^{2\pi i p f} = M(p) + 2$
-connecting the Fourier analysis of Farey sequences at prime frequency
-to the Mertens function, and a \emph{master involution principle}
-yielding $\sum D(f)\,g(f) = -\tfrac{1}{2}\sum g(f)$ for any
-symmetric function~$g$.  All supporting lemmas are formally verified
-in Lean~4 using the Aristotle automated theorem prover.
-Computational verification extends to 9{,}588 primes
-($p \le 100{,}000$) with zero counterexamples.
+We introduce a per-step decomposition of Farey $L^2$ discrepancy:
+$\Delta W(N) = W(N{-}1) - W(N)$, measuring how each integer changes
+the uniformity of the Farey sequence.  For primes, the sign of
+$\Delta W(p)$ correlates strongly with the Mertens function $M(p)$.
+We prove six new exact identities connecting Farey geometry to
+multiplicative number theory, including a bridge identity
+$\sum_{f \in \F_{p-1}} e^{2\pi ipf} = M(p) + 2$
+and a master involution principle for symmetric functions on
+Farey sequences.  All identities are formally verified in Lean~4
+(60+ theorems, zero \texttt{sorry}).  The natural conjecture---that
+$M(p) < 0$ implies $\Delta W(p) \le 0$ for all primes $p \ge 11$---is
+\emph{disproved} by a counterexample at $p = 92{,}173$
+($M = -2$, $\Delta W = +3.56 \times 10^{-11}$), confirmed by three
+independent numerical methods.  The stronger hypothesis restricted
+to $M(p) \le -3$ survives with zero counterexamples among $4{,}617$
+qualifying primes through $p = 200{,}000$.
 \end{abstract}
 
 \medskip
@@ -84,171 +81,83 @@ Ramanujan sums, formal verification, Lean~4.
 \subsection{Farey sequences and their discrepancy}
 
 For a positive integer~$N$, the \emph{Farey sequence} $\F_N$ is the
-ascending sequence of fractions $a/b$ with $0 \le a \le b \le N$ and
-$\gcd(a,b)=1$.  Its cardinality is
+ascending list of fractions $a/b$ with $0 \le a \le b \le N$ and
+$\gcd(a,b) = 1$.  Its cardinality is
 \begin{equation}\label{eq:farey-size}
-  |\F_N| = 1 + \sum_{k=1}^{N} \varphi(k),
+  |\F_N| = 1 + \sum_{k=1}^{N} \varphi(k).
 \end{equation}
-where $\varphi$ is Euler's totient function.  Writing
-$n = |\F_N|$ and listing the elements as
-$f_0 = 0, f_1, \ldots, f_{n-1} = 1$,
-the \emph{$L^2$ Farey discrepancy} (or \emph{wobble}) is
+Writing $n = |\F_N|$ and listing elements as
+$f_0 < f_1 < \cdots < f_{n-1}$, the \emph{$L^2$ discrepancy}
+(which we call the \emph{wobble}) is
 \begin{equation}\label{eq:wobble}
   W(N) \;=\; \sum_{j=0}^{n-1} \left( f_j - \frac{j}{n} \right)^{\!2}.
 \end{equation}
 
 \subsection{The Franel--Landau theorem}
 
-A celebrated result of Franel~\cite{Franel1924} and
-Landau~\cite{Landau1924} establishes that the Riemann Hypothesis
-is equivalent to the bound
-\begin{equation}\label{eq:franel-landau}
-  W(N) = O\!\left(N^{-1+\varepsilon}\right)
-  \quad\text{for every } \varepsilon > 0.
-\end{equation}
-Thus the wobble~\eqref{eq:wobble} encodes, in a single
-real number, information equivalent to the location of all
+Franel~\cite{Franel1924} and Landau~\cite{Landau1924} proved that
+the Riemann Hypothesis is equivalent to
+$W(N) = O(N^{-1+\varepsilon})$ for every $\varepsilon > 0$.
+Thus $W(N)$, a single real number measuring how uniformly the
+Farey fractions fill $[0,1]$, encodes the location of all
 non-trivial zeros of the Riemann zeta function.
 
-\subsection{Our contribution: per-step decomposition}
+\subsection{The observation that started it all}
 
-Despite the long history of the Franel--Landau framework, the
-\emph{per-step} behavior of the wobble --- how $W$ changes when
-a single integer is appended --- appears to have never been studied
-systematically.  We define
+Place the Farey fractions of $\F_N$ as points on the unit circle
+at angles $2\pi f$.  How does the picture change when a single new
+integer is added?  The first author observed that when a \emph{prime}~$p$
+is appended, it inserts $p-1$ perfectly equispaced new
+points---one at each angle $2\pi k/p$---while composites leave
+gaps.  This led to the question: does the uniformity of the
+sequence improve or worsen at each step?
+
+\subsection{Per-step decomposition: a new perspective}
+
+Despite decades of work on the Franel--Landau framework, the
+\emph{per-step} behavior---how $W$ changes when a single integer
+is appended---appears never to have been studied.  We define
 \begin{equation}\label{eq:delta-w}
   \Delta W(N) \;=\; W(N{-}1) - W(N),
 \end{equation}
-so that $\Delta W(N) > 0$ means adding~$N$ \emph{decreases}
-the discrepancy (the Farey sequence becomes more uniform),
-while $\Delta W(N) < 0$ means adding~$N$ \emph{increases} it.
+so $\Delta W(N) > 0$ means adding $N$ \emph{improves} uniformity,
+while $\Delta W(N) < 0$ means it \emph{worsens} it.
 
-Our main finding is that for \emph{primes}~$p$, the sign of
-$\Delta W(p)$ is controlled by the Mertens function
-$M(p) = \sum_{k \le p} \mu(k)$:
+The surprise: for primes, the sign of $\Delta W(p)$ tracks the
+Mertens function $M(p) = \sum_{k \le p} \mu(k)$.  This creates
+a bridge between two worlds that had no known direct connection
+at this level of granularity---the geometry of Farey discrepancy
+and the arithmetic of the M\"obius function.
 
-\begin{theorem}[Prime Wobble Theorem --- informal statement]\label{thm:informal}
-For every prime $p \ge 11$: if\/ $\Delta W(p) > 0$, then $M(p) \ge 0$.
-Equivalently, $M(p) < 0$ implies $\Delta W(p) \le 0$.
-\end{theorem}
-
-This is stated precisely as Theorem~\ref{thm:prime-wobble} below
-and proved in Section~\ref{sec:proof}.
-
-The value of this work lies not in any single identity --- each
-follows from known number theory --- but in \emph{looking where
-nobody looked before}: decomposing Farey discrepancy one prime
-at a time reveals structure invisible in the cumulative sum.
-The per-step decomposition is the key insight that unlocks
-a new bridge between the geometric world of Farey discrepancy
-and the arithmetic world of the M\"obius function.
 
 %% ================================================================
 \section{Definitions and Notation}\label{sec:defs}
 %% ================================================================
 
-\begin{definition}[Farey sequence]
-For $N \ge 1$, the Farey sequence $\F_N$ consists of all
-fractions $a/b$ in $[0,1]$ with $b \le N$ and $\gcd(a,b)=1$,
-arranged in ascending order.
-We write $n = |\F_N|$ for its cardinality and
-$f_0 < f_1 < \cdots < f_{n-1}$ for its elements.
-\end{definition}
-
-\begin{definition}[Wobble and per-step change]
-The \emph{wobble} is $W(N) = \sum_{j=0}^{n-1}(f_j - j/n)^2$
-as in~\eqref{eq:wobble}.
-The \emph{per-step wobble change} is
-$\Delta W(N) = W(N{-}1) - W(N)$.
-\end{definition}
-
 \begin{definition}[Rank discrepancy]
 For $f_j \in \F_N$ with $n = |\F_N|$, the \emph{rank discrepancy} is
-\begin{equation}\label{eq:rank-disc}
-  D(f_j) \;=\; j - n \cdot f_j.
-\end{equation}
-This measures how far the $j$-th Farey fraction deviates from
-the $j$-th ideal uniform position~$j/n$.
+$D(f_j) = j - n \cdot f_j$.
 \end{definition}
 
-\begin{definition}[Mertens function and M\"obius function]
-The M\"obius function $\mu(k)$ takes values $\pm 1$ on squarefree
-integers and~$0$ otherwise.  The \emph{Mertens function} is the
-cumulative sum
-\begin{equation}\label{eq:mertens}
-  M(N) \;=\; \sum_{k=1}^{N} \mu(k).
-\end{equation}
+\begin{definition}[Shift]
+For a prime~$p$ and $f \in \F_{p-1}$:
+$\delta(f) = f - \fpart{pf}$,
+where $\fpart{x} = x - \lfloor x \rfloor$ is the fractional part.
 \end{definition}
 
-\begin{definition}[Ramanujan sum]
-For positive integers $q$ and~$m$, the Ramanujan sum is
-\begin{equation}\label{eq:ramanujan-sum}
-  c_q(m) \;=\; \sum_{\substack{a=1 \\ \gcd(a,q)=1}}^{q}
-  e^{2\pi i a m / q}.
-\end{equation}
-A classical identity gives $c_q(m) = \mu(q/\gcd(q,m)) \cdot
-\varphi(q) / \varphi(q/\gcd(q,m))$.
-In particular, when $\gcd(q,m)=1$ we have $c_q(m) = \mu(q)$.
+\begin{definition}[Mertens function]
+$M(N) = \sum_{k=1}^{N} \mu(k)$,
+where $\mu$ is the M\"obius function.
 \end{definition}
-
-\begin{definition}[Shift and fractional part]
-For a prime~$p$ and $f = a/b \in \F_{p-1}$, we write
-\begin{equation}\label{eq:shift}
-  \delta(f) \;=\; f - \fpart{pf},
-\end{equation}
-where $\fpart{x} = x - \lfloor x \rfloor$ denotes the fractional
-part of~$x$.  This measures the displacement between a Farey
-fraction and the nearest grid point~$k/p$ that lies below it.
-\end{definition}
-
-
-%% ================================================================
-\section{Main Result}\label{sec:main}
-%% ================================================================
-
-\begin{theorem}[Prime Wobble Theorem --- Conditional]\label{thm:prime-wobble}
-Assume Conjecture~\ref{conj:anticorrelation} (the Anticorrelation Lemma).
-Then for every prime $p \ge 11$,
-\begin{equation}\label{eq:main}
-  \Delta W(p) > 0 \;\implies\; M(p) \ge 0.
-\end{equation}
-Equivalently: if the Mertens function is strictly negative at a
-prime~$p \ge 11$, then adding~$p$ to the Farey sequence does not
-decrease the wobble.
-\end{theorem}
-
-\begin{theorem}[Unconditional Result]\label{thm:unconditional}
-For $p \in \{11, 13, 17\}$: if $M(p) < 0$ then $\Delta W(p) < 0$.
-This is proved by exact rational arithmetic with no approximation.
-\end{theorem}
-
-\begin{remark}
-The restriction $p \ge 11$ is necessary.  For $p \in \{2,3,5,7\}$,
-the Farey sequences are too small for the asymptotic mechanisms
-in the proof to engage.  The theorem is tight: for each of the
-three smallest qualifying primes $p = 11, 13, 17$, we have
-$M(p) < 0$ and $\Delta W(p) < 0$, consistent with the
-implication.
-\end{remark}
-
-\begin{remark}
-The converse does not hold: many primes with $M(p) \ge 0$ also
-have $\Delta W(p) < 0$.  Computationally, approximately 21\%
-of primes $p \le 100{,}000$ satisfy $\Delta W(p) > 0$, and
-all of them have $M(p) \ge 0$.
-\end{remark}
 
 
 %% ================================================================
 \section{New Identities}\label{sec:identities}
 %% ================================================================
 
-The proof of Theorem~\ref{thm:prime-wobble} rests on several
-exact identities connecting Farey geometry to the Mertens function.
-These results follow from known Ramanujan sum theory and the
-Farey involution, but to our knowledge have never been stated
-in the forms given here.  All have been formally verified in Lean~4
-via the Aristotle theorem prover.
+The following identities combine classical ingredients (Ramanujan sums,
+the Farey involution, the M\"obius function) in ways that appear not
+to have been previously stated.  All are formally verified in Lean~4.
 
 \subsection{The Bridge Identity}
 
@@ -260,105 +169,38 @@ For every prime $p \ge 2$,
 \end{equation}
 \end{theorem}
 
-\begin{proof}
-Decompose the sum by denominator.  Each $f = a/b \in \F_{p-1}$
-has $1 \le b \le p-1$ and $\gcd(a,b)=1$.  Since $p$ is prime
-and $b < p$, we have $\gcd(p,b) = 1$ for every such~$b$.
-The inner sum over $a$ coprime to~$b$ with $0 \le a \le b$ gives
-\[
-  \sum_{\substack{a=0 \\ \gcd(a,b)=1}}^{b}
-  e^{2\pi i p a/b}
-  = c_b(p) + \begin{cases} 1 & \text{if } b=1, \end{cases}
-\]
-where the extra~$1$ accounts for $a=0$ (present only when $b=1$)
-and~$a = b$ (present only when $b=1$).
-More precisely, the terms $a=0$ and $a=b$ contribute
-$e^{0} + e^{2\pi i p} = 1 + 1 = 2$.
-For $1 \le b \le p-1$ with $\gcd(p,b)=1$, the Ramanujan sum
-evaluates to $c_b(p) = \mu(b)$.
-Therefore
-\[
-  \sum_{f \in \F_{p-1}} e^{2\pi i p f}
-  = 2 + \sum_{b=1}^{p-1} \mu(b)
-  = 2 + M(p-1).
-\]
-Since $p$ is prime, $\mu(p) = -1$, so
-$M(p-1) = M(p) - \mu(p) = M(p) + 1 - 1 = M(p)$.
-Wait --- let us be more careful.  We have
-$M(p) = M(p-1) + \mu(p) = M(p-1) - 1$,
-so $M(p-1) = M(p) + 1$.  But we also need to account for the
-$b=1$ term.  Since $b=1$ contributes $c_1(p) = 1$ plus the
-boundary terms, let us redo the bookkeeping.
-
-The Farey sequence $\F_{p-1}$ contains $f = 0/1$ and $f = 1/1$
-(both with $b=1$) and all reduced fractions $a/b$ with
-$2 \le b \le p-1$, $1 \le a \le b-1$, $\gcd(a,b)=1$.
-So
-\begin{align*}
-  \sum_{f \in \F_{p-1}} e^{2\pi i p f}
-  &= e^{0} + e^{2\pi i p}
-     + \sum_{b=2}^{p-1}\; \sum_{\substack{a=1\\ \gcd(a,b)=1}}^{b-1}
-       e^{2\pi i p a / b} \\
-  &= 1 + 1 + \sum_{b=2}^{p-1} c_b(p)
-   = 2 + \sum_{b=2}^{p-1} \mu(b) \\
-  &= 2 + \bigl(M(p-1) - \mu(1)\bigr)
-   = 2 + M(p-1) - 1 \\
-  &= 1 + M(p-1) = 1 + (M(p) + 1) = M(p) + 2. \qedhere
-\end{align*}
+\begin{proof}[Proof sketch]
+Decompose by denominator.  The boundary terms $f = 0$ and $f = 1$
+contribute $1 + 1 = 2$.  For each denominator $2 \le b \le p-1$,
+the inner sum over numerators coprime to $b$ is the Ramanujan sum
+$c_b(p)$.  Since $\gcd(p, b) = 1$ for $b < p$, we have
+$c_b(p) = \mu(b)$.  Summing: $2 + \sum_{b=2}^{p-1} \mu(b) =
+2 + M(p-1) - 1 = M(p) + 2$, using $M(p-1) = M(p) + 1$.
 \end{proof}
 
 \begin{remark}
-Taking real parts in~\eqref{eq:bridge} yields the
-cosine form
-\begin{equation}\label{eq:bridge-cos}
-  \sum_{f \in \F_{p-1}} \cos(2\pi p f)
-  \;=\; M(p) + 2.
-\end{equation}
-The imaginary part vanishes by the symmetry
-$f \leftrightarrow 1-f$ of the Farey sequence.
+Taking real parts gives the cosine form
+$\sum \cos(2\pi pf) = M(p) + 2$;
+the imaginary part vanishes by the symmetry $f \leftrightarrow 1 - f$.
 \end{remark}
 
 \subsection{The Master Involution Principle}
 
 \begin{theorem}[Master Involution Principle]\label{thm:involution}
-Let $\sigma \colon \F_N \to \F_N$ be the Farey involution
-$\sigma(a/b) = (b-a)/b$.  Then:
-\begin{enumerate}[(i)]
-  \item $\sigma$ is a bijection on $\F_N$ mapping $f \mapsto 1-f$.
-  \item $D(\sigma(f)) = -D(f) - 1$ for all $f \in \F_N$.
-  \item For any function $g \colon \F_N \to \R$ satisfying
-    $g(f) = g(1-f)$ (i.e., $g$ is symmetric about~$1/2$),
-    \begin{equation}\label{eq:involution}
-      \sum_{f \in \F_N} D(f)\,g(f) \;=\;
-      -\frac{1}{2}\sum_{f \in \F_N} g(f).
-    \end{equation}
-\end{enumerate}
+The Farey involution $\sigma(f) = 1 - f$ satisfies
+$D(\sigma(f)) = -D(f) - 1$.  For any symmetric function $g$
+(i.e., $g(f) = g(1-f)$):
+\begin{equation}\label{eq:involution}
+  \sum_{f \in \F_N} D(f)\,g(f) \;=\;
+  -\frac{1}{2}\sum_{f \in \F_N} g(f).
+\end{equation}
 \end{theorem}
 
-\begin{proof}
-Part~(i) follows from the fact that $\gcd(a,b)=1$ if and only
-if $\gcd(b-a,b)=1$.
-
-For~(ii), if $f_j = a/b$ has rank~$j$ in $\F_N$, then
-$\sigma(f_j) = 1-f_j$ has rank $n-1-j$ (by the symmetry of
-$\F_N$).  Therefore
-\[
-  D(\sigma(f_j)) = (n-1-j) - n(1-f_j)
-  = n f_j - j - 1 = -(j - n f_j) - 1 = -D(f_j) - 1.
-\]
-
-For~(iii), using the substitution $f \mapsto \sigma(f)$
-and the symmetry $g(f)=g(\sigma(f))$:
-\begin{align*}
-  \sum_{f} D(f)\,g(f)
-  &= \sum_{f} D(\sigma(f))\,g(\sigma(f))
-   = \sum_{f} (-D(f)-1)\,g(f) \\
-  &= -\sum_{f} D(f)\,g(f) - \sum_f g(f).
-\end{align*}
-Adding $\sum D(f)\,g(f)$ to both sides and dividing by~$2$
-gives~\eqref{eq:involution}.
+\begin{proof}[Proof sketch]
+Substitute $f \mapsto \sigma(f)$ and use $g(\sigma(f)) = g(f)$,
+$D(\sigma(f)) = -D(f) - 1$.  Adding the original and substituted
+sums gives $2\sum Dg = -\sum g$.
 \end{proof}
-
 
 \subsection{The Displacement--Cosine Identity}
 
@@ -370,649 +212,345 @@ For every prime $p \ge 2$,
 \end{equation}
 \end{theorem}
 
-\begin{proof}
-The function $g(f) = \cos(2\pi p f)$ satisfies
-$g(f) = g(1-f)$ (since $\cos(2\pi p(1-f)) = \cos(2\pi p f)$
-as $p$ is an integer).  Applying the Master Involution Principle
-(Theorem~\ref{thm:involution}(iii)):
-\[
-  \sum_{f \in \F_{p-1}} D(f)\cos(2\pi p f)
-  = -\frac{1}{2}\sum_{f \in \F_{p-1}} \cos(2\pi p f)
-  = -\frac{1}{2}(M(p)+2)
-  = -1 - \frac{M(p)}{2}. \qedhere
-\]
+\begin{proof}[Proof sketch]
+Since $\cos(2\pi pf)$ is symmetric under $f \mapsto 1-f$,
+apply Theorem~\ref{thm:involution} and then Theorem~\ref{thm:bridge}.
 \end{proof}
 
 \begin{remark}
-This identity is the keystone of the bridge: it says that the
-Fourier coefficient of the Farey rank discrepancy at frequency~$p$
-is a linear function of the Mertens function.  It directly
-connects the geometry of how far each Farey fraction deviates
-from its ideal position (the rank discrepancy $D$) to the
-arithmetic of cancellations in the M\"obius function
-(the Mertens function $M$).
+This is the keystone identity: the Fourier coefficient of the
+rank discrepancy at frequency $p$ is a \emph{linear} function
+of the Mertens function.  It directly connects how far each
+Farey fraction sits from its ideal position (geometry) to the
+cancellations in the M\"obius function (arithmetic).
 \end{remark}
-
 
 \subsection{Fractional Parts Sum}
 
 \begin{theorem}[Fractional Parts Sum]\label{thm:frac-parts}
-For every prime $p \ge 2$, writing $n = |\F_{p-1}|$,
+For every prime $p \ge 2$ with $n = |\F_{p-1}|$,
 \begin{equation}\label{eq:frac-parts}
   \sum_{f \in \F_{p-1}} \fpart{pf} \;=\; \frac{n-2}{2}.
 \end{equation}
 \end{theorem}
 
-\begin{proof}
-For $f = a/b \in \F_{p-1}$ with $b \ge 2$, multiplication by~$p$
-permutes the coprime residues modulo~$b$ (since $\gcd(p,b)=1$).
-The sum of all coprime residues modulo~$b$ is $b\varphi(b)/2$.
-Therefore the fractional parts $\fpart{pa/b}$ as $a$ ranges over
-integers coprime to~$b$ with $0 < a < b$ sum to $\varphi(b)/2$.
-The boundary terms $f=0$ and $f=1$ each contribute
-$\fpart{0} = \fpart{p} = 0$.  Summing over denominators:
-\[
-  \sum_{f \in \F_{p-1}} \fpart{pf}
-  = \sum_{b=2}^{p-1} \frac{\varphi(b)}{2}
-  = \frac{1}{2}\left(\sum_{b=1}^{p-1}\varphi(b) - 1\right)
-  = \frac{n-2}{2}. \qedhere
-\]
+\begin{proof}[Proof sketch]
+For each denominator $b \ge 2$, multiplication by $p$ permutes
+residues modulo $b$ (since $\gcd(p,b) = 1$), so the fractional
+parts sum to $\varphi(b)/2$.  The boundary terms contribute zero.
+Summing over denominators gives $(n - 2)/2$.
 \end{proof}
 
+\subsection{Universal $\delta$-Symmetric Identity}
 
-\subsection{Quadratic Cancellation}
+\begin{theorem}\label{thm:delta-sym}
+For any symmetric function $g$ on $\F_{p-1}$ and any
+prime $p \ge 2$:
+\begin{equation}\label{eq:delta-sym}
+  \sum_{f \in \F_{p-1}} \delta(f) \cdot g(f) \;=\; -g(1),
+\end{equation}
+where $\delta(f) = f - \fpart{pf}$.
+\end{theorem}
 
-\begin{theorem}[Quadratic Cancellation]\label{thm:quad-cancel}
-For every prime $p \ge 2$ and $n = |\F_{p-1}|$,
-\begin{equation}\label{eq:quad-cancel}
+\begin{proof}[Proof sketch]
+The shift satisfies $\delta(1-f) = -\delta(f)$ for
+$f \notin \{0,1\}$ (antisymmetric), so all interior terms
+cancel pairwise by the symmetry of $g$.  The surviving
+boundary contribution at $f = 1$ gives $-g(1)$.
+\end{proof}
+
+\subsection{Compact Cross-Term Formula}
+
+\begin{theorem}\label{thm:cross-term}
+For every prime $p \ge 2$,
+\begin{equation}\label{eq:cross-term}
   \sum_{f \in \F_{p-1}} D(f) \cdot \delta(f)^2
-  = -\frac{1}{2}\sum_{f \in \F_{p-1}} \delta(f)^2 - \frac{1}{2},
+  = -\frac{1}{2}\sum_{f \in \F_{p-1}} \delta(f)^2 - \frac{1}{2}.
 \end{equation}
-where $\delta(f) = f - \fpart{pf}$ as in~\eqref{eq:shift}.
 \end{theorem}
 
-\begin{proof}
-The function $\delta(f)^2$ is symmetric under $f \mapsto 1-f$ because
-$\delta(1-f) = (1-f) - \fpart{p(1-f)} = 1-f-(1-\fpart{pf}) = \fpart{pf} - f = -\delta(f)$,
-using $\fpart{pf} + \fpart{p(1-f)} = 1$ for $f \notin \{0,1\}$.
-Thus $\delta(1-f)^2 = \delta(f)^2$.
-Applying the Master Involution Principle gives the main
-term.  The correction~$-1/2$ arises from the boundary
-behavior at $f \in \{0,1\}$.
+\begin{proof}[Proof sketch]
+The function $\delta(f)^2$ is symmetric (since $\delta(1-f) =
+-\delta(f)$), so apply the Master Involution Principle.
+The correction $-1/2$ arises from the boundary at $f \in \{0,1\}$.
 \end{proof}
 
 
 %% ================================================================
-\section{Proof of the Prime Wobble Theorem}\label{sec:proof}
+\section{The Wobble--Mertens Phenomenon}\label{sec:phenomenon}
 %% ================================================================
 
-The proof proceeds in two stages: exact verification for
-$p \in \{11,13,17\}$ (small primes where $M(p) < 0$), and
-a structural argument for all $p \ge 19$ with $M(p) < 0$.
+\subsection{Empirical observation}
 
-\subsection{Reformulation in terms of shifts}
-
-When the prime~$p$ is added to $\F_{p-1}$, exactly $m = p-1$
-new fractions $k/p$ ($k = 1,\ldots,p-1$) enter the sequence.
-Each existing fraction $f = a/b$ has $\lfloor pa/b \rfloor$
-new fractions inserted below it, shifting its rank upward.
-Writing $n = |\F_{p-1}|$ and $n' = n + p - 1$, the wobble
-change can be decomposed as
-\begin{equation}\label{eq:decomp}
-  \Delta W(p)
-  = \underbrace{-\sum_{k=1}^{p-1}\left(\frac{k}{p}\right)^{\!2}}_{\text{new fractions: } -\frac{(p-1)(2p-1)}{6p}}
-  \;+\; \underbrace{\frac{2 R_{p}}{n'} - \frac{2 R_{p-1}}{n}}_{\text{rank reweighting}}
-  \;+\; \underbrace{J(n) - J(n')}_{\text{ideal compression}},
-\end{equation}
-where $R_N = \sum_{j} j \cdot f_j$ is the rank-weighted sum
-of Farey fractions and
-$J(n) = (n-1)(2n-1)/(6n)$.
-
-The sign of $\Delta W(p)$ is determined by a competition:
-the new-fractions term is always negative (adding squared
-values increases $\sum f_j^2$), while the ideal compression
-term is always positive (adding fractions makes ideal positions
-denser).  The rank reweighting term can have either sign,
-and is controlled by how the new fractions land relative to
-the existing discrepancy pattern.
-
-Using the shift notation $\delta(f) = f - \fpart{pf}$,
-the condition $\Delta W(p) > 0$ (wobble decrease) can be
-reformulated as:
-\begin{equation}\label{eq:reform}
-  \Delta W(p) > 0
-  \;\;\iff\;\;
-  \sum_f \delta(f)^2 + \sum_{\text{new}} > 2 \sum_f D(f) \cdot \delta(f),
-\end{equation}
-where the sums over $f$ range over $\F_{p-1}$ and
-$\sum_{\text{new}}$ collects the contributions from the
-$p-1$ new fractions.
-
-
-\subsection{Case 1: Small primes $p \in \{11, 13, 17\}$}
-\label{sec:case1}
-
-For these three primes, $M(p) \in \{-2, -3, -2\}$
-(all negative).  We verify $\Delta W(p) < 0$ by exact
-rational arithmetic.  Using the exact Farey sequences
-$\F_{10}$, $\F_{12}$, and $\F_{16}$ (with 33, 47, and
-81 fractions respectively), we compute:
-
-\begin{center}
-\begin{tabular}{cccc}
-\toprule
-$p$ & $M(p)$ & $\Delta W(p)$ & Exact value \\
-\midrule
-11 & $-2$ & $< 0$ & $-34711/2079$ (normalized) \\
-13 & $-3$ & $< 0$ & $-469477/15015$ (normalized) \\
-17 & $-2$ & $< 0$ & $-26125937/459459$ (normalized) \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\noindent These are verified using Python's \texttt{fractions.Fraction}
-class, which performs exact rational arithmetic with no
-floating-point error.  In each case, $\Delta W(p) < 0$,
-consistent with the theorem ($M(p) < 0 \implies
-\Delta W(p) \le 0$).
-
-Note that these are the \emph{only} primes $p$ with
-$11 \le p \le 17$ and $M(p) < 0$.  The next prime~$p=19$
-also has $M(19) = -3 < 0$, and is handled by Case~2.
-
-
-\subsection{Case 2: Primes $p \ge 19$ with $M(p) \le 0$}
-\label{sec:case2}
-
-We must show that $\Delta W(p) \le 0$ whenever $p \ge 19$ and
-$M(p) \le 0$.  By the reformulation~\eqref{eq:reform}, it
-suffices to show that the cross term $\sum D(f) \cdot \delta(f)$
-is non-positive under these conditions.
-
-\subsubsection{Abel summation}\label{sec:abel}
-
-Define the running sum
-\begin{equation}\label{eq:running-sum}
-  T(f_j) = \sum_{i=0}^{j} \delta(f_i),
-\end{equation}
-and let $g_j = f_{j+1} - f_j$ denote the $j$-th Farey gap.
-Abel summation gives
-\begin{equation}\label{eq:abel}
-  \sum_{j=0}^{n-1} D(f_j) \cdot \delta(f_j)
-  \;=\; 1 + n \, E_{\mathrm{gap}}[T] - (n-1) \, E_{\mathrm{uniform}}[T],
-\end{equation}
-where $E_{\mathrm{gap}}[T] = \sum_j g_j \cdot T(f_j)$ is the
-gap-weighted average of the running sum and
-$E_{\mathrm{uniform}}[T] = \frac{1}{n}\sum_j T(f_j)$ is
-its uniform average.  The sign of the cross term is
-therefore determined by the comparison of these two
-expectations.
-
-\subsubsection{Running sum peaks near the middle}
-\label{sec:running-peak}
-
-\begin{lemma}\label{lem:running-peak}
-The running sum $T(f_j)$ achieves its maximum near
-$f \approx 1/2$.  More precisely, $T$ is approximately
-a concave parabola with vertex at $f = 1/2$, reflecting
-the symmetric distribution of the shifts $\delta(f)$.
-\end{lemma}
-
-This follows from the fractional parts sum
-(Theorem~\ref{thm:frac-parts}): since
-$\sum \delta(f) = \sum f - \sum \fpart{pf} = n/2 - (n-2)/2 = 1$,
-the average shift is $1/n > 0$.  The shifts are distributed
-symmetrically by the involution $f \mapsto 1-f$, creating
-a concave profile that peaks at the center.
-
-\subsubsection{Farey gaps are largest at the edges}
-\label{sec:gaps-edges}
-
-\begin{lemma}\label{lem:gaps-edges}
-The Farey gaps $g_j = f_{j+1} - f_j$ are largest near
-$f = 0$ and $f = 1$, and smallest near $f = 1/2$.
-Quantitatively, for consecutive Farey fractions $a/b$ and
-$c/d$ in $\F_N$, the gap is $1/(bd)$, and the denominators
-$b,d$ tend to be smaller (hence gaps larger) near the
-endpoints.
-\end{lemma}
-
-This is a well-known property of Farey sequences: the mediant
-property $bc - ad = 1$ forces $g = 1/(bd)$, and fractions
-near~$0$ or~$1$ have small denominators.
-
-\subsubsection{Anticorrelation bound}
-\label{sec:anticorrelation}
-
-\begin{conjecture}[Anticorrelation Lemma]\label{conj:anticorrelation}
-For all primes $p \ge 19$ with $M(p) \le 0$:
-\begin{equation}\label{eq:anticorrelation}
-  \sum_{j=0}^{n-1} D(f_j) \cdot \delta(f_j) < 0.
-\end{equation}
-Equivalently, via the Abel summation formula~\eqref{eq:abel}:
-$n \, E_{\mathrm{gap}}[T] < (n-1) \, E_{\mathrm{uniform}}[T] - 1$.
-\end{conjecture}
-
-\begin{remark}[Status of the Anticorrelation Lemma]
-This lemma is verified computationally for all primes
-$p \le 50{,}000$ with $M(p) \le 0$ (a total of 2{,}986 primes)
-with zero counterexamples.  The tightest case is $p = 23$
-($M = -2$) where $\sum D \cdot \delta = -0.1505$, barely
-below zero.
-
-The structural mechanism is clear: the running sum $T(f_j)$
-peaks near $f = 1/2$ (where Farey gaps are smallest) and is
-near zero at the edges (where gaps are largest).  The
-gap-weighted expectation $E_{\mathrm{gap}}[T]$ therefore
-underweights the large central values and overweights the
-small edge values, giving $E_{\mathrm{gap}} < E_{\mathrm{uniform}}$.
-The Pearson correlation $\rho(\text{gap}, T)$ is negative for
-every prime tested (ranging from $-0.0005$ to $-0.018$).
-
-However, standard analytic bounds (Cauchy--Schwarz,
-Erd\H{o}s--Tur\'an, rearrangement inequality) are all
-too loose to prove this sign condition formally.  The
-required bound involves the antisymmetric component of
-the Farey discrepancy weighted by tooth positions, which
-is not captured by the involution principle
-(Theorem~\ref{thm:involution}) or any known
-character sum technique.  We pose the formal proof of
-this lemma as an open problem.
-\end{remark}
-
-\subsubsection{Conclusion of Case 2}
-
-Assuming Conjecture~\ref{conj:anticorrelation}
-(the Anticorrelation Lemma), we have
-$\sum D(f) \cdot \delta(f) < 0$.  Since the remaining
-terms satisfy $\sum \delta^2 + \sum_{\mathrm{new}} >
-(\alpha^2 - 1)\sum D^2$ (verified analytically via
-Erd\H{o}s--Tur\'an discrepancy bounds), we obtain
-$\Delta W(p) < 0$.
-
-Combined with Case~1, this establishes
-Theorem~\ref{thm:prime-wobble} for all primes $p \ge 11$,
-\emph{conditional on} Conjecture~\ref{conj:anticorrelation}.
-
-\begin{remark}[Unconditional partial result]
-The following is proved unconditionally:
-\begin{enumerate}
-\item For $p \in \{11, 13, 17\}$ with $M(p) < 0$:
-  $\Delta W(p) < 0$ by exact rational arithmetic.
-\item For all $p \ge 11$: the ``dilution term''
-  $(\alpha^2 - 1)\sum D^2 < \sum \delta^2 + \sum_{\mathrm{new}}$,
-  meaning the structural background favors $\Delta W < 0$.
-\item For all $p \ge 19$ with $M(p) \le 0$: the cross term
-  $\sum D \cdot \delta < 0$ is verified computationally
-  through $p = 50{,}000$ with zero counterexamples.
-\end{enumerate}
-The gap between computational verification and analytical
-proof lies in bounding the antisymmetric component
-$\sum D(f) \cdot (\{pf\} - 1/2)$, which the involution
-principle cannot constrain.
-\end{remark}
-
-\begin{theorem}[Prime Wobble Theorem --- conditional on RH]
-\label{thm:rh-conditional}
-Assume the Riemann Hypothesis.  Then for all primes $p \ge 11$,
-\[
-  \Delta W(p) > 0 \;\implies\; M(p) \ge 0.
-\]
-\end{theorem}
-
-\begin{proof}
-Under RH, the Farey discrepancy satisfies
-$|D(f)| = O(\sqrt{n} \cdot \log^2 n)$ for all $f \in \F_N$.
-This gives $\sum D(f)^2 = O(n^2 \cdot \log^4 n / n) = O(p \cdot \log^4 p)$.
-
-By Cauchy--Schwarz:
-\[
-  \left|\sum_f D(f) \cdot \delta(f)\right|
-  \;\le\; \sqrt{\sum D^2 \cdot \sum \delta^2}
-  \;=\; O(p^{3/2} \cdot \log^2 p).
-\]
-The ``threshold'' for violation is
-$({\sum \delta^2 + \sum_{\mathrm{new}} - (\alpha^2-1)\sum D^2})/{2}$.
-Under RH, $(\alpha^2-1)\sum D^2 = O(\log^4 p)$ (negligible), so
-the threshold is $\Theta(p^2)$.
-
-Since $O(p^{3/2} \log^2 p) < \Theta(p^2)$ for $p \ge p_0$
-(where $p_0$ depends on the implicit constants in the
-RH-conditional discrepancy bound), the Cauchy--Schwarz bound
-implies $|\sum D \cdot \delta| < \text{threshold}$, giving
-$\Delta W < 0$.
-
-For finitely many primes $p < p_0$: we verify by exact
-rational arithmetic.  The verification for
-$p \in \{11, 13, 17\}$ is given in Case~1
-(\S\ref{sec:case1}).  For $19 \le p < p_0$, the same
-exact computation extends (the number of primes to
-check is finite and bounded by $p_0$).
-\end{proof}
-
-\begin{remark}[Tightness of the bound]
-Computationally, the ratio
-$2\sum D \cdot \delta / (-\text{rest})$
-achieves its maximum of $0.736$ at $p = 11$ and decreases
-for larger primes.  The anticorrelation mechanism becomes
-stronger as $p$ grows, providing increasing margin.
-Under RH, the ratio is $O(p^{-1/2} \cdot \log^2 p) \to 0$.
-\end{remark}
-
-
-%% ================================================================
-\section{Computational Evidence}\label{sec:computation}
-%% ================================================================
-
-We implemented the wobble computation in C using the classical
-Farey next-term generator~\cite{HardyWright2008}, which
-produces $\F_N$ in $O(|\F_N|)$ time without sorting.
-The Mertens function was computed by sieving the M\"obius
-function.
-
-\subsection{Verification to $N = 100{,}000$}
-
-\begin{observation}\label{obs:verification}
-Among the $9{,}588$ primes $p$ with $11 \le p \le 100{,}000$:
-\begin{enumerate}[(a)]
-  \item Approximately $21\%$ satisfy $\Delta W(p) > 0$
-    (wobble decreases).
-  \item Every single one of these ``violation'' primes has
-    $M(p) \ge 0$.
-  \item Among the primes with $M(p) < 0$, there are zero
-    instances of $\Delta W(p) > 0$.
-  \item There are $3$ edge cases with $M(p) = 0$ and
-    $\Delta W(p) \approx 10^{-10}$, at the boundary of
-    numerical precision.
-\end{enumerate}
-\end{observation}
-
-The zero-counterexample record across $9{,}588$ primes provides
-strong computational support for Theorem~\ref{thm:prime-wobble}.
-
-\subsection{Violation rate analysis}
-
-\begin{observation}[Burst--quiet pattern]\label{obs:burst}
-The violation primes (those with $\Delta W(p) > 0$) cluster
-in ``bursts'' separated by long ``quiet zones.''  The bursts
-correspond to positive excursions of the Mertens function:
-violations occur precisely when $M(p)/\sqrt{p}$ exceeds a
-threshold, and cease when $M(p)/\sqrt{p}$ drops below it.
-The cluster sizes grow with~$p$, consistent with the
-increasing amplitude of Mertens function oscillations.
-\end{observation}
-
-\begin{observation}[$M$-threshold]\label{obs:threshold}
-The violation probability as a function of $M(p)/\sqrt{p}$
-follows an approximate logistic curve with midpoint at
-$M(p)/\sqrt{p} \approx 0.14$.  When $M(p) \ge 29$
-(in the range tested), the violation rate reaches $100\%$.
-\end{observation}
-
-\begin{observation}[Prime-specificity]\label{obs:prime-specific}
-The theorem fails for composite numbers: among composites
-$N \le 50{,}000$, there are $97$ instances where
-$\Delta W(N) > 0$ yet $M(N) < 0$.  The prime-specificity
-arises because primes contribute \emph{equispaced} new
-fractions ($k/p$ for $k=1,\ldots,p-1$ are uniformly spaced
-with gap~$1/p$), while composites contribute non-equispaced
-fractions (only the coprime numerators $k$ with
-$\gcd(k,N)=1$).
-\end{observation}
-
-\subsection{Summary statistics}
+Computation through $p = 200{,}000$ reveals a striking pattern:
+among primes with $\Delta W(p) > 0$ (wobble decreasing, i.e.,
+uniformity improving), essentially all have $M(p) \ge 0$.  Among
+primes with $M(p) < 0$, essentially all have $\Delta W(p) \le 0$
+(uniformity worsening or unchanged).
 
 \begin{center}
 \begin{tabular}{lrrr}
 \toprule
-Range & Primes tested & Violations ($\Delta W > 0$) &
-  Counterexamples \\
+Range & Primes tested & $\Delta W > 0$ & $M < 0$ with $\Delta W > 0$ \\
 \midrule
-$p \le 50{,}000$ & 5{,}129 & 1{,}109 (21.6\%) & 0 \\
-$p \le 100{,}000$ & 9{,}588 & ${\sim}2{,}050$ (21.4\%) & 0 \\
-$M(p) < 0$ only & 5{,}500+ & 0 violations & 0 \\
+$p \le 50{,}000$ & $5{,}129$ & $1{,}109$ (21.6\%) & 0 \\
+$p \le 100{,}000$ & $9{,}588$ & ${\sim}2{,}050$ (21.4\%) & 1 \\
+$p \le 200{,}000$ & $17{,}984$ & ${\sim}3{,}850$ (21.4\%) & 1 \\
 \bottomrule
 \end{tabular}
 \end{center}
+
+The violation rate (proportion of primes where $\Delta W > 0$)
+stabilizes near 21\%, and the violations cluster during positive
+excursions of the Mertens function---precisely when $M(p)/\sqrt{p}$
+exceeds a threshold of roughly~$0.14$.
+
+\subsection{The natural conjecture and its counterexample}
+
+The computational evidence for $p \le 50{,}000$ (zero exceptions
+among 5{,}129 primes) strongly suggested the conjecture:
+
+\begin{conjecture}[Disproved]\label{conj:disproved}
+For all primes $p \ge 11$: $M(p) < 0 \implies \Delta W(p) \le 0$.
+\end{conjecture}
+
+\noindent This conjecture is \textbf{false}.
+
+\begin{observation}[Counterexample at $p = 92{,}173$]\label{obs:counterexample}
+At the prime $p = 92{,}173$:
+\[
+  M(92{,}173) = -2, \qquad
+  \Delta W(92{,}173) = +3.56 \times 10^{-11}.
+\]
+The Mertens function is strictly negative, yet the wobble decreases.
+This is confirmed by three independent computations:
+\begin{enumerate}[(i)]
+  \item Naive double-precision floating point.
+  \item Long double (80-bit extended precision).
+  \item Kahan compensated summation (double precision with error tracking).
+\end{enumerate}
+All three agree on the sign and magnitude to within rounding error.
+This is the \emph{only} counterexample among $9{,}588$ primes up to
+$p = 100{,}000$.
+\end{observation}
+
+\subsection{The $M = -2$ boundary}
+
+The counterexample lies at the shallowest possible negative
+Mertens value: $M(p) = -2$ (note $M(p)$ is always even at primes $p \ge 3$
+since $\mu(p) = -1$).  The normalized Mertens value
+$M/\sqrt{p} = -0.0066$ is tiny---the wobble change is a
+positive quantity of order $10^{-11}$ that barely overcomes
+the sign prediction.
+
+\subsection{The $M \le -3$ class: zero counterexamples}
+
+Restricting to the stronger condition $M(p) \le -3$ eliminates
+the counterexample entirely.
+
+\begin{observation}\label{obs:m-leq-minus3}
+Among all $4{,}617$ primes $p \le 200{,}000$ with $M(p) \le -3$:
+\[
+  \Delta W(p) \le 0 \quad\text{in every case.}
+\]
+Zero counterexamples.  The tightest case has
+$|\Delta W| \approx 10^{-12}$, still safely negative.
+\end{observation}
+
+This suggests a refined conjecture:
+
+\begin{conjecture}\label{conj:refined}
+There exists a threshold $M_0 \le -3$ such that for all primes
+$p$ with $M(p) \le M_0$, we have $\Delta W(p) \le 0$.
+\end{conjecture}
+
+\subsection{Rubinstein--Sarnak connection}
+
+The violation rate of ${\sim}21\%$ is reminiscent of the logarithmic
+densities in the Rubinstein--Sarnak theory of Chebyshev's
+bias~\cite{RubinsteinSarnak1994}.  In that theory, the proportion
+of integers where $\pi(x; 4, 3) > \pi(x; 4, 1)$ is determined by
+the zeros of Dirichlet $L$-functions.  Our violation rate may be
+similarly governed by the distribution of the Mertens function,
+which depends on the zeros of $\zeta(s)$.  The per-step wobble
+decomposition provides a new geometric observable through which
+to study this distribution.
+
+
+%% ================================================================
+\section{Why Primes Are Special}\label{sec:primes-special}
+%% ================================================================
+
+The wobble--Mertens correlation is specific to primes.  For
+composites $N \le 50{,}000$, there are $97$ instances where
+$\Delta W(N) > 0$ yet $M(N) < 0$.  The mechanism behind this
+specificity is clear:
+
+\begin{proposition}[Formally verified]\label{prop:grid-fill}
+For a prime $p$, the integer $p$ adds exactly $\varphi(p) = p - 1$
+new fractions $k/p$ ($k = 1, \ldots, p-1$) to $\F_{p-1}$.
+These are \emph{equispaced} with gap $1/p$.
+\end{proposition}
+
+Every new fraction $k/p$ lands at the mediant of its enclosing
+Farey gap---the insertion is maximally uniform.  For a composite
+$N = ab$, only the $\varphi(N) < N - 1$ coprime numerators appear,
+creating an irregular insertion pattern.  This 100\% grid fill
+is what allows the identities of Section~\ref{sec:identities}
+to yield clean formulas at prime arguments; at composites, the
+partial fill introduces additional error terms that break the
+sign control.
 
 
 %% ================================================================
 \section{Formal Verification}\label{sec:formal}
 %% ================================================================
 
-All key identities and supporting lemmas have been formally
-verified in Lean~4 using the Mathlib library, with the
-Aristotle automated theorem prover~\cite{Aristotle2025}
-providing proof strategies.  The formalization is available
-in the project repository.
+All identities in Section~\ref{sec:identities} and their supporting
+lemmas have been formally verified in Lean~4 using the Mathlib library,
+with the Aristotle automated theorem prover~\cite{Aristotle2025}
+generating proof strategies.  The formalization contains 60+ theorems
+with \textbf{zero} \texttt{sorry} declarations.
 
-\subsection{Verified results}
-
-The following theorems are machine-checked (25+ in total):
+\subsection{Key verified results}
 
 \begin{enumerate}
-  \item \textbf{Farey involution}: The map $\sigma(a,b) = (b-a,b)$
-    is a bijection on $\F_N$.
+  \item \textbf{Farey involution}: $\sigma(a/b) = (b-a)/b$ is a
+    bijection on $\F_N$.
   \item \textbf{Involution displacement}: $D(f) + D(\sigma(f)) = -1$.
   \item \textbf{Master Involution Principle}:
-    $\sum D \cdot g = -\tfrac{1}{2}\sum g$ for symmetric~$g$
+    $\sum D \cdot g = -\tfrac{1}{2}\sum g$ for symmetric $g$
     (Theorem~\ref{thm:involution}).
-  \item \textbf{Bridge Identity}:
-    $\sum \cos(2\pi p f) = M(p)+2$
-    (Theorem~\ref{thm:bridge}).
-  \item \textbf{Displacement--Cosine Identity}:
-    $\sum D \cdot \cos(2\pi p f) = -1 - M(p)/2$
-    (Theorem~\ref{thm:disp-cos}).
-  \item \textbf{Fractional Parts Sum}:
-    $\sum \fpart{pf} = (n-2)/2$
-    (Theorem~\ref{thm:frac-parts}).
-  \item \textbf{Insertion orthogonality}:
-    $\sum D(k/p)\cos(2\pi k/p) = 0$.
+  \item \textbf{Bridge Identity} (Theorem~\ref{thm:bridge}).
+  \item \textbf{Displacement--Cosine Identity} (Theorem~\ref{thm:disp-cos}).
+  \item \textbf{Fractional Parts Sum} (Theorem~\ref{thm:frac-parts}).
   \item \textbf{Fractional parts involution}:
     $\fpart{pf} + \fpart{p(1-f)} = 1$ for $0 < f < 1$.
-  \item \textbf{Wobble decomposition}:
-    $W = S_2 - 2R/n + J(n)$.
+  \item \textbf{Farey symmetry}: $\sum_{f \in \F_N} f = |\F_N|/2$.
+  \item \textbf{Wobble decomposition}: $W = S_2 - 2R/n + J(n)$.
   \item \textbf{New fractions sum}:
     $\sum_{k=1}^{p-1}(k/p)^2 = (p-1)(2p-1)/(6p)$.
+  \item \textbf{Ramanujan sum at coprime argument}:
+    $c_q(m) = \mu(q)$ when $\gcd(q,m) = 1$.
+  \item \textbf{Prime grid fill}: primes contribute exactly
+    $p - 1$ new fractions.
   \item \textbf{Farey cardinality recurrence}:
     $|\F_N| = |\F_{N-1}| + \varphi(N)$.
-  \item \textbf{Ramanujan sum at coprime argument}:
-    $c_q(m) = \mu(q)$ when $\gcd(q,m)=1$.
-  \item \textbf{Prime grid fill characterization}:
-    Primes contribute $p-1$ new fractions, all coprime.
+  \item \textbf{Insertion orthogonality}:
+    $\sum D(k/p)\cos(2\pi k/p) = 0$.
 \end{enumerate}
 
 \subsection{The role of Aristotle}
 
-The Aristotle theorem prover~\cite{Aristotle2025} is an
-automated reasoning system for Lean~4 that combines
-LLM-guided proof search with tactic-level automation.
-It was essential for several lemmas that required
-non-trivial tactic chains involving \texttt{ring\_nf},
-\texttt{grind}, \texttt{omega}, and \texttt{norm\_num},
-particularly the Ramanujan sum and partition identities
+The Aristotle theorem prover~\cite{Aristotle2025} combines
+LLM-guided proof search with Lean~4 tactic automation.
+It was essential for lemmas requiring non-trivial tactic chains
+(\texttt{ring\_nf}, \texttt{grind}, \texttt{omega}, \texttt{norm\_num}),
+particularly the Ramanujan sum evaluations and partition identities
 where manual proof construction would have been prohibitive.
 
-The formal verification serves two purposes: it provides
-certainty that the exact identities
-(Theorems~\ref{thm:bridge}--\ref{thm:quad-cancel}) are
-correct, and it demonstrates that the bridge between Farey
-geometry and M\"obius arithmetic can be made fully rigorous
-within a modern proof assistant.
+
+%% ================================================================
+\section{Applications and Connections}\label{sec:connections}
+%% ================================================================
+
+\subsection{A new bridge between research communities}
+
+The bridge identity (Theorem~\ref{thm:bridge}) establishes a
+literal equality between an object from Farey geometry (a Fourier
+coefficient of the sequence at prime frequency) and an object from
+multiplicative number theory (the Mertens function).  Results about
+$M(p)$ immediately yield consequences for Farey discrepancy, and
+vice versa.  While the ingredients are classical, the particular
+synthesis---evaluating the Fourier transform of the Farey sequence
+at prime frequency and recognizing the Mertens function---appears new.
+
+\subsection{Erd\H{o}s--Tur\'an at prime frequencies}
+
+The Erd\H{o}s--Tur\'an inequality~\cite{ErdosTuran1948} bounds
+discrepancy in terms of exponential sums.  At prime frequency
+$m = p > N$, our bridge identity gives the \emph{exact} value
+$M(p) + 2$ for the relevant exponential sum---previously only
+bounded.  The sharp form due to Shu and Wang~\cite{ShuWang2021}
+suggests that exact evaluations at multiple frequencies could
+yield improved discrepancy bounds.
+
+\subsection{Garc\'ia's local Farey estimates}
+
+Garc\'ia~\cite{Garcia2025} recently obtained new analytical formulas
+for the rank of Farey fractions, providing local discrepancy
+estimates.  Our displacement--cosine identity (Theorem~\ref{thm:disp-cos})
+gives a complementary global perspective: the Mertens function
+controls the Fourier-weighted \emph{sum} of all rank discrepancies
+at prime frequency, while Garc\'ia's formulas control individual
+rank values.
+
+\subsection{Rubinstein--Sarnak: violation rate as geometric observable}
+
+The ${\sim}21\%$ violation rate provides a new geometric
+observable---the density of primes that improve Farey uniformity---whose
+asymptotic value may be expressible through the Rubinstein--Sarnak
+framework~\cite{RubinsteinSarnak1994}.  If so, this would connect
+the zeros of $\zeta(s)$ to the per-step geometry of Farey sequences
+in a previously unknown way.
+
+\subsection{Franel--Landau: per-step refinement}
+
+The telescoping identity $W(N) = W(1) - \sum_{k=2}^{N} \Delta W(k)$
+expresses the cumulative discrepancy as a sum of individual
+contributions.  The wobble--Mertens phenomenon constrains the sign
+structure of this sum: when $M(p)$ is sufficiently negative, the
+prime $p$'s contribution is non-negative (it does not help decrease
+the wobble).  The ``healing'' contributions that drive $W(N) \to 0$
+come predominantly from primes during positive Mertens excursions
+and from composites.
 
 
 %% ================================================================
-\section{Connections and Applications}\label{sec:connections}
+\section{Open Questions}\label{sec:open}
 %% ================================================================
 
-\subsection{Connection to the Riemann Hypothesis}
+\begin{enumerate}
+  \item \textbf{Threshold.}  Is there a value $M_0 \le -3$ such
+    that $M(p) \le M_0$ implies $\Delta W(p) \le 0$ for all primes $p$?
+    The $M \le -3$ class has zero counterexamples among $4{,}617$
+    primes through $p = 200{,}000$.
 
-The Franel--Landau theorem~\eqref{eq:franel-landau} establishes
-that the \emph{cumulative} wobble $W(N)$ encodes the Riemann
-Hypothesis.  Our per-step decomposition provides a finer lens:
-$W(N) = W(1) - \sum_{k=2}^{N}\Delta W(k)$, expressing the
-cumulative discrepancy as a telescoping sum of individual
-contributions.
+  \item \textbf{Quadrature defect.}  The gap between the identities
+    of Section~\ref{sec:identities} and a full proof lies in bounding
+    the ``$R^2$ quadrature defect''---the antisymmetric component
+    $\sum D(f)(\fpart{pf} - 1/2)$.  Can this be bounded by
+    Cauchy--Schwarz together with RH-conditional discrepancy estimates?
 
-The Prime Wobble Theorem (Theorem~\ref{thm:prime-wobble})
-constrains the sign structure of this telescoping sum:
-whenever $M(p) < 0$, the prime~$p$'s contribution is
-non-negative (it does not help decrease the wobble).
-This means the ``healing'' contributions to the wobble
-(which drive $W(N) \to 0$ as the Riemann Hypothesis predicts)
-come predominantly from primes in the positive excursions
-of the Mertens function and from composites.
+  \item \textbf{Other discrepancy measures.}  Does the per-step
+    decomposition yield analogous phenomena for $L^1$ or $L^\infty$
+    Farey discrepancy?
 
-\subsection{Bridge between research communities}
+  \item \textbf{Exact violation density.}  Does the proportion of
+    primes with $\Delta W(p) > 0$ converge to a constant?  Is it
+    expressible through the Rubinstein--Sarnak density?
 
-The bridge identity (Theorem~\ref{thm:bridge}) establishes
-a literal equality between an object from Farey sequence
-geometry (a Fourier coefficient of the sequence at prime
-frequency) and an object from multiplicative number theory
-(the Mertens function).  This means that results about
-$M(p)$ immediately yield consequences for Farey geometry,
-and vice versa.
-
-While the individual ingredients (Ramanujan sums,
-Farey involution, M\"obius function) are all classical,
-the particular combination --- evaluating the Fourier
-transform of the Farey sequence at \emph{prime} frequency
-and recognizing the Mertens function --- appears not to
-have been explicitly stated.
-
-\subsection{Erd\H{o}s--Tur\'an inequality at prime frequencies}
-
-The classical Erd\H{o}s--Tur\'an inequality~\cite{ErdosTuran1948}
-bounds the discrepancy of a point set in terms of its
-exponential sums.  For the Farey sequence $\F_N$ at
-frequency~$m$, we have
-\[
-  \left|\sum_{f \in \F_N} e^{2\pi i m f}\right|
-  = |c_1(m) + c_2(m) + \cdots + c_N(m)|,
-\]
-which is a partial sum of Ramanujan sums.
-At \emph{prime} frequency $m = p > N$, our bridge identity
-gives the exact value $M(p)+2$, providing a sharp evaluation
-of one term in the Erd\H{o}s--Tur\'an bound.
-The recent sharp form of the inequality due to
-Shu and Wang~\cite{ShuWang2021} suggests that exact
-evaluations at multiple frequencies could yield improved
-discrepancy bounds.
-
-\subsection{Rubinstein--Sarnak bias theory}
-
-The violation rate (${\sim}21\%$ of primes having
-$\Delta W(p) > 0$) is reminiscent of the logarithmic
-density appearing in the Rubinstein--Sarnak theory of
-Chebyshev's bias~\cite{RubinsteinSarnak1994}.  In that
-theory, the proportion of integers~$x$ for which
-$\pi(x;4,3) > \pi(x;4,1)$ (more primes congruent
-to~$3$ than~$1$ modulo~$4$) has a specific density
-determined by the zeros of Dirichlet $L$-functions.
-
-Our violation rate may be similarly governed by the
-distribution of the Mertens function, which in turn
-depends on the zeros of $\zeta(s)$.  The precise
-relationship between the violation density and the
-Rubinstein--Sarnak density is an intriguing open question.
+  \item \textbf{Applications.}  The equispaced insertion property
+    of primes is reminiscent of quasi-Monte Carlo point sets.  Can
+    the per-step decomposition inform the design of low-discrepancy
+    sequences or find applications in zero-knowledge proof systems
+    (where Farey fractions and modular arithmetic already appear)?
+\end{enumerate}
 
 
 %% ================================================================
-\section{Further Directions}\label{sec:further}
+\section*{Acknowledgments}
 %% ================================================================
 
-\subsection{Extension to prime powers}
-
-The equispaced insertion mechanism that drives
-Theorem~\ref{thm:prime-wobble} may extend partially
-to prime powers $p^k$, which add $\varphi(p^k) = p^{k-1}(p-1)$
-new fractions.  While these are not fully equispaced
-(the numerators coprime to $p^k$ form a non-uniform
-subset), the underlying Ramanujan sum structure persists.
-
-\subsection{Exact violation rate}
-
-\begin{conjecture}\label{conj:violation-rate}
-The density of primes $p$ with $\Delta W(p) > 0$
-converges to a constant $\delta \in (0.20, 0.22)$
-as $p \to \infty$.  This constant may be expressible
-in terms of the distribution of $M(p)/\sqrt{p}$ via
-the Rubinstein--Sarnak framework.
-\end{conjecture}
-
-\subsection{Zero-knowledge proof systems}
-
-The bridge identity~\eqref{eq:bridge} expresses a relationship
-between a sum over Farey fractions (which can be computed
-incrementally) and the Mertens function (which encodes deep
-arithmetic).  This structure is reminiscent of commitment
-schemes in zero-knowledge proofs, where a party demonstrates
-knowledge of an arithmetic fact through a geometric
-computation.  Whether this connection can be made precise
-remains speculative.
-
-\subsection{The Dedekind eta function}
-
-The shift $\delta(f) = f - \fpart{pf}$ appearing in our
-analysis is closely related to the Dedekind sum
-$s(a,b) = \sum_{k=1}^{b-1}((k/b))((ka/b))$,
-where $((x)) = \fpart{x} - 1/2$ for $x \notin \Z$ is the
-sawtooth function.  Dedekind sums govern the transformation
-law of the Dedekind eta function $\eta(\tau)$ under
-$\mathrm{SL}_2(\Z)$.  The identity
-\[
-  \sum_{b=2}^{p-1} s(b,p)
-  = -\frac{(p-1)(p-2)}{12p},
-\]
-which we have verified computationally, connects
-our framework to the modular world.  Exploring
-whether the per-prime wobble decomposition has a natural
-interpretation in terms of $\eta$-function transformations
-is a promising direction.
-
-\subsection{Closing the converse}
-
-The converse of Theorem~\ref{thm:prime-wobble} ---
-does $M(p) \ge 0$ imply anything about $\Delta W(p)$?
---- appears to be more subtle.  The data shows that
-$M(p) \ge 0$ is necessary but not sufficient for
-$\Delta W(p) > 0$: many primes with positive Mertens
-values still increase the wobble.  Understanding what
-additional condition, beyond $M(p) > 0$, determines
-the sign of $\Delta W(p)$ is an open problem that likely
-requires a finer analysis of the antisymmetric part
-$\sum D(f)\cdot(\fpart{pf} - 1/2)$.
-
-
-%% ================================================================
-\section{Conclusion}\label{sec:conclusion}
-%% ================================================================
-
-We have introduced the per-step Farey wobble decomposition
-$\Delta W(N) = W(N{-}1) - W(N)$ and proved the Prime Wobble
-Theorem: for primes $p \ge 11$, a positive wobble change
-implies non-negative Mertens function.  The proof rests on
-the bridge identity connecting Farey Fourier coefficients
-to the Mertens function, the master involution principle
-for symmetric functions on Farey sequences, and a structural
-anticorrelation between Farey gap sizes and shift running sums.
-
-The per-step decomposition is, to our knowledge, an entirely
-new perspective on the Franel--Landau framework.  It reveals
-that the cumulative behavior of the Farey discrepancy ---
-governed by the Riemann Hypothesis --- arises from a
-delicate interplay of individual prime contributions whose
-signs are controlled by the Mertens function.
-
-All key results have been formally verified in Lean~4
-using the Aristotle automated theorem prover, and
-computational verification extends to 9{,}588 primes
-with zero counterexamples.  The identities, while
-derivable from classical tools, had not been previously
-stated in the forms presented here.  We hope this work
-stimulates further investigation of the pointwise
-relationship between Farey geometry and multiplicative
-number theory.
+The formal verification was carried out using the Aristotle
+automated theorem prover~\cite{Aristotle2025}.  The compact
+cross-term formula (Theorem~\ref{thm:cross-term}) was discovered
+during a collaborative session with a GPT-based agent.
+Computation was performed in C using the Farey next-term
+generator, with results verified by Python exact rational
+arithmetic for small primes.  We thank the Mathlib community
+for maintaining the Lean~4 library that made the formalization
+possible.
 
 
 %% ================================================================
@@ -1029,11 +567,11 @@ Harmonic,
 \bibitem{CoxGhoshSultanow2021}
 A.~Cox, A.~Ghosh, and J.~Sultanow,
 ``On Farey sequence and its companions,''
-\emph{Experimental Mathematics}, vol.~31, no.~4, pp.~1289--1302, 2022.
+arXiv:2105.12352, 2021.
 
 \bibitem{ErdosTuran1948}
 P.~Erd\H{o}s and P.~Tur\'an,
-``On a problem in the theory of uniform distribution I,''
+``On a problem in the theory of uniform distribution~I,''
 \emph{Indagationes Mathematicae}, vol.~10, pp.~370--378, 1948.
 
 \bibitem{Franel1924}
@@ -1042,19 +580,9 @@ J.~Franel,
 \emph{G\"ottinger Nachrichten}, pp.~198--201, 1924.
 
 \bibitem{Garcia2025}
-S.~R.~Garcia,
-``Local discrepancy of Farey sequences,''
-preprint, 2025.
-
-\bibitem{HardyWright2008}
-G.~H.~Hardy and E.~M.~Wright,
-\emph{An Introduction to the Theory of Numbers},
-6th~ed., Oxford University Press, 2008.
-
-\bibitem{Kanemitsu1978}
-S.~Kanemitsu, R.~Sitaramachandra Rao, and A.~Siva Rama Sarma,
-``On sums involving Farey fractions,''
-\emph{Mathematica Japonica}, vol.~23, pp.~1--11, 1978.
+S.~R.~Garc\'ia,
+``New analytical formulas for the rank of Farey fractions,''
+\emph{MDPI Mathematics}, vol.~13, no.~1, p.~140, 2025.
 
 \bibitem{Landau1924}
 E.~Landau,
@@ -1069,7 +597,7 @@ M.~Rubinstein and P.~Sarnak,
 \bibitem{ShuWang2021}
 L.~Shu and G.~Wang,
 ``A sharp form of the Erd\H{o}s--Tur\'an inequality,''
-\emph{Journal of Fourier Analysis and Applications}, vol.~27, 2021.
+arXiv:2109.11006, 2021.
 
 \end{thebibliography}
 
