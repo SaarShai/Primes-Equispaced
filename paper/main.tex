@@ -50,18 +50,23 @@ via Per-Step Discrepancy}
 \maketitle
 
 \begin{abstract}
-The Farey sequence---the ordered list of fractions with bounded
-denominator---has been studied for two centuries, yet a basic
-question was never asked: what happens to its uniformity when we
-add \emph{one more integer}?
+Place all fractions with denominator at most~$N$ as points on a
+circle.  When a new integer is added, new fractions appear and
+the point pattern changes.  For a \emph{prime}~$p$, the new
+fractions $k/p$ ($k = 1, \ldots, p-1$) land at perfectly
+equispaced positions---filling every void uniformly---because
+every integer below a prime is coprime to it.  Composites, by
+contrast, skip positions and leave gaps.
 
-We decompose the $L^2$ Farey discrepancy into per-step
-contributions $\Delta W(N) = W(N{-}1) - W(N)$ and discover that
-for primes, the sign of $\Delta W(p)$ is governed by the Mertens
-function $M(p) = \sum_{k \le p} \mu(k)$---an arithmetic quantity
-with no obvious geometric meaning.  This reveals a new bridge
-between two seemingly unrelated worlds: the geometry of fractions
-on a circle and the multiplicative structure of prime factorization.
+This geometric observation, which appears never to have been
+studied, leads us to decompose the $L^2$ Farey discrepancy one
+step at a time: $\Delta W(N) = W(N{-}1) - W(N)$.  We discover
+that for primes, whether the point pattern becomes more or less
+uniform is governed by the Mertens function
+$M(p) = \sum_{k \le p} \mu(k)$---a quantity from the arithmetic
+of prime factorization with no prior geometric interpretation.
+This creates a bridge between two worlds: the geometry of
+fractions on a circle and the multiplicative structure of primes.
 
 We prove six exact identities that make this bridge precise,
 including $\sum_{f \in \F_{p-1}} e^{2\pi ipf} = M(p) + 2$,
@@ -118,12 +123,27 @@ non-trivial zeros of the Riemann zeta function.
 \subsection{The observation that started it all}
 
 Place the Farey fractions of $\F_N$ as points on the unit circle
-at angles $2\pi f$.  How does the picture change when a single new
-integer is added?  The first author observed that when a \emph{prime}~$p$
-is appended, it inserts $p-1$ perfectly equispaced new
-points---one at each angle $2\pi k/p$---while composites leave
-gaps.  This led to the question: does the uniformity of the
-sequence improve or worsen at each step?
+at angles $2\pi f$.  As $N$ grows, new fractions appear and the
+circle fills in.  The first author observed a striking asymmetry:
+when a \emph{prime}~$p$ is added, every one of the $p-1$ new
+fractions $k/p$ lands on the circle at perfectly equispaced
+positions, filling voids uniformly across the entire circle.
+This happens because every integer below a prime is coprime to
+it ($\varphi(p) = p-1$), so no position is skipped.  Composites,
+by contrast, skip positions whose numerators share a factor with
+the denominator, leaving voids in some regions while clustering
+in others.
+
+Moreover, each new prime fraction $k/p$ lands at the
+\emph{mediant}---the geometrically optimal midpoint---of
+its enclosing gap in the existing sequence
+(verified for all tested primes).  This means primes do not
+merely add points; they add them in the most balanced way
+possible.
+
+These geometric observations led to a natural question:
+does the uniformity of the Farey sequence on the circle
+improve or worsen at each step, and what controls the answer?
 
 \subsection{Per-step decomposition: a new perspective}
 
