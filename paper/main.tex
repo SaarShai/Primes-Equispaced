@@ -9,7 +9,9 @@
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{xcolor}
+\usepackage{graphicx}
 \usepackage[margin=1in]{geometry}
+\graphicspath{{../figures/}}
 
 %%% Theorem environments
 \newtheorem{theorem}{Theorem}[section]
@@ -38,7 +40,7 @@
 via Per-Step Discrepancy}
 
 \author{
-  Saar Shai\thanks{Independent Researcher. Email: \texttt{saar@saarshai.com}.}
+  Saar Shai\thanks{Independent Researcher. Email: \texttt{saar.shai@gmail.com}.}
   \and
   Anthropic's Claude Opus 4.6\thanks{AI research assistant by Anthropic; contributed to mathematical analysis, computation, formal verification, and manuscript preparation.}
 }
@@ -50,40 +52,24 @@ via Per-Step Discrepancy}
 \maketitle
 
 \begin{abstract}
-Place all fractions with denominator at most~$N$ as points on a
-circle.  When a new integer is added, new fractions appear and
-the point pattern changes.  For a \emph{prime}~$p$, the new
-fractions $k/p$ ($k = 1, \ldots, p-1$) land at perfectly
-equispaced positions---filling every void uniformly---because
-every integer below a prime is coprime to it.  Composites, by
-contrast, skip positions and leave gaps.
+The Farey sequence---the ordered list of fractions with bounded
+denominator---has been studied for two centuries, yet a basic
+question was never asked: what happens to its uniformity when
+we add \emph{one more integer}?  We place Farey fractions as
+points on a circle and observe that primes fill voids uniformly
+(every $k/p$ appears, perfectly equispaced), while composites
+leave gaps.  Decomposing the $L^2$ discrepancy into per-step
+contributions, we discover that whether a prime improves or
+worsens the pattern is controlled by the Mertens function---a
+quantity from prime factorization arithmetic with no prior
+geometric meaning.
 
-This geometric observation, which appears never to have been
-studied, leads us to decompose the $L^2$ Farey discrepancy one
-step at a time: $\Delta W(N) = W(N{-}1) - W(N)$.  We discover
-that for primes, whether the point pattern becomes more or less
-uniform is governed by the Mertens function
-$M(p) = \sum_{k \le p} \mu(k)$---a quantity from the arithmetic
-of prime factorization with no prior geometric interpretation.
-This creates a bridge between two worlds: the geometry of
-fractions on a circle and the multiplicative structure of primes.
-
-We prove six exact identities that make this bridge precise,
-including $\sum_{f \in \F_{p-1}} e^{2\pi ipf} = M(p) + 2$,
-which equates a Fourier coefficient of the Farey sequence to
-the Mertens function, and a master involution principle that
-determines $\sum D(f)\,g(f)$ for every symmetric function~$g$
-in closed form.  All identities are formally verified in Lean~4
-(60+ machine-checked theorems).
-
-The natural conjecture---that $M(p) < 0$ forces $\Delta W(p) \le 0$
-for all primes---turns out to be \emph{almost} true: it holds for
-$9{,}587$ of the first $9{,}588$ primes, failing only at
-$p = 92{,}173$ ($M = -2$, $\Delta W = +3.56 \times 10^{-11}$),
-where the margin is eleven orders of magnitude below typical values.
-The failure occurs exclusively in the delicate $M = -2$ class;
-among the $4{,}617$ primes with $M(p) \le -3$ through
-$p = 200{,}000$, no counterexample exists.
+We prove six new exact identities bridging Farey geometry and
+multiplicative number theory, all formally verified in Lean~4
+(60+ theorems).  The natural conjecture that $M(p) < 0$ forces
+non-improvement holds for $9{,}587$ of the first $9{,}588$
+primes, with one counterexample at $p = 92{,}173$ eleven
+orders of magnitude below typical values.
 \end{abstract}
 
 \medskip
@@ -144,6 +130,19 @@ possible.
 These geometric observations led to a natural question:
 does the uniformity of the Farey sequence on the circle
 improve or worsen at each step, and what controls the answer?
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.85\textwidth]{fig_circle_insertion.png}
+\caption{Prime vs.\ composite insertion on the unit circle.
+\textbf{Left:} adding prime $p = 13$ to $\F_{12}$ inserts $12$
+new fractions (red) at perfectly equispaced positions, filling
+every void.
+\textbf{Right:} adding composite $N = 14$ inserts only $6$ new
+fractions (blue), leaving gaps where numerators share a factor
+with~$14$.}
+\label{fig:circle}
+\end{figure}
 
 \subsection{Per-step decomposition: a new perspective}
 
