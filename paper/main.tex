@@ -108,6 +108,17 @@ non-trivial zeros of the Riemann zeta function.
 
 \subsection{The observation that started it all}
 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.55\textwidth]{fig_circle_farey.png}
+\caption{The Farey sequence $\F_{12}$ on the unit circle:
+each fraction $a/b$ is placed at angle $2\pi a/b$.  The
+pattern is strikingly uniform, with the largest gaps near
+$0$ and $1$ (top of the circle) where the denominators
+are smallest.}
+\label{fig:farey-circle}
+\end{figure}
+
 Place the Farey fractions of $\F_N$ as points on the unit circle
 at angles $2\pi f$.  As $N$ grows, new fractions appear and the
 circle fills in.  The first author observed a striking asymmetry:
@@ -338,6 +349,17 @@ stabilizes near 21\%, and the violations cluster during positive
 excursions of the Mertens function---precisely when $M(p)/\sqrt{p}$
 exceeds a threshold of roughly~$0.14$.
 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{fig_mertens_violations.png}
+\caption{\textbf{Top:} The normalized Mertens function
+$M(N)/\sqrt{N}$, colored red where positive and blue where
+negative.  \textbf{Bottom:} Rolling violation density among
+primes.  The peaks align: violations occur precisely during
+positive Mertens excursions.}
+\label{fig:mertens}
+\end{figure}
+
 \subsection{The natural conjecture and its counterexample}
 
 The computational evidence for $p \le 50{,}000$ (zero exceptions
@@ -394,6 +416,17 @@ guarantees $\Delta W(p) \le 0$ for all primes remains open.
 The data is consistent with $M_0 = -3$, but the counterexample
 at $p = 92{,}173$ counsels caution---it appeared far beyond the
 range where the original conjecture seemed secure.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{fig_delta_w_signs.png}
+\caption{Per-prime wobble change $\Delta W(p)$ for all primes
+up to $p = 20{,}000$.  Red bars: $\Delta W > 0$ (violations,
+uniformity improves).  Blue bars: $\Delta W < 0$ (uniformity
+worsens).  The burst--quiet pattern is visible: violations
+cluster in bands corresponding to positive Mertens excursions.}
+\label{fig:delta-w}
+\end{figure}
 
 \subsection{Rubinstein--Sarnak connection}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.1)  23 MAR 2026 08:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.1)  23 MAR 2026 08:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -474,59 +474,80 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/usr/local/texlive/2026basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (14.47646pt too wide) in paragraph at lines 123--129
+<../figures/fig_circle_farey.png, id=150, 594.0594pt x 602.0091pt>
+File: ../figures/fig_circle_farey.png Graphic file (type png)
+<use ../figures/fig_circle_farey.png>
+Package pdftex.def Info: ../figures/fig_circle_farey.png  used on input line 11
+3.
+(pdftex.def)             Requested size: 258.36668pt x 261.8351pt.
+
+Overfull \hbox (14.47646pt too wide) in paragraph at lines 134--140
 []\OT1/cmr/m/n/10.95 Moreover, each new prime frac-tion $\OML/cmm/m/it/10.95 k=
 p$ \OT1/cmr/m/n/10.95 lands at the \OT1/cmr/m/it/10.95 me-di-ant\OT1/cmr/m/n/10
 .95 ---the ge-o-met-ri-cally op-ti-mal midpoint---
  []
 
-<../figures/fig_circle_insertion.png, id=150, 933.7284pt x 598.3956pt>
+<../figures/fig_circle_insertion.png, id=152, 933.7284pt x 598.3956pt>
 File: ../figures/fig_circle_insertion.png Graphic file (type png)
 <use ../figures/fig_circle_insertion.png>
 Package pdftex.def Info: ../figures/fig_circle_insertion.png  used on input lin
-e 136.
+e 147.
 (pdftex.def)             Requested size: 399.29463pt x 255.88982pt.
-[2 <../figures/fig_circle_insertion.png>] [3]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 276.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\delta' on input line 276.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 276.
-
+[2 <../figures/fig_circle_farey.png>] [3 <../figures/fig_circle_insertion.png>]
 [4]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 370.
+(hyperref)                removing `math shift' on input line 287.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 370.
+(hyperref)                removing `\delta' on input line 287.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 378.
+(hyperref)                removing `math shift' on input line 287.
+
+<../figures/fig_mertens_violations.png, id=189, 853.87006pt x 560.8152pt>
+File: ../figures/fig_mertens_violations.png Graphic file (type png)
+<use ../figures/fig_mertens_violations.png>
+Package pdftex.def Info: ../figures/fig_mertens_violations.png  used on input l
+ine 354.
+(pdftex.def)             Requested size: 469.75502pt x 308.53488pt.
+[5]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 392.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\le' on input line 378.
+(hyperref)                removing `math shift' on input line 392.
+
+[6 <../figures/fig_mertens_violations.png>]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 400.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 378.
+(hyperref)                removing `\le' on input line 400.
 
-[5] [6] [7]
-Underfull \hbox (badness 2689) in paragraph at lines 599--602
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 400.
+
+<../figures/fig_delta_w_signs.png, id=212, 856.3995pt x 397.12366pt>
+File: ../figures/fig_delta_w_signs.png Graphic file (type png)
+<use ../figures/fig_delta_w_signs.png>
+Package pdftex.def Info: ../figures/fig_delta_w_signs.png  used on input line 4
+22.
+(pdftex.def)             Requested size: 469.75502pt x 217.83696pt.
+[7 <../figures/fig_delta_w_signs.png>] [8] [9]
+Underfull \hbox (badness 2689) in paragraph at lines 632--635
 []\OT1/cmr/m/n/10.95 A. Cox, A. Ghosh, and J. Sul-tanow, ``On Farey se-quence a
 nd its com-pan-ions,''
  []
 
-[8] [9] (./main.aux)
+[10] [11] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -535,13 +556,13 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 2717EFD69F393B03CE254F72A3649FBD;6091.
  ) 
 Here is how much of TeX's memory you used:
- 11736 strings out of 469006
- 179646 string characters out of 5454814
- 604303 words of memory out of 5000000
- 40190 multiletter control sequences out of 15000+600000
+ 11771 strings out of 469006
+ 180742 string characters out of 5454814
+ 605105 words of memory out of 5000000
+ 40220 multiletter control sequences out of 15000+600000
  640689 words of font info for 90 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 75i,11n,79p,541b,602s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,541b,580s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/new/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/
 tcrm0600.600pk> </Users/new/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour
 /jknappen/ec/tcrm0800.600pk></usr/local/texlive/2026basic/texmf-dist/fonts/type
@@ -566,10 +587,10 @@ b></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
 0.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mtt10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmtt9.pfb>
-Output written on main.pdf (9 pages, 498908 bytes).
+Output written on main.pdf (11 pages, 1142417 bytes).
 PDF statistics:
- 387 PDF objects out of 1000 (max. 8388607)
- 326 compressed objects within 4 object streams
- 97 named destinations out of 1000 (max. 500000)
- 246 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 404 PDF objects out of 1000 (max. 8388607)
+ 335 compressed objects within 4 object streams
+ 102 named destinations out of 1000 (max. 500000)
+ 261 words of extra memory for PDF output out of 10000 (max. 10000000)
 
