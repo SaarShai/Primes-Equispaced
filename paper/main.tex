@@ -144,15 +144,15 @@ improve or worsen at each step, and what controls the answer?
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.85\textwidth]{fig_circle_insertion.png}
-\caption{Prime vs.\ composite insertion on the unit circle.
-\textbf{Left:} adding prime $p = 13$ to $\F_{12}$ inserts $12$
-new fractions (red) at perfectly equispaced positions, filling
-every void.
-\textbf{Right:} adding composite $N = 14$ inserts only $6$ new
-fractions (blue), leaving gaps where numerators share a factor
-with~$14$.}
-\label{fig:circle}
+\includegraphics[width=\textwidth]{fig_void_filling.png}
+\caption{How primes break voids.  \textbf{Left:} $\F_6$ on the
+circle with voids (arcs between consecutive fractions) highlighted
+by size---larger voids are darker red.  \textbf{Center:} prime
+$p = 7$ fills \emph{every} void (green arcs), placing a new
+fraction (red star) in each gap.  \textbf{Right:} composite
+$N = 8$ leaves several voids unfilled (red arcs persist) because
+fractions with $\gcd(k, 8) > 1$ are missing.}
+\label{fig:voids}
 \end{figure}
 
 \subsection{Per-step decomposition: a new perspective}

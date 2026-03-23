@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.1)  23 MAR 2026 08:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.1)  23 MAR 2026 08:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -487,19 +487,20 @@ p$ \OT1/cmr/m/n/10.95 lands at the \OT1/cmr/m/it/10.95 me-di-ant\OT1/cmr/m/n/10
 .95 ---the ge-o-met-ri-cally op-ti-mal midpoint---
  []
 
-<../figures/fig_circle_insertion.png, id=152, 933.7284pt x 598.3956pt>
-File: ../figures/fig_circle_insertion.png Graphic file (type png)
-<use ../figures/fig_circle_insertion.png>
-Package pdftex.def Info: ../figures/fig_circle_insertion.png  used on input lin
-e 147.
-(pdftex.def)             Requested size: 399.29463pt x 255.88982pt.
-[2 <../figures/fig_circle_farey.png>] [3 <../figures/fig_circle_insertion.png>]
+<../figures/fig_void_filling.png, id=152, 1250.271pt x 460.3599pt>
+File: ../figures/fig_void_filling.png Graphic file (type png)
+<use ../figures/fig_void_filling.png>
+Package pdftex.def Info: ../figures/fig_void_filling.png  used on input line 14
+7.
+(pdftex.def)             Requested size: 469.75502pt x 172.96468pt.
+[2 <../figures/fig_circle_farey.png>] [3 <../figures/fig_void_filling.png>]
 <../figures/fig_bridge_vectors.png, id=171, 851.3406pt x 428.5611pt>
 File: ../figures/fig_bridge_vectors.png Graphic file (type png)
 <use ../figures/fig_bridge_vectors.png>
 Package pdftex.def Info: ../figures/fig_bridge_vectors.png  used on input line 
 232.
 (pdftex.def)             Requested size: 469.75502pt x 236.47443pt.
+
 [4 <../figures/fig_bridge_vectors.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -576,12 +577,12 @@ Package rerunfilecheck Info: File `main.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  11805 strings out of 469006
- 181830 string characters out of 5454814
- 606162 words of memory out of 5000000
+ 181793 string characters out of 5454814
+ 605235 words of memory out of 5000000
  40250 multiletter control sequences out of 15000+600000
  640689 words of font info for 90 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 75i,11n,79p,541b,582s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,573b,606s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/new/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour/jknappen/ec/
 tcrm0600.600pk> </Users/new/Library/texlive/2026basic/texmf-var/fonts/pk/ljfour
 /jknappen/ec/tcrm0800.600pk></usr/local/texlive/2026basic/texmf-dist/fonts/type
@@ -606,7 +607,7 @@ b></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
 0.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mtt10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmtt9.pfb>
-Output written on main.pdf (12 pages, 1658962 bytes).
+Output written on main.pdf (12 pages, 1618811 bytes).
 PDF statistics:
  418 PDF objects out of 1000 (max. 8388607)
  342 compressed objects within 4 object streams
