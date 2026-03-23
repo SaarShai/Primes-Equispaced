@@ -227,6 +227,17 @@ $\sum \cos(2\pi pf) = M(p) + 2$;
 the imaginary part vanishes by the symmetry $f \leftrightarrow 1 - f$.
 \end{remark}
 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{fig_bridge_vectors.png}
+\caption{The Bridge Identity visualized.  Each Farey fraction
+$f \in \F_{p-1}$ becomes a point at angle $2\pi pf$ on the
+unit circle.  Their vector sum (red arrow) equals $M(p) + 2$.
+\textbf{Left:} $p = 11$, $M = -2$, sum $= 0$ (vectors cancel).
+\textbf{Right:} $p = 97$, $M = 1$, sum $= 3$ (net rightward bias).}
+\label{fig:bridge-vectors}
+\end{figure}
+
 \subsection{The Master Involution Principle}
 
 \begin{theorem}[Master Involution Principle]\label{thm:involution}
@@ -391,6 +402,20 @@ $p = 100{,}000$.
 
 \subsection{The $M = -2$ boundary}
 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{fig_mertens_bias_circle.png}
+\caption{Mertens bias visualized on the circle.  Each Farey
+fraction is colored by $\cos(2\pi pf)$: red (near edges of
+$[0,1]$, where $\cos > 0$) vs.\ blue (near $1/2$, where
+$\cos < 0$).  \textbf{Left:} $M(97) = +1$---more red,
+the sequence is biased toward the edges.
+\textbf{Right:} $M(89) = -2$---more balanced, the bias
+is weaker.  The bridge identity counts the net red-vs-blue
+imbalance.}
+\label{fig:bias-circle}
+\end{figure}
+
 The counterexample lies at the shallowest possible negative
 Mertens value: $M(p) = -2$ (since $\mu(p) = -1$, each prime decreases $M$ by exactly one).  The normalized Mertens value
 $M/\sqrt{p} = -0.0066$ is tiny---the wobble change is a
@@ -455,6 +480,19 @@ For a prime $p$, the integer $p$ adds exactly $\varphi(p) = p - 1$
 new fractions $k/p$ ($k = 1, \ldots, p-1$) to $\F_{p-1}$.
 These are \emph{equispaced} with gap $1/p$.
 \end{proposition}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{fig_shift_map.png}
+\caption{The shift map on the circle.  Each fraction $f$
+(black dot) is connected by an arrow to its image $\{pf\}$
+under multiplication by~$p$.  \textbf{Left:} prime $p = 7$
+scrambles all fractions.  \textbf{Right:} composite $N = 6$
+has fewer arrows (missing fractions with $\gcd(k,6) > 1$).
+The scrambling by primes is what decorrelates the rank
+discrepancy from the tooth position.}
+\label{fig:shift-map}
+\end{figure}
 
 Every new fraction $k/p$ lands at the mediant of its enclosing
 Farey gap---the insertion is maximally uniform.  For a composite
