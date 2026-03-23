@@ -214,8 +214,9 @@ while $\Delta W(N) < 0$ means it \emph{worsens} it.
 The per-step view reveals a sharp asymmetry invisible in the
 cumulative $W(N)$: composites almost always improve uniformity
 ($96\%$ of composites $N \le 200$ have $\Delta W > 0$), while
-primes are the primary source of ``damage'' ($99\%$ of all
-$\Delta W < 0$ contributions come from primes).  Moreover, for
+primes are the primary source of ``damage'' ($99\%$ of the total
+negative $\Delta W$ mass comes from primes, in computations
+through $N = 200{,}000$).  Moreover, for
 primes, the sign of $\Delta W(p)$ tracks the Mertens function
 $M(p) = \sum_{k \le p} \mu(k)$---the Mertens function acts as
 a ``dial'' controlling the prime contributions.  This creates
@@ -559,9 +560,9 @@ $M/\sqrt{p} \approx -0.1$ and $0.3$.  Blue: $M < 0$
 \includegraphics[width=\textwidth]{fig_mertens_violations.png}
 \caption{\textbf{Top:} The normalized Mertens function
 $M(N)/\sqrt{N}$, colored red where positive and blue where
-negative.  \textbf{Bottom:} Rolling violation density among
-primes.  The peaks align: violations tend to occur during
-positive Mertens excursions.}
+negative.  \textbf{Bottom:} Rolling rate of positive $\Delta W$
+among primes.  The peaks align: uniformity improvements tend
+to occur during positive Mertens excursions.}
 \label{fig:mertens}
 \end{figure}
 
@@ -600,7 +601,7 @@ certification would require exact rational or interval arithmetic;
 we note that $\Delta W$ is defined from rational data and is in
 principle exactly computable, though the computational cost for
 $p = 92{,}173$ is substantial.
-This is the \emph{only} counterexample among the $9{,}588$ primes
+This is the \emph{only} numerically observed counterexample among the $9{,}588$ primes
 $p \ge 11$ up to $p = 100{,}000$ (the small primes $p = 3, 5, 7$
 are excluded; see Section~\ref{sec:phenomenon}).
 \end{observation}
@@ -648,7 +649,7 @@ safely negative.
 
 Whether a threshold $M_0$ exists such that $M(p) \le M_0$
 guarantees $\Delta W(p) \le 0$ for all primes remains open.
-The data is consistent with $M_0 = -3$, but the counterexample
+The data is consistent with $M_0 = -3$, but the numerical counterexample
 at $p = 92{,}173$ counsels caution---it appeared far beyond the
 range where the original conjecture seemed secure.
 
@@ -656,17 +657,18 @@ range where the original conjecture seemed secure.
 \centering
 \includegraphics[width=\textwidth]{fig_delta_w_signs.png}
 \caption{Per-prime wobble change $\Delta W(p)$ for all primes
-up to $p = 20{,}000$.  Red bars: $\Delta W > 0$ (violations,
-uniformity improves).  Blue bars: $\Delta W < 0$ (uniformity
-worsens).  The burst--quiet pattern is visible: violations
-cluster in bands corresponding to positive Mertens excursions.}
+up to $p = 20{,}000$.  Red bars: $\Delta W > 0$ (uniformity
+improves).  Blue bars: $\Delta W < 0$ (uniformity worsens).
+The burst--quiet pattern is visible: positive-$\Delta W$
+episodes cluster in bands corresponding to positive Mertens
+excursions.}
 \label{fig:delta-w}
 \end{figure}
 
 \subsection{Rubinstein--Sarnak connection}
 
 The sigmoid dependence on $M(p)/\sqrt{p}$ (Section~\ref{sec:phenomenon})
-means the overall violation rate is governed by the distribution
+means the overall rate of positive $\Delta W$ is governed by the distribution
 of $M(p)/\sqrt{p}$ across primes.  This distribution depends on
 the zeros of $\zeta(s)$ via the explicit formula for the Mertens
 function, connecting our violation phenomenon to the
@@ -917,9 +919,9 @@ where $M$ is maintained as a running sum, evaluating
 $M(p)/\sqrt{p}$ costs $O(1)$ per prime (since $\mu(p) = -1$).
 In the range $11 \le p \le 100{,}000$, predicting ``improve''
 when $M(p)/\sqrt{p} > 0.1$ and ``worsen'' when
-$M(p)/\sqrt{p} < 0$ is correct for $94.6\%$ of the $7{,}166$
-primes outside the ambiguous interval $[0, 0.1]$; primes in
-$[0, 0.1]$ (about $23\%$ of the total) are left unclassified.
+$M(p)/\sqrt{p} < 0$ is correct for $94.6\%$ of the $7{,}350$
+primes outside the ambiguous interval $[0, 0.1]$; the $2{,}238$
+primes in $[0, 0.1]$ ($23\%$ of the total) are left unclassified.
 Previously, determining the sign of $\Delta W(p)$ required
 $O(p^2)$ work.
 
@@ -967,9 +969,10 @@ characterization}
 
 The telescoping identity $W(N) = W(1) - \sum_{k=2}^{N} \Delta W(k)$
 expresses the cumulative discrepancy as a sum of individual
-contributions.  Computation shows that composites provide
-$\sim\!96\%$ of the ``healing'' ($\Delta W > 0$) while primes
-contribute $\sim\!99\%$ of the total negative $\Delta W$ mass, with the
+contributions.  In computations through $N = 200{,}000$,
+composites provide $\sim\!96\%$ of the total positive $\Delta W$
+while primes contribute $\sim\!99\%$ of the total negative
+$\Delta W$ mass, with the
 Mertens function controlling the prime side.  The rate at which
 $W(N) \to 0$ depends on the balance between these two sources.
 
