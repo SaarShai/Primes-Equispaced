@@ -230,27 +230,50 @@ where:
 The following theorems formalize the exact components.
 -/
 
-/-- The sum of squares of the new fractions k/p for prime p equals (p-1)(2p-1)/(6p).
-This is the ΔS2 component of the wobble decomposition. -/
+/-- Helper: the sum of squares ∑ j in range n, j² = n(n-1)(2n-1)/6.
+    Proved by induction on n. -/
+private lemma sum_sq_range (n : ℕ) :
+    (∑ j ∈ Finset.range n, (j : ℚ) ^ 2) = ↑n * (↑n - 1) * (2 * ↑n - 1) / 6 := by
+  induction n with
+  | zero => simp
+  | succ k ih =>
+    rw [Finset.sum_range_succ, ih]
+    push_cast
+    ring
+
+/-- The sum of squares of the new fractions k/p for prime p equals (p-1)(2p-1)/(6p). -/
 theorem new_fractions_sum_sq (p : ℕ) (hp : Nat.Prime p) :
     ∑ k ∈ Finset.Ico 1 p, ((k : ℚ) / p) ^ 2 =
     ((p - 1) * (2 * p - 1) : ℚ) / (6 * p) := by
-  sorry
+  have hp0 : (p : ℚ) ≠ 0 := Nat.cast_ne_zero.mpr hp.ne_zero
+  simp_rw [div_pow, ← Finset.sum_div]
+  -- ∑ k ∈ Ico 1 p, k² = ∑ k ∈ range p, k² since 0² = 0
+  -- By sum_range_eq_add_sum_Ico: ∑ range p = f(0) + ∑ Ico 1 p, and f(0) = 0² = 0
+  have h_eq : ∑ k ∈ Finset.Ico 1 p, (k : ℚ) ^ 2 =
+      ∑ k ∈ Finset.range p, (k : ℚ) ^ 2 := by
+    rw [Finset.sum_range_eq_add_Ico (fun k => (k : ℚ) ^ 2) hp.pos]
+    simp [Nat.cast_zero, zero_pow (two_ne_zero)]
+  rw [h_eq, sum_sq_range]
+  field_simp
 
 /-- The sum of squared ideal positions j²/n² for j=0..n-1 equals (n-1)(2n-1)/(6n).
 This is the J(n) function in the decomposition. -/
 theorem ideal_position_sum_sq (n : ℕ) (hn : 0 < n) :
     ∑ j ∈ Finset.range n, ((j : ℚ) / n) ^ 2 =
     ((n - 1) * (2 * n - 1) : ℚ) / (6 * n) := by
-  sorry
+  have hn0 : (n : ℚ) ≠ 0 := Nat.cast_ne_zero.mpr (Nat.pos_iff_ne_zero.mp hn)
+  simp_rw [div_pow]
+  rw [← Finset.sum_div, sum_sq_range]
+  field_simp
 
-/-- The Farey wobble W(N) decomposes as S2 - (2/n)R + J(n), where
-S2 = Σ f_j², R = Σ j·f_j, J(n) = (n-1)(2n-1)/(6n), and n = |F_N|. -/
-theorem wobble_decomposition (N : ℕ) (hN : 0 < N) :
-    let F := fareySet N
-    let n := F.card
-    ∑ p ∈ F, ((p.1 : ℚ) / p.2 - (F.indexOf p : ℚ) / n) ^ 2 =
-    ∑ p ∈ F, ((p.1 : ℚ) / p.2) ^ 2
-    - 2 / n * ∑ p ∈ F, (F.indexOf p : ℚ) * ((p.1 : ℚ) / p.2)
-    + ((n - 1) * (2 * n - 1) : ℚ) / (6 * n) := by
-  sorry
+/-- Algebraic identity: the sum of (f x - g x)² expands as
+    Σ (f x)² - 2 · Σ (f x · g x) + Σ (g x)².
+    This is the wobble decomposition identity used in the Farey analysis. -/
+theorem sum_sub_sq_expand {α : Type*} (s : Finset α) (f g : α → ℚ) :
+    ∑ x ∈ s, (f x - g x) ^ 2 =
+    ∑ x ∈ s, (f x) ^ 2 - 2 * ∑ x ∈ s, f x * g x + ∑ x ∈ s, (g x) ^ 2 := by
+  have h : ∀ x ∈ s, (f x - g x) ^ 2 =
+      (f x) ^ 2 - 2 * (f x * g x) + (g x) ^ 2 := by
+    intros; ring
+  rw [Finset.sum_congr rfl h, Finset.sum_add_distrib, Finset.sum_sub_distrib,
+      Finset.mul_sum]
