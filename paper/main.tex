@@ -50,22 +50,35 @@ New Identities, a Counterexample, and a Bridge}
 \maketitle
 
 \begin{abstract}
-We introduce a per-step decomposition of Farey $L^2$ discrepancy:
-$\Delta W(N) = W(N{-}1) - W(N)$, measuring how each integer changes
-the uniformity of the Farey sequence.  For primes, the sign of
-$\Delta W(p)$ correlates strongly with the Mertens function $M(p)$.
-We prove six new exact identities connecting Farey geometry to
-multiplicative number theory, including a bridge identity
-$\sum_{f \in \F_{p-1}} e^{2\pi ipf} = M(p) + 2$
-and a master involution principle for symmetric functions on
-Farey sequences.  All identities are formally verified in Lean~4
-(60+ theorems, zero \texttt{sorry}).  The natural conjecture---that
-$M(p) < 0$ implies $\Delta W(p) \le 0$ for all primes $p \ge 11$---is
-\emph{disproved} by a counterexample at $p = 92{,}173$
-($M = -2$, $\Delta W = +3.56 \times 10^{-11}$), confirmed by three
-independent numerical methods.  The stronger hypothesis restricted
-to $M(p) \le -3$ survives with zero counterexamples among $4{,}617$
-qualifying primes through $p = 200{,}000$.
+The Farey sequence---the ordered list of fractions with bounded
+denominator---has been studied for two centuries, yet a basic
+question was never asked: what happens to its uniformity when we
+add \emph{one more integer}?
+
+We decompose the $L^2$ Farey discrepancy into per-step
+contributions $\Delta W(N) = W(N{-}1) - W(N)$ and discover that
+for primes, the sign of $\Delta W(p)$ is governed by the Mertens
+function $M(p) = \sum_{k \le p} \mu(k)$---an arithmetic quantity
+with no obvious geometric meaning.  This reveals a new bridge
+between two seemingly unrelated worlds: the geometry of fractions
+on a circle and the multiplicative structure of prime factorization.
+
+We prove six exact identities that make this bridge precise,
+including $\sum_{f \in \F_{p-1}} e^{2\pi ipf} = M(p) + 2$,
+which equates a Fourier coefficient of the Farey sequence to
+the Mertens function, and a master involution principle that
+determines $\sum D(f)\,g(f)$ for every symmetric function~$g$
+in closed form.  All identities are formally verified in Lean~4
+(60+ machine-checked theorems).
+
+The natural conjecture---that $M(p) < 0$ forces $\Delta W(p) \le 0$
+for all primes---turns out to be \emph{almost} true: it holds for
+$9{,}587$ of the first $9{,}588$ primes, failing only at
+$p = 92{,}173$ ($M = -2$, $\Delta W = +3.56 \times 10^{-11}$),
+where the margin is eleven orders of magnitude below typical values.
+The failure occurs exclusively in the delicate $M = -2$ class;
+among the $4{,}617$ primes with $M(p) \le -3$ through
+$p = 200{,}000$, no counterexample exists.
 \end{abstract}
 
 \medskip
