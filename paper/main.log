@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.1)  24 MAR 2026 11:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.1)  24 MAR 2026 17:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -474,33 +474,33 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/usr/local/texlive/2026basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<../figures/fig_circle_farey.png, id=184, 594.0594pt x 602.0091pt>
+<../figures/fig_circle_farey.png, id=188, 594.0594pt x 602.0091pt>
 File: ../figures/fig_circle_farey.png Graphic file (type png)
 <use ../figures/fig_circle_farey.png>
 Package pdftex.def Info: ../figures/fig_circle_farey.png  used on input line 12
 0.
 (pdftex.def)             Requested size: 258.36668pt x 261.8351pt.
-<../figures/fig_wobble_circle.png, id=189, 1250.271pt x 460.3599pt>
+<../figures/fig_wobble_circle.png, id=193, 1250.271pt x 460.3599pt>
 File: ../figures/fig_wobble_circle.png Graphic file (type png)
 <use ../figures/fig_wobble_circle.png>
 Package pdftex.def Info: ../figures/fig_wobble_circle.png  used on input line 1
 50.
 (pdftex.def)             Requested size: 469.75502pt x 172.96468pt.
  [2 <../figures/fig_circle_farey.png>]
-<../figures/fig_void_filling.png, id=208, 1250.271pt x 460.3599pt>
+<../figures/fig_void_filling.png, id=212, 1250.271pt x 460.3599pt>
 File: ../figures/fig_void_filling.png Graphic file (type png)
 <use ../figures/fig_void_filling.png>
 Package pdftex.def Info: ../figures/fig_void_filling.png  used on input line 20
 0.
 (pdftex.def)             Requested size: 469.75502pt x 172.96468pt.
  [3 <../figures/fig_wobble_circle.png>] [4 <../figures/fig_void_filling.png>]
-<../figures/fig_universal_formula.png, id=248, 712.5822pt x 495.0495pt>
+<../figures/fig_universal_formula.png, id=252, 712.5822pt x 495.0495pt>
 File: ../figures/fig_universal_formula.png Graphic file (type png)
 <use ../figures/fig_universal_formula.png>
 Package pdftex.def Info: ../figures/fig_universal_formula.png  used on input li
 ne 368.
 (pdftex.def)             Requested size: 469.75502pt x 326.35597pt.
-<../figures/fig_bridge_vectors.png, id=249, 851.3406pt x 428.5611pt>
+<../figures/fig_bridge_vectors.png, id=253, 851.3406pt x 428.5611pt>
 File: ../figures/fig_bridge_vectors.png Graphic file (type png)
 <use ../figures/fig_bridge_vectors.png>
 Package pdftex.def Info: ../figures/fig_bridge_vectors.png  used on input line 
@@ -521,7 +521,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 484.
 
 [8]
-<../figures/fig_sigmoid.png, id=300, 569.84895pt x 348.70274pt>
+<../figures/fig_sigmoid.png, id=304, 569.84895pt x 348.70274pt>
 File: ../figures/fig_sigmoid.png Graphic file (type png)
 <use ../figures/fig_sigmoid.png>
 Package pdftex.def Info: ../figures/fig_sigmoid.png  used on input line 643.
@@ -533,7 +533,7 @@ ta (both ob-served in com-pu-ta-tions through
  []
 
 [9]
-<../figures/fig_mertens_violations.png, id=306, 853.87006pt x 560.8152pt>
+<../figures/fig_mertens_violations.png, id=310, 853.87006pt x 560.8152pt>
 File: ../figures/fig_mertens_violations.png Graphic file (type png)
 <use ../figures/fig_mertens_violations.png>
 Package pdftex.def Info: ../figures/fig_mertens_violations.png  used on input l
@@ -548,7 +548,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 719.
 
-<../figures/fig_mertens_bias_circle.png, id=317, 862.9038pt x 428.5611pt>
+<../figures/fig_mertens_bias_circle.png, id=322, 862.9038pt x 428.5611pt>
 File: ../figures/fig_mertens_bias_circle.png Graphic file (type png)
 <use ../figures/fig_mertens_bias_circle.png>
 Package pdftex.def Info: ../figures/fig_mertens_bias_circle.png  used on input 
@@ -567,32 +567,60 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 745.
 
-<../figures/fig_delta_w_signs.png, id=330, 856.3995pt x 397.12366pt>
+<../figures/fig_delta_w_signs.png, id=334, 856.3995pt x 397.12366pt>
 File: ../figures/fig_delta_w_signs.png Graphic file (type png)
 <use ../figures/fig_delta_w_signs.png>
 Package pdftex.def Info: ../figures/fig_delta_w_signs.png  used on input line 7
 68.
 (pdftex.def)             Requested size: 469.75502pt x 217.83696pt.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 778.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\Delta' on input line 778.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 778.
+
+
+Overfull \hbox (1.34274pt too wide) in paragraph at lines 780--783
+\OT1/cmr/m/n/10.95 The displacement-shift iden-tity (Propo-si-tion []3.15[]) yi
+elds an ex-act al-ge-braic de-com-po-si-tion of $^^A\OML/cmm/m/it/10.95 W\OT1/c
+mr/m/n/10.95 (\OML/cmm/m/it/10.95 p\OT1/cmr/m/n/10.95 )$
+ []
+
 [12 <../figures/fig_mertens_bias_circle.png>]
-<../figures/fig_shift_map.png, id=341, 872.66025pt x 428.5611pt>
+Overfull \hbox (3.50668pt too wide) in paragraph at lines 821--828
+\OT1/cmr/m/n/10.95 The per-denominator de-com-po-si-tion of $\OML/cmm/m/it/10.9
+5 B$ \OT1/cmr/m/n/10.95 con-nects to clas-si-cal Dedekind sums via $\OML/cmm/m/
+it/10.95 T[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 p\OT1/cmr/m/n/10.95 ) = \OM
+L/cmm/m/it/10.95 p[]\OT1/cmr/m/n/10.95 [\OML/cmm/m/it/10.95 s\OT1/cmr/m/n/10.95
+ (\OML/cmm/m/it/10.95 b; p\OT1/cmr/m/n/10.95 ) +
+ []
+
+[13 <../figures/fig_delta_w_signs.png>]
+<../figures/fig_shift_map.png, id=358, 872.66025pt x 428.5611pt>
 File: ../figures/fig_shift_map.png Graphic file (type png)
 <use ../figures/fig_shift_map.png>
-Package pdftex.def Info: ../figures/fig_shift_map.png  used on input line 814.
+Package pdftex.def Info: ../figures/fig_shift_map.png  used on input line 865.
 (pdftex.def)             Requested size: 469.75502pt x 230.69368pt.
- [13 <../figures/fig_delta_w_signs.png>] [14 <../figures/fig_shift_map.png>] [1
-5] [16] [17] [18] [19] (./main.aux)
+ [14 <../figures/fig_shift_map.png>]
+[15] [16] [17] [18] [19] [20] (./main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: E82EB29AB315D9DBF1586913783220FF;7885.
+(rerunfilecheck)             Checksum: 42AAD30F6E4B7A2E019CAB5E435AA475;8115.
  ) 
 Here is how much of TeX's memory you used:
- 11898 strings out of 469006
- 183618 string characters out of 5454814
- 611035 words of memory out of 5000000
- 40304 multiletter control sequences out of 15000+600000
+ 11913 strings out of 469006
+ 183813 string characters out of 5454814
+ 611194 words of memory out of 5000000
+ 40310 multiletter control sequences out of 15000+600000
  640857 words of font info for 91 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
  75i,11n,79p,637b,606s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -624,10 +652,10 @@ sy7.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm
 onts/cm/cmtt10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmtt9.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/publ
 ic/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (19 pages, 2042448 bytes).
+Output written on main.pdf (20 pages, 2048777 bytes).
 PDF statistics:
- 577 PDF objects out of 1000 (max. 8388607)
- 479 compressed objects within 5 object streams
- 145 named destinations out of 1000 (max. 500000)
- 355 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 596 PDF objects out of 1000 (max. 8388607)
+ 497 compressed objects within 5 object streams
+ 154 named destinations out of 1000 (max. 500000)
+ 363 words of extra memory for PDF output out of 10000 (max. 10000000)
 
