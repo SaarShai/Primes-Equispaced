@@ -644,16 +644,16 @@ $\ge 0.3$ & $100.0\%$ ($257/257$) \\
 \end{tabular}
 \end{center}
 
-\noindent Within the computed range, the violation probability
-appears to be strongly determined by $M(p)/\sqrt{p}$, with a
-sharp transition near~$0.1$.  The overall rate fluctuates
-(15--27\%) because the proportion of primes in each
-$M/\sqrt{p}$ bin shifts as the Mertens function oscillates.
+\noindent Within the computed range, the positive-$\Delta W$
+probability appears to be strongly determined by
+$M(p)/\sqrt{p}$, with a sharp transition near~$0.1$.
+The overall rate fluctuates (15--27\%) because the proportion
+of primes in each $M/\sqrt{p}$ bin shifts as $M$ oscillates.
 We emphasize that this sigmoid relationship is an empirical
-observation, not a proved result; no confidence intervals,
-sensitivity analysis, or out-of-sample validation have been
-performed.  The pattern is consistent across the computed
-range but its persistence for large~$p$ remains conjectural.
+observation, not a proved result; no confidence intervals
+or out-of-sample validation have been performed.  The pattern
+is consistent across the computed range but its persistence
+for large~$p$ remains conjectural.
 
 \begin{figure}[ht]
 \centering
@@ -1136,11 +1136,24 @@ rewritten in Farey-geometric language.)
     The $M \le -3$ class has zero counterexamples among $4{,}617$
     primes through $p = 100{,}000$.
 
-  \item \textbf{Quadrature defect.}  The gap between the identities
-    of Section~\ref{sec:identities} and a full proof lies in bounding
-    the ``$R^2$ quadrature defect''---the antisymmetric component
-    $\sum D(f)(\fpart{pf} - 1/2)$.  Can this be bounded by
-    Cauchy--Schwarz together with RH-conditional discrepancy estimates?
+  \item \textbf{The proof gap.}
+    Proposition~\ref{prop:disp-shift} yields the exact decomposition
+    \[
+      \Delta W(p) = \underbrace{\left(\frac{1}{n^2}-\frac{1}{n'^2}\right)
+      \!\sum D^2}_{\text{rescaling ($>0$)}}
+      \;-\; \underbrace{\frac{2}{n'^2}\sum D \cdot \delta}_{\text{cross
+      (Mertens-controlled)}}
+      \;-\; \underbrace{\frac{1}{n'^2}\sum \delta^2}_{\text{shift ($<0$)}}
+      \;-\; \underbrace{\frac{1}{n'^2}\sum_{\text{new}} D_{\text{new}}^2}
+      _{\text{new fracs ($<0$)}},
+    \]
+    where the sums over old fractions use
+    $D = D_{\F_{p-1}}$ and $\delta(f) = f - \{pf\}$.
+    The rescaling and cross terms compete against the shift and
+    new-fraction terms; the cross term---partially evaluated by
+    our identities---tips the balance.  Can the cross term
+    $\sum D \cdot \delta$ be bounded tightly enough to close
+    the proof for the $M \le -3$ class?
 
   \item \textbf{Other discrepancy measures.}  Does the per-step
     decomposition yield analogous phenomena for $L^1$ or $L^\infty$
