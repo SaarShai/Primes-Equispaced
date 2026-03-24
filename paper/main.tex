@@ -840,14 +840,42 @@ discrepancy from the fractional part $\fpart{pf}$.}
 \label{fig:shift-map}
 \end{figure}
 
-Every new fraction $k/p$ lands at the mediant of its enclosing
-Farey gap---the insertion is maximally uniform.  For a composite
-$N = ab$, only the $\varphi(N) < N - 1$ coprime numerators appear,
-creating an irregular insertion pattern.  This 100\% grid fill
-is what allows the identities of Section~\ref{sec:identities}
-to yield clean formulas at prime arguments; at composites, the
-partial fill introduces additional error terms that break the
-sign control.
+Moreover, each new fraction lands in a \emph{distinct} Farey gap:
+
+\begin{theorem}[Injection Principle]\label{thm:injection}
+For any prime $p \ge 3$, each gap between adjacent fractions in
+$\F_{p-1}$ contains at most one fraction of the form $k/p$.
+\end{theorem}
+
+\begin{proof}
+Let $a/b$ and $c/d$ be adjacent in $\F_{p-1}$ with $ad - bc = -1$.
+Since they are adjacent (i.e., their mediant $(a+c)/(b+d)$ has
+$b+d \ge p$), we have $bd \ge p-1$.  The number of integers $k$
+with $pa/b < k < pc/d$ is $\lfloor pc/d \rfloor - \lfloor pa/b \rfloor$,
+because $pa/b \notin \Z$ (as $p$ is prime and $b < p$).
+
+Since $pc/d - pa/b = p/(bd) \le p/(p-1) < 2$, at most one integer
+can fall strictly between $pa/b$ and $pc/d$.  (In the boundary cases
+$b = 1$ or $d = 1$, where $bd = p-1$, explicit verification gives
+$\lfloor p/(p-1) \rfloor = 1$.)
+\end{proof}
+
+\begin{remark}
+The injection principle, combined with the equispacing of
+Proposition~\ref{prop:grid-fill}, means that adding a prime $p$
+distributes one new fraction into each of $p - 1$ distinct gaps
+(filling some and skipping others), with no gap receiving more
+than one.  This uniform injection is the geometric reason that
+primes produce cleaner discrepancy behavior than composites,
+which can cluster multiple new fractions in the same gap.
+\end{remark}
+
+For a composite $N = ab$, only the $\varphi(N) < N - 1$ coprime
+numerators appear, creating an irregular insertion pattern.
+This 100\% grid fill and injective gap placement are what allow
+the identities of Section~\ref{sec:identities} to yield clean
+formulas at prime arguments; at composites, the partial fill
+introduces additional error terms that break the sign control.
 
 
 %% ================================================================
