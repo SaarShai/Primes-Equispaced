@@ -870,12 +870,43 @@ primes produce cleaner discrepancy behavior than composites,
 which can cluster multiple new fractions in the same gap.
 \end{remark}
 
+Two further properties of the prime insertion follow from symmetry:
+
+\begin{proposition}[New-fraction displacement sum]\label{prop:new-disp}
+For every prime $p \ge 3$:
+$\sum_{k=1}^{p-1} D_{\F_p}(k/p) = -(p-1)/2.$
+\end{proposition}
+
+\begin{proof}
+For any $\F_N$ with $n = |\F_N|$, the total displacement is
+$\sum D(f_j) = -n/2$ (by the symmetry $f \leftrightarrow 1-f$).
+Proposition~\ref{prop:disp-shift} and the fractional parts sum
+(Theorem~\ref{thm:frac-parts}) give
+$\sum_{\mathrm{old}} D_{\F_p} = -n/2$ (with $\sum \delta = 1$
+and boundary correction $-1$).  Subtracting:
+$\sum_{\mathrm{new}} D_{\F_p} = -n'/2 + n/2 = -(p-1)/2$.
+\end{proof}
+
+\begin{proposition}[Mean gap-center position]\label{prop:centering}
+For every prime $p \ge 3$, the average position of $k/p$ within
+its enclosing Farey gap is exactly $1/2$.
+\end{proposition}
+
+\begin{proof}
+The Farey symmetry $f \leftrightarrow 1-f$ pairs each
+$k/p$ with $(p-k)/p$.  If $k/p$ sits at relative position
+$\alpha$ in its gap, then $(p-k)/p$ sits at $1-\alpha$
+in the symmetric gap.  Averaging:
+$(1/(p-1))\sum \alpha_k = 1/2$.
+\end{proof}
+
 For a composite $N = ab$, only the $\varphi(N) < N - 1$ coprime
 numerators appear, creating an irregular insertion pattern.
-This 100\% grid fill and injective gap placement are what allow
-the identities of Section~\ref{sec:identities} to yield clean
-formulas at prime arguments; at composites, the partial fill
-introduces additional error terms that break the sign control.
+The 100\% grid fill, injective gap placement, exact displacement
+sum, and mean centering are what allow the identities of
+Section~\ref{sec:identities} to yield clean formulas at prime
+arguments; at composites, the partial fill and clustering introduce
+additional error terms that break the sign control.
 
 
 %% ================================================================

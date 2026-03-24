@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.1)  24 MAR 2026 08:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.1)  24 MAR 2026 09:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -589,10 +589,10 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 9A022F549B3E5F981AD694E4E702CC72;7938.
  ) 
 Here is how much of TeX's memory you used:
- 11902 strings out of 469006
- 183673 string characters out of 5454814
- 611126 words of memory out of 5000000
- 40306 multiletter control sequences out of 15000+600000
+ 11906 strings out of 469006
+ 183726 string characters out of 5454814
+ 611235 words of memory out of 5000000
+ 40308 multiletter control sequences out of 15000+600000
  640857 words of font info for 91 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
  75i,11n,79p,637b,692s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -624,10 +624,10 @@ sy7.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm
 onts/cm/cmtt10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmtt9.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/publ
 ic/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (20 pages, 2043200 bytes).
+Output written on main.pdf (20 pages, 2045041 bytes).
 PDF statistics:
- 582 PDF objects out of 1000 (max. 8388607)
- 483 compressed objects within 5 object streams
- 147 named destinations out of 1000 (max. 500000)
+ 586 PDF objects out of 1000 (max. 8388607)
+ 487 compressed objects within 5 object streams
+ 149 named destinations out of 1000 (max. 500000)
  355 words of extra memory for PDF output out of 10000 (max. 10000000)
 
