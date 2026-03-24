@@ -775,6 +775,57 @@ excursions.}
 \label{fig:delta-w}
 \end{figure}
 
+\subsection{The four-term decomposition of $\Delta W$}
+
+The displacement-shift identity (Proposition~\ref{prop:disp-shift})
+yields an exact algebraic decomposition of $\Delta W(p)$ into four
+terms:
+\begin{equation}\label{eq:4term}
+  \Delta W(p) = A - B - C - D
+\end{equation}
+where
+\begin{align*}
+  A &= \textstyle\sum_{\text{old}} D_{\F_{p-1}}^2 \cdot
+       (1/n^2 - 1/{n'}^2) && \text{(dilution --- always positive),}\\
+  B &= (2/{n'}^2)\textstyle\sum D_{\F_{p-1}} \cdot \delta
+       && \text{(cross term),}\\
+  C &= (1/{n'}^2)\textstyle\sum \delta^2
+       && \text{(shift squared --- always positive),}\\
+  D &= (1/{n'}^2)\textstyle\sum_{\text{new}} D_{\F_p}(k/p)^2
+       && \text{(new-fraction discrepancy --- always positive).}
+\end{align*}
+Thus $\Delta W(p) \le 0$ (wobble worsens) if and only if
+$B + C + D \ge A$.
+
+Computation through $p = 100{,}000$ reveals a striking near-cancellation:
+
+\begin{observation}[Near-cancellation]\label{obs:near-cancel}
+For all tested primes with $M(p) \le -3$:
+\begin{enumerate}[(i)]
+  \item $D/A \in [0.97,\, 1.12]$: the new-fraction discrepancy nearly
+    cancels the dilution by itself.
+  \item $B$ is \textbf{always positive}: the rank discrepancy $D$ and
+    the shift $\delta$ are positively correlated.
+  \item $C$ provides $5$--$18\%$ additional margin.
+  \item The combined ratio $(B + C + D)/A$ grows from ${\sim}1.4$ at
+    $M = -3$ to ${\sim}3.0$ at $M = -14$.
+\end{enumerate}
+\end{observation}
+
+\noindent The proof gap thus reduces to:
+
+\begin{center}
+\emph{Prove $B \ge 0$ for primes $p$ with $M(p) \le -3$.}
+\end{center}
+
+\noindent The per-denominator decomposition of~$B$ connects to
+classical Dedekind sums via $T_b(p) = p^2[s(b,p) + (p-1)/4]$,
+where $s(b,p)$ is the Dedekind sum.  The reciprocity law
+$s(b,p) + s(p,b) = (b^2 + p^2 + 1)/(12bp) - 1/4$ and
+Weil's Kloosterman bound $|K(m,n;p)| \le 2\sqrt{p}$ provide
+potential tools for closing this gap, but a complete proof
+remains open.
+
 \subsection{Rubinstein--Sarnak connection}
 
 The sigmoid dependence on $M(p)/\sqrt{p}$ (Section~\ref{sec:phenomenon})
@@ -851,6 +902,29 @@ than one.  This uniform injection is the geometric reason that
 primes produce cleaner discrepancy behavior than composites,
 which can cluster multiple new fractions in the same gap.
 \end{remark}
+
+The injection principle admits a sharper algebraic formulation:
+
+\begin{proposition}[Modular Inverse Neighbor]\label{prop:mod-inv}
+For prime $p \ge 3$ and $1 \le k \le p-1$, the left Farey neighbor
+of $k/p$ in $\F_p$ has denominator $b = k^{-1} \bmod p$.  The two
+sub-gaps created by the insertion have widths exactly $1/(pb)$ and
+$1/(p(p-b))$.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+The Farey neighbor condition $kb - pa = 1$ reads $kb \equiv 1 \pmod{p}$,
+so $b = k^{-1} \bmod p$.  Since the adjacent denominator satisfies
+$b + d = p$, we have $d = p - b$.  The sub-gap widths follow from
+$k/p - a/b = 1/(pb)$.
+\end{proof}
+
+\noindent This connects the injection geometry to modular arithmetic:
+the map $k \mapsto k^{-1} \bmod p$ determines \emph{which} gap
+each new fraction enters.  Since modular inversion is a bijection
+on $(\Z/p\Z)^*$, the injectivity of gap placement is an immediate
+consequence---the Injection Principle is equivalent to the
+invertibility of multiplication in $(\Z/p\Z)^*$.
 
 Two further properties of the prime insertion follow from symmetry.
 The new fractions have total displacement
@@ -1170,11 +1244,14 @@ rewritten in Farey-geometric language.)
     \]
     where the sums over old fractions use
     $D = D_{\F_{p-1}}$ and $\delta(f) = f - \{pf\}$.
-    The rescaling and cross terms compete against the shift and
-    new-fraction terms; the cross term---partially evaluated by
-    our identities---tips the balance.  Can the cross term
-    $\sum D \cdot \delta$ be bounded tightly enough to close
-    the proof for the $M \le -3$ class?
+    Observation~\ref{obs:near-cancel} sharpens the picture:
+    the new-fraction term nearly cancels rescaling ($D/A \approx 1$),
+    and the cross term is empirically always positive for
+    $M(p) \le -3$.  Thus the proof reduces to showing
+    $B = (2/n'^2)\sum D \cdot \delta \ge 0$ when $M(p) \le -3$.
+    Per-denominator analysis connects~$B$ to Dedekind sums
+    (Section~\ref{sec:phenomenon}), but closing the bound
+    remains open.
 
   \item \textbf{Other discrepancy measures.}  Does the per-step
     decomposition yield analogous phenomena for $L^1$ or $L^\infty$
