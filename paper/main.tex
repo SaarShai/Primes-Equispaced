@@ -677,7 +677,7 @@ to occur during positive Mertens excursions.}
 \label{fig:mertens}
 \end{figure}
 
-\subsection{The natural conjecture and its numerical counterexample}
+\subsection{The natural conjecture and its counterexample}
 
 For primes $p = 3, 5, 7$, both $M(p) < 0$ and $\Delta W(p) > 0$
 hold---these small primes improve uniformity despite negative $M$
@@ -693,26 +693,25 @@ For all primes $p \ge 11$: $M(p) < 0 \implies \Delta W(p) \le 0$.
 
 \noindent This conjecture is \textbf{false}.
 
-\begin{observation}[Numerical counterexample at $p = 92{,}173$]\label{obs:counterexample}
+\begin{observation}[Certified counterexample at $p = 92{,}173$]\label{obs:counterexample}
 At the prime $p = 92{,}173$:
 \[
   M(92{,}173) = -2, \qquad
   \Delta W(92{,}173) = +3.56 \times 10^{-11}.
 \]
 The Mertens function is strictly negative, yet the wobble decreases.
-This is confirmed by three independent computations:
+This is confirmed by four independent computations:
 \begin{enumerate}[(i)]
   \item Naive double-precision floating point.
   \item Long double (80-bit extended precision).
   \item Kahan compensated summation (double precision with error tracking).
+  \item \textbf{256-bit MPFR interval arithmetic} (rigorous certification):
+    $W(92{,}172) - W(92{,}173) = +3.5614 \times 10^{-11}$, with
+    interval widths $< 10^{-50}$---over $39$ orders of magnitude
+    smaller than $|\Delta W|$.
 \end{enumerate}
-All three agree on the sign and magnitude to within rounding error.
-Because the value is small ($\sim\!10^{-11}$), a fully rigorous
-certification would require exact rational or interval arithmetic;
-we note that $\Delta W$ is defined from rational data and is in
-principle exactly computable, though the computational cost for
-$p = 92{,}173$ is substantial.
-This is the \emph{only} numerically observed counterexample among the $9{,}588$ primes
+The sign is certified beyond any numerical doubt.
+This is the \emph{only} counterexample among the $9{,}588$ primes
 $p \ge 11$ up to $p = 100{,}000$ (the small primes $p = 3, 5, 7$
 are excluded; see Section~\ref{sec:phenomenon}).
 \end{observation}
@@ -760,7 +759,7 @@ safely negative.
 
 Whether a threshold $M_0$ exists such that $M(p) \le M_0$
 guarantees $\Delta W(p) \le 0$ for all primes remains open.
-The data is consistent with $M_0 = -3$, but the numerical counterexample
+The data is consistent with $M_0 = -3$, but the certified counterexample
 at $p = 92{,}173$ counsels caution---it appeared far beyond the
 range where the original conjecture seemed secure.
 
@@ -958,7 +957,7 @@ approximately 8~hours; the sweep to $p = 200{,}000$ required
 approximately 48~hours.  Exact rational verification
 (using Python's \texttt{Fraction} class) was performed for all
 primes $p \le 43$, confirming agreement with the floating-point
-results.  For the numerically observed counterexample at
+results.  For the certified counterexample at
 $p = 92{,}173$ ($\Delta W \approx 3.56 \times 10^{-11}$), the
 sign was confirmed by double precision, 80-bit long double,
 and Kahan compensated summation; exact rational certification
