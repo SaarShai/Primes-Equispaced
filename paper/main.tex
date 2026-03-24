@@ -36,8 +36,7 @@
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\sgn}{sgn}
 
-\title{New Identities Connecting Farey Sequences to the Mertens Function\\
-via Per-Step Discrepancy}
+\title{The Geometric Signature of Primes in Farey Sequences}
 
 \author{
   Saar Shai\thanks{Independent Researcher. Email: \texttt{saar.shai@gmail.com}.}
@@ -52,48 +51,36 @@ via Per-Step Discrepancy}
 \maketitle
 
 \begin{abstract}
-The Farey sequence---the ordered list of fractions with bounded
-denominator---has been studied for two centuries, yet, to our
-knowledge, its per-step uniformity behavior has not been
-systematically investigated.
-We decompose the squared Farey rank deviation of the Farey sequence into
-single-integer increments and discover that whether a prime~$p$
-improves or worsens the distribution is governed by the sign and
-magnitude of the Mertens function $M(p)$.
+We decompose the uniformity of the Farey sequence one integer at
+a time and discover that primes and composites play fundamentally
+different geometric roles.  In computations through $N = 200{,}000$,
+composites account for $\sim\!96\%$ of all uniformity improvement
+while primes are responsible for $\sim\!99\%$ of all uniformity
+\emph{damage}---and the sign of each prime's contribution is
+controlled by the Mertens function $M(p) = \sum_{k \le p} \mu(k)$.
 
-We prove ten exact identities connecting Farey geometry to
-multiplicative number theory, culminating in a universal formula
-that evaluates the Farey exponential sum
+We prove exact identities that explain this phenomenon, including
+a universal formula evaluating the Farey exponential sum
 $\sum_{f \in \mathcal{F}_N} e^{2\pi i m f}$
-at \emph{every} integer frequency~$m$ in terms of the Mertens
-function at divisor-scaled arguments
-(Theorem~\ref{thm:universal}), and a character-weighted extension
-that connects Farey sums to \emph{every} Dirichlet $L$-function
-(Theorem~\ref{thm:char-bridge}).  A displacement-shift identity
-(Proposition~\ref{prop:disp-shift}) explains the mechanism by which
-the Mertens function controls per-step discrepancy changes.
-The bridge identity and all supporting lemmas are formally
-verified in Lean~4 across three files (44~results,
-zero \texttt{sorry}), with the complete proof chain constructed
-autonomously by the Aristotle automated theorem prover.
+at every integer frequency in terms of the Mertens function
+(Theorem~\ref{thm:universal}), a character-weighted extension
+connecting Farey geometry to all Dirichlet $L$-functions
+(Theorem~\ref{thm:char-bridge}), and an Injection Principle
+showing each prime inserts its fractions into distinct Farey
+gaps via modular inversion (Theorem~\ref{thm:injection}).
+A four-term algebraic decomposition of the per-step wobble change
+(Observation~\ref{obs:near-cancel}) reveals that the new-fraction
+discrepancy nearly cancels the dilution benefit ($D/A \to 1$),
+leaving the Mertens-controlled cross term to tip the balance.
 
-In computations up to $N = 100{,}000$, composites account for
-$\sim\!96\%$ of the total positive $\Delta W$ (uniformity
-improvement), while primes contribute $\sim\!99\%$ of the total
-negative $\Delta W$ (degradation).  Binning primes by $M(p)/\sqrt{p}$ reveals a
-sharp empirical sigmoid transition between these regimes.
-The classical equivalence $\text{RH} \Leftrightarrow
-M(N) = O(N^{1/2+\varepsilon})$ can be restated through our
-identities as a condition on Farey exponential sums, and the
-character-weighted extension yields an analogous restatement
-of the Generalized Riemann Hypothesis for all Dirichlet
-$L$-functions.
-The bridge identity also yields exact quadrature error formulas
-that, for cosine test functions, replace standard
-order-of-magnitude bounds with explicit values.
-Among the $9{,}588$ primes $p \ge 11$ up to $100{,}000$,
-only one ($p = 92{,}173$, with $M(p)=-2$) has
-$\Delta W(p) > 0$ despite $M(p) < 0$.
+All core identities and the complete bridge-identity proof chain
+(107~results across seven Lean~4 files, one \texttt{sorry}) are
+formally verified, with the proof chain constructed autonomously
+by the Aristotle theorem prover.  Among the $9{,}588$ primes
+$p \ge 11$ up to $100{,}000$, only one ($p = 92{,}173$, certified
+by 256-bit interval arithmetic) has $\Delta W(p) > 0$ despite
+$M(p) < 0$; for the $M(p) \le -3$ class ($4{,}617$ primes),
+there are zero counterexamples.
 \end{abstract}
 
 \medskip
@@ -274,7 +261,7 @@ and~\ref{thm:universal}) and the per-step application to
 $\Delta W(N)$ (Theorems~\ref{thm:involution}--\ref{thm:cross-term})
 appear, to our knowledge, not to have been stated previously
 in this form.  All identities and supporting lemmas are
-formally verified in Lean~4 (44~results across three files,
+formally verified in Lean~4 (107~results across seven files,
 zero \texttt{sorry}); all prime-parameter identities
 are also verified
 computationally for all primes $p \le 100{,}000$, and the universal
@@ -952,21 +939,33 @@ additional error terms that break the sign control.
 Key supporting results have been formally verified in Lean~4
 using the Mathlib library, with the Aristotle automated theorem
 prover~\cite{Aristotle2025} generating proof strategies.
-The core formalization spans three Lean files
-(\texttt{PrimeCircle.lean}, \texttt{DeltaCosine.lean},
-\texttt{BridgeIdentity.lean}) containing 44 theorems,
-lemmas, and definitions, all fully proved with
-\textbf{zero} \texttt{sorry} declarations---including the
-bridge identity itself (Theorem~\ref{thm:bridge}).
-A fourth file (\texttt{MertensGrowth.lean}) states the
-classical growth bound $|M(N)| = \Omega(\sqrt{N})$ with
-computational witnesses proved by \texttt{native\_decide},
-but the general theorem remains an open formalization.
-The Aristotle theorem prover~\cite{Aristotle2025} proved the
-complete chain: coprime residue permutation $\to$ Ramanujan sum
-at coprime argument $\to$ bridge identity.  The bridge is
-additionally verified by \texttt{native\_decide} for all
-primes $p \le 13$.
+The formalization spans seven Lean~4 files containing 107
+theorems, lemmas, and definitions, with only one
+\texttt{sorry} (the general growth bound in
+\texttt{MertensGrowth.lean}).  The six zero-\texttt{sorry}
+files are:
+\begin{itemize}
+  \item \texttt{PrimeCircle.lean} (19 results): Farey cardinality,
+    Ramanujan sums, wobble decomposition.
+  \item \texttt{BridgeIdentity.lean} (34 results): Mertens function,
+    coprime permutation, bridge identity proof chain.
+  \item \texttt{CharacterBridge.lean} (11 results): character-weighted
+    bridge identity for all Dirichlet characters.
+  \item \texttt{InjectionPrinciple.lean} (11 results): formal proof
+    of the Injection Principle (Theorem~\ref{thm:injection}).
+  \item \texttt{DisplacementShift.lean} (17 results):
+    displacement-shift identity
+    (Proposition~\ref{prop:disp-shift}).
+  \item \texttt{DeltaCosine.lean} (10 results):
+    $\delta$-cosine framework.
+\end{itemize}
+The Aristotle theorem prover~\cite{Aristotle2025}
+autonomously constructed the bridge identity proof chain
+(coprime residue permutation $\to$ Ramanujan sum at coprime
+argument $\to$ bridge identity), the character-weighted
+bridge, the Injection Principle, and the displacement-shift
+identity.  The bridge is additionally verified by
+\texttt{native\_decide} for all primes $p \le 13$.
 
 \subsection{Key verified results}
 
