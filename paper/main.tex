@@ -1274,14 +1274,17 @@ $\sum \delta^2 = 2\sum_b (\sum a^2 - T_b)/b^2$
 and the Prime Number Theorem applied to summing
 deficits at prime denominators).
 
-\item Since $1 - D/A = O(1/p)$ and
-$C/A \ge c/\log^2 p$, and $c/\log^2 p \gg 1/p$
-for all $p \ge P_0$, the analytical bound $D + C > A$ holds
-for all sufficiently large~$p$.
+\item Since $1 - D/A \le K/p$ with $K = 12$
+(from the Cauchy--Schwarz quadratic bound) and
+$C/A \ge \pi^2/(432 \log^2 p)$, the condition $C/A > 1 - D/A$
+reduces to $\pi^2/(432 \log^2 p) > 12/p$, i.e.,
+$p > 525.2 \log^2 p$.  Numerical evaluation gives the threshold
+$P_0 \approx 65{,}500$.
 \end{enumerate}
 
-The computational base and analytical tail overlap,
-completing the proof.
+Since $P_0 < 100{,}000$ (the range of the computational
+verification), the two regimes overlap at
+$[65{,}500,\; 100{,}000]$, completing the proof.
 \end{proof}
 
 \begin{remark}
