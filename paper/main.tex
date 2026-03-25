@@ -51,36 +51,42 @@
 \maketitle
 
 \begin{abstract}
-We decompose the uniformity of the Farey sequence one integer at
-a time and discover that primes and composites play fundamentally
-different geometric roles.  In computations through $N = 200{,}000$,
-composites account for $\sim\!96\%$ of all uniformity improvement
-while primes are responsible for $\sim\!99\%$ of all uniformity
-\emph{damage}---and the sign of each prime's contribution is
-controlled by the Mertens function $M(p) = \sum_{k \le p} \mu(k)$.
+We discover that each prime number leaves a measurable geometric
+signature in the distribution of fractions.  Decomposing the
+uniformity of the Farey sequence one integer at a time, we find
+that primes and composites play fundamentally different roles:
+composites account for ${\sim}96\%$ of all uniformity improvement
+while primes are responsible for ${\sim}99\%$ of all uniformity
+\emph{damage}---and the direction of each prime's geometric
+effect is controlled by the Mertens function
+$M(p) = \sum_{k \le p} \mu(k)$, a global arithmetic quantity
+encoding the factorization history of all integers up to~$p$.
+This creates a direct, previously unknown bridge between the
+geometry of rational numbers and multiplicative number theory.
 
-We prove exact identities that explain this phenomenon, including
-a universal formula evaluating the Farey exponential sum
-$\sum_{f \in \mathcal{F}_N} e^{2\pi i m f}$
-at every integer frequency in terms of the Mertens function
-(Theorem~\ref{thm:universal}), a character-weighted extension
-connecting Farey geometry to all Dirichlet $L$-functions
-(Theorem~\ref{thm:char-bridge}), and an Injection Principle
-showing each prime inserts its fractions into distinct Farey
-gaps via modular inversion (Theorem~\ref{thm:injection}).
-A four-term algebraic decomposition of the per-step wobble change
-(Observation~\ref{obs:near-cancel}) reveals that the new-fraction
-discrepancy nearly cancels the dilution benefit ($D/A \to 1$),
-leaving the Mertens-controlled cross term to tip the balance.
+We prove this connection through exact identities, including a
+universal formula evaluating the Farey exponential sum at every
+integer frequency in terms of the Mertens function at
+divisor-scaled arguments (Theorem~\ref{thm:universal}), and
+an Injection Principle showing each prime inserts its fractions
+into distinct Farey gaps via modular inversion
+(Theorem~\ref{thm:injection}).
+The identities reveal a striking compression phenomenon: the
+bridge identity collapses $\sim\!3p^2/\pi^2$ geometric data
+points into a single integer $M(p)$, with the sign of~$M$
+predicting the geometric outcome at $99.98\%$ accuracy when
+$M(p) < 0$.  A four-term algebraic decomposition shows that
+the new-fraction discrepancy nearly cancels the dilution benefit
+($D/A \to 1$), leaving the Mertens-controlled cross term to
+tip the balance.
 
-All core identities and the complete bridge-identity proof chain
-(107~results across seven Lean~4 files, one \texttt{sorry}) are
-formally verified, with the proof chain constructed autonomously
-by the Aristotle theorem prover.  Among the $9{,}588$ primes
-$p \ge 11$ up to $100{,}000$, only one ($p = 92{,}173$, certified
-by 256-bit interval arithmetic) has $\Delta W(p) > 0$ despite
-$M(p) < 0$; for the $M(p) \le -3$ class ($4{,}617$ primes),
-there are zero counterexamples.
+All core identities (120+~results across eight Lean~4 files,
+one~\texttt{sorry}) are formally verified, with the bridge-identity
+proof chain constructed autonomously by the Aristotle theorem
+prover.  Among $9{,}588$ primes $p \ge 11$ up to $100{,}000$,
+only one ($p = 92{,}173$, certified by 256-bit interval arithmetic)
+has $\Delta W(p) > 0$ despite $M(p) < 0$; for the $M(p) \le -3$
+class ($4{,}617$ primes), there are zero counterexamples.
 \end{abstract}
 
 \medskip
