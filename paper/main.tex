@@ -81,7 +81,7 @@ the new-fraction discrepancy nearly cancels the dilution benefit
 tip the balance.
 
 All core identities (139~results across nine Lean~4 files,
-one~\texttt{sorry}) are formally verified, with the bridge-identity
+zero~\texttt{sorry}) are formally verified, with the bridge-identity
 proof chain constructed autonomously by the Aristotle theorem
 prover.  Among $9{,}588$ primes $p \ge 11$ up to $100{,}000$,
 only one ($p = 92{,}173$, certified by 256-bit interval arithmetic)
@@ -956,10 +956,9 @@ Key supporting results have been formally verified in Lean~4
 using the Mathlib library, with the Aristotle automated theorem
 prover~\cite{Aristotle2025} generating proof strategies.
 The formalization spans nine Lean~4 files containing 139
-theorems, lemmas, and definitions, with only one
-\texttt{sorry} (the general growth bound in
-\texttt{MertensGrowth.lean}).  The six zero-\texttt{sorry}
-files are:
+theorems, lemmas, and definitions, with
+zero~\texttt{sorry}.  All nine files compile with no axiom
+violations.  The files are:
 \begin{itemize}
   \item \texttt{PrimeCircle.lean} (19 results): Farey cardinality,
     Ramanujan sums, wobble decomposition.
