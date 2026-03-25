@@ -77,7 +77,7 @@ points into a single integer $M(p)$, with the sign of~$M$
 predicting the geometric outcome at $99.98\%$ accuracy when
 $M(p) < 0$.  A four-term algebraic decomposition shows that
 the new-fraction discrepancy nearly cancels the dilution benefit
-($D/A \to 1$), leaving the Mertens-controlled cross term to
+($\mathcal{D}/A \to 1$), leaving the Mertens-controlled cross term to
 tip the balance.
 
 All core identities (139~results across nine Lean~4 files,
@@ -193,7 +193,9 @@ improve or worsen at each step, and what controls the answer?
 \includegraphics[width=\textwidth]{fig_void_filling.png}
 \caption{How primes break voids.  \textbf{Left:} $\F_6$ with
 voids highlighted by size (darker = larger).
-\textbf{Center:} prime $p = 7$ fills every void (green arcs).
+\textbf{Center:} prime $p = 7$ inserts one fraction into each of
+$p - 1 = 6$ distinct gaps (green arcs), filling some voids and
+skipping others.
 \textbf{Right:} composite $N = 8$ leaves voids unfilled (red
 arcs) due to missing coprime numerators.}
 \label{fig:voids}
@@ -776,19 +778,21 @@ The displacement-shift identity (Proposition~\ref{prop:disp-shift})
 yields an exact algebraic decomposition of $\Delta W(p)$ into four
 terms:
 \begin{equation}\label{eq:4term}
-  \Delta W(p) = A - B - C - D
+  \Delta W(p) = A - B - C - \mathcal{D}
 \end{equation}
-where
+where $n = |\F_{p-1}|$, $n' = |\F_p| = n + (p-1)$, and
 \begin{align*}
-  A &= \textstyle\sum_{\text{old}} D_{\F_{p-1}}^2 \cdot
+  A &= \textstyle\sum_{\text{old}} D_{\F_{p-1}}(f)^2 \cdot
        (1/n^2 - 1/{n'}^2) && \text{(dilution --- always positive),}\\
-  B &= (2/{n'}^2)\textstyle\sum D_{\F_{p-1}} \cdot \delta
+  B &= (2/{n'}^2)\textstyle\sum D_{\F_{p-1}}(f) \cdot \delta(f)
        && \text{(cross term),}\\
-  C &= (1/{n'}^2)\textstyle\sum \delta^2
+  C &= (1/{n'}^2)\textstyle\sum \delta(f)^2
        && \text{(shift squared --- always positive),}\\
-  D &= (1/{n'}^2)\textstyle\sum_{\text{new}} D_{\F_p}(k/p)^2
+  \mathcal{D} &= (1/{n'}^2)\textstyle\sum_{\text{new}} D_{\F_p}(k/p)^2
        && \text{(new-fraction discrepancy --- always positive).}
 \end{align*}
+We use $\mathcal{D}$ (calligraphic) for the decomposition term to
+distinguish it from the rank discrepancy function~$D(f)$.
 Thus $\Delta W(p) \le 0$ (wobble worsens) if and only if
 $B + C + D \ge A$.
 
@@ -797,20 +801,20 @@ Computation through $p = 100{,}000$ reveals a striking near-cancellation:
 \begin{observation}[Near-cancellation]\label{obs:near-cancel}
 For all tested primes with $M(p) \le -3$:
 \begin{enumerate}[(i)]
-  \item $D/A \in [0.97,\, 1.12]$: the new-fraction discrepancy nearly
+  \item $\mathcal{D}/A \in [0.97,\, 1.12]$: the new-fraction discrepancy nearly
     cancels the dilution by itself.
   \item $B$ is \textbf{always positive}: the rank discrepancy $D$ and
     the shift $\delta$ are positively correlated.
   \item $C$ provides $5$--$18\%$ additional margin.
-  \item The combined ratio $(B + C + D)/A$ grows from ${\sim}1.4$ at
+  \item The combined ratio $(B + C + \mathcal{D})/A$ grows from ${\sim}1.4$ at
     $M = -3$ to ${\sim}3.0$ at $M = -14$.
 \end{enumerate}
 \end{observation}
 
 \noindent A direct proof that $B \ge 0$ remains an open problem.
 However, the Sign Theorem (Theorem~\ref{thm:sign}) bypasses
-this entirely: the proof shows $C + D > A$ without requiring
-$B$'s sign, using a Cauchy--Schwarz bound on the $D/A$ ratio
+this entirely: the proof shows $C + \mathcal{D} > A$ without requiring
+$B$'s sign, using a Cauchy--Schwarz bound on the $\mathcal{D}/A$ ratio
 combined with a rearrangement-inequality lower bound on~$C$.
 The per-denominator decomposition of~$B$ connects to
 classical Dedekind sums via $T_b(p) = p^2[s(b,p) + (p-1)/4]$,
@@ -1024,6 +1028,19 @@ $\gcd(m,q) = 1$), and the bridge identity itself---without human
 intervention in the proof construction.  It was also essential for
 algebraic identities requiring non-trivial tactic chains
 (\texttt{ring\_nf}, \texttt{grind}, \texttt{omega}, \texttt{norm\_num}).
+
+\subsection{Reproducibility}
+
+All code, data, and Lean proofs are available at
+\url{https://github.com/SaarShai/Primes-Equispaced}
+(commit \texttt{5f3053b}).
+The formalization uses Lean~4 v4.28.0 with Mathlib v4.28.0.
+Computational experiments use C (compiled with \texttt{gcc~-O3})
+and Python~3 on Apple~M4.  The counterexample at $p = 92{,}173$
+was certified using MPFR~4.2 with 256-bit precision.
+Exact rational verification for $p \le 200$ uses Python's
+\texttt{Fraction} class; for $p \le 3{,}000$, \texttt{mpmath}
+with 80 decimal digits.
 
 
 %% ================================================================
@@ -1259,15 +1276,15 @@ arithmetic independently confirms the sign.
 \textbf{Analytical tail} ($p > P_0$).
 The four-term decomposition
 (Observation~\ref{obs:near-cancel}) gives
-$\Delta W(p) < 0 \;\Leftrightarrow\; D + B + C > A$,
+$\Delta W(p) < 0 \;\Leftrightarrow\; \mathcal{D} + B + C > A$,
 where $A$ is the dilution, $D$ the new-fraction discrepancy,
 $B = 2\sum D \cdot \delta$ the cross term, and
 $C = \sum \delta^2$ the shift-squared term.
 
 \begin{enumerate}[(i)]
-\item \emph{$D/A = 1 + O(1/p)$}
+\item \emph{$\mathcal{D}/A = 1 + O(1/p)$}
 (Proposition~\ref{prop:DA-ratio}, exact identity from
-wobble conservation).  So $D + C > A$ reduces to $C/A > 1 - D/A = O(1/p)$.
+wobble conservation).  So $\mathcal{D} + C > A$ reduces to $C/A > 1 - \mathcal{D}/A = O(1/p)$.
 
 \item \emph{$C > 0$ strictly}
 (Proposition~\ref{prop:strict-pos}, rearrangement inequality:
@@ -1280,9 +1297,9 @@ $\sum \delta^2 = 2\sum_b (\sum a^2 - T_b)/b^2$
 and the Prime Number Theorem applied to summing
 deficits at prime denominators).
 
-\item Since $1 - D/A \le K/p$ with $K = 12$
+\item Since $1 - \mathcal{D}/A \le K/p$ with $K = 12$
 (from the Cauchy--Schwarz quadratic bound) and
-$C/A \ge \pi^2/(432 \log^2 p)$, the condition $C/A > 1 - D/A$
+$C/A \ge \pi^2/(432 \log^2 p)$, the condition $C/A > 1 - \mathcal{D}/A$
 reduces to $\pi^2/(432 \log^2 p) > 12/p$, i.e.,
 $p > 525.2 \log^2 p$.  Numerical evaluation gives the threshold
 $P_0 \approx 65{,}500$.

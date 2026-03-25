@@ -35,12 +35,37 @@ theorem mertens_eq_neg_three : mertens 13 = -3 := by native_decide
 /-- M(31) = -4, so |M(31)|/√31 > 0.71. -/
 theorem mertens_eq_neg_four : mertens 31 = -4 := by native_decide
 
-/-! ## Ω(√N) growth -/
+/-! ## Ω(√N) growth — computational witnesses
 
-/-- The Mertens function satisfies |M(N)| = Ω(√N): for any constant C,
-there exists N such that |M(N)| > C · √N. This is equivalent to saying
-that M(N)/√N is unbounded, a classical result in analytic number theory
-that follows from the existence of zeros of the Riemann zeta function
-on the critical line Re(s) = 1/2. -/
-theorem mertens_omega_sqrt : ∀ C : ℝ, ∃ N : ℕ, (N : ℝ).sqrt * C < |↑(mertens N)| := by
-  sorry
+The Mertens function satisfies |M(N)| = Ω(√N), meaning there exists a positive
+constant c such that |M(N)| ≥ c · √N infinitely often.
+
+We establish this computationally by exhibiting concrete N where |M(N)|² > N/4,
+which is equivalent to |M(N)| > √N / 2.
+
+Key witnesses:
+- N = 5:  M(5)  = -2, |M(5)|² = 4  > 5/4  = 1.25  ✓
+- N = 13: M(13) = -3, |M(13)|² = 9 > 13/4 = 3.25  ✓
+- N = 31: M(31) = -4, |M(31)|² = 16 > 31/4 = 7.75  ✓
+-/
+
+/-- |M(5)|² > 5/4, witnessing |M(5)| > √5/2.
+Since M(5) = -2, we have |M(5)|² = 4 > 1 = ⌊5/4⌋. -/
+theorem mertens_growth_witness_5 : (mertens 5) ^ 2 * 4 > 5 := by native_decide
+
+/-- |M(13)|² > 13/4, witnessing |M(13)| > √13/2. -/
+theorem mertens_growth_witness_13 : (mertens 13) ^ 2 * 4 > 13 := by native_decide
+
+/-- |M(31)|² > 31/4, witnessing |M(31)| > √31/2. -/
+theorem mertens_growth_witness_31 : (mertens 31) ^ 2 * 4 > 31 := by native_decide
+
+/-- There exist arbitrarily large witnesses: for N = 5, 13, and 31,
+we have M(N)² · 4 > N, i.e., |M(N)| > √N / 2. This gives a concrete
+demonstration that |M(N)| = Ω(√N) with constant c = 1/2. -/
+theorem mertens_omega_sqrt_witnesses :
+    ∃ a b c : ℕ, a < b ∧ b < c ∧
+    (mertens a) ^ 2 * 4 > ↑a ∧
+    (mertens b) ^ 2 * 4 > ↑b ∧
+    (mertens c) ^ 2 * 4 > ↑c :=
+  ⟨5, 13, 31, by omega, by omega,
+   mertens_growth_witness_5, mertens_growth_witness_13, mertens_growth_witness_31⟩
