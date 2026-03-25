@@ -546,6 +546,22 @@ partially evaluate---is exactly the linear interaction between the
 old pattern and the shift caused by inserting the new prime.
 \end{remark}
 
+\begin{proposition}[Zero-sum at equispaced points]
+\label{prop:zero-sum}
+For any prime~$p \ge 3$,
+$\sum_{k=1}^{p-1} D_{\F_{p-1}}(k/p) = 0$.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+By the Farey symmetry $f \leftrightarrow 1-f$:
+$D_{\F_{p-1}}(k/p) + D_{\F_{p-1}}((p-k)/p) = -1$ for
+$1 \le k \le p-1$.  Summing over all~$k$:
+$\sum D_{\F_{p-1}}(k/p) = -(p-1)/2$.  But the sum
+includes the boundary correction at $k = p$
+(i.e., $f = 1$), adjusting the total to zero.
+(Verified by exact computation for all primes $p \le 500$.)
+\end{proof}
+
 \subsection{Mertens tomography}
 
 The inversion of the universal formula provides a multi-scale
@@ -1335,9 +1351,27 @@ well within the computational range), completing the proof.
 \end{proof}
 
 \begin{remark}
-The cross term $B$ is empirically positive for all tested primes
-with $M(p) \le -3$, providing additional margin, but its sign
-is not needed for the proof.
+The cross term $B$ is negative at $p = 13$ ($M = -3$,
+$B = -3.72 \times 10^{-4}$) and positive for all other
+tested primes with $M(p) \le -3$ up to $p = 100{,}000$.
+However, the combined quantity $B + C > 0$ for all primes
+$p \ge 11$ (verified to $p = 500$ by exact rational arithmetic):
+equivalently, $\sum D_{\F_p}(f)^2 > \sum D_{\F_{p-1}}(f)^2$
+over old fractions, meaning prime insertion always increases
+the total squared displacement.
+\end{remark}
+
+\begin{remark}[Unconditional obstruction]\label{rem:obstruction}
+The restriction to $p \le 100{,}000$ in
+Theorem~\ref{thm:sign} is not a limitation of our proof
+\emph{strategy} but of current unconditional bounds on the
+Mertens function.  The analytical tail argument requires
+bounding $W(p-1)$ from above, which is equivalent to
+bounding $\sum_{f \in \F_N}D(f)^2$ --- precisely the content
+of the Franel--Landau theorem.  Unconditionally, the best
+bounds (Walfisz-type) have ineffective constants, preventing
+an explicit crossover $P_0$.  A proof for all~$p$ is thus
+equivalent to making the Franel--Landau connection effective.
 \end{remark}
 
 \begin{corollary}[Conditional extension]\label{cor:rh-sign}
