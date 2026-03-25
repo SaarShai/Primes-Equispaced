@@ -2,272 +2,410 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Farey Circle: Primes, Mertens Bias & Wobble</title>
+<title>The Geometric Signature of Primes — Interactive Demo</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a1a; color: #e0e0e0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 20px; }
-  h1 { font-size: 1.5em; margin-bottom: 5px; color: #7eb8ff; }
-  .subtitle { font-size: 0.85em; color: #888; margin-bottom: 15px; }
-  .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1200px; }
-  .circle-panel { position: relative; }
-  canvas { border-radius: 12px; background: #12122a; }
-  .controls { background: #1a1a2e; border-radius: 12px; padding: 20px; width: 320px; }
-  .control-group { margin-bottom: 15px; }
-  .control-group label { display: block; font-size: 0.85em; color: #aaa; margin-bottom: 5px; }
-  .control-group .value { font-size: 1.4em; font-weight: bold; color: #7eb8ff; }
-  input[type="range"] { width: 100%; accent-color: #7eb8ff; }
-  .stats { background: #16162e; border-radius: 8px; padding: 12px; margin-top: 10px; font-size: 0.82em; line-height: 1.7; }
-  .stats .label { color: #888; }
-  .stats .num { color: #7eb8ff; font-weight: bold; }
-  .pos { color: #ff6b6b; }
-  .neg { color: #4ecdc4; }
-  .zero { color: #888; }
-  .legend { display: flex; gap: 15px; margin-top: 10px; font-size: 0.8em; }
-  .legend-item { display: flex; align-items: center; gap: 5px; }
-  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .explanation { max-width: 700px; margin-top: 20px; background: #1a1a2e; border-radius: 12px; padding: 20px; font-size: 0.85em; line-height: 1.6; color: #aaa; }
-  .explanation h3 { color: #7eb8ff; margin-bottom: 8px; }
-  .highlight { color: #ff6b6b; font-weight: bold; }
-  .highlight2 { color: #4ecdc4; font-weight: bold; }
-  button { background: #2a2a4e; color: #7eb8ff; border: 1px solid #3a3a5e; border-radius: 6px; padding: 6px 14px; cursor: pointer; font-size: 0.85em; margin: 3px; }
-  button:hover { background: #3a3a5e; }
-  button.active { background: #4a4a7e; border-color: #7eb8ff; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a0a1a; color: #e0e0e0; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+h1 { text-align: center; color: #7eb8ff; margin: 20px 0; font-size: 1.8em; }
+h2 { color: #7eb8ff; margin: 15px 0 10px; }
+.controls { display: flex; gap: 20px; align-items: center; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+.controls label { color: #aaa; }
+.controls input[type="range"] { width: 200px; }
+.controls span { color: #7eb8ff; font-weight: bold; min-width: 40px; }
+canvas { display: block; margin: 10px auto; border: 1px solid #333; border-radius: 8px; background: #111; }
+.info { text-align: center; color: #888; margin: 5px 0; font-size: 0.9em; }
+.tabs { display: flex; gap: 5px; justify-content: center; margin: 20px 0; }
+.tab { padding: 8px 20px; background: #1a1a2e; border: 1px solid #333; border-radius: 5px; cursor: pointer; color: #aaa; }
+.tab.active { background: #2a2a4e; color: #7eb8ff; border-color: #7eb8ff; }
+.demo-section { display: none; }
+.demo-section.active { display: block; }
+.stats { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 10px 0; }
+.stat { background: #1a1a2e; padding: 10px 15px; border-radius: 5px; text-align: center; }
+.stat .value { font-size: 1.5em; color: #7eb8ff; }
+.stat .label { font-size: 0.8em; color: #888; }
 </style>
 </head>
 <body>
-
-<h1>The Farey Circle</h1>
-<p class="subtitle">How primes heal (or disrupt) the uniformity of fractions</p>
-
 <div class="container">
-  <div class="circle-panel">
-    <canvas id="circle" width="520" height="520"></canvas>
-  </div>
+<h1>🔢 The Geometric Signature of Primes</h1>
 
-  <div class="controls">
-    <div class="control-group">
-      <label>N (Farey order) — slide to add denominators</label>
-      <input type="range" id="nSlider" min="2" max="120" value="10">
-      <div>F<sub><span id="nValue">10</span></sub> &nbsp; <span id="nFractions" class="value"></span> fractions</div>
-    </div>
-
-    <div class="control-group">
-      <label>Color mode</label>
-      <div>
-        <button id="btnBias" class="active" onclick="setMode('bias')">Mertens Bias</button>
-        <button id="btnDenom" onclick="setMode('denom')">By Denominator</button>
-        <button id="btnNew" onclick="setMode('new')">New vs Old</button>
-      </div>
-    </div>
-
-    <div class="stats">
-      <div><span class="label">M(N) = </span><span id="mertens" class="num"></span> <span id="mertensLabel"></span></div>
-      <div><span class="label">μ(N) = </span><span id="mobius" class="num"></span> <span id="mobiusLabel"></span></div>
-      <div><span class="label">φ(N) = </span><span id="totient" class="num"></span> <span class="label"> new fractions</span></div>
-      <div><span class="label">N is </span><span id="primeStatus" class="num"></span></div>
-      <div><span class="label">Grid fill: </span><span id="gridFill" class="num"></span></div>
-      <div style="margin-top:8px"><span class="label">Σ cos = </span><span id="cosSum" class="num"></span> <span class="label">(bridge: M+2 = <span id="bridge"></span>)</span></div>
-      <div><span class="label">ΔW = </span><span id="deltaW" class="num"></span></div>
-    </div>
-
-    <div class="legend">
-      <div class="legend-item"><div class="legend-dot" style="background:#ff6b6b"></div> cos &gt; 0 (top)</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#4ecdc4"></div> cos &lt; 0 (bottom)</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#fff3"></div> new fractions</div>
-    </div>
-  </div>
+<div class="tabs">
+<div class="tab active" onclick="showTab('ford')">Ford Circles</div>
+<div class="tab" onclick="showTab('farey')">Farey Circle</div>
+<div class="tab" onclick="showTab('injection')">Injection</div>
+<div class="tab" onclick="showTab('mesh')">Mesh Demo</div>
 </div>
 
-<div class="explanation">
-  <h3>What you're seeing</h3>
-  <p>Each dot is a fraction a/b placed at angle 2π·(a/b) on the circle.
-  The <span class="highlight">red dots</span> are near the top (cos > 0, fractions near 0 or 1).
-  The <span class="highlight2">teal dots</span> are near the bottom (cos < 0, fractions near 1/2).</p>
-  <p>When <b>M(N) > 0</b>: more red than teal — the "even personality" numbers are winning, creating a <span class="highlight">top-heavy bias</span>. A prime arriving with its uniform grid can heal this.</p>
-  <p>When <b>M(N) < 0</b>: more teal than red — <span class="highlight2">bottom-heavy bias</span>. A prime's uniform grid can't help here.</p>
-  <p>When N is <b>prime</b>: it fills ALL N−1 grid positions (100% fill). When N is <b>composite</b>: it only fills φ(N) positions, leaving holes.</p>
+<!-- FORD CIRCLES -->
+<div id="ford" class="demo-section active">
+<h2>Ford Circles & Injection Principle</h2>
+<div class="controls">
+<label>Farey Order N:</label>
+<input type="range" id="ford-n" min="2" max="20" value="6" oninput="drawFord()">
+<span id="ford-n-val">6</span>
+<label style="margin-left:20px">Show prime p:</label>
+<input type="range" id="ford-p" min="2" max="23" value="7" oninput="drawFord()">
+<span id="ford-p-val">7</span>
+</div>
+<canvas id="ford-canvas" width="1000" height="400"></canvas>
+<div class="stats" id="ford-stats"></div>
+<div class="info">Blue = existing F_N circles. Red = new fractions with denominator p. Each red circle fits uniquely between tangent blue pairs.</div>
+</div>
+
+<!-- FAREY ON CIRCLE -->
+<div id="farey" class="demo-section">
+<h2>Farey Fractions on the Unit Circle</h2>
+<div class="controls">
+<label>Order N:</label>
+<input type="range" id="circle-n" min="2" max="30" value="12" oninput="drawCircle()">
+<span id="circle-n-val">12</span>
+</div>
+<canvas id="circle-canvas" width="600" height="600"></canvas>
+<div class="stats" id="circle-stats"></div>
+</div>
+
+<!-- INJECTION DEMO -->
+<div id="injection" class="demo-section">
+<h2>Injection Principle: One Per Gap</h2>
+<div class="controls">
+<label>Step N:</label>
+<input type="range" id="inj-n" min="3" max="30" value="7" oninput="drawInjection()">
+<span id="inj-n-val">7</span>
+</div>
+<canvas id="inj-canvas" width="1000" height="300"></canvas>
+<div class="stats" id="inj-stats"></div>
+<div class="info">Top: F_{N-1} (blue dots). Bottom: F_N with new fractions (red). Each gap gets at most ONE new fraction.</div>
+</div>
+
+<!-- MESH DEMO -->
+<div id="mesh" class="demo-section">
+<h2>Farey Mesh Refinement</h2>
+<div class="controls">
+<label>Order N:</label>
+<input type="range" id="mesh-n" min="2" max="15" value="5" oninput="drawMesh()">
+<span id="mesh-n-val">5</span>
+</div>
+<canvas id="mesh-canvas" width="800" height="400"></canvas>
+<div class="stats" id="mesh-stats"></div>
+<div class="info">Each refinement step splits at most one element per existing interval. No double-splits!</div>
+</div>
+
 </div>
 
 <script>
-const canvas = document.getElementById('circle');
-const ctx = canvas.getContext('2d');
-const W = canvas.width, H = canvas.height;
-const CX = W/2, CY = H/2, R = 220;
-
-let colorMode = 'bias';
-let currentN = 10;
-
-// Number theory functions
 function gcd(a, b) { while(b) { [a,b] = [b, a%b]; } return a; }
 
-function sieve(max) {
-  const mu = new Int8Array(max+1);
-  const phi = new Int32Array(max+1);
-  const isPrime = new Uint8Array(max+1);
-  const primes = [];
-  mu[1] = 1;
-  for(let i=0;i<=max;i++) phi[i]=i;
-  isPrime.fill(1); isPrime[0]=isPrime[1]=0;
-  for(let i=2;i<=max;i++) {
-    if(isPrime[i]) { primes.push(i); mu[i]=-1; }
-    for(const p of primes) {
-      if(i*p>max) break;
-      isPrime[i*p]=0;
-      if(i%p===0) { mu[i*p]=0; break; }
-      else mu[i*p]=-mu[i];
-    }
-    if(phi[i]===i) for(let k=i;k<=max;k+=i) phi[k]-=Math.floor(phi[k]/i);
-  }
-  const M = new Int32Array(max+1);
-  for(let k=1;k<=max;k++) M[k]=M[k-1]+mu[k];
-  return {mu, phi, isPrime, M};
-}
-
-const MAX = 130;
-const {mu, phi, isPrime, M} = sieve(MAX);
-
-function fareySequence(N) {
-  const fracs = [];
-  for(let b=1;b<=N;b++) {
-    for(let a=0;a<=b;a++) {
-      if(gcd(a,b)===1) fracs.push({a, b, f: a/b});
-    }
-  }
-  fracs.sort((x,y) => x.f - y.f);
+function farey(N) {
+  let fracs = [];
+  for (let b = 1; b <= N; b++)
+    for (let a = 0; a <= b; a++)
+      if (gcd(a, b) === 1) fracs.push({a, b, v: a/b});
+  fracs.sort((x,y) => x.v - y.v);
   return fracs;
 }
 
-function setMode(mode) {
-  colorMode = mode;
-  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
-  document.getElementById('btn' + mode.charAt(0).toUpperCase() + mode.slice(1)).classList.add('active');
-  draw();
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let i = 2; i*i <= n; i++) if (n%i === 0) return false;
+  return true;
 }
 
-function draw() {
-  const N = currentN;
-  const fracs = fareySequence(N);
-  const prevFracs = N > 1 ? new Set(fareySequence(N-1).map(f => f.a+'/'+f.b)) : new Set();
-  const n = fracs.length;
+function showTab(id) {
+  document.querySelectorAll('.demo-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  if (id === 'ford') drawFord();
+  if (id === 'farey') drawCircle();
+  if (id === 'injection') drawInjection();
+  if (id === 'mesh') drawMesh();
+}
 
+// FORD CIRCLES
+function drawFord() {
+  const N = +document.getElementById('ford-n').value;
+  const p = +document.getElementById('ford-p').value;
+  document.getElementById('ford-n-val').textContent = N;
+  document.getElementById('ford-p-val').textContent = p;
+  
+  const canvas = document.getElementById('ford-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
   ctx.clearRect(0, 0, W, H);
-
-  // Draw circle
-  ctx.strokeStyle = '#2a2a4e';
+  
+  const margin = 40;
+  const scale = W - 2*margin;
+  
+  // Draw existing Ford circles
+  const F = farey(N);
+  ctx.strokeStyle = '#4488cc';
+  ctx.lineWidth = 1.5;
+  F.forEach(f => {
+    const x = margin + f.v * scale;
+    const r = scale / (2 * f.b * f.b);
+    if (r > 0.5) {
+      ctx.beginPath();
+      ctx.arc(x, H - r, r, 0, 2*Math.PI);
+      ctx.stroke();
+      if (r > 8) {
+        ctx.fillStyle = '#4488cc44';
+        ctx.fill();
+      }
+      if (r > 15) {
+        ctx.fillStyle = '#4488cc';
+        ctx.font = '10px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(`${f.a}/${f.b}`, x, H - 2*r - 3);
+      }
+    }
+  });
+  
+  // Draw new fractions with denominator p
+  if (p > N && isPrime(p)) {
+    ctx.strokeStyle = '#ff4444';
+    ctx.lineWidth = 2;
+    let count = 0;
+    for (let k = 1; k < p; k++) {
+      if (gcd(k, p) === 1) {
+        const x = margin + (k/p) * scale;
+        const r = scale / (2 * p * p);
+        ctx.beginPath();
+        ctx.arc(x, H - r, Math.max(r, 2), 0, 2*Math.PI);
+        ctx.stroke();
+        ctx.fillStyle = '#ff444444';
+        ctx.fill();
+        count++;
+      }
+    }
+    document.getElementById('ford-stats').innerHTML = 
+      `<div class="stat"><div class="value">${F.length}</div><div class="label">F_${N} fractions</div></div>` +
+      `<div class="stat"><div class="value">${count}</div><div class="label">New (denom ${p})</div></div>` +
+      `<div class="stat"><div class="value">${isPrime(p)?'Yes':'No'}</div><div class="label">${p} prime?</div></div>`;
+  } else {
+    document.getElementById('ford-stats').innerHTML = 
+      `<div class="stat"><div class="value">${F.length}</div><div class="label">F_${N} fractions</div></div>` +
+      `<div class="stat"><div class="value">—</div><div class="label">Need prime p > N</div></div>`;
+  }
+  
+  // Baseline
+  ctx.strokeStyle = '#333';
   ctx.lineWidth = 1;
   ctx.beginPath();
-  ctx.arc(CX, CY, R, 0, 2*Math.PI);
+  ctx.moveTo(margin, H);
+  ctx.lineTo(W-margin, H);
   ctx.stroke();
-
-  // Draw faint grid lines for the p-grid if N is prime
-  if(isPrime[N] && N <= 60) {
-    ctx.strokeStyle = '#ffffff08';
-    ctx.lineWidth = 0.5;
-    for(let k=1; k<N; k++) {
-      const angle = 2*Math.PI*k/N - Math.PI/2;
-      ctx.beginPath();
-      ctx.moveTo(CX, CY);
-      ctx.lineTo(CX + (R+15)*Math.cos(angle), CY + (R+15)*Math.sin(angle));
-      ctx.stroke();
-    }
-  }
-
-  // Draw reference marks
-  ctx.fillStyle = '#ffffff30';
-  ctx.font = '11px sans-serif';
-  ctx.textAlign = 'center';
-  const labels = [{f:0, l:'0'}, {f:0.25, l:'1/4'}, {f:0.5, l:'1/2'}, {f:0.75, l:'3/4'}];
-  for(const {f, l} of labels) {
-    const angle = 2*Math.PI*f - Math.PI/2;
-    const lx = CX + (R+25)*Math.cos(angle);
-    const ly = CY + (R+25)*Math.sin(angle);
-    ctx.fillText(l, lx, ly+4);
-  }
-
-  // Compute cos sum and wobble
-  let cosSum = 0;
-  for(const fr of fracs) cosSum += Math.cos(2*Math.PI*N*fr.f);
-
-  // Compute wobble change
-  let W_old = 0, W_new = 0;
-  if(N > 2) {
-    const prevF = fareySequence(N-1);
-    const nOld = prevF.length;
-    for(let j=0; j<nOld; j++) W_old += (prevF[j].f - j/nOld)**2;
-    for(let j=0; j<n; j++) W_new += (fracs[j].f - j/n)**2;
-  }
-  const dW = W_old - W_new;
-
-  // Draw dots
-  const dotSize = Math.max(1.5, Math.min(5, 200/n));
-
-  for(let j=0; j<fracs.length; j++) {
-    const fr = fracs[j];
-    const angle = 2*Math.PI*fr.f - Math.PI/2;
-    const x = CX + R*Math.cos(angle);
-    const y = CY + R*Math.sin(angle);
-    const isNew = !prevFracs.has(fr.a+'/'+fr.b);
-    const cosVal = Math.cos(2*Math.PI*fr.f);
-
-    let color;
-    if(colorMode === 'bias') {
-      if(cosVal > 0.1) color = `rgba(255,107,107,${0.4+0.6*cosVal})`;
-      else if(cosVal < -0.1) color = `rgba(78,205,196,${0.4+0.6*Math.abs(cosVal)})`;
-      else color = 'rgba(200,200,200,0.5)';
-    } else if(colorMode === 'denom') {
-      const hue = (fr.b * 137) % 360;
-      color = `hsla(${hue},70%,60%,0.8)`;
-    } else { // new vs old
-      color = isNew ? '#ffdd57' : 'rgba(120,120,180,0.5)';
-    }
-
-    ctx.fillStyle = color;
-    ctx.beginPath();
-    ctx.arc(x, y, isNew && colorMode==='new' ? dotSize*1.5 : dotSize, 0, 2*Math.PI);
-    ctx.fill();
-  }
-
-  // Draw center info
-  ctx.fillStyle = '#ffffff20';
-  ctx.font = 'bold 48px sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText(`F${N}`, CX, CY-5);
-  ctx.font = '16px sans-serif';
-  ctx.fillText(`${n} fractions`, CX, CY+22);
-
-  // M indicator
-  const mVal = M[N];
-  const mColor = mVal > 0 ? '#ff6b6b' : mVal < 0 ? '#4ecdc4' : '#888';
-  ctx.fillStyle = mColor;
-  ctx.font = 'bold 18px sans-serif';
-  ctx.fillText(`M(${N}) = ${mVal > 0 ? '+' : ''}${mVal}`, CX, CY+48);
-
-  // Update stats
-  document.getElementById('nValue').textContent = N;
-  document.getElementById('nFractions').textContent = n;
-  document.getElementById('mertens').textContent = (mVal>0?'+':'') + mVal;
-  document.getElementById('mertens').className = 'num ' + (mVal>0?'pos':mVal<0?'neg':'zero');
-  document.getElementById('mertensLabel').textContent = mVal>0?'(top-heavy bias)':mVal<0?'(bottom-heavy bias)':'(balanced)';
-  document.getElementById('mertensLabel').className = mVal>0?'pos':mVal<0?'neg':'zero';
-  document.getElementById('mobius').textContent = mu[N];
-  document.getElementById('mobiusLabel').textContent = mu[N]===-1?'(prime)':mu[N]===1?'(even factors)':'(repeated factor)';
-  document.getElementById('totient').textContent = phi[N];
-  document.getElementById('primeStatus').textContent = isPrime[N] ? 'PRIME ★' : 'composite';
-  document.getElementById('primeStatus').className = 'num ' + (isPrime[N]?'pos':'');
-  document.getElementById('gridFill').textContent = `${phi[N]}/${N-1} = ${Math.round(100*phi[N]/(N-1))}%`;
-  document.getElementById('cosSum').textContent = cosSum.toFixed(2);
-  document.getElementById('bridge').textContent = mVal + 2;
-  document.getElementById('deltaW').textContent = dW > 0.0001 ? `+${dW.toFixed(6)} (VIOLATION!)` : dW.toFixed(6);
-  document.getElementById('deltaW').className = 'num ' + (dW > 0.0001 ? 'pos' : 'neg');
 }
 
-document.getElementById('nSlider').addEventListener('input', function() {
-  currentN = parseInt(this.value);
-  draw();
-});
+// FAREY ON CIRCLE
+function drawCircle() {
+  const N = +document.getElementById('circle-n').value;
+  document.getElementById('circle-n-val').textContent = N;
+  
+  const canvas = document.getElementById('circle-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  
+  const cx = W/2, cy = H/2, R = Math.min(W,H)/2 - 40;
+  
+  // Draw circle
+  ctx.strokeStyle = '#333';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.arc(cx, cy, R, 0, 2*Math.PI);
+  ctx.stroke();
+  
+  const F = farey(N);
+  const n = F.length;
+  
+  // Draw fractions
+  F.forEach((f, j) => {
+    const angle = 2 * Math.PI * f.v - Math.PI/2;
+    const x = cx + R * Math.cos(angle);
+    const y = cy + R * Math.sin(angle);
+    
+    // Ideal position
+    const idealAngle = 2 * Math.PI * j/n - Math.PI/2;
+    const ix = cx + R * Math.cos(idealAngle);
+    const iy = cy + R * Math.sin(idealAngle);
+    
+    // Wobble line
+    ctx.strokeStyle = '#ff444444';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(ix, iy);
+    ctx.stroke();
+    
+    // Dot
+    const dotSize = f.b <= 3 ? 6 : f.b <= 6 ? 4 : 3;
+    ctx.fillStyle = f.b <= N/2 ? '#7eb8ff' : '#4488cc';
+    ctx.beginPath();
+    ctx.arc(x, y, dotSize, 0, 2*Math.PI);
+    ctx.fill();
+    
+    // Label for small denominators
+    if (f.b <= 5 && R > 100) {
+      const lx = cx + (R+20) * Math.cos(angle);
+      const ly = cy + (R+20) * Math.sin(angle);
+      ctx.fillStyle = '#888';
+      ctx.font = '11px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText(`${f.a}/${f.b}`, lx, ly);
+    }
+  });
+  
+  // Wobble computation
+  let W_val = 0;
+  F.forEach((f, j) => { W_val += (f.v - j/n)**2; });
+  
+  document.getElementById('circle-stats').innerHTML = 
+    `<div class="stat"><div class="value">${n}</div><div class="label">|F_${N}|</div></div>` +
+    `<div class="stat"><div class="value">${W_val.toFixed(6)}</div><div class="label">W(${N})</div></div>`;
+}
 
-draw();
+// INJECTION DEMO
+function drawInjection() {
+  const N = +document.getElementById('inj-n').value;
+  document.getElementById('inj-n-val').textContent = N;
+  
+  const canvas = document.getElementById('inj-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  
+  const margin = 40;
+  const scale = W - 2*margin;
+  const y1 = 80, y2 = 200;
+  
+  const F_old = farey(N-1);
+  const F_new = farey(N);
+  const newFracs = F_new.filter(f => f.b === N);
+  
+  // Lines
+  ctx.strokeStyle = '#333';
+  ctx.lineWidth = 1;
+  [y1, y2].forEach(y => {
+    ctx.beginPath();
+    ctx.moveTo(margin, y);
+    ctx.lineTo(W-margin, y);
+    ctx.stroke();
+  });
+  
+  // Labels
+  ctx.fillStyle = '#888';
+  ctx.font = '12px monospace';
+  ctx.fillText(`F_${N-1}`, 5, y1+5);
+  ctx.fillText(`F_${N}`, 5, y2+5);
+  
+  // Old fractions
+  ctx.fillStyle = '#4488cc';
+  F_old.forEach(f => {
+    const x = margin + f.v * scale;
+    ctx.beginPath();
+    ctx.arc(x, y1, 4, 0, 2*Math.PI);
+    ctx.fill();
+  });
+  
+  // New sequence
+  F_new.forEach(f => {
+    const x = margin + f.v * scale;
+    const isNew = f.b === N && gcd(f.a, f.b) === 1;
+    ctx.fillStyle = isNew ? '#ff4444' : '#4488cc';
+    ctx.beginPath();
+    ctx.arc(x, y2, isNew ? 5 : 3, 0, 2*Math.PI);
+    ctx.fill();
+    
+    if (isNew) {
+      ctx.strokeStyle = '#ff444444';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(x, y1+10);
+      ctx.lineTo(x, y2-10);
+      ctx.stroke();
+    }
+  });
+  
+  // Gap highlighting
+  ctx.fillStyle = '#7eb8ff22';
+  for (let j = 0; j < F_old.length-1; j++) {
+    const x1 = margin + F_old[j].v * scale;
+    const x2 = margin + F_old[j+1].v * scale;
+    const hasNew = newFracs.some(f => f.v > F_old[j].v && f.v < F_old[j+1].v);
+    if (hasNew) {
+      ctx.fillStyle = '#ff444422';
+      ctx.fillRect(x1, y1+10, x2-x1, y2-y1-20);
+    }
+  }
+  
+  const phi = newFracs.length;
+  document.getElementById('inj-stats').innerHTML =
+    `<div class="stat"><div class="value">${F_old.length}</div><div class="label">|F_${N-1}|</div></div>` +
+    `<div class="stat"><div class="value">${phi}</div><div class="label">φ(${N}) new</div></div>` +
+    `<div class="stat"><div class="value">${F_old.length-1}</div><div class="label">Gaps</div></div>` +
+    `<div class="stat"><div class="value">${isPrime(N)?'Prime':'Composite'}</div><div class="label">Type</div></div>`;
+}
+
+// MESH DEMO
+function drawMesh() {
+  const N = +document.getElementById('mesh-n').value;
+  document.getElementById('mesh-n-val').textContent = N;
+  
+  const canvas = document.getElementById('mesh-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  
+  const margin = 40;
+  const scale = W - 2*margin;
+  const rows = Math.min(N, 10);
+  const rowH = (H - 2*margin) / rows;
+  
+  for (let step = 2; step <= Math.min(N, 11); step++) {
+    const F = farey(step);
+    const y = margin + (step-2) * rowH;
+    const prevF = farey(step-1);
+    
+    // Draw line
+    ctx.strokeStyle = '#333';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(margin, y + rowH/2);
+    ctx.lineTo(W-margin, y + rowH/2);
+    ctx.stroke();
+    
+    // Label
+    ctx.fillStyle = '#666';
+    ctx.font = '10px monospace';
+    ctx.fillText(`N=${step}`, 5, y + rowH/2 + 4);
+    
+    // Draw mesh elements (colored by size)
+    for (let j = 0; j < F.length-1; j++) {
+      const x1 = margin + F[j].v * scale;
+      const x2 = margin + F[j+1].v * scale;
+      const gap = F[j+1].v - F[j].v;
+      const maxGap = 1/2;
+      const intensity = Math.min(1, gap / maxGap);
+      
+      const isNew = F[j+1].b === step || F[j].b === step;
+      ctx.fillStyle = isNew ? `rgba(255,68,68,${0.1+intensity*0.3})` : `rgba(68,136,204,${0.1+intensity*0.3})`;
+      ctx.fillRect(x1, y+5, x2-x1, rowH-10);
+      
+      ctx.strokeStyle = isNew ? '#ff4444' : '#4488cc';
+      ctx.lineWidth = 0.5;
+      ctx.strokeRect(x1, y+5, x2-x1, rowH-10);
+    }
+  }
+  
+  const F = farey(N);
+  document.getElementById('mesh-stats').innerHTML =
+    `<div class="stat"><div class="value">${F.length-1}</div><div class="label">Elements</div></div>` +
+    `<div class="stat"><div class="value">${(1/F.length).toFixed(4)}</div><div class="label">Min gap</div></div>`;
+}
+
+// Initialize
+drawFord();
 </script>
 </body>
 </html>
