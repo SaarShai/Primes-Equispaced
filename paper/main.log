@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.1)  25 MAR 2026 07:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.1)  25 MAR 2026 07:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -621,8 +621,8 @@ LaTeX Warning: Reference `prop:DA-ratio' on page 20 undefined on input line 130
 LaTeX Warning: Reference `prop:strict-pos' on page 20 undefined on input line 1
 309.
 
-
-Overfull \hbox (7.30716pt too wide) in paragraph at lines 1354--1358
+[20]
+Overfull \hbox (7.30716pt too wide) in paragraph at lines 1371--1375
 []\OT1/cmr/bx/n/10.95 Ramanujan col-lapse. \OT1/cmr/m/n/10.95 For each de-nom-i
 -na-tor $\OML/cmm/m/it/10.95 b$\OT1/cmr/m/n/10.95 , the $\OML/cmm/m/it/10.95 '\
 OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 b\OT1/cmr/m/n/10.95 )$ unit vec-tors $\O
@@ -630,8 +630,8 @@ ML/cmm/m/it/10.95 e[]$ \OT1/cmr/m/n/10.95 (with $[](\OML/cmm/m/it/10.95 a; b\OT
 1/cmr/m/n/10.95 ) =
  []
 
-[20]
-Overfull \hbox (33.10655pt too wide) in paragraph at lines 1375--1382
+
+Overfull \hbox (33.10655pt too wide) in paragraph at lines 1392--1399
 \OT1/cmr/m/n/10.95 tional sweep (Sec-tion []7[]). All quan-ti-ties use the dis-
 crete em-pir-i-cal joint dis-tri-bu-tion of $(\OML/cmm/m/it/10.95 M\OT1/cmr/m/n
 /10.95 (\OML/cmm/m/it/10.95 p\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ;  []\OT1/
@@ -652,10 +652,10 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 32E494FEB7747D92768B0DCCB212579F;8826.
  ) 
 Here is how much of TeX's memory you used:
- 11944 strings out of 469006
- 184186 string characters out of 5454814
- 610403 words of memory out of 5000000
- 40323 multiletter control sequences out of 15000+600000
+ 11948 strings out of 469006
+ 184272 string characters out of 5454814
+ 610452 words of memory out of 5000000
+ 40326 multiletter control sequences out of 15000+600000
  640852 words of font info for 91 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
  75i,11n,79p,637b,606s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -686,10 +686,10 @@ amsfonts/cm/cmti10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1
 /public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/ty
 pe1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (23 pages, 2041123 bytes).
+Output written on main.pdf (23 pages, 2041893 bytes).
 PDF statistics:
- 643 PDF objects out of 1000 (max. 8388607)
- 543 compressed objects within 6 object streams
- 171 named destinations out of 1000 (max. 500000)
+ 646 PDF objects out of 1000 (max. 8388607)
+ 546 compressed objects within 6 object streams
+ 172 named destinations out of 1000 (max. 500000)
  395 words of extra memory for PDF output out of 10000 (max. 10000000)
 

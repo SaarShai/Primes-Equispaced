@@ -1340,6 +1340,23 @@ with $M(p) \le -3$, providing additional margin, but its sign
 is not needed for the proof.
 \end{remark}
 
+\begin{corollary}[Conditional extension]\label{cor:rh-sign}
+Assume the Riemann Hypothesis.  Then for all primes $p \ge 11$
+with $M(p) \le -3$: $\Delta W(p) < 0$.
+\end{corollary}
+
+\begin{proof}[Proof sketch]
+Under RH, $W(N) = O(N^{-1+\varepsilon})$
+(Franel--Landau~\cite{Franel1924, Landau1924}), which gives
+$\text{dilution\_raw} = O(p^{1+\varepsilon})$.
+The deficit lower bound $\sum \delta^2 \ge N^2/(48\log N)$
+(from the rearrangement inequality and PNT) then gives
+$C/A \ge c\,p^{1-\varepsilon}/\log p$, which exceeds the gap
+$1 - \mathcal{D}/A = O(p^{-1/2+\varepsilon})$ for all
+$p \ge P_0(\varepsilon)$.  With the computational base
+covering $p \le 100{,}000$, the overlap closes the proof.
+\end{proof}
+
 %% ================================================================
 \section{The Compression Phenomenon}\label{sec:compression}
 %% ================================================================
