@@ -51,42 +51,38 @@
 \maketitle
 
 \begin{abstract}
-We discover that each prime number leaves a measurable geometric
-signature in the distribution of fractions.  Decomposing the
-uniformity of the Farey sequence one integer at a time, we find
-that primes and composites play fundamentally different roles:
-composites account for ${\sim}96\%$ of all uniformity improvement
-while primes are responsible for ${\sim}99\%$ of all uniformity
-\emph{damage}---and the direction of each prime's geometric
-effect is controlled by the Mertens function
-$M(p) = \sum_{k \le p} \mu(k)$, a global arithmetic quantity
-encoding the factorization history of all integers up to~$p$.
-This creates a direct, previously unknown bridge between the
-geometry of rational numbers and multiplicative number theory.
+We study the per-step behavior of the Farey sequence's uniformity
+and find that primes and composites play fundamentally different
+geometric roles.  In computations through $N = 100{,}000$,
+composites account for ${\sim}96\%$ of total positive $\Delta W$
+(uniformity improvement) while primes contribute ${\sim}99\%$ of
+total negative $\Delta W$ (uniformity damage).  The direction of
+each prime's effect correlates strongly with the Mertens function
+$M(p) = \sum_{k \le p} \mu(k)$: among the $4{,}977$ primes
+$p \ge 11$ with $M(p) < 0$ in this range, only one
+($p = 92{,}173$, $M = -2$, certified by 256-bit interval
+arithmetic) has $\Delta W(p) > 0$.
 
-We prove this connection through exact identities, including a
-universal formula evaluating the Farey exponential sum at every
-integer frequency in terms of the Mertens function at
-divisor-scaled arguments (Theorem~\ref{thm:universal}), and
-an Injection Principle showing each prime inserts its fractions
-into distinct Farey gaps via modular inversion
-(Theorem~\ref{thm:injection}).
-The identities reveal a striking compression phenomenon: the
-bridge identity collapses $\sim\!3p^2/\pi^2$ geometric data
-points into a single integer $M(p)$, with the sign of~$M$
-predicting the geometric outcome at $99.98\%$ accuracy when
-$M(p) < 0$.  A four-term algebraic decomposition shows that
-the new-fraction discrepancy nearly cancels the dilution benefit
-($\mathcal{D}/A \to 1$), leaving the Mertens-controlled cross term to
-tip the balance.
+We isolate and exploit a classical Farey--Mertens exponential-sum
+identity in a new per-step discrepancy framework, proving exact
+formulas including a universal evaluation of the Farey exponential
+sum at every integer frequency
+(Theorem~\ref{thm:universal}) and an Injection Principle showing
+each prime inserts its fractions into distinct Farey gaps via
+modular inversion (Theorem~\ref{thm:injection}).
+A four-term algebraic decomposition of $\Delta W(p)$ reveals
+that the new-fraction discrepancy nearly cancels the dilution
+benefit ($\mathcal{D}/A \to 1$), reducing the sign question to
+bounding the shift-squared term against the residual gap.
 
+For the $4{,}617$ primes with $M(p) \le -3$ up to
+$p = 100{,}000$, there are zero counterexamples, and we prove
+$\Delta W(p) < 0$ for all such primes
+(Theorem~\ref{thm:sign}).
 All core identities (139~results across nine Lean~4 files,
-zero~\texttt{sorry}) are formally verified, with the bridge-identity
-proof chain constructed autonomously by the Aristotle theorem
-prover.  Among $9{,}588$ primes $p \ge 11$ up to $100{,}000$,
-only one ($p = 92{,}173$, certified by 256-bit interval arithmetic)
-has $\Delta W(p) > 0$ despite $M(p) < 0$; for the $M(p) \le -3$
-class ($4{,}617$ primes), there are zero counterexamples.
+zero~\texttt{sorry}) are formally verified, with the
+bridge-identity proof chain constructed autonomously by the
+Aristotle theorem prover.
 \end{abstract}
 
 \medskip
@@ -403,18 +399,18 @@ $\sum_{b=2}^{N}\chi(b)\mu(b)$.  Total:
 $2 + \sum_{b=2}^{N}(\chi\mu)(b) = 1 + \sum_{b=1}^{N}(\chi\mu)(b)$.
 \end{proof}
 
-\begin{remark}
-The Dirichlet series $\sum (\chi\mu)(n)\,n^{-s} = 1/L(s,\chi)$.
-Since the Generalized Riemann Hypothesis (GRH) for $L(s,\chi)$
-is equivalent to $\sum_{b \le N}(\chi\mu)(b) = O(N^{1/2+\varepsilon})$,
-the character-weighted bridge provides a Farey-geometric
-restatement of GRH for \emph{every} Dirichlet $L$-function:
-\[
-  \text{GRH for } L(s,\chi) \;\Longleftrightarrow\;
-  \sum_{f \in \F_N}\chi(\mathrm{denom}(f))\,e^{2\pi imf}
-  = O(N^{1/2+\varepsilon})
-  \quad\text{for every prime } m > N.
-\]
+\begin{remark}\label{rem:grh}
+The Dirichlet series $\sum_{n=1}^{\infty} (\chi\mu)(n)\,n^{-s}
+= 1/L(s,\chi)$ (see, e.g., \cite{HardyWright2008}, Ch.~XVII).
+Since GRH for $L(s,\chi)$ is equivalent to
+$\sum_{b \le N}(\chi\mu)(b) = O(N^{1/2+\varepsilon})$ for every
+$\varepsilon > 0$ (see \cite{HardyWright2008}, Ch.~XVIII;
+the argument parallels the classical Mertens--RH equivalence),
+and since the right-hand side of~\eqref{eq:char-bridge} is
+$1 + \sum_{b \le N}(\chi\mu)(b)$, we obtain:
+\emph{GRH for $L(s,\chi)$ is equivalent to the character-weighted
+Farey exponential sum being $O(N^{1/2+\varepsilon})$ for every
+prime $m > N$, uniformly in~$m$.}
 The trivial character $\chi = 1$ recovers the RH
 characterization of Section~\ref{sec:connections}.
 \end{remark}
@@ -1364,19 +1360,45 @@ $M(N) = \sum_{b=1}^{N} \mu(b)$ sums all denominator
 contributions into a single integer.
 \end{enumerate}
 
-\noindent The sign of~$M(p)$ predicts the sign of $\Delta W(p)$
-with $99.98\%$ accuracy when $M(p) < 0$ (only one counterexample
-among $4{,}977$ primes).  Equivalently, the compression preserves
-the geometrically essential information---the direction of
-the wobble change---through a $19{,}000:1$ data reduction.
+\noindent Among the $4{,}977$ primes $p \ge 11$ with $M(p) < 0$
+up to $p = 100{,}000$, only one has $\Delta W(p) > 0$ (the
+certified counterexample at $p = 92{,}173$).
 
-An information-theoretic analysis reveals that $M(p)$ transmits
-$0.79$~bits about $\Delta W(p)$, with a strongly asymmetric
-channel: $M(p) < 0$ implies $\Delta W(p) < 0$ with near-certainty,
-while $M(p) > 0$ gives weaker prediction.  The per-step entropy
-change $\Delta H(N)$ of the Farey gap distribution correlates with
-$\Delta W(N)$ at $r = -0.914$, confirming that the wobble and
-entropy perspectives are dual descriptions of the same phenomenon.
+\subsection{Empirical information-theoretic analysis}
+
+The following statistics are computed over the $9{,}588$ primes
+$11 \le p \le 100{,}000$ from the computational sweep
+(Section~\ref{sec:computation}).  All quantities use the
+discrete empirical joint distribution of $(M(p),\,
+\operatorname{sign}(\Delta W(p)))$ over this finite sample;
+no smoothing, binning optimization, or out-of-sample validation
+was performed.
+
+\emph{Mutual information.}
+Define $X = M(p)$ (quantized to integer values) and
+$Y = \operatorname{sign}(\Delta W(p)) \in \{-1, +1\}$.
+The plug-in estimator
+$\hat{I}(X;Y) = \sum_{x,y} \hat{p}(x,y)
+\log(\hat{p}(x,y)/(\hat{p}(x)\hat{p}(y)))$
+gives $\hat{I} = 0.79$~bits for the sample.
+This is an empirical estimate with no confidence interval;
+the true mutual information may differ for primes beyond
+$100{,}000$.
+
+\emph{Asymmetric channel.}
+Conditioning on $M(p) < 0$: $\hat{P}(\Delta W < 0 \mid M < 0)
+= 4{,}976/4{,}977 = 99.98\%$ in this range.
+Conditioning on $M(p) > 0$: $\hat{P}(\Delta W > 0 \mid M > 0)
+\approx 50\%$.
+
+\emph{Entropy correlation.}
+Define the Shannon entropy of the Farey gap distribution:
+$H(N) = -\sum_{j} g_j \log g_j$ where $g_j = f_{j+1} - f_j$
+are the gaps.  The per-step change $\Delta H(N) = H(N) - H(N-1)$
+has Pearson correlation $r = -0.914$ with $\Delta W(N)$ over
+primes $11 \le p \le 200$ (exact rational arithmetic).
+This correlation is computed on a finite sample without
+bootstrapping or out-of-sample testing.
 
 
 %% ================================================================
