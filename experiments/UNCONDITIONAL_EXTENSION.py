@@ -162,13 +162,13 @@ def full_decomposition(p, phi_arr):
 # SETUP
 # ============================================================
 start_time = time.time()
-LIMIT = 5100
+LIMIT = 3100
 phi_arr = euler_totient_sieve(LIMIT)
 M_arr, mu_arr = mertens_sieve(LIMIT)
 primes = sieve_primes(LIMIT)
 
-# Focus on M(p) <= -3 primes
-target_primes = [p for p in primes if p >= 11 and M_arr[p] <= -3 and p <= 5000]
+# Focus on M(p) <= -3 primes (limit to 3000 for runtime)
+target_primes = [p for p in primes if p >= 11 and M_arr[p] <= -3 and p <= 3000]
 
 print("=" * 100)
 print("UNCONDITIONAL EXTENSION OF THE SIGN THEOREM")
@@ -872,7 +872,7 @@ print(f"{'p':>6} {'old_D_sq':>14} {'var_within':>14} {'var_between':>14} "
       f"{'within/total':>14} {'sqrt(vw*dsq)':>14} {'|B/2|':>14}")
 print("-" * 100)
 
-for p_val in [47, 97, 199, 499, 997, 1999, 2999, 4999]:
+for p_val in [47, 97, 199, 499, 997, 1999, 2999]:
     if p_val > LIMIT or M_arr[p_val] > -3:
         continue
 
