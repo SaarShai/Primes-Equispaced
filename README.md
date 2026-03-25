@@ -12,7 +12,7 @@ We study the per-step uniformity of Farey sequences and discover that composites
 
 ## Formal Verification (Lean 4)
 
-**9 files, 139 results, ZERO sorry.** Bridge identity proof chain constructed autonomously by [Aristotle](https://aristotle.harmonic.fun).
+**10 files, 183 results, ZERO sorry.** Bridge identity proof chain constructed autonomously by [Aristotle](https://aristotle.harmonic.fun).
 
 | File | Results | Contents |
 |------|---------|----------|
@@ -23,8 +23,9 @@ We study the per-step uniformity of Farey sequences and discover that composites
 | DisplacementShift.lean | 17 | D_new = D_old + δ displacement-shift identity |
 | DenominatorSum.lean | 16 | Σ D(a/b) = -φ(b)/2 per denominator |
 | StrictPositivity.lean | 16 | Σ δ² > 0 via rearrangement inequality |
+| CrossTermPositive.lean | 41 | B(p) > 0 for all M≤-3 primes p < 84 |
 | DeltaCosine.lean | 10 | δ-cosine framework |
-| MertensGrowth.lean | 5 | Computational witnesses for |M(N)| > √N/2 |
+| MertensGrowth.lean | 8 | Computational witnesses for |M(N)| > √N/2 |
 
 ## The Paper
 
