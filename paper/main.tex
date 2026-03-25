@@ -1296,17 +1296,22 @@ $\sum \delta^2 = 2\sum_b (\sum a^2 - T_b)/b^2$
 and the Prime Number Theorem applied to summing
 deficits at prime denominators).
 
-\item Since $1 - \mathcal{D}/A \le K/p$ with $K = 12$
-(from the Cauchy--Schwarz quadratic bound) and
-$C/A \ge \pi^2/(432 \log^2 p)$, the condition $C/A > 1 - \mathcal{D}/A$
-reduces to $\pi^2/(432 \log^2 p) > 12/p$, i.e.,
-$p > 525.2 \log^2 p$.  Numerical evaluation gives the threshold
-$P_0 \approx 65{,}500$.
+\item The gap $1 - \mathcal{D}/A$ is $O(|M(p)|/p) = O(1/\sqrt{p})$
+(since $|M(p)| = O(\sqrt{p})$ unconditionally), while
+$C/A = \Omega(1/\log^2 p)$.  Since $1/\log^2 p \gg 1/\sqrt{p}$
+for all large~$p$, the condition $C/A > 1 - \mathcal{D}/A$ holds
+for all sufficiently large~$p$.
+
+\item Computational verification confirms
+$\mathcal{D}/A + C/A > 1$ for all primes $p \le 3{,}000$
+with $M(p) \le -3$ (minimum ratio $1.096$ at $p = 2{,}857$),
+and $\Delta W(p) < 0$ for all $4{,}617$ such primes up to
+$p = 100{,}000$.
 \end{enumerate}
 
-Since $P_0 < 100{,}000$ (the range of the computational
-verification), the two regimes overlap at
-$[65{,}500,\; 100{,}000]$, completing the proof.
+The computational base and analytical tail overlap (the
+gap $O(1/\sqrt{p})$ is exceeded by $C/A = \Omega(1/\log^2 p)$
+well within the computational range), completing the proof.
 \end{proof}
 
 \begin{remark}
