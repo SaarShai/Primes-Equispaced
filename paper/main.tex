@@ -774,9 +774,13 @@ The displacement-shift identity (Proposition~\ref{prop:disp-shift})
 yields an exact algebraic decomposition of $\Delta W(p)$ into four
 terms:
 \begin{equation}\label{eq:4term}
-  \Delta W(p) = A - B - C - \mathcal{D}
+  \Delta W(p) = A - B - C - \mathcal{D} - \frac{1}{{n'}^2}
 \end{equation}
-where $n = |\F_{p-1}|$, $n' = |\F_p| = n + (p-1)$, and
+where $n = |\F_{p-1}|$, $n' = |\F_p| = n + (p-1)$, the final
+term $-1/{n'}^2$ is a boundary correction from $f = 1$
+(where $D_{\F_p}(1) = D_{\F_{p-1}}(1) = -1$, not
+$D_{\F_{p-1}}(1) + \delta(1)$; see
+Proposition~\ref{prop:disp-shift}), and
 \begin{align*}
   A &= \textstyle\sum_{\text{old}} D_{\F_{p-1}}(f)^2 \cdot
        (1/n^2 - 1/{n'}^2) && \text{(dilution --- always positive),}\\
@@ -790,7 +794,7 @@ where $n = |\F_{p-1}|$, $n' = |\F_p| = n + (p-1)$, and
 We use $\mathcal{D}$ (calligraphic) for the decomposition term to
 distinguish it from the rank discrepancy function~$D(f)$.
 Thus $\Delta W(p) \le 0$ (wobble worsens) if and only if
-$B + C + D \ge A$.
+$B + C + \mathcal{D} + 1/{n'}^2 \ge A$.
 
 Computation through $p = 100{,}000$ reveals a striking near-cancellation:
 
@@ -809,8 +813,9 @@ For all tested primes with $M(p) \le -3$:
 
 \noindent A direct proof that $B \ge 0$ remains an open problem.
 However, the Sign Theorem (Theorem~\ref{thm:sign}) bypasses
-this entirely: the proof shows $C + \mathcal{D} > A$ without requiring
-$B$'s sign, using a Cauchy--Schwarz bound on the $\mathcal{D}/A$ ratio
+this entirely: the proof shows $C + \mathcal{D} + 1/{n'}^2 > A$
+without requiring $B$'s sign, using a Cauchy--Schwarz bound on
+the $\mathcal{D}/A$ ratio
 combined with a rearrangement-inequality lower bound on~$C$.
 The per-denominator decomposition of~$B$ connects to
 classical Dedekind sums via $T_b(p) = p^2[s(b,p) + (p-1)/4]$,
@@ -1289,7 +1294,8 @@ arithmetic independently confirms the sign.
 \textbf{Analytical tail} ($p > P_0$).
 The four-term decomposition
 (Observation~\ref{obs:near-cancel}) gives
-$\Delta W(p) < 0 \;\Leftrightarrow\; \mathcal{D} + B + C > A$,
+$\Delta W(p) < 0 \;\Leftrightarrow\;
+\mathcal{D} + B + C + 1/{n'}^2 > A$,
 where $A$ is the dilution, $D$ the new-fraction discrepancy,
 $B = 2\sum D \cdot \delta$ the cross term, and
 $C = \sum \delta^2$ the shift-squared term.
@@ -1416,7 +1422,7 @@ bootstrapping or out-of-sample testing.
 
   \item \textbf{The cross-term sign.}
     The Sign Theorem bypasses the cross term $B = (2/n'^2)\sum D
-    \cdot \delta$ entirely, proving $C + \mathcal{D} > A$ without
+    \cdot \delta$ entirely, proving $C + \mathcal{D} + 1/{n'}^2 > A$ without
     $B$'s sign.  Proving $B \ge 0$ directly (which holds
     empirically for all $4{,}617$ tested primes with $M \le -3$)
     would give a stronger theorem with better constants.
