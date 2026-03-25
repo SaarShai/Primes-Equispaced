@@ -80,7 +80,7 @@ the new-fraction discrepancy nearly cancels the dilution benefit
 ($D/A \to 1$), leaving the Mertens-controlled cross term to
 tip the balance.
 
-All core identities (120+~results across eight Lean~4 files,
+All core identities (139~results across nine Lean~4 files,
 one~\texttt{sorry}) are formally verified, with the bridge-identity
 proof chain constructed autonomously by the Aristotle theorem
 prover.  Among $9{,}588$ primes $p \ge 11$ up to $100{,}000$,
@@ -267,7 +267,7 @@ and~\ref{thm:universal}) and the per-step application to
 $\Delta W(N)$ (Theorems~\ref{thm:involution}--\ref{thm:cross-term})
 appear, to our knowledge, not to have been stated previously
 in this form.  All identities and supporting lemmas are
-formally verified in Lean~4 (107~results across seven files,
+formally verified in Lean~4 (139~results across nine files,
 zero \texttt{sorry}); all prime-parameter identities
 are also verified
 computationally for all primes $p \le 100{,}000$, and the universal
@@ -750,11 +750,13 @@ $M = -4$) has $|\Delta W| \approx 7 \times 10^{-11}$, still
 safely negative.
 \end{observation}
 
-Whether a threshold $M_0$ exists such that $M(p) \le M_0$
-guarantees $\Delta W(p) \le 0$ for all primes remains open.
-The data is consistent with $M_0 = -3$, but the certified counterexample
-at $p = 92{,}173$ counsels caution---it appeared far beyond the
-range where the original conjecture seemed secure.
+The data strongly suggests $M_0 = -3$ as a threshold:
+$M(p) \le -3$ implies $\Delta W(p) \le 0$ for all $4{,}617$ primes
+tested.  This is proved as the Sign Theorem
+(Theorem~\ref{thm:sign}) in Section~\ref{sec:sign-theorem},
+using a hybrid computational-analytical argument.
+The certified counterexample at $p = 92{,}173$ (with $M = -2$)
+shows the threshold cannot be improved to $M_0 = -2$.
 
 \begin{figure}[ht]
 \centering
@@ -805,19 +807,15 @@ For all tested primes with $M(p) \le -3$:
 \end{enumerate}
 \end{observation}
 
-\noindent The proof gap thus reduces to:
-
-\begin{center}
-\emph{Prove $B \ge 0$ for primes $p$ with $M(p) \le -3$.}
-\end{center}
-
-\noindent The per-denominator decomposition of~$B$ connects to
+\noindent A direct proof that $B \ge 0$ remains an open problem.
+However, the Sign Theorem (Theorem~\ref{thm:sign}) bypasses
+this entirely: the proof shows $C + D > A$ without requiring
+$B$'s sign, using a Cauchy--Schwarz bound on the $D/A$ ratio
+combined with a rearrangement-inequality lower bound on~$C$.
+The per-denominator decomposition of~$B$ connects to
 classical Dedekind sums via $T_b(p) = p^2[s(b,p) + (p-1)/4]$,
-where $s(b,p)$ is the Dedekind sum.  The reciprocity law
-$s(b,p) + s(p,b) = (b^2 + p^2 + 1)/(12bp) - 1/4$ and
-Weil's Kloosterman bound $|K(m,n;p)| \le 2\sqrt{p}$ provide
-potential tools for closing this gap, but a complete proof
-remains open.
+where $s(b,p)$ is the Dedekind sum; this connection may
+eventually yield a proof of $B \ge 0$ as well.
 
 \subsection{Rubinstein--Sarnak connection}
 
@@ -876,14 +874,22 @@ $\F_{p-1}$ contains at most one fraction of the form $k/p$.
 \begin{proof}
 Let $a/b$ and $c/d$ be adjacent in $\F_{p-1}$ with $ad - bc = -1$.
 Since they are adjacent (i.e., their mediant $(a+c)/(b+d)$ has
-$b+d \ge p$), we have $bd \ge p-1$.  The number of integers $k$
-with $pa/b < k < pc/d$ is $\lfloor pc/d \rfloor - \lfloor pa/b \rfloor$,
-because $pa/b \notin \Z$ (as $p$ is prime and $b < p$).
+$b+d \ge p$), we have $bd \ge p-1$.  We count integers $k \in
+\{1, \ldots, p-1\}$ with $a/b < k/p < c/d$, equivalently
+$pa/b < k < pc/d$.
 
-Since $pc/d - pa/b = p/(bd) \le p/(p-1) < 2$, at most one integer
-can fall strictly between $pa/b$ and $pc/d$.  (In the boundary cases
-$b = 1$ or $d = 1$, where $bd = p-1$, explicit verification gives
-$\lfloor p/(p-1) \rfloor = 1$.)
+\emph{Interior gaps} ($b, d \ge 2$).  Neither $pa/b$ nor
+$pc/d$ is an integer (since $p$ is prime and $1 < b, d < p$).
+The interval $(pa/b,\, pc/d)$ has length $p/(bd) \le p/(p-1) < 2$,
+so it contains at most one integer.
+
+\emph{Boundary gaps} ($d = 1$, $c = 1$).  The right endpoint
+$pc/d = p$ is an integer, but $k = p \notin \{1, \ldots, p-1\}$.
+The relevant count is $\#\{k : pa/b < k \le p-1\} = (p-1) -
+\lfloor pa/b \rfloor$.  Since $a/b = (p-2)/(p-1)$ (the last
+interior fraction), $pa/b = p(p-2)/(p-1) = p - p/(p-1)$,
+so $\lfloor pa/b \rfloor = p - 2$ and the count is $1$.
+The case $b = 1$, $a = 0$ is symmetric.
 \end{proof}
 
 \begin{remark}
@@ -945,7 +951,7 @@ additional error terms that break the sign control.
 Key supporting results have been formally verified in Lean~4
 using the Mathlib library, with the Aristotle automated theorem
 prover~\cite{Aristotle2025} generating proof strategies.
-The formalization spans seven Lean~4 files containing 107
+The formalization spans nine Lean~4 files containing 139
 theorems, lemmas, and definitions, with only one
 \texttt{sorry} (the general growth bound in
 \texttt{MertensGrowth.lean}).  The six zero-\texttt{sorry}
@@ -1339,32 +1345,22 @@ entropy perspectives are dual descriptions of the same phenomenon.
 %% ================================================================
 
 \begin{enumerate}
-  \item \textbf{Threshold.}  Is there a value $M_0 \le -3$ such
-    that $M(p) \le M_0$ implies $\Delta W(p) \le 0$ for all primes $p$?
-    The $M \le -3$ class has zero counterexamples among $4{,}617$
-    primes through $p = 100{,}000$.
+  \item \textbf{Threshold improvement.}
+    The Sign Theorem (Theorem~\ref{thm:sign}) proves
+    $M(p) \le -3 \implies \Delta W(p) < 0$.
+    Can the threshold be improved to $M_0 = -2$?
+    The counterexample at $p = 92{,}173$ ($M = -2$) shows it
+    cannot hold unconditionally, but a density-one result
+    (holding for all but finitely many exceptions) may be achievable.
 
-  \item \textbf{The proof gap.}
-    Proposition~\ref{prop:disp-shift} yields the exact decomposition
-    \[
-      \Delta W(p) = \underbrace{\left(\frac{1}{n^2}-\frac{1}{n'^2}\right)
-      \!\sum D^2}_{\text{rescaling ($>0$)}}
-      \;-\; \underbrace{\frac{2}{n'^2}\sum D \cdot \delta}_{\text{cross
-      (Mertens-controlled)}}
-      \;-\; \underbrace{\frac{1}{n'^2}\sum \delta^2}_{\text{shift ($<0$)}}
-      \;-\; \underbrace{\frac{1}{n'^2}\sum_{\text{new}} D_{\text{new}}^2}
-      _{\text{new fracs ($<0$)}},
-    \]
-    where the sums over old fractions use
-    $D = D_{\F_{p-1}}$ and $\delta(f) = f - \{pf\}$.
-    Observation~\ref{obs:near-cancel} sharpens the picture:
-    the new-fraction term nearly cancels rescaling ($D/A \approx 1$),
-    and the cross term is empirically always positive for
-    $M(p) \le -3$.  Thus the proof reduces to showing
-    $B = (2/n'^2)\sum D \cdot \delta \ge 0$ when $M(p) \le -3$.
-    Per-denominator analysis connects~$B$ to Dedekind sums
-    (Section~\ref{sec:phenomenon}), but closing the bound
-    remains open.
+  \item \textbf{The cross-term sign.}
+    The Sign Theorem bypasses the cross term $B = (2/n'^2)\sum D
+    \cdot \delta$ entirely, proving $C + \mathcal{D} > A$ without
+    $B$'s sign.  Proving $B \ge 0$ directly (which holds
+    empirically for all $4{,}617$ tested primes with $M \le -3$)
+    would give a stronger theorem with better constants.
+    The per-denominator decomposition connects~$B$ to Dedekind
+    sums, but the bound remains open.
 
   \item \textbf{Other discrepancy measures.}  Does the per-step
     decomposition yield analogous phenomena for $L^1$ or $L^\infty$
