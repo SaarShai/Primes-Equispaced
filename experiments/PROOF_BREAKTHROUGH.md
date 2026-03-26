@@ -802,3 +802,37 @@ values ensures cancellation, but quantifying this remains the open problem.
 ---
 
 *Session date: 2026-03-26. Permutation Covariance Formula verified. Var_b(D) ≤ b²/4 new empirical finding. CS bound |R| ≤ 2√3 proved but insufficient. Gap to close: R > -3.46 → R > -1.*
+
+---
+
+## CORRECTION TO SECTION 9 (added after numerical verification):
+
+### Var_b(D)/b^2 is NOT bounded by a constant
+
+Extended computation shows (max Var_b(D)/b^2 for b <= 100):
+  N=50:   0.077 (b=3, D(1/3) = -1.33)
+  N=100:  0.250 (b=3, D(1/3) = 1.00)
+  N=200:  0.522 (b=3, D(1/3) = -2.67)
+  N=500:  0.373 (b=3, D(1/3) = -2.33)
+  N=1000: 0.892 (b=3, D(1/3) = 2.33)
+
+The maximum always occurs at b=3. For b=3: Var_3(D)/9 = (D(1/3)-1/2)^2/9,
+which grows as D(1/3)^2/9. Since D(1/3) = O(sqrt(N)) under RH, this is O(N/9).
+
+CORRECTED CS BOUND: |R| <= 2 * sqrt(old_D_sq / delta_sq) ~ 10.7 * sqrt(N).
+This grows without bound -- CS alone cannot prove B+C > 0.
+
+### The Permutation Covariance Formula remains the KEY NEW RESULT.
+
+B_raw = 2 * Sum_b (1/b) * Sum_{gcd(a,b)=1} a * [D(a/b) - D(p^{-1}*a/b)]
+
+This is an exact algebraic identity, verified computationally for all p in [11,173].
+It connects B_raw directly to the "monotonicity" of D under the modular inverse map.
+
+The analytical challenge: proving this sum > -delta_sq/2 for all primes p >= 11
+requires quantifying the cancellation between different denominators -- a genuine
+open problem in analytic number theory.
+
+CORRECTION DATE: 2026-03-26
+CORRECTION'
+echo "Appended correction"
