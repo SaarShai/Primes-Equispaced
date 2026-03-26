@@ -157,16 +157,13 @@ def compute_wobble_exact(N_max):
             insort(farey, f)
 
         # Compute W(N) from scratch
-        # W(N) = (1/n) Σ (f_j - j/n)²
+        # W(N) = Σ (f_j - j/(n-1))^2  using linspace(0,1,n)
         n = len(farey)
         total = 0.0
+        nm1 = n - 1 if n > 1 else 1
         for j, f in enumerate(farey):
-            diff = f - j/(n-1) if n > 1 else 0  # ideal pos = j/(n-1) for [0,1]
-            # Wait, ideal position for uniform: j/(n-1) since we include 0 and 1
-            # But the standard wobble uses j/n (so 0 maps to 0/n=0, last maps to (n-1)/n)
-            # Let me use the formula from the project
-            total += (f - j/n)**2
-        wobble[N] = total / n
+            total += (f - j/nm1)**2
+        wobble[N] = total
 
         if N % 100 == 0:
             print(f"  N={N:4d}  |F|={n:8d}  W={wobble[N]:.8f}  [{time.time()-t0:.1f}s]")
