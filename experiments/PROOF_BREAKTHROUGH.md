@@ -1819,3 +1819,84 @@ Under RH: C(N) = O(√N·log²N), which suffices.
 **For M(p) ≤ -3 specifically:** A conditional result under |M(N)| = O(N^{1/2-ε}) (slightly weaker than RH) likely suffices via the Möbius expansion argument above.
 
 *Session 3 date: 2026-03-26. New: Möbius expansion of B_raw, leading term analysis, connection to M(p) sign. Confirmed: RH conditional proof of both problems. Corrected: R₁ ≈ 1 (not 0.5) from SESSION 2 findings.*
+
+---
+
+## SESSION 4: TELESCOPING INDUCTION — 2026-03-26 (Hour 1)
+
+### MAJOR DISCOVERY: B ≥ 0 for ALL M(p) ≤ -3 Primes Tested
+
+**Computation of R = 2ΣD·δ/Σδ² for M(p) ≤ -3 primes up to p = 3000:**
+
+- 210 primes with M(p) ≤ -3 tested
+- **ZERO violations: R ≥ 0 for ALL 210 primes**
+- Minimum R = **+0.1199** at p = 13 (M(13) = -3)
+- B+C > 0 trivially since B = 2ΣD·δ ≥ 0 and C > 0
+
+This is STRONGER than B+C > 0: for M(p) ≤ -3 primes, B itself is non-negative.
+
+### Why the M(p) Scope Matters
+
+The four primes with R < 0 in [11, 800] are p = 11, 17, 97, 223. Their M(p) values:
+- p=11: M(11) = -2    (not M ≤ -3)
+- p=17: M(17) = -2    (not M ≤ -3)
+- p=97: M(97) = +1    (not M ≤ -3)
+- p=223: M(223) = +3  (not M ≤ -3)
+
+**All negative-R primes have M(p) > -3.** None are in the Sign Theorem scope.
+
+The PREVIOUS session claim "B+C > 0 fails at p=1399 (M(p)=+8)" is CORRECT and
+consistent: failures occur only for M(p) > 0 primes, which are outside the
+Sign Theorem's scope (ΔW < 0 for M(p) ≤ -3).
+
+### New Confirmed Identities (Verified Computationally)
+
+1. **B+C = Σ_{old f}[D_p(f)² - D_{p-1}(f)²]** — verified p ∈ [11,71] exact arithmetic
+2. **ΣD·δ = ΣẼ·δ** (mean-centering) — verified p ∈ [11,71]
+3. **Permutation Covariance Formula** (per-denominator): B/2 = Σ_b (1/b)·Σ_a a·[D(a/b) - D(p⁻¹a/b)]
+   — verified p ∈ [11,71] (already in Session 3 files)
+
+### Connection Between M(p) ≤ -3 and B ≥ 0
+
+**Hypothesis:** When M(p) ≤ -3, the discrepancy D(f) and displacement δ(f) are
+positively correlated, giving B = 2ΣD·δ ≥ 0.
+
+**Mechanism (from Permutation Covariance Formula):**
+B/2 = Σ_b (1/b)·Σ_a a·[D(a/b) - D(p⁻¹a/b)]
+
+When M(p) ≤ -3: there are "more than expected" fractions with small denominators
+(corresponding to M(p) being negative), meaning D tends to be POSITIVE for larger
+fractions (denominator b, large a) and NEGATIVE for smaller fractions. The
+permutation a → p⁻¹a tends to MAP larger a to smaller p⁻¹a (on average), so
+D(a/b) > D(p⁻¹a/b) for large a, making each term a·[D(a/b) - D(p⁻¹a/b)] > 0.
+
+This explains B ≥ 0 for M(p) ≤ -3 at an intuitive level, but making it rigorous
+requires understanding the correlation between the Mertens function and multiplicative
+permutations — still an open problem.
+
+### Updated Proof Status
+
+| Claim | Status |
+|-------|--------|
+| B ≥ 0 for M(p) ≤ -3, p ≤ 3000 | **NEW: PROVED computationally (210 primes)** |
+| B ≥ 0 for M(p) ≤ -3, all p | OPEN analytically |
+| B+C > 0 for M(p) ≤ -3 | Follows from B ≥ 0 + C > 0 |
+| B+C > 0 for ALL p ≥ 11 | FALSE (fails at p=1399, M=+8) |
+| Sign Theorem ΔW < 0 for M(p)≤-3 | PROVED for p ≤ 100,000 |
+| R ≥ 0 for M(p) ≤ -3 | Empirical (0 counterexamples in 210 tested) |
+| Min R over M(p)≤-3 set | **0.1199 at p=13** (positive!) |
+
+### Next Priority
+
+Proving B ≥ 0 for M(p) ≤ -3 analytically. The Permutation Covariance Formula
+reduces this to: "When M(p) ≤ -3, large-numerator fractions at each denominator b
+tend to have higher D than their multiplicative inverses p⁻¹a/b."
+
+This is a precise statement about the monotonicity of D restricted to each
+denominator class under multiplication by p⁻¹. Approaches:
+1. Use Möbius expansion of D (from Session 3) restricted to denominator b
+2. Apply the three-distance theorem to fractional parts {p⁻¹a/b}
+3. Erdős-Turán applied to the sum Σ_a e^{2πiha/b}·D(a/b)
+
+*Session date: 2026-03-26. Telescoping Induction approach. Key finding: B ≥ 0
+for all 210 tested M(p) ≤ -3 primes — a new, stronger empirical fact.*
