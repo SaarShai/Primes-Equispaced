@@ -1,0 +1,6 @@
+
+=== SUMMARY ===
+Primes tested (11..3000): 426
+R range: [-4.0984, 21.8459]
+Violations (B+C <= 0, i.e. R <= -1): 10
+Min margin (R+1): -3.0984
