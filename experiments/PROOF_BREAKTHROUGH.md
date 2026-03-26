@@ -836,3 +836,53 @@ open problem in analytic number theory.
 CORRECTION DATE: 2026-03-26
 CORRECTION'
 echo "Appended correction"
+---
+
+## SESSION 2: 2026-03-26 (Continued) — Computational Results
+
+### CRITICAL: B+C > 0 FAILS for p ~ 1400
+
+B+C verification extended to p ≤ 2000 reveals **5 counterexamples**:
+p = 1399, 1409, 1423, 1427, 1429.
+
+| p    | B+C        | R = B_raw/delta_sq | M(p) |
+|------|------------|--------------------|------|
+| 1399 | -6.34e+02  | -1.007             | +8   |
+| 1409 | -8.97e+04  | -1.900             | +9   |
+| 1429 | -1.04e+04  | -1.101             | +8   |
+
+The claim **"B+C > 0 for all primes p ≥ 11" is FALSE**.
+
+Counterexamples occur when M(p) is large and **positive** (8–11), not negative.
+At failure primes, ΔW(p) > 0 (wobble decreases), opposite to the usual trend.
+
+### R₁ Integral Formula: Factor-of-2 Correction
+
+Running `r1_integral_analysis.py` reveals the proposed formula n·∫D_old²/(2·old_D_sq) gives **~0.5**, not ~1:
+
+| p   | R₁_direct | n·∫D_old²/(2·old_D_sq) | ratio |
+|-----|-----------|------------------------|-------|
+| 97  | 0.9908    | 0.4944                 | 2.004 |
+| 199 | 0.9776    | 0.4977                 | 1.964 |
+
+The ratio → 2 as p → ∞. The correct identity is:
+
+    ∫₀¹ D_old(x)² dx ≈ old_D_sq / n = n·W(N)
+
+So n·∫D_old²/(2·old_D_sq) → 1/2 (exact), and the correct non-circular formula is:
+
+    R₁ ≈ n · ∫D_old² / old_D_sq = 1
+
+The Riemann sum Σ D_old(k/p)² oversamples active intervals (b·b' ≤ p) by exactly factor 2.
+The active_error/dilution_raw ≈ 0.25 for all p (does NOT vanish), so floor-error approach fails.
+
+### Updated Status
+
+| Claim | Status |
+|-------|--------|
+| B+C > 0 for p ≤ 500 | ✓ Verified (91 primes) |
+| B+C > 0 for all p ≥ 11 | ✗ FALSE (fails at p=1399+) |
+| R₁ ≈ 1 | ✓ Verified (all tested p) |
+| R₁ = n·∫D_old²/(2·old_D_sq) | ✗ WRONG (gives ~0.5, factor-of-2 error) |
+| ∫D_old² = n·W(N) | ✓ Empirical (converges) |
+| active_error/dilution → 0 | ✗ FALSE (→ ~0.25) |
