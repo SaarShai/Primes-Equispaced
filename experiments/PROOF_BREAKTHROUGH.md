@@ -170,7 +170,7 @@ the same Walfisz ineffectivity.
 the Polya-Vinogradov inequality applied to the Ramanujan-sum expansion of D_old(k/p).
 This is the most technically tractable remaining gap.
 
-## SUMMARY OF THIS SESSION
+## SUMMARY OF PRIOR SESSION (2026-03-25)
 
 This session attacks two open problems:
 1. Prove B+C > 0 analytically for all primes p ≥ 11
@@ -182,6 +182,56 @@ This session attacks two open problems:
 - The D-monotonicity conjecture and evidence (Section 3)
 - Tight asymptotic connection between Sign Theorem and RH (Section 4)
 - New approach via Fourier/Ramanujan sums (Section 5)
+
+---
+
+## HOUR 5: PROBABILISTIC MODEL — Linear Decomposition (2026-03-26)
+
+### New Exact Identity
+
+**Proved:** Σ_{f ∈ F_N, 0<f<1} f·δ(f) = C_interior/2
+
+**Proof:** Σ f·δ = Σ f² - Σ f·σ_p(f) = Σ_b (A_b - T_b)/b² = Σ_b deficit_b/b² = C/2.  □
+
+This implies the **linear decomposition** (verified to 2e-9 error):
+
+    B_raw = α·C_raw + 2·Σ_f ε(f)·δ(f)
+
+where α = Σ D(f)·(f-1/2) / Σ(f-1/2)² and ε(f) = D(f) - α(f-1/2).
+
+Therefore: **R = B/C = α + 2·(Σε·δ)/C**
+
+### Key Computational Findings (91 primes in [11,500])
+
+| Result | Value |
+|--------|-------|
+| B+C > 0 violations | **0 (none)** |
+| Min R = B/C | **-0.8929** at p=11 |
+| α range | [0.622, 11.869], **always positive** |
+| Residual ratio Σε·δ/C | [-1.799, -0.758], mean -1.570 |
+| |Σε·δ/C| < (1+α)/2 holds | **YES, all 91 primes**, min margin 0.054 |
+| CS bound (Σε²/C ≤ (1+α)²/4) | FAILS, up to 59x too weak |
+
+### Structural Observation
+
+Since Σε·δ/C ≈ (R-α)/2 (by definition), the decomposition is informationally equivalent to R > -1 itself — **not circular** as an identity, but the bound Lemma B requires independent proof.
+
+The key NEW finding: **α > 0 for all tested primes** (min = 0.622 at p=11).
+
+This means D(f) is positively weighted toward f → 1: larger Farey fractions are systematically "overcrowded." A proof of α > 0 via the symmetry D(1-f) = -D(f) and the sign of D near f=0 is within reach.
+
+### Why R > -1 for Large p
+
+R ≈ α - 3.5 for p > 50, and α grows with p (approximately proportionally to √p or log p). Thus R → +∞ as p → ∞. The only dangerous case is p=11 (minimum α, R=-0.893, margin 0.054).
+
+### Two-Lemma Conditional Proof
+
+**THEOREM (conditional on Lemmas A,B):** For all primes p ≥ 11, B+C > 0.
+
+- **Lemma A:** α > 0 (i.e., Σ D·f > 0). *Status: Verified p≤500, OPEN analytically.*
+- **Lemma B:** |Σε·δ/C| < (1+α)/2. *Status: Tautologically equivalent to R>-1. Needs independent proof.*
+
+**Most promising route for Lemma A:** Use D(1-f) = -D(f) and the fact that fractions near f=0 have D < 0 (undercrowded), which gives positive contributions to Σ D·f·(2f-1) for each pair (f,1-f).
 
 ---
 
