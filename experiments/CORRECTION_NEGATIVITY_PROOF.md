@@ -4,6 +4,8 @@
 ## Status: PARTIALLY PROVED (exact verification p≤179) + STRONG EVIDENCE (to p=20K) + CONDITIONAL ANALYTICAL ARGUMENT
 ## Adversarial Audit: ADVERSARIAL_CORRECTION_NEGATIVITY.md — 2 fatal + 3 serious gaps found
 ## Key gap: Decorrelation bound |rho|=O(√log N) not rigorously proved; empirical constants not effective
+## Update (2026-03-30): Flaw 2 (identity not proved) is now CLOSED — see EFFECTIVE_ALPHA_RHO.md Section 1 for algebraic derivation
+## Update (2026-03-30): Unconditional |corr|=O(√log p) bound is USELESS for |rho| — see EFFECTIVE_ALPHA_RHO.md Section 2
 ## Classification: C2 (collaborative, publication grade)
 ## Connects to: N2 (Mertens-Wobble), N5 (Per-Step Decomposition)
 ## Dependencies: ALPHA_POSITIVE_PROOF.md, DECORRELATION_PROOF.md, CORRECTION_BOUND_M3.md, EXPLICIT_CONSTANTS_B.md
