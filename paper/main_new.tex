@@ -631,15 +631,23 @@ The threshold $-3$ is optimal: the prime $p = 92{,}173$
 has $M(p) = -2$ and $\Delta W(p) > 0$.
 \end{theorem}
 
-\begin{remark}[Status]\label{rem:sign-status}
-The proof is \emph{hybrid}: analytical for the $\Sigma\delta^2$
-asymptotic and the $D/A \to 1$ convergence, but relying on
-computation for the cross-term non-negativity $B \ge 0$.
-Part~(a) is unconditional (exact computation).  Part~(b) is
-conditional on $B \ge 0$ (Observation~\ref{obs:B-nonneg}), which
-is verified for all 4,617 qualifying primes up to $10^5$ but
-not yet proved analytically.  Proving $B \ge 0$ would make the
-Sign Theorem fully unconditional.
+\begin{remark}[Status and limitations]\label{rem:sign-status}
+The Sign Theorem is proved \emph{computationally} for all
+$4{,}617$ qualifying primes up to $p = 10^5$.
+The analytical extension to all qualifying primes faces a
+fundamental obstruction: the cross term $B$ and indeed the
+combination $B + C$ can be \emph{negative} for large primes
+where the Mertens function $M(x)$ oscillates positively near
+$x = p - 1$.  Specifically, the regression decomposition
+$B'/C' = \alpha + \rho$ (Proposition~\ref{prop:alpha-rho})
+shows that $B + C > 0$ requires $\alpha > |\rho| - 1$,
+which fails when $\alpha = 1 - T(N)$ drops below the stable
+value $|\rho| \approx 3.9$.  This first occurs at
+$p = 243{,}799$ among $M(p) = -3$ primes, affecting
+approximately $27\%$ of such primes up to $10^7$.
+Under the Barban--Davenport--Halberstam quasi-independence
+hypothesis, $\Delta W(p) < 0$ holds for a density-one
+subset of qualifying primes.
 See Remark~\ref{rem:honest-sign} for further discussion.
 \end{remark}
 
@@ -885,22 +893,29 @@ the regime where the analytical constants become favorable
 ensures universal coverage.
 
 \begin{remark}[Honest accounting]\label{rem:honest-sign}
-The proof is hybrid, with two fully rigorous analytical
-components ($\Sigma\delta^2 \sim N^2/(2\pi^2)$ via Dedekind
-reciprocity and $D/A = 1 + O(1/\log p)$ via Mertens bounds)
-and one computationally verified observation ($B \ge 0$).
-Proving $B \ge 0$ analytically is the sole remaining gap;
-this would make the Sign Theorem fully unconditional.
-Partial analytical progress: the M\"{o}bius-inversion decomposition
-$B_{p,m} = U_{p,m} + C_{p,m}$ into unrestricted and correction terms
-yields $B_{p,m} > 0$ for all $m \le p/3$ (proved for $p \ge 5000$,
-verified computationally for smaller primes), but fails for large~$m$
-where the correction overwhelms the main term.
-The most promising routes are: (i)~the exact Dirichlet-series
-formula $\sum e(q)\,q^{-s} = \zeta(s{+}1)/(6\zeta(s))$ connecting
-the regression slope~$\alpha$ to Mertens-function asymptotics, and
-(ii)~the Abel-step kernel decomposition showing that the correction
-is negative for $p \ge 43$ on the $M(p) = -3$ subsequence.
+The Sign Theorem is a \emph{computational} result: exact
+verification for all $4{,}617$ qualifying primes $p \le 10^5$.
+The analytical framework (Dedekind reciprocity for $\Sigma\delta^2$,
+Lean-verified $D' - A' = -1$ for $D/A$, exact identity
+$B'/C' = \alpha + \rho$) explains \emph{why} it holds but
+does not extend it to all primes.
+
+The obstruction is \emph{not} a proof gap but a mathematical
+reality: the cross-term ratio $B'/C' = \alpha + \rho$ can
+become negative for primes where the Mertens function
+oscillates positively near $x = p-1$.  The regression slope
+$\alpha \approx 1 - T(N)$ depends on the harmonic--Mertens
+sum $T(N) = \sum_{m=2}^{N} M(\lfloor N/m\rfloor)/m$, which
+is positive for approximately $27\%$ of $M(p) = -3$ primes
+up to $10^7$ (first occurrence: $p = 243{,}799$).
+At such primes, $\alpha < 1$ while the residual $\rho \approx -3.9$
+forces $B + C < 0$, and consequently $\Delta W(p) > 0$ is expected.
+
+The correct general statement is likely a \emph{density theorem}:
+$\Delta W(p) < 0$ for a density-one subset of qualifying primes,
+provable under the Barban--Davenport--Halberstam hypothesis.
+This connects the Sign Theorem to the Rubinstein--Sarnak framework
+for arithmetic biases.
 \end{remark}
 
 \subsection{Optimality of the threshold}\label{sec:sign-optimal}
