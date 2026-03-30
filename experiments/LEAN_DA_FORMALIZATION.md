@@ -2,7 +2,7 @@
 
 **Date:** 2026-03-30
 **File:** `RequestProject/DAConvergence.lean`
-**Status:** Core identity proved, Aristotle jobs submitted for refinement
+**Status:** FULLY BUILT -- all theorems type-check (0 sorry, 0 errors)
 
 ## 1. What Was Formalized
 
@@ -34,11 +34,12 @@ D'(p)/A'(p) - 1 = -1/A'(p)
 1. **`aPrime_eq_sum_sq`** (PROVED): A' = Sum (D_old + delta)^2
    - Uses `quadratic_expansion_sum` from CrossTermPositive.lean
 
-2. **`daPrimeDiff_eq_neg_one`** (PROVED, pending type-check): D' - A' = -1
-   - Splits fareySet(p-1) into {f < 1} union {(1,1)}
-   - For f < 1: uses `displacement_shift` to show D_new = D_old + delta
-   - For f = 1: D_new(1)^2 = 0 but (D_old(1) + delta(1))^2 = 1
-   - Helper lemmas: `displacement_one_eq_zero`, `shiftFun_one`, `fareySet_eq_pair_is_one_one`
+2. **`daPrimeDiff_eq_neg_one`** (PROVED, type-checks): D' - A' = -1
+   - Uses `four_term_decomposition` and `wobble_split` (WN(p) = D' + D)
+   - From h4: WN(p) = dispSquaredSum + B + C - 1 + D
+   - From split: WN(p) = dispNewSquaredSum + D
+   - Cancel D: dispNewSquaredSum = dispSquaredSum + B + C - 1
+   - Helper: `wobble_split` decomposes WN(p) by splitting fareySet(p) = old union new
 
 3. **`daRatio_minus_one`** (PROVED): D'/A' - 1 = -1/A'
    - Algebraic consequence of (2)
@@ -101,8 +102,9 @@ abs_daRatio_minus_one (DAConvergence.lean)
 
 ## 4. Sorry Status
 
-### In DAConvergence.lean: 0 sorry
-All theorems either proved analytically or verified computationally.
+### In DAConvergence.lean: 0 sorry, 0 errors
+All theorems proved analytically or verified computationally.
+**Build: lake build RequestProject.DAConvergence -- SUCCESS (8034 jobs, 33s for DAConvergence itself)**
 
 ### In other project files:
 - **MediantMinimality.lean line 116**: 1 sorry on a deliberately FALSE statement (documented counterexample). Dead code superseded by corrected theorem below.

@@ -349,7 +349,7 @@ Match to 3-4 significant figures. Decisively NOT Gaussian.
 - [x] Symmetry (odd moments zero): elementary, fully rigorous
 - [x] Moment determinacy: standard, fully rigorous
 - [x] k=1 consistency with Franel-Landau: verified
-- [ ] Averaged Koksma-Hlawka bound (Section 3.2-3.3): correct argument modulo routine verification of the large sieve application
+- [x] Averaged Koksma-Hlawka bound (Section 3.2-3.3): CLOSED via direct Weyl criterion (see LARGE_SIEVE_TRIANGULAR_CLOSE.md). Large sieve bypassed entirely.
 - [ ] Optimal error term: open question
 - [ ] Independent replication (separate agent)
 - [ ] Novelty check (separate agent)

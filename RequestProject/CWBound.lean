@@ -25,21 +25,28 @@ For N ≥ 1, the wobble constant satisfies:
 
 open Finset BigOperators
 
-/-! ## fareyCount equals fareySet.card -/
+/-! ## Auxiliary lemmas about fareyCount cast to ℚ -/
 
-/-- fareyCount N equals the cardinality of fareySet N for N ≥ 1.
-    Both count the Farey fractions of order N. -/
-lemma fareyCount_eq_card (N : ℕ) (hN : N ≥ 1) : fareyCount N = (fareySet N).card := by
-  induction' N with N ih;
-  · contradiction;
-  · rcases N with ( _ | N ) <;> simp_all +decide [ Nat.totient_prime ];
-    rw [ farey_new_fractions_count ] <;> norm_num [ ih ];
-    exact ih.symm ▸ by unfold fareyCount; simp +arith +decide [ Finset.sum_range_succ ] ;
+/-- fareyCount N cast to ℚ is positive (for any N, since fareyCount = 1 + Σ). -/
+lemma fareyCount_cast_pos (N : ℕ) : (0 : ℚ) < (fareyCount N : ℚ) := by
+  apply Nat.cast_pos.mpr
+  unfold fareyCount
+  exact add_pos_of_pos_of_nonneg zero_lt_one (Finset.sum_nonneg fun _ _ => Nat.zero_le _)
+
+/-- fareyCount N cast to ℚ is nonzero. -/
+lemma fareyCount_cast_ne_zero (N : ℕ) : (fareyCount N : ℚ) ≠ 0 :=
+  ne_of_gt (fareyCount_cast_pos N)
+
+/-- (fareyCount N)² is positive as a rational. -/
+lemma fareyCount_sq_pos (N : ℕ) : (0 : ℚ) < (fareyCount N : ℚ) ^ 2 :=
+  sq_pos_of_pos (fareyCount_cast_pos N)
+
+/-! ## fareySet card positive -/
 
 /-- fareySet N has positive cardinality when N ≥ 1. -/
 lemma fareySet_card_pos (N : ℕ) (hN : N ≥ 1) : 0 < (fareySet N).card := by
   rw [← fareyCount_eq_card N hN]
-  exact fareyCount_pos N
+  exact fareyCount_pos N hN
 
 /-! ## Variant of abstract Cauchy-Schwarz for positive sum -/
 
@@ -74,10 +81,11 @@ theorem wobbleNumerator_ge_fareyCount_div_four (N : ℕ) (hN : N ≥ 1) :
     (the Cauchy-Schwarz lower bound), by dividing both sides by fareyCount(N)². -/
 theorem cw_ge_quarter_inv (N : ℕ) (hN : N ≥ 1) :
     wobbleNumerator N / (fareyCount N : ℚ) ^ 2 ≥ 1 / (4 * fareyCount N) := by
-  have h_cauchy_schwarz : wobbleNumerator N ≥ (fareyCount N : ℚ) / 4 :=
+  have h_pos : (0 : ℚ) < (fareyCount N : ℚ) := fareyCount_cast_pos N
+  have h_bound : wobbleNumerator N ≥ (fareyCount N : ℚ) / 4 :=
     wobbleNumerator_ge_fareyCount_div_four N hN
-  rw [ge_iff_le, div_le_div_iff₀ (by exact mul_pos (by norm_num : (0:ℚ) < 4) (fareyCount_cast_pos N)) (fareyCount_sq_pos N)]
-  nlinarith [fareyCount_cast_pos N]
+  rw [ge_iff_le, div_le_div_iff₀ (by positivity) (by positivity)]
+  nlinarith
 
 /-! ## Computational verification for small N -/
 
