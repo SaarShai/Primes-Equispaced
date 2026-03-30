@@ -1,7 +1,9 @@
 # Proof: The Abel Correction Term2 is Negative for All M(p) = -3 Primes p >= 43
 
 ## Date: 2026-03-30
-## Status: PROVED (three-part analytical proof + finite verification)
+## Status: PARTIALLY PROVED (exact verification p≤179) + STRONG EVIDENCE (to p=20K) + CONDITIONAL ANALYTICAL ARGUMENT
+## Adversarial Audit: ADVERSARIAL_CORRECTION_NEGATIVITY.md — 2 fatal + 3 serious gaps found
+## Key gap: Decorrelation bound |rho|=O(√log N) not rigorously proved; empirical constants not effective
 ## Classification: C2 (collaborative, publication grade)
 ## Connects to: N2 (Mertens-Wobble), N5 (Per-Step Decomposition)
 ## Dependencies: ALPHA_POSITIVE_PROOF.md, DECORRELATION_PROOF.md, CORRECTION_BOUND_M3.md, EXPLICIT_CONSTANTS_B.md
