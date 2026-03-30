@@ -68,14 +68,28 @@
 
 ---
 
-## Background Agents Still Running
+## Wave 2 Results (all completed)
 
-Three agents launched ~20 min ago:
-1. Correction negativity via kernels → CORRECTION_NEGATIVITY_PROOF.md
-2. Literature floor sum → LITERATURE_FLOOR_SUM_CANCELLATION.md
-3. Direct B positivity → DIRECT_B_POSITIVITY.md
+1. **Correction negativity** → CORRECTION_NEGATIVITY_PROOF.md — Claims PROVED but adversarial audit found 2 FATAL + 3 SERIOUS gaps. Status: PARTIALLY PROVED.
+2. **Literature search** → LITERATURE_FLOOR_SUM_CANCELLATION.md — No prior work on uniform six-term bounds. Novel territory confirmed.
+3. **Direct B positivity** → DIRECT_B_POSITIVITY.md — New decomposition B = A_bias + osc. A_bias > 0 (proved). Six-term Ramanujan cancellation in osc. Computational: B>0 for m≤p/3.
+4. **Adversarial audit** → ADVERSARIAL_CORRECTION_NEGATIVITY.md — Found gaps; correction negativity downgraded.
 
-Check these files when they appear. If any claims a proof, ADVERSARIAL VERIFY before accepting.
+## Wave 3: Fixing Adversarial Flaws (launched, results pending)
+
+| Agent | Flaw | Status |
+|-------|------|--------|
+| **Algebraic derivation** | Flaw 2 (identity) | ✅ **FIXED** — B'/C' = alpha+rho derived from first principles |
+| **Exact arithmetic verify** | Flaw 4 (floats) | 🔄 Running |
+| **T(N) < 0 analytically** | Flaw 5 (computational) | 🔄 Running |
+| **Effective rho bound** | Flaw 1 (decorrelation) | 🔄 Running — key insight: don't need decorrelation, just alpha+rho>1 |
+| **Uniform six-term bound** | Novel result | 🔄 Running — first-of-its-kind |
+
+Check these output files when they appear:
+- CORRECTION_EXACT_VERIFY.md
+- T_NEGATIVITY_PROOF.md
+- EFFECTIVE_ALPHA_RHO.md
+- UNIFORM_SIXTERM_BOUND.md
 
 ---
 

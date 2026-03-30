@@ -54,8 +54,8 @@ These results are algebraic identities or elementary arguments that are fully pr
 |---|---|---|---|
 | 9 | DeltaW(p) < 0 for all primes p in [11, 100000] with M(p) <= -3 | 4,617 primes | Exact rational arithmetic, zero violations |
 | 10 | DeltaW(p) < 0 for ALL primes in [11, 100000] | 9,592 primes | Same method |
-| 11 | B >= 0 for all M(p) <= -3 primes to p ~ 200,000 | ~17,984 primes | Exact computation |
-| 12 | B+C > 0 for all M(p) <= -3 primes to p ~ 3,000 | 210 primes | Exact computation |
+| 11 | B >= 0 for all M(p) <= -3 primes to p = 100,000 | 4,617 primes | Exact computation. **FAILS at p=243,799** (B < 0). |
+| 12 | B+C > 0 for all M(p) <= -3 primes to p = 100,000 | 4,617 primes | Exact computation. **FAILS at p=243,799** (B+C < 0). |
 | 13 | Lean native_decide verification for specific small primes | p in {13,19,31,43,47,53,59,61} | Lean kernel |
 
 ### TIER 3: ESSENTIALLY PROVED (rigorous argument complete, minor gaps in writeup)
@@ -66,20 +66,22 @@ These results are algebraic identities or elementary arguments that are fully pr
 | 15 | Composites have density zero among non-healing primes | mu-M independence needs standard citation | Textbook-level ingredient missing a reference |
 | 16 | Sigma delta^2 = N^2/(2 pi^2) + o(N^2) (random model) | Steps 1-5 proved | Rigorous |
 
-### TIER 4: PARTIALLY PROVED (genuine mathematical gaps remain)
+### TIER 4: DISPROVED (claims that turned out to be FALSE)
 
-| # | Claim | What IS proved | What is NOT proved |
+| # | Claim | Status | Details |
 |---|---|---|---|
-| 17 | Sign Theorem analytical tail (p > 100,000) | Sigma delta^2 = N^2/(2 pi^2) + o(N^2) gives C large. S(p) = O(p^2/log p) via Dedekind reciprocity. D/A = 1 + O(1/log p) PROVED via Mertens bounds. | B >= 0 is OBSERVED, not proved. The "bypass" C+D > A holds given D/A → 1 (proved) and B ≥ 0 (observed). |
-| 18 | Hybrid result: computation + analytical | Computation covers p <= 100K. Analytical covers large p given B ≥ 0. | B ≥ 0 is the sole remaining gap. Partial: B>0 proved for m ≤ p/3 blocks (Möbius reduction + Hermite). |
+| 17 | Sign Theorem for all M(p) <= -3 primes | **DISPROVED** at p = 243,799 | DeltaW > 0 (n'^2*DeltaW = +6.65e9). B+C < 0 because alpha = 0.835 (T(N) > 0). See DELTA_W_DIRECT_PROOF.md |
+| 18 | B >= 0 for all M(p) <= -3 primes | **DISPROVED** at p = 243,799 | B = -9.19e9. alpha + rho = -3.05. See B_PLUS_C_POSITIVITY.md |
+| 19 | B+C > 0 for all M(p) <= -3 primes | **DISPROVED** at p = 243,799 | B+C = -6.18e9. See B_PLUS_C_POSITIVITY.md |
+| 20 | DeltaW(p) < 0 for ALL primes p >= 11 | **DISPROVED** at p = 243,799 | The M(p) = -3 version also fails |
 
-### TIER 5: CONJECTURAL (empirically supported, no proof)
+### TIER 5: CONJECTURAL (modified after disproof)
 
-| # | Claim | Evidence | Obstruction |
+| # | Claim | Evidence | Status |
 |---|---|---|---|
-| 19 | B >= 0 for all M(p) <= -3 primes | Verified to p = 100,000 (174 M=-3 primes, 4617 M≤-3 primes). Analytical: B>0 for m ≤ p/3 blocks; correction < 0 for p ≥ 43 on M=-3 subsequence | Full analytical proof = RH-hard (five-block Mertens fails: S reaches +25). Live routes: six-term transport, kernel negativity. |
-| 20 | D/A -> 1 as p -> infinity | **NOW PROVED** via D'-A'=-1 (Lean-verified) giving |D/A - 1| = O(1/p²) | RESOLVED — this is no longer a gap |
-| 21 | DeltaW(p) < 0 for ALL primes p >= 11 (not just M(p) <= -3) | Verified to p = 100,000 | Even stronger than our theorem statement; the M(p) <= -3 restriction is a proof artifact |
+| 21 | D/A -> 1 as p -> infinity | **PROVED** via D'=A'+1 (Lean-verified) giving |D/A - 1| = O(1/p^2) | RESOLVED |
+| 22 | DeltaW(p) < 0 for density-1 set of primes | ~73% of M(p)=-3 primes to 10^7; BDH gives alpha > rho for density-1 | Unproved but likely |
+| 23 | DeltaW(p) < 0 for all primes with T(N) < 0 | T(N) < 0 implies alpha > 1, and alpha + rho > -1 for all tested | Partially provable |
 
 ---
 
@@ -126,26 +128,27 @@ These results are algebraic identities or elementary arguments that are fully pr
 
 5. **Theorem** (analytical partial): Sigma delta^2 = N^2/(2 pi^2) + o(N^2). The signed fluctuation satisfies S(p) = O(p^2/log p) via Dedekind reciprocity.
 
-6. **Proposition** (hybrid, with caveat): If D/A -> 1 (which is observed for all tested primes), then C + D > A for all sufficiently large p, and the Sign Theorem holds for all primes with M(p) <= -3. The computational base covers p <= 100,000.
+6. **Theorem** (negative result): The Sign Theorem is FALSE in its universal form. DeltaW(p) > 0 at p = 243,799 (M(p) = -3). The failure mechanism is: Mertens oscillation causes T(N) > 0, collapsing alpha to 0.835, making B + C < 0.
 
-7. **Conjecture**: DeltaW(p) < 0 for all primes p >= 11 (not just M(p) <= -3). Supported by computation to p = 100,000 with zero violations.
+7. **Theorem** (structural): B'/C' = alpha + rho algebraically, where alpha ~ -6R(N) and rho ~ -3.9. The sign of DeltaW is controlled by whether alpha + rho > -(A-D)/C' ~ 0. See DELTA_W_DIRECT_PROOF.md.
+
+8. **Conjecture** (modified): DeltaW(p) < 0 for a density-1 subset of primes with M(p) <= -3. Exceptions occur when T(N) > 0 (~27% of M(p)=-3 primes up to 10^7).
 
 ---
 
 ## REMAINING OPEN PROBLEMS (ordered by importance)
 
-1. **Prove B >= 0 for M(p) <= -3 primes.** The SOLE remaining gap. Settled as RH-hard via pointwise Mertens control. Partial results:
-   - B>0 for m ≤ p/3 blocks (Möbius reduction + Hermite + Weil bounds)
-   - Correction/C' < 0 for all p ≥ 43 with M=-3 (verified to 20K, exact to 523)
-   - Five-block Mertens approach FAILS (S reaches +25)
-   - Transport contraction: |D_6(m,n)| ≤ C(m)·n but C(m) = O(m), not uniform
-   - Live routes: kernel negativity proof, direct coprime positivity, Dirichlet series for α
+1. **SIGN THEOREM IS DISPROVED.** The universal claim "DeltaW < 0 for all M(p) <= -3 primes" is FALSE at p = 243,799. New open problems:
 
-2. ~~Prove D/A -> 1~~ **RESOLVED** — D'-A'=-1 proved in Lean, |D/A-1| = O(1/p²).
+   a. **Density theorem:** Prove DeltaW < 0 for a density-1 set of primes. Likely via BDH.
+   b. **Characterize exceptions:** Understand exactly which primes have DeltaW > 0. Current: ~27% of M(p)=-3 primes to 10^7 have T(N) > 0 (and hence B+C < 0, likely DeltaW > 0).
+   c. **Compute DeltaW at more counterexample primes** to confirm the pattern.
+
+2. ~~Prove D/A -> 1~~ **RESOLVED** -- D'=A'+1 proved in Lean, |D/A-1| = O(1/p^2).
 
 3. **Close Lean sorry placeholders.** 2 sorry remaining across 19 files.
 
-4. **Extend computational base** to p = 1,000,000 for larger safety margin.
+4. ~~Extend computational base~~ **MOOT** -- extending past 243,799 would reveal counterexamples, not support the theorem. The computational theorem (p <= 100K) stands on its own.
 
 ---
 

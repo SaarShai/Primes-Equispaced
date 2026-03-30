@@ -1,0 +1,20 @@
+p = 243799
+N = 243798
+|F_N| = 18066862385
+|F_p| = 18067106183
+
+A (dilution)     = 2.434777e+10
+B (cross)        = -9.190201e+09
+C (shift)        = 3.010774e+09
+D_new            = 2.387806e+10
+D_new/A          = 0.9807084919
+B + C            = -6.179427e+09
+B + C + D        = 1.769863e+10
+A - B - C - D    = 6.649132e+09
+DeltaW           = 2.036985e-11
+Sign: POSITIVE (theorem FAILS)
+
+Verification:
+  sum(delta) check: C' = 3.010774e+09
+  B'/C' = -3.052438
+  new fracs processed = 243798 (expected 243798)
