@@ -1,0 +1,15 @@
+B' verification for M(p)=-3 primes up to 100000
+Sieving to 100000...
+Sieve done.
+Found 174 primes with M(p) = -3 up to 100000
+  [9s] Processed 100/174 primes (p=27239)
+
+=== SUMMARY ===
+Total M(p)=-3 primes checked: 174
+Violations (B' <= 0): 0
+Worst correction/C ratio: 0.440053 at p=13
+Minimum B': 0.7038961039 at p=13
+Minimum margin (0.5 - ratio): 0.059947
+Total time: 230 seconds
+
+*** ALL 174 PRIMES VERIFIED: B' > 0 ***
