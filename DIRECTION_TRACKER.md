@@ -38,7 +38,8 @@
 | 20 | Explicit formula: ΔW = zeros coupling | 🟨 Formally derived | Rigorous truncation + regularization |
 | 21 | Farey telescope / pair correlation | 🟨 New connection found | Mellin poles at γ-γ' → Montgomery connection |
 | 22 | Density theorem "ΔW < 0 for almost all primes" | 🟨 Natural next step | Rubinstein-Sarnak theory |
-| 23 | Prove B ≥ 0 for M(p) ≤ -3 analytically | 🟨 Hard open problem | Kloosterman/spectral methods |
+| 23 | **Prove B ≥ 0 for M(p) ≤ -3 analytically** | 🟨 **HIGH PRIORITY** | Kloosterman/spectral methods — key to fully analytical proof |
+| 44 | **Prove D/A → 1 analytically** | 🟩 **HIGH PRIORITY** | May follow from proved S(p) bound — agent checking! |
 | 24 | Test zero-pair periodogram on larger dataset | 🟨 Z=1625 confirmed | Push to p = 10⁶ |
 
 ### MEDIUM PRIORITY

@@ -1,5 +1,11 @@
 # INSIGHTS — Novel Discoveries, Key Insights, and Their Value
-Last updated: 2026-03-28
+Last updated: 2026-03-30 (session 8 complete)
+
+## CRITICAL CORRECTIONS
+- Z=1625 "zeta zero detection" is likely a STATISTICAL ARTIFACT (inadequate null model). Proper null tests show NO detection. Do NOT cite.
+- Pair correlation / Montgomery connection is FORMAL, not rigorous. Data contradicts Montgomery-type correlations in ΔW.
+- B ≥ 0 for M(p) ≤ -3 is COMPUTATIONAL (verified to 200K), not proved analytically (adversarial found 3 gaps)
+- "Studying increments" is novel for Farey, NOT a novel general methodology
 
 This file is a lens through which ALL explorations should be evaluated.
 Every item in the MASTER_TABLE should connect to at least one insight here.
