@@ -283,12 +283,51 @@ theorem crossTerm_pos_of_mertens_le_neg3 :
     ∀ p ∈ Finset.filter (fun p => Nat.Prime p ∧ 11 ≤ p ∧ mertens p ≤ -3) (Finset.range 84),
     crossTerm p > 0 := by native_decide
 
+/-! ## Computational verification: primes with M(p) ≤ -3 up to 114 -/
+
+/-- B(89) > 0. (M(89) = -2, but B happens to be positive.) -/
+theorem crossTerm_pos_89 : crossTerm 89 > 0 := by native_decide
+
+/-- B(97) < 0. (M(97) = 1; confirms B can be negative when M(p) > -3.) -/
+theorem crossTerm_neg_97 : crossTerm 97 < 0 := by native_decide
+
+/-- B(101) > 0. (M(101) = 0, but B happens to be positive.) -/
+theorem crossTerm_pos_101 : crossTerm 101 > 0 := by native_decide
+
+/-- B(103) > 0. (M(103) = -2, but B happens to be positive.) -/
+theorem crossTerm_pos_103 : crossTerm 103 > 0 := by native_decide
+
+/-- B(107) > 0. (M(107) = -3.) -/
+theorem crossTerm_pos_107 : crossTerm 107 > 0 := by native_decide
+
+/-- B(109) > 0. (M(109) = -4.) -/
+theorem crossTerm_pos_109 : crossTerm 109 > 0 := by native_decide
+
+/-- B(113) > 0. (M(113) = -5.) -/
+theorem crossTerm_pos_113 : crossTerm 113 > 0 := by native_decide
+
+/-- M(107) = -3. -/
+theorem mertens_107 : mertens 107 = -3 := by native_decide
+
+/-- M(109) = -4. -/
+theorem mertens_109 : mertens 109 = -4 := by native_decide
+
+/-- M(113) = -5. -/
+theorem mertens_113 : mertens 113 = -5 := by native_decide
+
+/-- **Cross Term Positivity (verified for p < 114).**
+    For every prime p in {13, 19, 31, 43, 47, 53, 71, 73, 79, 83, 107, 109, 113}
+    (all primes p < 114 with 11 ≤ p and M(p) ≤ -3), the cross term B(p) > 0. -/
+theorem crossTerm_pos_of_mertens_le_neg3_114 :
+    ∀ p ∈ Finset.filter (fun p => Nat.Prime p ∧ 11 ≤ p ∧ mertens p ≤ -3) (Finset.range 114),
+    crossTerm p > 0 := by native_decide
+
 /-! ## Conjecture: general cross term positivity
 
 **Conjecture.** For all primes p ≥ 11 with M(p) ≤ -3, the cross term B(p) > 0.
 
-This is verified computationally for all such primes p < 84 (the theorem
-`crossTerm_pos_of_mertens_le_neg3` above) and individually for primes up to 83.
+This is verified computationally for all such primes p < 114 (the theorem
+`crossTerm_pos_of_mertens_le_neg3_114` above) and individually for primes up to 113.
 External computation confirms it for all such primes up to 500.
 
 The general proof remains open. Key obstacles:
