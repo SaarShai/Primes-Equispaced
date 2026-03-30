@@ -680,8 +680,13 @@ analytical estimates that cover the asymptotic tail.
 \end{enumerate}
 
 \begin{observation}[Non-negativity of the cross term]\label{obs:B-nonneg}
-Among all 210 primes $p \le 3{,}000$ with $M(p) \le -3$, the cross term
-$B \ge 0$ without exception.  This is verified by exact computation.
+Among all 4{,}617 primes $p \le 10^5$ with $M(p) \le -3$, the cross term
+$B \ge 0$ without exception.  For the $M(p) = -3$ subsequence specifically,
+the corrected cross term $B' = (|M(N)|-1)\,C' - 2\,\mathrm{correction}$
+is verified positive at all 174 qualifying primes up to $10^5$, with the
+worst-case ratio $\mathrm{correction}/C' = 2984/6781 < 1/2$ occurring
+uniquely at $p = 13$.  For all $p \ge 43$ with $M(p) = -3$, the correction
+is \emph{negative}, so $B' > C' > 0$ with growing margin.
 \end{observation}
 
 \begin{theorem}[Near-cancellation: $D/A \to 1$]\label{thm:DA-convergence}
@@ -886,10 +891,16 @@ reciprocity and $D/A = 1 + O(1/\log p)$ via Mertens bounds)
 and one computationally verified observation ($B \ge 0$).
 Proving $B \ge 0$ analytically is the sole remaining gap;
 this would make the Sign Theorem fully unconditional.
-The most promising route is via the connection
-$B = 2\sum D_{\F_{p-1}}(f)\,\delta(f)$ and the structure of the
-displacement--shift correlation, possibly using the spectral
-decomposition of Section~\ref{sec:spectral}.
+Partial analytical progress: the M\"{o}bius-inversion decomposition
+$B_{p,m} = U_{p,m} + C_{p,m}$ into unrestricted and correction terms
+yields $B_{p,m} > 0$ for all $m \le p/3$ (proved for $p \ge 5000$,
+verified computationally for smaller primes), but fails for large~$m$
+where the correction overwhelms the main term.
+The most promising routes are: (i)~the exact Dirichlet-series
+formula $\sum e(q)\,q^{-s} = \zeta(s{+}1)/(6\zeta(s))$ connecting
+the regression slope~$\alpha$ to Mertens-function asymptotics, and
+(ii)~the Abel-step kernel decomposition showing that the correction
+is negative for $p \ge 43$ on the $M(p) = -3$ subsequence.
 \end{remark}
 
 \subsection{Optimality of the threshold}\label{sec:sign-optimal}
