@@ -88,6 +88,7 @@ Aristotle: 3 results awaiting download (API 500)
 | POST-5 | **Gaussian Farey full development** | 2D discrepancy, Dedekind zeros, Ford spheres in H³ | HIGH |
 | POST-6 | **Goldbach Δr per-step** | Needs n>10⁶ for spectroscope to work. Long computation. | MEDIUM |
 | POST-7 | **R₂ > 0 analytical proof** | Open problem. Sign alignment weak. Need new approach. | HIGH |
-| POST-8 | **φ(n)/n < 1/3 healing proof** | Cauchy-Schwarz too loose. Need tighter cross-term bound. | MEDIUM |
+| POST-8 | **Close Dedekind sum gap (upgrade Conjecture→Theorem)** | T_b - E[T_b] = b²Σ μ(b/c)s(p,c). Need mean-value estimate for Dedekind sums over divisors. Would seal Math. Comp. acceptance. | **HIGHEST** |
+| POST-8b | φ(n)/n healing threshold | No clean threshold exists. Explore asymptotic healing rate. | LOW |
 | POST-9 | **Extend spectroscope to 10⁶ primes** | Would detect γ₂-γ₅ clearly. Needs R_bound computation. | HIGH |
 | POST-10 | **Montgomery pair correlation** | Autocorrelation detected γ₂-γ₁. Extend to full pair statistics. | MEDIUM |

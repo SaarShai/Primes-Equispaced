@@ -52,12 +52,14 @@ Saar Shai
 4. Upload files (tex + figures)
 5. Enter metadata:
    - Title: The Geometric Signature of Primes in Farey Sequences
-   - Authors: Saar Shai, Claude Opus 4.6
+   - Authors: Saar Shai
    - Abstract: (copy from paper)
    - MSC: 11B57, 11M06, 11N37, 11A25, 11Y35
    - Keywords: Farey sequence, Mertens function, Chebyshev bias, zeta zeros, Lean 4
 6. Preview and submit
-7. Paper appears within 1-2 business days
+7. Note: AI assistance is disclosed in the paper's "AI Use Declaration"
+   section per STM 2025 guidelines. The human author is sole listed author.
+8. Paper appears within 1-2 business days
 
 ---
 
@@ -94,11 +96,19 @@ object — and presents three main contributions:
 2. A damage/response mechanism explaining why primes improve rational
    regularity, with the exact formula D(1/p) = 1 - |F_{p-1}|/p.
 
-3. A healing characterization: composites with φ(n)/n < 1/3 always
-   improve regularity.
+3. A healing characterization showing that composite density
+   (measured by φ(n)/n) controls the damage/healing boundary,
+   with the fraction 1/p alone causing 65% of all damage.
 
-All core identities are formally verified in Lean 4 (260+ results).
-Code and data are publicly available on GitHub.
+All core identities are formally verified in Lean 4 (258 results).
+The spectroscope's validity is confirmed by null hypothesis
+controls (random weights produce no peaks; the signal survives
+without the M(p)≤-3 filter). An analytic gap in the shift-squared
+asymptotic is honestly identified as involving Dedekind-sum
+convolutions rather than Kloosterman sums.
+
+Code, data (5,095 qualifying primes), and all figures are
+publicly available at https://github.com/SaarShai/Primes-Equispaced.
 
 Sincerely,
 Saar Shai
@@ -166,7 +176,7 @@ Post a 5-tweet thread:
    mechanism: primes DAMAGE order, but existing fractions
    OVERCOMPENSATE. The fraction 1/p alone causes 65% of the damage.
 
-4/ Formally verified in Lean 4 (260+ results). Extends to L-function
+4/ Formally verified in Lean 4 (258 results). Extends to L-function
    zeros via Dirichlet character twisting. Code + data on GitHub.
 
 5/ Paper: [arXiv link]
