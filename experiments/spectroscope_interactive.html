@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Mertens Spectroscope</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #0a0a1a;
+  color: #e0e0e8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 24px 16px;
+}
+h1 {
+  font-size: 1.6em;
+  font-weight: 700;
+  color: #00eeff;
+  text-align: center;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+#subtitle {
+  font-size: 0.95em;
+  color: #8888aa;
+  margin-bottom: 16px;
+  text-align: center;
+}
+#detection {
+  font-size: 1.15em;
+  font-weight: 600;
+  color: #ffcc00;
+  margin-bottom: 12px;
+  text-align: center;
+}
+#canvasWrap {
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  margin-bottom: 16px;
+}
+canvas {
+  width: 100%;
+  height: 500px;
+  display: block;
+  border-radius: 8px;
+  border: 1px solid #222244;
+}
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.control-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.control-group label {
+  font-size: 0.85em;
+  color: #8888aa;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 340px;
+  height: 6px;
+  background: #222244;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #00eeff;
+  cursor: pointer;
+  border: 2px solid #0a0a1a;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #00eeff;
+  cursor: pointer;
+  border: 2px solid #0a0a1a;
+}
+#primeVal {
+  font-size: 1.1em;
+  color: #00eeff;
+  font-weight: 600;
+  min-width: 60px;
+  text-align: center;
+}
+.toggle-btn {
+  padding: 10px 22px;
+  font-size: 0.95em;
+  font-weight: 600;
+  border: 2px solid #444466;
+  border-radius: 6px;
+  background: transparent;
+  color: #8888aa;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+}
+.toggle-btn.active {
+  border-color: #ff8800;
+  color: #ff8800;
+  background: rgba(255,136,0,0.1);
+}
+.toggle-btn:hover {
+  border-color: #aaaacc;
+  color: #ccccee;
+}
+.toggle-btn.active:hover {
+  border-color: #ffaa44;
+  color: #ffaa44;
+}
+#explanation {
+  max-width: 800px;
+  font-size: 0.88em;
+  color: #666688;
+  line-height: 1.6;
+  text-align: center;
+  margin-top: 8px;
+}
+#explanation strong { color: #8888bb; }
+</style>
+</head>
+<body>
+
+<h1>The Mertens Spectroscope: Seeing Zeta Zeros in Prime Data</h1>
+<div id="subtitle">Loading...</div>
+<div id="detection">0 / 10 zeros detected</div>
+
+<div class="controls">
+  <div class="control-group">
+    <label>Number of Primes</label>
+    <input type="range" id="primeSlider" min="100" max="10000" value="100" step="50">
+    <span id="primeVal">100</span>
+  </div>
+  <div class="control-group">
+    <label>&gamma;&sup2; Matched Filter</label>
+    <button id="filterToggle" class="toggle-btn">OFF</button>
+  </div>
+</div>
+
+<div id="canvasWrap">
+  <canvas id="plot"></canvas>
+</div>
+
+<div id="explanation">
+  This spectroscope computes <strong>F(&gamma;) = |&sum; M(p)/p &middot; e<sup>&minus;i&gamma; log p</sup>|&sup2;</strong>
+  where <strong>M(p)</strong> is the Mertens function (cumulative M&ouml;bius sum) evaluated at each prime.
+  Peaks in F(&gamma;) reveal the imaginary parts of nontrivial Riemann zeta zeros.
+  The <strong>&gamma;&sup2;</strong> matched filter compensates for the 1/&gamma; decay of individual terms,
+  making higher zeros visible. Start with 100 primes (noise), slide to 5,000+ and watch &gamma;<sub>1</sub> &asymp; 14.13 emerge.
+</div>
+
+<script>
+'use strict';
+
+var KNOWN_ZEROS = [14.134, 21.022, 25.011, 30.425, 32.935, 37.586, 40.919, 43.327, 48.005, 49.774];
+
+var LIMIT = 100001;
+var GAMMA_MIN = 10;
+var GAMMA_MAX = 80;
+var NUM_POINTS = 2000;
+
+// Sieve of Eratosthenes
+function sieveOfEratosthenes(n) {
+  var isPrime = new Uint8Array(n);
+  for (var i = 0; i < n; i++) isPrime[i] = 1;
+  isPrime[0] = isPrime[1] = 0;
+  for (var i = 2; i * i < n; i++) {
+    if (isPrime[i]) {
+      for (var j = i * i; j < n; j += i) isPrime[j] = 0;
+    }
+  }
+  var primes = [];
+  for (var i = 2; i < n; i++) {
+    if (isPrime[i]) primes.push(i);
+  }
+  return primes;
+}
+
+// Mobius function sieve
+function mobiusSieve(n) {
+  var mu = new Int8Array(n);
+  mu[1] = 1;
+
+  // Find smallest prime factor for each number
+  var spf = new Int32Array(n);
+  for (var i = 2; i < n; i++) {
+    if (spf[i] === 0) { // i is prime
+      for (var j = i; j < n; j += i) {
+        if (spf[j] === 0) spf[j] = i;
+      }
+    }
+  }
+
+  for (var i = 2; i < n; i++) {
+    var val = i;
+    var numFactors = 0;
+    var hasSquare = false;
+    while (val > 1) {
+      var p = spf[val];
+      var count = 0;
+      while (val % p === 0) {
+        val = (val / p) | 0;
+        count++;
+      }
+      if (count >= 2) { hasSquare = true; break; }
+      numFactors++;
+    }
+    if (hasSquare) {
+      mu[i] = 0;
+    } else {
+      mu[i] = (numFactors % 2 === 0) ? 1 : -1;
+    }
+  }
+  return mu;
+}
+
+// Compute
+var allPrimes = sieveOfEratosthenes(LIMIT);
+var mu = mobiusSieve(LIMIT);
+
+// Mertens function M(n)
+var mertens = new Int32Array(LIMIT);
+mertens[0] = 0;
+mertens[1] = mu[1];
+for (var i = 2; i < LIMIT; i++) {
+  mertens[i] = mertens[i - 1] + mu[i];
+}
+
+// Precompute M(p), log(p), 1/p for each prime
+var primeData = [];
+for (var i = 0; i < allPrimes.length; i++) {
+  var p = allPrimes[i];
+  primeData.push({
+    p: p,
+    mp: mertens[p],
+    logp: Math.log(p),
+    invp: 1.0 / p
+  });
+}
+
+// Spectral computation
+function computeSpectrum(numPrimes, useFilter) {
+  var spectrum = new Float64Array(NUM_POINTS);
+  var gammaStep = (GAMMA_MAX - GAMMA_MIN) / (NUM_POINTS - 1);
+  var n = Math.min(numPrimes, primeData.length);
+
+  for (var i = 0; i < NUM_POINTS; i++) {
+    var gamma = GAMMA_MIN + i * gammaStep;
+    var re = 0, im = 0;
+    for (var j = 0; j < n; j++) {
+      var d = primeData[j];
+      var phase = gamma * d.logp;
+      var weight = d.mp * d.invp;
+      re += weight * Math.cos(phase);
+      im -= weight * Math.sin(phase);
+    }
+    var val = re * re + im * im;
+    if (useFilter) val *= gamma * gamma;
+    spectrum[i] = val;
+  }
+  return spectrum;
+}
+
+// Detection
+function detectZeros(spectrum) {
+  var gammaStep = (GAMMA_MAX - GAMMA_MIN) / (NUM_POINTS - 1);
+
+  // Compute local median with sliding window
+  var windowSize = 101;
+  var halfW = (windowSize / 2) | 0;
+  var localMedian = new Float64Array(NUM_POINTS);
+
+  for (var i = 0; i < NUM_POINTS; i++) {
+    var lo = Math.max(0, i - halfW);
+    var hi = Math.min(NUM_POINTS - 1, i + halfW);
+    var win = [];
+    for (var j = lo; j <= hi; j++) win.push(spectrum[j]);
+    win.sort(function(a, b) { return a - b; });
+    localMedian[i] = win[(win.length / 2) | 0];
+  }
+
+  var detected = 0;
+  var detectedList = [];
+
+  for (var k = 0; k < KNOWN_ZEROS.length; k++) {
+    var zero = KNOWN_ZEROS[k];
+    var idxLo = Math.max(0, Math.round((zero - 1.0 - GAMMA_MIN) / gammaStep));
+    var idxHi = Math.min(NUM_POINTS - 1, Math.round((zero + 1.0 - GAMMA_MIN) / gammaStep));
+
+    var maxVal = 0;
+    var maxIdx = Math.round((zero - GAMMA_MIN) / gammaStep);
+    for (var i = idxLo; i <= idxHi; i++) {
+      if (spectrum[i] > maxVal) {
+        maxVal = spectrum[i];
+        maxIdx = i;
+      }
+    }
+
+    var med = localMedian[maxIdx];
+    if (maxVal > 2 * med && med > 0) {
+      detected++;
+      detectedList.push(zero);
+    }
+  }
+
+  return { detected: detected, detectedList: detectedList };
+}
+
+// Rendering
+var canvas = document.getElementById('plot');
+var ctx = canvas.getContext('2d');
+var slider = document.getElementById('primeSlider');
+var primeValEl = document.getElementById('primeVal');
+var filterBtn = document.getElementById('filterToggle');
+var subtitleEl = document.getElementById('subtitle');
+var detectionEl = document.getElementById('detection');
+
+var useFilter = false;
+var numPrimes = 100;
+var animFrame = null;
+
+function resizeCanvas() {
+  var wrap = document.getElementById('canvasWrap');
+  var dpr = window.devicePixelRatio || 1;
+  canvas.width = wrap.clientWidth * dpr;
+  canvas.height = 500 * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+function render() {
+  if (animFrame) cancelAnimationFrame(animFrame);
+  animFrame = requestAnimationFrame(doRender);
+}
+
+function doRender() {
+  var dpr = window.devicePixelRatio || 1;
+  var w = canvas.width / dpr;
+  var h = canvas.height / dpr;
+  var padL = 60, padR = 20, padT = 20, padB = 50;
+  var plotW = w - padL - padR;
+  var plotH = h - padT - padB;
+
+  var spectrum = computeSpectrum(numPrimes, useFilter);
+  var result = detectZeros(spectrum);
+  var detected = result.detected;
+  var detectedList = result.detectedList;
+
+  // Update UI text
+  var lastPrime = primeData[Math.min(numPrimes, primeData.length) - 1].p;
+  subtitleEl.textContent = numPrimes.toLocaleString() + ' primes (up to p = ' + lastPrime.toLocaleString() + ') \u00B7 \u03B3\u00B2 filter: ' + (useFilter ? 'ON' : 'OFF');
+  detectionEl.textContent = detected + ' / 10 zeros detected';
+  detectionEl.style.color = detected >= 8 ? '#00ff88' : detected >= 4 ? '#ffcc00' : '#ff6666';
+
+  // Clear
+  ctx.clearRect(0, 0, w, h);
+  ctx.fillStyle = '#0a0a1a';
+  ctx.fillRect(0, 0, w, h);
+
+  // Plot area
+  ctx.fillStyle = '#0d0d24';
+  ctx.fillRect(padL, padT, plotW, plotH);
+
+  // Find max
+  var maxVal = 0;
+  for (var i = 0; i < NUM_POINTS; i++) {
+    if (spectrum[i] > maxVal) maxVal = spectrum[i];
+  }
+  if (maxVal === 0) maxVal = 1;
+
+  var gammaStep = (GAMMA_MAX - GAMMA_MIN) / (NUM_POINTS - 1);
+
+  // Grid lines
+  ctx.strokeStyle = '#1a1a3a';
+  ctx.lineWidth = 0.5;
+  for (var g = 10; g <= 80; g += 10) {
+    var x = padL + ((g - GAMMA_MIN) / (GAMMA_MAX - GAMMA_MIN)) * plotW;
+    ctx.beginPath();
+    ctx.moveTo(x, padT);
+    ctx.lineTo(x, padT + plotH);
+    ctx.stroke();
+  }
+
+  // Known zero markers
+  ctx.setLineDash([6, 4]);
+  ctx.lineWidth = 1.2;
+  for (var k = 0; k < KNOWN_ZEROS.length; k++) {
+    var zero = KNOWN_ZEROS[k];
+    var x = padL + ((zero - GAMMA_MIN) / (GAMMA_MAX - GAMMA_MIN)) * plotW;
+    var isDetected = detectedList.indexOf(zero) >= 0;
+    ctx.strokeStyle = isDetected ? '#ff4444' : '#662222';
+    ctx.beginPath();
+    ctx.moveTo(x, padT);
+    ctx.lineTo(x, padT + plotH);
+    ctx.stroke();
+
+    ctx.save();
+    ctx.font = '10px -apple-system, sans-serif';
+    ctx.fillStyle = isDetected ? '#ff6666' : '#553333';
+    ctx.textAlign = 'center';
+    ctx.fillText(zero.toFixed(1), x, padT + plotH + 14);
+    ctx.restore();
+  }
+  ctx.setLineDash([]);
+
+  // Filled area under spectrum
+  ctx.beginPath();
+  ctx.moveTo(padL, padT + plotH);
+  for (var i = 0; i < NUM_POINTS; i++) {
+    var x = padL + (i / (NUM_POINTS - 1)) * plotW;
+    var y = padT + plotH - (spectrum[i] / maxVal) * plotH;
+    ctx.lineTo(x, y);
+  }
+  ctx.lineTo(padL + plotW, padT + plotH);
+  ctx.closePath();
+
+  var grad = ctx.createLinearGradient(0, padT, 0, padT + plotH);
+  grad.addColorStop(0, 'rgba(0, 255, 255, 0.35)');
+  grad.addColorStop(0.5, 'rgba(34, 100, 255, 0.15)');
+  grad.addColorStop(1, 'rgba(10, 10, 40, 0.05)');
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Spectrum line
+  ctx.beginPath();
+  for (var i = 0; i < NUM_POINTS; i++) {
+    var x = padL + (i / (NUM_POINTS - 1)) * plotW;
+    var y = padT + plotH - (spectrum[i] / maxVal) * plotH;
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  var lineGrad = ctx.createLinearGradient(padL, 0, padL + plotW, 0);
+  lineGrad.addColorStop(0, '#00ffff');
+  lineGrad.addColorStop(0.5, '#4488ff');
+  lineGrad.addColorStop(1, '#00ffff');
+  ctx.strokeStyle = lineGrad;
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  // Glow on detected peaks
+  for (var k = 0; k < detectedList.length; k++) {
+    var zero = detectedList[k];
+    var idx = Math.round((zero - GAMMA_MIN) / gammaStep);
+    var peakIdx = idx;
+    var lo = Math.max(0, idx - 15);
+    var hi = Math.min(NUM_POINTS - 1, idx + 15);
+    for (var i = lo; i <= hi; i++) {
+      if (spectrum[i] > spectrum[peakIdx]) peakIdx = i;
+    }
+    var x = padL + (peakIdx / (NUM_POINTS - 1)) * plotW;
+    var y = padT + plotH - (spectrum[peakIdx] / maxVal) * plotH;
+
+    var glow = ctx.createRadialGradient(x, y, 0, x, y, 20);
+    glow.addColorStop(0, 'rgba(0, 255, 255, 0.6)');
+    glow.addColorStop(1, 'rgba(0, 255, 255, 0)');
+    ctx.fillStyle = glow;
+    ctx.fillRect(x - 20, y - 20, 40, 40);
+  }
+
+  // Axes
+  ctx.strokeStyle = '#444466';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(padL, padT);
+  ctx.lineTo(padL, padT + plotH);
+  ctx.lineTo(padL + plotW, padT + plotH);
+  ctx.stroke();
+
+  // X-axis labels
+  ctx.fillStyle = '#8888aa';
+  ctx.font = '12px -apple-system, sans-serif';
+  ctx.textAlign = 'center';
+  for (var g = 10; g <= 80; g += 10) {
+    var x = padL + ((g - GAMMA_MIN) / (GAMMA_MAX - GAMMA_MIN)) * plotW;
+    ctx.fillText(g.toString(), x, padT + plotH + 32);
+  }
+
+  // Y-axis label
+  ctx.save();
+  ctx.translate(16, padT + plotH / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#8888aa';
+  ctx.font = '12px -apple-system, sans-serif';
+  ctx.fillText(useFilter ? '\u03B3\u00B2 \u00B7 F(\u03B3)' : 'F(\u03B3)', 0, 0);
+  ctx.restore();
+
+  // X-axis title
+  ctx.fillStyle = '#8888aa';
+  ctx.textAlign = 'center';
+  ctx.font = '12px -apple-system, sans-serif';
+  ctx.fillText('\u03B3  (imaginary part of zeta zero)', padL + plotW / 2, h - 4);
+}
+
+// Event handlers
+slider.addEventListener('input', function() {
+  numPrimes = parseInt(this.value);
+  primeValEl.textContent = numPrimes.toLocaleString();
+  render();
+});
+
+filterBtn.addEventListener('click', function() {
+  useFilter = !useFilter;
+  this.textContent = useFilter ? 'ON' : 'OFF';
+  if (useFilter) {
+    this.classList.add('active');
+  } else {
+    this.classList.remove('active');
+  }
+  render();
+});
+
+window.addEventListener('resize', function() {
+  resizeCanvas();
+  render();
+});
+
+// Initialize
+resizeCanvas();
+render();
+</script>
+
+</body>
+</html>
