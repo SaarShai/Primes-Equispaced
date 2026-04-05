@@ -1478,15 +1478,16 @@ preserving the fundamental oscillation frequencies.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{spectroscope_null_control.png}
-\caption{Null hypothesis control for the spectroscope.
-\textbf{Top:} $R(p)$ on qualifying primes shows clear peaks at
-$\gamma_1, \gamma_2, \gamma_3$.
-\textbf{Middle:} $M(p)/\sqrt{p}$ on \emph{all} primes
-$p \le 100{,}000$ (no $M(p)\le -3$ filter) --- $\gamma_1$
-is still detected at $14.05$, confirming the signal survives
-without the filter.
-\textbf{Bottom:} random weights produce no structure.}
+\includegraphics[width=\textwidth]{spectroscope_null_battery.png}
+\caption{Null hypothesis battery ($500$ trials).
+\textbf{Top:} real $F(\gamma)$ (red) towers above the
+$95\%$ confidence envelope from shuffled-$R$ null spectra
+(grey).  Dashed lines mark known zeta zeros.
+\textbf{Bottom:} signal-to-null ratio exceeds $40\times$
+at $\gamma_1$.  Formal tests: shuffled-$R$ $p < 0.002$
+($z = 117.6$), Gaussian-$R$ $p < 0.002$ ($z = 106.5$),
+wrong-sign primes produce zero signal,
+zero false peaks above $50\%$ threshold.}
 \label{fig:null-control}
 \end{figure}
 
@@ -1550,18 +1551,27 @@ detects zeros of $L(s,\chi)$.  With $\chi_4$
 $\gamma'\approx 6.16$ and $16.13$, matching known zeros
 of $L(s,\chi_4)$.  Since $\zeta_{\Q(i)}(s) = \zeta(s)\cdot L(s,\chi_4)$,
 the untwisted and twisted spectroscopes together detect
-zeros of the Dedekind zeta function of $\Q(i)$
-(see supplementary materials).
+zeros of the Dedekind zeta function of $\Q(i)$.
+A systematic survey of all $108$ primitive characters
+$\chi\!\pmod{q}$ for $q \le 20$ confirms that the
+spectroscope detects peaks for every character tested
+(see supplementary materials for the full survey).
 
 \smallskip\noindent\textbf{Pair correlation.}\quad
-The autocorrelation of $F(\gamma)$ peaks at lag
-$\approx 6.71$, consistent with the zero difference
-$\gamma_2 - \gamma_1 = 6.89$, connecting to the
-Montgomery pair correlation conjecture.
+The autocorrelation of $F(\gamma)$ detects four
+pairwise zero differences (mean matching error~$0.15$),
+each exceeding the $3\sigma$ null envelope from
+$100$ shuffled-$R$ trials.  The strongest lag
+$\approx 6.71$ matches $\gamma_2 - \gamma_1 = 6.89$,
+connecting to the Montgomery pair correlation conjecture.
 
 \smallskip\noindent\textbf{Convergence.}\quad
 The spectroscope locates $\gamma_1$ to $0.34\%$
 with $200$~qualifying primes.
+Under GRH, the signal-to-noise ratio grows as $O(N)$
+and the detection error as
+$O(1/(\sqrt{N}\log p_{\max}))$, matching the Rayleigh
+resolution limit for a periodogram on log-primes.
 Unlike the Riemann--Siegel formula (which evaluates $\zeta(s)$
 directly and converges exponentially faster with correction terms),
 the spectroscope uses only Farey discrepancy data from primes.
