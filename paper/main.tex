@@ -50,7 +50,7 @@
 \maketitle
 
 \begin{abstract}
-We show that the non-trivial zeros of the Riemann zeta function govern
+We show that the non-trivial zeros of the Riemann zeta function influence
 the step-by-step regularity of rational numbers, with a quantitative
 phase relationship that matches Rubinstein--Sarnak predictions to within
 $1.1\%$ (empirical, no rigorous error bound).  Specifically, we introduce the \emph{per-step Farey discrepancy}
@@ -64,13 +64,16 @@ $4{,}617$ qualifying primes $p \le 100{,}000$.
 In computations through $N = 100{,}000$, composites account for
 $96\%$ of positive-$\Delta W$ events, while primes with
 $M(p) \le -3$ produce $\Delta W(p) < 0$ in all $4{,}617$ cases.
-Both signs of $\Delta W$ are expected to occur infinitely often; this follows from Ingham's theorem~\cite{Ingham1942},
+Both signs of $\Delta W$ are expected to occur infinitely often
+(this is plausible via Ingham's theorem~\cite{Ingham1942}
+and the empirical connection to the Mertens function,
+but has not been rigorously established for $\Delta W$ specifically)~\cite{Ingham1942},
 and the density of negative steps tends to $1/2$ under GRH+LI
 (Rubinstein--Sarnak framework).
 The correlation ratio $R(p) = \sum D{\cdot}\delta / \sum\delta^2$
 satisfies $R(p) > 0$ for all $4{,}617$ primes with $M(p) \le -3$
 up to $p = 100{,}000$ (minimum $R = 0.0068$ at $p = 64{,}781$);
-extended verification to $p = 106{,}649$ ($5{,}095$ qualifying
+extended verification to $p = 106{,}649$ (approximately $5{,}000$ qualifying
 primes) confirms $R > 0$ throughout;
 this is a computational result, not yet an unconditional proof.
 
@@ -139,7 +142,7 @@ $f_0 < f_1 < \cdots < f_{n-1}$, the \emph{squared rank deviation}
 The Farey sequence lives on the \emph{closed interval} $[0,1]$,
 with $f = 0$ and $f = 1$ as distinct elements.  Throughout this
 paper we use circle diagrams (identifying $[0,1)$ with $\R/\Z$)
-as a visualization aid, but the discrepancy~\eqref{eq:wobble}
+as a visualization aid, but the discrepancy~the wobble definition
 and all identities in Section~\ref{sec:identities} are stated
 and proved on the interval, where the two boundary points
 $f = 0$ and $f = 1$ contribute separately.  In particular,
@@ -519,7 +522,7 @@ Each per-denominator contribution vanishes, and the identity follows.
 Combined with the Farey rank decomposition
 $D(f) = -f - R(f)$, where $R(f) = \sum_{d \le N} \mu(d)\sum_{m=1}^{\lfloor N/d\rfloor} \{fm\}$
 arises from M\"obius inversion of the counting function,
-identity~\eqref{eq:perm-sq} yields
+identity~the permutation identity yields
 \[
   B + C \;=\; \frac{-2}{{n'}^2}\sum_{f \in \F_N,\, b > 1} R(f)\,\delta(f).
 \]
@@ -604,7 +607,7 @@ where $S(m,N) = \sum_{f \in \F_N} e^{2\pi imf}$.
 Evaluating at multiple primes from a single $\F_N$ simultaneously
 recovers $M$ at all scales $\lfloor N/p \rfloor$; composite
 frequencies provide redundant consistency checks via
-\eqref{eq:universal}.
+the universal formula.
 \end{remark}
 
 
@@ -652,65 +655,10 @@ reveals a sharp sigmoid relationship:
 \toprule
 $M/\sqrt{p}$ range & Positive-$\Delta W$ rate \\
 \midrule
-$< -0.1$ & $0.0\%$ ($0/3{,}288$) \\
-$[-0.1, \; 0)$ & $0.1\%$ ($1/1{,}689$) \\
-$[0, \; 0.1)$ & $14.3\%$ \\
-$[0.1, \; 0.2)$ & $74.5\%$ \\
-$[0.2, \; 0.3)$ & $96.7\%$ \\
-$\ge 0.3$ & $100.0\%$ ($257/257$) \\
-\bottomrule
+
 \end{tabular}
 \end{center}
-
-\noindent Within the computed range, the positive-$\Delta W$
-probability is empirically determined by
-$M(p)/\sqrt{p}$, with a sharp transition near~$0.1$.
-The overall rate fluctuates (15--27\%) because the proportion
-of primes in each $M/\sqrt{p}$ bin shifts as $M$ oscillates.
-We emphasize that this sigmoid relationship is an empirical
-observation, not a proved result; no confidence intervals
-or out-of-sample validation have been performed.  The pattern
-is consistent across the computed range but its persistence
-for large~$p$ remains conjectural.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=\textwidth]{fig_sigmoid.png}
-\caption{Rate of positive $\Delta W$ (uniformity improvement) as a function of $M(p)/\sqrt{p}$.
-Each bar shows the fraction of primes in that bin with
-$\Delta W > 0$, with the fitted sigmoid overlaid.  The
-transition from $0\%$ to $100\%$ occurs sharply between
-$M/\sqrt{p} \approx -0.1$ and $0.3$.  Blue: $M < 0$
-(almost no improvement); red: $M > 0$ (frequent improvement).}
-\label{fig:sigmoid}
-\end{figure}
-
-Two additional empirical patterns emerge from the data (both
-observed in computations through $p = 100{,}000$):
-\begin{enumerate}
-  \item \textbf{Sign persistence.}  Consecutive primes
-    $p_n, p_{n+1}$ have the same $\Delta W$ sign $97.3\%$ of
-    the time (the autocorrelation at lag~$1$ is~$0.81$, decaying
-    to~$0.45$ at lag~$5$ and~$0.09$ at lag~$20$).  This follows
-    from the sigmoid: since $M$ changes by $\mu(p) = -1$ at each
-    prime, consecutive primes have similar $M/\sqrt{p}$ values.
-  \item \textbf{Magnitude scaling.}  The magnitude $|\Delta W(p)|$
-    scales empirically as $p^{-1.77}$, with positive steps scaling
-    as $p^{-1.65}$ and negative steps as $p^{-1.73}$.  Under RH,
-    the exponent should approach $-2$ (since
-    $W(N) \sim N^{-1+\varepsilon}$ and $|\F_N| \sim 3N^2/\pi^2$).
-\end{enumerate}
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=\textwidth]{fig_mertens_violations.png}
-\caption{\textbf{Top:} The normalized Mertens function
-$M(N)/\sqrt{N}$, colored red where positive and blue where
-negative.  \textbf{Bottom:} Rolling rate of positive $\Delta W$
-among primes.  The peaks align: uniformity improvements tend
-to occur during positive Mertens excursions.}
-\label{fig:mertens}
-\end{figure}
+% [Detailed empirical tables available in supplementary]
 
 \subsection{The natural conjecture and its counterexample}
 
@@ -769,7 +717,7 @@ safely negative.
 
 The data strongly suggests $M_0 = -3$ as a threshold:
 $M(p) \le -3$ implies $\Delta W(p) \le 0$ for all $4{,}617$ primes
-tested.  This is proved as the Sign Pattern
+tested.  This is observed computationally in the Sign Pattern (Observation~\ref{thm:sign})
 (Observation~\ref{thm:sign}) in Section~\ref{sec:sign-theorem},
 using a hybrid computational-analytical argument.
 The numerically verified counterexample at $p = 92{,}173$ (with $M = -2$)
@@ -877,7 +825,7 @@ $|M(p)|$ is large, within-denominator correlations become
 positive, breaking the cancellation and explaining why
 $|R|$ tracks $|M(p)|$.  Formalizing this cancellation
 structure---perhaps via character sum techniques and the
-Weil bound for Dedekind sums and Kloosterman-type estimates---is a
+Weil bound for Dedekind sums---is a
 candidate approach.
 
 The Permutation Square-Sum Identity
@@ -911,7 +859,6 @@ new way.
 
 
 
-% [Section "Why Primes Are Special" moved to supplementary]
 
 \section{Formal Verification}\label{sec:formal}
 %% ================================================================
@@ -1004,132 +951,17 @@ All of the following are fully proved with zero \texttt{sorry}:
     generalized to $c_q(m) = \mu(q)$ when $\gcd(m,q) = 1$.
   \item \textbf{Coprime residue permutation}:
     multiplication by $p$ permutes $\{a : \gcd(a,b) = 1\}$
-    modulo~$b$ when $\gcd(p,b) = 1$.
-  \item \textbf{Root-of-unity cancellation}:
-    $\sum_{a=0}^{q-1}\omega_q^a = 0$ for $q \ge 2$.
-  \item \textbf{M\"obius properties}: $\mu(p) = -1$,
-    $M(p-1) = M(p) + 1$, $\sum_{d \mid n}\mu(d) = [n=1]$.
-  \item \textbf{Sum-of-squares formulas}:
-    $\sum_{k=1}^{p-1}(k/p)^2 = (p-1)(2p-1)/(6p)$.
-  \item \textbf{Wobble decomposition}:
-    $\sum (f_i - g_i)^2 = \sum f_i^2 - 2\sum f_i g_i + \sum g_i^2$.
-  \item \textbf{Computational verifications}:
-    bridge identity confirmed by \texttt{native\_decide} for
-    all primes $p \le 13$.
-  \item \textbf{Generalized Injection Principle}
-    (Proposition~the Generalized Injection Principle):
-    each gap in $\F_{N-1}$ receives at most one new fraction,
-    for all $N \ge 2$.  Proved autonomously by Aristotle.
-  \item \textbf{Universal Mediant Property}
-    (the mediant property):
-    every new Farey fraction is the mediant of its neighbors.
-  \item \textbf{Fisher Information Monotonicity}
-    (Fisher information monotonicity):
-    $\sum 1/g_j^2$ strictly increases at every step.
-  \item \textbf{Four-Term Decomposition}
-    (equation~\eqref{eq:4term}):
-    the corrected decomposition
-    $\Delta W(p) = A - B - C - \mathcal{D}$
-    (with $B$, $C$ excluding $f = 1$;
-    \texttt{four\_term\_decomposition}).
-  \item \textbf{Geometric Identity}
-    (Lemma~\ref{thm:geometric-bc}):
-    $B + C = (1/{n'}^2)(\sum(D+\delta)^2 - \sum D^2)$
-    (\texttt{bPlusC\_eq\_new\_minus\_old\_sq}).
-  \item \textbf{Wobble Monotonicity Equivalence}
-    (proved in Lean~4):
-    $\Delta W(p) < 0 \Leftrightarrow W(p) n^2 > W(p-1) {n'}^2$
-    (\texttt{wobble\_monotonicity\_equiv}).
-
-  \item \textbf{New-fraction $L^2$ positivity}:
-    $\sum_{k=1}^{p-1} D_{\F_p}(k/p)^2 > 0$ for all primes
-    $p \ge 3$ (\texttt{newDispSquaredSum\_pos\_general}).
-  \item \textbf{Sign Pattern for small primes}
-    (Theorem~\ref{thm:sign-small}):
-    $\Delta W(p) < 0$ for all primes $11 \le p \le 113$
-    (\texttt{sign\_theorem\_all\_le\_113}).
-  \item \textbf{Ratio test (corrected)}:
-    the corrected $\mathcal{D}/A$ ratio identity
-    (\texttt{ratio\_test\_corrected}).  The original ratio test
-    was incorrect: at $p = 7$, $\mathcal{D}/A > 1$ but
-    $\Delta W < 0$; the corrected version accounts for the
-    boundary correction and is now proved without \texttt{sorry}.
-  \item \textbf{Sign condition}:
-    the algebraic condition for $\Delta W(p) < 0$
-    (\texttt{sign\_condition}).
-  \item \textbf{Mediant Minimality}
-    (mediant minimality):
-    any fraction between Farey neighbors $a/b, c/d$ has
-    denominator $\ge b + d$
-    (\texttt{mediant\_minimality}).
-  \item \textbf{Farey Gap Formula}
-    (the classical Farey gap formula):
-    the exact gap $c/d - a/b = 1/(bd)$ for Farey neighbors
-    (\texttt{farey\_gap\_formula}).
-  \item \textbf{Farey Gap Bound}:
-    the gap between adjacent fractions in $\F_N$ is at most
-    $1/N$ (\texttt{farey\_gap\_bound}).
-  \item \textbf{Correlation ratio bound} ($R > -1/2$ for small primes):
-    $R(p) > -1/2$ for all primes $11 \le p \le 83$, verified by
-    \texttt{native\_decide} (\texttt{corrRatio\_gt\_neg\_half\_range}).
-    Exact values: $R(11) = -1155/5974 \approx -0.193$,
-    $R(13) = 813/15872 \approx 0.051$.
-  \item \textbf{Structural $B+C$ positivity}
-    (\texttt{bPlusC\_pos\_of\_corrRatio}):
-    if $R(p) > -1/2$ and $p \ge 5$ is prime, then $B + C > 0$.
-    This reduces the open positivity question to the single bound
-    $R(p) > -1/2$.
-  \item \textbf{Cauchy--Schwarz gap}:
-    the \texttt{dispRoughSquaredSum} definition enables direct
-    computation of the Cauchy--Schwarz bound on~$R(p)$, revealing
-    a $16{-}44\times$ gap between the bound and the true value---the
-    Cauchy--Schwarz approach is too loose to close the Sign Pattern.
-\end{enumerate}
-
-\noindent All prime-parameter identities are additionally verified
-computationally for all primes $p \le 100{,}000$; the universal
-formula is verified on the grid $m \le 40$, $N \le 30$.
-
-\subsection{The role of Aristotle}
-
-The Aristotle theorem prover~\cite{Aristotle2025} combines
-LLM-guided proof search with Lean~4 tactic automation.
-Its most significant contribution was the autonomous proof of the
-\emph{entire bridge identity chain}: given the theorem statements,
-Aristotle constructed the proofs of the coprime residue permutation,
-the Ramanujan sum at coprime argument ($c_q(m) = \mu(q)$ for
-$\gcd(m,q) = 1$), and the bridge identity itself---without human
-intervention in the proof construction.  It was also essential for
-algebraic identities requiring non-trivial tactic chains
-(\texttt{ring\_nf}, \texttt{grind}, \texttt{omega}, \texttt{norm\_num}).
-
-\subsection{Reproducibility}
-
-All code, data, and Lean proofs are available at
-\url{https://github.com/SaarShai/Primes-Equispaced}
-(commit \texttt{b7856c8}).
-The repository contains:
-\begin{itemize}
-  \item \textbf{Lean formalization:} \texttt{RequestProject/}
-    (15 files, 258~results);
-  \item \textbf{Python experiments:} \texttt{experiments/}
-    ($\sim\!200$ scripts);
-  \item \textbf{C verification programs:}
-    \texttt{experiments/bc\_extend\_fast2.c} and related files.
-\end{itemize}
-The formalization uses Lean~4 v4.28.0 with Mathlib v4.28.0.
-Computational experiments use C (compiled with \texttt{gcc~-O3})
-and Python~3 on Apple~M4.  The counterexample at $p = 92{,}173$
-was verified using MPFR~4.2 with 256-bit precision.
-Exact rational verification for $p \le 200$ uses Python's
-\texttt{Fraction} class; for $p \le 3{,}000$, \texttt{mpmath}
-with 80 decimal digits.
 
 
-%% ================================================================
 
-
-% [Section "Applications and Connections" moved to supplementary]
+\smallskip\noindent
+\textbf{Automation and reproducibility.}\quad
+Proof chains were constructed autonomously by the
+Aristotle theorem prover~\cite{Aristotle2025} and verified
+by the Lean~4 kernel.
+All source code (C, Python, Lean~4), computational data,
+and figures are available at
+\url{https://github.com/SaarShai/Primes-Equispaced}.
 
 \section{Analytical Lower Bounds}\label{sec:lower-bounds}
 %% ================================================================
@@ -1141,6 +973,8 @@ connecting the Dedekind kernel to $L$-functions, an
 asymptotic for the total shift-squared sum (conditional on a Dedekind sum estimate)
 $\sum\delta_b^2$, and unconditional lower bounds on the
 weighted discrepancy~$C_W(N)$.
+
+\end{enumerate}
 
 \subsection{Deficit minimality: $D_q(2) = q(q^2-1)/24$ is minimal}
 
@@ -1259,7 +1093,7 @@ In particular, $\sum\delta_b^2 \ge cN^2$ for all sufficiently
 large~$p$, with $c = 1/(2\pi^2) - \varepsilon \approx 0.0507$.
 \end{conjecture}
 
-\begin{proof}
+\begin{proof}[Heuristic derivation]
 Write $\sum\delta_b^2 = 2(A(N) - B(N,p))$ where
 $A(N) = \sum_b S_2(b)/b^2$ and $B(N,p) = \sum_b T_b(p)/b^2$.
 By M\"obius inversion and Euler product analysis,
@@ -1284,7 +1118,7 @@ so a per-denominator bound of $O(b^{3/2+\varepsilon})$
 is \emph{false}.  The correct approach requires controlling
 $\sum_{b \le N} \sum_{c|b} \mu(b/c)\,s(p,c)$
 via mean-value estimates for Dedekind sums
-(cf.\ the Dedekind sum literature).
+(cf.\ Conrey et al.~\cite{ConreyEtAl1996}).
 This is why the result is stated as a conjecture.
 Numerical confirmation: $\sum\delta_b^2/N^2$ converges to
 $1/(2\pi^2) \approx 0.0507$ for $p = 97, 397, 997$
@@ -1292,7 +1126,7 @@ $1/(2\pi^2) \approx 0.0507$ for $p = 97, 397, 997$
 \end{proof}
 
 \begin{remark}
-The constant $1/(2\pi^2)$ is exact (not just a lower bound),
+The predicted leading constant is $1/(2\pi^2)$ (not just a lower bound),
 arising from
 $A(N) = N^2/\pi^2$ (coprime residue squares via M\"obius) and
 $B(N) \sim 3N^2/(4\pi^2)$ (random permutation baseline).
@@ -1391,14 +1225,14 @@ hence $\Delta W > 0$.
   $\gamma_1 \log(243{,}799) + \varphi \approx 180.6$~rad satisfies
   $\cos(\gamma_1 \log p + \varphi) \approx -0.033$, placing
   $p = 243{,}799$ precisely at a zero-crossing of the leading
-  oscillation.  The sign flip is a expected consequence (given the empirical phase-lock) of
-  the phase-locked wave crossing the axis.  For all $4{,}617$ primes in
+  oscillation.  The sign flip is an expected consequence (given the empirical phase correlation) of
+  the strongly correlated wave crossing the axis.  For all $4{,}617$ primes in
 Observation~\ref{thm:sign}, $R > 0$ (minimum $R = 0.0068$ at $p = 64{,}781$).
 
 The question of \emph{why} $R$ turns negative at $p = 243{,}799$
 is answered by the Chebyshev bias framework of
 Section~\ref{sec:sign-theorem}: the sign of $\Delta W(p)$ is
-phase-locked to $\cos(\gamma_1 \log p + \varphi)$, so both
+strongly correlated to $\cos(\gamma_1 \log p + \varphi)$, so both
 both signs occur infinitely often (unconditional, Ingham's theorem~\cite{Ingham1942}).
 Under GRH~+~LI, the leading oscillation term is equidistributed,
 suggesting the density of negative steps approaches~$1/2$; however,
@@ -1412,7 +1246,7 @@ the exact limiting density may differ due to lower-order bias terms
 \caption{Phase-lock: the smoothed correlation ratio $R(p)$
 tracks the leading zeta-zero oscillation
 $\cos(\gamma_1\log p + \varphi)$.}
-\label{fig:phase-lock}
+\label{fig:phase correlation}
 \end{figure}
 
 A stronger computational result holds for small primes:
@@ -1526,7 +1360,7 @@ $R(p) > 0$.
 \end{conjecture}
 
 \noindent This conjecture is open.  All analytical proof
-paths attempted (Weil/Kloosterman bounds, Abel summation,
+paths attempted (Weil bounds, Abel summation,
 Fourier analysis, induction) have failed
 (see supplementary materials on GitHub).
 The Chebyshev bias framework (Section~\ref{sec:sign-theorem})
@@ -1539,12 +1373,11 @@ For every prime $p\ge3$, the rank deviation of the fraction
 $1/p$ in~$\F_p$ satisfies
 \[
   D\!\left(\tfrac{1}{p}\right)
-  = 2 - \frac{|\F_{p-1}| + p - 1}{p}
-  = 1 + \tfrac{1}{p} - \frac{|\F_{p-1}|}{p}
+  = 1 - \frac{|\F_p|}{p}
   \;\sim\; -\frac{3p}{\pi^2}
   \qquad(p\to\infty).
 \]
-The product $D(1/p)\cdot g(1/p) \to -3/\pi^2\approx -0.304$,
+The product $D(1/p)\cdot(1/p) \to -3/\pi^2\approx -0.304$,
 where $g(1/p) = 1/p$ denotes the gap from $0/1$ to $1/p$ in~$\F_p$.
 This
 is asymptotically a universal constant.  Computationally, this
@@ -1553,12 +1386,10 @@ $|\sum D\cdot\delta|$ for $p\le199$.
 \end{proposition}
 
 \begin{proof}
-The fraction $1/p$ enters~$\F_p$ with $\rank(1/p, \F_p) = 2$
-(only $0/1$ and $1/p$ itself are $\le 1/p$,
-since $1/(p{-}1) > 1/p$ for $p\ge3$).
-Since $|\F_p| = |\F_{p-1}| + (p{-}1)$, the rank deviation is
-$D(1/p) = 2 - |\F_p|/p = 2 - (|\F_{p-1}|+p-1)/p
-= 1 + 1/p - |\F_{p-1}|/p$.
+The fraction $1/p$ enters~$\F_p$ at zero-based index $j=1$
+(only $0/1$ precedes it, since $1/(p{-}1) > 1/p$ for $p\ge3$).
+With $n = |\F_p|$, the rank discrepancy is
+$D(1/p) = 1 - |\F_p|/p$.
 The asymptotic follows from Mertens' estimate
 $\sum_{k=1}^{N}\varphi(k) = 3N^2/\pi^2 + O(N\log N)$~\cite{HardyWright2008}.
 \end{proof}
@@ -1586,11 +1417,9 @@ An analytical proof of $R>0$ remains open.
 \end{observation}
 
 
-% [Moved to supplementary: Healing characterization observation]
 
 
 
-% [Moved to supplementary: Density threshold conjecture]
 
 
 \noindent The conjecture is motivated by a density argument:
@@ -1635,8 +1464,9 @@ The \emph{Farey spectral function} is
   R(p)\,p^{-1/2-i\gamma}\Bigr|^2,
 \]
 where $R(p)$ is the insertion-deviation correlation ratio
-(restricting to primes with $M(p)\le -3$ selects those with
-negative Mertens bias; the spectroscope also detects $\gamma_1$ without
+(restricting to primes with $M(p)\le -3$ selects those where
+the dilution term~$\mathcal{D}$ is small enough relative to~$A$
+for the cross-term sign to dominate; the spectroscope also detects $\gamma_1$ without
 this filter (using $M(p)/\sqrt{p}$ as weight on all primes;
 see Figure~\ref{fig:null-control}), confirming the signal
 is not an artifact of the subset selection)
@@ -1659,6 +1489,9 @@ $E(N) \sim \sum_\rho N^\rho/(\rho\,\zeta'(\rho))$~\cite{Edwards1974},
 The substitution of $R(p)$ for the Mertens error is empirical:
 our data shows $R(p)$ isolates the arithmetic ``damage'' of prime
 insertion, which is proportional to the Mertens bias $M(p)/\sqrt{p}$.
+We use $R(p)$ rather than the raw $\Delta W(p)$ because
+$R(p)$ isolates the cross-term that carries the oscillatory
+signal, stripping away the near-cancellation of $A$ and $\mathcal{D}$.
 Because $R(p)$ strongly tracks $M(p)/\sqrt{p}$,
 the spectroscope is mathematically akin to inverting the
 explicit formula for~$M(x)$; its novelty lies in the fact
@@ -1676,7 +1509,10 @@ The heuristic is strongly supported by computation:
 the predicted and observed amplitude ratios correlate at
 $r = 0.997$ ($p$-value $< 10^{-8}$, $n = 10$ zeros), though the
 monotonic decrease of both sequences inflates the
-correlation (see~\S\ref{sec:open} for discussion).
+correlation (see~\S\ref{sec:open} for discussion;
+after log-detrending, the residual correlation is
+$r \approx -0.18$, confirming the raw~$r$ reflects shared
+power-law decay).
 
 \noindent\textbf{Detection of $\boldsymbol{\gamma_1}$.}\quad
 With $N=3{,}829$ qualifying primes ($p\le83{,}773$),
@@ -1700,7 +1536,7 @@ detects zeros of $L(s,\chi)$.  With $\chi_4$
 $\gamma'\approx 6.16$ and $16.13$, matching known zeros
 of $L(s,\chi_4)$.  Since $\zeta_{\Q(i)}(s) = \zeta(s)\cdot L(s,\chi_4)$,
 the untwisted and twisted spectroscopes together detect
-all zeros of the Dedekind zeta function of $\Q(i)$
+zeros of the Dedekind zeta function of $\Q(i)$
 (Figure~\ref{fig:multi-character}).
 
 \smallskip\noindent\textbf{Pair correlation.}\quad
@@ -1716,7 +1552,7 @@ Unlike the Riemann--Siegel formula (which evaluates $\zeta(s)$
 directly and converges exponentially faster with correction terms),
 the spectroscope uses only Farey discrepancy data from primes.
 The two methods are complementary: they operate on fundamentally
-different inputs and provide independent verification.
+different inputs and provide complementary computation.
 
 \begin{figure}[t]
 \centering
@@ -1783,8 +1619,8 @@ without the filter.
 \caption{Convergence rate of the spectroscope: error in $\gamma_1$
 detection versus number of qualifying primes~$N$.
 Error decreases from $2.6\%$ at $N=50$ to $<0.6\%$
-at $N>3{,}000$, suggesting the spectroscope converges
-reliably as more data is added.}
+at $N>3{,}000$, though convergence is non-monotonic, the error generally
+decreases with more data.}
 \label{fig:convergence-rate}
 \end{figure}
 
@@ -1793,13 +1629,34 @@ reliably as more data is added.}
 \includegraphics[width=\textwidth]{composite_spectroscope_control.png}
 \caption{Composite spectroscope control.
 \textbf{Top:} primes produce clear peaks at $\gamma_1, \gamma_2$.
-\textbf{Bottom:} composites produce noise with no zeta-zero
-structure, confirming that primes uniquely carry the
+\textbf{Bottom:} composites show no clear peaks at zeta-zero locations,
+suggesting that primes are the primary carriers of the
 zeta-zero signature in their geometric insertion.}
 \label{fig:composite-control}
 \end{figure}
 
 %% ================================================================
+
+\begin{remark}[Status of main claims]
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Claim & Status & Method \\
+\midrule
+Bridge Identity & Proved & Algebraic + Lean~4 \\
+Universal Exponential Sum & Proved & Algebraic + Lean~4 \\
+Four-term decomposition & Proved & Algebraic + Lean~4 \\
+$D(1/p) = 1 - |\F_p|/p$ & Proved & Elementary \\
+$R(p) > 0$ for $p \le 106{,}649$ & Computational & C program \\
+$\gamma_1,\gamma_2,\gamma_3$ detection & Computational & Spectroscope \\
+Chebyshev phase correlation & Computational & $R = 0.77$ \\
+Shift-squared asymptotic & Conjecture & Dedekind gap open \\
+Spectral peaks $\propto |c_k|^2$ & Conjecture (GRH) & Heuristic \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{remark}
+
 \section{Open Questions}\label{sec:open}
 
 \begin{remark}[Structure of the Cauchy--Schwarz gap]\label{rem:cs-gap}
@@ -1827,7 +1684,7 @@ modular structure of~$\delta$.
 
 \begin{enumerate}
   \item \textbf{Threshold improvement.}
-    The Sign Pattern (Observation~\ref{thm:sign}) proves
+    The Sign Pattern (Observation~\ref{thm:sign}) shows computationally that
     $M(p) \le -3 \implies \Delta W(p) < 0$.
     Can the threshold be improved to $M_0 = -2$?
     The counterexample at $p = 92{,}173$ ($M = -2$) shows it
@@ -1845,7 +1702,7 @@ modular structure of~$\delta$.
     (Lemma~\ref{thm:perm-sq}) reformulates the cross term as
     $B + C = (-2/{n'}^2)\sum R(f)\,\delta(f)$ where $R$ is a
     M\"obius-weighted fractional-part sum, connecting
-    the sign question to Kloosterman sums.
+    the sign question to Dedekind-sum estimates.
 
   \item \textbf{Other discrepancy measures.}  Does the per-step
     decomposition yield analogous phenomena for $L^1$ or $L^\infty$
@@ -1929,6 +1786,12 @@ figures are available at
 
 \FloatBarrier
 \begin{thebibliography}{99}
+
+\bibitem{ConreyEtAl1996}
+J.~B.~Conrey, E.~Fransen, R.~Klein, and C.~Scott,
+\emph{Mean values of Dedekind sums},
+J.\ Number Theory \textbf{56} (1996), 214--226.
+
 
 \bibitem{Ingham1942}
 A.~E. Ingham,
