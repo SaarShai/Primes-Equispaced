@@ -1,5 +1,5 @@
 # MASTER TABLE — All Active Work & Explorations
-Last updated: 2026-03-30 (session 8 FINAL — SIGN THEOREM PROVED + new directions launched)
+Last updated: 2026-04-04 (Session 10+ — SIGN THEOREM DISPROVED at p=243,799; Chebyshev bias framework; B+C not universally true)
 
 ## NEW DIRECTIONS (session 8 end)
 
@@ -8,13 +8,13 @@ Last updated: 2026-03-30 (session 8 FINAL — SIGN THEOREM PROVED + new directio
 | ID | Task | Phase | Priority | Strength | Target | Status |
 |----|------|-------|----------|----------|--------|--------|
 | MPR-24 | **Prove composites heal (ΔW > 0)** | 🧪 | **HIGH** | 🟩 | Complete primes-damage/composites-heal | 95.4% verified; powers-of-2 always; zero-map mechanism found |
-| MPR-33 | **Triangular distribution of δ** | 🔬 | **HIGH** | 🟩 | S_{2k}/p² → 3/(π²(2k+1)(k+1)) | Discovered! Needs proof + add to paper |
+| MPR-33 | **Triangular distribution of δ** | 📊 | **HIGH** | 🟩 | S_{2k}/p² → 3/(π²(2k+1)(k+1)). PARTIAL PROOF (35b, session 10): normalized gap x=p²δ ~ Triangular(2(1-x)) on [0,1]; moments match; coprime density 6/π² gives prefactor. | Rigorous: need Möbius sum Σ(bb')^{-2k} over coprime pairs b,b'≤p via Dirichlet series. Then add to paper. |
 | MPR-27 | **Explicit formula: zeros ↔ ΔW(p)** | 🔬 | **HIGH** | 🟩 | ΔW = diagonal + oscillation + M(p) coupling | Derived formally, needs rigorous verification |
 | MPR-25 | **Farey telescope / pair correlation** | 🔬 | **HIGH** | 🟩 | Mellin poles at γ-γ' → Montgomery conjecture | New connection to pair correlation! |
 | MPR-34 | **Test prediction: FT of ΔW shows zero pairs** | 🔬 | **HIGH** | 🟩 | Fourier transform of ΔW(p) shows γ_k - γ_l peaks | Testable prediction from explicit formula |
 | MPR-35 | **Density theorem: ΔW < 0 for almost all primes** | 🔬 | **HIGH** | 🟨 | Rubinstein-Sarnak / Chebyshev bias connection | M(p)≤-3 threshold is sharp; pursue density |
 | MPR-36 | **Primes-are-random beyond L²** | 🔬 | MEDIUM | 🟨 | Test random model for L⁴, L⁶, other measurements | Does it extend beyond our specific measurement? |
-| MPR-37 | **Goldbach Δr per-step analysis** | 🔬 | MEDIUM | 🟨 | Apply increment strategy to Goldbach | Most promising application of per-step method |
+| MPR-37 | **Goldbach Δr per-step analysis** | 🔬 | **HIGH** | 🟩 | Δr(n)=G(n)-L(n)+B(n) three-term decomp (analogous to four-term). Damage/heal dichotomy: 1/(p-2) per prime. 97% variance from singular series. **Novel:** per-prime decomp of Δr is new packaging of Hardy-Littlewood. | Compute Δr for n≤10K, verify three-term decomp, write up. Most promising application of per-step method. |
 | MPR-28 | Remove M(p) ≤ -3 restriction | 📊 | LOW | ✅ | SETTLED: -3 is optimal, -2 has counterexample | Proved sharp; pursue density theorem instead |
 | MPR-23 | Extend spectral formula to L(1/2,χ) | 🔬 | MEDIUM | 🟨 | Connect to RH critical strip | ζ(1) pole blocks; Nyman-Beurling/Matérn workarounds |
 | MPR-26 | Higher moments L⁴, L⁶ | 🧪 | MEDIUM | 🟩 | Triangular distribution predicts all moments | Subsumed by MPR-33 |
@@ -23,6 +23,17 @@ Last updated: 2026-03-30 (session 8 FINAL — SIGN THEOREM PROVED + new directio
 | MPR-30 | Generalize to number fields | 🔬 | LOW | ⬜ | Dedekind zeta analogues | Speculative |
 | MPR-31 | Quantum chaos / modular surface | 🔬 | LOW | ⬜ | Farey → quantum unique ergodicity | Speculative |
 | MPR-32 | New zero-free regions via Farey geometry | 🔬 | LOW | ⬜ | Geometric approach to RH | Long-shot |
+| MPR-39 | **Extend R computation to 10^7** | 🧪 | HIGH | 🟨 | Need O(p log p) algo via Möbius inversion; O(p²) infeasible beyond p~50K | Key: rank(k/p, F_{p-1}) via Möbius; δ=(a-pa mod b)/b |
+| MPR-40 | **Chebyshev Bias Framework (CENTRAL RESULT)** | 🔬 | **HIGHEST** | 🟩 | sgn(ΔW(p)) phase-locked to −sgn(cos(γ₁·log(p)+φ)), R_corr=0.77. φ=4.590 rad theoretical. GRH-conditional theorem formalized. Density→1/2 (Rubinstein-Sarnak). | (1) Formalize GRH-conditional Perron theorem. (2) Extend to γ₂,γ₃ contributions. (3) Prove density result with explicit error term. Target: Math. Comp. |
+| MPR-41 | **Complex Farey / Gaussian rationals ℤ[i] (MAJOR)** | 🔬 | **HIGH** | 🟩 | Farey sequences over Gaussian integers. Ford spheres in ℍ³ (radius 1/(2\|β\|⁴)). PSL(2,ℤ[i]) = Picard group tessellates ℍ³. Dedekind ζ_{ℚ(i)}(s) replaces ζ(s). First zero γ'₁≈9.2237. Phase-lock prediction: sgn(ΔW_ℂ(π))~cos(γ'₁·log(\|π\|²)+φ'). 2D discrepancy (no total order — use rectangles/discs). Refs: Elstrodt-Grunewald-Mennicke, Haynes-Marklof. | See sub-tasks MPR-41a through MPR-41d. Paper: Future Directions section. |
+| MPR-41a | Enumerate Gaussian rationals \|β\|²≤50, visualize | 🧪 | HIGH | 🟨 | Sub-task of MPR-41: enumerate α/β with α,β∈ℤ[i], gcd=1, \|β\|²≤50. Plot positions in ℂ. | Python computation, delegate to local model |
+| MPR-41b | Compute 2D discrepancy at Gaussian prime norms | 🧪 | HIGH | 🟨 | Sub-task: define ΔW_ℂ(π) for Gaussian primes π. Track discrepancy change at each norm step. | After MPR-41a |
+| MPR-41c | Test phase prediction with γ'₁≈9.2237 | 🧪 | HIGH | 🟨 | Sub-task: compute cos(γ'₁·log(\|π\|²)+φ') for Gaussian primes, compare to sgn(ΔW_ℂ). | After MPR-41b — this is the key test |
+| MPR-41d | Literature: Elstrodt-Grunewald-Mennicke + Haynes-Marklof | 🔬 | MEDIUM | 🟨 | Check "Groups Acting on Hyperbolic Space" (Springer 1998) + Haynes-Marklof higher-dim Farey. | Web search + arXiv |
+| MPR-42 | **Harmonic sequences / Franel-Landau kernel** | 🔬 | MEDIUM | 🟨 | Franel-Landau: RH ⟺ Σ\|f_j - j/\|F_N\|\| = O(N^{1/2+ε}). Connection runs through Mertens-weighted harmonic series ΣM(k)/k. The 1/k kernel is Mellin transform connecting Farey discrepancy to 1/ζ(s). ΔW differentiates this. | Compute Σ φ(q)/q² × (avg displacement of fractions with denom q). Check if harmonically-weighted displacement is cleaner than raw ΔW. |
+| MPR-43 | **Mersenne primes phase prediction** | 🧪 | MEDIUM | 🟨 | For M_p=2^p-1: log(M_p)≈p·log(2), so phase=γ₁·p·log(2)+φ. Since γ₁·log(2)≈9.798 is irrational, phases should equidistribute (Weyl). Predict: ~half ΔW>0, half ΔW<0, with specific signs from formula. | Compute ΔW(p) for p=3,7,31,127,8191,131071. Check R(8191) in p≤100K dataset. Footnote in paper if confirmed. |
+| MPR-44 | **Quantum ergodicity / horocycle interpretation** | 🔬 | **HIGH** | 🟩 | Farey fractions parameterize horocycle points on PSL(2,ℤ)\ℍ (Marklof). ΔW(p) = discrepancy change as horocycle descends from height 1/(p-1) to 1/p. Zeta-zero control says RATE of horocycle equidistribution oscillates at Laplacian eigenvalue frequencies. Chebyshev bias = γ₁ spectral dominance = lowest mode dominance (quantum chaos analogy). Selberg trace formula connects geometric side to spectral side. | Formalize the chain: ΔW → horocycle equidist. rate → spectral theory → zeta zeros. Key paper sentence: "γ₁ dominance reflects lowest spectral mode dominance." |
+| MPR-45 | **L-functions / twisted Perron integral** | 🔬 | MEDIUM | 🟨 | T_χ(N) + M_χ(N) = ∫ N^s · L(s+1,χ)/(s·L(s,χ)) ds — twisted Perron integral for Dirichlet characters. Lean/Mathlib L-function infrastructure limited. Aristotle better for algebraic identities (Σδ=0, B'/C'=α+ρ) than analytic NT. | Formalize algebraic identities via Aristotle; analytic content stays in paper only. |
 
 ## Legend
 - **Tags:** MPR=Math Paper Research, 3BP=Three-Body Problem, 3DGS=3D Gaussian Splatting, AMR=Adaptive Mesh Refinement, DEF=Defense/DARPA, IOT=IoT/Wireless, PHYS=Physics, ML=Machine Learning, MESH=Mesh Generation, PUB=Publication
@@ -35,10 +46,10 @@ Last updated: 2026-03-30 (session 8 FINAL — SIGN THEOREM PROVED + new directio
 
 | ID | Task | Phase | Strength | Discovery | Key Result | Next Step |
 |----|------|-------|----------|-----------|------------|-----------|
-| MPR-1 | B+C computation to p=100K | 🧪 | 🟩 | N1,N2 | 2,722 primes verified (p≤50K), 0 violations | Resume from p=56K (tonight Q3) |
-| MPR-2 | B+C analytical proof (δ² bound) | 🔬 | 🟩 | N2,N5,N6 | Path C: δ²≥N²/(12logN) closes proof at P₀~10⁵ | Prove δ² with all denominators (Q9) |
-| MPR-3 | B+C ratio test approach | 🔬 | 🟩 | N2,N6 | Only need B+C > O(p/logp), not > 0 | Combine with MPR-2 |
-| MPR-4 | Unconditional Sign Theorem | 🔬 | 🟢 | N2,N4,N11,N12 | **Session 8 progress:** (1) Permutation identity Σxδ=C/2 proved+verified. (2) B+C<0 at p=1399 (M=+8) — Sign Thm only for M≤-3. (3) El Marraki 1995: \|M(x)\|≤0.644x/logx effective. (4) C'>deficit+1 verified for all M≤-3 primes. (5) Proof sketch: bypass C+D>A+1 closes with C'~p², deficit~p²/logp. | Formalize constants: prove C'≥c₁p² and deficit≤c₂p²/logp explicitly |
+| MPR-1 | R(p)>0 computation extended | 📊 | 🟩 | N1,N2 | 4,617 qualifying primes p≤100K: ΔW<0 for all. B+C<0 at p=243,799 (R=-3.052). Real conjecture: R(p)>0 (min R=+0.1199 at p=13). | Extend via Möbius O(p log p) to p=10^7 (MPR-39) |
+| MPR-2 | B+C analytical proof (δ² bound) | ⬛ | ⬛ | N2,N5,N6 | DEAD: B+C is NOT universally >0. p=243,799 is a counterexample (R=-3.052). All 8 proof paths killed (DEAD-16 to DEAD-23). | DEAD — see MPR-40 for replacement |
+| MPR-3 | B+C ratio test approach | ⬛ | ⬛ | N2,N6 | DEAD: B+C>0 is false universally. R>0 is the correct conjecture, but ratio test approach is moot. | DEAD — see MPR-40 |
+| MPR-4 | Unconditional Sign Theorem | ⬛ | ⬛ | N2,N4,N11,N12 | **DISPROVED** at p=243,799. R(243,799)=-3.052 → B+C<0 → ΔW>0. Computational result: ΔW<0 for 4,617 qualifying primes p≤100K. True result: density→1/2 under GRH+LI (Rubinstein-Sarnak). Phase-lock to γ₁·log(p) is the real structure (Chebyshev bias). | DEAD — see MPR-40 (Chebyshev framework) |
 | MPR-21 | Permutation Square-Sum Identity | 📊 | 🟢 | N11 | **NEW:** Σx·δ = C/2 exactly. Proved via permutation argument. Verified independently (adversarial agent). Holds for all N < p. | Formalize in Lean; add to paper |
 | MPR-22 | B+C = -2ΣR·δ Reformulation | 🔬 | 🟩 | N11,N12 | **NEW:** Combined with D=-x-R(x), gives B+C=-2ΣR·δ. T(m) connects to Kloosterman sums. Möbius structure matches M(p)↔ΔW(p). | Kloosterman bounds → proof for large p |
 | MPR-5 | Aristotle Lean proofs | 📊 | 🟢 | N1,I2,I3 | 260 results, 4 sorry. PROVED: Sign Thm (p=11..113), four-term decomp, geometric identity, wobble mono equiv, newDispSquaredSum_pos, corrRatio_gt_neg_half (p=11..83), bPlusC_pos_of_corrRatio (structural), R(11)=-1155/5974, R(13)=813/15872, dispRoughSquaredSum (Cauchy-Schwarz 44x too loose) | Close remaining 4 sorry |
@@ -49,8 +60,8 @@ Last updated: 2026-03-30 (session 8 FINAL — SIGN THEOREM PROVED + new directio
 | MPR-10 | I_k/J_k/Log-Sum monotone functionals | 📊 | 🟩 | I3 | 3 complete theorems with proofs | Add to paper |
 | MPR-11 | Grand Identity (weighted Farey sums) | 📊 | 🟩 | N5 | Generalizes bridge identity to arbitrary arithmetic weights | Add to paper |
 | MPR-12 | Farey antisymmetry identity | 📊 | 🟩 | N1 | D(f)+D(σ(f))=0 for standard normalization | In paper (fix sign from -1 to 0) |
-| MPR-13 | Rayleigh quotient approach (proof) | 🔬 | 🟩 | N5,N6 | Ranked #1 most promising proof approach | Pursue for B+C analytical proof |
-| MPR-14 | Schur convexity/majorization approach | 🔬 | 🟨 | N5 | Ranked #2 proof approach | Alternative if Rayleigh fails |
+| MPR-13 | Rayleigh quotient approach (proof) | ⬛ | ⬛ | N5,N6 | DEAD: proof target (B+C>0 universally) is false. No universal lower bound exists. | DEAD |
+| MPR-14 | Schur convexity/majorization approach | ⬛ | ⬛ | N5 | DEAD: same as MPR-13 — proof target is false. | DEAD |
 | MPR-15 | Explicit formula proof path | 🔬 | 🟨 | N2 | Uses zeros of L-functions directly | RH-conditional path |
 | MPR-16 | C/A increasing trend (~p^0.016) | 📊 | 🟩 | N5,N6 | Critical for proof strategy — C dominates A for large p | Prove analytically |
 | MPR-17 | \|ΔW\| ~ p^{-1.77} scaling law | 📊 | 🟩 | Precise power law for per-step discrepancy change | Add to paper |
@@ -90,14 +101,7 @@ Last updated: 2026-03-30 (session 8 FINAL — SIGN THEOREM PROVED + new directio
 | 3DGS-2 | 2D demo (fair baseline) | 📊 | 🟨 | I2 | +0.44 dB at 6K steps, interval=200 | Informative but not publishable |
 | 3DGS-3 | 3D synthetic demo | 📊 | 🟨 | I2 | +1.07 dB (tight budget), -4.39 dB (generous) | Farey wins only at tight budget |
 | 3DGS-4 | Stability/robustness angle | 📊 | 🟨 | I2 | Farey ±3.36 vs ADC ±6.66 at pct70 | Real 3DGS needed to confirm |
-| 3DGS-5 | Real pipeline Phase 1 | 🧪 | 🟩 | I2 | 13 files written, MipNeRF360 downloaded | Verify imports + train (tonight Q2) |
-| 3DGS-6 | Real pipeline Phase 2 | ⏳ | 🟩 | I2 | Farey vs ADC on bicycle scene | After Q2 passes (Q5) |
-| 3DGS-7 | Full benchmark (9 scenes) | ⏳ | 🟩 | I2 | Publication-quality comparison | After Q5 (Q12) |
-| 3DGS-8 | 3DGS paper | ⏳ | 🟨 | I2 | Outline exists | After real results (depends on Q5-Q7) |
-| 3DGS-9 | Scaffold-GS integration | ⏳ | 🟩 | I2 | Bridge mapped: gap→voxel, mediant→anchor | After Phase 2 validates |
-| 3DGS-10 | SOTA comparison (8 methods) | 🧪 | 🟩 | I2 | Farey wins compactness (274 Gaussians vs thousands). 8 methods tested. | Add to paper |
-| 3DGS-11 | Real images test | 📊 | ⬛ | I2 | No compactness advantage on real images | DEAD |
-| 3DGS-12 | 3DGS Colab definitive test | 🧪 | 🟨 | I2 | Running definitive test on Colab | Await results |
+| 3DGS-1–12 | **ALL 3DGS DENSIFICATION** | ⬛ | ⬛ | I2 | DEAD — User decision 2026-04-04. 1D demo was unfair (33x on crippled baseline). Real images showed no compactness advantage. 3D synthetic: wins only at tight budget. Not pursuing further. | DEAD |
 
 ## D. ADAPTIVE MESH REFINEMENT (AMR)
 
@@ -106,19 +110,21 @@ Last updated: 2026-03-30 (session 8 FINAL — SIGN THEOREM PROVED + new directio
 | AMR-1 | Zero-cascading proof | 📊 | 🟢 | N10,I2 | Proved via injection principle, Lean verified | In paper ✓ |
 | AMR-2 | Synthetic 2D validation | 📊 | 🟩 | N10 | 6x fewer cells (toy scene) | ✓ |
 | AMR-3 | Real-data validation | 📊 | 🟩 | N10,I4 | Shocks: 7-15x win. Smooth: 1.2-3.4x loss | ✓ |
-| AMR-4 | Extended shock benchmark | 🧪 | 🟩 | N10,I4 | Failed last night (timeout bug). 5 more shock types | Fix + run tonight (Q1) |
-| AMR-5 | AMR paper | 📝 | 🟩 | N10,I4 | Outline exists. Honest: specialist tool for shocks | Write after Q1 (Q6) |
+| AMR-4 | Extended shock benchmark | 🧪 | 🟩 | N10,I4 | Failed last night (timeout bug). 5 more shock types | Fix + run |
+| AMR-5 | AMR paper | 📝 | 🟩 | N10,I4 | Outline exists. Honest: specialist tool for shocks | Write after AMR-4 |
 | AMR-6 | Compute savings estimate | 📊 | 🟨 | N10 | $300M-600M/yr for shock-dominated CFD | Honest: not universal savings |
 | AMR-7 | 3D Farey AMR | 📊 | ⬜ | N10 | Tensor product LOSES in 3D (octree cascading only 4-8%) | Needs non-tensor approach |
+| AMR-8 | **Engineering simplification: crack-free mesh hierarchy** | 🔬 | **HIGH** | 🟩 | Farey neighbor |ad-bc|=1 guarantees topological compat between LOD levels. Eliminates T-junction problem (12-25% extra triangles for skirts). Planetary terrain (Cesium/Google Earth) spans 6+ orders of magnitude — stitching is extremely painful. | Explore: (1) terrain LOD prototype, (2) progressive mesh streaming, (3) general mesh/industry applications beyond terrain. |
 
 ## E. DEFENSE & OUTREACH (DEF)
 
 | ID | Task | Phase | Strength | Discovery | Key Result | Next Step |
 |----|------|-------|----------|-----------|------------|-----------|
-| DEF-1 | DARPA TTO BAA submission | 📝 | 🟩 | I2 | Exec summary + cover letter finalized | Register on BAAT, submit by Apr 17 (Q11) |
-| DEF-2 | ONR Code 311 white paper | ⏳ | 🟩 | I2 | Contact: Dr. Kamgar-Parsi identified | Email + 5-page white paper (Q13) |
-| DEF-3 | AFRL Tech Connect | ⏳ | 🟨 | I2 | Portal identified | Submit idea (Q13) |
-| DEF-4 | Radio-silent report | 📊 | 🟩 | I2 | 16 issues fixed, honest framing | Ready to share ✓ |
+| DEF-1 | DARPA TTO BAA submission | ⬛ | ⬛ | I2 | DEAD — see DEAD-15 | Clock drift kills scheduling; entire direction killed |
+| DEF-2 | ONR Code 311 white paper | ⬛ | ⬛ | I2 | DEAD — see DEAD-15 | Same root cause |
+| DEF-3 | AFRL Tech Connect | ⬛ | ⬛ | I2 | DEAD — see DEAD-15 | Same root cause |
+| DEF-4 | Radio-silent report | ⬛ | ⬛ | I2 | DEAD — see DEAD-15 | Mathematical paper only; no deployment path |
+| IOT-4 | AUV underwater scheduling | 🔬 | 🟨 | I2 | POTENTIALLY SALVAGEABLE — acoustic timescale is seconds not ms | Only viable niche; verify clock drift tolerance at acoustic speeds |
 
 ## F. IoT & WIRELESS (IOT)
 
@@ -178,21 +184,29 @@ Last updated: 2026-03-30 (session 8 FINAL — SIGN THEOREM PROVED + new directio
 | PUB-1 | Main math paper (Geometric Signature) | J. Number Theory / Math. Comp | 26pp compiled | MPR-2 (analytical proof) |
 | PUB-2 | Three-body paper | Comm. Math. Phys / Celest. Mech. | Draft done | 3BP-4 (unequal mass) |
 | PUB-3 | AMR paper (shock-capturing) | J. Comp. Phys / SIAM J. Sci. Comp | Outline done | AMR-4 (extended benchmark) |
-| PUB-4 | 3DGS paper | CVPR / SIGGRAPH | Outline done | 3DGS-6 (real results) |
+| PUB-4 | 3DGS paper | CVPR / SIGGRAPH | DEAD | 3DGS direction killed 2026-04-04 |
 | PUB-5 | Radio-silent report | DARPA / IEEE MILCOM | Done | DEF-1 (submission) |
 | PUB-6 | IoT report | IEEE IoT Journal | Done | Incremental over prior art |
 | PUB-7 | Conformal paper | Discrete Comp. Geom. / CAGD | Outline done | MESH-2 (quality proofs) |
 
 ---
 
-## TONIGHT'S RUN (Q1-Q4)
+## SAAR ACTION ITEMS (things only you can do)
 
-| Order | ID | Task | Est. | Uses |
-|-------|-----|------|------|------|
-| 1 | AMR-4 | Extended shock benchmark | 30 min | CPU |
-| 2 | 3DGS-5 | Real pipeline Phase 1 | 1 hr | GPU |
-| 3 | MPR-1 | B+C to p=100K | 2-4 hrs | CPU |
-| 4 | 3BP-4 | Unequal mass extension | 30 min | CPU |
+| Priority | What | Depends On | Notes |
+|----------|------|-----------|-------|
+| **HIGH** | Get arXiv math.NT endorser + submit main paper | SUB-3, PUB-1 | Paper is 26pp compiled. Reframe as Chebyshev bias discovery paper. |
+| **HIGH** | Get arXiv math-ph endorser + submit three-body paper | SUB-4, PUB-2 | Draft complete; Claude can convert to LaTeX. 4 pre-submission fixes pending. |
+| **MEDIUM** | Contact Nakamura (Osaka) re: Farey/braid connection | 3BP-9 | He proved restricted Farey/braid connection; propose extension |
+| **MEDIUM** | Contact Li & Liao (Shanghai) re: orbit catalog | 3BP-10 | Share periodic table; propose collaboration |
+| **MEDIUM** | Consult patent attorney for AMR patent | SUB-6 | Estimated $2-5K. Analysis done. |
+| **MEDIUM** | Push paper PDF to GitHub | MPR-6 | 26pp compiled, commit ready |
+| **LOW** | Submit AMR paper to arXiv cs.NA | SUB-5 | Claude can convert 5,500-word draft to LaTeX |
+| **LOW** | Mint DOI on Zenodo for code + data | SUB-14 | GitHub repo exists |
+| ~~DEAD~~ | ~~DARPA TTO BAA (SUB-2, Apr 17 deadline)~~ | ~~DEF-1~~ | ~~KILLED: clock drift structural flaw (DEAD-15). Do NOT submit.~~ |
+| ~~DEAD~~ | ~~ONR Code 311 white paper (SUB-7)~~ | ~~DEF-1~~ | ~~Same root cause — zero-comm scheduling is structurally broken~~ |
+| ~~DEAD~~ | ~~AFRL Tech Connect (SUB-10)~~ | ~~DEF-1~~ | ~~Same root cause~~ |
+| **CHECK** | US Navy SBIR N251-060 (AMR for hypersonic CFD) | SUB-1 | Separate from defense/silent-coordination — AMR is still valid. Check deadline. |
 
 ---
 
@@ -201,7 +215,7 @@ Last updated: 2026-03-30 (session 8 FINAL — SIGN THEOREM PROVED + new directio
 | ID | What | Where | Priority | Status | Next Step (who) |
 |----|------|-------|----------|--------|-----------------|
 | SUB-1 | AMR for hypersonic CFD | **US Navy SBIR N251-060** | 🔴 HIGHEST | Research done | Research deadline + apply (Saar) |
-| SUB-2 | Zero-comm scheduling | **DARPA TTO BAA HR001125S0011** | 🔴 HIGH | Exec summary + cover letter done | Register BAAT + submit by Apr 17 (Saar) |
+| SUB-2 | Zero-comm scheduling | **DARPA TTO BAA HR001125S0011** | ⬛ DEAD | KILLED — clock drift structural flaw (DEAD-15) | Do NOT submit |
 | SUB-3 | Main math paper | **arXiv math.NT** | 🔴 HIGH | 26pp LaTeX compiled | Get endorser + submit (Saar) |
 | SUB-4 | Three-body paper | **arXiv math-ph** | 🟡 MEDIUM | Draft in markdown | Convert to LaTeX + get endorser (Claude+Saar) |
 | SUB-5 | AMR paper | **arXiv math.NA / cs.NA** | 🟡 MEDIUM | Draft done (5,500 words) | Convert to LaTeX (Claude) |
@@ -217,40 +231,22 @@ Last updated: 2026-03-30 (session 8 FINAL — SIGN THEOREM PROVED + new directio
 
 ---
 
-## L. DEAD / DISPROVED (for record)
-
-| ID | What | Why Dead | Source |
-|----|------|----------|--------|
-| MPR-8 | Erdős-Turán bound | Cotangent unbounded variation | ERDOS_TURAN_ANALYSIS.md |
-| MESH-4 | Terrain LOD | Power-of-2 also nested; skirts solve cracks | TERRAIN_LOD audit |
-| MESH-5 | Nanite/game engine | Karis shipped fix in UE 5.4 (2026) | GRAPHICS audit |
-| PHYS-3 | Kirkwood gaps novelty | r=0.95 is textbook (Murray & Dermott 1999) | KIRKWOOD_NOVELTY_ASSESSMENT.md |
-| ML-1 | SB LR on CIFAR-10 | Cosine 82.23% beats SB 79.85% | sb_lr_output.log |
-| DEAD-1 | Financial applications | All 4 scenarios killed (no edge over existing) | financial_applications.md |
-| DEAD-2 | Satellite constellation scheduling | Already solved by existing methods | drone_satellite_research.md |
-| DEAD-3 | Progressive geometry compression | 1D-only guarantee, DPI covers it | Agent verification |
-| DEAD-4 | Terrain LOD engineering gains | 25-50% overstated by 3-5x | TERRAIN_LOD audit |
-| DEAD-5 | Data center scheduling | Midpoint bisection dominates Farey | Session 6 test |
-| DEAD-6 | Large sieve R→0 approach | R grows, doesn't decay | Session 6 analysis |
-| DEAD-7 | Displacement-guided 3DGS | Adds noise, not signal | Session 6 test |
-| DEAD-8 | Spectral analysis ΔW at zeta zeros | p=0.30, not significant | Session 6 FFT |
-| DEAD-9 | Signal processing Ramanujan | Tautological — no new content | Session 7 analysis |
-| DEAD-10 | Drone swarm kill test | 4/5 failed, clock drift fatal | Session 7 test |
-| DEAD-11 | 2D Gaussian splatting industry | No commercial products exist | Session 7 market research |
-| DEAD-12 | LiDAR application | No rational structure in point clouds | Session 7 analysis |
-| DEAD-13 | Audio application | No rational structure in audio signals | Session 7 analysis |
-| DEAD-14 | Ray tracing application | Halton/Sobol dominate; no Farey advantage | Session 7 analysis |
+## L. DEAD / DISPROVED
+See ~/Desktop/Farey-Local/MASTER_TABLE_DEAD.md for full archive (28 entries).
+Key kills: MPR-2,3,4,13,14 (B+C proof — target FALSE), 3DGS-1-12 (all), DEF-1-4 (clock drift), DEAD-24/25 (Sign Thm + B+C disproved at p=243,799), DEAD-26-28 (Hamiltonian/perfect numbers/primality test).
 
 ---
 
 ## STATISTICS
-- **Total items:** 96
-- **🟢 VERY STRONG:** 9 (3BP-1, 3BP-2, 3BP-3, AMR-1, MPR-5, MPR-21, MPR-22, MPR-23, MPR-24)
-- **🟩 STRONG:** 38
-- **🟨 MODERATE:** 20
+- **Total items:** ~125
+- **🟢 VERY STRONG:** 7 (3BP-1, 3BP-2, 3BP-3, AMR-1, MPR-5, MPR-21 [Lean proved], MPR-22 [Lean proved])
+- **🟩 STRONG:** ~28 (-5 moved to dead: MPR-2,3,4,13,14; +4 new: MPR-37↑, MPR-40, MPR-41, MPR-44)
+- **🟨 MODERATE:** ~25 (+6 new: MPR-41a-d, MPR-42, MPR-43, MPR-45)
 - **⬜ WEAK:** 5
-- **⬛ DEAD:** 21 (MPR-8, MPR-20, MPR-28, MPR-29, MESH-4, MESH-5, PHYS-3, ML-1, DEAD-1 through DEAD-14, 3DGS-11)
+- **⬛ DEAD:** 48 (MPR-2,3,4,8,13,14,20,28,29, MESH-4,5, PHYS-3, ML-1, DEF-1–4, DEAD-1 through DEAD-28, 3DGS-11)
+- **Last updated:** 2026-04-04 (Session 10+: 15 new items added, 8 moved to DEAD, Complex Farey + quantum ergodicity + Goldbach upgraded)
 - **Papers in pipeline:** 7
-- **Lean sorry remaining:** 4 (sign_theorem_conj, ratio_test, corrRatio_gt_neg_half_conj, farey_gap_bound)
+- **Lean sorry remaining:** 2 (sign_theorem_conj [false thm, kept], ratio_test [Aristotle job 1e12bcb5])
 - **Proved theorems not yet in paper:** 8 (MPR-9, MPR-10, MPR-11, MPR-12, MPR-21, MPR-22, MPR-23, MPR-24)
 - **Empirical findings not yet in paper:** 8 (MPR-16-19, PHYS-10-13, PHYS-16, 3DGS-10)
+- **KEY NEW DIRECTIONS:** MPR-41 (Complex Farey/Gaussian — HIGH), MPR-44 (quantum ergodicity — HIGH), MPR-37↑ (Goldbach — HIGH), MPR-40 (Chebyshev — HIGHEST)

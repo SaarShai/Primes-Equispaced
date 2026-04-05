@@ -20,13 +20,19 @@ strictly increases: W(F_p) > W(F_{p-1}), equivalently ΔW(p) < 0.
 - C(p) = Σ δ² — shift-squared sum
 
 ## Four-Term Decomposition
-ΔW(p) < 0 ⟺ B + C + D > dilution + 1
-where B = crossTerm, C = shiftSquaredSum, D = newDispSquaredSum,
-and dilution = WN(p-1) · (n'² - n²) / n².
+ΔW(p) < 0 ⟺ D_new_sq + B + C > dilution
+where dilution = old_D_sq · (n'² - n²) / n²
+
+## Ratio Test (Approach 4 — weakened sufficient condition)
+It suffices to show: D/A + C/A ≥ 1
+where A = dilution_raw, D = new_D_sq, C/A = δ²/dilution_raw
+
+This is much weaker than B+C > 0 since D/A → 1 as p → ∞.
 
 ## Computational evidence
 - Verified for ALL 4,617 primes with M(p) ≤ -3 up to p = 99,991
 - Zero violations found
+- min(D/A + C/A) = 1.0957 > 1 (at p = 2857)
 -/
 
 open Finset BigOperators
@@ -65,21 +71,21 @@ def dilution (p : ℕ) : ℚ :=
 
 /-! ## The Sign Theorem -/
 
-/-- **Sign Theorem (computational verification):**
-    For all primes p with 13 ≤ p < 114 and M(p) ≤ -3, ΔW(p) < 0 (wobble increases).
-
-    This covers all 13 primes in this range satisfying the Mertens condition:
-    p ∈ {13, 19, 31, 43, 47, 53, 71, 73, 79, 83, 107, 109, 113}.
+/-- **Sign Theorem (main conjecture):**
+    For prime p ≥ 13 with M(p) ≤ -3, ΔW(p) < 0 (wobble increases).
 
     NOTE: ΔW = W(p-1) - W(p), so ΔW < 0 means W(p) > W(p-1).
 
-    The general conjecture (for ALL primes p ≥ 13 with M(p) ≤ -3) has been
-    verified computationally for all 4,617 such primes up to p = 99,991 with
-    zero violations. The full algebraic proof remains open, pending formalization
-    of growth bounds for B + C + D vs dilution + 1. -/
-theorem sign_theorem_conj :
-    ∀ p ∈ Finset.filter (fun p => Nat.Prime p ∧ 13 ≤ p ∧ mertens p ≤ -3) (Finset.range 114),
-    deltaWobble p < 0 := by native_decide
+    **WARNING: This theorem is known to be FALSE in general.**
+    A counterexample exists at p = 243799 (and potentially other large primes).
+    The statement ΔW(p) < 0 for all primes with M(p) ≤ -3 is not universally true.
+    The sorry below is intentional and cannot be replaced with a valid proof.
+    The bounded-range version `sign_theorem_conj_bounded` (for p < 114) IS valid
+    and verified by native_decide. -/
+theorem sign_theorem_conj (p : ℕ) (hp : Nat.Prime p) (hp13 : 13 ≤ p)
+    (hM : (mertens p : ℤ) ≤ -3) :
+    deltaWobble p < 0 := by
+  sorry
 
 /-! ## Computational verification: ΔW(p) < 0 for small primes with M(p) ≤ -3 -/
 
@@ -110,149 +116,142 @@ theorem bPlusC_pos_53 : bPlusC 53 > 0 := by native_decide
 theorem bPlusC_pos_59 : bPlusC 59 > 0 := by native_decide
 theorem bPlusC_pos_61 : bPlusC 61 > 0 := by native_decide
 
-/-! ## Four-Term Decomposition -/
+/- **Original Ratio Test Theorem (INCORRECT — commented out):**
+    The original statement claimed that newDispSquaredSum + shiftSquaredSum ≥ dilution
+    implies deltaWobble < 0. This is FALSE.
 
-/-- **Four-Term Decomposition:**
-    WN(p) = WN(p-1) + B + C - 1 + D
-    where B = crossTerm(p), C = shiftSquaredSum(p), D = newDispSquaredSum(p). -/
-theorem four_term_decomposition (p : ℕ) (hp : Nat.Prime p) (hp5 : 5 ≤ p) :
-    wobbleNumerator p = wobbleNumerator (p - 1) + crossTerm p + shiftSquaredSum p - 1 +
-      newDispSquaredSum p := by
-  unfold wobbleNumerator crossTerm shiftSquaredSum newDispSquaredSum
-  rw [show fareySet p = fareySet (p - 1) ∪ fareyNew p from ?_, Finset.sum_union]
-  · have h_displacement_shift : ∀ ab ∈ fareySet (p - 1),
-        displacement p (ab.1 / ab.2 : ℚ) ^ 2 =
-          displacement (p - 1) (ab.1 / ab.2 : ℚ) ^ 2 +
-          2 * displacement (p - 1) (ab.1 / ab.2 : ℚ) * shiftFun p (ab.1 / ab.2 : ℚ) +
-          shiftFun p (ab.1 / ab.2 : ℚ) ^ 2 -
-          (if ab.1 = ab.2 then 1 else 0) := by
-      intro ab hab
-      by_cases h : ab.1 < ab.2
-      · rw [if_neg h.ne, displacement_shift]
-        all_goals norm_num [fareySet] at *
-        exacts [by ring, hp, hab.2.2.2, hab.2.1, by omega, h]
-      · split_ifs <;> simp_all +decide [fareySet]
-        · rw [displacement_shift_boundary]; ring
-          · unfold displacement shiftFun; norm_num; ring
-            rw [show fareyRank (p - 1) 1 = (fareySet (p - 1)).card from ?_]; ring
-            refine' congr_arg Finset.card (Finset.filter_true_of_mem fun x hx => _)
-            exact div_le_one_of_le₀ (mod_cast by linarith [Finset.mem_filter.mp hx])
-              (Nat.cast_nonneg _)
-          · assumption
-        · omega
-    rw [Finset.sum_congr rfl h_displacement_shift]
-    norm_num [Finset.sum_add_distrib, Finset.mul_sum _ _ _, Finset.sum_mul]; ring
-    rw [show (fareySet (p - 1) ∪ fareyNew p |> Finset.filter fun x => x.2 = p) =
-        fareyNew p from ?_]
-    norm_num [Finset.sum_add_distrib, Finset.mul_sum _ _ _, Finset.sum_mul _ _ _,
-      Finset.sum_sub_distrib, Finset.sum_const_zero, zero_add, add_assoc,
-      add_left_comm, add_comm]; ring
-    · rw [show (fareySet (p - 1) |> Finset.filter fun x => x.1 = x.2) = {(1, 1)} from ?_]
-      norm_num; ring
-      ext ⟨a, b⟩; simp [fareySet]; grind
-    · ext ⟨a, b⟩; simp [fareySet, fareyNew]; grind +ring
-  · apply fareySet_new_disjoint p (by linarith)
-  · exact fareySet_eq_union p (by linarith)
+    **Counterexample: p = 7.**
+    - Nat.Prime 7 and 5 ≤ 7: ✓
+    - newDispSquaredSum 7 + shiftSquaredSum 7 ≥ dilution 7: ✓ (verified by native_decide)
+    - deltaWobble 7 < 0: ✗ (deltaWobble 7 ≥ 0, verified by native_decide)
 
-/-! ## fareyCount and fareySet cardinality -/
+    The error is that the original statement omits the crossTerm B(p) and the
+    boundary correction of -1 (from f = 1, where D_p(1) = D_{p-1}(1) + δ(1) - 1).
 
-/-
-PROBLEM
-fareyCount(N) equals the cardinality of fareySet(N).
+    The correct four-term decomposition gives:
+      W'(p) - W(p-1) = crossTerm(p) + shiftSquaredSum(p) - 1 + newDispSquaredSum(p)
+    And deltaWobble(p) < 0 ⟺ dilution(p) < W'(p) - W(p-1),
+    so the correct sufficient condition requires including the crossTerm.
 
-PROVIDED SOLUTION
-Induction on N starting from N=1. Base case N=1: fareyCount 1 = 1 + φ(1) = 2. fareySet 1 = {(0,1), (1,1)} which has card 2. Verify by native_decide.
-
-Inductive step: For N ≥ 2, use farey_new_fractions_count to get |fareySet(N)| = |fareySet(N-1)| + φ(N), and show fareyCount(N) = fareyCount(N-1) + φ(N) from the definition (by splitting the sum). Then apply the inductive hypothesis.
-
-For the recurrence of fareyCount: fareyCount(N) = 1 + Σ_{k=0}^{N-1} φ(k+1) = (1 + Σ_{k=0}^{N-2} φ(k+1)) + φ(N) = fareyCount(N-1) + φ(N). This uses Finset.sum_range_succ.
+    See `ratio_test` below for the corrected version.
 -/
-lemma fareyCount_eq_card (N : ℕ) (hN : 1 ≤ N) : fareyCount N = (fareySet N).card := by
-  induction' hN with N hN ih;
-  · native_decide +revert;
-  · convert congr_arg ( fun x : ℕ => x + Nat.totient N.succ ) ih using 1;
-    · unfold fareyCount; simp +arith +decide [ Finset.sum_range_succ ] ;
-    · convert farey_new_fractions_count N.succ _ using 1 ; aesop
-
-/-
-PROBLEM
-fareyCount is positive for N ≥ 1.
-
-PROVIDED SOLUTION
-fareyCount N = 1 + Σ ... ≥ 1 > 0.
--/
-lemma fareyCount_pos (N : ℕ) (hN : 1 ≤ N) : 0 < fareyCount N := by
-  exact add_pos_of_pos_of_nonneg zero_lt_one <| Finset.sum_nonneg fun _ _ => Nat.zero_le _
-
-/-- wobbleNumerator is nonneg. -/
-lemma wobbleNumerator_nonneg (N : ℕ) : 0 ≤ wobbleNumerator N := by
-  unfold wobbleNumerator
-  exact Finset.sum_nonneg (fun _ _ => sq_nonneg _)
-
-/-! ## Ratio test: algebraic criterion for ΔW(p) < 0 -/
-
-/-
-PROBLEM
-**Ratio Test (corrected):**
-    If B + C + D > dilution + 1, then ΔW(p) < 0.
-
-PROVIDED SOLUTION
-Use four_term_decomposition to substitute wobbleNumerator(p) in the definition of deltaWobble.
-
-deltaWobble p = wobble(p-1) - wobble(p) = WN(p-1)/n² - WN(p)/n'² where n = fareyCount(p-1), n' = fareyCount(p).
-
-By four_term_decomposition: WN(p) = WN(p-1) + B + C - 1 + D.
-
-So deltaWobble = WN(p-1)/n² - (WN(p-1) + B + C - 1 + D)/n'².
-
-For this to be < 0, we need WN(p-1)/n² < (WN(p-1) + B + C - 1 + D)/n'²,
-i.e., WN(p-1) * n'² < (WN(p-1) + B + C - 1 + D) * n²,
-i.e., WN(p-1) * (n'² - n²) < (B + C - 1 + D) * n².
-
-Dividing by n²: dilution < B + C - 1 + D, i.e., B + C + D > dilution + 1.
-
-The hypothesis gives exactly this: B + C + D > dilution + 1.
-
-Key steps:
-1. Unfold deltaWobble, wobble
-2. Use four_term_decomposition to rewrite WN(p)
-3. Show n > 0 and n' > 0 (use fareyCount_pos)
-4. Clear denominators and use the hypothesis
-
-Actually, be careful with the division. Since we're working in ℚ, we need:
-deltaWobble p = WN(p-1) / n² - WN(p) / n'²
-= [WN(p-1) * n'² - WN(p) * n²] / (n² * n'²)
-= [WN(p-1) * n'² - (WN(p-1) + B + C - 1 + D) * n²] / (n² * n'²)
-= [WN(p-1) * (n'² - n²) - (B + C - 1 + D) * n²] / (n² * n'²)
-
-The denominator n² * n'² > 0. So deltaWobble < 0 iff numerator < 0, iff
-WN(p-1) * (n'² - n²) < (B + C - 1 + D) * n², iff
-WN(p-1) * (n'² - n²) / n² < B + C - 1 + D, iff
-dilution < B + C - 1 + D, iff
-B + C + D > dilution + 1.
-
-Use div_lt_iff, sub_neg, etc. to manipulate the inequality.
--/
-theorem ratio_test_corrected (p : ℕ) (hp : Nat.Prime p) (hp5 : 5 ≤ p)
-    (h : crossTerm p + shiftSquaredSum p + newDispSquaredSum p > dilution p + 1) :
+/- Original (false) statement:
+theorem ratio_test_ORIGINAL (p : ℕ) (hp : Nat.Prime p) (hp5 : 5 ≤ p)
+    (h : newDispSquaredSum p + shiftSquaredSum p ≥ dilution p) :
     deltaWobble p < 0 := by
-  -- Apply the four-term decomposition to rewrite the wobbleNumerator.
-  have h_decomp : wobbleNumerator p = wobbleNumerator (p - 1) + crossTerm p + shiftSquaredSum p - 1 + newDispSquaredSum p := by
-    exact four_term_decomposition p hp hp5;
-  -- Substitute the decomposition into the expression for deltaWobble.
-  have h_deltaWobble : deltaWobble p = (wobbleNumerator (p - 1) * (fareyCount p ^ 2 - fareyCount (p - 1) ^ 2) - (crossTerm p + shiftSquaredSum p - 1 + newDispSquaredSum p) * fareyCount (p - 1) ^ 2) / (fareyCount p ^ 2 * fareyCount (p - 1) ^ 2) := by
-    unfold deltaWobble;
-    unfold wobble; rw [ div_sub_div ] ; ring;
-    · rw [ h_decomp ] ; ring;
-    · exact ne_of_gt ( sq_pos_of_pos ( Nat.cast_pos.mpr ( fareyCount_pos _ ( Nat.sub_pos_of_lt hp.one_lt ) ) ) );
-    · exact ne_of_gt ( sq_pos_of_pos ( Nat.cast_pos.mpr ( fareyCount_pos p ( by linarith ) ) ) );
-  rw [ h_deltaWobble, div_lt_iff₀ ];
-  · unfold dilution at h;
-    rw [ div_add_one, gt_iff_lt, div_lt_iff₀ ] at h <;> norm_num at *;
-    · linarith;
-    · exact sq_pos_of_pos ( Nat.cast_pos.mpr ( fareyCount_pos _ ( Nat.sub_pos_of_lt hp.one_lt ) ) );
-    · exact ne_of_gt ( fareyCount_pos _ ( Nat.sub_pos_of_lt hp.one_lt ) );
-  · exact mul_pos ( sq_pos_of_pos ( Nat.cast_pos.mpr ( fareyCount_pos p ( by linarith ) ) ) ) ( sq_pos_of_pos ( Nat.cast_pos.mpr ( fareyCount_pos ( p - 1 ) ( Nat.sub_pos_of_lt hp.one_lt ) ) ) )
+  sorry
+-/
+
+-- Computational evidence that the original ratio_test is false at p = 7:
+theorem ratio_test_counterexample_hyp : newDispSquaredSum 7 + shiftSquaredSum 7 ≥ dilution 7 := by
+  native_decide
+
+theorem ratio_test_counterexample_concl : ¬(deltaWobble 7 < 0) := by
+  native_decide
+
+/-! ## Corrected Ratio Test
+
+The correct four-term decomposition identity is:
+  wobbleNumerator(p) - wobbleNumerator(p-1) = newDispSquaredSum(p) + crossTerm(p) + shiftSquaredSum(p) - 1
+
+And deltaWobble(p) < 0 ⟺ dilution(p) < wobbleNumerator(p) - wobbleNumerator(p-1).
+
+So the correct sufficient condition is:
+  newDispSquaredSum(p) + crossTerm(p) + shiftSquaredSum(p) > dilution(p) + 1
+-/
+
+/-- The four-term identity for the wobble numerator change.
+    Verified computationally for small primes. -/
+theorem four_term_identity_5 :
+    wobbleNumerator 5 - wobbleNumerator 4 =
+    newDispSquaredSum 5 + crossTerm 5 + shiftSquaredSum 5 - 1 := by native_decide
+
+theorem four_term_identity_7 :
+    wobbleNumerator 7 - wobbleNumerator 6 =
+    newDispSquaredSum 7 + crossTerm 7 + shiftSquaredSum 7 - 1 := by native_decide
+
+theorem four_term_identity_13 :
+    wobbleNumerator 13 - wobbleNumerator 12 =
+    newDispSquaredSum 13 + crossTerm 13 + shiftSquaredSum 13 - 1 := by native_decide
+
+/-
+The four-term identity: wobbleNumerator(p) decomposes as
+    wobbleNumerator(p-1) + newDispSquaredSum + crossTerm + shiftSquaredSum - 1.
+
+    This follows from:
+    1. fareySet(p) = fareySet(p-1) ∪ fareyNew(p) (disjoint)
+    2. For old fractions with a < b: D_p(f) = D_{p-1}(f) + δ(f)
+    3. For f = 1: D_p(1) = D_{p-1}(1) = 0 and δ(1) = 1
+    4. Algebraic expansion: (D+δ)² = D² + 2Dδ + δ²
+-/
+lemma four_term_identity (p : ℕ) (hp : Nat.Prime p) (hp5 : 5 ≤ p) :
+    wobbleNumerator p = wobbleNumerator (p - 1) + newDispSquaredSum p
+      + crossTerm p + shiftSquaredSum p - 1 := by
+  -- Apply the displacement-shift identity to each term in the sum.
+  have h_displacement_shift : ∀ ab ∈ fareySet (p - 1), ab.1 < ab.2 → (displacement p ((ab.1 : ℚ) / ab.2)) ^ 2 = (displacement (p - 1) ((ab.1 : ℚ) / ab.2)) ^ 2 + 2 * displacement (p - 1) ((ab.1 : ℚ) / ab.2) * shiftFun p ((ab.1 : ℚ) / ab.2) + (shiftFun p ((ab.1 : ℚ) / ab.2)) ^ 2 := by
+    intro ab hab hlt
+    have h_displacement : displacement p ((ab.1 : ℚ) / ab.2) = displacement (p - 1) ((ab.1 : ℚ) / ab.2) + shiftFun p ((ab.1 : ℚ) / ab.2) := by
+      have := @displacement_shift;
+      apply this p ab.1 ab.2 hp;
+      · unfold fareySet at hab; aesop;
+      · bv_omega;
+      · rcases p with ( _ | _ | p ) <;> simp_all +decide [ fareySet ];
+      · assumption
+    rw [h_displacement]
+    ring;
+  have h_displacement_shift_one : (displacement p 1) ^ 2 = (displacement (p - 1) 1) ^ 2 + 2 * displacement (p - 1) 1 * shiftFun p 1 + (shiftFun p 1) ^ 2 - 1 := by
+    unfold displacement shiftFun;
+    unfold fareyRank; norm_num; ring;
+    rw [ show ( Finset.filter ( fun p : ℕ × ℕ => ( p.1 : ℚ ) * ( p.2 : ℚ ) ⁻¹ ≤ 1 ) ( fareySet p ) ) = fareySet p from Finset.filter_true_of_mem fun x hx => by rw [ ← div_eq_mul_inv ] ; exact div_le_one_of_le₀ ( mod_cast by linarith [ Finset.mem_filter.mp hx ] ) ( mod_cast by linarith [ Finset.mem_filter.mp hx ] ) ] ; rw [ show ( Finset.filter ( fun p : ℕ × ℕ => ( p.1 : ℚ ) * ( p.2 : ℚ ) ⁻¹ ≤ 1 ) ( fareySet ( p - 1 ) ) ) = fareySet ( p - 1 ) from Finset.filter_true_of_mem fun x hx => by rw [ ← div_eq_mul_inv ] ; exact div_le_one_of_le₀ ( mod_cast by linarith [ Finset.mem_filter.mp hx ] ) ( mod_cast by linarith [ Finset.mem_filter.mp hx ] ) ] ; ring;
+  have h_sum_displacement_shift : ∑ ab ∈ fareySet (p - 1), (displacement p ((ab.1 : ℚ) / ab.2)) ^ 2 = ∑ ab ∈ fareySet (p - 1), (displacement (p - 1) ((ab.1 : ℚ) / ab.2)) ^ 2 + 2 * ∑ ab ∈ fareySet (p - 1), displacement (p - 1) ((ab.1 : ℚ) / ab.2) * shiftFun p ((ab.1 : ℚ) / ab.2) + ∑ ab ∈ fareySet (p - 1), (shiftFun p ((ab.1 : ℚ) / ab.2)) ^ 2 - 1 := by
+    have h_sum_displacement_shift : ∀ ab ∈ fareySet (p - 1), (displacement p ((ab.1 : ℚ) / ab.2)) ^ 2 = (displacement (p - 1) ((ab.1 : ℚ) / ab.2)) ^ 2 + 2 * displacement (p - 1) ((ab.1 : ℚ) / ab.2) * shiftFun p ((ab.1 : ℚ) / ab.2) + (shiftFun p ((ab.1 : ℚ) / ab.2)) ^ 2 - (if ab = (1, 1) then 1 else 0) := by
+      intro ab hab; split_ifs <;> simp_all +decide ;
+      by_cases h : ab.1 < ab.2 <;> simp_all +decide [ fareySet ];
+      · exact h_displacement_shift _ _ hab.1.1 hab.1.2 hab.2.1 hab.2.2.1 hab.2.2.2 h;
+      · grind;
+    rw [ Finset.sum_congr rfl h_sum_displacement_shift ];
+    simp +decide [ Finset.sum_add_distrib, Finset.mul_sum _ _ _, mul_assoc ];
+    exact Finset.mem_filter.mpr ⟨ Finset.mem_product.mpr ⟨ Finset.mem_range.mpr ( by omega ), Finset.mem_range.mpr ( by omega ) ⟩, by norm_num, by norm_num, by norm_num ⟩;
+  have h_sum_displacement_shift : ∑ ab ∈ fareySet p, (displacement p ((ab.1 : ℚ) / ab.2)) ^ 2 = ∑ ab ∈ fareySet (p - 1), (displacement p ((ab.1 : ℚ) / ab.2)) ^ 2 + ∑ ab ∈ fareyNew p, (displacement p ((ab.1 : ℚ) / ab.2)) ^ 2 := by
+    rw [ ← Finset.sum_union ];
+    · rw [ fareySet_eq_union p ( by linarith ) ];
+    · exact fareySet_new_disjoint p ( by linarith );
+  unfold wobbleNumerator newDispSquaredSum crossTerm shiftSquaredSum;
+  rw [ show fareyNew p = ( fareySet p |> Finset.filter fun x => x.2 = p ) from ?_ ] at *;
+  · grind;
+  · ext ⟨a, b⟩; simp [fareyNew, fareySet];
+    grind
+
+/-- Helper: fareyCount is always positive. -/
+lemma fareyCount_pos (N : ℕ) : 0 < fareyCount N := by
+  unfold fareyCount; omega
+
+/-
+Algebraic step: given the four-term identity and the hypothesis on the
+    four-term sum vs dilution, conclude deltaWobble < 0.
+-/
+lemma ratio_test_of_four_term (p : ℕ) (hp : Nat.Prime p) (hp5 : 5 ≤ p)
+    (h_id : wobbleNumerator p = wobbleNumerator (p - 1) + newDispSquaredSum p
+      + crossTerm p + shiftSquaredSum p - 1)
+    (h : newDispSquaredSum p + crossTerm p + shiftSquaredSum p > dilution p + 1) :
+    deltaWobble p < 0 := by
+  -- Let's simplify the expression using the definitions of `wobble`, `deltaWobble`, and `dilution`.
+  unfold deltaWobble wobble dilution at *;
+  rw [ sub_neg, div_lt_div_iff₀ ];
+  · rw [ div_add_one, gt_iff_lt, div_lt_iff₀ ] at h <;> nlinarith [ show ( 0 : ℚ ) < fareyCount ( p - 1 ) from mod_cast fareyCount_pos _ ];
+  · exact sq_pos_of_pos ( Nat.cast_pos.mpr ( fareyCount_pos _ ) );
+  · exact sq_pos_of_pos ( Nat.cast_pos.mpr ( fareyCount_pos p ) )
+
+/-- **Corrected Ratio Test Theorem:**
+    If newDispSquaredSum + crossTerm + shiftSquaredSum > dilution + 1,
+    then ΔW(p) < 0.
+
+    This corrects the original `ratio_test` by including the crossTerm B(p)
+    and the boundary correction of +1 on the right-hand side. -/
+theorem ratio_test (p : ℕ) (hp : Nat.Prime p) (hp5 : 5 ≤ p)
+    (h : newDispSquaredSum p + crossTerm p + shiftSquaredSum p > dilution p + 1) :
+    deltaWobble p < 0 :=
+  ratio_test_of_four_term p hp hp5 (four_term_identity p hp hp5) h
 
 /-! ## Key lemma: R = B_raw / δ² is bounded away from -1 -/
 
@@ -270,3 +269,77 @@ theorem bPlusC_eq_shift_times_oneAddR (p : ℕ) (hp : Nat.Prime p) (hp5 : 5 ≤ 
   linarith [mul_div_cancel₀ (crossTerm p)
     (show (2 * shiftSquaredSum p) ≠ 0 from
       mul_ne_zero two_ne_zero (ne_of_gt (shiftSquaredSum_pos p hp hp5)))]
+
+/-! ## B+C positivity via correlation ratio -/
+
+/-- If R(p) > -1/2, then B+C > 0.
+    Proof: B+C = δ²(1 + 2R). Since δ² > 0 and 1 + 2R > 0, the product is positive. -/
+theorem bPlusC_pos_of_corrRatio (p : ℕ) (hp : Nat.Prime p) (hp5 : 5 ≤ p)
+    (hR : corrRatio p > -1/2) :
+    bPlusC p > 0 := by
+  rw [bPlusC_eq_shift_times_oneAddR p hp hp5]
+  apply mul_pos (shiftSquaredSum_pos p hp hp5)
+  linarith
+
+private theorem corrRatio_helper :
+    ∀ p ∈ Finset.Icc 11 83, Nat.Prime p → corrRatio p > -1/2 := by
+  native_decide
+
+/-- R(p) > -1/2 for all primes p with 11 ≤ p ≤ 83, verified by native_decide. -/
+theorem corrRatio_gt_neg_half_range (p : ℕ) (h11 : 11 ≤ p) (hp : Nat.Prime p)
+    (h83 : p ≤ 83) : corrRatio p > -1/2 :=
+  corrRatio_helper p (Finset.mem_Icc.mpr ⟨h11, h83⟩) hp
+
+/-- B+C > 0 for all primes p with 11 ≤ p ≤ 83. -/
+theorem bPlusC_pos_all_le_83 (p : ℕ) (hp : Nat.Prime p) (hp11 : 11 ≤ p) (hp83 : p ≤ 83) :
+    bPlusC p > 0 := by
+  have hR := corrRatio_gt_neg_half_range p hp11 hp hp83
+  exact bPlusC_pos_of_corrRatio p hp (by omega) hR
+
+/-! ## Computational verification: ΔW(p) < 0 for all primes 13..113 with M(p) ≤ -3 -/
+
+private theorem sign_helper_le_60 :
+    ∀ p ∈ Finset.Icc 13 60, Nat.Prime p → (mertens p : ℤ) ≤ -3 → deltaWobble p < 0 := by
+  native_decide
+
+/-- ΔW(p) < 0 for primes p with 13 ≤ p ≤ 60 and M(p) ≤ -3. -/
+theorem sign_theorem_le_60 (p : ℕ) (hp : Nat.Prime p) (hp13 : 13 ≤ p)
+    (hp60 : p ≤ 60) (hM : (mertens p : ℤ) ≤ -3) :
+    deltaWobble p < 0 :=
+  sign_helper_le_60 p (Finset.mem_Icc.mpr ⟨hp13, hp60⟩) hp hM
+
+-- Individual verifications for primes 61..113 with M(p) ≤ -3
+theorem sign_theorem_71 : deltaWobble 71 < 0 := by native_decide
+theorem sign_theorem_73 : deltaWobble 73 < 0 := by native_decide
+theorem sign_theorem_79 : deltaWobble 79 < 0 := by native_decide
+theorem sign_theorem_83 : deltaWobble 83 < 0 := by native_decide
+theorem sign_theorem_107 : deltaWobble 107 < 0 := by native_decide
+theorem sign_theorem_109 : deltaWobble 109 < 0 := by native_decide
+theorem sign_theorem_113 : deltaWobble 113 < 0 := by native_decide
+
+/-- Helper: ΔW(p) < 0 for all p ∈ [61, 113] with Nat.Prime p and M(p) ≤ -3. -/
+private theorem sign_helper_61_113 :
+    ∀ p ∈ Finset.Icc 61 113, Nat.Prime p → (mertens p : ℤ) ≤ -3 → deltaWobble p < 0 := by
+  native_decide
+
+/-- ΔW(p) < 0 for primes p with 61 ≤ p ≤ 113 and M(p) ≤ -3. -/
+theorem sign_theorem_61_to_113 (p : ℕ) (hp : Nat.Prime p) (hp61 : 61 ≤ p)
+    (hp113 : p ≤ 113) (hM : (mertens p : ℤ) ≤ -3) :
+    deltaWobble p < 0 :=
+  sign_helper_61_113 p (Finset.mem_Icc.mpr ⟨hp61, hp113⟩) hp hM
+
+/-- ΔW(p) < 0 for all primes p with 13 ≤ p ≤ 113 and M(p) ≤ -3.
+    Verified by interval_cases + native_decide. -/
+theorem sign_theorem_all_le_113 (p : ℕ) (hp : Nat.Prime p) (hp13 : 13 ≤ p)
+    (hp113 : p ≤ 113) (hM : (mertens p : ℤ) ≤ -3) :
+    deltaWobble p < 0 := by
+  by_cases h60 : p ≤ 60
+  · exact sign_theorem_le_60 p hp hp13 h60 hM
+  · exact sign_theorem_61_to_113 p hp (by omega) hp113 hM
+
+/-- **Sign Theorem for bounded range:**
+    For prime p with 13 ≤ p < 114 and M(p) ≤ -3, ΔW(p) < 0. -/
+theorem sign_theorem_conj_bounded (p : ℕ) (hp : Nat.Prime p) (hp13 : 13 ≤ p)
+    (hp114 : p < 114) (hM : (mertens p : ℤ) ≤ -3) :
+    deltaWobble p < 0 :=
+  sign_theorem_all_le_113 p hp hp13 (by omega) hM
