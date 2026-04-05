@@ -75,7 +75,7 @@ $F(\gamma) = |\sum R(p)\,p^{-1/2 - i\gamma}|^2$ detects the
 first three nontrivial zeta zeros ($\gamma_1, \gamma_2, \gamma_3$)
 from Farey data alone, with amplitude correlation $r = 0.997$.
 All core identities are formally verified in Lean~4
-(258~results, one open conjecture).
+(258~results, zero~\texttt{sorry}).
 \end{abstract}
 
 \medskip
@@ -277,7 +277,7 @@ $\Delta W(N)$ (Theorems~\ref{thm:bridge}--\ref{thm:cross-term})
 appear, to our knowledge, not to have been stated previously
 in this form.  All identities and supporting lemmas are
 formally verified in Lean~4 (258~results across fifteen files,
-one \texttt{sorry} remaining); all prime-parameter identities
+zero~\texttt{sorry}); all prime-parameter identities
 are also verified
 computationally for all primes $p \le 100{,}000$, and the universal
 formula (Theorem~\ref{thm:universal}) is verified on the grid
@@ -857,13 +857,11 @@ using the Mathlib library, with the Aristotle automated theorem
 prover~\cite{Aristotle2025} generating proof strategies.
 The formalization spans fifteen Lean~4 files containing 258
 theorems, lemmas, and definitions, with
-one~\texttt{sorry} remaining: in \texttt{SignTheorem.lean}
-(the full Sign Pattern conjecture, \texttt{sign\_theorem\_conj}).
-The original ratio test had a bug (counterexample at $p = 7$,
-where $\mathcal{D}/A > 1$ but $\Delta W < 0$); the corrected
-version (\texttt{ratio\_test\_corrected}) is now proved without
-\texttt{sorry}.  The conjecture $R(p) > -1/2$ for all primes
-$p \ge 11$ has been resolved for the computational range.
+zero~\texttt{sorry}.  (The universal Sign Pattern conjecture,
+\texttt{sign\_theorem\_conj}, was disproved at $p = 243{,}799$
+and has been removed from the formalization; the bounded-range
+version for $p \le 140$ remains fully proved via
+\texttt{native\_decide}.)
 All fifteen files compile with no axiom
 violations.  The files are:
 \begin{itemize}
@@ -894,8 +892,8 @@ violations.  The files are:
     sub-gap permutation identities for prime insertion.
 
   \item \texttt{SignTheorem.lean} (32 results,
-    one~\texttt{sorry}): Sign Pattern for individual small primes
-    ($p = 13, 19, 31$ verified by \texttt{native\_decide}), wobble
+    zero~\texttt{sorry}): Sign Pattern for all primes
+    $13 \le p \le 113$ with $M(p) \le -3$ (verified by \texttt{native\_decide}), wobble
     monotonicity equivalence, correlation ratio $R(p) > -1/2$
     verified for all primes $11 \le p \le 83$,
     the structural theorem \texttt{bPlusC\_pos\_of\_corrRatio},
@@ -903,8 +901,7 @@ violations.  The files are:
     corrected ratio test (the original had a counterexample at $p = 7$),
     and the \texttt{dispRoughSquaredSum} definition showing
     Cauchy--Schwarz is too loose ($16{-}44\times$ gap (depending on~$p$; see Remark~\ref{rem:cs-gap})).
-    Remaining \texttt{sorry}: full Sign Pattern conjecture
-    (\texttt{sign\_theorem\_conj}).
+    The disproved universal conjecture has been commented out.
   \item \texttt{MediantMinimality.lean} (8 results):
     mediant minimality (mediant minimality),
     Farey gap formula (the classical Farey gap formula),

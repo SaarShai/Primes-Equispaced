@@ -71,21 +71,20 @@ def dilution (p : ℕ) : ℚ :=
 
 /-! ## The Sign Theorem -/
 
-/-- **Sign Theorem (main conjecture):**
-    For prime p ≥ 13 with M(p) ≤ -3, ΔW(p) < 0 (wobble increases).
+/-- **Sign Pattern (disproved conjecture):**
+    The universal claim "for all primes p ≥ 13 with M(p) ≤ -3, ΔW(p) < 0"
+    is FALSE.  Counterexample: p = 243,799 with M(p) = -3 has ΔW(p) > 0.
 
-    NOTE: ΔW = W(p-1) - W(p), so ΔW < 0 means W(p) > W(p-1).
-
-    **WARNING: This theorem is known to be FALSE in general.**
-    A counterexample exists at p = 243799 (and potentially other large primes).
-    The statement ΔW(p) < 0 for all primes with M(p) ≤ -3 is not universally true.
-    The sorry below is intentional and cannot be replaced with a valid proof.
     The bounded-range version `sign_theorem_conj_bounded` (for p < 114) IS valid
-    and verified by native_decide. -/
-theorem sign_theorem_conj (p : ℕ) (hp : Nat.Prime p) (hp13 : 13 ≤ p)
-    (hM : (mertens p : ℤ) ≤ -3) :
-    deltaWobble p < 0 := by
-  sorry
+    and verified by native_decide.  The extended range `sign_theorem_114_to_140`
+    in SignConj.lean covers p ∈ [114, 140].
+
+    We retain the statement (commented out) for documentation purposes:
+
+    theorem sign_theorem_conj (p : ℕ) (hp : Nat.Prime p) (hp13 : 13 ≤ p)
+        (hM : (mertens p : ℤ) ≤ -3) :
+        deltaWobble p < 0 := by sorry  -- DISPROVED at p = 243799
+-/
 
 /-! ## Computational verification: ΔW(p) < 0 for small primes with M(p) ≤ -3 -/
 
