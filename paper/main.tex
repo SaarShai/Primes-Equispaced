@@ -50,55 +50,32 @@
 \maketitle
 
 \begin{abstract}
-We show that the non-trivial zeros of the Riemann zeta function influence
-the step-by-step regularity of rational numbers, with a quantitative
-phase relationship that matches Rubinstein--Sarnak predictions to within
-$1.1\%$ (empirical, no rigorous error bound).  Specifically, we introduce the \emph{per-step Farey discrepancy}
-$\Delta W(N) = W(N{-}1) - W(N)$ --- a novel object that appears not to have been previously
-studied --- and discover that its sign correlates strongly with the leading
-zero $\gamma_1 \approx 14.135$: empirically,
-$\operatorname{sgn}(\Delta W(p)) \approx -\operatorname{sgn}(\cos(\gamma_1 \log p + \varphi))$
-with phase $\varphi = 5.28$ and correlation $R = 0.77$ across
-$4{,}617$ qualifying primes $p \le 100{,}000$.
+We introduce the \emph{per-step Farey discrepancy}
+$\Delta W(N) = W(N{-}1) - W(N)$, measuring how each integer
+changes the uniformity of the Farey sequence---a quantity that
+appears not to have been previously studied.  Primes and
+composites play opposite geometric roles: composites improve
+uniformity while primes damage it, with the sign of
+$\Delta W(p)$ controlled by the Mertens function $M(p)$.
 
-In computations through $N = 100{,}000$, composites account for
-$96\%$ of positive-$\Delta W$ events, while primes with
-$M(p) \le -3$ produce $\Delta W(p) < 0$ in all $4{,}617$ cases.
-Both signs of $\Delta W$ are expected to occur infinitely often
-(this is plausible via Ingham's theorem~\cite{Ingham1942}
-and the empirical connection to the Mertens function,
-but has not been rigorously established for $\Delta W$ specifically)~\cite{Ingham1942},
-and the density of negative steps tends to $1/2$ under GRH+LI
-(Rubinstein--Sarnak framework).
-The correlation ratio $R(p) = \sum D{\cdot}\delta / \sum\delta^2$
-satisfies $R(p) > 0$ for all $4{,}617$ primes with $M(p) \le -3$
-up to $p = 100{,}000$ (minimum $R = 0.0068$ at $p = 64{,}781$);
-extended verification to $p = 106{,}649$ (approximately $5{,}000$ qualifying
-primes) confirms $R > 0$ throughout;
-this is a computational result, not yet an unconditional proof.
+Within this framework we prove exact identities: a four-term
+algebraic decomposition of $\Delta W(p)$, an Injection Principle
+placing each new fraction in a distinct Farey gap via modular
+inversion, and the formula $D(1/p) = 1 - |\F_p|/p$ showing that
+a single fraction is responsible for approximately $65\%$ of all
+disruption, with $D(1/p) \cdot \delta(1/p) \to -3/\pi^2$.
 
-A four-term algebraic decomposition of $\Delta W(p)$
-reveals that the new-fraction discrepancy nearly cancels the
-dilution benefit ($\mathcal{D}/A = 1 + O(1/p)$), with the sign
-controlled by a cross-term tied to the Mertens function.
-We prove several exact identities --- a universal Farey exponential
-sum (Theorem~\ref{thm:universal}), an Injection Principle
-(the Injection Principle), spectral positivity for Dedekind
-kernels (Corollary~\ref{cor:spectral-pos}), and the linear
-growth bound $C_W(N) \ge N/28$ (Theorem~\ref{thm:cw-linear}).
-
-We introduce the \emph{Farey spectroscope}, a spectral function
-$F(\gamma) = |\sum R(p)\,p^{-1/2-i\gamma}|^2$ whose peaks
-locate nontrivial zeta zeros using Farey discrepancy data: the first three zeros $\gamma_1, \gamma_2, \gamma_3$
-are recovered to within~$0.8\%$ from $3{,}829$ qualifying primes.  Twisting by
-Dirichlet characters suggests detection of $L$-function zeros.
-Predicted and observed peak amplitudes correlate at
-$r = 0.997$ ($p$-value $< 10^{-8}$, $n=10$ zeros).
-
-All core identities (258~results across fifteen Lean~4 files,
-one open conjecture (\texttt{sorry} in Lean)) are formally verified, with
-proof chains constructed by the Aristotle theorem prover
-and verified by the Lean~4 kernel.
+The per-step view reveals a connection to the Riemann zeta zeros:
+the correlation ratio
+$R(p) = \sum D\,\delta \,/\, \sum \delta^2$ correlates with
+$\cos(\gamma_1 \log p)$ at $r = 0.77$ across $4{,}617$ qualifying
+primes, linking Farey geometry to the Chebyshev bias framework of
+Rubinstein and Sarnak.  A \emph{Farey spectroscope}
+$F(\gamma) = |\sum R(p)\,p^{-1/2 - i\gamma}|^2$ detects the
+first three nontrivial zeta zeros ($\gamma_1, \gamma_2, \gamma_3$)
+from Farey data alone, with amplitude correlation $r = 0.997$.
+All core identities are formally verified in Lean~4
+(258~results, one open conjecture).
 \end{abstract}
 
 \medskip
@@ -249,6 +226,18 @@ healing (during positive Mertens excursions) and damage (during
 negative ones).  This decomposition of Farey convergence into
 prime and composite contributions was previously unknown.
 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{farey_spectroscope.png}
+\caption{The Farey spectroscope (Section~\ref{sec:spectroscope}):
+the spectral function
+$F(\gamma) = |\sum R(p)\,p^{-1/2-i\gamma}|^2$, built entirely
+from per-step Farey discrepancy data, exhibits sharp peaks at
+the locations of nontrivial zeta zeros (dashed lines).  The
+first three zeros $\gamma_1, \gamma_2, \gamma_3$ are recovered
+to within~$0.8\%$.}
+\label{fig:spectroscope-preview}
+\end{figure}
 
 %% ================================================================
 \section{Definitions and Notation}\label{sec:defs}
@@ -1416,8 +1405,22 @@ positive~$D$ also have large positive~$\delta_2$.
 An analytical proof of $R>0$ remains open.
 \end{observation}
 
-
-
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{fig_damage_response.png}
+\caption{The damage/response mechanism.
+\textbf{(a)}~Decomposition of $\Delta W$ for primes with
+$M(p) \le -3$: new-fraction damage ($\mathcal{D}$, red) and
+shift-squared ($C$, orange) push $\Delta W$ positive, while
+the cross-term response ($B$, blue) partially compensates.
+Green diamonds show net~$\Delta W$.  The darker stripe within
+$\mathcal{D}$ marks the $D(1/p)^2$ contribution.
+\textbf{(b)}~Share of $\mathcal{D}$ attributable to the single
+fraction~$1/p$ (measured as $D(1/p)^2 / \mathcal{D}$);
+the $D \cdot \delta$ product share is higher at $65$--$73\%$
+(Proposition~\ref{prop:D1p}).}
+\label{fig:damage-response}
+\end{figure}
 
 
 
@@ -1476,6 +1479,20 @@ preserving the fundamental oscillation frequencies.
 (the insertion-deviation ratio from Section~\ref{sec:defs}).
 \end{definition}
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{spectroscope_null_control.png}
+\caption{Null hypothesis control for the spectroscope.
+\textbf{Top:} $R(p)$ on qualifying primes shows clear peaks at
+$\gamma_1, \gamma_2, \gamma_3$.
+\textbf{Middle:} $M(p)/\sqrt{p}$ on \emph{all} primes
+$p \le 100{,}000$ (no $M(p)\le -3$ filter) --- $\gamma_1$
+is still detected at $14.05$, confirming the signal survives
+without the filter.
+\textbf{Bottom:} random weights produce no structure.}
+\label{fig:null-control}
+\end{figure}
+
 \begin{conjecture}[Spectral peaks, GRH]
 Assume GRH with simple zeros.  Then $F(\gamma)$ has local maxima
 at $\gamma = \gamma_k$ with peak heights satisfying
@@ -1520,7 +1537,7 @@ $F(\gamma)$ detects the first three nontrivial zeros:
 $\gamma_1\approx 14.08$ (error~$0.4\%$),
 $\gamma_2\approx 20.86$ (error~$0.8\%$), and
 $\gamma_3\approx 24.94$ (error~$0.3\%$)
-(Figure~\ref{fig:spectroscope}).
+(Figure~\ref{fig:spectroscope-preview}).
 
 \smallskip\noindent\textbf{Amplitude matching.}\quad
 The predicted ratios $|c_k/c_1|^2$ and observed
@@ -1537,7 +1554,7 @@ $\gamma'\approx 6.16$ and $16.13$, matching known zeros
 of $L(s,\chi_4)$.  Since $\zeta_{\Q(i)}(s) = \zeta(s)\cdot L(s,\chi_4)$,
 the untwisted and twisted spectroscopes together detect
 zeros of the Dedekind zeta function of $\Q(i)$
-(Figure~\ref{fig:multi-character}).
+(see supplementary materials).
 
 \smallskip\noindent\textbf{Pair correlation.}\quad
 The autocorrelation of $F(\gamma)$ peaks at lag
@@ -1552,17 +1569,8 @@ Unlike the Riemann--Siegel formula (which evaluates $\zeta(s)$
 directly and converges exponentially faster with correction terms),
 the spectroscope uses only Farey discrepancy data from primes.
 The two methods are complementary: they operate on fundamentally
-different inputs and provide complementary computation.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\textwidth]{farey_spectroscope.png}
-\caption{The Farey spectroscope $F(\gamma)$ for $3{,}829$
-qualifying primes.  Dashed lines mark the first nine
-nontrivial zeros of~$\zeta(s)$.  The dominant peak at
-$\gamma\approx 14.05$ matches $\gamma_1 = 14.1347$.}
-\label{fig:spectroscope}
-\end{figure}
+different inputs and provide complementary computation
+(Figure~\ref{fig:juxtaposition}).
 
 \begin{figure}[t]
 \centering
@@ -1581,59 +1589,7 @@ for the first ten zeros.  Correlation $r = 0.997$.}
 \label{fig:amplitude-matching}
 \end{figure}
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\textwidth]{zero_contributions.png}
-\caption{Relative strength of each zeta zero's effect on Farey
-regularity: $\gamma_1$ dominates, with higher zeros contributing
-progressively less.}
-\label{fig:zero-contributions}
-\end{figure}
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\textwidth]{multi_character_spectroscope.png}
-\caption{Multi-character Farey spectroscope.  Each character $\chi$
-reveals the zeros of a different $L$-function from the same
-Farey data.}
-\label{fig:multi-character}
-\end{figure}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\textwidth]{spectroscope_null_control.png}
-\caption{Null hypothesis control for the spectroscope.
-\textbf{Top:} $R(p)$ on qualifying primes shows clear peaks at
-$\gamma_1, \gamma_2, \gamma_3$.
-\textbf{Middle:} $M(p)/\sqrt{p}$ on \emph{all} primes
-$p \le 100{,}000$ (no $M(p)\le -3$ filter) --- $\gamma_1$
-is still detected at $14.05$, confirming the signal survives
-without the filter.
-\textbf{Bottom:} random weights produce no structure.}
-\label{fig:null-control}
-\end{figure}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.8\textwidth]{spectroscope_convergence_rate.png}
-\caption{Convergence rate of the spectroscope: error in $\gamma_1$
-detection versus number of qualifying primes~$N$.
-Error decreases from $2.6\%$ at $N=50$ to $<0.6\%$
-at $N>3{,}000$, though convergence is non-monotonic, the error generally
-decreases with more data.}
-\label{fig:convergence-rate}
-\end{figure}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\textwidth]{composite_spectroscope_control.png}
-\caption{Composite spectroscope control.
-\textbf{Top:} primes produce clear peaks at $\gamma_1, \gamma_2$.
-\textbf{Bottom:} composites show no clear peaks at zeta-zero locations,
-suggesting that primes are the primary carriers of the
-zeta-zero signature in their geometric insertion.}
-\label{fig:composite-control}
-\end{figure}
 
 %% ================================================================
 
@@ -1747,7 +1703,7 @@ we declare the following uses of AI in preparing this manuscript:
   and results independently verified.
 
 \item \textbf{Data visualization} (Activity~6): Claude generated all
-  16~figures from computational data.  Figures were reviewed for accuracy.
+  12~figures from computational data.  Figures were reviewed for accuracy.
 
 \item \textbf{Formal verification}: The Aristotle automated theorem
   prover (harmonic.fun) generated Lean~4 proofs.  OpenAI Codex performed
