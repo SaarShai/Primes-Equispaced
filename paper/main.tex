@@ -50,32 +50,28 @@
 \maketitle
 
 \begin{abstract}
-We introduce the \emph{per-step Farey discrepancy}
-$\Delta W(N) = W(N{-}1) - W(N)$, measuring how each integer
-changes the uniformity of the Farey sequence---a quantity that
-appears not to have been previously studied.  Primes and
-composites play opposite geometric roles: composites improve
-uniformity while primes damage it, with the sign of
-$\Delta W(p)$ controlled by the Mertens function $M(p)$.
+We study how the uniformity of the Farey sequence changes
+each time a new integer is included---a per-step perspective
+that appears not to have been previously investigated.
+Primes and composites play opposite roles: composites
+improve uniformity while primes disrupt it, with the
+direction of each prime's effect controlled by the
+Mertens function.
 
-Within this framework we prove exact identities: a four-term
-algebraic decomposition of $\Delta W(p)$, an Injection Principle
-placing each new fraction in a distinct Farey gap via modular
-inversion, and the formula $D(1/p) = 1 - |\F_p|/p$ showing that
-a single fraction is responsible for approximately $65\%$ of all
-disruption, with $D(1/p) \cdot \delta(1/p) \to -3/\pi^2$.
+We prove exact algebraic identities for the per-step
+discrepancy change, including a four-term decomposition,
+an injection principle showing each new fraction enters
+a distinct gap, and a dominance result for the
+fraction~$1/p$.  These identities reveal that the sign
+of the prime disruption correlates strongly ($r = 0.77$)
+with the leading zero of the Riemann zeta function,
+connecting Farey geometry to the Chebyshev bias framework
+of Rubinstein and Sarnak.
 
-The per-step view reveals a connection to the Riemann zeta zeros:
-the correlation ratio
-$R(p) = \sum D\,\delta \,/\, \sum \delta^2$ correlates with
-$\cos(\gamma_1 \log p)$ at $r = 0.77$ across $4{,}617$ qualifying
-primes, linking Farey geometry to the Chebyshev bias framework of
-Rubinstein and Sarnak.  A \emph{Farey spectroscope}
-$F(\gamma) = |\sum R(p)\,p^{-1/2 - i\gamma}|^2$ detects the
-first three nontrivial zeta zeros ($\gamma_1, \gamma_2, \gamma_3$)
-from Farey data alone, with amplitude correlation $r = 0.997$.
-All core identities are formally verified in Lean~4
-(258~results, zero~\texttt{sorry}).
+A spectral function built from the per-step data detects
+the first three nontrivial zeta zeros from Farey
+discrepancy data alone.  All core identities are formally
+verified in Lean~4 (258~results, zero~\texttt{sorry}).
 \end{abstract}
 
 \medskip
@@ -110,7 +106,7 @@ are smallest.}
 
 \noindent Writing $n = |\F_N|$ and listing elements as
 $f_0 < f_1 < \cdots < f_{n-1}$, the \emph{squared rank deviation}
-(which we call the \emph{wobble}, following the Franel tradition) is
+(which we call the \emph{wobble}) is
 \begin{equation}
   W(N) \;=\; \sum_{j=0}^{n-1} \left( f_j - \frac{j}{n} \right)^{\!2}.
 \end{equation}
@@ -149,8 +145,8 @@ for every $\varepsilon > 0$, where $n = |\F_N|$.
 Equivalently (see Hardy--Wright~\cite{HardyWright2008}, Ch.~XVIII),
 RH holds if and only if $W(N) = O(N^{-1+\varepsilon})$.
 Thus the quantity~$W(N)$ defined above---which we call the
-\emph{wobble}, following the Franel-type squared rank
-deviation---encodes information about the non-trivial zeros
+\emph{wobble} (our terminology for the squared rank
+deviation)---encodes information about the non-trivial zeros
 of the Riemann zeta function.
 Recent work by Karvonen and
 Zhigljavsky~\cite{KarvonenZhigljavsky2025} studies the maximum
@@ -158,7 +154,7 @@ mean discrepancy of Farey sequences, providing additional
 quantitative connections between Farey uniformity and analytic
 number theory.
 
-\subsection{The observation that started it all}
+\subsection{Motivating observation: primes fill voids uniformly}
 
 Place the Farey fractions of $\F_N$ as points on the unit circle
 at angles $2\pi f$.  As $N$ grows, new fractions appear and the
@@ -252,6 +248,12 @@ $D(f_j) = j - n \cdot f_j$.
 For a prime~$p$ and $f \in \F_{p-1}$:
 $\delta(f) = f - \fpart{pf}$,
 where $\fpart{x} = x - \lfloor x \rfloor$ is the fractional part.
+\end{definition}
+
+\begin{definition}[Per-denominator shift sum]
+For denominator~$b$ with $2 \le b \le N$, define
+$\delta_b^2 = \sum_{\substack{a=1 \\ \gcd(a,b)=1}}^{b} \delta(a/b)^2$,
+the total squared shift contributed by fractions with denominator~$b$.
 \end{definition}
 
 \begin{definition}[Mertens function]
@@ -530,9 +532,9 @@ The following proposition explains \emph{why} the shift
 function~$\delta$ controls the per-step wobble change.
 
 \begin{proposition}[Displacement-Shift]\label{prop:disp-shift}
-When adding a prime~$p$ to the Farey sequence, the displacement
-of each old fraction $f \in \F_{p-1}$, $f \ne 1$, changes by
-exactly the shift:
+In the transition from $\F_{p-1}$ to $\F_p$ (where $p$ is prime),
+the displacement of each old fraction $f \in \F_{p-1}$, $f \ne 1$,
+changes by exactly the shift:
 \begin{equation}
   D_{\F_p}(f) \;=\; D_{\F_{p-1}}(f) + \delta(f).
 \end{equation}
@@ -649,21 +651,16 @@ $M/\sqrt{p}$ range & Positive-$\Delta W$ rate \\
 \end{center}
 % [Detailed empirical tables available in supplementary]
 
-\subsection{The natural conjecture and its counterexample}
+\subsection{The threshold question}
 
 For primes $p = 3, 5, 7$, both $M(p) < 0$ and $\Delta W(p) > 0$
 hold---these small primes improve uniformity despite negative $M$
 because their Farey sequences are too small for the Mertens bias
-to dominate.  Starting from $p = 11$, the pattern reverses.
-The computational evidence for $p \le 50{,}000$ (zero exceptions
-among $5{,}129$ primes with $p \ge 11$) strongly suggested the
-conjecture:
-
-\begin{conjecture}[Historical, disproved]
-For all primes $p \ge 11$: $M(p) < 0 \implies \Delta W(p) \le 0$.
-\end{conjecture}
-
-\noindent This conjecture is \textbf{false}.
+to dominate.  Starting from $p = 11$, the pattern reverses:
+computational evidence for $p \le 50{,}000$ shows zero exceptions
+among $5{,}129$ primes with $p \ge 11$.  A natural question is
+whether $M(p) < 0$ alone suffices to guarantee $\Delta W(p) \le 0$.
+It does not.
 
 \begin{observation}[Certified counterexample at $p = 92{,}173$]
 At the prime $p = 92{,}173$:
@@ -764,12 +761,12 @@ Computation through $p = 100{,}000$ reveals a striking near-cancellation:
 \begin{observation}[Near-cancellation]
 For all tested primes with $M(p) \le -3$:
 \begin{enumerate}[(i)]
-  \item $\mathcal{D}/A \in [0.97,\, 1.12]$: the new-fraction discrepancy almost exactly
-    cancels the dilution ($\mathcal{D}/A = 1 + O(1/p)$) by itself.
+  \item $\mathcal{D}/A \in [0.97,\, 1.12]$: the new-fraction discrepancy cancels the dilution
+    to within $O(1/p)$: specifically $\mathcal{D}/A = 1 + O(1/p)$.
   \item $B$ is \textbf{positive} for all tested $M(p) \le -3$ primes:
     the rank discrepancy $D$ and
     the shift $\delta$ are positively correlated in this regime.
-  \item $C$ provides $5$--$18\%$ additional margin.
+  \item $C/A \in [0.05, 0.18]$ for the tested range.
   \item The combined ratio $(B + C + \mathcal{D})/A$ grows from ${\sim}1.4$ at
     $M = -3$ to ${\sim}3.0$ at $M = -14$.
 \end{enumerate}
