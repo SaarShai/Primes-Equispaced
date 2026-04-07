@@ -362,13 +362,24 @@ For any positive integers $m$ and $N$,
 \end{theorem}
 
 \begin{proof}
-Decompose by denominator as before: the sum equals $2 + \sum_{b=2}^{N}
-c_b(m)$.  The Ramanujan sum satisfies $c_b(m) = \sum_{d \mid \gcd(b,m)}
-d\,\mu(b/d)$.  Exchange the order of summation over $b$ and $d$:
-for each divisor $d \mid m$ with $d \ge 2$, the contribution is
-$d \sum_{k=1}^{\lfloor N/d \rfloor} \mu(k) = d \cdot M(\lfloor N/d \rfloor)$.
-The $d = 1$ terms give $M(N) - 1$; adding the boundary~$2$ yields
-$M(N) + 1$.
+Group the sum by denominator:
+$\sum_{f \in \F_N} e^{2\pi i m f}
+= \sum_{b=1}^{N} \sum_{\substack{a=0 \\ \gcd(a,b)=1}}^{b}
+e^{2\pi i m a/b}$.
+The inner sum over $a$ with $\gcd(a,b)=1$ is the Ramanujan
+sum~$c_b(m)$~\cite{Ramanujan1918}, plus the boundary terms
+$a = 0$ and $a = b$ contributing~$2$.  Thus the sum equals
+$2 + \sum_{b=2}^{N} c_b(m)$.
+
+The Ramanujan sum has the Mobius evaluation
+$c_b(m) = \sum_{d \mid \gcd(b,m)} d\,\mu(b/d)$
+(see~\cite{HardyWright2008}, Thm.~272).
+Exchanging the order of summation over $b$ and~$d$:
+for each divisor $d \mid m$ with $d \ge 2$, the contribution
+is $d \sum_{k=1}^{\lfloor N/d \rfloor} \mu(k)
+= d \cdot M(\lfloor N/d \rfloor)$.
+The $d = 1$ terms give $\sum_{b=2}^{N} \mu(b) = M(N) - 1$;
+adding the boundary~$2$ yields $M(N) + 1$.
 \end{proof}
 
 \begin{remark}
@@ -445,13 +456,24 @@ For every prime $p \ge 2$,
 \end{theorem}
 
 \begin{proof}
-For interior points, $\delta(f)^2$ is symmetric (since
-$\delta(1-f) = -\delta(f)$), so the involution $f \leftrightarrow 1{-}f$ (which satisfies
-$\delta(1{-}f) = -\delta(f)$ and hence $\delta(1{-}f)^2 = \delta(f)^2$)
-applies on the interior.  The boundary contributes
-$D(0) \cdot \delta(0)^2 + D(1) \cdot \delta(1)^2 = 0 + (-1)(1) = -1$,
-while the involution principle predicts $-\tfrac{1}{2}(0 + 1) = -\tfrac{1}{2}$
-for this pair; the difference $-\tfrac{1}{2}$ yields the correction.
+Split the sum $\Sigma = \sum D(f)\cdot\delta(f)^2$ into
+interior fractions and boundary.
+For interior $f \in (0,1)$, pair each $f$ with $1-f$
+using the Farey symmetry.  Since $D(f) + D(1{-}f) = -1$
+(the Farey antisymmetry; proved in Lean) and
+$\delta(1{-}f) = -\delta(f)$ (hence $\delta(1{-}f)^2 = \delta(f)^2$),
+each pair contributes
+$[D(f) + D(1{-}f)]\cdot\delta(f)^2 = -\delta(f)^2$.
+Summing over all interior pairs gives
+$-\frac{1}{2}\sum_{f \ne 0,1} \delta(f)^2$.
+
+The boundary: $D(0) = 0$ (rank equals $n \cdot 0 = 0$) and
+$\delta(0) = 0$, so $f = 0$ contributes nothing.
+At $f = 1$: $D(1) = n{-}1 - n = -1$ and $\delta(1) = 1$
+(since $\{p \cdot 1\} = 0$ and $1 - 0 = 1$),
+contributing $(-1)(1)^2 = -1$.
+Including the boundary $\delta(1)^2 = 1$ in the total:
+$\Sigma = -\frac{1}{2}\sum_{f}\delta(f)^2 - \frac{1}{2}$.
 \end{proof}
 
 
@@ -1457,6 +1479,43 @@ $\Delta W$ at $r = -0.914$ (exact, $p \le 200$).
 
 
 % [GK concentration + figure moved to supplementary]
+
+\subsection{Connection to zeta zeros via the explicit formula}
+\label{sec:explicit-connection}
+
+The Bridge Identity (Theorem~\ref{thm:bridge}) connects the
+cross-term~$B$ to the Mertens function:
+$\sum_{f \in \F_{p-1}} e^{2\pi i p f} = M(p) + 2$.
+Under GRH, the explicit formula for~$M(x)$
+gives~\cite{Edwards1974}
+\begin{equation}\label{eq:explicit}
+  M(x) = \sum_{\rho} \frac{x^{\rho}}{\rho\,\zeta'(\rho)}
+  - 2 + \text{(lower order)},
+\end{equation}
+where the sum runs over nontrivial zeros
+$\rho = \tfrac{1}{2} + i\gamma$ of~$\zeta(s)$.
+Writing $x^{\rho} = \sqrt{x}\,e^{i\gamma\log x}$,
+the Mertens function at a prime~$p$ oscillates as
+\[
+  M(p) \;\approx\;
+  2\sqrt{p}\sum_{k}\frac{\cos(\gamma_k\log p + \phi_k)}
+  {|\rho_k\,\zeta'(\rho_k)|},
+\]
+where $\phi_k = -\arg(\rho_k\,\zeta'(\rho_k))$.
+The dominant term ($k = 1$, $\gamma_1 \approx 14.13$) produces
+a correlation $r = 0.77$ between $\sgn(\Delta W(p))$ and
+$-\sgn(\cos(\gamma_1\log p + \varphi))$ across
+$4{,}617$ qualifying primes
+(Section~\ref{sec:sign-theorem}).
+
+\begin{remark}[Conditional nature]
+The derivation above is conditional on GRH (for the explicit
+formula) and assumes term-by-term dominance by the leading zero.
+An unconditional proof that $\Delta W(p)$ oscillates with zeta
+zeros remains an open problem; the primary gap is an analytical
+proof that $B > 0$ for all primes with $M(p) \le -3$
+(Section~\ref{sec:phenomenon}).
+\end{remark}
 
 
 %% ================================================================
