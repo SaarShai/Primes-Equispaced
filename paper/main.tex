@@ -71,7 +71,7 @@ of Rubinstein and Sarnak.
 A spectral function built from the per-step data detects
 the first three nontrivial zeta zeros from Farey
 discrepancy data alone.  All core identities are formally
-verified in Lean~4 (258~results, zero~\texttt{sorry}).
+verified in Lean~4 (422~results, zero~\texttt{sorry}).
 \end{abstract}
 
 \medskip
@@ -287,8 +287,11 @@ The per-frequency generalization (Theorems~\ref{thm:gen-bridge}
 and~\ref{thm:universal}) and the per-step application to
 $\Delta W(N)$ (Theorems~\ref{thm:bridge}--\ref{thm:cross-term})
 appear, to our knowledge, not to have been stated previously
-in this form.  All identities and supporting lemmas are
-formally verified in Lean~4 (258~results across fifteen files,
+in this per-step form.  (The underlying exponential sums are
+Ramanujan sums, whose evaluation is classical~\cite{Ramanujan1918};
+our contribution is the per-step framework connecting them
+to~$\Delta W$.)  All identities and supporting lemmas are
+formally verified in Lean~4 (422~results across fifteen files,
 zero~\texttt{sorry}); all prime-parameter identities
 are also verified
 computationally for all primes $p \le 100{,}000$, and the universal
@@ -454,9 +457,10 @@ for this pair; the difference $-\tfrac{1}{2}$ yields the correction.
 
 \subsection{Geometric Identity: $B+C$ as $L^2$ Norm Change}
 
-The cross term $B$ and the shift-squared term $C$ from the
-four-term decomposition (Section~\ref{sec:phenomenon}) admit a
-striking geometric interpretation.
+The cross term $B = (2/{n'}^2)\sum D\cdot\delta$ and the
+shift-squared term $C = (1/{n'}^2)\sum\delta^2$
+(formally defined in Section~\ref{sec:phenomenon}) admit a
+geometric interpretation.
 
 \begin{lemma}[Geometric Identity]\label{thm:geometric-bc}
 For every prime $p \ge 2$,
@@ -701,7 +705,7 @@ are excluded; see Section~\ref{sec:phenomenon}).
 Restricting to the stronger condition $M(p) \le -3$ eliminates
 the counterexample entirely.
 
-\begin{observation}
+\begin{observation}[Computational: zero counterexamples for $M \le -3$]
 Among all $4{,}617$ primes $p \le 100{,}000$ with $M(p) \le -3$:
 \[
   \Delta W(p) \le 0 \quad\text{in every case.}
