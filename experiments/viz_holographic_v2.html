@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holographic Encoding — Tuning Fork Metaphor</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #0a0a14;
+  color: #e0d8c8;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+.section {
+  min-height: 100vh;
+  padding: 60px 40px;
+  border-bottom: 1px solid rgba(255, 200, 50, 0.1);
+  position: relative;
+}
+
+h1 {
+  font-size: 2.4em;
+  color: #ffd700;
+  margin-bottom: 10px;
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+}
+
+h2 {
+  font-size: 1.6em;
+  color: #ffd700;
+  margin-bottom: 20px;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.subtitle {
+  font-size: 1.1em;
+  color: #a09880;
+  margin-bottom: 40px;
+  max-width: 700px;
+}
+
+.insight-text {
+  font-size: 1.15em;
+  color: #e0d090;
+  background: rgba(255, 215, 0, 0.06);
+  border-left: 3px solid #ffd700;
+  padding: 15px 20px;
+  margin: 25px 0;
+  max-width: 750px;
+  line-height: 1.7;
+}
+
+/* Prime circles */
+.prime-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffd700, #b8860b);
+  color: #1a1400;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  margin: 6px;
+  transition: all 0.3s;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  user-select: none;
+}
+.prime-circle:hover {
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+  transform: scale(1.1);
+}
+.prime-circle.active {
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.8), 0 0 80px rgba(255, 215, 0, 0.3);
+  transform: scale(1.15);
+}
+.prime-circle.off {
+  background: radial-gradient(circle at 35% 35%, #555, #333);
+  color: #888;
+  box-shadow: 0 0 5px rgba(100, 100, 100, 0.3);
+}
+
+/* Canvases */
+canvas {
+  display: block;
+  border-radius: 8px;
+}
+
+/* Section 1 */
+#s1-container {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+#s1-prime-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.big-prime {
+  width: 100px;
+  height: 100px;
+  font-size: 28px;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+}
+.prime-label {
+  color: #a09880;
+  font-size: 14px;
+}
+#s1-wave-canvas {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(255, 200, 50, 0.15);
+}
+
+/* Wave legend */
+.wave-legend {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+.wave-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+.wave-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+/* Section 2 */
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+.slider-container label {
+  font-size: 15px;
+  color: #a09880;
+}
+.slider-container input[type=range] {
+  width: 300px;
+  accent-color: #ffd700;
+}
+.slider-value {
+  font-size: 20px;
+  color: #ffd700;
+  font-weight: 700;
+  min-width: 30px;
+}
+
+#s2-primes-row {
+  margin-bottom: 15px;
+}
+
+#s2-canvas {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(255, 200, 50, 0.15);
+}
+
+/* Section 3 */
+#s3-grid {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin-bottom: 15px;
+}
+#s3-grid .prime-circle {
+  width: 48px;
+  height: 48px;
+  font-size: 13px;
+  margin: 4px;
+}
+
+#s3-canvas {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(255, 200, 50, 0.15);
+}
+
+.stats-bar {
+  display: flex;
+  gap: 30px;
+  margin: 15px 0;
+  font-size: 15px;
+}
+.stats-bar span {
+  color: #ffd700;
+  font-weight: 700;
+}
+
+.challenge {
+  font-size: 1.05em;
+  color: #ff9944;
+  font-style: italic;
+  margin: 15px 0;
+}
+
+/* Sound toggle */
+.sound-toggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 215, 0, 0.15);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  color: #ffd700;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  z-index: 100;
+}
+.sound-toggle:hover {
+  background: rgba(255, 215, 0, 0.25);
+}
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
+
+/* Nav dots */
+.nav {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 50;
+}
+.nav a {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 215, 0, 0.3);
+  display: block;
+  transition: all 0.3s;
+}
+.nav a:hover, .nav a.active {
+  background: #ffd700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+</style>
+</head>
+<body>
+
+<button class="sound-toggle" id="soundToggle" onclick="toggleSound()">Sound: OFF</button>
+
+<nav class="nav">
+  <a href="#section1" title="One Prime, All Frequencies"></a>
+  <a href="#section2" title="Adding Primes Together"></a>
+  <a href="#section3" title="You Can't Escape the Zeros"></a>
+</nav>
+
+<!-- ===================== SECTION 1 ===================== -->
+<div class="section" id="section1">
+  <h1>One Prime, All Frequencies</h1>
+  <p class="subtitle">Each prime vibrates at every zeta-zero frequency simultaneously — like a tuning fork that rings with a chord, not a single note.</p>
+
+  <div id="s1-container">
+    <div id="s1-prime-area">
+      <div class="prime-circle big-prime" id="s1-prime13" onclick="s1Click(13)">13</div>
+      <div class="prime-label">Click a prime</div>
+      <div class="prime-circle big-prime" id="s1-prime97" onclick="s1Click(97)" style="margin-top:10px">97</div>
+    </div>
+    <div>
+      <canvas id="s1-wave-canvas" width="700" height="380"></canvas>
+      <div class="wave-legend" id="s1-legend"></div>
+    </div>
+  </div>
+
+  <div class="insight-text" id="s1-insight" style="opacity:0; transition: opacity 0.8s;">
+    Every prime vibrates with the SAME hidden frequencies — the zeta zeros. Only the amplitudes differ.
+  </div>
+</div>
+
+<!-- ===================== SECTION 2 ===================== -->
+<div class="section" id="section2">
+  <h2>Adding Primes Together</h2>
+  <p class="subtitle">Individual primes are noisy. But add them up and the hidden frequencies emerge — because every prime was encoding them all along.</p>
+
+  <div id="s2-primes-row"></div>
+
+  <div class="slider-container">
+    <label>Number of primes:</label>
+    <input type="range" id="s2-slider" min="1" max="20" value="1" oninput="s2Update()">
+    <div class="slider-value" id="s2-slider-val">1</div>
+  </div>
+
+  <canvas id="s2-canvas" width="900" height="350"></canvas>
+
+  <div class="insight-text" id="s2-insight" style="opacity:0; transition: opacity 0.8s;">
+    Each prime alone is noisy. Together, the SAME hidden frequencies emerge — because every prime was encoding them all along.
+  </div>
+</div>
+
+<!-- ===================== SECTION 3 ===================== -->
+<div class="section" id="section3">
+  <h2>You Can't Escape the Zeros</h2>
+  <p class="subtitle">Toggle primes on and off. The peak positions never move — only the volume changes.</p>
+
+  <div id="s3-grid"></div>
+
+  <div class="stats-bar">
+    <div><span id="s3-active-count">50</span> primes active</div>
+    <div>Peaks visible: <span id="s3-peaks-count">5</span>/5</div>
+  </div>
+
+  <canvas id="s3-canvas" width="900" height="320"></canvas>
+
+  <p class="challenge">Try removing primes. The peak POSITIONS never change — only the volume.</p>
+</div>
+
+<script>
+// ===== CONSTANTS =====
+const ZEROS = [
+  { gamma: 14.134725, color: '#ff4444', label: 'γ₁ = 14.13' },
+  { gamma: 21.022040, color: '#4488ff', label: 'γ₂ = 21.02' },
+  { gamma: 25.010858, color: '#44dd44', label: 'γ₃ = 25.01' },
+  { gamma: 30.424876, color: '#ff44ff', label: 'γ₄ = 30.42' },
+  { gamma: 32.935062, color: '#ffaa22', label: 'γ₅ = 32.94' },
+];
+
+const PRIMES_50 = [
+  2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,
+  53,59,61,67,71,73,79,83,89,97,101,103,107,109,113,
+  127,131,137,139,149,151,157,163,167,173,179,181,191,193,197,
+  199,211,223,227,229
+];
+
+const PRIMES_20 = PRIMES_50.slice(0, 20);
+
+// Audio
+let audioCtx = null;
+let soundOn = false;
+let activeOscillators = [];
+
+function toggleSound() {
+  soundOn = !soundOn;
+  document.getElementById('soundToggle').textContent = 'Sound: ' + (soundOn ? 'ON' : 'OFF');
+  if (!soundOn) stopAllSound();
+}
+
+function stopAllSound() {
+  activeOscillators.forEach(o => { try { o.stop(); } catch(e){} });
+  activeOscillators = [];
+}
+
+function playPrimeChord(p) {
+  if (!soundOn) return;
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  stopAllSound();
+
+  const freqMap = [440, 660, 784, 880, 990]; // musical mapping
+  ZEROS.forEach((z, i) => {
+    const amp = Math.cos(z.gamma * Math.log(p)) / Math.sqrt(p);
+    const gain = audioCtx.createGain();
+    gain.gain.value = Math.abs(amp) * 0.15;
+    gain.connect(audioCtx.destination);
+
+    const osc = audioCtx.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.value = freqMap[i];
+    osc.connect(gain);
+    osc.start();
+    activeOscillators.push(osc);
+
+    // Fade out after 2s
+    gain.gain.setTargetAtTime(0, audioCtx.currentTime + 1.5, 0.3);
+    setTimeout(() => { try { osc.stop(); } catch(e){} }, 2500);
+  });
+}
+
+// ===== SECTION 1 =====
+let s1ActivePrime = null;
+let s1Anim = null;
+let s1Time = 0;
+
+// Build legend
+(function() {
+  const leg = document.getElementById('s1-legend');
+  ZEROS.forEach(z => {
+    const item = document.createElement('div');
+    item.className = 'wave-legend-item';
+    item.innerHTML = `<div class="wave-legend-dot" style="background:${z.color}"></div>${z.label}`;
+    leg.appendChild(item);
+  });
+})();
+
+function s1Click(p) {
+  // Toggle active state visuals
+  document.getElementById('s1-prime13').classList.toggle('active', p === 13);
+  document.getElementById('s1-prime97').classList.toggle('active', p === 97);
+
+  s1ActivePrime = p;
+  s1Time = 0;
+  document.getElementById('s1-insight').style.opacity = '1';
+  playPrimeChord(p);
+
+  if (!s1Anim) s1Animate();
+}
+
+function s1Animate() {
+  s1Anim = true;
+  const canvas = document.getElementById('s1-wave-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+
+  function draw() {
+    if (!s1ActivePrime) { requestAnimationFrame(draw); return; }
+
+    ctx.fillStyle = 'rgba(10, 10, 20, 0.15)';
+    ctx.fillRect(0, 0, W, H);
+
+    const p = s1ActivePrime;
+    const lp = Math.log(p);
+    const sqrtP = Math.sqrt(p);
+
+    // Time axis
+    const tRange = 6; // show 6 units of "time"
+
+    ZEROS.forEach((z, i) => {
+      const amp = Math.cos(z.gamma * lp) / sqrtP;
+      const yCenter = 40 + i * 70;
+
+      // Label
+      ctx.fillStyle = z.color;
+      ctx.font = '12px monospace';
+      ctx.fillText(z.label + '  amp=' + amp.toFixed(3), 10, yCenter - 25);
+
+      // Draw wave
+      ctx.beginPath();
+      ctx.strokeStyle = z.color;
+      ctx.lineWidth = 2.5;
+      ctx.globalAlpha = 0.85;
+
+      for (let x = 0; x < W; x++) {
+        const t = (x / W) * tRange;
+        // Wave emanating from left, uses the zero frequency
+        const fadeIn = Math.min(1, Math.max(0, (s1Time * 1.5 - t * 0.3)));
+        const y = yCenter + amp * Math.sin(z.gamma * t + s1Time * 2) * 28 * fadeIn;
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    });
+
+    // Prime label at top
+    ctx.fillStyle = '#ffd700';
+    ctx.font = 'bold 16px sans-serif';
+    ctx.fillText('Prime ' + p + '  —  vibrating at 5 zero frequencies simultaneously', W/2 - 200, H - 15);
+
+    s1Time += 0.02;
+    requestAnimationFrame(draw);
+  }
+
+  // Clear once
+  ctx.fillStyle = '#0a0a14';
+  ctx.fillRect(0, 0, W, H);
+  draw();
+}
+
+// ===== SECTION 2 =====
+(function() {
+  const row = document.getElementById('s2-primes-row');
+  PRIMES_20.forEach((p, i) => {
+    const el = document.createElement('div');
+    el.className = 'prime-circle';
+    el.textContent = p;
+    el.id = 's2-p-' + i;
+    row.appendChild(el);
+  });
+})();
+
+function s2Update() {
+  const n = parseInt(document.getElementById('s2-slider').value);
+  document.getElementById('s2-slider-val').textContent = n;
+
+  // Highlight active primes
+  PRIMES_20.forEach((p, i) => {
+    const el = document.getElementById('s2-p-' + i);
+    el.classList.toggle('active', i < n);
+    el.classList.toggle('off', i >= n);
+  });
+
+  // Show insight when enough primes
+  document.getElementById('s2-insight').style.opacity = n >= 10 ? '1' : '0';
+
+  s2Draw(n);
+}
+
+function s2Draw(n) {
+  const canvas = document.getElementById('s2-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+
+  ctx.fillStyle = '#0a0a14';
+  ctx.fillRect(0, 0, W, H);
+
+  // Compute power spectrum: for gamma from 5 to 40, compute |sum cos(gamma*log(p))/sqrt(p)|^2
+  const gammaMin = 5, gammaMax = 40;
+  const steps = W;
+  const power = new Float64Array(steps);
+  let maxPow = 0;
+
+  for (let x = 0; x < steps; x++) {
+    const gamma = gammaMin + (x / steps) * (gammaMax - gammaMin);
+    let sumCos = 0, sumSin = 0;
+    for (let i = 0; i < n; i++) {
+      const p = PRIMES_20[i];
+      const w = 1 / Math.sqrt(p);
+      sumCos += w * Math.cos(gamma * Math.log(p));
+      sumSin += w * Math.sin(gamma * Math.log(p));
+    }
+    power[x] = sumCos * sumCos + sumSin * sumSin;
+    if (power[x] > maxPow) maxPow = power[x];
+  }
+
+  if (maxPow === 0) maxPow = 1;
+
+  // Draw grid lines at zero positions
+  ctx.strokeStyle = 'rgba(255, 215, 0, 0.1)';
+  ctx.lineWidth = 1;
+  ZEROS.forEach(z => {
+    const x = ((z.gamma - gammaMin) / (gammaMax - gammaMin)) * W;
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, H);
+    ctx.stroke();
+  });
+
+  // Draw spectrum
+  ctx.beginPath();
+  ctx.strokeStyle = '#88ccff';
+  ctx.lineWidth = 2;
+  for (let x = 0; x < steps; x++) {
+    const y = H - 30 - (power[x] / maxPow) * (H - 60);
+    if (x === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+
+  // Fill under curve
+  ctx.lineTo(W, H - 30);
+  ctx.lineTo(0, H - 30);
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(100, 180, 255, 0.08)';
+  ctx.fill();
+
+  // Mark peaks at zero positions
+  ZEROS.forEach((z, i) => {
+    const xPos = ((z.gamma - gammaMin) / (gammaMax - gammaMin)) * W;
+    const xIdx = Math.round(xPos);
+    const peakY = H - 30 - (power[Math.min(xIdx, steps-1)] / maxPow) * (H - 60);
+
+    // Is there a local peak near this zero?
+    const windowSize = Math.round(steps * 1.5 / (gammaMax - gammaMin));
+    let localMax = 0;
+    for (let dx = -windowSize; dx <= windowSize; dx++) {
+      const idx = xIdx + dx;
+      if (idx >= 0 && idx < steps) localMax = Math.max(localMax, power[idx]);
+    }
+    const prominence = localMax / maxPow;
+
+    if (prominence > 0.15 && n >= 3) {
+      // Glow
+      const grad = ctx.createRadialGradient(xPos, peakY, 0, xPos, peakY, 30);
+      grad.addColorStop(0, 'rgba(255, 215, 0, 0.6)');
+      grad.addColorStop(1, 'rgba(255, 215, 0, 0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(xPos - 30, peakY - 30, 60, 60);
+
+      // Vertical line
+      ctx.strokeStyle = z.color;
+      ctx.lineWidth = 2;
+      ctx.globalAlpha = 0.7;
+      ctx.beginPath();
+      ctx.moveTo(xPos, peakY);
+      ctx.lineTo(xPos, H - 30);
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+
+      // Label
+      ctx.fillStyle = z.color;
+      ctx.font = 'bold 13px monospace';
+      ctx.fillText(z.label, xPos - 30, peakY - 10);
+    }
+  });
+
+  // Axis label
+  ctx.fillStyle = '#666';
+  ctx.font = '12px sans-serif';
+  ctx.fillText('γ (frequency)', W / 2 - 30, H - 5);
+  ctx.fillText(gammaMin.toString(), 5, H - 5);
+  ctx.fillText(gammaMax.toString(), W - 20, H - 5);
+  ctx.save();
+  ctx.translate(12, H / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillText('Power |Σ|²', -20, 0);
+  ctx.restore();
+}
+
+// Init section 2
+s2Update();
+
+// ===== SECTION 3 =====
+const s3State = new Array(50).fill(true);
+
+(function() {
+  const grid = document.getElementById('s3-grid');
+  PRIMES_50.forEach((p, i) => {
+    const el = document.createElement('div');
+    el.className = 'prime-circle';
+    el.textContent = p;
+    el.id = 's3-p-' + i;
+    el.onclick = () => s3Toggle(i);
+    grid.appendChild(el);
+  });
+  s3Draw();
+})();
+
+function s3Toggle(i) {
+  s3State[i] = !s3State[i];
+  document.getElementById('s3-p-' + i).classList.toggle('off', !s3State[i]);
+  document.getElementById('s3-p-' + i).classList.toggle('active', s3State[i]);
+  s3Draw();
+}
+
+function s3Draw() {
+  const canvas = document.getElementById('s3-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+
+  ctx.fillStyle = '#0a0a14';
+  ctx.fillRect(0, 0, W, H);
+
+  const gammaMin = 5, gammaMax = 40;
+  const steps = W;
+  const power = new Float64Array(steps);
+  let maxPow = 0;
+  let activeCount = 0;
+
+  for (let x = 0; x < steps; x++) {
+    const gamma = gammaMin + (x / steps) * (gammaMax - gammaMin);
+    let sumCos = 0, sumSin = 0;
+    for (let i = 0; i < 50; i++) {
+      if (!s3State[i]) continue;
+      const p = PRIMES_50[i];
+      const w = 1 / Math.sqrt(p);
+      sumCos += w * Math.cos(gamma * Math.log(p));
+      sumSin += w * Math.sin(gamma * Math.log(p));
+    }
+    power[x] = sumCos * sumCos + sumSin * sumSin;
+    if (power[x] > maxPow) maxPow = power[x];
+  }
+
+  activeCount = s3State.filter(Boolean).length;
+  if (maxPow === 0) maxPow = 1;
+
+  // Gold markers at fixed zero positions (always shown)
+  ZEROS.forEach(z => {
+    const x = ((z.gamma - gammaMin) / (gammaMax - gammaMin)) * W;
+    // Subtle vertical marker
+    ctx.strokeStyle = 'rgba(255, 215, 0, 0.15)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, H - 25);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Gold triangle at bottom
+    ctx.fillStyle = '#ffd700';
+    ctx.beginPath();
+    ctx.moveTo(x, H - 25);
+    ctx.lineTo(x - 5, H - 15);
+    ctx.lineTo(x + 5, H - 15);
+    ctx.closePath();
+    ctx.fill();
+  });
+
+  // Draw spectrum
+  ctx.beginPath();
+  ctx.strokeStyle = '#88ccff';
+  ctx.lineWidth = 2;
+  for (let x = 0; x < steps; x++) {
+    const y = H - 30 - (power[x] / maxPow) * (H - 60);
+    if (x === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+
+  // Fill
+  ctx.lineTo(W, H - 30);
+  ctx.lineTo(0, H - 30);
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(100, 180, 255, 0.06)';
+  ctx.fill();
+
+  // Check which peaks are visible
+  let peaksVisible = 0;
+  ZEROS.forEach((z, i) => {
+    const xPos = ((z.gamma - gammaMin) / (gammaMax - gammaMin)) * W;
+    const xIdx = Math.min(Math.round(xPos), steps - 1);
+
+    // Check local prominence
+    const windowSize = Math.round(steps * 1.5 / (gammaMax - gammaMin));
+    let localVal = power[xIdx];
+    let isLocalMax = true;
+    let neighbors = 0;
+    for (let dx = -windowSize; dx <= windowSize; dx++) {
+      const idx = xIdx + dx;
+      if (idx >= 0 && idx < steps && Math.abs(dx) > 2) {
+        neighbors = Math.max(neighbors, power[idx]);
+      }
+    }
+    const prominence = localVal / maxPow;
+
+    if (prominence > 0.12 && localVal > neighbors * 0.8) {
+      peaksVisible++;
+      const peakY = H - 30 - (localVal / maxPow) * (H - 60);
+
+      // Glow
+      const grad = ctx.createRadialGradient(xPos, peakY, 0, xPos, peakY, 25);
+      grad.addColorStop(0, 'rgba(255, 215, 0, 0.5)');
+      grad.addColorStop(1, 'rgba(255, 215, 0, 0)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(xPos - 25, peakY - 25, 50, 50);
+
+      ctx.fillStyle = z.color;
+      ctx.font = 'bold 12px monospace';
+      ctx.fillText(z.label, xPos - 25, peakY - 8);
+    }
+  });
+
+  // Axis
+  ctx.fillStyle = '#555';
+  ctx.font = '12px sans-serif';
+  ctx.fillText('γ (frequency)', W / 2 - 30, H - 2);
+  ctx.fillText(gammaMin.toString(), 5, H - 2);
+  ctx.fillText(gammaMax.toString(), W - 20, H - 2);
+
+  // Update stats
+  document.getElementById('s3-active-count').textContent = activeCount;
+  document.getElementById('s3-peaks-count').textContent = peaksVisible;
+}
+
+// ===== NAV HIGHLIGHTING =====
+const sections = ['section1', 'section2', 'section3'];
+const navLinks = document.querySelectorAll('.nav a');
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY + window.innerHeight / 2;
+  sections.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (el.offsetTop <= scrollY && el.offsetTop + el.offsetHeight > scrollY) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      navLinks[i].classList.add('active');
+    }
+  });
+});
+
+// Start section 1 animation
+s1Animate();
+</script>
+</body>
+</html>
