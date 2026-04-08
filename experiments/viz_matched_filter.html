@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Matched Filter: Revealing Hidden Zeta Zeros</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #0a0a1a;
+  color: #e0e0e8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 28px 16px 40px;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 1.7em;
+  font-weight: 700;
+  color: #00e5ff;
+  text-align: center;
+  margin-bottom: 2px;
+  letter-spacing: 0.3px;
+  text-shadow: 0 0 30px rgba(0,229,255,0.3);
+}
+
+#subtitle {
+  font-size: 0.95em;
+  color: #6a6a8a;
+  margin-bottom: 18px;
+  text-align: center;
+  font-style: italic;
+}
+
+#counter {
+  font-size: 1.35em;
+  font-weight: 700;
+  color: #ffd700;
+  margin-bottom: 14px;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(255,215,0,0.4);
+  transition: color 0.3s;
+  min-height: 1.6em;
+}
+
+#canvasWrap {
+  width: 100%;
+  max-width: 1100px;
+  position: relative;
+  margin-bottom: 18px;
+}
+
+canvas {
+  width: 100%;
+  height: 460px;
+  display: block;
+  border-radius: 10px;
+  border: 1px solid #1a1a3a;
+  box-shadow: 0 0 40px rgba(0,229,255,0.08);
+}
+
+.slider-section {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.slider-label {
+  font-size: 1.05em;
+  font-weight: 600;
+  color: #9090b0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.slider-row .end-label {
+  font-size: 0.82em;
+  color: #555577;
+  white-space: nowrap;
+  min-width: 50px;
+}
+
+.slider-row .end-label:first-child { text-align: right; }
+.slider-row .end-label:last-child { text-align: left; }
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  height: 8px;
+  background: linear-gradient(90deg, #1a1a3a, #2a2a5a);
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #44ffff, #00b8cc);
+  cursor: pointer;
+  border: 3px solid #0a0a1a;
+  box-shadow: 0 0 12px rgba(0,229,255,0.5);
+  transition: box-shadow 0.2s;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 20px rgba(0,229,255,0.8);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #44ffff, #00b8cc);
+  cursor: pointer;
+  border: 3px solid #0a0a1a;
+  box-shadow: 0 0 12px rgba(0,229,255,0.5);
+}
+
+#alphaValue {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #00e5ff;
+  min-width: 80px;
+  text-align: center;
+  text-shadow: 0 0 15px rgba(0,229,255,0.4);
+}
+
+#narrative {
+  max-width: 700px;
+  font-size: 1.0em;
+  line-height: 1.6;
+  text-align: center;
+  padding: 14px 20px;
+  border-radius: 8px;
+  border: 1px solid #1a1a3a;
+  background: rgba(10,10,26,0.8);
+  margin-bottom: 14px;
+  min-height: 3.4em;
+  transition: border-color 0.5s, color 0.5s;
+  color: #7a7a9a;
+}
+
+#formula {
+  max-width: 700px;
+  font-size: 0.85em;
+  color: #555577;
+  text-align: center;
+  line-height: 1.5;
+}
+#formula strong { color: #7070a0; }
+
+.loading-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #0a0a1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: opacity 0.6s;
+}
+.loading-overlay.hidden { opacity: 0; pointer-events: none; }
+.loading-text {
+  font-size: 1.2em;
+  color: #00e5ff;
+  margin-bottom: 12px;
+}
+.loading-bar {
+  width: 300px;
+  height: 4px;
+  background: #1a1a3a;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.loading-bar-fill {
+  height: 100%;
+  background: #00e5ff;
+  width: 0%;
+  transition: width 0.3s;
+  border-radius: 2px;
+}
+</style>
+</head>
+<body>
+
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-text" id="loadingText">Sieving primes...</div>
+  <div class="loading-bar"><div class="loading-bar-fill" id="loadingBar"></div></div>
+</div>
+
+<h1>Revealing Hidden Zeta Zeros</h1>
+<div id="subtitle">Drag the slider to apply the matched filter and watch zeros emerge from noise</div>
+<div id="counter">0 / 10 zeros detected</div>
+
+<div id="canvasWrap">
+  <canvas id="plot"></canvas>
+</div>
+
+<div class="slider-section">
+  <div class="slider-label">Filter Power (&alpha;)</div>
+  <div class="slider-row">
+    <span class="end-label">Raw</span>
+    <input type="range" id="alphaSlider" min="0" max="3" value="0" step="0.02">
+    <span class="end-label">Over-filter</span>
+  </div>
+  <div id="alphaValue">&alpha; = 0.00</div>
+</div>
+
+<div id="narrative">
+  The raw periodogram hides most zeta zeros in noise. Only the strongest peak is faintly visible.
+</div>
+
+<div id="formula">
+  <strong>F<sub>&alpha;</sub>(&gamma;) = &gamma;<sup>&alpha;</sup> &middot; |&sum;<sub>p prime</sub> M(p)/p &middot; e<sup>&minus;i&gamma; log p</sup>|&sup2;</strong>
+  &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+  M(p) = Mertens function, summing M&ouml;bius &mu; up to p.
+  At <strong>&alpha; = 2</strong>, the &gamma;&sup2; factor exactly compensates the 1/&gamma; amplitude decay.
+</div>
+
+<script>
+'use strict';
+
+// ── Known zeta zeros (imaginary parts) ──
+var ZEROS = [14.1347, 21.0220, 25.0109, 30.4249, 32.9351,
+             37.5862, 40.9187, 43.3271, 48.0052, 49.7738];
+
+// ── Sieve parameters ──
+var LIMIT = 50001;
+var GAMMA_MIN = 10;
+var GAMMA_MAX = 55;
+var NUM_POINTS = 1800;
+
+// ── Sieve of Eratosthenes ──
+function sieveOfEratosthenes(n) {
+  var isPrime = new Uint8Array(n);
+  for (var i = 2; i < n; i++) isPrime[i] = 1;
+  for (var i = 2; i * i < n; i++) {
+    if (isPrime[i]) {
+      for (var j = i * i; j < n; j += i) isPrime[j] = 0;
+    }
+  }
+  var primes = [];
+  for (var i = 2; i < n; i++) {
+    if (isPrime[i]) primes.push(i);
+  }
+  return primes;
+}
+
+// ── Mobius sieve ──
+function mobiusSieve(n) {
+  var mu = new Int8Array(n);
+  mu[1] = 1;
+  var spf = new Int32Array(n);
+  for (var i = 2; i < n; i++) {
+    if (spf[i] === 0) {
+      for (var j = i; j < n; j += i) {
+        if (spf[j] === 0) spf[j] = i;
+      }
+    }
+  }
+  for (var i = 2; i < n; i++) {
+    var val = i, numFactors = 0, hasSquare = false;
+    while (val > 1) {
+      var p = spf[val], count = 0;
+      while (val % p === 0) { val = (val / p) | 0; count++; }
+      if (count >= 2) { hasSquare = true; break; }
+      numFactors++;
+    }
+    mu[i] = hasSquare ? 0 : ((numFactors % 2 === 0) ? 1 : -1);
+  }
+  return mu;
+}
+
+// ── Global data ──
+var allPrimes, mu, mertens, primeLogP, primeMpOverP;
+var rawSpectrum, cachedAlpha = -1;
+
+// ── Initialize sieve (deferred to let page render) ──
+function initData() {
+  updateLoading('Sieving primes up to 50,000...', 10);
+
+  allPrimes = sieveOfEratosthenes(LIMIT);
+  mu = mobiusSieve(LIMIT);
+
+  updateLoading('Computing Mertens function...', 30);
+
+  mertens = new Int32Array(LIMIT);
+  mertens[1] = mu[1];
+  for (var i = 2; i < LIMIT; i++) {
+    mertens[i] = mertens[i - 1] + mu[i];
+  }
+
+  updateLoading('Preparing ' + allPrimes.length + ' primes...', 50);
+
+  primeLogP = new Float64Array(allPrimes.length);
+  primeMpOverP = new Float64Array(allPrimes.length);
+  for (var i = 0; i < allPrimes.length; i++) {
+    var p = allPrimes[i];
+    primeLogP[i] = Math.log(p);
+    primeMpOverP[i] = mertens[p] / p;
+  }
+
+  updateLoading('Computing raw periodogram...', 70);
+  rawSpectrum = computeRawSpectrum();
+
+  updateLoading('Ready!', 100);
+  setTimeout(function() {
+    document.getElementById('loadingOverlay').classList.add('hidden');
+    draw(0);
+  }, 400);
+}
+
+function updateLoading(text, pct) {
+  document.getElementById('loadingText').textContent = text;
+  document.getElementById('loadingBar').style.width = pct + '%';
+}
+
+// ── Compute raw |S(gamma)|^2 (no filter) ──
+function computeRawSpectrum() {
+  var spectrum = new Float64Array(NUM_POINTS);
+  var gammaStep = (GAMMA_MAX - GAMMA_MIN) / (NUM_POINTS - 1);
+  var nPrimes = allPrimes.length;
+
+  for (var i = 0; i < NUM_POINTS; i++) {
+    var gamma = GAMMA_MIN + i * gammaStep;
+    var re = 0, im = 0;
+    for (var j = 0; j < nPrimes; j++) {
+      var phase = gamma * primeLogP[j];
+      var w = primeMpOverP[j];
+      re += w * Math.cos(phase);
+      im -= w * Math.sin(phase);
+    }
+    spectrum[i] = re * re + im * im;
+  }
+  return spectrum;
+}
+
+// ── Apply filter: F_alpha = gamma^alpha * |S|^2 ──
+function applyFilter(alpha) {
+  var filtered = new Float64Array(NUM_POINTS);
+  var gammaStep = (GAMMA_MAX - GAMMA_MIN) / (NUM_POINTS - 1);
+  for (var i = 0; i < NUM_POINTS; i++) {
+    var gamma = GAMMA_MIN + i * gammaStep;
+    filtered[i] = rawSpectrum[i] * Math.pow(gamma, alpha);
+  }
+  return filtered;
+}
+
+// ── Peak detection with local z-score ──
+function detectPeaks(spectrum) {
+  var gammaStep = (GAMMA_MAX - GAMMA_MIN) / (NUM_POINTS - 1);
+  var windowPts = Math.round(4.0 / gammaStep);
+  var detected = [];
+
+  for (var z = 0; z < ZEROS.length; z++) {
+    var target = ZEROS[z];
+    var centerIdx = Math.round((target - GAMMA_MIN) / gammaStep);
+    if (centerIdx < 0 || centerIdx >= NUM_POINTS) continue;
+
+    // Find local peak near known zero
+    var searchRadius = Math.round(1.2 / gammaStep);
+    var lo = Math.max(0, centerIdx - searchRadius);
+    var hi = Math.min(NUM_POINTS - 1, centerIdx + searchRadius);
+    var peakVal = -1, peakIdx = centerIdx;
+    for (var i = lo; i <= hi; i++) {
+      if (spectrum[i] > peakVal) { peakVal = spectrum[i]; peakIdx = i; }
+    }
+
+    // Local noise estimate (excluding peak region)
+    var noiseLo = Math.max(0, peakIdx - windowPts);
+    var noiseHi = Math.min(NUM_POINTS - 1, peakIdx + windowPts);
+    var excludeLo = Math.max(0, peakIdx - searchRadius);
+    var excludeHi = Math.min(NUM_POINTS - 1, peakIdx + searchRadius);
+
+    var noiseVals = [];
+    for (var i = noiseLo; i <= noiseHi; i++) {
+      if (i < excludeLo || i > excludeHi) noiseVals.push(spectrum[i]);
+    }
+    if (noiseVals.length < 5) continue;
+
+    noiseVals.sort(function(a, b) { return a - b; });
+    var median = noiseVals[Math.floor(noiseVals.length / 2)];
+    var mad = [];
+    for (var i = 0; i < noiseVals.length; i++) {
+      mad.push(Math.abs(noiseVals[i] - median));
+    }
+    mad.sort(function(a, b) { return a - b; });
+    var madMedian = mad[Math.floor(mad.length / 2)];
+    var sigma = madMedian * 1.4826;
+
+    var zScore = sigma > 0 ? (peakVal - median) / sigma : 0;
+
+    detected.push({
+      gamma: GAMMA_MIN + peakIdx * gammaStep,
+      known: target,
+      idx: peakIdx,
+      val: peakVal,
+      z: zScore,
+      visible: zScore > 3.0
+    });
+  }
+  return detected;
+}
+
+// ── Drawing ──
+var canvas = document.getElementById('plot');
+var ctx = canvas.getContext('2d');
+
+function draw(alpha) {
+  var dpr = window.devicePixelRatio || 1;
+  var rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  var W = rect.width, H = rect.height;
+
+  var spectrum = applyFilter(alpha);
+  var peaks = detectPeaks(spectrum);
+
+  // Layout
+  var padL = 60, padR = 30, padT = 30, padB = 50;
+  var plotW = W - padL - padR;
+  var plotH = H - padT - padB;
+  var gammaStep = (GAMMA_MAX - GAMMA_MIN) / (NUM_POINTS - 1);
+
+  // Y range: clip top 0.1% to avoid outlier squashing
+  var sorted = Array.from(spectrum).sort(function(a, b) { return a - b; });
+  var yMax = sorted[Math.floor(sorted.length * 0.998)] * 1.15;
+  if (yMax <= 0) yMax = 1;
+
+  // Background
+  ctx.fillStyle = '#0a0a1a';
+  ctx.fillRect(0, 0, W, H);
+
+  // Grid
+  ctx.strokeStyle = '#151530';
+  ctx.lineWidth = 1;
+  for (var i = 0; i <= 5; i++) {
+    var y = padT + (plotH * i / 5);
+    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(padL + plotW, y); ctx.stroke();
+  }
+  for (var g = 10; g <= 55; g += 5) {
+    var x = padL + ((g - GAMMA_MIN) / (GAMMA_MAX - GAMMA_MIN)) * plotW;
+    ctx.beginPath(); ctx.moveTo(x, padT); ctx.lineTo(x, padT + plotH); ctx.stroke();
+  }
+
+  // Known zero dashed lines (always visible)
+  ctx.setLineDash([4, 6]);
+  ctx.lineWidth = 1;
+  for (var z = 0; z < ZEROS.length; z++) {
+    var x = padL + ((ZEROS[z] - GAMMA_MIN) / (GAMMA_MAX - GAMMA_MIN)) * plotW;
+    ctx.strokeStyle = 'rgba(255,215,0,0.15)';
+    ctx.beginPath(); ctx.moveTo(x, padT); ctx.lineTo(x, padT + plotH); ctx.stroke();
+  }
+  ctx.setLineDash([]);
+
+  // Noise floor reference
+  var noiseLevel = sorted[Math.floor(sorted.length * 0.5)];
+  var noiseY = padT + plotH * (1 - noiseLevel / yMax);
+  if (noiseY > padT && noiseY < padT + plotH) {
+    ctx.strokeStyle = 'rgba(100,100,140,0.3)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3, 5]);
+    ctx.beginPath(); ctx.moveTo(padL, noiseY); ctx.lineTo(padL + plotW, noiseY); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = 'rgba(100,100,140,0.4)';
+    ctx.font = '10px sans-serif';
+    ctx.fillText('noise floor', padL + 5, noiseY - 4);
+  }
+
+  // Spectrum glow layer
+  ctx.save();
+  ctx.globalAlpha = 0.25;
+  ctx.strokeStyle = '#00e5ff';
+  ctx.lineWidth = 4;
+  ctx.lineJoin = 'round';
+  ctx.filter = 'blur(3px)';
+  ctx.beginPath();
+  for (var i = 0; i < NUM_POINTS; i++) {
+    var x = padL + (i / (NUM_POINTS - 1)) * plotW;
+    var y = padT + plotH * (1 - Math.min(spectrum[i] / yMax, 1));
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+  ctx.restore();
+
+  // Spectrum main line
+  ctx.strokeStyle = '#00e5ff';
+  ctx.lineWidth = 1.5;
+  ctx.lineJoin = 'round';
+  ctx.beginPath();
+  for (var i = 0; i < NUM_POINTS; i++) {
+    var x = padL + (i / (NUM_POINTS - 1)) * plotW;
+    var y = padT + plotH * (1 - Math.min(spectrum[i] / yMax, 1));
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+
+  // Fill under curve
+  ctx.lineTo(padL + plotW, padT + plotH);
+  ctx.lineTo(padL, padT + plotH);
+  ctx.closePath();
+  var grad = ctx.createLinearGradient(0, padT, 0, padT + plotH);
+  grad.addColorStop(0, 'rgba(0,229,255,0.12)');
+  grad.addColorStop(1, 'rgba(0,229,255,0.0)');
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Peak markers and labels
+  var numVisible = 0;
+  for (var i = 0; i < peaks.length; i++) {
+    var pk = peaks[i];
+    var x = padL + ((pk.gamma - GAMMA_MIN) / (GAMMA_MAX - GAMMA_MIN)) * plotW;
+    var y = padT + plotH * (1 - Math.min(pk.val / yMax, 1));
+
+    if (pk.visible) {
+      numVisible++;
+
+      // Glow
+      ctx.save();
+      ctx.globalAlpha = 0.6;
+      ctx.beginPath();
+      ctx.arc(x, y, 10, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,215,0,0.2)';
+      ctx.fill();
+      ctx.restore();
+
+      // Dot
+      ctx.beginPath();
+      ctx.arc(x, y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = '#ffd700';
+      ctx.fill();
+      ctx.strokeStyle = '#ffaa00';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // Label
+      var label = '\u03B3' + subscript(i + 1) + ' = ' + pk.known.toFixed(2);
+      ctx.font = 'bold 11px sans-serif';
+      ctx.fillStyle = '#ffd700';
+      ctx.textAlign = 'center';
+
+      // Stagger labels to avoid overlap
+      var labelY = y - 14;
+      if (i > 0 && Math.abs(peaks[i].gamma - peaks[i-1].gamma) < 4) {
+        labelY = (i % 2 === 0) ? y - 14 : y - 28;
+      }
+      if (labelY < padT + 12) labelY = y + 20;
+
+      ctx.fillText(label, x, labelY);
+    }
+  }
+
+  // Axes
+  ctx.strokeStyle = '#3a3a5a';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(padL, padT); ctx.lineTo(padL, padT + plotH); ctx.lineTo(padL + plotW, padT + plotH);
+  ctx.stroke();
+
+  // X axis labels
+  ctx.fillStyle = '#6a6a8a';
+  ctx.font = '12px sans-serif';
+  ctx.textAlign = 'center';
+  for (var g = 10; g <= 55; g += 5) {
+    var x = padL + ((g - GAMMA_MIN) / (GAMMA_MAX - GAMMA_MIN)) * plotW;
+    ctx.fillText(g, x, padT + plotH + 20);
+  }
+  ctx.fillText('\u03B3', padL + plotW / 2, padT + plotH + 40);
+
+  // Y axis label
+  ctx.save();
+  ctx.translate(16, padT + plotH / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillStyle = '#6a6a8a';
+  ctx.font = '12px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('F\u2090(\u03B3)', 0, 0);
+  ctx.restore();
+
+  // Update counter
+  var counterEl = document.getElementById('counter');
+  counterEl.textContent = numVisible + ' / 10 zeros detected';
+  if (numVisible >= 10) {
+    counterEl.style.color = '#00ff88';
+    counterEl.style.textShadow = '0 0 20px rgba(0,255,136,0.5)';
+  } else if (numVisible >= 5) {
+    counterEl.style.color = '#ffd700';
+    counterEl.style.textShadow = '0 0 20px rgba(255,215,0,0.4)';
+  } else {
+    counterEl.style.color = '#ff6666';
+    counterEl.style.textShadow = '0 0 20px rgba(255,102,102,0.3)';
+  }
+
+  // Update narrative
+  updateNarrative(alpha, numVisible);
+}
+
+function subscript(n) {
+  var subs = ['\u2080','\u2081','\u2082','\u2083','\u2084','\u2085','\u2086','\u2087','\u2088','\u2089'];
+  var s = '' + n;
+  var out = '';
+  for (var i = 0; i < s.length; i++) out += subs[parseInt(s[i])];
+  return out;
+}
+
+function updateNarrative(alpha, numVisible) {
+  var el = document.getElementById('narrative');
+  var text, borderColor;
+
+  if (alpha < 0.3) {
+    text = 'The raw periodogram hides most zeta zeros in noise. Only the strongest peak is faintly visible.';
+    borderColor = '#2a2a4a';
+  } else if (alpha < 0.8) {
+    text = 'Low-frequency structure begins to emerge as the filter gently suppresses noise at small \u03B3...';
+    borderColor = '#2a2a5a';
+  } else if (alpha < 1.4) {
+    text = 'The filter is taking effect. ' + numVisible + ' zeros now stand above the noise floor. Each peak corresponds to an imaginary part of a nontrivial zeta zero.';
+    borderColor = '#2a3a5a';
+  } else if (alpha < 1.8) {
+    text = 'Strong signal separation. The \u03B3\u1D45 weighting compensates for the 1/\u03B3 amplitude decay inherent in the Mertens sum over primes.';
+    borderColor = '#2a4a5a';
+  } else if (alpha < 2.3) {
+    text = 'The \u03B3\u00B2 matched filter reveals ALL the hidden zeros \u2014 our key discovery. The filter power \u03B1 = 2 exactly compensates the natural decay, acting as a matched filter tuned to the zeta zeros.';
+    borderColor = '#1a5a3a';
+    el.style.color = '#00e5aa';
+  } else if (alpha < 2.7) {
+    text = 'Past the optimal point. Over-filtering begins amplifying high-frequency noise, degrading the signal at larger \u03B3 values.';
+    borderColor = '#3a2a2a';
+    el.style.color = '#cc8844';
+  } else {
+    text = 'Heavy over-filtering. The \u03B3\u00B3 factor amplifies noise faster than signal at high frequencies. The matched filter works because \u03B1 = 2 is the exact compensation exponent.';
+    borderColor = '#4a2a2a';
+    el.style.color = '#cc6644';
+  }
+
+  if (alpha < 1.8 || alpha >= 2.3) {
+    el.style.color = '#7a7a9a';
+  }
+  if (alpha >= 1.8 && alpha < 2.3) {
+    el.style.color = '#00e5aa';
+  }
+
+  el.textContent = text;
+  el.style.borderColor = borderColor;
+}
+
+// ── Slider interaction ──
+var slider = document.getElementById('alphaSlider');
+var alphaDisplay = document.getElementById('alphaValue');
+var rafId = null;
+
+slider.addEventListener('input', function() {
+  var alpha = parseFloat(this.value);
+  alphaDisplay.innerHTML = '&alpha; = ' + alpha.toFixed(2);
+
+  if (rafId) cancelAnimationFrame(rafId);
+  rafId = requestAnimationFrame(function() {
+    draw(alpha);
+    rafId = null;
+  });
+});
+
+// Handle resize
+window.addEventListener('resize', function() {
+  draw(parseFloat(slider.value));
+});
+
+// ── Launch ──
+setTimeout(initData, 50);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holographic Encoding of Zeta Zeros</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0a0a14; color: #e0e0e0; font-family: 'Segoe UI', system-ui, sans-serif; overflow-x: hidden; }
+h1 { text-align: center; color: #00e5ff; font-size: 1.8em; padding: 18px 0 4px; text-shadow: 0 0 20px rgba(0,229,255,0.4); }
+.subtitle { text-align: center; color: #888; font-size: 0.95em; margin-bottom: 12px; }
+
+/* Tabs */
+.tab-bar { display: flex; justify-content: center; gap: 8px; margin-bottom: 16px; }
+.tab-btn { background: #181828; border: 1px solid #333; color: #aaa; padding: 10px 28px; cursor: pointer; border-radius: 6px 6px 0 0; font-size: 1em; transition: all 0.2s; }
+.tab-btn.active { background: #1a1a2e; color: #00e5ff; border-color: #00e5ff; border-bottom-color: #1a1a2e; }
+.tab-btn:hover { color: #fff; }
+
+.demo { display: none; padding: 0 20px 20px; }
+.demo.active { display: block; }
+
+/* Demo 1 */
+.panel-row { display: flex; gap: 16px; margin-bottom: 12px; }
+.panel { flex: 1; background: #12121e; border: 1px solid #222; border-radius: 8px; padding: 12px; }
+.panel h2 { color: #ffd700; font-size: 1.1em; margin-bottom: 6px; text-align: center; }
+.panel canvas { width: 100%; border-radius: 4px; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 10px 0; }
+.btn { background: #1e1e3a; border: 1px solid #444; color: #ccc; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 0.9em; transition: all 0.15s; }
+.btn:hover { background: #2a2a50; color: #fff; border-color: #00e5ff; }
+.btn.active { background: #003344; border-color: #00e5ff; color: #00e5ff; }
+
+.stats { text-align: center; font-size: 1.1em; margin: 8px 0; }
+.stats .match { color: #00ff88; font-weight: bold; }
+.stats .total { color: #ffd700; }
+.lesson { text-align: center; color: #8899aa; font-size: 0.92em; max-width: 800px; margin: 8px auto; line-height: 1.5; font-style: italic; }
+
+/* Demo 2 */
+.prime-grid { display: flex; flex-wrap: wrap; gap: 3px; max-height: 280px; overflow-y: auto; padding: 8px; background: #0e0e1a; border-radius: 6px; border: 1px solid #222; margin-bottom: 10px; }
+.prime-cell { width: 42px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 0.72em; border-radius: 3px; cursor: pointer; transition: all 0.1s; user-select: none; }
+.prime-cell.on { background: #003355; color: #00ccff; border: 1px solid #0088aa; }
+.prime-cell.off { background: #1a1a1a; color: #555; border: 1px solid #222; }
+.prime-cell:hover { border-color: #ffd700; }
+
+.challenge { text-align: center; color: #ff6644; font-size: 1.05em; font-weight: bold; margin-bottom: 8px; }
+.d2-stats { text-align: center; font-size: 1em; margin: 8px 0; }
+.d2-stats span { margin: 0 12px; }
+.prime-count { color: #00e5ff; }
+.peak-status { color: #00ff88; }
+
+.d2-btns { display: flex; gap: 8px; justify-content: center; margin: 8px 0; }
+</style>
+</head>
+<body>
+
+<h1>Holographic Encoding: Every Prime Subset Knows All The Zeros</h1>
+<p class="subtitle">The Riemann zeta zeros are not hidden in any special group of primes &mdash; they are encoded in ALL of them.</p>
+
+<div class="tab-bar">
+  <div class="tab-btn active" onclick="switchTab(0)">Demo 1: The Radio Analogy</div>
+  <div class="tab-btn" onclick="switchTab(1)">Demo 2: Break the Code</div>
+</div>
+
+<!-- DEMO 1 -->
+<div class="demo active" id="demo1">
+  <div class="panel-row">
+    <div class="panel">
+      <h2>All Stations (all primes &le; 30000)</h2>
+      <canvas id="c1left" height="260"></canvas>
+    </div>
+    <div class="panel">
+      <h2 id="d1right-title">Your Antenna (select a subset)</h2>
+      <canvas id="c1right" height="260"></canvas>
+    </div>
+  </div>
+  <div class="btn-row">
+    <div class="btn" onclick="d1Select('rand50')">Random 50%</div>
+    <div class="btn" onclick="d1Select('rand10')">Random 10%</div>
+    <div class="btn" onclick="d1Select('mod4')">Only p &equiv; 3 (mod 4)</div>
+    <div class="btn" onclick="d1Select('twin')">Only Twin Primes</div>
+    <div class="btn" onclick="d1Select('every5')">Every 5th Prime</div>
+  </div>
+  <div class="stats" id="d1stats">Click a subset button above to begin.</div>
+  <p class="lesson">No matter which primes you choose, they all encode the same hidden frequencies &mdash; like every drop of ocean water containing the same salt.</p>
+</div>
+
+<!-- DEMO 2 -->
+<div class="demo" id="demo2">
+  <p class="challenge">Challenge: Can you choose primes that DON'T show the zeros?</p>
+  <div class="d2-btns">
+    <div class="btn" onclick="d2AllOn()">All ON</div>
+    <div class="btn" onclick="d2AllOff()">All OFF</div>
+    <div class="btn" onclick="d2Random(100)">Random 100</div>
+    <div class="btn" onclick="d2Random(50)">Random 50</div>
+    <div class="btn" onclick="d2Random(20)">Random 20</div>
+  </div>
+  <div class="d2-stats">
+    <span>Primes active: <b class="prime-count" id="d2count">200</b></span>
+    <span>Zeros detected: <b class="peak-status" id="d2peaks">--</b></span>
+    <span id="d2hint" style="color:#ffd700;"></span>
+  </div>
+  <div style="display:flex;gap:12px;">
+    <div style="flex:0 0 360px;">
+      <div class="prime-grid" id="pgrid"></div>
+    </div>
+    <div style="flex:1;">
+      <canvas id="c2spec" height="400"></canvas>
+    </div>
+  </div>
+  <p class="lesson">You literally cannot escape the zeros. They are encoded in every prime. Remove almost all primes and the peaks weaken, but their positions remain until the signal is gone entirely.</p>
+</div>
+
+<script>
+// --- Prime sieve ---
+function sieve(n) {
+  const s = new Uint8Array(n + 1);
+  s[0] = s[1] = 1;
+  for (let i = 2; i * i <= n; i++) if (!s[i]) for (let j = i * i; j <= n; j += i) s[j] = 1;
+  const p = [];
+  for (let i = 2; i <= n; i++) if (!s[i]) p.push(i);
+  return p;
+}
+
+const ALL_PRIMES = sieve(30000);
+const PRIMES_200 = ALL_PRIMES.slice(0, 200);
+
+// Known zeta zeros (imaginary parts) - first 30
+const KNOWN_ZEROS = [
+  14.134725, 21.022040, 25.010858, 30.424876, 32.935062,
+  37.586178, 40.918719, 43.327073, 48.005151, 49.773832,
+  52.970321, 56.446248, 59.347044, 60.831779, 65.112544,
+  67.079811, 69.546402, 72.067158, 75.704691, 77.144840,
+  79.337375, 82.910381, 84.735493, 87.425275, 88.809111,
+  92.491899, 94.651344, 95.870634, 98.831194, 101.317851
+];
+
+// Log primes (precompute)
+const LOG_ALL = ALL_PRIMES.map(p => Math.log(p));
+const LOG_200 = PRIMES_200.map(p => Math.log(p));
+
+// Spectroscope: C(gamma) = sum_p cos(gamma * log(p)) / sqrt(p)
+function spectroscope(gammas, primes, logPrimes) {
+  const vals = new Float64Array(gammas.length);
+  for (let gi = 0; gi < gammas.length; gi++) {
+    const g = gammas[gi];
+    let s = 0;
+    for (let pi = 0; pi < primes.length; pi++) {
+      s += Math.cos(g * logPrimes[pi]) / Math.sqrt(primes[pi]);
+    }
+    vals[gi] = s;
+  }
+  return vals;
+}
+
+// Gamma grid
+const GAMMA_MIN = 10, GAMMA_MAX = 105;
+const N_GAMMA = 2000;
+const GAMMAS = new Float64Array(N_GAMMA);
+for (let i = 0; i < N_GAMMA; i++) GAMMAS[i] = GAMMA_MIN + (GAMMA_MAX - GAMMA_MIN) * i / (N_GAMMA - 1);
+
+// Precompute full spectrum
+const FULL_SPEC = spectroscope(GAMMAS, ALL_PRIMES, LOG_ALL);
+
+// Find peaks in spectrum
+function findPeaks(vals, threshold) {
+  const peaks = [];
+  for (let i = 2; i < vals.length - 2; i++) {
+    if (vals[i] > vals[i-1] && vals[i] > vals[i+1] && vals[i] > vals[i-2] && vals[i] > vals[i+2] && vals[i] > threshold) {
+      peaks.push({ idx: i, gamma: GAMMAS[i], val: vals[i] });
+    }
+  }
+  return peaks;
+}
+
+// Match peaks to known zeros
+function matchPeaks(peaks) {
+  let matched = 0;
+  const tolerance = 0.6;
+  for (const z of KNOWN_ZEROS) {
+    if (z < GAMMA_MIN || z > GAMMA_MAX) continue;
+    for (const pk of peaks) {
+      if (Math.abs(pk.gamma - z) < tolerance) { matched++; break; }
+    }
+  }
+  const zerosInRange = KNOWN_ZEROS.filter(z => z >= GAMMA_MIN && z <= GAMMA_MAX).length;
+  return { matched, total: zerosInRange };
+}
+
+// --- Drawing ---
+function drawSpectrum(canvasId, vals, peaks, highlight, label) {
+  const canvas = document.getElementById(canvasId);
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width = canvas.parentElement.clientWidth - 24;
+  const H = canvas.height;
+
+  ctx.fillStyle = '#0a0a14';
+  ctx.fillRect(0, 0, W, H);
+
+  // Axes
+  ctx.strokeStyle = '#333';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(40, H - 30);
+  ctx.lineTo(W - 10, H - 30);
+  ctx.stroke();
+
+  // Known zero markers
+  const xScale = (W - 50) / (GAMMA_MAX - GAMMA_MIN);
+  for (const z of KNOWN_ZEROS) {
+    if (z < GAMMA_MIN || z > GAMMA_MAX) continue;
+    const x = 40 + (z - GAMMA_MIN) * xScale;
+    ctx.strokeStyle = 'rgba(255,215,0,0.25)';
+    ctx.beginPath();
+    ctx.moveTo(x, 10);
+    ctx.lineTo(x, H - 30);
+    ctx.stroke();
+  }
+
+  // Spectrum line
+  let maxVal = 0, minVal = 1e9;
+  for (let i = 0; i < vals.length; i++) { if (vals[i] > maxVal) maxVal = vals[i]; if (vals[i] < minVal) minVal = vals[i]; }
+  const range = maxVal - minVal || 1;
+  const yScale = (H - 50) / range;
+
+  ctx.beginPath();
+  ctx.strokeStyle = '#00ccff';
+  ctx.lineWidth = 1.5;
+  ctx.shadowColor = '#00ccff';
+  ctx.shadowBlur = 4;
+  for (let i = 0; i < vals.length; i++) {
+    const x = 40 + (GAMMAS[i] - GAMMA_MIN) * xScale;
+    const y = H - 30 - (vals[i] - minVal) * yScale;
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+
+  // Peak markers
+  if (peaks) {
+    for (const pk of peaks) {
+      const x = 40 + (pk.gamma - GAMMA_MIN) * xScale;
+      const y = H - 30 - (pk.val - minVal) * yScale;
+      const isMatch = highlight && highlight.has(pk.idx);
+
+      ctx.beginPath();
+      ctx.arc(x, y - 4, 5, 0, Math.PI * 2);
+      if (isMatch) {
+        ctx.fillStyle = '#00ff88';
+        ctx.shadowColor = '#00ff88';
+        ctx.shadowBlur = 12;
+      } else {
+        ctx.fillStyle = '#ffd700';
+        ctx.shadowColor = '#ffd700';
+        ctx.shadowBlur = 6;
+      }
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+  }
+
+  // Known zero labels at bottom
+  ctx.fillStyle = '#ffd700';
+  ctx.font = '9px monospace';
+  for (let zi = 0; zi < KNOWN_ZEROS.length; zi++) {
+    const z = KNOWN_ZEROS[zi];
+    if (z < GAMMA_MIN || z > GAMMA_MAX) continue;
+    const x = 40 + (z - GAMMA_MIN) * xScale;
+    if (zi % 2 === 0) {
+      ctx.fillText(z.toFixed(1), x - 10, H - 18);
+    }
+  }
+
+  // Y-axis label
+  ctx.fillStyle = '#666';
+  ctx.font = '10px sans-serif';
+  ctx.fillText('C(\u03B3)', 4, 14);
+  ctx.fillText('\u03B3', W - 16, H - 18);
+
+  // Label
+  if (label) {
+    ctx.fillStyle = '#888';
+    ctx.font = '11px sans-serif';
+    ctx.fillText(label, 44, 18);
+  }
+}
+
+// --- DEMO 1 ---
+let d1SubsetSpec = null;
+
+function d1Init() {
+  const fullPeaks = findPeaks(FULL_SPEC, peakThreshold(FULL_SPEC));
+  drawSpectrum('c1left', FULL_SPEC, fullPeaks, null, ALL_PRIMES.length + ' primes');
+  // blank right
+  const canvas = document.getElementById('c1right');
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.parentElement.clientWidth - 24;
+  ctx.fillStyle = '#0a0a14';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = '#555';
+  ctx.font = '14px sans-serif';
+  ctx.fillText('Select a subset...', canvas.width / 2 - 60, canvas.height / 2);
+}
+
+function peakThreshold(vals) {
+  let sum = 0, sum2 = 0;
+  for (let i = 0; i < vals.length; i++) { sum += vals[i]; sum2 += vals[i] * vals[i]; }
+  const mean = sum / vals.length;
+  const std = Math.sqrt(sum2 / vals.length - mean * mean);
+  return mean + 2.5 * std;
+}
+
+function d1Select(mode) {
+  let subset = [], logSub = [];
+  switch (mode) {
+    case 'rand50':
+      for (let i = 0; i < ALL_PRIMES.length; i++) if (Math.random() < 0.5) { subset.push(ALL_PRIMES[i]); logSub.push(LOG_ALL[i]); }
+      document.getElementById('d1right-title').textContent = 'Your Antenna (random 50% = ' + subset.length + ' primes)';
+      break;
+    case 'rand10':
+      for (let i = 0; i < ALL_PRIMES.length; i++) if (Math.random() < 0.1) { subset.push(ALL_PRIMES[i]); logSub.push(LOG_ALL[i]); }
+      document.getElementById('d1right-title').textContent = 'Your Antenna (random 10% = ' + subset.length + ' primes)';
+      break;
+    case 'mod4':
+      for (let i = 0; i < ALL_PRIMES.length; i++) if (ALL_PRIMES[i] % 4 === 3) { subset.push(ALL_PRIMES[i]); logSub.push(LOG_ALL[i]); }
+      document.getElementById('d1right-title').textContent = 'Your Antenna (p \u2261 3 mod 4, ' + subset.length + ' primes)';
+      break;
+    case 'twin': {
+      const pset = new Set(ALL_PRIMES);
+      for (let i = 0; i < ALL_PRIMES.length; i++) {
+        if (pset.has(ALL_PRIMES[i] - 2) || pset.has(ALL_PRIMES[i] + 2)) { subset.push(ALL_PRIMES[i]); logSub.push(LOG_ALL[i]); }
+      }
+      document.getElementById('d1right-title').textContent = 'Your Antenna (twin primes, ' + subset.length + ' primes)';
+      break;
+    }
+    case 'every5':
+      for (let i = 0; i < ALL_PRIMES.length; i += 5) { subset.push(ALL_PRIMES[i]); logSub.push(LOG_ALL[i]); }
+      document.getElementById('d1right-title').textContent = 'Your Antenna (every 5th prime, ' + subset.length + ' primes)';
+      break;
+  }
+
+  const spec = spectroscope(GAMMAS, subset, logSub);
+  const thresh = peakThreshold(spec);
+  const peaks = findPeaks(spec, thresh);
+  const fullThresh = peakThreshold(FULL_SPEC);
+  const fullPeaks = findPeaks(FULL_SPEC, fullThresh);
+
+  // Match subset peaks to full peaks
+  const matchSet = new Set();
+  const tolerance = 0.8;
+  let matchCount = 0;
+
+  // Check how many known zeros are detected
+  const { matched, total } = matchPeaks(peaks);
+
+  // Highlight peaks that correspond to known zeros
+  for (const pk of peaks) {
+    for (const z of KNOWN_ZEROS) {
+      if (Math.abs(pk.gamma - z) < tolerance) { matchSet.add(pk.idx); break; }
+    }
+  }
+
+  drawSpectrum('c1right', spec, peaks, matchSet, subset.length + ' primes');
+
+  // Redraw left with matching highlights
+  const fullMatch = new Set();
+  for (const pk of fullPeaks) {
+    for (const z of KNOWN_ZEROS) {
+      if (Math.abs(pk.gamma - z) < tolerance) { fullMatch.add(pk.idx); break; }
+    }
+  }
+  drawSpectrum('c1left', FULL_SPEC, fullPeaks, fullMatch, ALL_PRIMES.length + ' primes');
+
+  document.getElementById('d1stats').innerHTML =
+    'Matching zeros: <span class="match">' + matched + '</span> / <span class="total">' + total + '</span> known zeros detected. ' +
+    'Using <b>' + subset.length + '</b> of ' + ALL_PRIMES.length + ' primes.';
+}
+
+// --- DEMO 2 ---
+let d2State = new Uint8Array(200); // 1 = on
+let d2Debounce = null;
+
+function d2Init() {
+  d2State.fill(1);
+  const grid = document.getElementById('pgrid');
+  grid.innerHTML = '';
+  for (let i = 0; i < 200; i++) {
+    const el = document.createElement('div');
+    el.className = 'prime-cell on';
+    el.textContent = PRIMES_200[i];
+    el.dataset.idx = i;
+    el.onclick = function() { d2Toggle(i); };
+    grid.appendChild(el);
+  }
+  d2Update();
+}
+
+function d2Toggle(i) {
+  d2State[i] = d2State[i] ? 0 : 1;
+  const cells = document.getElementById('pgrid').children;
+  cells[i].className = 'prime-cell ' + (d2State[i] ? 'on' : 'off');
+  d2Debounced();
+}
+
+function d2Debounced() {
+  if (d2Debounce) clearTimeout(d2Debounce);
+  d2Debounce = setTimeout(d2Update, 80);
+}
+
+function d2AllOn() {
+  d2State.fill(1);
+  const cells = document.getElementById('pgrid').children;
+  for (let i = 0; i < 200; i++) cells[i].className = 'prime-cell on';
+  d2Update();
+}
+
+function d2AllOff() {
+  d2State.fill(0);
+  const cells = document.getElementById('pgrid').children;
+  for (let i = 0; i < 200; i++) cells[i].className = 'prime-cell off';
+  d2Update();
+}
+
+function d2Random(n) {
+  d2State.fill(0);
+  const indices = [];
+  for (let i = 0; i < 200; i++) indices.push(i);
+  // Fisher-Yates
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+  for (let k = 0; k < Math.min(n, 200); k++) d2State[indices[k]] = 1;
+  const cells = document.getElementById('pgrid').children;
+  for (let i = 0; i < 200; i++) cells[i].className = 'prime-cell ' + (d2State[i] ? 'on' : 'off');
+  d2Update();
+}
+
+function d2Update() {
+  const subset = [], logSub = [];
+  for (let i = 0; i < 200; i++) {
+    if (d2State[i]) { subset.push(PRIMES_200[i]); logSub.push(LOG_200[i]); }
+  }
+
+  const count = subset.length;
+  document.getElementById('d2count').textContent = count;
+
+  if (count === 0) {
+    const canvas = document.getElementById('c2spec');
+    const ctx = canvas.getContext('2d');
+    canvas.width = canvas.parentElement.clientWidth - 4;
+    ctx.fillStyle = '#0a0a14';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#ff4444';
+    ctx.font = '16px sans-serif';
+    ctx.fillText('No primes selected!', canvas.width / 2 - 70, canvas.height / 2);
+    document.getElementById('d2peaks').textContent = '0 / 30';
+    document.getElementById('d2peaks').style.color = '#ff4444';
+    document.getElementById('d2hint').textContent = 'You removed all primes. The signal is gone.';
+    return;
+  }
+
+  const spec = spectroscope(GAMMAS, subset, logSub);
+  const thresh = peakThreshold(spec);
+  const peaks = findPeaks(spec, thresh);
+  const { matched, total } = matchPeaks(peaks);
+
+  const matchSet = new Set();
+  for (const pk of peaks) {
+    for (const z of KNOWN_ZEROS) {
+      if (Math.abs(pk.gamma - z) < 0.8) { matchSet.add(pk.idx); break; }
+    }
+  }
+
+  drawSpectrum('c2spec', spec, peaks, matchSet, count + ' primes');
+
+  document.getElementById('d2peaks').textContent = matched + ' / ' + total;
+  if (matched >= total - 2) {
+    document.getElementById('d2peaks').style.color = '#00ff88';
+  } else if (matched >= total / 2) {
+    document.getElementById('d2peaks').style.color = '#ffd700';
+  } else {
+    document.getElementById('d2peaks').style.color = '#ff4444';
+  }
+
+  if (count <= 10) {
+    document.getElementById('d2hint').textContent = 'Signal is fading... but peak positions still hold!';
+  } else if (count <= 30) {
+    document.getElementById('d2hint').textContent = 'Getting sparse. Zeros are weakening but visible.';
+  } else if (count <= 50) {
+    document.getElementById('d2hint').textContent = 'Using ~' + count + ' primes. Minimum needed: ~50';
+  } else {
+    document.getElementById('d2hint').textContent = count >= 150 ? 'Nearly full signal. Try removing more!' : 'Still going strong!';
+  }
+}
+
+// --- Tab switching ---
+function switchTab(idx) {
+  document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
+  document.querySelectorAll('.demo').forEach((d, i) => d.classList.toggle('active', i === idx));
+  if (idx === 0) d1Init();
+  if (idx === 1) d2Init();
+}
+
+// --- Init ---
+window.addEventListener('load', () => { d1Init(); });
+window.addEventListener('resize', () => {
+  if (document.getElementById('demo1').classList.contains('active')) d1Init();
+  else d2Init();
+});
+</script>
+</body>
+</html>

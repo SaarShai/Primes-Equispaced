@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ulam Spiral — Hidden Structure in Primes</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #000;
+  color: #ccc;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+#top-bar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 10px 20px;
+  background: #0a0a0a;
+  border-bottom: 1px solid #1a1a1a;
+  flex-wrap: wrap;
+  z-index: 10;
+}
+#top-bar label { font-size: 13px; white-space: nowrap; }
+#top-bar input[type=range] { width: 200px; accent-color: #00e5ff; }
+.btn {
+  background: #1a1a1a;
+  color: #aaa;
+  border: 1px solid #333;
+  padding: 5px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.15s;
+}
+.btn:hover { background: #252525; color: #fff; }
+.btn.active { background: #00e5ff22; color: #00e5ff; border-color: #00e5ff55; }
+#canvas-wrap {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+canvas { display: block; }
+#tooltip {
+  position: absolute;
+  background: #111c;
+  border: 1px solid #00e5ff55;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  pointer-events: none;
+  display: none;
+  z-index: 20;
+  backdrop-filter: blur(4px);
+}
+#message {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  color: #00e5ff;
+  text-align: center;
+  opacity: 0.9;
+  pointer-events: none;
+  text-shadow: 0 0 20px #00e5ff44;
+  max-width: 600px;
+  line-height: 1.5;
+  transition: opacity 0.5s;
+}
+#count-display {
+  color: #00e5ff;
+  font-size: 13px;
+  min-width: 50px;
+}
+</style>
+</head>
+<body>
+<div id="top-bar">
+  <label>Numbers: <input type="range" id="slider" min="100" max="10000" value="100" step="100">
+    <span id="count-display">100</span>
+  </label>
+  <button class="btn" id="btn-grid">Show All Numbers</button>
+  <button class="btn" id="btn-diag">Highlight Diagonals</button>
+  <button class="btn" id="btn-animate">Animate Growth</button>
+  <label style="font-size:11px;color:#555">Scroll to zoom | Drag to pan</label>
+</div>
+<div id="canvas-wrap">
+  <canvas id="c"></canvas>
+  <div id="tooltip"></div>
+  <div id="message"></div>
+</div>
+
+<script>
+// --- Sieve of Eratosthenes ---
+const MAX_N = 10001;
+const isPrime = new Uint8Array(MAX_N);
+isPrime.fill(1);
+isPrime[0] = isPrime[1] = 0;
+for (let i = 2; i * i < MAX_N; i++) {
+  if (isPrime[i]) for (let j = i * i; j < MAX_N; j += i) isPrime[j] = 0;
+}
+
+// --- Ulam spiral coordinates ---
+// n=1 at origin, spiral counterclockwise: right, up, left, left, down, down, right, right, right, ...
+const coords = new Int16Array(MAX_N * 2);
+(function buildCoords() {
+  let x = 0, y = 0;
+  coords[2] = x; coords[3] = y; // n=1
+  let n = 1;
+  let layer = 1;
+  while (n < MAX_N) {
+    // right
+    for (let i = 0; i < 1 && n < MAX_N; i++) { x++; n++; coords[n*2] = x; coords[n*2+1] = y; }
+    // up (layer-1 more after the first right step for layer 1, then 2*layer-1 for subsequent)
+    if (layer === 1) {
+      // up 1
+      for (let i = 0; i < 1 && n < MAX_N; i++) { y--; n++; coords[n*2] = x; coords[n*2+1] = y; }
+      // left 2
+      for (let i = 0; i < 2 && n < MAX_N; i++) { x--; n++; coords[n*2] = x; coords[n*2+1] = y; }
+      // down 2
+      for (let i = 0; i < 2 && n < MAX_N; i++) { y++; n++; coords[n*2] = x; coords[n*2+1] = y; }
+      // right 2
+      for (let i = 0; i < 2 && n < MAX_N; i++) { x++; n++; coords[n*2] = x; coords[n*2+1] = y; }
+    } else {
+      // up 2*layer - 1
+      for (let i = 0; i < 2*layer-1 && n < MAX_N; i++) { y--; n++; coords[n*2] = x; coords[n*2+1] = y; }
+      // left 2*layer
+      for (let i = 0; i < 2*layer && n < MAX_N; i++) { x--; n++; coords[n*2] = x; coords[n*2+1] = y; }
+      // down 2*layer
+      for (let i = 0; i < 2*layer && n < MAX_N; i++) { y++; n++; coords[n*2] = x; coords[n*2+1] = y; }
+      // right 2*layer
+      for (let i = 0; i < 2*layer && n < MAX_N; i++) { x++; n++; coords[n*2] = x; coords[n*2+1] = y; }
+    }
+    layer++;
+  }
+})();
+
+// --- Canvas setup ---
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+const wrap = document.getElementById('canvas-wrap');
+const tooltip = document.getElementById('tooltip');
+const message = document.getElementById('message');
+
+let W, H;
+function resize() {
+  W = wrap.clientWidth;
+  H = wrap.clientHeight;
+  canvas.width = W * devicePixelRatio;
+  canvas.height = H * devicePixelRatio;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+  ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+  draw();
+}
+window.addEventListener('resize', resize);
+
+// --- State ---
+let count = 100;
+let showGrid = false;
+let showDiag = false;
+let animating = false;
+let animCount = 1;
+let animRAF = null;
+
+let zoom = 1;
+let panX = 0, panY = 0;
+let dragging = false, dragStartX, dragStartY, panStartX, panStartY;
+
+const slider = document.getElementById('slider');
+const countDisplay = document.getElementById('count-display');
+const btnGrid = document.getElementById('btn-grid');
+const btnDiag = document.getElementById('btn-diag');
+const btnAnimate = document.getElementById('btn-animate');
+
+slider.addEventListener('input', () => {
+  count = +slider.value;
+  countDisplay.textContent = count;
+  stopAnimation();
+  draw();
+});
+
+btnGrid.addEventListener('click', () => {
+  showGrid = !showGrid;
+  btnGrid.classList.toggle('active', showGrid);
+  draw();
+});
+
+btnDiag.addEventListener('click', () => {
+  showDiag = !showDiag;
+  btnDiag.classList.toggle('active', showDiag);
+  draw();
+});
+
+btnAnimate.addEventListener('click', () => {
+  if (animating) { stopAnimation(); return; }
+  animating = true;
+  animCount = 1;
+  btnAnimate.classList.add('active');
+  btnAnimate.textContent = 'Stop';
+  animLoop();
+});
+
+function stopAnimation() {
+  animating = false;
+  if (animRAF) cancelAnimationFrame(animRAF);
+  animRAF = null;
+  btnAnimate.classList.remove('active');
+  btnAnimate.textContent = 'Animate Growth';
+  draw();
+}
+
+function animLoop() {
+  if (!animating) return;
+  animCount += Math.max(1, Math.floor(animCount / 60));
+  if (animCount >= count) { animCount = count; stopAnimation(); return; }
+  draw(animCount);
+  animRAF = requestAnimationFrame(animLoop);
+}
+
+// --- Zoom & Pan ---
+wrap.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+  const oldZoom = zoom;
+  const factor = e.deltaY < 0 ? 1.12 : 1/1.12;
+  zoom = Math.max(0.1, Math.min(50, zoom * factor));
+  // zoom toward mouse
+  panX = mx - (mx - panX) * (zoom / oldZoom);
+  panY = my - (my - panY) * (zoom / oldZoom);
+  draw();
+}, { passive: false });
+
+wrap.addEventListener('mousedown', (e) => {
+  dragging = true;
+  dragStartX = e.clientX;
+  dragStartY = e.clientY;
+  panStartX = panX;
+  panStartY = panY;
+});
+window.addEventListener('mousemove', (e) => {
+  if (dragging) {
+    panX = panStartX + (e.clientX - dragStartX);
+    panY = panStartY + (e.clientY - dragStartY);
+    draw();
+  }
+  // tooltip
+  handleHover(e);
+});
+window.addEventListener('mouseup', () => { dragging = false; });
+
+function screenToGrid(sx, sy) {
+  const cx = W / 2 + panX;
+  const cy = H / 2 + panY;
+  const spacing = 6 * zoom;
+  const gx = Math.round((sx - cx) / spacing);
+  const gy = Math.round((sy - cy) / spacing);
+  return [gx, gy];
+}
+
+function handleHover(e) {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+  const [gx, gy] = screenToGrid(mx, my);
+  const currentCount = animating ? animCount : count;
+  // find number at this grid position
+  for (let n = 1; n <= currentCount; n++) {
+    if (coords[n*2] === gx && coords[n*2+1] === gy) {
+      tooltip.style.display = 'block';
+      tooltip.style.left = (mx + 14) + 'px';
+      tooltip.style.top = (my - 10) + 'px';
+      const prime = isPrime[n];
+      tooltip.innerHTML = `<b>${n}</b> &mdash; ${prime ? '<span style="color:#00e5ff">PRIME</span>' : 'composite'}`;
+      return;
+    }
+  }
+  tooltip.style.display = 'none';
+}
+
+// --- Diagonal detection (prominent quadratic diagonals) ---
+// Classic Ulam diagonals: 4n^2 + bn + c family
+// We highlight the main visible diagonals
+function isDiagonal(x, y) {
+  // The main diagonals are along x=y, x=-y, and offset parallels
+  const d1 = x - y;  // NE-SW
+  const d2 = x + y;  // NW-SE
+  // Highlight several prominent diagonals
+  return (Math.abs(d1) <= 0 || Math.abs(d2) <= 0 ||
+          Math.abs(d1) === 2 || Math.abs(d2) === 2 ||
+          Math.abs(d1) === 4 || Math.abs(d2) === 4 ||
+          Math.abs(d1) === 6 || Math.abs(d2) === 6);
+}
+
+// --- Draw ---
+function draw(overrideCount) {
+  const n = overrideCount || count;
+  ctx.clearRect(0, 0, W, H);
+
+  const cx = W / 2 + panX;
+  const cy = H / 2 + panY;
+  const spacing = 6 * zoom;
+  const dotR = Math.max(1, 2.2 * zoom);
+  const smallR = Math.max(0.5, 1.2 * zoom);
+
+  // Diagonal overlay
+  if (showDiag) {
+    ctx.globalAlpha = 0.08;
+    ctx.strokeStyle = '#00e5ff';
+    ctx.lineWidth = spacing;
+    // draw diagonal lines across the visible area
+    const range = Math.ceil(Math.max(W, H) / spacing) + 10;
+    for (let offset of [0, 2, 4, 6]) {
+      for (let sign of [-1, 1]) {
+        const d = offset * sign;
+        // x - y = d  =>  y = x - d
+        ctx.beginPath();
+        ctx.moveTo(cx + (-range) * spacing, cy + (-range - d) * spacing);
+        ctx.lineTo(cx + range * spacing, cy + (range - d) * spacing);
+        ctx.stroke();
+        // x + y = d  =>  y = d - x
+        ctx.beginPath();
+        ctx.moveTo(cx + (-range) * spacing, cy + (d + range) * spacing);
+        ctx.lineTo(cx + range * spacing, cy + (d - range) * spacing);
+        ctx.stroke();
+      }
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  // Composites (dim dots if showGrid)
+  if (showGrid) {
+    ctx.fillStyle = '#ffffff08';
+    for (let i = 1; i <= n; i++) {
+      if (isPrime[i]) continue;
+      const x = cx + coords[i*2] * spacing;
+      const y = cy + coords[i*2+1] * spacing;
+      if (x < -10 || x > W+10 || y < -10 || y > H+10) continue;
+      ctx.beginPath();
+      ctx.arc(x, y, smallR, 0, 6.2832);
+      ctx.fill();
+    }
+  }
+
+  // Primes: bright cyan with glow
+  const recentFlash = animating ? Math.max(1, animCount - 30) : 0;
+  for (let i = 1; i <= n; i++) {
+    if (!isPrime[i]) continue;
+    const x = cx + coords[i*2] * spacing;
+    const y = cy + coords[i*2+1] * spacing;
+    if (x < -dotR*4 || x > W+dotR*4 || y < -dotR*4 || y > H+dotR*4) continue;
+
+    // Flash effect during animation
+    if (animating && i > recentFlash) {
+      const age = (animCount - i) / 30;
+      const glow = Math.max(0, 1 - age) * 8 * zoom;
+      if (glow > 0) {
+        ctx.shadowColor = '#00e5ff';
+        ctx.shadowBlur = glow;
+      }
+      ctx.fillStyle = `rgba(0, 229, 255, ${Math.min(1, 0.5 + age)})`;
+    } else {
+      ctx.shadowColor = '#00e5ff';
+      ctx.shadowBlur = 3 * zoom;
+      ctx.fillStyle = '#00e5ff';
+    }
+
+    ctx.beginPath();
+    ctx.arc(x, y, dotR, 0, 6.2832);
+    ctx.fill();
+  }
+  ctx.shadowBlur = 0;
+
+  // Message
+  updateMessage(n);
+}
+
+function updateMessage(n) {
+  if (n < 500) {
+    message.textContent = 'If primes were truly random, this would look like static...';
+    message.style.opacity = '0.9';
+  } else if (n >= 500 && n < 2000) {
+    message.textContent = 'Watch the diagonals emerge...';
+    message.style.opacity = '0.8';
+  } else {
+    message.textContent = '...but instead, they form diagonal lines. Primes have hidden structure that nobody fully understands.';
+    message.style.opacity = '0.9';
+  }
+}
+
+// --- Init ---
+function autoZoom() {
+  // fit spiral in view
+  const maxLayer = Math.ceil(Math.sqrt(count));
+  const needed = maxLayer * 6 * 2;
+  const available = Math.min(W, H) * 0.85;
+  zoom = available / needed;
+  zoom = Math.max(0.3, Math.min(5, zoom));
+  panX = 0; panY = 0;
+}
+
+resize();
+autoZoom();
+draw();
+</script>
+</body>
+</html>

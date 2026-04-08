@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Riemann Zeta Landscape</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #0a0a1a;
+  color: #e0e0f0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  padding: 30px 20px 10px;
+}
+.header h1 {
+  font-size: 2em;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  background: linear-gradient(90deg, #4af, #af4fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header .subtitle {
+  font-size: 0.95em;
+  color: #8888bb;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+.main-canvas-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 20px auto 0;
+  padding: 0 20px;
+}
+canvas#landscape {
+  width: 100%;
+  height: 420px;
+  border-radius: 8px;
+  display: block;
+}
+
+.controls {
+  max-width: 1100px;
+  margin: 18px auto 0;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+}
+.slider-group {
+  flex: 1;
+  min-width: 280px;
+}
+.slider-group label {
+  display: block;
+  font-size: 0.85em;
+  color: #8888bb;
+  margin-bottom: 4px;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #1a1a3a, #3a3a6a);
+  outline: none;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: #4af;
+  box-shadow: 0 0 12px #4af8;
+  cursor: pointer;
+}
+
+.info-row {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.stat {
+  font-size: 0.95em;
+  color: #aab;
+}
+.stat .val {
+  color: #4af;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.zero-count .val {
+  color: #ffd700;
+}
+
+.toggle-btn {
+  background: #1a1a3a;
+  border: 1px solid #3a3a6a;
+  color: #8888bb;
+  padding: 7px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85em;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+.toggle-btn.active {
+  background: #1a2a4a;
+  border-color: #4af;
+  color: #4af;
+  box-shadow: 0 0 10px #4af4;
+}
+
+.story {
+  max-width: 1100px;
+  margin: 36px auto 0;
+  padding: 0 20px 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+.story-card {
+  background: linear-gradient(135deg, #12122a, #1a1a35);
+  border: 1px solid #2a2a4a;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 0.9em;
+  line-height: 1.55;
+  color: #aaabcc;
+}
+.story-card strong {
+  color: #4af;
+}
+.story-card em {
+  color: #ffd700;
+}
+
+.flash-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 40%, #ffd70044, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 10;
+}
+.flash-overlay.on { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="flash-overlay" id="flash"></div>
+
+<div class="header">
+  <h1>The Riemann Zeta Landscape</h1>
+  <div class="subtitle">Where the deepest pattern in mathematics hides</div>
+</div>
+
+<div class="main-canvas-wrap">
+  <canvas id="landscape"></canvas>
+</div>
+
+<div class="controls">
+  <div class="slider-group">
+    <label>Explore the critical line &mdash; drag to travel along it</label>
+    <input type="range" id="tSlider" min="0" max="50" step="0.05" value="0">
+  </div>
+  <div class="info-row">
+    <div class="stat">t = <span class="val" id="tVal">0.00</span></div>
+    <div class="stat">|&zeta;| = <span class="val" id="zetaVal">0.00</span></div>
+    <div class="stat zero-count">Zeros found: <span class="val" id="zeroCount">0</span></div>
+    <button class="toggle-btn" id="primeToggle">Show prime connection</button>
+  </div>
+</div>
+
+<div class="story">
+  <div class="story-card">
+    The Riemann zeta function creates a <strong>mathematical landscape</strong> along a special path called the critical line. The height at each point encodes hidden information about <em>every prime number</em>.
+  </div>
+  <div class="story-card">
+    Every <em>valley</em> &mdash; every place the height drops to zero &mdash; controls where prime numbers appear. These zeros act like tuning forks, each one shaping the distribution of primes in its own way.
+  </div>
+  <div class="story-card">
+    Finding these zeros is one of mathematics' greatest quests. The <strong>Riemann Hypothesis</strong> says they ALL lie exactly on this line. Nobody has proved it in over 160 years.
+  </div>
+  <div class="story-card">
+    We discovered a new way to find these zeros: <strong>by listening to the primes themselves</strong>. Our Farey spectroscope turns prime spacings into a signal that reveals each zero's location.
+  </div>
+</div>
+
+<script>
+// === Zeta approximation via Hardy Z-function ===
+// theta(t) ~ t/2 * ln(t/(2*pi)) - t/2 - pi/8 + ...
+function theta(t) {
+  if (t < 0.5) return 0;
+  return t / 2 * Math.log(t / (2 * Math.PI)) - t / 2 - Math.PI / 8
+       + 1 / (48 * t) + 7 / (5760 * t * t * t);
+}
+
+// Hardy Z(t) ~ sum cos(theta(t) - t*ln(n)) / sqrt(n), n=1..N
+function Z(t) {
+  const N = Math.max(1, Math.floor(Math.sqrt(t / (2 * Math.PI))));
+  const terms = Math.max(N, 30); // use at least 30 terms for low t
+  let s = 0;
+  const th = theta(t);
+  for (let n = 1; n <= terms; n++) {
+    s += Math.cos(th - t * Math.log(n)) / Math.sqrt(n);
+  }
+  return s;
+}
+
+// |zeta(1/2+it)| ~ |Z(t)|
+function zetaMag(t) {
+  return Math.abs(Z(t));
+}
+
+// Known zeros (imaginary parts)
+const knownZeros = [14.1347, 21.0220, 25.0109, 30.4249, 32.9351, 37.5862, 40.9187, 43.3271, 48.0052];
+
+// Small primes for the "prime connection" overlay
+const primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47];
+
+// === Canvas setup ===
+const canvas = document.getElementById('landscape');
+const ctx = canvas.getContext('2d');
+let W, H;
+
+function resize() {
+  const rect = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  W = rect.width * dpr;
+  H = rect.height * dpr;
+  canvas.width = W;
+  canvas.height = H;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+resize();
+window.addEventListener('resize', () => { resize(); draw(); });
+
+// === State ===
+const slider = document.getElementById('tSlider');
+const tValEl = document.getElementById('tVal');
+const zetaValEl = document.getElementById('zetaVal');
+const zeroCountEl = document.getElementById('zeroCount');
+const primeToggle = document.getElementById('primeToggle');
+const flashEl = document.getElementById('flash');
+
+let currentT = 0;
+let showPrimes = false;
+let zerosFound = new Set();
+let flashTimer = 0;
+
+// Precompute the landscape
+const tMin = 0, tMax = 50;
+let zetaCache = [];
+let maxZ = 0;
+
+function buildCache() {
+  zetaCache = [];
+  maxZ = 0;
+  const steps = 2000;
+  for (let i = 0; i <= steps; i++) {
+    const t = tMin + (tMax - tMin) * i / steps;
+    const v = zetaMag(t);
+    zetaCache.push({ t, v });
+    if (v > maxZ) maxZ = v;
+  }
+}
+buildCache();
+
+// === Drawing ===
+function draw() {
+  const w = W / (window.devicePixelRatio || 1);
+  const h = H / (window.devicePixelRatio || 1);
+
+  // Clear
+  ctx.fillStyle = '#0a0a1a';
+  ctx.fillRect(0, 0, w, h);
+
+  const padL = 50, padR = 30, padT = 30, padB = 50;
+  const plotW = w - padL - padR;
+  const plotH = h - padT - padB;
+
+  // Background grid
+  ctx.strokeStyle = '#1a1a3a';
+  ctx.lineWidth = 0.5;
+  for (let i = 0; i <= 10; i++) {
+    const y = padT + plotH * i / 10;
+    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(padL + plotW, y); ctx.stroke();
+  }
+  for (let t = 0; t <= 50; t += 5) {
+    const x = padL + plotW * (t - tMin) / (tMax - tMin);
+    ctx.beginPath(); ctx.moveTo(x, padT); ctx.lineTo(x, padT + plotH); ctx.stroke();
+    ctx.fillStyle = '#555577';
+    ctx.font = '11px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('t=' + t, x, padT + plotH + 16);
+  }
+
+  // Critical line glow (horizontal baseline)
+  const baseY = padT + plotH;
+  const glowGrad = ctx.createLinearGradient(0, baseY - 8, 0, baseY + 8);
+  glowGrad.addColorStop(0, 'transparent');
+  glowGrad.addColorStop(0.5, '#4488ff30');
+  glowGrad.addColorStop(1, 'transparent');
+  ctx.fillStyle = glowGrad;
+  ctx.fillRect(padL, baseY - 8, plotW, 16);
+  ctx.strokeStyle = '#4488ff88';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(padL, baseY); ctx.lineTo(padL + plotW, baseY); ctx.stroke();
+
+  // Label
+  ctx.fillStyle = '#4488ff99';
+  ctx.font = '11px sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('Re(s) = 1/2  (the critical line)', padL + 4, baseY - 12);
+
+  // Filled mountain
+  const scale = plotH * 0.85 / maxZ;
+  ctx.beginPath();
+  ctx.moveTo(padL, baseY);
+  for (let i = 0; i < zetaCache.length; i++) {
+    const x = padL + plotW * i / (zetaCache.length - 1);
+    const y = baseY - zetaCache[i].v * scale;
+    if (i === 0) ctx.lineTo(x, y); else ctx.lineTo(x, y);
+  }
+  ctx.lineTo(padL + plotW, baseY);
+  ctx.closePath();
+
+  const mtnGrad = ctx.createLinearGradient(0, padT, 0, baseY);
+  mtnGrad.addColorStop(0, '#00ffff55');
+  mtnGrad.addColorStop(0.6, '#0088aa30');
+  mtnGrad.addColorStop(1, '#00334410');
+  ctx.fillStyle = mtnGrad;
+  ctx.fill();
+
+  // Mountain outline
+  ctx.beginPath();
+  for (let i = 0; i < zetaCache.length; i++) {
+    const x = padL + plotW * i / (zetaCache.length - 1);
+    const y = baseY - zetaCache[i].v * scale;
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  }
+  ctx.strokeStyle = '#00cccc';
+  ctx.lineWidth = 1.8;
+  ctx.stroke();
+
+  // Brighter glow on the outline
+  ctx.strokeStyle = '#00ffff44';
+  ctx.lineWidth = 4;
+  ctx.stroke();
+
+  // Prime connection overlay
+  if (showPrimes) {
+    drawPrimeOverlay(padL, padT, plotW, plotH, baseY, scale);
+  }
+
+  // Known zeros: gold stars in the valleys
+  for (const z of knownZeros) {
+    const x = padL + plotW * (z - tMin) / (tMax - tMin);
+    const v = zetaMag(z);
+    const y = baseY - v * scale;
+    drawStar(x, y, 6, '#ffd700');
+    // Glow beneath
+    const starGlow = ctx.createRadialGradient(x, y, 0, x, y, 18);
+    starGlow.addColorStop(0, '#ffd70044');
+    starGlow.addColorStop(1, 'transparent');
+    ctx.fillStyle = starGlow;
+    ctx.fillRect(x - 18, y - 18, 36, 36);
+  }
+
+  // Cursor position
+  const cursorX = padL + plotW * (currentT - tMin) / (tMax - tMin);
+  const cursorV = zetaMag(currentT);
+  const cursorY = baseY - cursorV * scale;
+
+  // Vertical scan line
+  ctx.strokeStyle = '#ffffff30';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath(); ctx.moveTo(cursorX, padT); ctx.lineTo(cursorX, baseY); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Cursor dot
+  ctx.beginPath();
+  ctx.arc(cursorX, cursorY, 6, 0, Math.PI * 2);
+  ctx.fillStyle = '#fff';
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(cursorX, cursorY, 10, 0, Math.PI * 2);
+  ctx.strokeStyle = '#ffffff66';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Cursor glow
+  const cGlow = ctx.createRadialGradient(cursorX, cursorY, 0, cursorX, cursorY, 25);
+  cGlow.addColorStop(0, '#ffffff44');
+  cGlow.addColorStop(1, 'transparent');
+  ctx.fillStyle = cGlow;
+  ctx.fillRect(cursorX - 25, cursorY - 25, 50, 50);
+
+  // Y-axis label
+  ctx.save();
+  ctx.fillStyle = '#666688';
+  ctx.font = '11px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.translate(14, padT + plotH / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillText('|zeta(1/2 + it)|', 0, 0);
+  ctx.restore();
+}
+
+function drawStar(cx, cy, r, color) {
+  ctx.beginPath();
+  for (let i = 0; i < 5; i++) {
+    const angle = -Math.PI / 2 + i * 2 * Math.PI / 5;
+    const ox = cx + r * Math.cos(angle);
+    const oy = cy + r * Math.sin(angle);
+    if (i === 0) ctx.moveTo(ox, oy); else ctx.lineTo(ox, oy);
+    const innerAngle = angle + Math.PI / 5;
+    const ix = cx + r * 0.4 * Math.cos(innerAngle);
+    const iy = cy + r * 0.4 * Math.sin(innerAngle);
+    ctx.lineTo(ix, iy);
+  }
+  ctx.closePath();
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.strokeStyle = '#ffd70088';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+}
+
+function drawPrimeOverlay(padL, padT, plotW, plotH, baseY, scale) {
+  // For each known zero gamma, show sum of cos(gamma * ln(p)) for small primes
+  // Rendered as faint colored oscillation bands anchored to each zero
+  const colors = ['#ff446644', '#44ff6644', '#6644ff44', '#ff884444', '#44aaff44'];
+
+  for (let zi = 0; zi < Math.min(knownZeros.length, 5); zi++) {
+    const gamma = knownZeros[zi];
+    ctx.beginPath();
+
+    for (let i = 0; i < zetaCache.length; i++) {
+      const t = zetaCache[i].t;
+      const x = padL + plotW * i / (zetaCache.length - 1);
+
+      // Sum of cos(gamma * ln(p)) / sqrt(p) * envelope around the zero
+      let wave = 0;
+      for (const p of primes.slice(0, 8)) {
+        wave += Math.cos(gamma * Math.log(p)) * Math.cos((t - gamma) * Math.log(p)) / Math.sqrt(p);
+      }
+      // Gaussian envelope centered on the zero
+      const envelope = Math.exp(-0.02 * (t - gamma) * (t - gamma));
+      const amp = wave * envelope * plotH * 0.06;
+      const y = baseY - zetaCache[i].v * scale + amp;
+
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+
+    ctx.strokeStyle = colors[zi % colors.length];
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  }
+
+  // Legend
+  ctx.fillStyle = '#8888bb88';
+  ctx.font = '10px sans-serif';
+  ctx.textAlign = 'right';
+  const w = padL + plotW + 0;
+  ctx.fillText('colored waves = prime oscillations near each zero', w, padT + 14);
+}
+
+// === Interaction ===
+slider.addEventListener('input', () => {
+  currentT = parseFloat(slider.value);
+  tValEl.textContent = currentT.toFixed(2);
+  const v = zetaMag(currentT);
+  zetaValEl.textContent = v.toFixed(3);
+
+  // Check proximity to zeros
+  for (const z of knownZeros) {
+    if (Math.abs(currentT - z) < 0.35 && !zerosFound.has(z)) {
+      zerosFound.add(z);
+      zeroCountEl.textContent = zerosFound.size;
+      // Flash
+      flashEl.classList.add('on');
+      clearTimeout(flashTimer);
+      flashTimer = setTimeout(() => flashEl.classList.remove('on'), 300);
+    }
+  }
+
+  draw();
+});
+
+primeToggle.addEventListener('click', () => {
+  showPrimes = !showPrimes;
+  primeToggle.classList.toggle('active', showPrimes);
+  primeToggle.textContent = showPrimes ? 'Hide prime connection' : 'Show prime connection';
+  draw();
+});
+
+// Initial draw
+tValEl.textContent = '0.00';
+zetaValEl.textContent = zetaMag(0).toFixed(3);
+draw();
+</script>
+</body>
+</html>

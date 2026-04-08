@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sieve of Eratosthenes</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #1a1a2e;
+    color: #fff;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 30px 20px;
+  }
+  h1 {
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    color: #e0e0e0;
+  }
+  .subtitle {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 24px;
+  }
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  button {
+    background: #16213e;
+    color: #ffd700;
+    border: 1px solid #ffd70044;
+    padding: 10px 28px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  button:hover { background: #1a2a50; border-color: #ffd70088; }
+  button:disabled { opacity: 0.4; cursor: default; }
+  .speed-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #aaa;
+  }
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 120px;
+    height: 4px;
+    background: #333;
+    border-radius: 2px;
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    background: #ffd700;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .counter {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 16px;
+    min-height: 1.4em;
+  }
+  .counter span { color: #ffd700; font-weight: 600; }
+  .sieving-label {
+    font-size: 0.95rem;
+    color: #aaa;
+    margin-bottom: 12px;
+    min-height: 1.4em;
+  }
+  .sieving-label span { color: #ffd700; font-weight: 600; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 6px;
+    max-width: 560px;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  .cell {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    background: #16213e;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+    user-select: none;
+  }
+  .cell:hover { transform: scale(1.08); z-index: 1; }
+  .cell.one {
+    color: #555;
+    background: #111;
+    cursor: default;
+  }
+  .cell.composite {
+    color: #444;
+    background: #0d0d1a;
+  }
+  .cell.prime-glow {
+    color: #ffd700;
+    background: #2a2200;
+    box-shadow: 0 0 12px #ffd70055;
+    text-shadow: 0 0 8px #ffd700aa;
+  }
+  .cell.sieving-source {
+    color: #ffd700;
+    background: #3a2f00;
+    box-shadow: 0 0 20px #ffd700aa;
+    text-shadow: 0 0 12px #ffd700;
+    transform: scale(1.1);
+    z-index: 2;
+  }
+  .cell.being-sieved {
+    animation: fadeOut 0.4s ease forwards;
+  }
+  .cell.highlight-multiple {
+    background: #2a1530;
+    color: #ff88cc;
+    box-shadow: 0 0 8px #ff88cc44;
+  }
+  .cell.highlight-source {
+    background: #3a1040;
+    color: #ff88cc;
+    box-shadow: 0 0 16px #ff88ccaa;
+    text-shadow: 0 0 8px #ff88cc;
+    transform: scale(1.1);
+    z-index: 2;
+  }
+  @keyframes fadeOut {
+    from { color: #fff; background: #16213e; }
+    to { color: #444; background: #0d0d1a; }
+  }
+  @keyframes pulseGold {
+    0%, 100% { box-shadow: 0 0 12px #ffd70055; }
+    50% { box-shadow: 0 0 24px #ffd700aa; }
+  }
+  .cell.final-pulse {
+    animation: pulseGold 1.5s ease-in-out infinite;
+    color: #ffd700;
+    background: #2a2200;
+    text-shadow: 0 0 8px #ffd700aa;
+  }
+  .reveal-text {
+    font-size: 1.15rem;
+    color: #ccc;
+    text-align: center;
+    max-width: 500px;
+    line-height: 1.6;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+    margin-top: 10px;
+    font-style: italic;
+  }
+  .reveal-text.visible { opacity: 1; }
+  .reveal-text em { color: #ffd700; font-style: normal; font-weight: 600; }
+  .instructions {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 10px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<h1>The Sieve of Eratosthenes</h1>
+<p class="subtitle">An ancient algorithm to find all primes</p>
+
+<div class="controls">
+  <button id="playBtn" onclick="startSieve()">Play</button>
+  <button id="resetBtn" onclick="resetGrid()" disabled>Reset</button>
+  <div class="speed-control">
+    <span>Slow</span>
+    <input type="range" id="speedSlider" min="1" max="3" value="2" step="1">
+    <span>Fast</span>
+  </div>
+</div>
+
+<div class="sieving-label" id="sievingLabel">&nbsp;</div>
+<div class="counter" id="counter">&nbsp;</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="reveal-text" id="revealText">
+  These 25 primes look random&hellip; but they hide an <em>incredible secret</em>.
+</div>
+
+<p class="instructions">Click any number to highlight its multiples</p>
+
+<script>
+const PRIMES_TO_SIEVE = [2, 3, 5, 7];
+const grid = document.getElementById('grid');
+const playBtn = document.getElementById('playBtn');
+const resetBtn = document.getElementById('resetBtn');
+const speedSlider = document.getElementById('speedSlider');
+const counterEl = document.getElementById('counter');
+const sievingLabel = document.getElementById('sievingLabel');
+const revealText = document.getElementById('revealText');
+
+let cells = [];
+let isComposite = new Array(101).fill(false);
+let running = false;
+let aborted = false;
+let clickHighlight = null;
+
+function getDelay() {
+  const v = parseInt(speedSlider.value);
+  if (v === 1) return 600;
+  if (v === 2) return 300;
+  return 120;
+}
+
+function sleep(ms) {
+  return new Promise(r => setTimeout(r, ms));
+}
+
+function buildGrid() {
+  grid.innerHTML = '';
+  cells = [null]; // 1-indexed
+  isComposite = new Array(101).fill(false);
+  isComposite[1] = true;
+
+  for (let i = 1; i <= 100; i++) {
+    const div = document.createElement('div');
+    div.className = 'cell';
+    div.textContent = i;
+    div.dataset.num = i;
+    if (i === 1) div.classList.add('one');
+    div.addEventListener('click', () => handleClick(i));
+    grid.appendChild(div);
+    cells.push(div);
+  }
+  counterEl.innerHTML = '&nbsp;';
+  sievingLabel.innerHTML = '&nbsp;';
+  revealText.classList.remove('visible');
+}
+
+function clearHighlights() {
+  if (clickHighlight !== null) {
+    for (let i = 1; i <= 100; i++) {
+      cells[i].classList.remove('highlight-multiple', 'highlight-source');
+    }
+    clickHighlight = null;
+  }
+}
+
+function handleClick(n) {
+  if (running) return;
+  if (n === 1) return;
+
+  clearHighlights();
+  clickHighlight = n;
+  cells[n].classList.add('highlight-source');
+
+  for (let m = n * 2; m <= 100; m += n) {
+    cells[m].classList.add('highlight-multiple');
+  }
+}
+
+function countPrimes() {
+  let count = 0;
+  for (let i = 2; i <= 100; i++) {
+    if (!isComposite[i]) count++;
+  }
+  return count;
+}
+
+function updateCounter() {
+  const c = countPrimes();
+  counterEl.innerHTML = `<span>${c}</span> primes found out of 100`;
+}
+
+async function startSieve() {
+  if (running) return;
+  running = true;
+  aborted = false;
+  playBtn.disabled = true;
+  resetBtn.disabled = false;
+  clearHighlights();
+
+  // Reset all cells except 1
+  for (let i = 2; i <= 100; i++) {
+    cells[i].className = 'cell';
+    isComposite[i] = false;
+  }
+
+  for (const p of PRIMES_TO_SIEVE) {
+    if (aborted) break;
+
+    sievingLabel.innerHTML = `Sieving multiples of <span>${p}</span>`;
+    cells[p].classList.add('sieving-source');
+    await sleep(getDelay() * 1.5);
+
+    for (let m = p * 2; m <= 100; m += p) {
+      if (aborted) break;
+      if (!isComposite[m]) {
+        isComposite[m] = true;
+        cells[m].classList.add('being-sieved');
+        await sleep(getDelay());
+        cells[m].classList.remove('being-sieved');
+        cells[m].classList.add('composite');
+      }
+    }
+
+    if (!aborted) {
+      cells[p].classList.remove('sieving-source');
+      cells[p].classList.add('prime-glow');
+      updateCounter();
+      await sleep(getDelay() * 2);
+    }
+  }
+
+  if (!aborted) {
+    sievingLabel.innerHTML = 'Sieve complete!';
+
+    // Mark remaining primes
+    for (let i = 2; i <= 100; i++) {
+      if (!isComposite[i]) {
+        cells[i].classList.remove('prime-glow');
+        cells[i].classList.add('final-pulse');
+      }
+    }
+    updateCounter();
+
+    await sleep(800);
+    revealText.classList.add('visible');
+  }
+
+  running = false;
+  playBtn.disabled = false;
+}
+
+function resetGrid() {
+  aborted = true;
+  running = false;
+  playBtn.disabled = false;
+  resetBtn.disabled = true;
+  buildGrid();
+}
+
+buildGrid();
+</script>
+</body>
+</html>

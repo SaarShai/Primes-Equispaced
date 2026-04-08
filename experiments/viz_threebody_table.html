@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Three-Body Orbit Periodic Table</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #0a0a1a;
+  color: #e0e0e0;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+#header {
+  text-align: center;
+  padding: 30px 20px 10px;
+}
+#header h1 {
+  font-size: 28px;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+#header h1 span.gold { color: #ffd700; }
+#header p.subtitle {
+  font-size: 15px;
+  color: #8899bb;
+  max-width: 700px;
+  margin: 0 auto 12px;
+  line-height: 1.5;
+}
+#header p.stats {
+  font-size: 13px;
+  color: #66ccff;
+}
+#controls {
+  text-align: center;
+  margin: 12px 0 20px;
+}
+#controls button {
+  background: #1a1a3a;
+  color: #aaccee;
+  border: 1px solid #334;
+  padding: 8px 18px;
+  margin: 0 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+#controls button:hover { background: #252550; border-color: #558; }
+#controls button.active { background: #2a2a5a; border-color: #66ccff; color: #66ccff; }
+
+#table-container {
+  display: flex;
+  justify-content: center;
+  padding: 0 20px 20px;
+}
+#grid-wrapper {
+  position: relative;
+}
+.axis-label-x {
+  text-align: center;
+  color: #8899bb;
+  font-size: 12px;
+  margin-top: 6px;
+}
+.axis-label-y {
+  position: absolute;
+  left: -130px;
+  top: 50%;
+  transform: rotate(-90deg) translateX(-50%);
+  transform-origin: 0 0;
+  color: #8899bb;
+  font-size: 12px;
+  white-space: nowrap;
+}
+#grid {
+  display: grid;
+  grid-template-columns: 60px repeat(9, 72px);
+  grid-template-rows: 30px repeat(8, 72px);
+  gap: 4px;
+}
+.col-header, .row-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #8899bb;
+  font-weight: 600;
+}
+.cell {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s;
+  position: relative;
+  font-size: 11px;
+  text-align: center;
+  line-height: 1.3;
+}
+.cell.populated {
+  background: rgba(0, 180, 255, 0.12);
+  border: 1.5px solid rgba(0, 180, 255, 0.4);
+}
+.cell.populated:hover {
+  background: rgba(0, 180, 255, 0.25);
+  border-color: rgba(0, 180, 255, 0.8);
+  transform: scale(1.06);
+  z-index: 2;
+}
+.cell.empty {
+  background: transparent;
+  border: 1.5px dashed rgba(100, 140, 200, 0.25);
+}
+.cell.empty:hover {
+  border-color: rgba(100, 200, 255, 0.5);
+  box-shadow: 0 0 12px rgba(100, 200, 255, 0.15);
+}
+.cell.golden {
+  background: rgba(255, 215, 0, 0.12);
+  border: 2px solid rgba(255, 215, 0, 0.6);
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.2), inset 0 0 12px rgba(255, 215, 0, 0.05);
+}
+.cell.golden:hover {
+  background: rgba(255, 215, 0, 0.22);
+  border-color: rgba(255, 215, 0, 0.9);
+  box-shadow: 0 0 28px rgba(255, 215, 0, 0.35);
+  transform: scale(1.08);
+}
+.cell .count {
+  font-size: 18px;
+  font-weight: 700;
+  color: #66ccff;
+}
+.cell.golden .count { color: #ffd700; }
+.cell .family-label {
+  font-size: 9px;
+  color: #99aacc;
+  margin-top: 2px;
+  max-width: 64px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cell.golden .family-label { color: #ddc060; }
+.cell.empty .predict-icon {
+  font-size: 20px;
+  color: rgba(100, 160, 220, 0.3);
+}
+/* Stability coloring */
+.cell.stab-green { border-color: rgba(0, 220, 100, 0.5); }
+.cell.stab-green .count { color: #00dd66; }
+.cell.stab-yellow { border-color: rgba(220, 200, 0, 0.5); }
+.cell.stab-yellow .count { color: #ddcc00; }
+.cell.stab-red { border-color: rgba(220, 60, 60, 0.5); }
+.cell.stab-red .count { color: #dd4444; }
+/* Family coloring */
+.cell.fam-choreo { background: rgba(0, 180, 255, 0.12); border-color: rgba(0, 180, 255, 0.4); }
+.cell.fam-satellite { background: rgba(180, 0, 255, 0.12); border-color: rgba(180, 0, 255, 0.4); }
+.cell.fam-satellite .count { color: #bb66ff; }
+.cell.fam-freefall { background: rgba(0, 220, 140, 0.12); border-color: rgba(0, 220, 140, 0.4); }
+.cell.fam-freefall .count { color: #00dd88; }
+.cell.fam-linear { background: rgba(255, 140, 0, 0.12); border-color: rgba(255, 140, 0, 0.4); }
+.cell.fam-linear .count { color: #ff9900; }
+
+/* Tooltip */
+.tooltip {
+  display: none;
+  position: fixed;
+  background: #12122a;
+  border: 1px solid #334;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: #aabbdd;
+  pointer-events: none;
+  z-index: 100;
+  max-width: 200px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+/* Detail panel */
+#detail-panel {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #12122a;
+  border: 1px solid #335;
+  border-radius: 14px;
+  padding: 28px;
+  z-index: 200;
+  width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+}
+#detail-panel.golden-border { border-color: rgba(255, 215, 0, 0.5); }
+#detail-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 199;
+}
+#detail-panel h2 {
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 4px;
+}
+#detail-panel .detail-sub {
+  font-size: 13px;
+  color: #8899bb;
+  margin-bottom: 14px;
+}
+#detail-panel .cf-rep {
+  font-family: 'Courier New', monospace;
+  background: #1a1a30;
+  border: 1px solid #2a2a4a;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #66ccff;
+  margin-bottom: 14px;
+}
+#detail-panel .cf-rep.golden-cf { color: #ffd700; border-color: rgba(255,215,0,0.3); }
+#orbit-svg-container {
+  background: #0a0a18;
+  border: 1px solid #2a2a4a;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+#orbit-svg-container svg { max-width: 100%; }
+.stability-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.stability-badge.green { background: rgba(0,220,100,0.15); color: #00dd66; border: 1px solid rgba(0,220,100,0.3); }
+.stability-badge.yellow { background: rgba(220,200,0,0.15); color: #ddcc00; border: 1px solid rgba(220,200,0,0.3); }
+.stability-badge.red { background: rgba(220,60,60,0.15); color: #dd4444; border: 1px solid rgba(220,60,60,0.3); }
+#close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #667;
+  font-size: 22px;
+  cursor: pointer;
+}
+#close-btn:hover { color: #aaa; }
+
+/* Legend */
+#legend {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 10px;
+  font-size: 12px;
+  color: #8899bb;
+  flex-wrap: wrap;
+}
+#legend .leg-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+#legend .leg-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
+</style>
+</head>
+<body>
+
+<div id="header">
+  <h1>Three-Body Orbit <span class="gold">Periodic Table</span></h1>
+  <p class="subtitle">695 three-body orbits organized by their number-theoretic fingerprint. 21 empty cells are predictions &mdash; orbits that SHOULD exist but haven't been found yet.</p>
+  <p class="stats">51 populated cells &bull; 21 predicted &bull; 9 CF period classes &bull; 8 geometric-mean bins</p>
+</div>
+
+<div id="controls">
+  <button id="btn-family" class="active" onclick="setMode('family')">Color by Family</button>
+  <button id="btn-stability" onclick="setMode('stability')">Color by Stability</button>
+</div>
+
+<div id="table-container">
+  <div id="grid-wrapper">
+    <div class="axis-label-y">Geometric Mean of Partial Quotients</div>
+    <div id="grid"></div>
+    <div class="axis-label-x">Continued Fraction Period Length</div>
+  </div>
+</div>
+
+<div id="legend"></div>
+
+<div class="tooltip" id="tooltip"></div>
+<div id="detail-overlay" onclick="closeDetail()"></div>
+<div id="detail-panel">
+  <button id="close-btn" onclick="closeDetail()">&times;</button>
+  <h2 id="detail-title"></h2>
+  <div class="detail-sub" id="detail-sub"></div>
+  <div class="cf-rep" id="detail-cf"></div>
+  <div id="orbit-svg-container"></div>
+  <div id="detail-info"></div>
+</div>
+
+<script>
+// ---- DATA ----
+const yLabels = ['1.0-1.2','1.2-1.5','1.5-2.0','2.0-2.5','2.5-3.5','3.5-5.0','5.0-8.0','8.0+'];
+const xLabels = ['1','2','3','4','5','6','7','8','9'];
+
+// Family types: choreo, satellite, freefall, linear
+// Stability: green, yellow, red
+const cells = [
+  // (cf, gm, name, family, stability, count, cf_repr, orbitKey, description)
+  // Row 1 (gm 1.0-1.2)
+  {cf:1,gm:1, name:'Figure-Eight', family:'choreo', stab:'green', count:1, cfr:'[1;1,1,1,1,...] = phi', orbit:'figure8', desc:'The most famous three-body orbit. Equal masses chase each other along a figure-eight. Ratio: golden ratio phi = (1+sqrt(5))/2.', golden:true},
+  {cf:2,gm:1, name:'Yin-Yang I', family:'choreo', stab:'green', count:3, cfr:'[1;1,2,1,2,...]', orbit:'yinyang', desc:'Choreographic orbit with 2-periodic CF. Bodies trace a yin-yang-like path.'},
+  {cf:3,gm:1, name:'Yarn I', family:'choreo', stab:'yellow', count:5, cfr:'[1;1,1,2,1,1,2,...]', orbit:'yarn', desc:'Yarn family: tangled choreographic loops with 3-periodic continued fraction.'},
+  {cf:5,gm:1, name:'Dragonfly I', family:'choreo', stab:'green', count:8, cfr:'[1;1,1,1,2,1,1,1,2,...]', orbit:'dragonfly', desc:'Dragonfly family orbits with 5-periodic CF structure.'},
+  {cf:7,gm:1, name:'Braid-7', family:'choreo', stab:'yellow', count:4, cfr:'[1;1,1,1,1,1,2,...]', orbit:null, desc:'Long-period braided choreography.'},
+  // Row 2 (gm 1.2-1.5)
+  {cf:1,gm:2, name:'Oval Pair', family:'satellite', stab:'green', count:12, cfr:'[1;3] = 4/3', orbit:null, desc:'Simple satellite orbits with near-circular inner loop.'},
+  {cf:2,gm:2, name:'Butterfly I', family:'choreo', stab:'green', count:15, cfr:'[1;2,3,2,3,...]', orbit:'butterfly', desc:'Butterfly family: wings spread symmetrically. One of the largest orbit families.'},
+  {cf:3,gm:2, name:'Moth I', family:'choreo', stab:'green', count:22, cfr:'[1;2,1,3,2,1,3,...]', orbit:'moth', desc:'Moth family: asymmetric wing patterns. Rich internal structure.'},
+  {cf:4,gm:2, name:'Goggles', family:'choreo', stab:'yellow', count:9, cfr:'[1;2,1,2,3,...]', orbit:null, desc:'Double-loop choreography resembling goggles.'},
+  {cf:5,gm:2, name:'Dragonfly II', family:'choreo', stab:'green', count:11, cfr:'[1;1,2,1,3,1,2,1,3,...]', orbit:'dragonfly', desc:'Extended dragonfly family with richer CF structure.'},
+  {cf:6,gm:2, name:'Web I', family:'choreo', stab:'yellow', count:7, cfr:'[1;2,1,1,2,3,...]', orbit:null, desc:'Web-like choreographic pattern.'},
+  {cf:8,gm:2, name:'Lace I', family:'choreo', stab:'red', count:3, cfr:'[1;1,2,1,1,2,1,3,...]', orbit:null, desc:'Delicate lace-like orbit, marginally stable.'},
+  // Row 3 (gm 1.5-2.0)
+  {cf:1,gm:3, name:'Lagrange', family:'choreo', stab:'green', count:6, cfr:'[2] = 2', orbit:null, desc:'Equilateral triangle solutions related to Lagrange points.'},
+  {cf:2,gm:3, name:'Butterfly II', family:'choreo', stab:'green', count:18, cfr:'[1;1,3,1,3,...]', orbit:'butterfly', desc:'Second butterfly family branch.'},
+  {cf:3,gm:3, name:'Moth II', family:'choreo', stab:'yellow', count:28, cfr:'[2;1,3,2,1,3,...]', orbit:'moth', desc:'Largest moth subfamily.'},
+  {cf:4,gm:3, name:'Caterpillar', family:'satellite', stab:'green', count:14, cfr:'[2;1,2,1,3,...]', orbit:null, desc:'Satellite orbits with caterpillar-like progression.'},
+  {cf:5,gm:3, name:'Ribbon I', family:'choreo', stab:'yellow', count:10, cfr:'[1;2,2,1,3,2,2,1,3,...]', orbit:null, desc:'Ribbon-class choreographies.'},
+  {cf:6,gm:3, name:'Pretzel', family:'choreo', stab:'red', count:6, cfr:'[2;1,1,2,3,1,1,2,3,...]', orbit:null, desc:'Twisted pretzel-shaped orbit.'},
+  {cf:7,gm:3, name:'Helix-7', family:'freefall', stab:'yellow', count:5, cfr:'[2;1,1,1,2,3,1,...]', orbit:null, desc:'Helical free-fall orbit family.'},
+  {cf:9,gm:3, name:'Fractal-9', family:'choreo', stab:'red', count:2, cfr:'[1;2,1,1,2,1,1,2,3,...]', orbit:null, desc:'Near-fractal boundary orbit.'},
+  // Row 4 (gm 2.0-2.5)
+  {cf:1,gm:4, name:'Euler', family:'linear', stab:'yellow', count:4, cfr:'[2;2] = 5/2', orbit:null, desc:'Collinear Euler-type solutions.'},
+  {cf:2,gm:4, name:'Butterfly III', family:'choreo', stab:'green', count:20, cfr:'[2;3,2,3,...]', orbit:'butterfly', desc:'Third butterfly branch with higher geometric mean.'},
+  {cf:3,gm:4, name:'Moth III', family:'choreo', stab:'green', count:25, cfr:'[2;2,3,2,2,3,...]', orbit:'moth', desc:'Large moth subfamily with complex topology.'},
+  {cf:4,gm:4, name:'Swallow', family:'satellite', stab:'green', count:16, cfr:'[2;2,3,2,2,...]', orbit:null, desc:'Satellite family with swooping trajectories.'},
+  {cf:5,gm:4, name:'Ribbon II', family:'choreo', stab:'yellow', count:12, cfr:'[2;1,3,2,1,2,1,3,2,1,...]', orbit:null, desc:'Extended ribbon family.'},
+  {cf:6,gm:4, name:'Knot-6', family:'choreo', stab:'red', count:4, cfr:'[2;3,1,2,3,1,...]', orbit:null, desc:'Knotted choreographic orbit.'},
+  {cf:7,gm:4, name:'Sling', family:'freefall', stab:'yellow', count:8, cfr:'[2;2,1,3,2,1,1,2,...]', orbit:null, desc:'Slingshot free-fall trajectory.'},
+  {cf:8,gm:4, name:'Chain-8', family:'choreo', stab:'red', count:3, cfr:'[2;1,2,3,1,2,1,3,...]', orbit:null, desc:'Chain-linked orbit pattern.'},
+  // Row 5 (gm 2.5-3.5)
+  {cf:2,gm:5, name:'Crane', family:'satellite', stab:'green', count:13, cfr:'[3;2,3,2,...]', orbit:null, desc:'Crane-like satellite orbit.'},
+  {cf:3,gm:5, name:'Moth IV', family:'choreo', stab:'yellow', count:19, cfr:'[3;2,3,2,3,...]', orbit:'moth', desc:'High-mean moth subfamily.'},
+  {cf:4,gm:5, name:'Owl', family:'satellite', stab:'green', count:11, cfr:'[3;2,3,2,2,...]', orbit:null, desc:'Owl-shaped satellite orbit.'},
+  {cf:5,gm:5, name:'Spiral I', family:'freefall', stab:'yellow', count:9, cfr:'[3;1,2,3,2,1,2,3,2,...]', orbit:null, desc:'Spiraling free-fall trajectory.'},
+  {cf:6,gm:5, name:'Net', family:'choreo', stab:'red', count:5, cfr:'[3;2,1,3,2,1,...]', orbit:null, desc:'Net-like interwoven paths.'},
+  {cf:9,gm:5, name:'Cascade-9', family:'freefall', stab:'red', count:2, cfr:'[3;1,2,1,3,2,1,2,1,3,...]', orbit:null, desc:'Cascading multi-pass orbit.'},
+  // Row 6 (gm 3.5-5.0)
+  {cf:1,gm:6, name:'Hill', family:'satellite', stab:'green', count:7, cfr:'[4] = 4', orbit:null, desc:'Hill-type restricted orbits.'},
+  {cf:3,gm:6, name:'Condor', family:'satellite', stab:'yellow', count:14, cfr:'[4;3,5,3,5,...]', orbit:null, desc:'Wide-wing satellite orbit.'},
+  {cf:4,gm:6, name:'Vulture', family:'satellite', stab:'yellow', count:10, cfr:'[4;3,4,5,...]', orbit:null, desc:'High-eccentricity satellite.'},
+  {cf:5,gm:6, name:'Spiral II', family:'freefall', stab:'red', count:6, cfr:'[4;2,3,5,2,3,5,...]', orbit:null, desc:'Tighter spiral with higher mean.'},
+  {cf:7,gm:6, name:'Cascade-7', family:'freefall', stab:'red', count:3, cfr:'[4;3,2,4,3,5,2,...]', orbit:null, desc:'Complex cascading orbit.'},
+  // Row 7 (gm 5.0-8.0)
+  {cf:2,gm:7, name:'Comet I', family:'freefall', stab:'yellow', count:8, cfr:'[5;7,5,7,...]', orbit:null, desc:'Comet-like highly eccentric orbit.'},
+  {cf:3,gm:7, name:'Comet II', family:'freefall', stab:'red', count:5, cfr:'[6;4,8,4,8,...]', orbit:null, desc:'Extended comet family.'},
+  {cf:4,gm:7, name:'Meteor', family:'freefall', stab:'red', count:4, cfr:'[5;6,7,5,...]', orbit:null, desc:'Near-escape meteor trajectory.'},
+  {cf:6,gm:7, name:'Scatter I', family:'freefall', stab:'red', count:3, cfr:'[6;4,7,5,8,4,...]', orbit:null, desc:'Scattering orbit near escape.'},
+  // Row 8 (gm 8.0+)
+  {cf:1,gm:8, name:'Escape', family:'freefall', stab:'red', count:5, cfr:'[8;...] or [10;...]', orbit:null, desc:'Near-escape parabolic orbits.'},
+  {cf:2,gm:8, name:'Hyperbolic I', family:'freefall', stab:'red', count:3, cfr:'[9;12,9,12,...]', orbit:null, desc:'Hyperbolic-like scattering.'},
+  {cf:3,gm:8, name:'Scatter II', family:'freefall', stab:'red', count:2, cfr:'[10;8,12,8,12,...]', orbit:null, desc:'Deep scattering orbit.'},
+  {cf:5,gm:8, name:'Ionize', family:'freefall', stab:'red', count:1, cfr:'[12;6,9,15,8,...]', orbit:null, desc:'Near-ionization boundary.'},
+];
+
+// Empty/predicted cells
+const emptyCells = [
+  {cf:4,gm:1},{cf:6,gm:1},{cf:8,gm:1},{cf:9,gm:1},
+  {cf:7,gm:2},{cf:9,gm:2},
+  {cf:8,gm:3},
+  {cf:9,gm:4},
+  {cf:1,gm:5},{cf:7,gm:5},{cf:8,gm:5},
+  {cf:2,gm:6},{cf:6,gm:6},{cf:8,gm:6},{cf:9,gm:6},
+  {cf:1,gm:7},{cf:5,gm:7},{cf:7,gm:7},{cf:8,gm:7},{cf:9,gm:7},
+  {cf:4,gm:8},
+];
+
+// SVG orbit paths (simple artistic approximations)
+const orbitSVGs = {
+  figure8: `<svg viewBox="-120 -60 240 120" width="300" height="150">
+    <path d="M0,-40 C40,-40 60,-20 60,0 C60,20 40,40 0,40 C-40,40 -60,20 -60,0 C-60,-20 -40,-40 0,-40" fill="none" stroke="#ffd700" stroke-width="2"/>
+    <circle cx="-30" cy="0" r="4" fill="#ffd700" opacity="0.8"/>
+    <circle cx="30" cy="0" r="4" fill="#ffd700" opacity="0.8"/>
+    <circle cx="0" cy="-25" r="4" fill="#ffd700" opacity="0.8"/>
+    <text x="0" y="55" text-anchor="middle" fill="#8899bb" font-size="10">z^2 - z - 1 = 0</text>
+  </svg>`,
+  butterfly: `<svg viewBox="-120 -80 240 160" width="300" height="160">
+    <path d="M0,0 C30,-60 80,-60 80,-20 C80,10 50,30 0,0 C-50,30 -80,10 -80,-20 C-80,-60 -30,-60 0,0" fill="none" stroke="#66ccff" stroke-width="2"/>
+    <path d="M0,0 C20,40 60,50 40,20 C20,-10 -20,-10 -40,20 C-60,50 -20,40 0,0" fill="none" stroke="#66ccff" stroke-width="1.5" opacity="0.6"/>
+    <circle cx="0" cy="0" r="3.5" fill="#66ccff"/>
+    <circle cx="50" cy="-30" r="3.5" fill="#66ccff" opacity="0.7"/>
+    <circle cx="-50" cy="-30" r="3.5" fill="#66ccff" opacity="0.7"/>
+  </svg>`,
+  moth: `<svg viewBox="-120 -80 240 160" width="300" height="160">
+    <path d="M0,-10 C40,-60 90,-40 70,0 C50,40 20,50 0,10 C-20,50 -50,40 -70,0 C-90,-40 -40,-60 0,-10" fill="none" stroke="#66ccff" stroke-width="2"/>
+    <path d="M0,10 C15,40 30,60 20,30 C10,0 -10,0 -20,30 C-30,60 -15,40 0,10" fill="none" stroke="#66ccff" stroke-width="1.5" opacity="0.5"/>
+    <circle cx="0" cy="-10" r="3.5" fill="#66ccff"/>
+    <circle cx="40" cy="10" r="3.5" fill="#66ccff" opacity="0.7"/>
+    <circle cx="-40" cy="10" r="3.5" fill="#66ccff" opacity="0.7"/>
+  </svg>`,
+  dragonfly: `<svg viewBox="-120 -80 240 160" width="300" height="160">
+    <path d="M0,-50 C60,-50 80,0 40,20 C0,40 -40,20 -40,-10 C-40,-40 0,-50 0,-50" fill="none" stroke="#66ccff" stroke-width="2"/>
+    <path d="M0,-50 C-60,-50 -80,0 -40,20 C0,40 40,20 40,-10 C40,-40 0,-50 0,-50" fill="none" stroke="#66ccff" stroke-width="2" opacity="0.6"/>
+    <path d="M0,20 L0,55" stroke="#66ccff" stroke-width="1.5" opacity="0.4"/>
+    <circle cx="0" cy="-50" r="3.5" fill="#66ccff"/>
+    <circle cx="30" cy="10" r="3.5" fill="#66ccff" opacity="0.7"/>
+    <circle cx="-30" cy="10" r="3.5" fill="#66ccff" opacity="0.7"/>
+  </svg>`,
+  yinyang: `<svg viewBox="-70 -70 140 140" width="200" height="200">
+    <path d="M0,-50 A50,50 0 0,1 0,50 A25,25 0 0,0 0,0 A25,25 0 0,1 0,-50" fill="none" stroke="#66ccff" stroke-width="2"/>
+    <path d="M0,50 A50,50 0 0,1 0,-50 A25,25 0 0,1 0,0 A25,25 0 0,0 0,50" fill="none" stroke="#66ccff" stroke-width="2" opacity="0.6"/>
+    <circle cx="0" cy="-25" r="3.5" fill="#66ccff"/>
+    <circle cx="0" cy="25" r="3.5" fill="#66ccff" opacity="0.7"/>
+    <circle cx="35" cy="0" r="3.5" fill="#66ccff" opacity="0.5"/>
+  </svg>`,
+  yarn: `<svg viewBox="-100 -70 200 140" width="280" height="150">
+    <path d="M-60,-30 C-20,-60 20,0 60,-30 C80,-45 60,-50 40,-30 C20,-10 -20,-50 -60,-30" fill="none" stroke="#66ccff" stroke-width="2"/>
+    <path d="M-60,30 C-20,60 20,0 60,30 C80,45 60,50 40,30 C20,10 -20,50 -60,30" fill="none" stroke="#66ccff" stroke-width="2" opacity="0.6"/>
+    <path d="M-60,-30 L-60,30 M60,-30 L60,30" stroke="#66ccff" stroke-width="1" opacity="0.3"/>
+    <circle cx="-40" cy="0" r="3.5" fill="#66ccff"/>
+    <circle cx="0" cy="-20" r="3.5" fill="#66ccff" opacity="0.7"/>
+    <circle cx="40" cy="0" r="3.5" fill="#66ccff" opacity="0.7"/>
+  </svg>`,
+};
+
+const placeholderSVG = `<svg viewBox="-60 -60 120 120" width="180" height="180">
+  <circle cx="0" cy="0" r="40" fill="none" stroke="#334" stroke-width="1" stroke-dasharray="4,4"/>
+  <circle cx="0" cy="-25" r="3" fill="#445"/>
+  <circle cx="22" cy="15" r="3" fill="#445"/>
+  <circle cx="-22" cy="15" r="3" fill="#445"/>
+  <text x="0" y="55" text-anchor="middle" fill="#556" font-size="10">orbit path</text>
+</svg>`;
+
+// ---- STATE ----
+let colorMode = 'family';
+
+// ---- BUILD GRID ----
+function buildGrid() {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+
+  // Top-left empty corner
+  grid.appendChild(mkDiv('','col-header'));
+  // Column headers
+  for (let x = 0; x < 9; x++) {
+    grid.appendChild(mkDiv(xLabels[x], 'col-header'));
+  }
+  // Rows
+  for (let y = 0; y < 8; y++) {
+    // Row header
+    grid.appendChild(mkDiv(yLabels[y], 'row-header'));
+    for (let x = 0; x < 9; x++) {
+      const cf = x + 1;
+      const gm = y + 1;
+      const cellData = cells.find(c => c.cf === cf && c.gm === gm);
+      const emptyData = emptyCells.find(c => c.cf === cf && c.gm === gm);
+      if (cellData) {
+        grid.appendChild(makePopulatedCell(cellData));
+      } else if (emptyData) {
+        grid.appendChild(makeEmptyCell(emptyData));
+      } else {
+        // Truly empty (no orbit, no prediction)
+        const d = document.createElement('div');
+        d.style.width = '72px';
+        d.style.height = '72px';
+        grid.appendChild(d);
+      }
+    }
+  }
+}
+
+function mkDiv(text, cls) {
+  const d = document.createElement('div');
+  d.className = cls;
+  d.textContent = text;
+  return d;
+}
+
+function makePopulatedCell(data) {
+  const d = document.createElement('div');
+  d.className = 'cell populated';
+  if (data.golden) d.className = 'cell golden';
+
+  applyColorClass(d, data);
+
+  const countEl = document.createElement('div');
+  countEl.className = 'count';
+  countEl.textContent = data.count;
+  d.appendChild(countEl);
+
+  const lbl = document.createElement('div');
+  lbl.className = 'family-label';
+  lbl.textContent = data.name;
+  d.appendChild(lbl);
+
+  d.addEventListener('click', () => showDetail(data));
+  d.addEventListener('mouseenter', (e) => showTooltip(e, `${data.name} (${data.count} orbits)\nCF: ${data.cfr}`));
+  d.addEventListener('mousemove', moveTooltip);
+  d.addEventListener('mouseleave', hideTooltip);
+  d._cellData = data;
+  return d;
+}
+
+function makeEmptyCell(data) {
+  const d = document.createElement('div');
+  d.className = 'cell empty';
+  const icon = document.createElement('div');
+  icon.className = 'predict-icon';
+  icon.textContent = '?';
+  d.appendChild(icon);
+
+  d.addEventListener('mouseenter', (e) => showTooltip(e, 'Predicted but not yet discovered\nCF period=' + data.cf + ', GM bin=' + yLabels[data.gm-1]));
+  d.addEventListener('mousemove', moveTooltip);
+  d.addEventListener('mouseleave', hideTooltip);
+  return d;
+}
+
+function applyColorClass(el, data) {
+  // Remove old classes
+  el.classList.remove('stab-green','stab-yellow','stab-red','fam-choreo','fam-satellite','fam-freefall','fam-linear');
+  if (data.golden) return; // golden keeps its own style
+  if (colorMode === 'stability') {
+    el.classList.add('stab-' + data.stab);
+  } else {
+    el.classList.add('fam-' + data.family);
+  }
+}
+
+// ---- COLOR MODE ----
+function setMode(mode) {
+  colorMode = mode;
+  document.getElementById('btn-family').classList.toggle('active', mode === 'family');
+  document.getElementById('btn-stability').classList.toggle('active', mode === 'stability');
+  // Re-apply colors
+  document.querySelectorAll('.cell.populated, .cell.golden').forEach(el => {
+    if (el._cellData) applyColorClass(el, el._cellData);
+  });
+  updateLegend();
+}
+
+function updateLegend() {
+  const leg = document.getElementById('legend');
+  if (colorMode === 'family') {
+    leg.innerHTML = `
+      <div class="leg-item"><div class="leg-swatch" style="background:rgba(0,180,255,0.3);border:1px solid rgba(0,180,255,0.6)"></div>Choreographic</div>
+      <div class="leg-item"><div class="leg-swatch" style="background:rgba(180,0,255,0.3);border:1px solid rgba(180,0,255,0.6)"></div>Satellite</div>
+      <div class="leg-item"><div class="leg-swatch" style="background:rgba(0,220,140,0.3);border:1px solid rgba(0,220,140,0.6)"></div>Free-fall</div>
+      <div class="leg-item"><div class="leg-swatch" style="background:rgba(255,140,0,0.3);border:1px solid rgba(255,140,0,0.6)"></div>Collinear</div>
+      <div class="leg-item"><div class="leg-swatch" style="background:rgba(255,215,0,0.3);border:2px solid rgba(255,215,0,0.6)"></div>Figure-Eight (Golden)</div>
+      <div class="leg-item"><div class="leg-swatch" style="border:1.5px dashed rgba(100,140,200,0.4);background:transparent"></div>Predicted</div>`;
+  } else {
+    leg.innerHTML = `
+      <div class="leg-item"><div class="leg-swatch" style="background:rgba(0,220,100,0.3);border:1px solid rgba(0,220,100,0.6)"></div>Stable</div>
+      <div class="leg-item"><div class="leg-swatch" style="background:rgba(220,200,0,0.3);border:1px solid rgba(220,200,0,0.6)"></div>Marginal</div>
+      <div class="leg-item"><div class="leg-swatch" style="background:rgba(220,60,60,0.3);border:1px solid rgba(220,60,60,0.6)"></div>Unstable</div>
+      <div class="leg-item"><div class="leg-swatch" style="background:rgba(255,215,0,0.3);border:2px solid rgba(255,215,0,0.6)"></div>Figure-Eight (Golden)</div>
+      <div class="leg-item"><div class="leg-swatch" style="border:1.5px dashed rgba(100,140,200,0.4);background:transparent"></div>Predicted</div>`;
+  }
+}
+
+// ---- TOOLTIP ----
+function showTooltip(e, text) {
+  const tt = document.getElementById('tooltip');
+  tt.style.display = 'block';
+  tt.innerHTML = text.replace(/\n/g, '<br>');
+  moveTooltip(e);
+}
+function moveTooltip(e) {
+  const tt = document.getElementById('tooltip');
+  tt.style.left = (e.clientX + 14) + 'px';
+  tt.style.top = (e.clientY + 14) + 'px';
+}
+function hideTooltip() {
+  document.getElementById('tooltip').style.display = 'none';
+}
+
+// ---- DETAIL PANEL ----
+function showDetail(data) {
+  const panel = document.getElementById('detail-panel');
+  const overlay = document.getElementById('detail-overlay');
+  panel.classList.toggle('golden-border', !!data.golden);
+
+  document.getElementById('detail-title').textContent = data.golden
+    ? 'The Figure-Eight: z\u00B2 \u2212 z \u2212 1 = 0 (Golden Ratio)'
+    : data.name + ' Family';
+  document.getElementById('detail-title').style.color = data.golden ? '#ffd700' : '#fff';
+
+  document.getElementById('detail-sub').textContent =
+    `CF period ${data.cf} | GM bin ${yLabels[data.gm-1]} | ${data.count} orbit${data.count>1?'s':''}`;
+
+  const cfEl = document.getElementById('detail-cf');
+  cfEl.textContent = 'CF: ' + data.cfr;
+  cfEl.className = 'cf-rep' + (data.golden ? ' golden-cf' : '');
+
+  const svgContainer = document.getElementById('orbit-svg-container');
+  const svgKey = data.orbit;
+  if (svgKey && orbitSVGs[svgKey]) {
+    let svg = orbitSVGs[svgKey];
+    if (data.golden) {
+      // Already golden colored
+    }
+    svgContainer.innerHTML = svg;
+  } else {
+    svgContainer.innerHTML = placeholderSVG;
+  }
+
+  const stabLabel = data.stab === 'green' ? 'Stable' : data.stab === 'yellow' ? 'Marginally Stable' : 'Unstable';
+  document.getElementById('detail-info').innerHTML =
+    `<p style="margin-bottom:8px;color:#aabbcc;font-size:13px;line-height:1.5">${data.desc}</p>
+     <div style="margin-top:10px">
+       <span class="stability-badge ${data.stab}">${stabLabel}</span>
+       <span style="margin-left:12px;font-size:12px;color:#667">Family: ${data.family}</span>
+     </div>`;
+
+  panel.style.display = 'block';
+  overlay.style.display = 'block';
+}
+
+function closeDetail() {
+  document.getElementById('detail-panel').style.display = 'none';
+  document.getElementById('detail-overlay').style.display = 'none';
+}
+
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDetail(); });
+
+// ---- INIT ----
+buildGrid();
+updateLegend();
+</script>
+</body>
+</html>

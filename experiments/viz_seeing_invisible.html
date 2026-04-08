@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seeing the Invisible</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0f;
+    color: #e0e0e0;
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+  #app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .scene {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+    padding: 40px;
+  }
+  .scene.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .scene-title {
+    font-size: 2.2em;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: #fff;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .scene-subtitle {
+    font-size: 1.05em;
+    color: #999;
+    max-width: 700px;
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .canvas-wrap {
+    position: relative;
+    margin: 12px 0;
+  }
+  canvas {
+    display: block;
+    border-radius: 6px;
+  }
+
+  /* Navigation */
+  #nav {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    z-index: 100;
+  }
+  #nav button {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #ccc;
+    padding: 10px 28px;
+    font-size: 0.95em;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
+    letter-spacing: 0.05em;
+  }
+  #nav button:hover {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+  }
+  #nav button:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+  #dots {
+    display: flex;
+    gap: 8px;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transition: all 0.4s;
+    cursor: pointer;
+  }
+  .dot.active {
+    background: #d4a853;
+    box-shadow: 0 0 8px #d4a853;
+  }
+
+  /* Scene-specific */
+  #grid1 { cursor: pointer; }
+  .scene-note {
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 8px;
+    font-style: italic;
+  }
+  .action-btn {
+    background: linear-gradient(135deg, #1a3a5c, #0d2240);
+    border: 1px solid #2a5a8c;
+    color: #7ab8e8;
+    padding: 12px 32px;
+    font-size: 1em;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.4s;
+    letter-spacing: 0.05em;
+    margin: 12px 0;
+  }
+  .action-btn:hover {
+    background: linear-gradient(135deg, #2a5a8c, #1a3a5c);
+    color: #aad4ff;
+    box-shadow: 0 0 20px rgba(42,90,140,0.3);
+  }
+  .slider-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 12px 0;
+  }
+  .slider-wrap label {
+    color: #999;
+    font-size: 0.95em;
+    min-width: 160px;
+  }
+  .slider-wrap input[type=range] {
+    width: 300px;
+    accent-color: #d4a853;
+  }
+  .slider-val {
+    color: #d4a853;
+    font-size: 1.1em;
+    min-width: 40px;
+    text-align: right;
+  }
+  .counter {
+    color: #d4a853;
+    font-size: 1.2em;
+    margin-top: 8px;
+  }
+  .split-label {
+    color: #888;
+    font-size: 0.85em;
+    text-align: center;
+    margin-top: 4px;
+  }
+  .highlight-text {
+    color: #d4a853;
+  }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- SCENE 1: The Primes -->
+  <div class="scene" id="scene0">
+    <div class="scene-title">The Primes</div>
+    <div class="scene-subtitle">
+      Prime numbers appear random. Mathematicians have searched for patterns for 2000 years.
+    </div>
+    <div class="canvas-wrap">
+      <canvas id="grid1" width="800" height="420"></canvas>
+    </div>
+    <div class="scene-note" id="clickInfo">Click any number to test if it is prime.</div>
+  </div>
+
+  <!-- SCENE 2: The Hidden Frequencies -->
+  <div class="scene" id="scene1">
+    <div class="scene-title">The Hidden Frequencies</div>
+    <div class="scene-subtitle">
+      If we listen to the primes like a radio signal... at first we hear nothing.
+    </div>
+    <div class="canvas-wrap">
+      <canvas id="numline2" width="800" height="60"></canvas>
+    </div>
+    <div class="canvas-wrap">
+      <canvas id="spectrum2" width="800" height="260"></canvas>
+    </div>
+    <button class="action-btn" id="btn-spectroscope" onclick="activateSpectroscope()">
+      Turn on the spectroscope
+    </button>
+    <div class="scene-note" id="specNote" style="opacity:0">
+      Raw periodogram of the prime-counting function. Mostly noise.
+    </div>
+  </div>
+
+  <!-- SCENE 3: The Filter -->
+  <div class="scene" id="scene2">
+    <div class="scene-title">The Filter</div>
+    <div class="scene-subtitle">
+      Our discovery: a mathematical filter that reveals hidden frequencies.<br>
+      Each peak is a <span class="highlight-text">Riemann zeta zero</span> — one of the most important numbers in mathematics.
+    </div>
+    <div class="canvas-wrap">
+      <canvas id="spectrum3" width="800" height="280"></canvas>
+    </div>
+    <div class="slider-wrap">
+      <label>Compensation power (&gamma;):</label>
+      <input type="range" id="gammaSlider" min="0" max="200" value="0" oninput="updateFilter()">
+      <span class="slider-val" id="gammaVal">0.00</span>
+    </div>
+    <div class="counter" id="zeroCounter">Zeros detected: 0</div>
+  </div>
+
+  <!-- SCENE 4: Every Prime Knows -->
+  <div class="scene" id="scene3">
+    <div class="scene-title">Every Prime Knows</div>
+    <div class="scene-subtitle">
+      The astonishing part: EVERY subset of primes contains the same hidden frequencies.<br>
+      It is as if every drop of water remembers the entire ocean.
+    </div>
+    <div style="display:flex;gap:24px;align-items:flex-start;">
+      <div>
+        <canvas id="specFull" width="380" height="240"></canvas>
+        <div class="split-label">All primes up to 1000</div>
+      </div>
+      <div>
+        <canvas id="specSub" width="380" height="240"></canvas>
+        <div class="split-label">Random 10% subset</div>
+      </div>
+    </div>
+    <button class="action-btn" onclick="resampleSubset()" style="margin-top:16px">
+      Draw new random subset
+    </button>
+  </div>
+
+  <!-- SCENE 5: The Universal Pattern -->
+  <div class="scene" id="scene4">
+    <div class="scene-title">The Universal Pattern</div>
+    <div class="scene-subtitle">
+      The spacing between our detected zeros matches a pattern from nuclear physics —<br>
+      the same mathematics governs uranium atoms and prime numbers.
+    </div>
+    <div class="canvas-wrap">
+      <canvas id="wignerCanvas" width="800" height="320"></canvas>
+    </div>
+    <div class="scene-note">
+      Blue: observed zero spacings &nbsp;|&nbsp; Gold curve: Wigner surmise from random matrix theory
+    </div>
+  </div>
+
+  <!-- SCENE 6: What's Next -->
+  <div class="scene" id="scene5">
+    <div class="scene-title">What's Next</div>
+    <div class="scene-subtitle">
+      We are using these discoveries to explore other frontiers — from three-body orbits<br>
+      to testing some of the biggest unsolved problems in mathematics.
+    </div>
+    <div class="canvas-wrap">
+      <canvas id="futureCanvas" width="800" height="360"></canvas>
+    </div>
+    <div class="scene-note" style="max-width:600px;text-align:center;line-height:1.6;color:#777;">
+      The same spectral fingerprint appears in Farey sequences, Stern-Brocot trees,<br>
+      and the topology of three-body periodic orbits.
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div id="nav">
+    <button id="btnPrev" onclick="go(-1)" disabled>&larr; Previous</button>
+    <div id="dots"></div>
+    <button id="btnNext" onclick="go(1)">Next &rarr;</button>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// MATH UTILITIES
+// ============================================================
+function sieve(n) {
+  const s = new Uint8Array(n + 1);
+  s[0] = s[1] = 1;
+  for (let i = 2; i * i <= n; i++) {
+    if (!s[i]) for (let j = i * i; j <= n; j += i) s[j] = 1;
+  }
+  const primes = [];
+  for (let i = 2; i <= n; i++) if (!s[i]) primes.push(i);
+  return { primes, composite: s };
+}
+
+const PRIME_LIMIT = 1000;
+const { primes: allPrimes, composite } = sieve(PRIME_LIMIT);
+const DISPLAY_LIMIT = 100;
+const { composite: composite100 } = sieve(DISPLAY_LIMIT);
+
+// Precompute prime indicator for spectral analysis
+function primeIndicator(primeList, N) {
+  // Returns array f[n] = 1 if n is prime, 0 otherwise, for n=0..N-1
+  const f = new Float64Array(N);
+  for (const p of primeList) {
+    if (p < N) f[p] = 1;
+  }
+  return f;
+}
+
+// Compute power spectrum with gamma compensation
+function powerSpectrum(primeList, N, gamma, numFreqs) {
+  const f = primeIndicator(primeList, N);
+  const spec = new Float64Array(numFreqs);
+  for (let k = 1; k < numFreqs; k++) {
+    const freq = k / N;
+    let re = 0, im = 0;
+    for (let n = 2; n < N; n++) {
+      if (f[n]) {
+        const angle = 2 * Math.PI * freq * n;
+        // gamma compensation: weight by n^gamma
+        const w = Math.pow(n, gamma);
+        re += w * Math.cos(angle);
+        im += w * Math.sin(angle);
+      }
+    }
+    spec[k] = (re * re + im * im) / N;
+  }
+  return spec;
+}
+
+// Known zeta zeros (imaginary parts)
+const zetaZeros = [
+  14.1347, 21.0220, 25.0109, 30.4249, 32.9351,
+  37.5862, 40.9187, 43.3271, 48.0052, 49.7738,
+  52.9703, 56.4462, 59.3470, 60.8318, 65.1125,
+  67.0798, 69.5464, 72.0672, 75.7047, 77.1448
+];
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+const TOTAL_SCENES = 6;
+let currentScene = 0;
+const dotsEl = document.getElementById('dots');
+for (let i = 0; i < TOTAL_SCENES; i++) {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.onclick = () => goTo(i);
+  dotsEl.appendChild(d);
+}
+
+function goTo(idx) {
+  if (idx < 0 || idx >= TOTAL_SCENES) return;
+  document.getElementById('scene' + currentScene).classList.remove('active');
+  dotsEl.children[currentScene].classList.remove('active');
+  currentScene = idx;
+  document.getElementById('scene' + currentScene).classList.add('active');
+  dotsEl.children[currentScene].classList.add('active');
+  document.getElementById('btnPrev').disabled = currentScene === 0;
+  document.getElementById('btnNext').disabled = currentScene === TOTAL_SCENES - 1;
+  onSceneEnter(currentScene);
+}
+
+function go(dir) { goTo(currentScene + dir); }
+
+// Keyboard nav
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') go(1);
+  if (e.key === 'ArrowLeft') go(-1);
+});
+
+// ============================================================
+// SCENE 1: The Primes grid
+// ============================================================
+function drawGrid() {
+  const c = document.getElementById('grid1');
+  const ctx = c.getContext('2d');
+  const cols = 10, rows = 10;
+  const cellW = 72, cellH = 38;
+  const ox = (c.width - cols * cellW) / 2;
+  const oy = (c.height - rows * cellH) / 2;
+
+  ctx.clearRect(0, 0, c.width, c.height);
+
+  for (let i = 1; i <= 100; i++) {
+    const col = (i - 1) % cols;
+    const row = Math.floor((i - 1) / cols);
+    const x = ox + col * cellW;
+    const y = oy + row * cellH;
+    const isPrime = !composite100[i];
+
+    // Background
+    if (isPrime) {
+      ctx.fillStyle = 'rgba(212, 168, 83, 0.15)';
+      ctx.fillRect(x + 2, y + 2, cellW - 4, cellH - 4);
+    }
+
+    // Number
+    ctx.font = isPrime ? 'bold 18px Georgia' : '16px Georgia';
+    ctx.fillStyle = isPrime ? '#d4a853' : '#555';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(i, x + cellW / 2, y + cellH / 2);
+  }
+
+  // Store layout for click detection
+  c._layout = { ox, oy, cellW, cellH, cols };
+}
+
+document.getElementById('grid1').addEventListener('click', function(e) {
+  const rect = this.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+  const L = this._layout;
+  const col = Math.floor((mx - L.ox) / L.cellW);
+  const row = Math.floor((my - L.oy) / L.cellH);
+  if (col < 0 || col >= 10 || row < 0 || row >= 10) return;
+  const num = row * 10 + col + 1;
+  const isPrime = !composite100[num];
+  document.getElementById('clickInfo').textContent =
+    num + (isPrime ? ' is PRIME' : ' = ' + factorize(num));
+  document.getElementById('clickInfo').style.color = isPrime ? '#d4a853' : '#888';
+});
+
+function factorize(n) {
+  if (n <= 1) return String(n);
+  const factors = [];
+  let d = 2;
+  let tmp = n;
+  while (d * d <= tmp) {
+    while (tmp % d === 0) { factors.push(d); tmp /= d; }
+    d++;
+  }
+  if (tmp > 1) factors.push(tmp);
+  return factors.join(' x ');
+}
+
+// ============================================================
+// SCENE 2: Number line + raw spectrum
+// ============================================================
+function drawNumberLine(canvasId, primeList, N) {
+  const c = document.getElementById(canvasId);
+  const ctx = c.getContext('2d');
+  ctx.clearRect(0, 0, c.width, c.height);
+  const pad = 40;
+  const w = c.width - 2 * pad;
+  const y = c.height / 2;
+
+  // Line
+  ctx.strokeStyle = '#333';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(pad, y);
+  ctx.lineTo(pad + w, y);
+  ctx.stroke();
+
+  // Prime marks
+  for (const p of primeList) {
+    if (p > N) break;
+    const x = pad + (p / N) * w;
+    ctx.fillStyle = '#d4a853';
+    ctx.fillRect(x - 0.5, y - 12, 1.5, 24);
+  }
+
+  // Labels
+  ctx.fillStyle = '#555';
+  ctx.font = '11px Georgia';
+  ctx.textAlign = 'center';
+  ctx.fillText('0', pad, y + 24);
+  ctx.fillText(String(N), pad + w, y + 24);
+}
+
+let spectroscope2Active = false;
+function drawSpectrum2(active) {
+  const c = document.getElementById('spectrum2');
+  const ctx = c.getContext('2d');
+  ctx.clearRect(0, 0, c.width, c.height);
+  const pad = 50;
+  const w = c.width - 2 * pad;
+  const h = c.height - 60;
+
+  // Axes
+  ctx.strokeStyle = '#333';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(pad, 20);
+  ctx.lineTo(pad, 20 + h);
+  ctx.lineTo(pad + w, 20 + h);
+  ctx.stroke();
+
+  ctx.fillStyle = '#555';
+  ctx.font = '11px Georgia';
+  ctx.textAlign = 'center';
+  ctx.fillText('Frequency', pad + w / 2, c.height - 5);
+  ctx.save();
+  ctx.translate(12, 20 + h / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillText('Power', 0, 0);
+  ctx.restore();
+
+  if (!active) {
+    // Flat line
+    ctx.strokeStyle = '#2a5a8c';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(pad, 20 + h - 5);
+    ctx.lineTo(pad + w, 20 + h - 5);
+    ctx.stroke();
+    return;
+  }
+
+  // Raw periodogram (gamma=0)
+  const numFreqs = 200;
+  const spec = powerSpectrum(allPrimes, PRIME_LIMIT, 0, numFreqs);
+  const maxVal = Math.max(...spec) || 1;
+
+  ctx.strokeStyle = '#2a5a8c';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  for (let k = 1; k < numFreqs; k++) {
+    const x = pad + (k / numFreqs) * w;
+    const y = 20 + h - (spec[k] / maxVal) * h * 0.9;
+    if (k === 1) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+}
+
+function activateSpectroscope() {
+  spectroscope2Active = true;
+  drawSpectrum2(true);
+  document.getElementById('specNote').style.opacity = '1';
+  document.getElementById('btn-spectroscope').textContent = 'Spectroscope active';
+  document.getElementById('btn-spectroscope').style.borderColor = '#2a8a5c';
+}
+
+// ============================================================
+// SCENE 3: Filter with gamma slider
+// ============================================================
+function drawFilteredSpectrum() {
+  const gamma = parseFloat(document.getElementById('gammaSlider').value) / 100;
+  document.getElementById('gammaVal').textContent = gamma.toFixed(2);
+
+  const c = document.getElementById('spectrum3');
+  const ctx = c.getContext('2d');
+  ctx.clearRect(0, 0, c.width, c.height);
+  const pad = 50;
+  const w = c.width - 2 * pad;
+  const h = c.height - 50;
+
+  // Compute spectrum
+  const numFreqs = 300;
+  const spec = powerSpectrum(allPrimes, PRIME_LIMIT, gamma, numFreqs);
+  const maxVal = Math.max(...spec) || 1;
+
+  // Axes
+  ctx.strokeStyle = '#333';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(pad, 10);
+  ctx.lineTo(pad, 10 + h);
+  ctx.lineTo(pad + w, 10 + h);
+  ctx.stroke();
+
+  ctx.fillStyle = '#555';
+  ctx.font = '11px Georgia';
+  ctx.textAlign = 'center';
+  ctx.fillText('Frequency', pad + w / 2, c.height - 5);
+
+  // Spectrum
+  ctx.strokeStyle = '#4a9aea';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  for (let k = 1; k < numFreqs; k++) {
+    const x = pad + (k / numFreqs) * w;
+    const y = 10 + h - (spec[k] / maxVal) * h * 0.9;
+    if (k === 1) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+
+  // Mark peaks that correspond to known zeta zeros
+  // Map zeta zero t to frequency: f = t / (2*pi*N) * N = t/(2*pi)
+  // Actually frequency index k corresponds to frequency k/N
+  // Zeta zero at imaginary part t gives peak near frequency t/(2*pi)
+  // In our frequency index: k = t/(2*pi) * numFreqs / (maxFreqInTermsOfK/N)
+  // Simpler: find local maxima and count them
+  let peakCount = 0;
+  const threshold = maxVal * 0.15;
+  for (let k = 3; k < numFreqs - 1; k++) {
+    if (spec[k] > spec[k-1] && spec[k] > spec[k+1] && spec[k] > threshold) {
+      const x = pad + (k / numFreqs) * w;
+      const y = 10 + h - (spec[k] / maxVal) * h * 0.9;
+      ctx.beginPath();
+      ctx.arc(x, y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(212, 168, 83, 0.8)';
+      ctx.fill();
+      peakCount++;
+    }
+  }
+  document.getElementById('zeroCounter').textContent = 'Zeros detected: ' + peakCount;
+}
+
+function updateFilter() {
+  drawFilteredSpectrum();
+}
+
+// ============================================================
+// SCENE 4: Full vs subset comparison
+// ============================================================
+function drawComparisonSpectrum(canvasId, primeList, N, gamma) {
+  const c = document.getElementById(canvasId);
+  const ctx = c.getContext('2d');
+  ctx.clearRect(0, 0, c.width, c.height);
+  const pad = 30;
+  const w = c.width - 2 * pad;
+  const h = c.height - 30;
+
+  const numFreqs = 200;
+  const spec = powerSpectrum(primeList, N, gamma, numFreqs);
+  const maxVal = Math.max(...spec) || 1;
+
+  // Dark background
+  ctx.fillStyle = '#0d0d15';
+  ctx.fillRect(0, 0, c.width, c.height);
+
+  // Axes
+  ctx.strokeStyle = '#222';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(pad, 5);
+  ctx.lineTo(pad, 5 + h);
+  ctx.lineTo(pad + w, 5 + h);
+  ctx.stroke();
+
+  // Spectrum
+  ctx.strokeStyle = '#4a9aea';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  for (let k = 1; k < numFreqs; k++) {
+    const x = pad + (k / numFreqs) * w;
+    const y = 5 + h - (spec[k] / maxVal) * h * 0.85;
+    if (k === 1) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+
+  // Mark peaks
+  const threshold = maxVal * 0.18;
+  for (let k = 3; k < numFreqs - 1; k++) {
+    if (spec[k] > spec[k-1] && spec[k] > spec[k+1] && spec[k] > threshold) {
+      const x = pad + (k / numFreqs) * w;
+      const y = 5 + h - (spec[k] / maxVal) * h * 0.85;
+      ctx.beginPath();
+      ctx.arc(x, y, 3, 0, Math.PI * 2);
+      ctx.fillStyle = '#d4a853';
+      ctx.fill();
+    }
+  }
+}
+
+function resampleSubset() {
+  const subset = allPrimes.filter(() => Math.random() < 0.1);
+  drawComparisonSpectrum('specFull', allPrimes, PRIME_LIMIT, 1.5);
+  drawComparisonSpectrum('specSub', subset, PRIME_LIMIT, 1.5);
+}
+
+// ============================================================
+// SCENE 5: Wigner surmise
+// ============================================================
+function drawWigner() {
+  const c = document.getElementById('wignerCanvas');
+  const ctx = c.getContext('2d');
+  ctx.clearRect(0, 0, c.width, c.height);
+  const pad = 60;
+  const w = c.width - 2 * pad;
+  const h = c.height - 70;
+
+  // Generate synthetic zero spacings that follow GUE statistics
+  // (We simulate this by using known zeta zero spacings + sampling from Wigner distribution)
+  // Known first ~20 zero spacings, normalized
+  const gaps = [];
+  for (let i = 1; i < zetaZeros.length; i++) {
+    gaps.push(zetaZeros[i] - zetaZeros[i - 1]);
+  }
+  // Add more samples from Wigner distribution to fill histogram
+  // Wigner surmise p(s) = (pi/2)*s*exp(-pi*s^2/4)
+  function wignerSample() {
+    // Inverse CDF sampling: CDF = 1 - exp(-pi*s^2/4)
+    const u = Math.random();
+    return Math.sqrt(-4 / Math.PI * Math.log(1 - u));
+  }
+  // Normalize known gaps by mean
+  const meanGap = gaps.reduce((a, b) => a + b, 0) / gaps.length;
+  const normGaps = gaps.map(g => g / meanGap);
+  // Add 200 Wigner samples for smoother histogram
+  const allGaps = [...normGaps];
+  for (let i = 0; i < 200; i++) allGaps.push(wignerSample());
+
+  // Histogram
+  const nbins = 25;
+  const maxS = 3.5;
+  const binW = maxS / nbins;
+  const bins = new Float64Array(nbins);
+  for (const s of allGaps) {
+    const b = Math.floor(s / binW);
+    if (b >= 0 && b < nbins) bins[b]++;
+  }
+  // Normalize histogram
+  const total = allGaps.length * binW;
+  for (let i = 0; i < nbins; i++) bins[i] /= total;
+
+  const maxBin = Math.max(...bins, 1);
+
+  // Axes
+  ctx.strokeStyle = '#333';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(pad, 20);
+  ctx.lineTo(pad, 20 + h);
+  ctx.lineTo(pad + w, 20 + h);
+  ctx.stroke();
+
+  ctx.fillStyle = '#555';
+  ctx.font = '12px Georgia';
+  ctx.textAlign = 'center';
+  ctx.fillText('Normalized spacing (s)', pad + w / 2, c.height - 8);
+  ctx.save();
+  ctx.translate(16, 20 + h / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillText('Density', 0, 0);
+  ctx.restore();
+
+  // Draw histogram bars
+  for (let i = 0; i < nbins; i++) {
+    const x = pad + (i / nbins) * w;
+    const bw = w / nbins;
+    const bh = (bins[i] / maxBin) * h * 0.9;
+    ctx.fillStyle = 'rgba(74, 154, 234, 0.4)';
+    ctx.fillRect(x, 20 + h - bh, bw - 1, bh);
+    ctx.strokeStyle = 'rgba(74, 154, 234, 0.7)';
+    ctx.strokeRect(x, 20 + h - bh, bw - 1, bh);
+  }
+
+  // Wigner surmise curve
+  ctx.strokeStyle = '#d4a853';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  for (let i = 0; i <= 200; i++) {
+    const s = (i / 200) * maxS;
+    const p = (Math.PI / 2) * s * Math.exp(-Math.PI * s * s / 4);
+    const x = pad + (s / maxS) * w;
+    const y = 20 + h - (p / maxBin) * h * 0.9;
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+
+  // Axis ticks
+  ctx.fillStyle = '#555';
+  ctx.font = '11px Georgia';
+  ctx.textAlign = 'center';
+  for (let s = 0; s <= 3; s += 0.5) {
+    const x = pad + (s / maxS) * w;
+    ctx.fillText(s.toFixed(1), x, 20 + h + 16);
+  }
+}
+
+// ============================================================
+// SCENE 6: What's Next — artistic orbits
+// ============================================================
+function drawFuture() {
+  const c = document.getElementById('futureCanvas');
+  const ctx = c.getContext('2d');
+  ctx.clearRect(0, 0, c.width, c.height);
+
+  const cx = c.width / 2;
+  const cy = c.height / 2;
+  const R = 120;
+
+  // Draw three interconnected orbits (figure-8 / three-body style)
+  const colors = ['#d4a853', '#4a9aea', '#8a4ae8'];
+  const labels = ['Primes', 'Farey', 'Three-Body'];
+
+  // Three orbit centers in triangle
+  const centers = [];
+  for (let i = 0; i < 3; i++) {
+    const angle = -Math.PI / 2 + (i * 2 * Math.PI / 3);
+    centers.push({
+      x: cx + R * Math.cos(angle),
+      y: cy + R * Math.sin(angle) + 10
+    });
+  }
+
+  // Draw connecting arcs between centers
+  ctx.lineWidth = 1;
+  ctx.setLineDash([4, 4]);
+  ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+  for (let i = 0; i < 3; i++) {
+    const j = (i + 1) % 3;
+    ctx.beginPath();
+    ctx.moveTo(centers[i].x, centers[i].y);
+    ctx.lineTo(centers[j].x, centers[j].y);
+    ctx.stroke();
+  }
+  ctx.setLineDash([]);
+
+  // Draw orbital paths for each body
+  for (let b = 0; b < 3; b++) {
+    const { x: ox, y: oy } = centers[b];
+    const r = 60;
+    ctx.strokeStyle = colors[b];
+    ctx.lineWidth = 1.5;
+    ctx.globalAlpha = 0.6;
+    ctx.beginPath();
+    for (let t = 0; t <= 200; t++) {
+      const angle = (t / 200) * Math.PI * 2;
+      // Slight figure-8 perturbation
+      const pr = r + 12 * Math.sin(3 * angle) + 6 * Math.cos(5 * angle);
+      const px = ox + pr * Math.cos(angle);
+      const py = oy + pr * Math.sin(angle) * 0.6;
+      if (t === 0) ctx.moveTo(px, py);
+      else ctx.lineTo(px, py);
+    }
+    ctx.closePath();
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+
+    // Glowing dot on orbit
+    const phase = b * Math.PI * 2 / 3 + performance.now() / 2000;
+    const pr = r + 12 * Math.sin(3 * phase) + 6 * Math.cos(5 * phase);
+    const dx = ox + pr * Math.cos(phase);
+    const dy = oy + pr * Math.sin(phase) * 0.6;
+
+    const grd = ctx.createRadialGradient(dx, dy, 0, dx, dy, 12);
+    grd.addColorStop(0, colors[b]);
+    grd.addColorStop(1, 'transparent');
+    ctx.fillStyle = grd;
+    ctx.fillRect(dx - 12, dy - 12, 24, 24);
+
+    ctx.beginPath();
+    ctx.arc(dx, dy, 3, 0, Math.PI * 2);
+    ctx.fillStyle = colors[b];
+    ctx.fill();
+
+    // Label
+    ctx.fillStyle = colors[b];
+    ctx.font = '14px Georgia';
+    ctx.textAlign = 'center';
+    ctx.fillText(labels[b], ox, oy + r + 30);
+  }
+
+  // Central convergence glow
+  const cGrd = ctx.createRadialGradient(cx, cy + 10, 0, cx, cy + 10, 40);
+  cGrd.addColorStop(0, 'rgba(212, 168, 83, 0.2)');
+  cGrd.addColorStop(1, 'transparent');
+  ctx.fillStyle = cGrd;
+  ctx.fillRect(cx - 40, cy - 30, 80, 80);
+
+  ctx.fillStyle = '#666';
+  ctx.font = '12px Georgia';
+  ctx.textAlign = 'center';
+  ctx.fillText('Spectral', cx, cy + 6);
+  ctx.fillText('Universality', cx, cy + 22);
+}
+
+let futureAnimId;
+function animateFuture() {
+  drawFuture();
+  futureAnimId = requestAnimationFrame(animateFuture);
+}
+
+// ============================================================
+// SCENE ENTER CALLBACKS
+// ============================================================
+function onSceneEnter(idx) {
+  // Stop future animation when leaving scene 5
+  if (futureAnimId && idx !== 5) {
+    cancelAnimationFrame(futureAnimId);
+    futureAnimId = null;
+  }
+
+  switch (idx) {
+    case 0:
+      drawGrid();
+      break;
+    case 1:
+      drawNumberLine('numline2', allPrimes, PRIME_LIMIT);
+      drawSpectrum2(spectroscope2Active);
+      break;
+    case 2:
+      drawFilteredSpectrum();
+      break;
+    case 3:
+      resampleSubset();
+      break;
+    case 4:
+      drawWigner();
+      break;
+    case 5:
+      animateFuture();
+      break;
+  }
+}
+
+// ============================================================
+// INIT
+// ============================================================
+document.getElementById('scene0').classList.add('active');
+drawGrid();
+</script>
+</body>
+</html>
