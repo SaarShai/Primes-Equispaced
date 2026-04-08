@@ -1,0 +1,27 @@
+**7. Limitations and Open Problems**
+
+While the pre-whitening approach outlined in this paper yields statistically significant signal extraction in the low-to-mid density regimes, several empirical and theoretical constraints limit its generalizability and interpretability. We present these limitations honestly to delineate the current boundary of applicability and to frame the primary open problems for future investigation.
+
+**7.1 Empirical Constraints on Signal Extraction**
+
+First, the amplitude envelope of the extracted signal exhibits a notable negative correlation with the underlying prime density, yielding a Pearson coefficient of $r = -0.44$. This anti-correlation is not an artifact of noise but arises physically from cross-zero interference. As the density of zeros increases, the constructive and destructive interference patterns shift, causing the peak amplitude of the spectral feature to diminish even as the signal power is preserved. Consequently, amplitude analysis alone cannot serve as a robust metric for zero density; the method must rely on power spectral density or integrated signal energy rather than instantaneous amplitude.
+
+Second, our validation against the location of simple zeros remains inconclusive at high energy scales. A targeted test performed at the $10^7$-th zero ($\approx 10$M zeros) detected a valid resonance signature in only 4 out of 20 trials. This results in a failure rate that is not statistically distinguishable from chance ($p = 0.76$). This suggests that while the background noise floor is sufficiently suppressed to detect the bulk resonance, the method currently lacks the resolution to isolate individual low-order zeros reliably at high indices without an ensemble of repetitions.
+
+Third, we observe a systematic drift in the background z-scores beyond the $50$-million mark. As the spectral window shifts into higher asymptotic regimes, the normalization factor $M(p)$ exhibits non-stationary behavior. The assumption that the background fluctuations follow a stationary Gaussian distribution breaks down as $N \to \infty$, leading to a decline in z-scores of the residual noise. This degradation implies that the pre-whitening filter is optimized for the distribution of primes up to a certain scale, and the filter coefficients may require adaptive re-calibration for ultra-high density regimes.
+
+**7.2 Signal Processing Considerations**
+
+A critical limitation involves the trade-off between variance reduction and signal fidelity. We experimented with standard multi-taper spectral estimation techniques (Slepian tapers) to reduce spectral leakage. However, we found that the application of multi-taper methods effectively destroys the targeted resonance signal. The broadening inherent in multi-tapering smears the fine-grained number-theoretic oscillations we aim to isolate. Therefore, for this specific application, the standard pre-whitening window is superior to multi-tapering, despite the latter’s general utility in time-series analysis. This reinforces a crucial distinction regarding the novelty of this technique: the core operation is not a novel signal processing algorithm, but rather a specific application of **pre-whitening** to number-theoretic data. The novelty lies in the domain translation and the specific parameterization of the whitening filter, not in the signal processing theory itself.
+
+**7.3 Open Problems**
+
+Given these empirical constraints, three theoretical avenues remain open for rigorous investigation:
+
+1.  **Universality under the Riemann Hypothesis (GRH):** The current results are empirical, relying on the observed statistics of the first $50$ million zeros. A primary open problem is proving that the extracted resonance signal is a universal consequence of the functional equation and the distribution of primes, conditional on the Generalized Riemann Hypothesis. Does the signal vanish or transform fundamentally if zeros are found off the critical line? Proving universality requires linking the spectral power of the pre-whitened signal directly to the non-trivial zeros $\rho = \frac{1}{2} + i\gamma$.
+
+2.  **Convergence Rate Analysis:** Currently, the rate at which the signal-to-noise ratio (SNR) converges as $T$ (the height of the zeros) increases is heuristic. A rigorous derivation of the convergence rate is required. Specifically, does the SNR grow as $\sqrt{N}$, or is there a logarithmic enhancement factor inherent to the multiplicative structure of the primes? Establishing this rate would provide a theoretical basis for the optimal window length.
+
+3.  **Background Growth Mechanism:** The non-stationary behavior of the background z-scores observed at the 50M mark (Section 7.1) requires a theoretical explanation. The background growth appears to follow a specific, albeit non-linear, trajectory. Understanding the mechanism behind this background growth—whether it stems from the prime number theorem's error term, secondary fluctuations in the von Mangoldt function, or the cumulative effect of arithmetic functions—is essential for extending the method's validity to asymptotic regimes.
+
+Until these problems are resolved, the technique should be regarded as a heuristic filter for spectral analysis of primes rather than a theorem-proving apparatus. Future work will focus on adaptive filtering strategies to handle the non-stationarity of $M(p)$ and on deriving the asymptotic properties of the whitened error term.
