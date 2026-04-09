@@ -142,3 +142,4 @@ Aristotle: 3 results awaiting download (API 500)
 | G | L-Function Extensions | Needs more computation | 8 |
 | H | Three-Body CF Periodic Table | Paper drafted | 6 |
 | I | 422 Lean Results | Audit done, PR strategy ready | 7 |
+| J | Unconditional Variance Bound | Approach + 3 gaps identified, proof in progress | 3 (alongside D) |

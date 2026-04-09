@@ -150,3 +150,17 @@
 7. I (Mathlib contribution)
 8. G (needs more computation)
 9. E (needs GUE regularization)
+
+## Paper J: "An Unconditional Variance Bound for Spectroscopic Zero Detection"
+**Central story:** The spectroscope has provably more variance than a zero-free model.
+**Content:**
+- Variance argument: integral_A^B F(gamma)dgamma exceeds zero-free prediction
+- Why Siegel zeros don't affect band [10,18]
+- Three identified gaps + repair paths (prime-only framework, off-diagonal, normalization)
+- State main result as conjecture with proof strategy
+- Include any partial results achieved
+- Open problem: close the three gaps
+**Target:** Journal of the London Mathematical Society or Acta Arithmetica
+**Audience:** Analytic number theorists working on explicit formulas
+**Length:** ~12 pages
+**Status:** Approach identified, gaps documented, proof in progress
