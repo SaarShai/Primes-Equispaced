@@ -92,3 +92,15 @@ Aristotle: 3 results awaiting download (API 500)
 | POST-8b | φ(n)/n healing threshold | No clean threshold exists. Explore asymptotic healing rate. | LOW |
 | POST-9 | **Extend spectroscope to 10⁶ primes** | Would detect γ₂-γ₅ clearly. Needs R_bound computation. | HIGH |
 | POST-10 | **Montgomery pair correlation** | Autocorrelation detected γ₂-γ₁. Extend to full pair statistics. | MEDIUM |
+
+## MOST SIGNIFICANT FINDINGS (starred)
+
+| Finding | Status | Significance |
+|---------|:------:|:------------:|
+| ⭐ Per-step ΔW(N) — new object | PROVED + Lean | Foundational — enables all other results |
+| ⭐ γ² matched filter — 2→20 zeros | VERIFIED | Key computational innovation |
+| ⭐ Universality — any 2750 primes | VERIFIED + conditional proof | Novel observation, no prior literature |
+| ⭐ Phase φ = -arg(ρ₁·ζ'(ρ₁)) DERIVED | VERIFIED | Explicit formula predicts exact phase |
+| ⭐ GUE RMSE=0.066 from arithmetic data | VERIFIED | First derivation without computed zeros |
+| ⭐ Figure-eight = golden ratio (exact) | PROVED | Algebraic identity, not coincidence |
+| ⭐ 422 Lean 4 verified results | PROVED | Largest Farey formalization in existence |
