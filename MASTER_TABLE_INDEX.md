@@ -128,3 +128,17 @@ Aristotle: 3 results awaiting download (API 500)
 | UNI-6 | |M(p)|/√p collapse (signed oscillation essential) | VERIFIED | Understand WHY absolute value fails |
 | UNI-7 | Interval-restricted failure ([500K,1M] fails) | VERIFIED | Prove sum 1/p divergence is necessary |
 | UNI-8 | Extend to L-function universality | NOT TESTED | Do any prime subsets detect L(s,χ) zeros? |
+
+## PAPER CONSTELLATION
+
+| Paper | Title | Status | Priority |
+|-------|-------|--------|----------|
+| A | Per-Step Farey Discrepancy | Content exists in Paper 1 draft | 1 (foundation) |
+| B | Chebyshev Bias Phase | Content exists, phase φ solved | 4 |
+| C | Spectroscopic Zero Detection | All 8 sections drafted | 2 (headline) |
+| D | Universality / Holographic | Content exists, proof conditional | 3 (most novel) |
+| E | GUE from Arithmetic Data | Needs regularization proof | 9 |
+| F | Chowla Spectroscopic Test | Methodology complete | 5 |
+| G | L-Function Extensions | Needs more computation | 8 |
+| H | Three-Body CF Periodic Table | Paper drafted | 6 |
+| I | 422 Lean Results | Audit done, PR strategy ready | 7 |
