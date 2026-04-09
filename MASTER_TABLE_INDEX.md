@@ -104,3 +104,27 @@ Aristotle: 3 results awaiting download (API 500)
 | ⭐ GUE RMSE=0.066 from arithmetic data | VERIFIED | First derivation without computed zeros |
 | ⭐ Figure-eight = golden ratio (exact) | PROVED | Algebraic identity, not coincidence |
 | ⭐ 422 Lean 4 verified results | PROVED | Largest Farey formalization in existence |
+
+## NEW DIRECTION: Chowla Spectroscopic Test
+
+| ID | Task | Status | Next Step |
+|----|------|--------|-----------|
+| CHW-1 | Detection threshold ε=1.824/√N | DERIVED | Formalize in Lean (Aristotle) |
+| CHW-2 | Normalization methodology (divide by |1/ζ|²) | VERIFIED | Write as theorem + proof |
+| CHW-3 | Conditional result: Chowla → residual variance O(1/N) | SKETCHED | Rigorous proof (deepseek) |
+| CHW-4 | Contrapositive: residual variance >> 1/N → Chowla fails | FOLLOWS from CHW-3 | Formalize |
+| CHW-5 | Computational evidence for specific lags h=1..50 | DONE (N=500K) | Scale to N=10M |
+| CHW-6 | Unweighted μ(n) test with σ=0.1 smoothing | DONE | Document methodology |
+
+## NEW DIRECTION: Universality of Zero Encoding
+
+| ID | Task | Status | Next Step |
+|----|------|--------|-----------|
+| UNI-1 | Conditional proof (GRH+LI+VK) | DONE (16KB) | Publish in Paper 2 |
+| UNI-2 | Unconditional proof via variance | IN PROGRESS (3 gaps) | Repair: ψ(x) framework + M-V + unnorm |
+| UNI-3 | Minimum subset size (2750 for 95%) | COMPUTED | Test 50%, any-detection thresholds |
+| UNI-4 | Twin prime universality (z=4.47) | VERIFIED | Explore other structured subsets |
+| UNI-5 | Residue class universality | VERIFIED | Formalize |
+| UNI-6 | |M(p)|/√p collapse (signed oscillation essential) | VERIFIED | Understand WHY absolute value fails |
+| UNI-7 | Interval-restricted failure ([500K,1M] fails) | VERIFIED | Prove sum 1/p divergence is necessary |
+| UNI-8 | Extend to L-function universality | NOT TESTED | Do any prime subsets detect L(s,χ) zeros? |
