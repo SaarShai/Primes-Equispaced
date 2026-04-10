@@ -118,3 +118,19 @@
 - **Low-rank structure → density estimates:** Guth-Maynard 2024 pipeline
   → Useful for: zero-density theorem researchers
   → 10-20% chance of publishable partial result (Codex assessment)
+
+## SPARSE RECOVERY / CS THEORY RESEARCHERS
+
+| Researcher | Affiliation | Why they'd care |
+|-----------|-------------|----------------|
+| Emmanuel Candès | Stanford | Founder of CS/RIP theory. Our detection characterization (1/ζ vs ζ products) is a new algebraic criterion for which structures support sparse recovery |
+| Holger Rauhut | RWTH Aachen | Structured random matrices + RIP. Our prime matrix is a natural structured matrix |
+| Simon Foucart | Texas A&M | Compressive sensing theory. Our upper RIP from large sieve is a new example |
+| Jean Bourgain's school | Various | Deterministic RIP constructions. Our prime matrix contributes to this program |
+| Jelani Nelson | UC Berkeley | Dimensionality reduction. The "detection pattern" (1/L vs L products) is relevant to which sketching structures preserve sparse information |
+
+Our relevant findings for this community:
+- Upper RIP from large sieve (proved, unconditional)
+- Detection pattern: only 1/L(s) and -L'/L(s) types support sparse recovery of zeros
+- Products like ζ(s-1)/ζ(s) interfere — the numerator's oscillations destroy recovery
+- This is a new ALGEBRAIC CRITERION for RIP-like properties
