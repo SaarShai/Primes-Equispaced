@@ -1,145 +1,88 @@
 # MASTER TABLE INDEX — Priorities, Status, Next Steps
-Last updated: 2026-04-05 (Session 10+)
-Full details: ~/Desktop/Farey-Local/MASTER_TABLE.md (load per-item when exploring)
+Last updated: 2026-04-10 (Session 11, end of day)
 
-## HIGHEST PRIORITY
-
-| ID | Direction | Status | Next Step |
-|----|-----------|--------|-----------|
-| MPR-40 | Chebyshev Bias Framework | GRH-conditional formalized; R=0.77. Perron derivation done (task_110). Density proof drafted (task_111). | Reconcile phase constant (ρ vs ρ-1). Finalize density theorem. |
-| MPR-49 | **Farey Spectroscope** | **γ₁ CONFIRMED** (14.05). 6 figures created. Comparable convergence to RS. | Amplitude matching. More primes for γ₂. Paper section draft. |
-| MPR-49b | **Multi-character spectroscope** | χ₄→L zeros detected (γ'₁=6.16). χ₃ partial. χ₅ failed. | More primes for reliable L-function detection. Extend to all χ mod q≤20. |
-| MPR-58 | **Damage/Response decomposition** | NEW: R₁ (damage, new fracs) always negative; R₂ (response, old fracs) always positive. R₂>0 is the structural claim. | Prove R₂>0 analytically. Quantify D(1/p)≈-3p/π² dominance. |
-| MPR-47 | Gauss-Kuzmin bridge | task_088 done. GK concentration VERIFIED: top 20% fracs → 94% of |Σ D·δ|. | Rigorous proof via BCZ (2001). Different from killed MPR-48. |
-| MPR-37 | Goldbach Δr per-step | task_114 done. S(n) predicts r(n) at R²=0.91, Δr at R²=0.85. 97% claim was overstated. | Investigate what gives R²=0.97 (higher-order singular series?). |
-| MPR-41 | Complex Farey / Gaussian Z[i] | 1,344 pts enumerated. Dedekind zeros detectable via factorization ζ·L(χ₄). | Compute 2D discrepancy ΔD* at Gaussian primes (task_119). |
-
-## HIGH PRIORITY
+## HIGHEST PRIORITY — PAPER-READY
 
 | ID | Direction | Status | Next Step |
 |----|-----------|--------|-----------|
-| MPR-33 | Triangular distribution of δ | PARTIAL PROOF. BCZ reconciled: different objects (insertion shifts ≠ Farey gaps). | Clarify correct normalization. Prove moment formula for insertion shifts specifically. |
-| MPR-27 | Explicit formula: zeros↔ΔW | Perron derivation done (task_110). Coefficient is 1/((ρ-1)·ζ'(ρ)), not 1/(ρ·ζ'(ρ)). | Verify numerically. Does corrected arg(c₁) fix 0.69 rad phase gap? |
-| MPR-24 | Prove composites heal (ΔW>0) | 95.4% verified. task_118 done (analysis produced). | Need sparser-fractions argument for composite n. |
-| AMR-8 | Engineering simplification (mesh) | task_074 done. Best niches: planetary terrain, shock CFD. | Prototype crack-free LOD demo (task_136 designed). |
-| MPR-44 | Quantum ergodicity / horocycle | Chain identified: ΔW → horocycle equidist. → spectral → zeros. | Formalize. The spectroscope IS the computational evidence for this chain. |
-| MPR-34 | FT of ΔW shows zero pairs | Script ready (mpr34_ft.py). | Run with actual ΔW data (need per-prime ΔW, not just R). |
-| MPR-39 | Extend R₂ computation to 10⁷ | Need O(p log p) algo via Möbius inversion. | Design algorithm. GK concentration suggests sparse approx may help. |
+| MPR-49 + UNI + J | **Paper C: "Prime Spectroscopy of Riemann Zeros"** | THREE THEOREMS PROVED: Dichotomy (unconditional), Universality (GRH), Stability (large sieve). All 5 proof gaps closed. 20-term model R=0.944. Out-of-sample verified. Batch L-function 12x at q=10K. Dirichlet detection verified (χ₄: 2.8x, χ₋₂₀: 3.8x). Bounded interval failure confirmed. | **Write paper draft.** Fix EC detection (needs M1 Max). Push to GitHub. Contact LMFDB. |
+| 3BP | **Paper H: Three-Body Number Field Classification** | Figure-eight = golden ratio (8 Lean theorems). Lucas numbers for Q(√5). Pell equation T²-dU²=4 for all families. Entropy h=2n·log(ε_d). Periodic table of algebraic invariants. | Verify traces 47, 123 in 695-orbit database. Write paper. |
+| MPR-40 | **Paper B: Chebyshev Bias Phase** | Phase RESOLVED: 1/(ρ·ζ'(ρ)), φ₁=-1.6933 confirmed to 0.003 rad. φ_k for k=1..20 computed (mpmath). 20-term model R=0.944. | Write paper. Content complete. |
 
-## MEDIUM PRIORITY
+## HIGH PRIORITY — CONTENT EXISTS, NEEDS WORK
 
 | ID | Direction | Status | Next Step |
 |----|-----------|--------|-----------|
-| MPR-52 | Diophantine approximation | task_095 done (gemma4). | Review result. Markoff/Lagrange spectrum link? |
-| MPR-42 | Harmonic / Franel-Landau kernel | task_121 done (script produced). | Run script. Compare harmonically-weighted ΔW to raw. |
-| MPR-43 | Mersenne primes phase prediction | task_120 done. Script ran for p≤127. | Phase prediction correct for p=8191? Review full results. |
-| MPR-35 | Density theorem | task_111 drafted proof. | Review proof quality. Does it need LI or just GRH? |
-| MPR-25 | Farey telescope / pair correlation | Connection found (Mellin poles). | Verify computationally. |
-| MPR-53 | Signal processing feasibility | task_092 done (Q3.6). | Review. Likely weak — but check. |
-| MPR-55 | Important fractions for QMC/mesh | task_094 done (Q3.6). | Review. Deep-first refinement test. |
-| MPR-56 | RMT + quantum chaos | task_096 done (gemma4). | Review. Tracy-Widom edge connection? |
-| 3BP-4 | Unequal mass extension | AUC=0.79 | Add to three-body paper |
-| AMR-4 | Extended shock benchmark | Timeout bug | Fix + run |
+| MPR-58 | Damage/Response (Paper A) | Gap-energy R₂>0 provable for all N≥2 (Codex). Wobble R₂ open (divisor-sieve obstruction). ΔW novelty confirmed vs Franel-Landau (Codex, 24 searches). δD(p) also correlates (R=-0.67) — differentiation is structural not empirical. | Formalize gap-energy theorem. Write Paper A. |
+| CHW | Chowla Spectroscopic Test (Paper F) | Threshold ε=1.824/√N derived. Evidence FOR Chowla at N=200K. False alarm resolved. | Normalize periodogram computation. Scale to N=10M. |
+| MPR-49b | L-function Extensions (Paper G) | Dirichlet: verified ✅. Elliptic curve: partial (3.0x near γ₂, needs more primes). Modular forms: not tested. Siegel: 465M sigma at q≤13. Batch speedup table computed for 7 types. | Verify EC with correct a_p + more primes. Test modular forms. |
+| LEAN | 434 Lean Results (Paper I) | 434 total (figure-eight 8, prime power sum 3, Farey cardinality 1). 2 genuine sorrys (BridgeIdentity, SignTheorem). GitHub: Primes-Equispaced. | Push latest. Mathlib PR (Farey cardinality). Close BridgeIdentity sorry. |
 
-## PROVED (need paper integration)
+## RESOLVED (completed this session)
 
-MPR-9 (Voronoi entropy — **Lean proved by Aristotle**), MPR-10 (I_k/J_k monotone),
-MPR-11 (Grand Identity), MPR-12 (antisymmetry), MPR-21 (permutation Σf·δ=C/2),
-MPR-22 (geometric identity B+C=Σ(D+δ)²-ΣD²), MPR-23 (wobble monotonicity),
-MPR-24 (dispSquaredSum), Farey gap bound (**Lean proved by Aristotle**)
+| ID | Direction | Resolution |
+|----|-----------|------------|
+| MPR-27 | Explicit formula coefficient | **RESOLVED.** 1/(ρ·ζ'(ρ)) correct. mpmath verified to 0.003 rad. |
+| UNI-2 | Unconditional variance proof | **KILLED.** Selberg input was wrong (μ(n)²≠M(n)²). Σ M(p)²/p² converges unconditionally. |
+| UNI-2b | Density-one unconditional | **KILLED.** Off-line zeros pollute globally. |
+| UNI-2c | Dichotomy (unconditional) | **PROVED.** Spectroscope detects rightmost zero regardless of RH. |
+| UNI-7 | Interval-restricted failure | **VERIFIED.** [100K,200K] gives 0.9x. Sparse wide-range (every 100th) gives 3.3x. |
+| RIP | Compressed sensing connection | **ASSESSED.** Upper RIP from large sieve. Lower RIP = RH barrier. Prime matrix NOT competitive for practical CS (δ⁺~250). Reframed as stability. |
+
+## KILLED DIRECTIONS (added this session)
+
+- **Selberg prime extraction:** Input Σ M(n)²/n² = (6/π²)log x was FALSE (confused μ(n)² with M(n)²)
+- **Density-one unconditional:** Off-line zeros pollute at every bulk ordinate
+- **Practical CS/RIP:** δ⁺ ~ P/T ≈ 250, not competitive with random matrices
+- **Empirical ΔW vs D(N):** δD(p) also correlates (R=-0.67), so empirical separation fails
 
 ## SAAR ACTION ITEMS
 
 | Priority | What |
 |----------|------|
-| HIGH | Get arXiv endorser + submit math paper (SUB-3) |
-| HIGH | Get arXiv endorser + submit three-body paper (SUB-4) |
-| MEDIUM | Contact Nakamura (3BP-9), Li & Liao (3BP-10) |
-| MEDIUM | Patent attorney for AMR (SUB-6) |
-| CHECK | Navy SBIR N251-060 deadline (SUB-1) — AMR still valid |
+| **HIGHEST** | Get arXiv endorser → submit Paper C |
+| **HIGHEST** | Contact LMFDB team (draft ready in OUTREACH_DRAFTS.md) |
+| HIGH | Contact Maynard/Tao re: bounded gaps corollary |
+| HIGH | Get arXiv endorser → submit Paper H (three-body) |
+| MEDIUM | Push Lean to GitHub, Mathlib PR |
+| MEDIUM | Contact Keating/Snaith (RMT), Berry/Connes (quantum chaos) |
 
-## KEY FIGURES (paper-ready)
-
-1. `farey_spectroscope.png/pdf` — Main: Farey spectral function with zeta zeros
-2. `farey_vs_classical_zeros.png/pdf` — Juxtaposition: Hardy Z(t) vs Farey F(γ)
-3. `farey_spectroscope_convergence.png/pdf` — Convergence with more primes
-4. `phase_lock_visualization.png/pdf` — R(p) tracking γ₁ oscillation
-5. `zero_contributions.png/pdf` — Relative strength of each zero's effect
-6. `multi_character_spectroscope.png/pdf` — Four characters → four L-functions
-
-## DEAD (31 entries — see MASTER_TABLE_DEAD.md)
-
-Recent kills: MPR-46 (depth→γ₁), MPR-48 (spectral enhancement), DEAD-31 (R>0 permutation).
-
-## STATS
-Active items: ~55 | Dead: ~65 | Lean sorrys: 1 (intentional) | Papers: 6
-Lean proofs: 10+ (including 2 new from Aristotle — entropy monotonicity, gap bound)
-Figures: 6 (paper-ready, all with PDF vectors)
-Aristotle: 3 results awaiting download (API 500)
-
-## POST-PAPER DIRECTIONS (explore after submission)
-
-| ID | Direction | Connection | Priority |
-|----|-----------|-----------|----------|
-| POST-1 | **Poincaré disk model** | Ford circles map to horodisks, equilateral tessellation. Figure created. | HIGH |
-| POST-2 | **Apéry-style irrationality proofs** | FrontierMath #13. CF/Farey tools match Apéry machinery. Opus exploring. | HIGH |
-| POST-3 | **Symplectic ball packing** | FrontierMath #12. Ford circles = circle packing. Lift to symplectic? | MEDIUM |
-| POST-4 | **Arithmetic Kakeya** | FrontierMath #5. Farey mediants as constructible graph? | MEDIUM |
-| POST-5 | **Gaussian Farey full development** | 2D discrepancy, Dedekind zeros, Ford spheres in H³ | HIGH |
-| POST-6 | **Goldbach Δr per-step** | Needs n>10⁶ for spectroscope to work. Long computation. | MEDIUM |
-| POST-7 | **R₂ > 0 analytical proof** | Open problem. Sign alignment weak. Need new approach. | HIGH |
-| POST-8 | **Close Dedekind sum gap (upgrade Conjecture→Theorem)** | T_b - E[T_b] = b²Σ μ(b/c)s(p,c). Need mean-value estimate for Dedekind sums over divisors. Would seal Math. Comp. acceptance. | **HIGHEST** |
-| POST-8b | φ(n)/n healing threshold | No clean threshold exists. Explore asymptotic healing rate. | LOW |
-| POST-9 | **Extend spectroscope to 10⁶ primes** | Would detect γ₂-γ₅ clearly. Needs R_bound computation. | HIGH |
-| POST-10 | **Montgomery pair correlation** | Autocorrelation detected γ₂-γ₁. Extend to full pair statistics. | MEDIUM |
-
-## MOST SIGNIFICANT FINDINGS (starred)
-
-| Finding | Status | Significance |
-|---------|:------:|:------------:|
-| ⭐ Per-step ΔW(N) — new object | PROVED + Lean | Foundational — enables all other results |
-| ⭐ γ² matched filter — 2→20 zeros | VERIFIED | Key computational innovation |
-| ⭐ Universality — any 2750 primes | VERIFIED + conditional proof | Novel observation, no prior literature |
-| ⭐ Phase φ = -arg(ρ₁·ζ'(ρ₁)) DERIVED | VERIFIED | Explicit formula predicts exact phase |
-| ⭐ GUE RMSE=0.066 from arithmetic data | VERIFIED | First derivation without computed zeros |
-| ⭐ Figure-eight = golden ratio (exact) | PROVED | Algebraic identity, not coincidence |
-| ⭐ 422 Lean 4 verified results | PROVED | Largest Farey formalization in existence |
-
-## NEW DIRECTION: Chowla Spectroscopic Test
-
-| ID | Task | Status | Next Step |
-|----|------|--------|-----------|
-| CHW-1 | Detection threshold ε=1.824/√N | DERIVED | Formalize in Lean (Aristotle) |
-| CHW-2 | Normalization methodology (divide by |1/ζ|²) | VERIFIED | Write as theorem + proof |
-| CHW-3 | Conditional result: Chowla → residual variance O(1/N) | SKETCHED | Rigorous proof (deepseek) |
-| CHW-4 | Contrapositive: residual variance >> 1/N → Chowla fails | FOLLOWS from CHW-3 | Formalize |
-| CHW-5 | Computational evidence for specific lags h=1..50 | DONE (N=500K) | Scale to N=10M |
-| CHW-6 | Unweighted μ(n) test with σ=0.1 smoothing | DONE | Document methodology |
-
-## NEW DIRECTION: Universality of Zero Encoding
-
-| ID | Task | Status | Next Step |
-|----|------|--------|-----------|
-| UNI-1 | Conditional proof (GRH+LI+VK) | DONE (16KB) | Publish in Paper 2 |
-| UNI-2 | Unconditional proof via variance | IN PROGRESS (3 gaps) | Repair: ψ(x) framework + M-V + unnorm |
-| UNI-3 | Minimum subset size (2750 for 95%) | COMPUTED | Test 50%, any-detection thresholds |
-| UNI-4 | Twin prime universality (z=4.47) | VERIFIED | Explore other structured subsets |
-| UNI-5 | Residue class universality | VERIFIED | Formalize |
-| UNI-6 | |M(p)|/√p collapse (signed oscillation essential) | VERIFIED | Understand WHY absolute value fails |
-| UNI-7 | Interval-restricted failure ([500K,1M] fails) | VERIFIED | Prove sum 1/p divergence is necessary |
-| UNI-8 | Extend to L-function universality | NOT TESTED | Do any prime subsets detect L(s,χ) zeros? |
-
-## PAPER CONSTELLATION
+## PAPER CONSTELLATION (updated)
 
 | Paper | Title | Status | Priority |
 |-------|-------|--------|----------|
-| A | Per-Step Farey Discrepancy | Content exists in Paper 1 draft | 1 (foundation) |
-| B | Chebyshev Bias Phase | Content exists, phase φ solved | 4 |
-| C | Spectroscopic Zero Detection | All 8 sections drafted | 2 (headline) |
-| D | Universality / Holographic | Content exists, proof conditional | 3 (most novel) |
-| E | GUE from Arithmetic Data | Needs regularization proof | 9 |
-| F | Chowla Spectroscopic Test | Methodology complete | 5 |
-| G | L-Function Extensions | Needs more computation | 8 |
-| H | Three-Body CF Periodic Table | Paper drafted | 6 |
-| I | 422 Lean Results | Audit done, PR strategy ready | 7 |
-| J | Unconditional Variance Bound | Approach + 3 gaps identified, proof in progress | 3 (alongside D) |
+| **C** | **Prime Spectroscopy of Riemann Zeros** | PROOF COMPLETE. Computation verified. Batch L-function verified. GitHub section live. | **1 — SUBMIT FIRST** |
+| **H** | Three-Body Number Field Classification | Content complete. Lean verified. Needs dataset verification. | **2** |
+| **B** | Chebyshev Bias Phase | Content complete. 20-term R=0.944. | 3 |
+| **A** | Per-Step Farey Discrepancy | Gap-energy R₂>0 ready. ΔW novelty confirmed. | 4 |
+| **F** | Chowla Spectroscopic Test | Methodology complete. Needs N=10M computation. | 5 |
+| **G** | L-Function Extensions | Dirichlet verified. EC/modular pending. Siegel 465M sigma. | 6 |
+| **I** | 434 Lean Results | GitHub ready. Mathlib PR candidates identified. | 7 |
+| **D** | Universality (standalone) | Merged into Paper C. | — |
+| **J** | Unconditional Variance | Merged into Paper C (Dichotomy theorem). Variance approach killed. | — |
+| **E** | GUE from Arithmetic Data | GUE RMSE=0.066. Wiener-Khinchin gap remains. Low priority. | 8 |
+| **K** | Gaussian Farey Z[i] | 1344 pts enumerated. Not computed. | 9 |
+| **M** | Horocycle Equidistribution | Chain identified. Not formalized. | 10 |
+
+## MOST SIGNIFICANT FINDINGS (updated)
+
+| Finding | Status | Significance |
+|---------|:------:|:------------:|
+| ⭐⭐⭐ Universality: any Σ1/p=∞ subset detects all zeros | PROVED (GRH) | Most novel contribution |
+| ⭐⭐⭐ Dichotomy: spectroscope detects zeros regardless of RH | PROVED (unconditional) | Clean RH equivalence |
+| ⭐⭐⭐ Batch L-function: 12x-141x speedup for families | VERIFIED (computation) | Practical application |
+| ⭐⭐ Figure-eight = golden ratio + number field classification | PROVED + Lean | Most broadly appealing |
+| ⭐⭐ 20-term model R=0.944 (89% variance explained) | VERIFIED | Explicit formula quantified |
+| ⭐⭐ Phase φ_k for k=1..20 at 0.003 rad precision | VERIFIED (mpmath) | Ground truth data |
+| ⭐⭐ 434 Lean 4 verified results | PROVED | Largest Farey formalization |
+| ⭐ Bounded gaps corollary: Maynard-Tao primes detect zeros | COROLLARY of universality | Links two frontiers |
+| ⭐ Stability: large sieve guarantees detection stability | PROVED (unconditional) | Measurement framework |
+| ⭐ GUE RMSE=0.066 from arithmetic data | VERIFIED | New pathway to RMT |
+| ⭐ ΔW(N) is novel (not Franel-Landau rediscovery) | CONFIRMED (Codex, 24 searches) | Foundational novelty |
+
+## STATS
+Papers: 12 planned, 2 ready (C, H), 3 near-ready (B, A, I)
+Lean: 434 results, 2 genuine sorrys
+Outreach: 7 draft emails ready (OUTREACH_DRAFTS.md)
+GitHub: spectroscope-paper/ section live with benchmarks + visualization
+Infrastructure: M1 Max permanent, scheduled agent every 2h, verification gates mandatory
