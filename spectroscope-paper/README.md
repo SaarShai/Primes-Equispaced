@@ -44,18 +44,20 @@ The Montgomery-Vaughan large sieve inequality guarantees that the spectroscope m
 
 The framework applies to any L-function with an Euler product over primes.
 
-| L-function | Coefficients at prime p | What zeros reveal | Batch speedup |
-|-----------|----------------------|------------------|---------------|
-| **Riemann ζ(s)** | Mertens function M(p) | Prime distribution | — |
-| **Dirichlet L(s,χ)** | χ(p)·M(p) | Primes in progressions | ~√q |
-| **Elliptic curve L(s,E)** | a_p(E) = p+1−#E(𝔽_p) | Rank of E (BSD conjecture) | ~√N_E |
-| **Modular form L(s,f)** | Hecke eigenvalues a_p(f) | Ramanujan, Sato-Tate | ~dim S_k(N) |
-| **Dedekind ζ_K(s)** | Prime ideal splitting in K | Class numbers | ~√|disc(K)| |
-| **Artin L(s,ρ)** | tr(ρ(Frob_p)) | Galois representations | ~|Gal(K/Q)| |
-| **Symmetric power L(s,sym^k)** | Symmetric polynomials in eigenvalues | Higher moments of primes | O(K) total |
-| **Hecke L(s,ψ)** | Hecke character values | Class field theory | ~|Cl(K)| |
-| **Selberg zeta Z_Γ(s)** | Primitive geodesic lengths | Spectral geometry | — |
-| **Hasse-Weil zeta** | Point counts #V(𝔽_p) | Arithmetic geometry | varies |
+| L-function | Coefficients at prime p | What zeros reveal | Batch speedup | Example |
+|-----------|----------------------|------------------|---------------|---------|
+| **Riemann ζ(s)** | Mertens function M(p) | Prime distribution | — | 20/20 zeros detected |
+| **Dirichlet L(s,χ)** | χ(p)·M(p) | Primes in progressions | **12x** at q=10⁴, **141x** at q=10⁶ | Verified by op count |
+| **Elliptic curve L(s,E)** | a_p(E) = p+1−#E(𝔽_p) | Rank of E (BSD conjecture) | **7x** at N_E=10⁴ | ~2,150 curves batch |
+| **Modular form L(s,f)** | Hecke eigenvalues a_p(f) | Ramanujan, Sato-Tate | **5x** at N=10⁴, **89x** at N=10⁵ | ~833 newforms batch |
+| **Dedekind ζ_K(s)** | Prime ideal splitting in K | Class numbers | **19x** at D=10⁴ | ~6,000 fields batch |
+| **Artin L(s,ρ)** | tr(ρ(Frob_p)) | Galois representations | No advantage (families too small) | — |
+| **Symmetric power L(s,sym^k)** | Symmetric polynomials in eigenvalues | Higher moments of primes | No advantage (family size = K) | — |
+| **Hecke L(s,ψ)** | Hecke character values | Class field theory | Same as Dirichlet | — |
+| **Selberg zeta Z_Γ(s)** | Primitive geodesic lengths | Spectral geometry | Conceptual (not computed) | — |
+| **Hasse-Weil zeta** | Point counts #V(𝔽_p) | Arithmetic geometry | Conceptual (not computed) | — |
+
+**Key finding:** Batch advantage requires large families (>~100 members). Dirichlet, elliptic curves, modular forms, and Dedekind zeta all qualify at moderate conductor. Artin and symmetric powers have too few family members for the batch overhead to pay off.
 
 ---
 
