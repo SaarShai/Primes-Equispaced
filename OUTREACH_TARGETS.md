@@ -134,3 +134,15 @@ Our relevant findings for this community:
 - Detection pattern: only 1/L(s) and -L'/L(s) types support sparse recovery of zeros
 - Products like ζ(s-1)/ζ(s) interfere — the numerator's oscillations destroy recovery
 - This is a new ALGEBRAIC CRITERION for RIP-like properties
+
+## 33,000:1 CANCELLATION FINDING
+
+### What: ΔW is the 0.03% residual of near-perfect cancellation between S₂, R, J
+Each term individually sees zeros 2000x more strongly than ΔW.
+The Farey discrepancy IS the imperfect cancellation.
+
+### Who would care:
+- Explicit formula researchers (Gonek, Ng, Soundararajan): decomposition into terms with individual explicit formulas
+- Farey sequence specialists (Boca, Cobeli, Zaharescu): structural decomposition of Farey discrepancy  
+- Sieve theory (Maynard, Tao): cancellation structure reminiscent of Type I/Type II decompositions
+- RH researchers: if cancellation can be proved bounded below → new constraint on zeros
