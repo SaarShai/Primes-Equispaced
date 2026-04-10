@@ -1,0 +1,9 @@
+model = "gpt-5.4"
+model_reasoning_effort = "xhigh"
+
+[features]
+multi_agent = true
+
+# Farey research project context
+# Use /codex:rescue for: B+C proof attempts, adversarial audit of theorems, Lean formalization
+# Do NOT use for: routine status checks, log analysis, literature drafts (use Ollama)

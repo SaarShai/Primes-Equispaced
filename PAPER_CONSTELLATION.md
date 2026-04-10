@@ -35,19 +35,25 @@
 **Audience:** Analytic number theorists, Chebyshev bias researchers
 **Length:** ~12 pages
 
-## Paper C: "Spectroscopic Detection of Zeta Zeros from Arithmetic Data"
-**Central story:** The compensated Mertens spectroscope detects all 20 zeros.
+## Paper C: "Prime Spectroscopy of Riemann Zeros" (MAIN PAPER)
+**Central story:** Primes form a compressed sensing system for zeta zeros. Three theorems: detection, redundancy, stability.
 **Content:**
-- Spectroscope definition + γ² pre-whitening (cite classical pre-whitening)
-- Local z-score normalization (why global z fails)
-- 20/20 detection with z up to 65σ
-- Scaling analysis (25M optimal)
-- Null battery (5/6 tests pass, z=117.6)
-- Psi spectroscope comparison
-- Honest: amplitude anti-correlates, pre-whitening is classical, application is new
-**Target:** Experimental Mathematics
-**Audience:** Computational number theorists, spectral analysis community
-**Length:** ~18 pages
+- Spectroscope definition: F(γ) = γ²|Σ M(p)/p · e^{-iγ log p}|²
+- Theorem 1 (Dichotomy, UNCONDITIONAL): spectroscope detects zeros regardless of RH
+- Theorem 2 (Universality, GRH): any Σ1/p=∞ subset detects all zeros
+  - Bounded gaps corollary (Maynard-Tao primes detect zeros)
+  - Quantitative threshold: Σ1/p ≥ C(loglog T)^{1+ε}
+- Theorem 3 (Upper RIP, UNCONDITIONAL): large sieve = restricted isometry property
+  - Deterministic RIP: prime-indexed Fourier matrix as candidate for open CS problem
+  - Resolution limit: 2π/log P
+  - Phase transition: N* ~ (logP)²/2π matches 2750 observation
+- Computational verification: 20/20 zeros, phase match to 0.003 rad, 5-term R=0.876
+- Brief: GUE pair correlation (RMSE=0.066) as application
+- Honest negatives: amplitude anti-correlates, pre-whitening is classical
+**Target:** IMRN or Compositio Mathematica (NT); IEEE Trans. IT (CS community)
+**Audience:** Analytic number theorists, compressed sensing researchers, computational NT
+**Length:** 30-40 pages
+**Focus:** One framework, three properties: detection → redundancy → stability.
 
 ## Paper D: "Universality: Every Prime Subset Encodes the Zeta Zeros"
 **Central story:** Any 2750 primes detect all zeros. Holographic encoding.
@@ -88,18 +94,32 @@
 **Audience:** Analytic number theorists working on multiplicative functions
 **Length:** ~10 pages
 
-## Paper G: "L-Function Zero Detection via Twisted Spectroscopy"
-**Central story:** Spectroscope extends to Dirichlet L-functions and beyond.
+## Paper G: "Spectroscopic Verification of L-function Zeros"
+**Central story:** The spectroscope generalizes to all degree-1 L-functions, with Siegel zero sensitivity.
 **Content:**
-- Twisted spectroscope F_χ for 108 characters
-- GRH verification pipeline (5/7 matches at 500K)
-- Siegel zero sensitivity (465M sigma, q≤50)
-- Dedekind zeta of Q(i) via combined spectroscope
-- Tau spectroscope for modular forms (if computed)
-- Elliptic curve spectroscope (if computed)
+- Twisted spectroscope F_χ for Dirichlet characters
+- 108 characters surveyed, systematic GRH verification pipeline (5/7 matches at 500K)
+- Siegel zero sensitivity: 465M sigma detection for q≤13
+- Deuring-Heilbronn repulsion → spectroscope advantage for Siegel detection
+- Dedekind zeta of Q(i) via combined spectroscope (ζ·L(s,χ₄) factorization)
+- Detection thresholds as function of conductor q
 **Target:** LMS Journal of Computation and Mathematics
-**Audience:** Computational L-function community, LMFDB contributors
+**Audience:** Computational L-function community, LMFDB contributors, Siegel zero specialists
 **Length:** ~15 pages
+**Focus:** Degree-1 L-functions. Assumes reader knows the method from Paper C.
+
+## Paper G': "Spectroscopy of Automorphic L-functions" (CONDITIONAL — needs computation)
+**Central story:** Spectroscope reaches modular forms and elliptic curves.
+**Content:**
+- Tau spectroscope: τ(n) coefficients → L(s,Δ) zeros (Ramanujan connection)
+- Elliptic curve spectroscope: a_p(E) → L(s,E) zeros (BSD connection)
+- Possibly symmetric power L-functions (degree 3+)
+- Comparison: what changes when coefficients aren't ±1?
+**Target:** IMRN or Journal of Number Theory
+**Audience:** Modular forms community, BSD specialists — different from G's audience
+**Length:** ~10-12 pages
+**Status:** Designs ready (19KB + 20KB), NO computation yet. Paper exists IFF computation detects zeros.
+**Fallback:** If results are weak, tau/elliptic become "further directions" section in Paper G.
 
 ## Paper H: "Continued Fraction Invariants of Three-Body Periodic Orbits"
 **Central story:** CF periodic table organizes 695 orbits. Figure-eight = golden ratio.
@@ -127,30 +147,6 @@
 **Audience:** Formal verification community
 **Length:** ~12 pages
 
----
-
-## Links Between Papers
-- A → B (ΔW leads to sign pattern)
-- A → C (ΔW data feeds spectroscope)
-- B → C (phase from explicit formula validates spectroscope)
-- C → D (spectroscope enables universality observation)
-- C → E (spectroscope produces zeros for GUE)
-- C → F (same periodogram methodology applied to Chowla)
-- C → G (spectroscope extends to L-functions)
-- A → I (Lean verifies Paper A's identities)
-- H stands alone (three-body, different field)
-
-## Priority Order for Writing
-1. A (foundation — everything builds on this)
-2. C (headline result)
-3. D (most novel observation)
-4. B (clean, focused)
-5. F (methodology contribution)
-6. H (ready, different audience)
-7. I (Mathlib contribution)
-8. G (needs more computation)
-9. E (needs GUE regularization)
-
 ## Paper J: "An Unconditional Variance Bound for Spectroscopic Zero Detection"
 **Central story:** The spectroscope has provably more variance than a zero-free model.
 **Content:**
@@ -164,3 +160,66 @@
 **Audience:** Analytic number theorists working on explicit formulas
 **Length:** ~12 pages
 **Status:** Approach identified, gaps documented, proof in progress
+
+## Paper K: "Farey Sequences over Gaussian Integers"
+**Central story:** ΔW extends to Z[i]. 2D discrepancy detects Dedekind zeta zeros.
+**Content:**
+- Gaussian Farey sequence definition and enumeration (1,344 pts done)
+- 2D discrepancy ΔD* at Gaussian primes
+- Dedekind zeta ζ_{Q(i)}(s) = ζ(s)·L(s,χ₄) — spectroscope via factorization
+- Ford spheres in H³ (hyperbolic 3-manifold perspective)
+- Comparison: what survives from ℤ, what's new in Z[i]
+**Target:** Journal of Number Theory or Acta Arithmetica
+**Audience:** Algebraic number theorists
+**Length:** ~12 pages
+**Status:** 1,344 pts enumerated. 2D spectroscope not yet computed.
+
+## Paper M: "Horocycle Equidistribution and the Farey Spectroscope"
+**Central story:** WHY the spectroscope works — ergodic theory foundation.
+**Content:**
+- Chain: ΔW → horocycle equidistribution on SL(2,ℤ)\H → spectral gap → zeta zeros
+- Ford circles as horodisks in Poincaré disk
+- Connection to Marklof-Strömbergsson theory of Farey statistics
+- Spectral gap of Laplacian ↔ zero-free region of ζ(s)
+- Spectroscope as computational evidence for the equidistribution chain
+**Target:** Ergodic Theory and Dynamical Systems or GAFA
+**Audience:** Ergodic theorists, homogeneous dynamics — NO overlap with other papers
+**Length:** ~15 pages
+**Status:** Chain identified (MPR-44), Ford circle figure created. Needs formalization.
+
+---
+
+## Links Between Papers
+- A → B (ΔW leads to sign pattern)
+- A → C (ΔW data feeds spectroscope)
+- B → C (phase from explicit formula validates spectroscope)
+- C → D (spectroscope enables universality observation)
+- C → E (spectroscope produces zeros for GUE)
+- C → F (same periodogram methodology applied to Chowla)
+- C → G (spectroscope extends to L-functions)
+- G → G' (higher-degree extensions, if computed)
+- A → I (Lean verifies Paper A's identities)
+- A → K (ΔW extends to new number ring)
+- C → M (M explains WHY C works)
+- C → J (J proves C must work)
+- H stands alone (three-body, different field)
+
+## Priority Order for Writing
+1. A (foundation — everything builds on this)
+2. C (headline result — THE METHOD)
+3. D (most novel observation)
+4. B (clean, focused)
+5. F (methodology contribution)
+6. G (L-function extensions — needs C first)
+7. H (ready, different audience)
+8. I (Mathlib contribution)
+9. J (proof in progress — publish when gaps close or as open problem)
+10. K (needs 2D computation)
+11. M (needs formalization — highest theoretical ceiling)
+12. G' (conditional on tau/elliptic computation results)
+
+## Paper Survey (write last)
+"A Survey of Spectroscopic Methods in Analytic Number Theory"
+- Expository piece for Bulletin of the AMS or Mathematical Intelligencer
+- Tells the whole story for non-specialists
+- Written AFTER research papers exist

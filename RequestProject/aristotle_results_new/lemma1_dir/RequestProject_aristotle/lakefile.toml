@@ -1,0 +1,75 @@
+name = "RequestProject"
+defaultTargets = ["aristotle_results_new", "BridgeIdentity", "CharacterBridge", "CrossTermPositive", "DeltaCosine", "DenominatorSum", "DisplacementShift", "FourierModeExploration", "GeneralInjection", "InjectionPrinciple", "MediantMinimality", "MertensGrowth", "PermutationIdentity", "PrimeCircle", "SignTheorem", "StrictPositivity", "SubGapPermutation"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "v4.28.0"
+
+[[lean_lib]]
+name = "aristotle_results_new"
+globs = ["aristotle_results_new.+"]
+
+[[lean_lib]]
+name = "BridgeIdentity"
+globs = ["BridgeIdentity"]
+
+[[lean_lib]]
+name = "CharacterBridge"
+globs = ["CharacterBridge"]
+
+[[lean_lib]]
+name = "CrossTermPositive"
+globs = ["CrossTermPositive"]
+
+[[lean_lib]]
+name = "DeltaCosine"
+globs = ["DeltaCosine"]
+
+[[lean_lib]]
+name = "DenominatorSum"
+globs = ["DenominatorSum"]
+
+[[lean_lib]]
+name = "DisplacementShift"
+globs = ["DisplacementShift"]
+
+[[lean_lib]]
+name = "FourierModeExploration"
+globs = ["FourierModeExploration"]
+
+[[lean_lib]]
+name = "GeneralInjection"
+globs = ["GeneralInjection"]
+
+[[lean_lib]]
+name = "InjectionPrinciple"
+globs = ["InjectionPrinciple"]
+
+[[lean_lib]]
+name = "MediantMinimality"
+globs = ["MediantMinimality"]
+
+[[lean_lib]]
+name = "MertensGrowth"
+globs = ["MertensGrowth"]
+
+[[lean_lib]]
+name = "PermutationIdentity"
+globs = ["PermutationIdentity"]
+
+[[lean_lib]]
+name = "PrimeCircle"
+globs = ["PrimeCircle"]
+
+[[lean_lib]]
+name = "SignTheorem"
+globs = ["SignTheorem"]
+
+[[lean_lib]]
+name = "StrictPositivity"
+globs = ["StrictPositivity"]
+
+[[lean_lib]]
+name = "SubGapPermutation"
+globs = ["SubGapPermutation"]

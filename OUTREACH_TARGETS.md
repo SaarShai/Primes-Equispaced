@@ -83,3 +83,38 @@
 4. Post preprint on arXiv (need endorser — SAAR ACTION ITEM)
 5. Submit to IMRN or J. Number Theory
 6. Announce Lean results on Lean Zulip
+
+## ADDITIONAL METHODS AND TOOLS (added 2026-04-10)
+
+### Not strictly spectroscope:
+- **Predictive M(p) model:** 20-term explicit formula predicts M(p)/√p with R=0.952 out-of-sample
+  → Useful for: explicit formula researchers, computational NT
+- **Detection pattern characterization:** Only 1/ζ and -ζ'/ζ type functions detect zeros
+  → Useful for: analytic NT theory, sparse recovery theory
+- **General spectroscope principle:** ANY summatory function with explicit formula → detection
+  → Useful for: broad analytic NT
+- **Four-term decomposition:** ΔW = A-B-C-D reveals mechanistic structure
+  → Useful for: Farey sequence researchers
+
+### New discoveries:
+- **Prime gap spectroscope (3.8x):** Gaps carry zero information — NOVEL
+  → Useful for: prime gap researchers, Cramér model
+- **Smooth number spectroscope (2.9x):** Connects to Dickman function
+  → Useful for: factoring algorithm researchers
+- **Fourth moment (96x):** Connects to Montgomery pair correlation
+  → Useful for: RMT community, Keating/Snaith
+
+### Applications:
+- **Class number bounds (5-14x):** Via Siegel zero exclusion
+  → Useful for: Bhargava/Wood/Ellenberg
+- **"Previously impractical → now feasible" framing:**
+  - Batch L-function at q>400: faster than individual computation
+  - GRH verification for 9592+ characters simultaneously
+  - Class numbers unconditional where Goldfeld gives ~1
+  - Primes in progressions for large q where Siegel-Walfisz fails
+  → Useful for: computational NT broadly
+
+### RH connection (speculative):
+- **Low-rank structure → density estimates:** Guth-Maynard 2024 pipeline
+  → Useful for: zero-density theorem researchers
+  → 10-20% chance of publishable partial result (Codex assessment)

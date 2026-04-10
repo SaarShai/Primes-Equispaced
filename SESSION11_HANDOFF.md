@@ -49,3 +49,34 @@ Paper scope locked: Dichotomy + Universality + Stability. No figure-eight/Chowla
 - M5 Max: PAUSED
 - System crontab: watchdogs every 15 min
 - Kaggle project: ~/Documents/Benchmarks Kaggle/ (separate session)
+
+## LATE SESSION UPDATE (19:00)
+
+### Practical Applications
+- Prime counting: RULED OUT (explicit formula oscillates)
+- NTT prime selection: HIGHEST IMPACT candidate (test designed, not run)
+- Costas sequences: 10-100x design speedup (radar)
+- General verdict: no 2x general-purpose gain. Batch L-function is the killer app.
+
+### New Directions Confirmed
+- Prime gap spectroscope: 3.8x — NOVEL
+- Squarefree residual: 3.0x — extends framework
+- Finite field validation: 0.005 rad — ground truth confirmed
+- Convergence series: monotone, publishable figure
+
+### Proofs
+- ALL 5 gaps closed (Opus clean proof, T₀=(logN)^A)
+- Out-of-sample: R=0.9437 identical train/test
+- Bounded interval failure: confirmed
+
+### EC Status
+- a_p was CORRECT (compared to wrong curve before)
+- Partial detection 3.0x near γ₂
+- Needs more primes (M1 Max)
+
+### For Next Session
+1. Run NTT prime selection test
+2. Write paper draft (proof is ready)
+3. Verify EC with more primes (M1 Max)
+4. Run QS smoothness test (marginal gain expected)
+5. Contact LMFDB (drafts ready)

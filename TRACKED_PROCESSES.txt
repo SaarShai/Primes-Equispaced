@@ -1,0 +1,34 @@
+Aristotle ratio_test job: 1e12bcb5-cfe5-4706-a6c8-dab1cf96fd60
+Sun Apr  5 16:38:18 BST 2026 R_bound_500K PID=11660
+Sun Apr  5 16:39:56 BST 2026 Qwen36Plus-detrended PID=12291
+Sun Apr  5 16:40:20 BST 2026 qwen35b-convergence PID=12661
+Sun Apr  5 16:42:52 BST 2026 qwen35b-convergence-retry PID=13057
+Sun Apr  5 18:47:04 BST 2026 local_z_scaling PID=25254
+Sun Apr  5 19:24:45 BST 2026 T4-dedekind PID=28947
+Sun Apr  5 19:24:45 BST 2026 T2-convergence PID=28950
+Sun Apr  5 19:24:45 BST 2026 T7-phase PID=28954
+Sun Apr  5 19:25:41 BST 2026 T5-R2proof PID=29077
+Sun Apr  5 19:36:38 BST 2026 T12-literature PID=30646
+Sun Apr  5 19:36:38 BST 2026 T13-RMT PID=30648
+Sun Apr  5 19:36:38 BST 2026 siegel-zero PID=30652
+Sun Apr  5 19:37:09 BST 2026 T17-outline PID=31012
+31735
+Sun Apr  5 19:42:06 BST 2026 applications-gemma4 PID=32144
+Sun Apr  5 20:51:15 BST 2026 overnight-chains PID=37556
+Sun Apr  5 20:53:00 BST 2026 Q3.6-outline+referee PIDs queued
+Mon Apr  6 05:31:03 BST 2026 phase3-chain PID=76230
+Mon Apr  6 05:31:39 BST 2026 Q3.6-practical PID=76354
+Mon Apr  6 06:00:55 BST 2026 phase4-chain queued
+Mon Apr  6 20:08:31 BST 2026 sprint-chains PID=8300
+Mon Apr  6 20:10:57 BST 2026 sprint-relaunch PID=9583
+Mon Apr  6 22:20:11 BST 2026 mega-chain PID=19420
+Tue Apr  7 06:49:31 BST 2026 app-tasks PID=60248
+Tue Apr  7 08:31:53 BST 2026 overnight-nanite-mathlib PID=69453
+Tue Apr  7 09:16:56 BST 2026 overnight-academic-profit PID=73182
+Tue Apr  7 20:28:51 BST 2026 overnight-9hr PID=10208
+Tue Apr  7 20:30:27 BST 2026 Q3.6 tasks launched
+Tue Apr  7 20:30:44 BST 2026 Aristotle submitted
+Tue Apr  7 20:32:01 BST 2026 overnight-9hr-relaunch PID=11493
+Tue Apr  7 21:43:12 BST 2026 phase5 PID=17532
+Tue Apr  7 21:44:00 BST 2026 Literature research tasks launched
+Wed Apr  8 05:37:37 BST 2026 research-sprint PID=50162

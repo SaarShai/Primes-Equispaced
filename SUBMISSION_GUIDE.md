@@ -94,11 +94,11 @@ object — and presents three main contributions:
    extending to L-function zeros via character twisting.
 
 2. A damage/response mechanism explaining why primes improve rational
-   regularity, with the exact formula D(1/p) = 1 - |F_{p-1}|/p.
+   regularity, with the exact formula D(1/p) = 1 - |F_p|/p.
 
-3. A healing characterization showing that composite density
-   (measured by φ(n)/n) controls the damage/healing boundary,
-   with the fraction 1/p alone causing 65% of all damage.
+3. An exact formula D(1/p) = 1 - |F_p|/p showing that the
+   single fraction 1/p causes ~65% of all disruption when a
+   prime enters the Farey sequence.
 
 All core identities are formally verified in Lean 4 (258 results).
 The spectroscope's validity is confirmed by null hypothesis

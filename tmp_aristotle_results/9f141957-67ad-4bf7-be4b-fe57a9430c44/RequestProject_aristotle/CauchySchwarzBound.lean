@@ -1,0 +1,39 @@
+import Mathlib
+import PrimeCircle
+import DisplacementShift
+import SignTheorem
+
+/-!
+# Cauchy-Schwarz Lower Bound on Wobble Numerator
+
+## Main result
+wobbleNumerator N ≥ |F_N| / 4
+
+## Proof strategy
+1. Sum of displacements: Σ D(f) = -n/2 (from Farey symmetry: Σ f = n/2)
+2. Cauchy-Schwarz: (Σ a_i)² ≤ n · Σ a_i²
+3. Combine: n²/4 ≤ n · Σ D², so Σ D² ≥ n/4
+-/
+
+open Finset BigOperators
+
+/-! ## Step 1: Displacement sum identity -/
+
+/-- The sum of all displacements in F_N equals -|F_N|/2.
+    Proof: Σ D = Σ rank - n·Σ f = n(n-1)/2 - n·(n/2) = -n/2.
+    Here n = |F_N| = (fareySet N).card.
+    The key fact is Σ_{f ∈ F_N} f = n/2 (Farey symmetry: fractions pair as f ↔ 1-f). -/
+lemma displacement_sum (N : ℕ) (hN : N ≥ 1) :
+    ∑ ab ∈ fareySet N, displacement N ((ab.1 : ℚ) / ab.2) =
+      -((fareySet N).card : ℚ) / 2 := by
+  sorry
+
+/-! ## Step 2: Cauchy-Schwarz application -/
+
+/-- **Cauchy-Schwarz lower bound on wobble numerator.**
+    Since wobbleNumerator N = Σ D(f)² and Σ D(f) = -n/2,
+    by Cauchy-Schwarz: (Σ D)² ≤ n · Σ D² implies n²/4 ≤ n · Σ D²,
+    so Σ D² ≥ n/4. -/
+theorem wobbleNumerator_ge_card_div_four (N : ℕ) (hN : N ≥ 1) :
+    wobbleNumerator N ≥ ((fareySet N).card : ℚ) / 4 := by
+  sorry
