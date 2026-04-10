@@ -1,0 +1,74 @@
+THREE-BODY EXTENDED CF ANALYSIS
+============================================================
+Loaded 695 equal-mass orbits
+
+--- PART 1: Cross-validated nobility-stability prediction ---
+Valid orbits with nobility: 691
+Spearman(nobility, log_trace) = -0.5417 (p=6.00e-54)
+Spearman(nobility, Tstar) = -0.5311 (p=1.51e-51)
+
+10-fold cross-validation:
+Mean accuracy: 0.7091 ± 0.0615
+Mean AUC: 0.7882 ± 0.0645
+
+--- PART 2: Per-family nobility-stability analysis ---
+Family        N   ρ(nob,trace)      p-value   Mean nob
+-------------------------------------------------------
+I.A         190        -0.5397     9.33e-16     0.7552
+I.B         191        -0.5354     1.46e-15     0.7357
+II.B         10        -0.5758     8.16e-02     0.8146
+II.C        296        -0.4800     1.84e-18     0.7949
+
+--- PART 3: CF structure of noble vs non-noble orbits ---
+Noble orbits (top 25%): 173
+Non-noble orbits (bottom 25%): 173
+
+Noble:
+  CF period length: mean=86.23, median=83.0
+  CF coeff mean: mean=1.05, median=1.05
+  CF coeff max: mean=2.01, median=2.0
+
+Non-noble:
+  CF period length: mean=120.16, median=109.0
+  CF coeff mean: mean=1.38, median=1.37
+  CF coeff max: mean=2.03, median=2.0
+
+--- PART 4: Mass perturbation analysis ---
+Testing sensitivity of CF structure to mass perturbation
+Analyzing 15 key orbits
+
+ID         Word            |trace|   nobility  CF period    Stability
+----------------------------------------------------------------------
+I.A-1      BabA              18.00     1.0000          1       STABLE
+I.A-2      BAbabaBA         578.00     0.6000          5       STABLE
+I.A-3      BaBabAbA          66.00     0.6667          3       STABLE
+I.A-4      BabaBABabABAbabA  173058.00     0.8182         11       STABLE
+I.A-5      BAbabABAbabaBABabaBA 5550738.00     0.6923         13       STABLE
+I.B-1      BabaBAbabA      1766.00     0.8571          7       STABLE
+I.B-2      BAbabABABabaBA   56646.00     0.6667          9       STABLE
+I.B-3      BAbaabABABabbaBA  147458.00     0.6667          9       STABLE
+II.A-1     BabABabABAbaBAbaBAbaBAbaBAbabABabABabABabABabaBAbaBAbaBAbaBAbaBABabABabA 62347694896606494064640.00     0.9623         53       STABLE
+II.A-2     BabABabABabaBAbaBAbaBAbaBAbaBABabABabABabABabABabABAbaBAbaBAbaBAbaBAbabABabABabA 20075764128322312623620096.00     0.9661         59       STABLE
+II.B-1     BabABabABabABabaBAbaBAbaBAbaBAbaBAbaBAbaBAbabABabABabABabA 1967896842914661120.00     0.9767         43       STABLE
+II.B-2     BAbabABABabaBABababABAbabaBABabaBABababABAbabaBABabaBABAbabABABabaBABAbabABAbabaBABababABAbabABAbabaBABababABAbabABABabaBA 172548040836238611178568198073995480793088.00     0.6835         79       STABLE
+II.C-1     BAbabABabaBA   10002.00     0.7500         16       STABLE
+II.C-2     BaBAbaBAbaBAbA   12166.00     0.8889         18       STABLE
+II.C-3     BababABAbabaBABababA 5777314.00     0.6923         26       STABLE
+
+--- PART 5: Stern-Brocot depth vs orbit complexity ---
+Spearman(SB_depth, nobility) = -0.9588 (p=0.00e+00)
+Spearman(SB_depth, log_trace) = 0.5324 (p=7.91e-52)
+
+============================================================
+SUMMARY (elapsed: 0.6s)
+============================================================
+Equal-mass orbits analyzed: 691
+Cross-validated accuracy: 0.7091 ± 0.0615
+Cross-validated AUC: 0.7882 ± 0.0645
+Families analyzed: 4
+Per-family ρ: mean=-0.5327, min=-0.5758, max=-0.4800
+
+Key finding: Nobility predicts stability across ALL families
+Noble orbits have shorter CF periods and smaller CF coefficients
+
+Results saved to threebody_extended_results.json

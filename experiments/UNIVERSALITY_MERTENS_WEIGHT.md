@@ -40,12 +40,36 @@
 
 ## Key Findings
 
-1. **Minimum subset size for reliable detection:** ~2750 primes (3.5% of all primes to 10⁶)
-2. **Universality:** Detection works across all tested structured subsets, confirming the signal is not an artifact of prime distribution bias
-3. **M(p)/p weighting** encodes Mertens accumulation directly, connecting prime-level Mobius cancellation to zero detection
+1. **Minimum subset size for 95% detection:** ~2750 primes (3.5% of all primes to 10^6)
+2. **Even N=200 random primes give mean z=15.1** with 94% detection -- remarkably strong signal even at tiny subsets
+3. **Partial universality:** Detection works for p equiv 1 mod 4, twin primes, every-5th-prime (all 100%). But **p in [500K,1M] gives 0% detection** (mean z=0.78)
+4. **Large-prime failure is expected:** M(p)/p ~ O(1/sqrt(p)) for large p, so high primes contribute negligible weight. The signal lives in small primes where |M(p)/p| is large
+5. **Twin primes show weaker z-scores** (mean 9.17 vs 37 for random) despite 100% detection -- consistent with their sparser log-spacing
+
+## Critical Observation: Small Primes Dominate
+
+The M(p)/p weighting heavily favors small primes:
+- M(2)/2 = -0.5, M(3)/3 = -0.67, M(5)/5 = -0.4
+- M(500000)/500000 ~ O(10^{-3})
+
+This means the zero-detection signal is concentrated in the first few thousand primes. The [500K,1M] subset fails completely because those primes have weights ~1000x smaller than small primes.
+
+**Implication:** M(p)/p is NOT a universality-compatible weighting. It strongly biases toward small primes. Compare with log(p)/sqrt(p) which gives more uniform contributions across the prime range.
+
+## Comparison with log(p)/sqrt(p) weighting
+
+| Property | M(p)/p | log(p)/sqrt(p) |
+|----------|--------|----------------|
+| Small prime weight | Very large | Moderate |
+| Large prime weight | ~0 | Still significant |
+| [500K,1M] detection | 0% | (to be tested) |
+| Minimum N for 95% | ~2750 | (to be tested) |
+| Theoretical basis | Mertens function | Von Mangoldt / explicit formula |
 
 ## Interpretation
 
-The M(p)/p weight assigns each prime a contribution proportional to the cumulative Mobius function normalized by magnitude. This is the natural weight from the explicit formula connection: the Mertens function M(x) encodes zero information via M(x)/x ~ Σ x^(ρ-1)/ρ. Restricting to primes and using M(p)/p preserves this structure while sampling only at prime points.
+The M(p)/p weight assigns each prime a contribution proportional to the cumulative Mobius function normalized by magnitude. From the explicit formula M(x)/x ~ Sum x^{rho-1}/rho, this is natural but **concentrates information in small primes** where |M(p)| ~ O(sqrt(p)) makes M(p)/p ~ O(1/sqrt(p)). For large p, the weight vanishes and those primes contribute nothing.
+
+This is fundamentally different from Fourier-analytic weightings like log(p)/sqrt(p) which maintain comparable contributions across the prime range. The M(p)/p weighting detects zeros efficiently (only ~2750 primes needed) precisely because it automatically focuses on the information-dense small primes.
 
 ![Universality figure](universality_mertens_weight.png)

@@ -1,0 +1,26 @@
+Sieving to 100000...
+Sieve done.
+Total M(p)=-3 primes up to 100000: 174
+Done 10/174 M(p)=-3 primes (p=179), elapsed 0s, neg=0
+Done 20/174 M(p)=-3 primes (p=733), elapsed 0s, neg=0
+Done 30/174 M(p)=-3 primes (p=1499), elapsed 0s, neg=0
+Done 40/174 M(p)=-3 primes (p=2377), elapsed 0s, neg=0
+Done 50/174 M(p)=-3 primes (p=4649), elapsed 0s, neg=0
+Done 60/174 M(p)=-3 primes (p=7193), elapsed 0s, neg=0
+Done 70/174 M(p)=-3 primes (p=7937), elapsed 1s, neg=0
+Done 80/174 M(p)=-3 primes (p=11299), elapsed 1s, neg=0
+Done 90/174 M(p)=-3 primes (p=18671), elapsed 3s, neg=0
+Done 100/174 M(p)=-3 primes (p=27239), elapsed 9s, neg=0
+Done 110/174 M(p)=-3 primes (p=33469), elapsed 17s, neg=0
+Done 120/174 M(p)=-3 primes (p=39107), elapsed 29s, neg=0
+Done 130/174 M(p)=-3 primes (p=40897), elapsed 44s, neg=0
+Done 140/174 M(p)=-3 primes (p=45289), elapsed 61s, neg=0
+Done 150/174 M(p)=-3 primes (p=56393), elapsed 86s, neg=0
+Done 160/174 M(p)=-3 primes (p=78139), elapsed 138s, neg=0
+Done 170/174 M(p)=-3 primes (p=84653), elapsed 198s, neg=0
+
+=== SUMMARY ===
+Total M(p)=-3 primes checked: 174
+Primes with B_raw <= 0: 0
+Elapsed: 227 seconds
+RESULT: B_raw > 0 for ALL M(p)=-3 primes up to 100000 (except possibly p=13)

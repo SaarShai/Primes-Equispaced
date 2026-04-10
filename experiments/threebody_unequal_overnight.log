@@ -1,0 +1,24 @@
+THREE-BODY UNEQUAL MASS EXTENSION
+============================================================
+Loaded 13 equal-mass orbits
+Equal-mass stats: 0 orbits with nobility data
+/Users/saar/Library/Python/3.9/lib/python/site-packages/numpy/_core/fromnumeric.py:3596: RuntimeWarning: Mean of empty slice.
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/Users/saar/Library/Python/3.9/lib/python/site-packages/numpy/_core/_methods.py:138: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+  Mean nobility: nan
+/Users/saar/Library/Python/3.9/lib/python/site-packages/numpy/_core/_methods.py:218: RuntimeWarning: Degrees of freedom <= 0 for slice
+  ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/Users/saar/Library/Python/3.9/lib/python/site-packages/numpy/_core/_methods.py:175: RuntimeWarning: invalid value encountered in divide
+  arrmean = um.true_divide(arrmean, div, out=arrmean,
+/Users/saar/Library/Python/3.9/lib/python/site-packages/numpy/_core/_methods.py:210: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+  Std nobility: nan
+Traceback (most recent call last):
+  File "/Users/saar/Desktop/Farey-Local/experiments/threebody_unequal_mass.py", line 26, in <module>
+    print(f"  Min: {np.min(nobilities):.3f}, Max: {np.max(nobilities):.3f}", flush=True)
+  File "/Users/saar/Library/Python/3.9/lib/python/site-packages/numpy/_core/fromnumeric.py", line 3042, in min
+    return _wrapreduction(a, np.minimum, 'min', axis, None, out,
+  File "/Users/saar/Library/Python/3.9/lib/python/site-packages/numpy/_core/fromnumeric.py", line 86, in _wrapreduction
+    return ufunc.reduce(obj, axis, dtype, out, **passkwargs)
+ValueError: zero-size array to reduction operation minimum which has no identity

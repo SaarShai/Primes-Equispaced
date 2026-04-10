@@ -321,6 +321,6 @@ if __name__ == '__main__':
         'results': results,
         'note': 'Computed for M(p) <= -3 primes to analyze C/A asymptotics'
     }
-    with open('/Users/new/Downloads/a3f522e1-8fdf-4aba-8a5e-6b5385438b6c_aristotle/experiments/ca_scaling_data.json', 'w') as f:
+    with open('/Users/saar/Desktop/Farey-Local/experiments/ca_scaling_data.json', 'w') as f:
         json.dump(output, f, indent=2)
     print("Saved to ca_scaling_data.json")

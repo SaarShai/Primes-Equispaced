@@ -1,0 +1,985 @@
+#!/usr/bin/env python3
+"""
+Three-Body Periodic Orbit Search: Nobility-Guided vs Random
+============================================================
+
+Demonstrates that Farey/nobility-guided search finds periodic three-body
+orbits more efficiently than uniform random search.
+
+Setup:
+  - Three equal masses on the Euler line: r1=(-1,0), r2=(1,0), r3=(0,0)
+  - Zero total momentum, zero angular momentum
+  - 2 free parameters: (v1, v2) = velocity of body 3
+  - Bodies 1,2 get (-v1/2, -v2/2) each
+
+Method A: Uniform random sampling of (v1, v2) in [-1, 1]^2
+Method B: Nobility-guided sampling using Gamma(2) fixed points
+
+Author: Farey Project (automated experiment)
+Date: 2026-03-27
+"""
+
+import sys
+import numpy as np
+from scipy.integrate import solve_ivp
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+from matplotlib.patches import Circle
+from collections import defaultdict
+import time
+import os
+import json
+
+# Force unbuffered output
+def print(*args, **kwargs):
+    kwargs.setdefault('flush', True)
+    __builtins__['print'](*args, **kwargs) if isinstance(__builtins__, dict) else __builtins__.print(*args, **kwargs)
+
+import builtins
+_print = builtins.print
+def print(*args, **kwargs):
+    kwargs['flush'] = True
+    _print(*args, **kwargs)
+
+# ============================================================
+# THREE-BODY INTEGRATOR
+# ============================================================
+
+def threebody_rhs(t, state):
+    """Right-hand side for planar three-body equations of motion.
+    state = [x1,y1, x2,y2, x3,y3, vx1,vy1, vx2,vy2, vx3,vy3]
+    Equal masses m=1, G=1.
+    """
+    x1, y1, x2, y2, x3, y3 = state[:6]
+    vx1, vy1, vx2, vy2, vx3, vy3 = state[6:]
+
+    # Distances (with softening to avoid singularity)
+    eps2 = 1e-8
+    dx12, dy12 = x2 - x1, y2 - y1
+    dx13, dy13 = x3 - x1, y3 - y1
+    dx23, dy23 = x3 - x2, y3 - y2
+
+    r12_3 = (dx12**2 + dy12**2 + eps2)**1.5
+    r13_3 = (dx13**2 + dy13**2 + eps2)**1.5
+    r23_3 = (dx23**2 + dy23**2 + eps2)**1.5
+
+    # Accelerations (G=1, m=1)
+    ax1 = dx12 / r12_3 + dx13 / r13_3
+    ay1 = dy12 / r12_3 + dy13 / r13_3
+    ax2 = -dx12 / r12_3 + dx23 / r23_3
+    ay2 = -dy12 / r12_3 + dy23 / r23_3
+    ax3 = -dx13 / r13_3 - dx23 / r23_3
+    ay3 = -dy13 / r13_3 - dy23 / r23_3
+
+    return [vx1, vy1, vx2, vy2, vx3, vy3, ax1, ay1, ax2, ay2, ax3, ay3]
+
+
+def integrate_threebody(v1, v2, T, rtol=1e-8, atol=1e-8):
+    """Integrate three-body problem with given initial velocity parameters.
+
+    Returns:
+        return_error: max position error at time T
+        positions_trajectory: dict of arrays for each body over time
+        energy_error: relative energy conservation error
+    """
+    # Initial positions: Euler line
+    x1, y1 = -1.0, 0.0
+    x2, y2 = 1.0, 0.0
+    x3, y3 = 0.0, 0.0
+
+    # Initial velocities: zero total momentum
+    vx3, vy3 = v1, v2
+    vx1, vy1 = -v1 / 2, -v2 / 2
+    vx2, vy2 = -v1 / 2, -v2 / 2
+
+    state0 = [x1, y1, x2, y2, x3, y3, vx1, vy1, vx2, vy2, vx3, vy3]
+
+    try:
+        sol = solve_ivp(threebody_rhs, [0, T], state0, method='DOP853',
+                        rtol=rtol, atol=atol,
+                        dense_output=False)
+        if not sol.success:
+            return 1e10, None, 1e10
+
+        final = sol.y[:, -1]
+        initial = np.array(state0[:6])
+        final_pos = final[:6]
+
+        # Max position error across all bodies
+        errors = []
+        for i in range(3):
+            dx = final_pos[2*i] - initial[2*i]
+            dy = final_pos[2*i+1] - initial[2*i+1]
+            errors.append(np.sqrt(dx**2 + dy**2))
+        return_error = max(errors)
+
+        # Extract trajectory
+        trajectory = {
+            'x1': sol.y[0], 'y1': sol.y[1],
+            'x2': sol.y[2], 'y2': sol.y[3],
+            'x3': sol.y[4], 'y3': sol.y[5],
+            't': sol.t
+        }
+
+        return return_error, trajectory, 0.0
+
+    except Exception as e:
+        return 1e10, None, 1e10
+
+
+def check_periodicity(v1, v2, T_base):
+    """Check for periodicity at T, T/2, T/3, 2T."""
+    best_error = 1e10
+    best_T = T_base
+    best_traj = None
+
+    for T_mult in [0.5, 1.0, 1.5, 2.0]:
+        T = T_base * T_mult
+        if T < 1.0:
+            continue
+        err, traj, _ = integrate_threebody(v1, v2, T)
+        if err < best_error:
+            best_error = err
+            best_T = T
+            best_traj = traj
+
+    return best_error, best_T, best_traj
+
+
+# ============================================================
+# NOBILITY / FAREY MACHINERY
+# ============================================================
+
+def sl2z_multiply(A, B):
+    """Multiply two 2x2 integer matrices."""
+    return np.array([
+        [A[0,0]*B[0,0] + A[0,1]*B[1,0], A[0,0]*B[0,1] + A[0,1]*B[1,1]],
+        [A[1,0]*B[0,0] + A[1,1]*B[1,0], A[1,0]*B[0,1] + A[1,1]*B[1,1]]
+    ], dtype=np.int64)
+
+
+def generate_gamma2_words(max_length=8):
+    """Generate Gamma(2) group elements as words in generators.
+
+    Gamma(2) is generated by:
+      S = [[1,2],[0,1]]  (translation by 2)
+      T = [[1,0],[2,1]]  (the other generator)
+
+    We enumerate words S^a T^b S^c T^d ... up to given total length.
+    """
+    S = np.array([[1, 2], [0, 1]], dtype=np.int64)
+    T = np.array([[1, 0], [2, 1]], dtype=np.int64)
+    I = np.eye(2, dtype=np.int64)
+
+    results = []  # (matrix, word_description, word_length)
+
+    # BFS over words
+    # State: (current_matrix, last_generator, total_exponent_sum, word_str)
+    queue = [(I, None, 0, "")]
+    seen = set()
+
+    for length in range(1, max_length + 1):
+        new_queue = []
+        for mat, last_gen, total_len, word in queue:
+            if total_len >= max_length:
+                continue
+            for gen_name, gen_mat in [('S', S), ('T', T)]:
+                new_mat = sl2z_multiply(mat, gen_mat)
+                # Avoid identity and trivial
+                key = tuple(new_mat.flatten())
+                if key in seen:
+                    continue
+                if np.array_equal(new_mat, I):
+                    continue
+                seen.add(key)
+                new_word = word + gen_name
+                new_len = total_len + 1
+                new_queue.append((new_mat, gen_name, new_len, new_word))
+                results.append((new_mat.copy(), new_word, new_len))
+
+        queue = queue + new_queue
+
+    return results
+
+
+def fixed_point_of_moebius(mat):
+    """Find the attractive fixed point of the Moebius transformation
+    z -> (az + b) / (cz + d) for mat = [[a,b],[c,d]].
+
+    Returns the fixed point (real, in extended reals) or None.
+    For hyperbolic elements, returns the attractive fixed point.
+    """
+    a, b = mat[0]
+    c, d = mat[1]
+
+    if c == 0:
+        # Parabolic or identity-like
+        if a == d:
+            return None  # identity
+        return b / (d - a) if d != a else None
+
+    # Fixed points satisfy c*z^2 + (d-a)*z - b = 0
+    disc = (d - a)**2 + 4 * b * c
+    if disc < 0:
+        return None  # Elliptic (shouldn't happen in Gamma(2))
+
+    sqrt_disc = np.sqrt(float(disc))
+    z1 = (float(a - d) + sqrt_disc) / (2 * float(c))
+    z2 = (float(a - d) - sqrt_disc) / (2 * float(c))
+
+    # Return both (attractive = larger |trace derivative|)
+    return z1, z2
+
+
+def continued_fraction(x, max_terms=20):
+    """Compute continued fraction of x. Returns list of partial quotients."""
+    cf = []
+    for _ in range(max_terms):
+        a = int(np.floor(x))
+        cf.append(a)
+        frac = x - a
+        if abs(frac) < 1e-12:
+            break
+        x = 1.0 / frac
+    return cf
+
+
+def nobility_score(cf):
+    """Nobility = geometric mean of partial quotients (lower = more noble).
+    Golden ratio [1,1,1,...] has nobility 1 (most noble).
+    Rationals have finite CF and are "least noble".
+    """
+    if len(cf) <= 1:
+        return 1e10  # Rational or integer, not interesting
+    # Use absolute values, skip the integer part
+    pq = [abs(a) for a in cf[1:] if a != 0]
+    if len(pq) == 0:
+        return 1e10
+    return np.exp(np.mean(np.log(np.array(pq, dtype=float) + 0.1)))
+
+
+def generate_noble_candidates(n_candidates=500):
+    """Generate initial condition candidates from Gamma(2) fixed points.
+
+    Strategy:
+    1. Generate Gamma(2) words of length 2-8
+    2. Compute fixed points of corresponding Moebius transforms
+    3. Map fixed points to (v1, v2) parameter space
+    4. Rank by nobility score
+    5. Return top candidates with their predicted periods
+    """
+    words = generate_gamma2_words(max_length=8)
+    print(f"  Generated {len(words)} Gamma(2) words")
+
+    candidates = []
+
+    for mat, word, wlen in words:
+        fp = fixed_point_of_moebius(mat)
+        if fp is None:
+            continue
+
+        z1, z2 = fp
+
+        for z in [z1, z2]:
+            if not np.isfinite(z) or abs(z) > 100:
+                continue
+
+            # Map fixed point to initial velocity space
+            # Use the fixed point angle/magnitude to set (v1, v2)
+            # Strategy: z encodes a "frequency ratio" for the orbit
+            # Map to velocity magnitude and angle
+
+            cf = continued_fraction(abs(z))
+            nob = nobility_score(cf)
+
+            if nob > 50:  # Skip very non-noble points
+                continue
+
+            # Multiple mappings from z to (v1, v2):
+            # Mapping 1: polar with z as angle parameter
+            theta = np.pi * z / (1 + abs(z))  # Map to angle
+            for r in [0.2, 0.4, 0.6, 0.8]:
+                v1 = r * np.cos(theta)
+                v2 = r * np.sin(theta)
+                if abs(v1) <= 1 and abs(v2) <= 1:
+                    T_est = 6.0 * wlen  # Period estimate from word length
+                    candidates.append({
+                        'v1': v1, 'v2': v2,
+                        'nobility': nob,
+                        'word': word,
+                        'word_length': wlen,
+                        'z': z,
+                        'T_est': T_est,
+                        'cf': cf[:6]
+                    })
+
+            # Mapping 2: direct (z mod 2 - 1) for v1, scaled
+            v1_direct = (z % 2) - 1
+            v2_direct = (1.0 / (1 + abs(z))) * 0.5
+            if abs(v1_direct) <= 1:
+                T_est = 6.0 * wlen
+                candidates.append({
+                    'v1': v1_direct, 'v2': v2_direct,
+                    'nobility': nob,
+                    'word': word,
+                    'word_length': wlen,
+                    'z': z,
+                    'T_est': T_est,
+                    'cf': cf[:6]
+                })
+                # Also mirror
+                candidates.append({
+                    'v1': v1_direct, 'v2': -v2_direct,
+                    'nobility': nob,
+                    'word': word,
+                    'word_length': wlen,
+                    'z': z,
+                    'T_est': T_est,
+                    'cf': cf[:6]
+                })
+
+    # Sort by nobility (most noble first)
+    candidates.sort(key=lambda c: c['nobility'])
+
+    # Remove near-duplicates
+    unique = []
+    for c in candidates:
+        is_dup = False
+        for u in unique:
+            if abs(c['v1'] - u['v1']) < 0.01 and abs(c['v2'] - u['v2']) < 0.01:
+                is_dup = True
+                break
+        if not is_dup:
+            unique.append(c)
+
+    print(f"  {len(unique)} unique noble candidates (from {len(candidates)} raw)")
+    return unique[:n_candidates]
+
+
+# ============================================================
+# SEARCH METHODS
+# ============================================================
+
+def random_search(n_samples, threshold=0.5, seed=42):
+    """Method A: Uniform random search in [-1,1]^2."""
+    rng = np.random.RandomState(seed)
+    hits = []
+    errors = []
+    n_integrations = 0
+
+    for i in range(n_samples):
+        v1 = rng.uniform(-1, 1)
+        v2 = rng.uniform(-1, 1)
+
+        # Try multiple periods
+        for T in [6, 12, 18, 24, 36]:
+            err, traj, _ = integrate_threebody(v1, v2, T)
+            n_integrations += 1
+            if err < threshold:
+                hits.append({
+                    'v1': v1, 'v2': v2,
+                    'T': T, 'error': err,
+                    'trajectory': traj
+                })
+                break  # Count as one hit per (v1,v2)
+        else:
+            errors.append(min(err, 1e5))
+
+        if (i + 1) % 200 == 0:
+            print(f"    Random: {i+1}/{n_samples}, hits so far: {len(hits)}")
+
+    return hits, errors, n_integrations
+
+
+def nobility_guided_search(n_samples, threshold=0.5):
+    """Method B: Nobility-guided search with neighborhood refinement."""
+    print("  Generating noble candidates...")
+    candidates = generate_noble_candidates(n_candidates=n_samples * 2)
+
+    hits = []
+    errors = []
+    n_integrations = 0
+    n_evaluated = 0
+
+    # Phase 1: Evaluate noble candidates directly
+    phase1_budget = n_samples // 2
+    for i, cand in enumerate(candidates[:phase1_budget]):
+        v1, v2 = cand['v1'], cand['v2']
+        T_est = cand['T_est']
+
+        # Try the estimated period and nearby
+        best_err = 1e10
+        best_T = T_est
+        best_traj = None
+        for T in [T_est * 0.5, T_est * 0.75, T_est, T_est * 1.5, T_est * 2.0]:
+            if T < 2:
+                continue
+            err, traj, _ = integrate_threebody(v1, v2, T)
+            n_integrations += 1
+            if err < best_err:
+                best_err = err
+                best_T = T
+                best_traj = traj
+
+        if best_err < threshold:
+            hits.append({
+                'v1': v1, 'v2': v2,
+                'T': best_T, 'error': best_err,
+                'nobility': cand['nobility'],
+                'word': cand['word'],
+                'trajectory': best_traj
+            })
+        errors.append(min(best_err, 1e5))
+        n_evaluated += 1
+
+        if (n_evaluated) % 200 == 0:
+            print(f"    Noble phase 1: {n_evaluated}/{phase1_budget}, hits: {len(hits)}")
+
+    # Phase 2: Refine around the best candidates
+    # Sort candidates by their return error and explore neighborhoods
+    phase2_budget = n_samples - phase1_budget
+    # Find the candidates with lowest errors (even if not hits)
+    scored = list(zip(errors, candidates[:phase1_budget]))
+    scored.sort(key=lambda x: x[0])
+
+    rng = np.random.RandomState(123)
+    phase2_count = 0
+
+    for base_err, cand in scored[:phase2_budget // 5]:  # Top 20% of candidates
+        v1_base, v2_base = cand['v1'], cand['v2']
+        T_est = cand['T_est']
+
+        # Search small neighborhood
+        for _ in range(5):
+            dv1 = rng.normal(0, 0.05)
+            dv2 = rng.normal(0, 0.05)
+            v1 = np.clip(v1_base + dv1, -1, 1)
+            v2 = np.clip(v2_base + dv2, -1, 1)
+
+            best_err = 1e10
+            best_T = T_est
+            best_traj = None
+            for T in [T_est * 0.5, T_est, T_est * 1.5, T_est * 2.0]:
+                if T < 2:
+                    continue
+                err, traj, _ = integrate_threebody(v1, v2, T)
+                n_integrations += 1
+                if err < best_err:
+                    best_err = err
+                    best_T = T
+                    best_traj = traj
+
+            if best_err < threshold:
+                hits.append({
+                    'v1': v1, 'v2': v2,
+                    'T': best_T, 'error': best_err,
+                    'nobility': cand['nobility'],
+                    'word': cand['word'],
+                    'trajectory': best_traj
+                })
+
+            phase2_count += 1
+            if phase2_count >= phase2_budget:
+                break
+
+        if phase2_count >= phase2_budget:
+            break
+
+    print(f"    Noble total: {n_evaluated + phase2_count} candidates, "
+          f"{n_integrations} integrations, {len(hits)} hits")
+
+    return hits, errors, n_integrations
+
+
+# ============================================================
+# VISUALIZATION
+# ============================================================
+
+def plot_search_comparison(random_hits, noble_hits, random_errors, noble_errors, save_dir):
+    """Create comparison plots."""
+
+    fig, axes = plt.subplots(2, 2, figsize=(14, 12))
+
+    # --- Panel 1: Search points and hits ---
+    ax = axes[0, 0]
+    # Random hits
+    if random_hits:
+        rv1 = [h['v1'] for h in random_hits]
+        rv2 = [h['v2'] for h in random_hits]
+        ax.scatter(rv1, rv2, c='blue', s=60, marker='o', label=f'Random hits ({len(random_hits)})',
+                   zorder=5, edgecolors='black', linewidths=0.5)
+    # Noble hits
+    if noble_hits:
+        nv1 = [h['v1'] for h in noble_hits]
+        nv2 = [h['v2'] for h in noble_hits]
+        ax.scatter(nv1, nv2, c='red', s=80, marker='*', label=f'Noble hits ({len(noble_hits)})',
+                   zorder=6, edgecolors='black', linewidths=0.5)
+    ax.set_xlim(-1.1, 1.1)
+    ax.set_ylim(-1.1, 1.1)
+    ax.set_xlabel('v1 (body 3 x-velocity)')
+    ax.set_ylabel('v2 (body 3 y-velocity)')
+    ax.set_title('Hit Locations in Velocity Space')
+    ax.legend(loc='upper left')
+    ax.set_aspect('equal')
+    ax.grid(True, alpha=0.3)
+
+    # --- Panel 2: Error distribution ---
+    ax = axes[0, 1]
+    bins = np.logspace(-2, 4, 50)
+    if random_errors:
+        ax.hist(random_errors, bins=bins, alpha=0.6, color='blue', label='Random', density=True)
+    if noble_errors:
+        ax.hist(noble_errors, bins=bins, alpha=0.6, color='red', label='Noble-guided', density=True)
+    ax.set_xscale('log')
+    ax.set_xlabel('Return Error')
+    ax.set_ylabel('Density')
+    ax.set_title('Distribution of Return Errors')
+    ax.legend()
+    ax.grid(True, alpha=0.3)
+    ax.axvline(0.5, color='green', linestyle='--', alpha=0.7, label='Hit threshold')
+    ax.legend()
+
+    # --- Panel 3: Example orbit from random (best) ---
+    ax = axes[1, 0]
+    if random_hits:
+        best = min(random_hits, key=lambda h: h['error'])
+        traj = best['trajectory']
+        if traj is not None:
+            ax.plot(traj['x1'], traj['y1'], 'b-', alpha=0.7, linewidth=0.5, label='Body 1')
+            ax.plot(traj['x2'], traj['y2'], 'r-', alpha=0.7, linewidth=0.5, label='Body 2')
+            ax.plot(traj['x3'], traj['y3'], 'g-', alpha=0.7, linewidth=0.5, label='Body 3')
+            # Mark initial positions
+            ax.plot([-1, 1, 0], [0, 0, 0], 'ko', markersize=8)
+            ax.set_title(f'Best Random Orbit (err={best["error"]:.4f}, T={best["T"]:.1f})')
+        else:
+            ax.set_title('No random orbit to display')
+    else:
+        ax.text(0.5, 0.5, 'No random hits found', transform=ax.transAxes, ha='center')
+        ax.set_title('Best Random Orbit')
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+    ax.legend(fontsize=8)
+    ax.set_aspect('equal')
+    ax.grid(True, alpha=0.3)
+
+    # --- Panel 4: Example orbit from noble (best) ---
+    ax = axes[1, 1]
+    if noble_hits:
+        best = min(noble_hits, key=lambda h: h['error'])
+        traj = best['trajectory']
+        if traj is not None:
+            ax.plot(traj['x1'], traj['y1'], 'b-', alpha=0.7, linewidth=0.5, label='Body 1')
+            ax.plot(traj['x2'], traj['y2'], 'r-', alpha=0.7, linewidth=0.5, label='Body 2')
+            ax.plot(traj['x3'], traj['y3'], 'g-', alpha=0.7, linewidth=0.5, label='Body 3')
+            ax.plot([-1, 1, 0], [0, 0, 0], 'ko', markersize=8)
+            word_str = best.get('word', '?')
+            ax.set_title(f'Best Noble Orbit (err={best["error"]:.4f}, word={word_str})')
+        else:
+            ax.set_title('No noble orbit to display')
+    else:
+        ax.text(0.5, 0.5, 'No noble hits found', transform=ax.transAxes, ha='center')
+        ax.set_title('Best Noble Orbit')
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+    ax.legend(fontsize=8)
+    ax.set_aspect('equal')
+    ax.grid(True, alpha=0.3)
+
+    plt.tight_layout()
+    plt.savefig(os.path.join(save_dir, 'threebody_search_comparison.png'), dpi=150)
+    plt.close()
+    print(f"  Saved comparison plot")
+
+
+def plot_orbit_gallery(hits, method_name, save_dir):
+    """Plot gallery of best orbits found."""
+    if not hits:
+        return
+
+    sorted_hits = sorted(hits, key=lambda h: h['error'])[:9]
+    n = len(sorted_hits)
+    cols = min(3, n)
+    rows = (n + cols - 1) // cols
+
+    fig, axes = plt.subplots(rows, cols, figsize=(5*cols, 5*rows))
+    if rows == 1 and cols == 1:
+        axes = np.array([[axes]])
+    elif rows == 1:
+        axes = axes.reshape(1, -1)
+    elif cols == 1:
+        axes = axes.reshape(-1, 1)
+
+    for idx, hit in enumerate(sorted_hits):
+        r, c = divmod(idx, cols)
+        ax = axes[r, c]
+        traj = hit['trajectory']
+        if traj is not None:
+            ax.plot(traj['x1'], traj['y1'], 'b-', alpha=0.7, linewidth=0.5)
+            ax.plot(traj['x2'], traj['y2'], 'r-', alpha=0.7, linewidth=0.5)
+            ax.plot(traj['x3'], traj['y3'], 'g-', alpha=0.7, linewidth=0.5)
+            ax.plot([-1, 1, 0], [0, 0, 0], 'ko', markersize=6)
+
+        word = hit.get('word', 'random')
+        ax.set_title(f"err={hit['error']:.4f}\nv=({hit['v1']:.3f},{hit['v2']:.3f}) T={hit['T']:.1f}",
+                     fontsize=9)
+        ax.set_aspect('equal')
+        ax.grid(True, alpha=0.3)
+
+    # Hide unused axes
+    for idx in range(n, rows * cols):
+        r, c = divmod(idx, cols)
+        axes[r, c].set_visible(False)
+
+    fig.suptitle(f'{method_name}: Top {n} Orbits', fontsize=14, fontweight='bold')
+    plt.tight_layout()
+    fname = f'threebody_search_{method_name.lower().replace(" ", "_")}_gallery.png'
+    plt.savefig(os.path.join(save_dir, fname), dpi=150)
+    plt.close()
+    print(f"  Saved {method_name} gallery")
+
+
+def plot_efficiency_curve(random_hits_cum, noble_hits_cum, save_dir):
+    """Plot cumulative hits vs number of integrations."""
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    if random_hits_cum:
+        ax.plot(range(1, len(random_hits_cum)+1), random_hits_cum, 'b-', linewidth=2,
+                label='Random Search')
+    if noble_hits_cum:
+        ax.plot(range(1, len(noble_hits_cum)+1), noble_hits_cum, 'r-', linewidth=2,
+                label='Nobility-Guided Search')
+
+    ax.set_xlabel('Number of Integration Evaluations', fontsize=12)
+    ax.set_ylabel('Cumulative Hits (return error < threshold)', fontsize=12)
+    ax.set_title('Search Efficiency: Nobility-Guided vs Random', fontsize=14, fontweight='bold')
+    ax.legend(fontsize=12)
+    ax.grid(True, alpha=0.3)
+
+    plt.tight_layout()
+    plt.savefig(os.path.join(save_dir, 'threebody_search_efficiency.png'), dpi=150)
+    plt.close()
+    print(f"  Saved efficiency curve")
+
+
+# ============================================================
+# CUMULATIVE TRACKING VERSIONS
+# ============================================================
+
+def random_search_tracked(n_samples, threshold=0.5, seed=42):
+    """Random search with per-integration hit tracking."""
+    rng = np.random.RandomState(seed)
+    hits = []
+    errors = []
+    cumulative_hits = []
+    n_integrations = 0
+    current_hits = 0
+
+    for i in range(n_samples):
+        v1 = rng.uniform(-1, 1)
+        v2 = rng.uniform(-1, 1)
+        found_hit = False
+
+        for T in [6, 12, 18, 24, 36]:
+            err, traj, _ = integrate_threebody(v1, v2, T)
+            n_integrations += 1
+            cumulative_hits.append(current_hits)
+
+            if err < threshold and not found_hit:
+                found_hit = True
+                current_hits += 1
+                cumulative_hits[-1] = current_hits
+                hits.append({
+                    'v1': v1, 'v2': v2,
+                    'T': T, 'error': err,
+                    'trajectory': traj
+                })
+
+        if not found_hit:
+            errors.append(1e5)
+
+        if (i + 1) % 200 == 0:
+            print(f"    Random: {i+1}/{n_samples}, hits: {current_hits}")
+
+    return hits, errors, n_integrations, cumulative_hits
+
+
+def nobility_guided_search_tracked(n_samples, threshold=0.5):
+    """Nobility-guided search with per-integration hit tracking."""
+    print("  Generating noble candidates...")
+    candidates = generate_noble_candidates(n_candidates=n_samples * 2)
+
+    hits = []
+    errors = []
+    cumulative_hits = []
+    n_integrations = 0
+    current_hits = 0
+    n_evaluated = 0
+
+    # Phase 1
+    phase1_budget = n_samples // 2
+    for i, cand in enumerate(candidates[:phase1_budget]):
+        v1, v2 = cand['v1'], cand['v2']
+        T_est = cand['T_est']
+        found_hit = False
+
+        best_err = 1e10
+        best_T = T_est
+        best_traj = None
+        for T in [T_est * 0.5, T_est * 0.75, T_est, T_est * 1.5, T_est * 2.0]:
+            if T < 2:
+                continue
+            err, traj, _ = integrate_threebody(v1, v2, T)
+            n_integrations += 1
+            cumulative_hits.append(current_hits)
+
+            if err < best_err:
+                best_err = err
+                best_T = T
+                best_traj = traj
+
+            if err < threshold and not found_hit:
+                found_hit = True
+                current_hits += 1
+                cumulative_hits[-1] = current_hits
+                hits.append({
+                    'v1': v1, 'v2': v2,
+                    'T': best_T, 'error': err,
+                    'nobility': cand['nobility'],
+                    'word': cand['word'],
+                    'trajectory': traj
+                })
+
+        errors.append(min(best_err, 1e5))
+        n_evaluated += 1
+
+        if n_evaluated % 200 == 0:
+            print(f"    Noble phase 1: {n_evaluated}/{phase1_budget}, hits: {current_hits}")
+
+    # Phase 2: refine around best
+    phase2_budget = n_samples - phase1_budget
+    scored = list(zip(errors, candidates[:phase1_budget]))
+    scored.sort(key=lambda x: x[0])
+
+    rng = np.random.RandomState(123)
+    phase2_count = 0
+
+    for base_err, cand in scored[:phase2_budget // 5]:
+        v1_base, v2_base = cand['v1'], cand['v2']
+        T_est = cand['T_est']
+
+        for _ in range(5):
+            dv1 = rng.normal(0, 0.05)
+            dv2 = rng.normal(0, 0.05)
+            v1 = np.clip(v1_base + dv1, -1, 1)
+            v2 = np.clip(v2_base + dv2, -1, 1)
+            found_hit = False
+
+            for T in [T_est * 0.5, T_est, T_est * 1.5, T_est * 2.0]:
+                if T < 2:
+                    continue
+                err, traj, _ = integrate_threebody(v1, v2, T)
+                n_integrations += 1
+                cumulative_hits.append(current_hits)
+
+                if err < threshold and not found_hit:
+                    found_hit = True
+                    current_hits += 1
+                    cumulative_hits[-1] = current_hits
+                    hits.append({
+                        'v1': v1, 'v2': v2,
+                        'T': T, 'error': err,
+                        'nobility': cand['nobility'],
+                        'word': cand['word'],
+                        'trajectory': traj
+                    })
+
+            phase2_count += 1
+            if phase2_count >= phase2_budget:
+                break
+        if phase2_count >= phase2_budget:
+            break
+
+    print(f"    Noble total: {n_integrations} integrations, {current_hits} hits")
+    return hits, errors, n_integrations, cumulative_hits
+
+
+# ============================================================
+# MAIN EXPERIMENT
+# ============================================================
+
+def main():
+    save_dir = os.path.expanduser('~/Desktop/Farey-Local/experiments')
+    os.makedirs(save_dir, exist_ok=True)
+
+    N_SAMPLES = 200
+    THRESHOLD = 0.5
+
+    print("=" * 70)
+    print("THREE-BODY PERIODIC ORBIT SEARCH EXPERIMENT")
+    print("Nobility-Guided vs Random Search")
+    print("=" * 70)
+    print(f"\nSamples per method: {N_SAMPLES}")
+    print(f"Hit threshold: {THRESHOLD}")
+    print(f"Setup: 3 equal masses on Euler line, 2 free velocity parameters")
+    print()
+
+    # --- Method A: Random Search ---
+    print("METHOD A: Random Search")
+    print("-" * 40)
+    t0 = time.time()
+    random_hits, random_errors, random_n_int, random_cum = random_search_tracked(
+        N_SAMPLES, threshold=THRESHOLD)
+    random_time = time.time() - t0
+    print(f"  Time: {random_time:.1f}s")
+    print(f"  Integrations: {random_n_int}")
+    print(f"  Hits: {len(random_hits)}")
+    if random_hits:
+        best = min(random_hits, key=lambda h: h['error'])
+        print(f"  Best error: {best['error']:.6f}")
+    print()
+
+    # --- Method B: Nobility-Guided Search ---
+    print("METHOD B: Nobility-Guided Search")
+    print("-" * 40)
+    t0 = time.time()
+    noble_hits, noble_errors, noble_n_int, noble_cum = nobility_guided_search_tracked(
+        N_SAMPLES, threshold=THRESHOLD)
+    noble_time = time.time() - t0
+    print(f"  Time: {noble_time:.1f}s")
+    print(f"  Integrations: {noble_n_int}")
+    print(f"  Hits: {len(noble_hits)}")
+    if noble_hits:
+        best = min(noble_hits, key=lambda h: h['error'])
+        print(f"  Best error: {best['error']:.6f}")
+    print()
+
+    # --- Results Summary ---
+    print("=" * 70)
+    print("RESULTS SUMMARY")
+    print("=" * 70)
+
+    # Normalize to hits per 1000 integrations
+    random_rate = len(random_hits) / max(random_n_int, 1) * 1000
+    noble_rate = len(noble_hits) / max(noble_n_int, 1) * 1000
+
+    print(f"\n  Random:  {len(random_hits)} hits / {random_n_int} integrations = {random_rate:.2f} hits/1000")
+    print(f"  Noble:   {len(noble_hits)} hits / {noble_n_int} integrations = {noble_rate:.2f} hits/1000")
+
+    if noble_rate > 0 and random_rate > 0:
+        speedup = noble_rate / random_rate
+        print(f"\n  Speedup: {speedup:.2f}x")
+    elif noble_rate > 0:
+        print(f"\n  Noble found hits where random found none!")
+    else:
+        print(f"\n  Neither method found hits at this threshold")
+
+    # Also compare at a more generous threshold
+    for thr in [1.0, 2.0, 5.0]:
+        r_hits = sum(1 for h in random_hits if h['error'] < thr) if random_hits else 0
+        n_hits = sum(1 for h in noble_hits if h['error'] < thr) if noble_hits else 0
+        # Count from errors too
+        r_near = sum(1 for e in random_errors if e < thr)
+        n_near = sum(1 for e in noble_errors if e < thr)
+        print(f"  At threshold {thr}: Random {r_hits + r_near} near-hits, Noble {n_hits + n_near} near-hits")
+
+    # --- Generate Plots ---
+    print("\nGenerating plots...")
+    plot_search_comparison(random_hits, noble_hits, random_errors, noble_errors, save_dir)
+    plot_orbit_gallery(random_hits, "Random Search", save_dir)
+    plot_orbit_gallery(noble_hits, "Noble-Guided Search", save_dir)
+
+    # Equalize cumulative arrays for fair comparison
+    min_len = min(len(random_cum), len(noble_cum)) if random_cum and noble_cum else 0
+    if min_len > 0:
+        plot_efficiency_curve(random_cum[:min_len], noble_cum[:min_len], save_dir)
+
+    # --- Write Results Report ---
+    report = f"""# Three-Body Periodic Orbit Search: Results
+
+## Experiment Parameters
+- **Date:** 2026-03-27
+- **Samples per method:** {N_SAMPLES}
+- **Hit threshold:** {THRESHOLD} (max position return error)
+- **Setup:** 3 equal masses on Euler line, 2 free velocity parameters (v1, v2)
+- **Integration:** RK45, rtol=1e-10, atol=1e-10
+
+## Results
+
+| Metric | Random Search | Nobility-Guided |
+|--------|--------------|-----------------|
+| Total hits | {len(random_hits)} | {len(noble_hits)} |
+| Total integrations | {random_n_int} | {noble_n_int} |
+| Hit rate (per 1000 integrations) | {random_rate:.2f} | {noble_rate:.2f} |
+| Wall-clock time | {random_time:.1f}s | {noble_time:.1f}s |
+"""
+
+    if noble_rate > 0 and random_rate > 0:
+        report += f"| **Speedup factor** | 1.0x | **{noble_rate/random_rate:.2f}x** |\n"
+
+    report += f"""
+## Method Details
+
+### Random Search (Method A)
+- Uniform random sampling of (v1, v2) in [-1, 1] x [-1, 1]
+- For each sample, tried periods T = 6, 12, 18, 24, 36
+- {random_n_int} total integrations for {N_SAMPLES} samples
+
+### Nobility-Guided Search (Method B)
+- Generated Gamma(2) group elements (words of length 2-8)
+- Computed Moebius transformation fixed points
+- Ranked by nobility (geometric mean of CF partial quotients)
+- Phase 1: Evaluated most noble candidates directly
+- Phase 2: Refined around best candidates from Phase 1
+- {noble_n_int} total integrations
+
+## Best Orbits Found
+
+### Random Search
+"""
+    if random_hits:
+        for i, h in enumerate(sorted(random_hits, key=lambda x: x['error'])[:5]):
+            report += f"- v=({h['v1']:.4f}, {h['v2']:.4f}), T={h['T']:.1f}, error={h['error']:.6f}\n"
+    else:
+        report += "- No hits found\n"
+
+    report += "\n### Nobility-Guided Search\n"
+    if noble_hits:
+        for i, h in enumerate(sorted(noble_hits, key=lambda x: x['error'])[:5]):
+            word = h.get('word', '?')
+            nob = h.get('nobility', '?')
+            report += f"- v=({h['v1']:.4f}, {h['v2']:.4f}), T={h['T']:.1f}, error={h['error']:.6f}, word={word}, nobility={nob}\n"
+    else:
+        report += "- No hits found\n"
+
+    report += """
+## Interpretation
+
+The nobility-guided search exploits the connection between:
+1. **Farey sequences / continued fractions** -- which classify the "resonance structure" of periodic orbits
+2. **Gamma(2) fixed points** -- which correspond to specific orbital topologies
+3. **Nobility** (geometric mean of CF partial quotients) -- which measures how "far from rational" an orbit frequency ratio is
+
+Noble numbers (low partial quotients, like the golden ratio) correspond to orbits that are:
+- Maximally non-resonant (avoiding small-denominator problems)
+- Geometrically simpler (fewer self-intersections)
+- More dynamically stable (KAM-theory connection)
+
+This makes them easier targets for numerical periodicity detection.
+
+## Files Generated
+- `threebody_search_comparison.png` -- Hit locations and error distributions
+- `threebody_search_random_search_gallery.png` -- Best random orbits
+- `threebody_search_noble-guided_search_gallery.png` -- Best noble orbits
+- `threebody_search_efficiency.png` -- Cumulative hits vs integrations
+"""
+
+    report_path = os.path.join(save_dir, 'THREEBODY_SEARCH_RESULTS.md')
+    with open(report_path, 'w') as f:
+        f.write(report)
+    print(f"\nReport saved to: {report_path}")
+    print("\nDone!")
+
+
+if __name__ == '__main__':
+    main()

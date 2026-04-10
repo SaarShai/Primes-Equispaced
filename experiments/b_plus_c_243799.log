@@ -1,0 +1,21 @@
+
+=== p = 243799 ===
+Sieving to 243798...
+Sieve: 0.0 sec
+M(243798) = -2, M(243799) = -3
+T(243798) = 0.165222, alpha ~ 0.834778
+|F_243798| = 18066862385 (0.0 sec)
+Streaming Farey sequence (~18066862385 fractions)...
+  2000000000 fractions (6 sec, 338.8M/s), B'=9.795e+08, C'=5.640e+08
+  4000000000 fractions (12 sec, 339.9M/s), B'=-1.052e+10, C'=9.557e+08
+  6000000000 fractions (18 sec, 340.3M/s), B'=-1.320e+10, C'=1.224e+09
+  8000000000 fractions (23 sec, 340.7M/s), B'=-1.177e+09, C'=1.418e+09
+  10000000000 fractions (29 sec, 340.9M/s), B'=-3.450e+09, C'=1.587e+09
+  12000000000 fractions (35 sec, 341.1M/s), B'=6.972e+09, C'=1.779e+09
+  14000000000 fractions (41 sec, 341.2M/s), B'=5.417e+09, C'=2.044e+09
+  16000000000 fractions (47 sec, 341.3M/s), B'=-7.912e+09, C'=2.431e+09
+  18000000000 fractions (53 sec, 341.4M/s), B'=-2.977e+10, C'=2.989e+09
+Done: 18066862383 interior fractions in 52.9 sec (341.4M/s)
+CHECK: sum(delta) = 1.019668e-07 (should be ~0)
+CHECK: sum(f*delta) = 1.505387e+09, C'/2 = 1.505387e+09, ratio = 1.000000
+p=243799  T=0.1652  alpha~0.8348  B'/C'=-3.052438  rho~-3.8872  (1+B'/C')=-2.052438  B+C>0: **NO**

@@ -1,0 +1,55 @@
+/Users/saar/Desktop/Farey-Local/experiments/farey_3dgs_sota_comparison.py:82: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/utils/tensor_new.cpp:256.)
+  BUMP_CENTERS_T = torch.tensor([b[0] for b in BUMPS], device=DEVICE, dtype=torch.float32)
+Using MPS (Apple Metal GPU)
+Generating sample points ...
+  Target density range: [0.000, 2.045]
+  Target density mean: 0.1502
+======================================================================
+  3DGS SOTA Densification Comparison
+  Methods: ADC | Farey | 3DGS-MCMC | Revising | SteepGS
+  Device: mps
+  Config: MAX_GAUSS=1500, STEPS=7000, SAMPLES=50000
+  Target: 50 multi-scale bumps (8 coarse + 18 medium + 24 fine)
+  Init: 4^3 = 64 Gaussians (underfitting regime)
+======================================================================
+
+  [1/5] Training Standard ADC ...
+    step   500  MSE=0.000040  K=  394  t=12.5s
+    step  1000  MSE=0.000011  K=  394  t=28.9s
+    step  1500  MSE=0.000007  K=  394  t=46.4s
+    step  2000  MSE=0.000005  K=  394  t=64.5s
+    step  2500  MSE=0.000004  K=  394  t=83.7s
+    step  3000  MSE=0.000003  K=  396  t=103.4s
+    step  3500  MSE=0.000001  K=  396  t=123.2s
+    step  4000  MSE=0.000001  K=  396  t=143.6s
+    step  4500  MSE=0.000001  K=  412  t=168.1s
+    step  5000  MSE=0.000000  K=  412  t=186.2s
+    step  5500  MSE=0.000000  K=  412  t=200.2s
+    step  6000  MSE=0.000000  K=  414  t=221.1s
+    step  6500  MSE=0.000001  K=  414  t=241.4s
+    step  7000  MSE=0.000001  K=  414  t=263.4s
+  ADC done in 263.4s  Final MSE=0.000001  K=414
+Traceback (most recent call last):
+  File "/Users/saar/Desktop/Farey-Local/experiments/farey_3dgs_sota_comparison.py", line 1044, in <module>
+    all_params[name] = (mu, log_sigma, w_val)
+NameError: name 'mu' is not defined
+    step  2000  MSE=0.008632  K=  424  t=94.4s
+    step  2500  MSE=0.008361  K=  544  t=113.4s
+    step  3000  MSE=0.007889  K=  624  t=135.7s
+    step  3500  MSE=0.007991  K=  744  t=159.0s
+    step  4000  MSE=0.008076  K=  824  t=184.9s
+    step  4500  MSE=0.008249  K=  944  t=217.0s
+    step  5000  MSE=0.008286  K= 1024  t=249.2s
+    step  5500  MSE=0.008244  K= 1144  t=288.7s
+    step  6000  MSE=0.007971  K= 1144  t=323.5s
+    step  6500  MSE=0.007143  K= 1144  t=356.6s
+    step  7000  MSE=0.007235  K= 1144  t=389.9s
+  MCMC done in 389.9s  Final MSE=0.007235  K=1144
+
+  [4/5] Training Revising Densification ...
+Traceback (most recent call last):
+  File "/Users/saar/Desktop/Farey-Local/experiments/farey_3dgs_sota_comparison.py", line 984, in <module>
+    print("  Methods: ADC | Farey | 3DGS-MCMC | Revising | SteepGS")
+  File "/Users/saar/Desktop/Farey-Local/experiments/farey_3dgs_sota_comparison.py", line 569, in train_revising
+    dir_norm = torch.norm(direction).clamp(min=1e-8)
+RuntimeError: torch.cat(): all input tensors must be on the same device. Received mps:0 and cpu

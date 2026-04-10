@@ -1,0 +1,3 @@
+Experiment Complete.
+Report saved to: /Users/saar/Desktop/Farey-Local/experiments/GENE_PERIODICITY_TEST.md
+Figures saved to: /Users/saar/Desktop/Farey-Local/figures/GENE_PERIODICITY_ILLUSTRATION.png

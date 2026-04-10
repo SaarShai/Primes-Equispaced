@@ -1,0 +1,136 @@
+Using MPS (Apple Metal GPU)
+Generating sample points ...
+  Target density range: [0.000, 2.045]
+  Target density mean: 0.1502
+======================================================================
+  Displacement-Guided Farey Densification Benchmark
+  Novel: D(f) = rank(f) - K*f as local error estimator
+  Device: mps
+  Config: MAX_GAUSS=1500, STEPS=7000, SAMPLES=50000
+  Target: 50 multi-scale bumps (8 coarse + 18 medium + 24 fine)
+  Init: 4^3 = 64 Gaussians
+  Methods: ADC, Classical Farey, Disp alpha=0/1/2
+======================================================================
+
+  [1/5] Training Standard ADC ...
+  Config: MAX_GAUSS=1500, STEPS=7000, N_SAMPLE=50000
+    step   500  MSE=0.000040  K=  394  t=17.0s
+    step  1000  MSE=0.000011  K=  394  t=39.7s
+    step  1500  MSE=0.000007  K=  394  t=61.0s
+    step  2000  MSE=0.000005  K=  394  t=83.2s
+    step  2500  MSE=0.000004  K=  394  t=105.1s
+    step  3000  MSE=0.000003  K=  396  t=127.2s
+    step  3500  MSE=0.000001  K=  396  t=149.5s
+    step  4000  MSE=0.000001  K=  396  t=172.1s
+    step  4500  MSE=0.000001  K=  412  t=195.3s
+    step  5000  MSE=0.000000  K=  412  t=219.6s
+    step  5500  MSE=0.000000  K=  412  t=243.8s
+    step  6000  MSE=0.000000  K=  414  t=267.5s
+    step  6500  MSE=0.000001  K=  414  t=291.4s
+    step  7000  MSE=0.000001  K=  414  t=315.7s
+  ADC done in 315.7s  Final MSE=0.000001  K=414
+
+  [2/5] Training Classical Farey ...
+  Config: MAX_GAUSS=1500, STEPS=7000, N_SAMPLE=50000
+    step   500  MSE=0.000038  K=  244  t=11.5s
+    step  1000  MSE=0.000009  K=  244  t=31.1s
+    step  1500  MSE=0.000007  K=  244  t=50.1s
+    step  2000  MSE=0.000005  K=  244  t=68.4s
+    step  2500  MSE=0.000003  K=  244  t=86.6s
+    step  3000  MSE=0.000002  K=  244  t=103.7s
+    step  3500  MSE=0.000002  K=  244  t=120.9s
+    step  4000  MSE=0.000001  K=  244  t=138.5s
+    step  4500  MSE=0.000001  K=  244  t=156.9s
+    step  5000  MSE=0.000001  K=  244  t=174.4s
+    step  5500  MSE=0.000002  K=  274  t=192.5s
+    step  6000  MSE=0.000001  K=  274  t=212.8s
+    step  6500  MSE=0.000000  K=  274  t=228.1s
+    step  7000  MSE=0.000000  K=  274  t=243.6s
+  Farey done in 243.6s  Final MSE=0.000000  K=274
+
+  [3/5] Displacement-guided alpha=0 (gradient only) ...
+
+  Training Displacement-Guided Farey (alpha=0) ...
+  Config: MAX_GAUSS=1500, STEPS=7000, alpha=0.0
+    step   500  MSE=0.000038  K=  374  t=16.8s
+    step  1000  MSE=0.000015  K=  374  t=38.1s
+    step  1500  MSE=0.000011  K=  374  t=59.6s
+    step  2000  MSE=0.000008  K=  374  t=82.1s
+    step  2500  MSE=0.000006  K=  374  t=102.6s
+    step  3000  MSE=0.000003  K=  376  t=122.6s
+    step  3500  MSE=0.000002  K=  376  t=141.7s
+    step  4000  MSE=0.000002  K=  376  t=161.2s
+    step  4500  MSE=0.000001  K=  430  t=182.5s
+    step  5000  MSE=0.000001  K=  430  t=204.8s
+    step  5500  MSE=0.000000  K=  430  t=226.3s
+    step  6000  MSE=0.000000  K=  430  t=247.2s
+    step  6500  MSE=0.000000  K=  430  t=267.6s
+    step  7000  MSE=0.000000  K=  430  t=289.5s
+  disp_a0 done in 289.5s  Final MSE=0.000000  K=430
+
+  [4/5] Displacement-guided alpha=1 (balanced) ...
+
+  Training Displacement-Guided Farey (alpha=1) ...
+  Config: MAX_GAUSS=1500, STEPS=7000, alpha=1.0
+    step   500  MSE=0.000038  K=  374  t=13.4s
+    step  1000  MSE=0.000015  K=  374  t=32.8s
+    step  1500  MSE=0.000011  K=  374  t=51.9s
+    step  2000  MSE=0.000008  K=  374  t=70.6s
+    step  2500  MSE=0.000005  K=  376  t=88.1s
+    step  3000  MSE=0.000002  K=  376  t=105.3s
+    step  3500  MSE=0.000002  K=  376  t=123.6s
+    step  4000  MSE=0.000001  K=  396  t=142.1s
+    step  4500  MSE=0.000001  K=  396  t=161.8s
+    step  5000  MSE=0.000000  K=  396  t=180.6s
+    step  5500  MSE=0.000000  K=  396  t=200.0s
+    step  6000  MSE=0.000000  K=  396  t=220.6s
+    step  6500  MSE=0.000000  K=  396  t=240.7s
+    step  7000  MSE=0.000000  K=  396  t=261.4s
+  disp_a1 done in 261.4s  Final MSE=0.000000  K=396
+
+  [5/5] Displacement-guided alpha=2 (displacement-heavy) ...
+
+  Training Displacement-Guided Farey (alpha=2) ...
+  Config: MAX_GAUSS=1500, STEPS=7000, alpha=2.0
+    step   500  MSE=0.000038  K=  374  t=15.3s
+    step  1000  MSE=0.000015  K=  374  t=34.6s
+    step  1500  MSE=0.000011  K=  374  t=54.3s
+    step  2000  MSE=0.000008  K=  374  t=74.3s
+    step  2500  MSE=0.000004  K=  376  t=94.6s
+    step  3000  MSE=0.000002  K=  378  t=114.9s
+    step  3500  MSE=0.000001  K=  378  t=136.3s
+    step  4000  MSE=0.000001  K=  402  t=158.0s
+    step  4500  MSE=0.000001  K=  402  t=180.0s
+    step  5000  MSE=0.000000  K=  402  t=202.2s
+    step  5500  MSE=0.000000  K=  402  t=224.6s
+    step  6000  MSE=0.000000  K=  406  t=246.5s
+    step  6500  MSE=0.000000  K=  406  t=269.0s
+    step  7000  MSE=0.000000  K=  406  t=290.9s
+  disp_a2 done in 290.9s  Final MSE=0.000000  K=406
+
+  Evaluating on test set ...
+
+================================================================================
+  RESULTS: Displacement-Guided Farey Densification
+================================================================================
+
+Metric                                      adc       farey     disp_a0     disp_a1     disp_a2
+------------------------------------------------------------------------------------------
+test_mse                               0.000003    0.000001    0.000000    0.000000    0.000000
+test_psnr                                 59.69       67.79       69.26       71.28       71.68
+test_mse_smooth                        0.000016    0.000000    0.000001    0.000000    0.000000
+test_mse_detail                        0.000004    0.000001    0.000001    0.000000    0.000000
+final_gaussians                             414         274         430         396         406
+training_time_s                           315.7       243.6       289.5       261.4       290.9
+
+  Best overall (test MSE): disp_a2
+  Disp alpha=1 vs ADC: 93.07%
+  Disp alpha=1 vs Classical Farey: 55.29%
+  Best vs ADC: 93.68%
+
+  Results saved to /Users/saar/Desktop/Farey-Local/experiments/3dgs_results/displacement_guided_results.json
+
+Generating figures ...
+  Saved figures to /Users/saar/Desktop/Farey-Local/experiments/3dgs_results/
+
+=== Displacement-Guided Benchmark Complete ===

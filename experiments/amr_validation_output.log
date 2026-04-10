@@ -1,0 +1,20 @@
+AMR REAL-WORLD VALIDATION EXPERIMENTS
+======================================================================
+Testing whether Farey AMR's claimed advantages hold on realistic data
+
+
+======================================================================
+EXPERIMENT 1: Realistic 2D Flow Fields
+======================================================================
+
+--- Lamb-Oseen Vortex ---
+  tol=0.1... Farey=508, Quad=264, ratio=0.52x, cascade=0
+  tol=0.05... Farey=1052, Quad=480, ratio=0.46x, cascade=0
+  tol=0.02... Farey=2628, Quad=1248, ratio=0.47x, cascade=0
+  tol=0.01... Farey=4604, Quad=2016, ratio=0.44x, cascade=0
+  tol=0.005... Farey=6980, Quad=5040, ratio=0.72x, cascade=0
+
+--- Sod Shock Tube ---
+  tol=0.1... Farey=54, Quad=159, ratio=2.94x, cascade=6
+  tol=0.05... Farey=555, Quad=21744, ratio=39.18x, cascade=4170
+  tol=0.02... 

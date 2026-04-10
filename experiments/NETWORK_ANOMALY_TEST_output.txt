@@ -1,0 +1,44 @@
+Starting Network Anomaly Detection Test...
+Output directory: /Users/saar/Desktop/Farey-Local/experiments
+
+Running test with jitter_std=0s...
+  Botnet detection: LS SNR = inf dB, f^2 SNR = -6.79 dB
+  DDoS detection: LS SNR = inf dB, f^2 SNR = 18.64 dB
+
+Running test with jitter_std=1s...
+  Botnet detection: LS SNR = inf dB, f^2 SNR = -12.13 dB
+  DDoS detection: LS SNR = inf dB, f^2 SNR = 17.75 dB
+
+Running test with jitter_std=3s...
+  Botnet detection: LS SNR = inf dB, f^2 SNR = -16.15 dB
+  DDoS detection: LS SNR = inf dB, f^2 SNR = 16.80 dB
+
+Running test with jitter_std=5s...
+  Botnet detection: LS SNR = inf dB, f^2 SNR = -12.93 dB
+  DDoS detection: LS SNR = inf dB, f^2 SNR = 15.72 dB
+
+================================================================================
+NETWORK ANOMALY DETECTION: f^2 Spectral Compensation vs Lomb-Scargle
+================================================================================
+Simulation: 10000 background, 50 botnet, 20 DDoS per burst
+Botnet frequency: 0.033 Hz (period: 30s)
+DDoS frequency: 0.2 Hz (period: 5s, duration: 100s)
+================================================================================
+
+Jitter (s)   Method       Botnet SNR (dB)    DDoS SNR (dB)     
+------------------------------------------------------------
+0            LS           inf                inf               
+0            f^2 Comp     -6.79              18.64             
+1            LS           inf                inf               
+1            f^2 Comp     -12.13             17.75             
+3            LS           inf                inf               
+3            f^2 Comp     -16.15             16.80             
+5            LS           inf                inf               
+5            f^2 Comp     -12.93             15.72             
+
+Results saved to: /Users/saar/Desktop/Farey-Local/experiments/NETWORK_ANOMALY_TEST.md
+Figures saved to: /Users/saar/Desktop/Farey-Local/figures
+
+================================================================================
+Test completed successfully!
+================================================================================

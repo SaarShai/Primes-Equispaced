@@ -1,0 +1,30 @@
+```python
+import math
+import numpy as np
+import scipy as sp
+import matplotlib.pyplot as plt
+import os
+
+# Generate Farey sequence of order 5
+farey = []
+for b in range(1, 6):
+    for a in range(0, b + 1):
+        if math.gcd(a, b) == 1:
+            farey.append((a, b))
+
+# Sort the fractions
+farey_sorted = sorted(farey, key=lambda x: x[0]/x[1])
+
+# Print each fraction
+for a, b in farey_sorted:
+    print(f"{a}/{b}")
+
+# Save to markdown file
+markdown_path = os.path.expanduser('~/Desktop/Farey-Local/experiments/test_local_agent2.md')
+os.makedirs(os.path.dirname(markdown_path), exist_ok=True)
+with open(markdown_path, 'w') as f:
+    for a, b in farey_sorted:
+        f.write(f'- {a}/{b}\n')
+```
+
+The script generates the Farey sequence of order 5 by iterating through all possible numerators (a) and denominators (b) where 0 ≤ a ≤ b ≤ 5 and gcd(a, b) = 1. It sorts these fractions by their numerical value and prints them to stdout. The list is also saved to a markdown file at the specified path. The script ensures the necessary directories exist and handles file writing appropriately. The output includes each fraction in the sequence, such as 0/1, 1/5, 1/4, etc.

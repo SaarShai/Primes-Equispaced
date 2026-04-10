@@ -1,0 +1,112 @@
+{
+  "benchmark": "sota_comparison_v1",
+  "date": "2026-03-29 05:01:02",
+  "config": {
+    "device": "mps",
+    "max_gaussians": 1500,
+    "total_steps": 7000,
+    "n_sample": 50000,
+    "n_test": 20000,
+    "n_bumps": 50,
+    "init_grid": "4^3=64",
+    "learning_rate": 0.006,
+    "densify_every": 80
+  },
+  "methods": {
+    "adc": {
+      "description": "Standard ADC: gradient-threshold split/clone (3DGS baseline)"
+    },
+    "farey": {
+      "description": "Farey-guided: Delaunay + mediant placement + local error criterion"
+    },
+    "mcmc": {
+      "description": "3DGS-MCMC (NeurIPS 2024): SGLD noise + relocalization of dead Gaussians"
+    },
+    "revising": {
+      "description": "Revising Densification (ECCV 2024): pixel-error driven + opacity bias correction"
+    },
+    "steepgs": {
+      "description": "SteepGS (CVPR 2025): saddle-point detection + steepest descent splitting"
+    },
+    "minisplatting": {
+      "description": "Mini-Splatting (ECCV 2024): importance sampling + blur split + aggressive pruning"
+    },
+    "absgs": {
+      "description": "AbsGS (ACM MM 2024): homodirectional absolute gradient densification"
+    },
+    "pixelgs": {
+      "description": "Pixel-GS (ECCV 2024): pixel-aware coverage-weighted gradient densification"
+    }
+  },
+  "results": {
+    "adc": {
+      "final_train_mse": 9.600416888133623e-07,
+      "test_mse": 3.3900182643264998e-06,
+      "test_psnr": 59.688817963211434,
+      "test_mse_smooth": 1.5933010217850097e-05,
+      "test_mse_detail": 4.235666892782319e-06,
+      "final_gaussians": 414,
+      "training_time_s": 136.5,
+      "mse_per_gaussian": 8.188449913832126e-09,
+      "spatial": {
+        "total": 414,
+        "n_detail": 190,
+        "n_smooth": 137,
+        "frac_detail": 0.45893719806763283,
+        "avg_sigma_detail": 0.17868508398532867,
+        "avg_sigma_smooth": 0.2551937401294708
+      }
+    },
+    "farey": {
+      "final_train_mse": 3.753436317310843e-07,
+      "test_mse": 5.253443760011578e-07,
+      "test_psnr": 67.78639048453374,
+      "test_mse_smooth": 2.262395071284118e-07,
+      "test_mse_detail": 6.499835762951989e-07,
+      "final_gaussians": 274,
+      "training_time_s": 133.7,
+      "mse_per_gaussian": 1.917315240880138e-09,
+      "spatial": {
+        "total": 274,
+        "n_detail": 159,
+        "n_smooth": 47,
+        "frac_detail": 0.5802919708029197,
+        "avg_sigma_detail": 0.13758569955825806,
+        "avg_sigma_smooth": 0.3171881139278412
+      }
+    }
+  },
+  "comparisons_vs_farey": {
+    "farey_vs_adc": {
+      "farey_mse": 5.253443760011578e-07,
+      "other_mse": 3.3900182643264998e-06,
+      "mse_ratio": 6.452944809518677,
+      "psnr_diff_db": 8.097572521322306,
+      "farey_gaussians": 274,
+      "other_gaussians": 414,
+      "gaussian_ratio": 1.510948905109489,
+      "farey_wins_mse": true,
+      "farey_wins_psnr": 1,
+      "farey_wins_efficiency": true,
+      "farey_mse_improvement_pct": 84.5
+    }
+  },
+  "rankings": {
+    "by_test_mse": [
+      "farey",
+      "adc"
+    ],
+    "by_test_psnr": [
+      "farey",
+      "adc"
+    ],
+    "by_efficiency": [
+      "farey",
+      "adc"
+    ],
+    "by_compactness": [
+      "farey",
+      "adc"
+    ]
+  }
+}

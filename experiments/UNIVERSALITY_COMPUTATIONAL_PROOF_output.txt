@@ -1,0 +1,8 @@
+Running Sieve...
+Sieve complete. Found 999999 primes up to 1000000.
+Traceback (most recent call last):
+  File "/Users/saar/Desktop/Farey-Local/experiments/UNIVERSALITY_COMPUTATIONAL_PROOF.py", line 154, in <module>
+    all_subsets = get_subset_indices(primes, mu_arr, m_arr)
+  File "/Users/saar/Desktop/Farey-Local/experiments/UNIVERSALITY_COMPUTATIONAL_PROOF.py", line 96, in get_subset_indices
+    mask = (primes[1:] % mod == rem) # 1: skip index 0 (value 2) for cleaner loop if needed, but let's do all
+TypeError: unsupported operand type(s) for %: 'list' and 'int'

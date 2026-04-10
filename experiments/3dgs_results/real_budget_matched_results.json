@@ -1,0 +1,1652 @@
+[
+  {
+    "method": "adc",
+    "method_label": "ADC (Standard 3DGS)",
+    "psnr": 21.03801411043895,
+    "ssim": "0.35525894",
+    "n_gaussians": 100,
+    "time": 229.3685429096222,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 5.222500679572033,
+        "n_gaussians": 50,
+        "time": 1.6653556823730469
+      },
+      {
+        "step": 1000,
+        "psnr": 19.761967105202874,
+        "n_gaussians": 95,
+        "time": 38.53397083282471
+      },
+      {
+        "step": 2000,
+        "psnr": 20.533878404293375,
+        "n_gaussians": 100,
+        "time": 85.02424883842468
+      },
+      {
+        "step": 3000,
+        "psnr": 20.691030245375742,
+        "n_gaussians": 100,
+        "time": 131.94486284255981
+      },
+      {
+        "step": 4000,
+        "psnr": 20.77635817479137,
+        "n_gaussians": 100,
+        "time": 179.8270947933197
+      },
+      {
+        "step": 4999,
+        "psnr": 21.038217529295743,
+        "n_gaussians": 100,
+        "time": 228.6726107597351
+      }
+    ],
+    "image": "kodim01.png",
+    "seed": 0,
+    "budget": 100
+  },
+  {
+    "method": "farey",
+    "method_label": "Farey Densification",
+    "psnr": 21.016661464183994,
+    "ssim": "0.3615016",
+    "n_gaussians": 100,
+    "time": 239.82028818130493,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 5.222500679572033,
+        "n_gaussians": 50,
+        "time": 0.028816938400268555
+      },
+      {
+        "step": 1000,
+        "psnr": 19.901139625052437,
+        "n_gaussians": 95,
+        "time": 37.11398792266846
+      },
+      {
+        "step": 2000,
+        "psnr": 20.506900415273883,
+        "n_gaussians": 100,
+        "time": 86.77048206329346
+      },
+      {
+        "step": 3000,
+        "psnr": 20.71879524687072,
+        "n_gaussians": 100,
+        "time": 138.43494415283203
+      },
+      {
+        "step": 4000,
+        "psnr": 20.80673018471813,
+        "n_gaussians": 100,
+        "time": 189.12785696983337
+      },
+      {
+        "step": 4999,
+        "psnr": 21.0210104828544,
+        "n_gaussians": 100,
+        "time": 239.77980184555054
+      }
+    ],
+    "image": "kodim01.png",
+    "seed": 0,
+    "budget": 100
+  },
+  {
+    "method": "error_guided",
+    "method_label": "Error-Guided (no structure)",
+    "psnr": 21.076009978669003,
+    "ssim": "0.34732905",
+    "n_gaussians": 100,
+    "time": 235.3486020565033,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 5.222500679572033,
+        "n_gaussians": 50,
+        "time": 0.22583818435668945
+      },
+      {
+        "step": 1000,
+        "psnr": 20.21324355434748,
+        "n_gaussians": 95,
+        "time": 36.370534896850586
+      },
+      {
+        "step": 2000,
+        "psnr": 20.850762637117768,
+        "n_gaussians": 100,
+        "time": 86.02994990348816
+      },
+      {
+        "step": 3000,
+        "psnr": 20.98372126198768,
+        "n_gaussians": 100,
+        "time": 135.84386110305786
+      },
+      {
+        "step": 4000,
+        "psnr": 21.027984441388504,
+        "n_gaussians": 100,
+        "time": 184.9038941860199
+      },
+      {
+        "step": 4999,
+        "psnr": 21.07413688219241,
+        "n_gaussians": 100,
+        "time": 235.31597518920898
+      }
+    ],
+    "image": "kodim01.png",
+    "seed": 0,
+    "budget": 100
+  },
+  {
+    "method": "random",
+    "method_label": "Random (Error-weighted)",
+    "psnr": 21.46456670722224,
+    "ssim": "0.38982594",
+    "n_gaussians": 100,
+    "time": 228.95109391212463,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 5.222500679572033,
+        "n_gaussians": 50,
+        "time": 0.22909092903137207
+      },
+      {
+        "step": 1000,
+        "psnr": 20.344258499270616,
+        "n_gaussians": 95,
+        "time": 34.41025185585022
+      },
+      {
+        "step": 2000,
+        "psnr": 21.2081530726719,
+        "n_gaussians": 100,
+        "time": 83.12872791290283
+      },
+      {
+        "step": 3000,
+        "psnr": 21.30164184408339,
+        "n_gaussians": 100,
+        "time": 131.90317177772522
+      },
+      {
+        "step": 4000,
+        "psnr": 21.404055247015997,
+        "n_gaussians": 100,
+        "time": 180.65116691589355
+      },
+      {
+        "step": 4999,
+        "psnr": 21.464215093903643,
+        "n_gaussians": 100,
+        "time": 228.91553282737732
+      }
+    ],
+    "image": "kodim01.png",
+    "seed": 0,
+    "budget": 100
+  },
+  {
+    "method": "none",
+    "method_label": "No Densification",
+    "psnr": 19.924750055878743,
+    "ssim": "0.30889586",
+    "n_gaussians": 50,
+    "time": 147.2566261291504,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 5.222500679572033,
+        "n_gaussians": 50,
+        "time": 0.26918697357177734
+      },
+      {
+        "step": 1000,
+        "psnr": 19.690902249709175,
+        "n_gaussians": 50,
+        "time": 28.93160605430603
+      },
+      {
+        "step": 2000,
+        "psnr": 19.80504451494701,
+        "n_gaussians": 50,
+        "time": 58.38047218322754
+      },
+      {
+        "step": 3000,
+        "psnr": 19.899744605452703,
+        "n_gaussians": 50,
+        "time": 87.79689812660217
+      },
+      {
+        "step": 4000,
+        "psnr": 19.923828303839294,
+        "n_gaussians": 50,
+        "time": 117.16274929046631
+      },
+      {
+        "step": 4999,
+        "psnr": 19.924678502791867,
+        "n_gaussians": 50,
+        "time": 147.2393672466278
+      }
+    ],
+    "image": "kodim01.png",
+    "seed": 0,
+    "budget": 100
+  },
+  {
+    "method": "adc",
+    "method_label": "ADC (Standard 3DGS)",
+    "psnr": 21.111607143787737,
+    "ssim": "0.36224493",
+    "n_gaussians": 100,
+    "time": 283.3303029537201,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 5.222500679572033,
+        "n_gaussians": 50,
+        "time": 0.03180527687072754
+      },
+      {
+        "step": 1000,
+        "psnr": 19.844120414384715,
+        "n_gaussians": 95,
+        "time": 41.54733896255493
+      },
+      {
+        "step": 2000,
+        "psnr": 20.67271108451311,
+        "n_gaussians": 100,
+        "time": 103.45270919799805
+      },
+      {
+        "step": 3000,
+        "psnr": 20.750672346649615,
+        "n_gaussians": 100,
+        "time": 162.7468090057373
+      },
+      {
+        "step": 4000,
+        "psnr": 20.964950545797116,
+        "n_gaussians": 100,
+        "time": 223.3030161857605
+      },
+      {
+        "step": 4999,
+        "psnr": 21.111269131463217,
+        "n_gaussians": 100,
+        "time": 283.29728603363037
+      }
+    ],
+    "image": "kodim01.png",
+    "seed": 1,
+    "budget": 100
+  },
+  {
+    "method": "farey",
+    "method_label": "Farey Densification",
+    "psnr": 21.016661464183994,
+    "ssim": "0.3615016",
+    "n_gaussians": 100,
+    "time": 268.6037971973419,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 5.222500679572033,
+        "n_gaussians": 50,
+        "time": 0.046607017517089844
+      },
+      {
+        "step": 1000,
+        "psnr": 19.901139625052437,
+        "n_gaussians": 95,
+        "time": 40.97622895240784
+      },
+      {
+        "step": 2000,
+        "psnr": 20.506900415273883,
+        "n_gaussians": 100,
+        "time": 98.96234607696533
+      },
+      {
+        "step": 3000,
+        "psnr": 20.71879524687072,
+        "n_gaussians": 100,
+        "time": 153.6060380935669
+      },
+      {
+        "step": 4000,
+        "psnr": 20.80673018471813,
+        "n_gaussians": 100,
+        "time": 210.3207881450653
+      },
+      {
+        "step": 4999,
+        "psnr": 21.0210104828544,
+        "n_gaussians": 100,
+        "time": 268.5768370628357
+      }
+    ],
+    "image": "kodim01.png",
+    "seed": 1,
+    "budget": 100
+  },
+  {
+    "method": "error_guided",
+    "method_label": "Error-Guided (no structure)",
+    "psnr": 21.076009978669003,
+    "ssim": "0.34732905",
+    "n_gaussians": 100,
+    "time": 241.3917179107666,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 5.222500679572033,
+        "n_gaussians": 50,
+        "time": 0.1893930435180664
+      },
+      {
+        "step": 1000,
+        "psnr": 20.21324355434748,
+        "n_gaussians": 95,
+        "time": 38.6070921421051
+      },
+      {
+        "step": 2000,
+        "psnr": 20.850762637117768,
+        "n_gaussians": 100,
+        "time": 91.03457379341125
+      },
+      {
+        "step": 3000,
+        "psnr": 20.98372126198768,
+        "n_gaussians": 100,
+        "time": 142.20112490653992
+      },
+      {
+        "step": 4000,
+        "psnr": 21.027984441388504,
+        "n_gaussians": 100,
+        "time": 191.49447298049927
+      },
+      {
+        "step": 4999,
+        "psnr": 21.07413688219241,
+        "n_gaussians": 100,
+        "time": 241.36212396621704
+      }
+    ],
+    "image": "kodim01.png",
+    "seed": 1,
+    "budget": 100
+  },
+  {
+    "method": "random",
+    "method_label": "Random (Error-weighted)",
+    "psnr": 21.408818084050356,
+    "ssim": "0.38033342",
+    "n_gaussians": 100,
+    "time": 234.13220596313477,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 5.222500679572033,
+        "n_gaussians": 50,
+        "time": 0.2428438663482666
+      },
+      {
+        "step": 1000,
+        "psnr": 20.36390341447294,
+        "n_gaussians": 95,
+        "time": 33.91769289970398
+      },
+      {
+        "step": 2000,
+        "psnr": 21.17295747663531,
+        "n_gaussians": 100,
+        "time": 84.1009750366211
+      },
+      {
+        "step": 3000,
+        "psnr": 21.35958712612159,
+        "n_gaussians": 100,
+        "time": 134.8932228088379
+      },
+      {
+        "step": 4000,
+        "psnr": 21.194832804225435,
+        "n_gaussians": 100,
+        "time": 185.69326210021973
+      },
+      {
+        "step": 4999,
+        "psnr": 21.375052224053338,
+        "n_gaussians": 100,
+        "time": 234.10166597366333
+      }
+    ],
+    "image": "kodim01.png",
+    "seed": 1,
+    "budget": 100
+  },
+  {
+    "method": "none",
+    "method_label": "No Densification",
+    "psnr": 19.924750055878743,
+    "ssim": "0.30889586",
+    "n_gaussians": 50,
+    "time": 127.02484917640686,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 5.222500679572033,
+        "n_gaussians": 50,
+        "time": 0.18092989921569824
+      },
+      {
+        "step": 1000,
+        "psnr": 19.690902249709175,
+        "n_gaussians": 50,
+        "time": 24.064573049545288
+      },
+      {
+        "step": 2000,
+        "psnr": 19.80504451494701,
+        "n_gaussians": 50,
+        "time": 48.62501907348633
+      },
+      {
+        "step": 3000,
+        "psnr": 19.899744605452703,
+        "n_gaussians": 50,
+        "time": 74.45782113075256
+      },
+      {
+        "step": 4000,
+        "psnr": 19.923828303839294,
+        "n_gaussians": 50,
+        "time": 100.8154878616333
+      },
+      {
+        "step": 4999,
+        "psnr": 19.924678502791867,
+        "n_gaussians": 50,
+        "time": 127.00333309173584
+      }
+    ],
+    "image": "kodim01.png",
+    "seed": 1,
+    "budget": 100
+  },
+  {
+    "method": "adc",
+    "method_label": "ADC (Standard 3DGS)",
+    "psnr": 21.018106221762313,
+    "ssim": "0.35773274",
+    "n_gaussians": 100,
+    "time": 243.58940887451172,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 5.222500679572033,
+        "n_gaussians": 50,
+        "time": 0.02993011474609375
+      },
+      {
+        "step": 1000,
+        "psnr": 19.871604108191143,
+        "n_gaussians": 95,
+        "time": 37.10341477394104
+      },
+      {
+        "step": 2000,
+        "psnr": 20.624913648856445,
+        "n_gaussians": 100,
+        "time": 88.44595909118652
+      },
+      {
+        "step": 3000,
+        "psnr": 20.757578554193188,
+        "n_gaussians": 100,
+        "time": 139.93662405014038
+      },
+      {
+        "step": 4000,
+        "psnr": 20.910116736677477,
+        "n_gaussians": 100,
+        "time": 191.2447578907013
+      },
+      {
+        "step": 4999,
+        "psnr": 21.024849152713095,
+        "n_gaussians": 100,
+        "time": 243.56048703193665
+      }
+    ],
+    "image": "kodim01.png",
+    "seed": 2,
+    "budget": 100
+  },
+  {
+    "method": "farey",
+    "method_label": "Farey Densification",
+    "psnr": 21.016661464183994,
+    "ssim": "0.3615016",
+    "n_gaussians": 100,
+    "time": 254.5208420753479,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 5.222500679572033,
+        "n_gaussians": 50,
+        "time": 0.17610692977905273
+      },
+      {
+        "step": 1000,
+        "psnr": 19.901139625052437,
+        "n_gaussians": 95,
+        "time": 37.168593883514404
+      },
+      {
+        "step": 2000,
+        "psnr": 20.506900415273883,
+        "n_gaussians": 100,
+        "time": 91.49496507644653
+      },
+      {
+        "step": 3000,
+        "psnr": 20.71879524687072,
+        "n_gaussians": 100,
+        "time": 145.65773582458496
+      },
+      {
+        "step": 4000,
+        "psnr": 20.80673018471813,
+        "n_gaussians": 100,
+        "time": 199.73041892051697
+      },
+      {
+        "step": 4999,
+        "psnr": 21.0210104828544,
+        "n_gaussians": 100,
+        "time": 254.48406100273132
+      }
+    ],
+    "image": "kodim01.png",
+    "seed": 2,
+    "budget": 100
+  },
+  {
+    "method": "error_guided",
+    "method_label": "Error-Guided (no structure)",
+    "psnr": 21.076009978669003,
+    "ssim": "0.34732905",
+    "n_gaussians": 100,
+    "time": 253.27790594100952,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 5.222500679572033,
+        "n_gaussians": 50,
+        "time": 0.14934992790222168
+      },
+      {
+        "step": 1000,
+        "psnr": 20.21324355434748,
+        "n_gaussians": 95,
+        "time": 38.754810094833374
+      },
+      {
+        "step": 2000,
+        "psnr": 20.850762637117768,
+        "n_gaussians": 100,
+        "time": 94.38437819480896
+      },
+      {
+        "step": 3000,
+        "psnr": 20.98372126198768,
+        "n_gaussians": 100,
+        "time": 149.81768107414246
+      },
+      {
+        "step": 4000,
+        "psnr": 21.027984441388504,
+        "n_gaussians": 100,
+        "time": 203.57953691482544
+      },
+      {
+        "step": 4999,
+        "psnr": 21.07413688219241,
+        "n_gaussians": 100,
+        "time": 253.24085307121277
+      }
+    ],
+    "image": "kodim01.png",
+    "seed": 2,
+    "budget": 100
+  },
+  {
+    "method": "random",
+    "method_label": "Random (Error-weighted)",
+    "psnr": 21.23137103942993,
+    "ssim": "0.3731314",
+    "n_gaussians": 100,
+    "time": 234.90710711479187,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 5.222500679572033,
+        "n_gaussians": 50,
+        "time": 0.27904319763183594
+      },
+      {
+        "step": 1000,
+        "psnr": 20.539811405260323,
+        "n_gaussians": 95,
+        "time": 36.69693398475647
+      },
+      {
+        "step": 2000,
+        "psnr": 20.937748259419564,
+        "n_gaussians": 100,
+        "time": 84.98583817481995
+      },
+      {
+        "step": 3000,
+        "psnr": 21.021763206914486,
+        "n_gaussians": 100,
+        "time": 133.60837721824646
+      },
+      {
+        "step": 4000,
+        "psnr": 21.22817457009541,
+        "n_gaussians": 100,
+        "time": 185.73343110084534
+      },
+      {
+        "step": 4999,
+        "psnr": 21.242969790523123,
+        "n_gaussians": 100,
+        "time": 234.86830806732178
+      }
+    ],
+    "image": "kodim01.png",
+    "seed": 2,
+    "budget": 100
+  },
+  {
+    "method": "none",
+    "method_label": "No Densification",
+    "psnr": 19.924750055878743,
+    "ssim": "0.30889586",
+    "n_gaussians": 50,
+    "time": 122.51845979690552,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 5.222500679572033,
+        "n_gaussians": 50,
+        "time": 0.2773399353027344
+      },
+      {
+        "step": 1000,
+        "psnr": 19.690902249709175,
+        "n_gaussians": 50,
+        "time": 24.408812046051025
+      },
+      {
+        "step": 2000,
+        "psnr": 19.80504451494701,
+        "n_gaussians": 50,
+        "time": 48.93400597572327
+      },
+      {
+        "step": 3000,
+        "psnr": 19.899744605452703,
+        "n_gaussians": 50,
+        "time": 73.59280204772949
+      },
+      {
+        "step": 4000,
+        "psnr": 19.923828303839294,
+        "n_gaussians": 50,
+        "time": 97.91535592079163
+      },
+      {
+        "step": 4999,
+        "psnr": 19.924678502791867,
+        "n_gaussians": 50,
+        "time": 122.4914379119873
+      }
+    ],
+    "image": "kodim01.png",
+    "seed": 2,
+    "budget": 100
+  },
+  {
+    "method": "adc",
+    "method_label": "ADC (Standard 3DGS)",
+    "psnr": 26.823681326677043,
+    "ssim": "0.67657304",
+    "n_gaussians": 100,
+    "time": 227.27085518836975,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 3.417769463934855,
+        "n_gaussians": 50,
+        "time": 0.028431177139282227
+      },
+      {
+        "step": 1000,
+        "psnr": 25.174929733719367,
+        "n_gaussians": 95,
+        "time": 34.273077964782715
+      },
+      {
+        "step": 2000,
+        "psnr": 26.279163962820192,
+        "n_gaussians": 100,
+        "time": 81.73409628868103
+      },
+      {
+        "step": 3000,
+        "psnr": 26.691581555825408,
+        "n_gaussians": 100,
+        "time": 129.69202613830566
+      },
+      {
+        "step": 4000,
+        "psnr": 26.74119436271107,
+        "n_gaussians": 100,
+        "time": 178.3645040988922
+      },
+      {
+        "step": 4999,
+        "psnr": 26.82413439627084,
+        "n_gaussians": 100,
+        "time": 227.23617315292358
+      }
+    ],
+    "image": "kodim02.png",
+    "seed": 0,
+    "budget": 100
+  },
+  {
+    "method": "farey",
+    "method_label": "Farey Densification",
+    "psnr": 26.32145584630907,
+    "ssim": "0.6728806",
+    "n_gaussians": 100,
+    "time": 229.9255440235138,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 3.417769463934855,
+        "n_gaussians": 50,
+        "time": 0.27289795875549316
+      },
+      {
+        "step": 1000,
+        "psnr": 24.891740763140767,
+        "n_gaussians": 95,
+        "time": 36.15599322319031
+      },
+      {
+        "step": 2000,
+        "psnr": 25.74246287836688,
+        "n_gaussians": 100,
+        "time": 84.5641679763794
+      },
+      {
+        "step": 3000,
+        "psnr": 25.926680854633283,
+        "n_gaussians": 100,
+        "time": 133.03210711479187
+      },
+      {
+        "step": 4000,
+        "psnr": 25.989869097859568,
+        "n_gaussians": 100,
+        "time": 181.71315503120422
+      },
+      {
+        "step": 4999,
+        "psnr": 26.323146751215106,
+        "n_gaussians": 100,
+        "time": 229.88212203979492
+      }
+    ],
+    "image": "kodim02.png",
+    "seed": 0,
+    "budget": 100
+  },
+  {
+    "method": "error_guided",
+    "method_label": "Error-Guided (no structure)",
+    "psnr": 26.678184857031034,
+    "ssim": "0.6816666",
+    "n_gaussians": 100,
+    "time": 235.3390989303589,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 3.417769463934855,
+        "n_gaussians": 50,
+        "time": 0.29992103576660156
+      },
+      {
+        "step": 1000,
+        "psnr": 25.496902534551023,
+        "n_gaussians": 95,
+        "time": 36.334993839263916
+      },
+      {
+        "step": 2000,
+        "psnr": 26.383893340521198,
+        "n_gaussians": 100,
+        "time": 87.05237793922424
+      },
+      {
+        "step": 3000,
+        "psnr": 26.648980555813814,
+        "n_gaussians": 100,
+        "time": 135.74387907981873
+      },
+      {
+        "step": 4000,
+        "psnr": 26.658846246742222,
+        "n_gaussians": 100,
+        "time": 185.01657485961914
+      },
+      {
+        "step": 4999,
+        "psnr": 26.675846652977675,
+        "n_gaussians": 100,
+        "time": 235.29607105255127
+      }
+    ],
+    "image": "kodim02.png",
+    "seed": 0,
+    "budget": 100
+  },
+  {
+    "method": "random",
+    "method_label": "Random (Error-weighted)",
+    "psnr": 27.096921591843515,
+    "ssim": "0.69820505",
+    "n_gaussians": 100,
+    "time": 256.4087951183319,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 3.417769463934855,
+        "n_gaussians": 50,
+        "time": 0.35524415969848633
+      },
+      {
+        "step": 1000,
+        "psnr": 25.856988992992882,
+        "n_gaussians": 95,
+        "time": 37.785059213638306
+      },
+      {
+        "step": 2000,
+        "psnr": 26.76553642786475,
+        "n_gaussians": 100,
+        "time": 90.20159220695496
+      },
+      {
+        "step": 3000,
+        "psnr": 26.8699576398895,
+        "n_gaussians": 99,
+        "time": 144.75882005691528
+      },
+      {
+        "step": 4000,
+        "psnr": 26.99401057363933,
+        "n_gaussians": 100,
+        "time": 200.14533710479736
+      },
+      {
+        "step": 4999,
+        "psnr": 27.09794520271259,
+        "n_gaussians": 100,
+        "time": 256.3351511955261
+      }
+    ],
+    "image": "kodim02.png",
+    "seed": 0,
+    "budget": 100
+  },
+  {
+    "method": "none",
+    "method_label": "No Densification",
+    "psnr": 25.495008522192837,
+    "ssim": "0.64666677",
+    "n_gaussians": 50,
+    "time": 144.6122510433197,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 3.417769463934855,
+        "n_gaussians": 50,
+        "time": 1.9474730491638184
+      },
+      {
+        "step": 1000,
+        "psnr": 24.943525373488505,
+        "n_gaussians": 50,
+        "time": 30.672380208969116
+      },
+      {
+        "step": 2000,
+        "psnr": 25.18260159247848,
+        "n_gaussians": 50,
+        "time": 58.46746015548706
+      },
+      {
+        "step": 3000,
+        "psnr": 25.335701015057715,
+        "n_gaussians": 50,
+        "time": 85.85382008552551
+      },
+      {
+        "step": 4000,
+        "psnr": 25.492763230717095,
+        "n_gaussians": 50,
+        "time": 114.48333692550659
+      },
+      {
+        "step": 4999,
+        "psnr": 25.49311891756426,
+        "n_gaussians": 50,
+        "time": 144.57439517974854
+      }
+    ],
+    "image": "kodim02.png",
+    "seed": 0,
+    "budget": 100
+  },
+  {
+    "method": "adc",
+    "method_label": "ADC (Standard 3DGS)",
+    "psnr": 26.738635890253253,
+    "ssim": "0.67484957",
+    "n_gaussians": 100,
+    "time": 248.9797351360321,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 3.417769463934855,
+        "n_gaussians": 50,
+        "time": 0.03265714645385742
+      },
+      {
+        "step": 1000,
+        "psnr": 25.07501270539777,
+        "n_gaussians": 95,
+        "time": 42.01116704940796
+      },
+      {
+        "step": 2000,
+        "psnr": 26.344255567152402,
+        "n_gaussians": 100,
+        "time": 89.3150110244751
+      },
+      {
+        "step": 3000,
+        "psnr": 26.612534114911742,
+        "n_gaussians": 100,
+        "time": 139.16343712806702
+      },
+      {
+        "step": 4000,
+        "psnr": 26.66097984869793,
+        "n_gaussians": 100,
+        "time": 194.5176260471344
+      },
+      {
+        "step": 4999,
+        "psnr": 26.737985056800795,
+        "n_gaussians": 100,
+        "time": 248.9402003288269
+      }
+    ],
+    "image": "kodim02.png",
+    "seed": 1,
+    "budget": 100
+  },
+  {
+    "method": "farey",
+    "method_label": "Farey Densification",
+    "psnr": 26.32145584630907,
+    "ssim": "0.6728806",
+    "n_gaussians": 100,
+    "time": 263.4234309196472,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 3.417769463934855,
+        "n_gaussians": 50,
+        "time": 0.24584507942199707
+      },
+      {
+        "step": 1000,
+        "psnr": 24.891740763140767,
+        "n_gaussians": 95,
+        "time": 40.7992639541626
+      },
+      {
+        "step": 2000,
+        "psnr": 25.74246287836688,
+        "n_gaussians": 100,
+        "time": 97.51804184913635
+      },
+      {
+        "step": 3000,
+        "psnr": 25.926680854633283,
+        "n_gaussians": 100,
+        "time": 153.99191093444824
+      },
+      {
+        "step": 4000,
+        "psnr": 25.989869097859568,
+        "n_gaussians": 100,
+        "time": 210.35272908210754
+      },
+      {
+        "step": 4999,
+        "psnr": 26.323146751215106,
+        "n_gaussians": 100,
+        "time": 263.3767969608307
+      }
+    ],
+    "image": "kodim02.png",
+    "seed": 1,
+    "budget": 100
+  },
+  {
+    "method": "error_guided",
+    "method_label": "Error-Guided (no structure)",
+    "psnr": 26.678184857031034,
+    "ssim": "0.6816666",
+    "n_gaussians": 100,
+    "time": 249.15883326530457,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 3.417769463934855,
+        "n_gaussians": 50,
+        "time": 4.1084511280059814
+      },
+      {
+        "step": 1000,
+        "psnr": 25.496902534551023,
+        "n_gaussians": 95,
+        "time": 44.442440032958984
+      },
+      {
+        "step": 2000,
+        "psnr": 26.383893340521198,
+        "n_gaussians": 100,
+        "time": 94.14374828338623
+      },
+      {
+        "step": 3000,
+        "psnr": 26.648980555813814,
+        "n_gaussians": 100,
+        "time": 145.50914525985718
+      },
+      {
+        "step": 4000,
+        "psnr": 26.658846246742222,
+        "n_gaussians": 100,
+        "time": 196.9630892276764
+      },
+      {
+        "step": 4999,
+        "psnr": 26.675846652977675,
+        "n_gaussians": 100,
+        "time": 249.11291027069092
+      }
+    ],
+    "image": "kodim02.png",
+    "seed": 1,
+    "budget": 100
+  },
+  {
+    "method": "random",
+    "method_label": "Random (Error-weighted)",
+    "psnr": 27.646407366130358,
+    "ssim": "0.7056859",
+    "n_gaussians": 100,
+    "time": 297.8610279560089,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 3.417769463934855,
+        "n_gaussians": 50,
+        "time": 4.525509834289551
+      },
+      {
+        "step": 1000,
+        "psnr": 26.117722579973194,
+        "n_gaussians": 95,
+        "time": 43.563100814819336
+      },
+      {
+        "step": 2000,
+        "psnr": 27.265865374782972,
+        "n_gaussians": 100,
+        "time": 98.41730189323425
+      },
+      {
+        "step": 3000,
+        "psnr": 27.32670229658728,
+        "n_gaussians": 100,
+        "time": 157.19049906730652
+      },
+      {
+        "step": 4000,
+        "psnr": 27.477568086233923,
+        "n_gaussians": 100,
+        "time": 227.68575191497803
+      },
+      {
+        "step": 4999,
+        "psnr": 27.63865347424435,
+        "n_gaussians": 100,
+        "time": 297.8260941505432
+      }
+    ],
+    "image": "kodim02.png",
+    "seed": 1,
+    "budget": 100
+  },
+  {
+    "method": "none",
+    "method_label": "No Densification",
+    "psnr": 25.495008522192837,
+    "ssim": "0.64666677",
+    "n_gaussians": 50,
+    "time": 165.60912370681763,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 3.417769463934855,
+        "n_gaussians": 50,
+        "time": 0.21371889114379883
+      },
+      {
+        "step": 1000,
+        "psnr": 24.943525373488505,
+        "n_gaussians": 50,
+        "time": 33.3633337020874
+      },
+      {
+        "step": 2000,
+        "psnr": 25.18260159247848,
+        "n_gaussians": 50,
+        "time": 67.26746988296509
+      },
+      {
+        "step": 3000,
+        "psnr": 25.335701015057715,
+        "n_gaussians": 50,
+        "time": 100.17245984077454
+      },
+      {
+        "step": 4000,
+        "psnr": 25.492763230717095,
+        "n_gaussians": 50,
+        "time": 132.58209991455078
+      },
+      {
+        "step": 4999,
+        "psnr": 25.49311891756426,
+        "n_gaussians": 50,
+        "time": 165.58525490760803
+      }
+    ],
+    "image": "kodim02.png",
+    "seed": 1,
+    "budget": 100
+  },
+  {
+    "method": "adc",
+    "method_label": "ADC (Standard 3DGS)",
+    "psnr": 26.652824115679977,
+    "ssim": "0.6769209",
+    "n_gaussians": 100,
+    "time": 297.35556507110596,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 3.417769463934855,
+        "n_gaussians": 50,
+        "time": 0.03401494026184082
+      },
+      {
+        "step": 1000,
+        "psnr": 24.913633618645598,
+        "n_gaussians": 95,
+        "time": 44.686641216278076
+      },
+      {
+        "step": 2000,
+        "psnr": 26.270419748611943,
+        "n_gaussians": 100,
+        "time": 109.95703291893005
+      },
+      {
+        "step": 3000,
+        "psnr": 26.45397044003331,
+        "n_gaussians": 100,
+        "time": 173.11507296562195
+      },
+      {
+        "step": 4000,
+        "psnr": 26.58072295745963,
+        "n_gaussians": 100,
+        "time": 235.11247897148132
+      },
+      {
+        "step": 4999,
+        "psnr": 26.650166136272713,
+        "n_gaussians": 100,
+        "time": 297.3138020038605
+      }
+    ],
+    "image": "kodim02.png",
+    "seed": 2,
+    "budget": 100
+  },
+  {
+    "method": "farey",
+    "method_label": "Farey Densification",
+    "psnr": 26.32145584630907,
+    "ssim": "0.6728806",
+    "n_gaussians": 100,
+    "time": 287.385046005249,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 3.417769463934855,
+        "n_gaussians": 50,
+        "time": 0.22525286674499512
+      },
+      {
+        "step": 1000,
+        "psnr": 24.891740763140767,
+        "n_gaussians": 95,
+        "time": 44.497381925582886
+      },
+      {
+        "step": 2000,
+        "psnr": 25.74246287836688,
+        "n_gaussians": 100,
+        "time": 107.94051313400269
+      },
+      {
+        "step": 3000,
+        "psnr": 25.926680854633283,
+        "n_gaussians": 100,
+        "time": 170.66994786262512
+      },
+      {
+        "step": 4000,
+        "psnr": 25.989869097859568,
+        "n_gaussians": 100,
+        "time": 230.63619303703308
+      },
+      {
+        "step": 4999,
+        "psnr": 26.323146751215106,
+        "n_gaussians": 100,
+        "time": 287.3480541706085
+      }
+    ],
+    "image": "kodim02.png",
+    "seed": 2,
+    "budget": 100
+  },
+  {
+    "method": "error_guided",
+    "method_label": "Error-Guided (no structure)",
+    "psnr": 26.678184857031034,
+    "ssim": "0.6816666",
+    "n_gaussians": 100,
+    "time": 267.9365220069885,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 3.417769463934855,
+        "n_gaussians": 50,
+        "time": 0.216871976852417
+      },
+      {
+        "step": 1000,
+        "psnr": 25.496902534551023,
+        "n_gaussians": 95,
+        "time": 41.506022214889526
+      },
+      {
+        "step": 2000,
+        "psnr": 26.383893340521198,
+        "n_gaussians": 100,
+        "time": 98.77753233909607
+      },
+      {
+        "step": 3000,
+        "psnr": 26.648980555813814,
+        "n_gaussians": 100,
+        "time": 154.38512802124023
+      },
+      {
+        "step": 4000,
+        "psnr": 26.658846246742222,
+        "n_gaussians": 100,
+        "time": 211.17257809638977
+      },
+      {
+        "step": 4999,
+        "psnr": 26.675846652977675,
+        "n_gaussians": 100,
+        "time": 267.90293312072754
+      }
+    ],
+    "image": "kodim02.png",
+    "seed": 2,
+    "budget": 100
+  },
+  {
+    "method": "random",
+    "method_label": "Random (Error-weighted)",
+    "psnr": 27.239235847686718,
+    "ssim": "0.6903545",
+    "n_gaussians": 100,
+    "time": 264.45565390586853,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 3.417769463934855,
+        "n_gaussians": 50,
+        "time": 0.20215892791748047
+      },
+      {
+        "step": 1000,
+        "psnr": 25.955817360465755,
+        "n_gaussians": 95,
+        "time": 40.41721200942993
+      },
+      {
+        "step": 2000,
+        "psnr": 26.97562492883621,
+        "n_gaussians": 100,
+        "time": 97.09574294090271
+      },
+      {
+        "step": 3000,
+        "psnr": 27.136624793681893,
+        "n_gaussians": 100,
+        "time": 153.15572786331177
+      },
+      {
+        "step": 4000,
+        "psnr": 27.129013968785777,
+        "n_gaussians": 100,
+        "time": 209.0281298160553
+      },
+      {
+        "step": 4999,
+        "psnr": 27.239233973486495,
+        "n_gaussians": 100,
+        "time": 264.42567801475525
+      }
+    ],
+    "image": "kodim02.png",
+    "seed": 2,
+    "budget": 100
+  },
+  {
+    "method": "none",
+    "method_label": "No Densification",
+    "psnr": 25.495008522192837,
+    "ssim": "0.64666677",
+    "n_gaussians": 50,
+    "time": 143.7796130180359,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 3.417769463934855,
+        "n_gaussians": 50,
+        "time": 0.2287158966064453
+      },
+      {
+        "step": 1000,
+        "psnr": 24.943525373488505,
+        "n_gaussians": 50,
+        "time": 29.113622903823853
+      },
+      {
+        "step": 2000,
+        "psnr": 25.18260159247848,
+        "n_gaussians": 50,
+        "time": 57.84364891052246
+      },
+      {
+        "step": 3000,
+        "psnr": 25.335701015057715,
+        "n_gaussians": 50,
+        "time": 86.59367299079895
+      },
+      {
+        "step": 4000,
+        "psnr": 25.492763230717095,
+        "n_gaussians": 50,
+        "time": 115.19230508804321
+      },
+      {
+        "step": 4999,
+        "psnr": 25.49311891756426,
+        "n_gaussians": 50,
+        "time": 143.7573368549347
+      }
+    ],
+    "image": "kodim02.png",
+    "seed": 2,
+    "budget": 100
+  },
+  {
+    "method": "adc",
+    "method_label": "ADC (Standard 3DGS)",
+    "psnr": 24.96824844995952,
+    "ssim": "0.7003549",
+    "n_gaussians": 100,
+    "time": 278.2390160560608,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 4.573372537230479,
+        "n_gaussians": 50,
+        "time": 0.03327012062072754
+      },
+      {
+        "step": 1000,
+        "psnr": 23.775193649294103,
+        "n_gaussians": 95,
+        "time": 40.06224799156189
+      },
+      {
+        "step": 2000,
+        "psnr": 24.686443385452648,
+        "n_gaussians": 100,
+        "time": 101.2968909740448
+      },
+      {
+        "step": 3000,
+        "psnr": 24.786394068134424,
+        "n_gaussians": 100,
+        "time": 160.6548309326172
+      },
+      {
+        "step": 4000,
+        "psnr": 24.887161233350447,
+        "n_gaussians": 100,
+        "time": 219.53226804733276
+      },
+      {
+        "step": 4999,
+        "psnr": 24.968424310276962,
+        "n_gaussians": 100,
+        "time": 278.2010848522186
+      }
+    ],
+    "image": "kodim03.png",
+    "seed": 0,
+    "budget": 100
+  },
+  {
+    "method": "farey",
+    "method_label": "Farey Densification",
+    "psnr": 25.822953738682692,
+    "ssim": "0.7208185",
+    "n_gaussians": 100,
+    "time": 275.24858498573303,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 4.573372537230479,
+        "n_gaussians": 50,
+        "time": 0.22000908851623535
+      },
+      {
+        "step": 1000,
+        "psnr": 24.354634228120354,
+        "n_gaussians": 95,
+        "time": 43.76387405395508
+      },
+      {
+        "step": 2000,
+        "psnr": 25.528594633022344,
+        "n_gaussians": 100,
+        "time": 105.5203812122345
+      },
+      {
+        "step": 3000,
+        "psnr": 25.655687799389547,
+        "n_gaussians": 100,
+        "time": 163.6943440437317
+      },
+      {
+        "step": 4000,
+        "psnr": 25.733435890998166,
+        "n_gaussians": 100,
+        "time": 219.54382705688477
+      },
+      {
+        "step": 4999,
+        "psnr": 25.825555485122628,
+        "n_gaussians": 100,
+        "time": 275.21553802490234
+      }
+    ],
+    "image": "kodim03.png",
+    "seed": 0,
+    "budget": 100
+  },
+  {
+    "method": "error_guided",
+    "method_label": "Error-Guided (no structure)",
+    "psnr": 25.01062523154183,
+    "ssim": "0.7044525",
+    "n_gaussians": 100,
+    "time": 260.344703912735,
+    "steps": 5000,
+    "history": [
+      {
+        "step": 0,
+        "psnr": 4.573372537230479,
+        "n_gaussians": 50,
+        "time": 0.20606589317321777
+      },
+      {
+        "step": 1000,
+        "psnr": 23.690219977935442,
+        "n_gaussians": 95,
+        "time": 39.40933871269226
+      },
+      {
+        "step": 2000,
+        "psnr": 24.803885530504573,
+        "n_gaussians": 100,
+        "time": 94.54883193969727
+      },
+      {
+        "step": 3000,
+        "psnr": 24.873265515130193,
+        "n_gaussians": 100,
+        "time": 149.87058782577515
+      },
+      {
+        "step": 4000,
+        "psnr": 24.93133869018395,
+        "n_gaussians": 100,
+        "time": 205.0998237133026
+      },
+      {
+        "step": 4999,
+        "psnr": 25.00750490017007,
+        "n_gaussians": 100,
+        "time": 260.3165078163147
+      }
+    ],
+    "image": "kodim03.png",
+    "seed": 0,
+    "budget": 100
+  }
+]

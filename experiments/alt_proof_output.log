@@ -1,0 +1,256 @@
+ALTERNATIVE PROOF APPROACHES — Numerical Experiments up to p=500
+================================================================================
+
+================================================================================
+APPROACH 1: T_b analysis — Good denominators (b | p^2-1)
+================================================================================
+
+p=  11: good_frac=0.4710, bad_frac=0.2759, n_good=  7/  9 (zero= 3, invol= 4), bad_B+C=-0.02
+p=  13: good_frac=0.3535, bad_frac=0.5010, n_good=  7/ 11 (zero= 5, invol= 2), bad_B+C=2.86
+p=  17: good_frac=0.3272, bad_frac=0.5768, n_good=  8/ 15 (zero= 4, invol= 4), bad_B+C=2.51
+p=  19: good_frac=0.3572, bad_frac=0.5707, n_good= 11/ 17 (zero= 5, invol= 6), bad_B+C=9.63
+p=  23: good_frac=0.2685, bad_frac=0.6771, n_good=  9/ 21 (zero= 3, invol= 6), bad_B+C=9.25
+p=  29: good_frac=0.3564, bad_frac=0.6131, n_good= 15/ 27 (zero= 5, invol=10), bad_B+C=21.64
+p=  31: good_frac=0.1928, bad_frac=0.7827, n_good= 13/ 29 (zero= 7, invol= 6), bad_B+C=75.11
+p=  37: good_frac=0.1318, bad_frac=0.8524, n_good= 11/ 35 (zero= 8, invol= 3), bad_B+C=70.48
+p=  41: good_frac=0.2831, bad_frac=0.7034, n_good= 19/ 39 (zero= 7, invol=12), bad_B+C=35.84
+p=  43: good_frac=0.1885, bad_frac=0.7996, n_good= 15/ 41 (zero= 7, invol= 8), bad_B+C=150.90
+p=  47: good_frac=0.1240, bad_frac=0.8646, n_good= 11/ 45 (zero= 3, invol= 8), bad_B+C=183.73
+p=  53: good_frac=0.1557, bad_frac=0.8361, n_good= 15/ 51 (zero= 5, invol=10), bad_B+C=218.46
+p=  59: good_frac=0.1133, bad_frac=0.8796, n_good= 15/ 57 (zero= 3, invol=12), bad_B+C=163.66
+p=  61: good_frac=0.0875, bad_frac=0.9071, n_good= 15/ 59 (zero=11, invol= 4), bad_B+C=379.45
+p=  67: good_frac=0.1117, bad_frac=0.8834, n_good= 15/ 65 (zero= 7, invol= 8), bad_B+C=390.50
+p=  71: good_frac=0.1991, bad_frac=0.7963, n_good= 29/ 69 (zero= 7, invol=22), bad_B+C=430.91
+p=  73: good_frac=0.0662, bad_frac=0.9300, n_good= 14/ 71 (zero=11, invol= 3), bad_B+C=928.84
+p=  79: good_frac=0.1377, bad_frac=0.8587, n_good= 23/ 77 (zero= 7, invol=16), bad_B+C=807.22
+p=  83: good_frac=0.0739, bad_frac=0.9228, n_good= 15/ 81 (zero= 3, invol=12), bad_B+C=1050.88
+p=  89: good_frac=0.1585, bad_frac=0.8387, n_good= 29/ 87 (zero= 7, invol=22), bad_B+C=769.62
+p=  97: good_frac=0.0858, bad_frac=0.9120, n_good= 20/ 95 (zero=11, invol= 9), bad_B+C=274.46
+p= 101: good_frac=0.1155, bad_frac=0.8824, n_good= 23/ 99 (zero= 8, invol=15), bad_B+C=631.57
+p= 197: good_frac=0.0717, bad_frac=0.9278, n_good= 35/195 (zero= 8, invol=27), bad_B+C=11458.76
+p= 199: good_frac=0.0847, bad_frac=0.9148, n_good= 44/197 (zero=11, invol=33), bad_B+C=13471.21
+p= 211: good_frac=0.0445, bad_frac=0.9551, n_good= 31/209 (zero=15, invol=16), bad_B+C=8978.85
+p= 499: good_frac=0.0215, bad_frac=0.9784, n_good= 31/497 (zero= 7, invol=24), bad_B+C=94697.64
+
+Summary (Approach 1):
+  Good fraction of delta_sq: min=0.0112, max=0.4710, mean=0.0805
+  Interpretation: 0/91 primes have >50% of delta_sq from good denominators
+
+================================================================================
+APPROACH 2: Probabilistic concentration (random permutation model)
+================================================================================
+
+p=  11: E[B_raw]=      0.36, std=    0.29, SNR=  1.24, actual=     -3.53, Cheby_P(neg)<=0.6541
+p=  13: E[B_raw]=      1.18, std=    0.33, SNR=  3.62, actual=     -1.30, Cheby_P(neg)<=0.0762
+p=  17: E[B_raw]=      1.26, std=    0.43, SNR=  2.93, actual=     -4.61, Cheby_P(neg)<=0.1165
+p=  19: E[B_raw]=      2.80, std=    0.51, SNR=  5.51, actual=      2.27, Cheby_P(neg)<=0.0330
+p=  23: E[B_raw]=      2.55, std=    0.59, SNR=  4.29, actual=      0.30, Cheby_P(neg)<=0.0543
+p=  29: E[B_raw]=      4.19, std=    0.70, SNR=  6.00, actual=     11.64, Cheby_P(neg)<=0.0278
+p=  31: E[B_raw]=      8.21, std=    0.79, SNR= 10.44, actual=     60.01, Cheby_P(neg)<=0.0092
+p=  37: E[B_raw]=      6.64, std=    0.82, SNR=  8.09, actual=     24.32, Cheby_P(neg)<=0.0153
+p=  41: E[B_raw]=      6.36, std=    0.97, SNR=  6.59, actual=      4.41, Cheby_P(neg)<=0.0230
+p=  43: E[B_raw]=     11.97, std=    0.99, SNR= 12.07, actual=    110.06, Cheby_P(neg)<=0.0069
+p=  47: E[B_raw]=     13.34, std=    1.03, SNR= 12.90, actual=    134.48, Cheby_P(neg)<=0.0060
+p=  53: E[B_raw]=     15.63, std=    1.12, SNR= 13.94, actual=    167.61, Cheby_P(neg)<=0.0051
+p=  59: E[B_raw]=     11.35, std=    1.26, SNR=  9.03, actual=     78.22, Cheby_P(neg)<=0.0123
+p=  61: E[B_raw]=     18.58, std=    1.29, SNR= 14.45, actual=    232.79, Cheby_P(neg)<=0.0048
+p=  67: E[B_raw]=     19.57, std=    1.35, SNR= 14.51, actual=    259.80, Cheby_P(neg)<=0.0047
+p=  71: E[B_raw]=     23.87, std=    1.35, SNR= 17.64, actual=    392.77, Cheby_P(neg)<=0.0032
+p=  73: E[B_raw]=     31.58, std=    1.46, SNR= 21.57, actual=    728.41, Cheby_P(neg)<=0.0021
+p=  79: E[B_raw]=     31.49, std=    1.49, SNR= 21.10, actual=    703.35, Cheby_P(neg)<=0.0022
+p=  83: E[B_raw]=     36.96, std=    1.58, SNR= 23.33, actual=    865.58, Cheby_P(neg)<=0.0018
+p=  89: E[B_raw]=     31.88, std=    1.64, SNR= 19.46, actual=    699.34, Cheby_P(neg)<=0.0026
+p=  97: E[B_raw]=     16.61, std=    1.83, SNR=  9.06, actual=    -97.13, Cheby_P(neg)<=0.0122
+p= 101: E[B_raw]=     24.13, std=    1.78, SNR= 13.57, actual=    282.48, Cheby_P(neg)<=0.0054
+p= 197: E[B_raw]=    151.76, std=    2.85, SNR= 53.30, actual=  10702.41, Cheby_P(neg)<=0.0004
+p= 199: E[B_raw]=    175.43, std=    3.00, SNR= 58.54, actual=  13062.40, Cheby_P(neg)<=0.0003
+p= 211: E[B_raw]=    111.94, std=    2.77, SNR= 40.48, actual=   7306.23, Cheby_P(neg)<=0.0006
+p= 499: E[B_raw]=    453.27, std=    4.69, SNR= 96.65, actual=  84593.78, Cheby_P(neg)<=0.0001
+
+Summary (Approach 2):
+  SNR: min=1.2364, max=104.6878, mean=42.2406
+  Chebyshev P(B_raw<0): max=0.6541
+  All E[B_raw]>0: True
+
+================================================================================
+APPROACH 3: Fourier mode decomposition — bounding h>=2 tail
+================================================================================
+
+p=  11: B|_h1=      0.55, Sum_h>=2=     -4.26, |tail/h1|=7.7444, M(N)= -1, h1/dsq=0.187
+    h= 1: S_N=    -1, C_h=     -3.46, B|_h=      0.55
+    h= 2: S_N=    -5, C_h=      2.43, B|_h=     -1.94
+    h= 3: S_N=    -4, C_h=     -1.03, B|_h=      0.65
+    h= 4: S_N=    -5, C_h=     -0.13, B|_h=      0.10
+    h= 5: S_N=    -1, C_h=     -0.12, B|_h=      0.02
+p=  13: B|_h1=      2.45, Sum_h>=2=     -1.75, |tail/h1|=0.7117, M(N)= -2, h1/dsq=0.418
+    h= 1: S_N=    -2, C_h=     -7.70, B|_h=      2.45
+    h= 2: S_N=    -4, C_h=     -1.64, B|_h=      1.05
+    h= 3: S_N=    -5, C_h=     -2.52, B|_h=      2.00
+    h= 4: S_N=    -8, C_h=      0.83, B|_h=     -1.06
+    h= 5: S_N=    -2, C_h=     -1.95, B|_h=      0.62
+p=  17: B|_h1=      1.75, Sum_h>=2=99943228374666.83, |tail/h1|=57239302010757.0000, M(N)= -1, h1/dsq=0.185
+    h= 1: S_N=    -1, C_h=    -10.97, B|_h=      1.75
+    h= 2: S_N=    -5, C_h=     -3.86, B|_h=      3.07
+    h= 3: S_N=    -7, C_h=     -4.24, B|_h=      4.72
+    h= 4: S_N=    -9, C_h=      0.87, B|_h=     -1.24
+    h= 5: S_N=    -6, C_h=      2.52, B|_h=     -2.40
+p=  19: B|_h1=      5.28, Sum_h>=2=     23.19, |tail/h1|=4.3878, M(N)= -2, h1/dsq=0.411
+    h= 1: S_N=    -2, C_h=    -16.60, B|_h=      5.28
+    h= 2: S_N=    -6, C_h=    -10.08, B|_h=      9.62
+    h= 3: S_N=    -5, C_h=      1.32, B|_h=     -1.05
+    h= 4: S_N=   -10, C_h=     -6.56, B|_h=     10.44
+    h= 5: S_N=    -7, C_h=     -0.76, B|_h=      0.85
+p=  23: B|_h1=      3.00, Sum_h>=2=99943228374638.75, |tail/h1|=33259924552604.3125, M(N)= -1, h1/dsq=0.173
+    h= 1: S_N=    -1, C_h=    -18.88, B|_h=      3.00
+    h= 2: S_N=    -5, C_h=     -6.84, B|_h=      5.45
+    h= 3: S_N=    -7, C_h=     -2.35, B|_h=      2.61
+    h= 4: S_N=   -13, C_h=      2.27, B|_h=     -4.70
+    h= 5: S_N=    -6, C_h=      3.12, B|_h=     -2.98
+p=  29: B|_h1=      4.65, Sum_h>=2=2808606206800375.50, |tail/h1|=603934170199007.1250, M(N)= -1, h1/dsq=0.147
+    h= 1: S_N=    -1, C_h=    -29.22, B|_h=      4.65
+    h= 2: S_N=    -5, C_h=     -4.82, B|_h=      3.84
+    h= 3: S_N=    -7, C_h=    -10.11, B|_h=     11.26
+    h= 4: S_N=   -13, C_h=      0.80, B|_h=     -1.65
+    h= 5: S_N=   -11, C_h=      1.36, B|_h=     -2.39
+p=  31: B|_h1=     16.85, Sum_h>=2=2097176955627998.75, |tail/h1|=124452981175946.6250, M(N)= -3, h1/dsq=0.423
+    h= 1: S_N=    -3, C_h=    -35.29, B|_h=     16.85
+    h= 2: S_N=    -5, C_h=    -19.65, B|_h=     15.64
+    h= 3: S_N=    -6, C_h=     -2.34, B|_h=      2.23
+    h= 4: S_N=   -13, C_h=     -5.28, B|_h=     10.93
+    h= 5: S_N=    -8, C_h=      1.16, B|_h=     -1.47
+p=  37: B|_h1=      8.17, Sum_h>=2=632064536889014.88, |tail/h1|=77361596001314.3594, M(N)= -1, h1/dsq=0.131
+    h= 1: S_N=    -1, C_h=    -51.34, B|_h=      8.17
+    h= 2: S_N=    -5, C_h=    -27.20, B|_h=     21.64
+    h= 3: S_N=    -7, C_h=    -16.74, B|_h=     18.65
+    h= 4: S_N=   -13, C_h=     -5.81, B|_h=     12.03
+    h= 5: S_N=   -11, C_h=    -11.95, B|_h=     20.93
+p=  41: B|_h1=     -0.00, Sum_h>=2=-299481341347781.88, |tail/h1|=inf, M(N)=  0, h1/dsq=-0.000
+    h= 1: S_N=     0, C_h=    -56.49, B|_h=     -0.00
+    h= 2: S_N=    -6, C_h=    -29.46, B|_h=     28.13
+    h= 3: S_N=    -9, C_h=    -23.00, B|_h=     32.94
+    h= 4: S_N=   -10, C_h=    -15.15, B|_h=     24.12
+    h= 5: S_N=   -10, C_h=     -3.40, B|_h=      5.41
+p=  43: B|_h1=     21.35, Sum_h>=2=619007906231281.25, |tail/h1|=28987831703449.7852, M(N)= -2, h1/dsq=0.258
+    h= 1: S_N=    -2, C_h=    -67.09, B|_h=     21.35
+    h= 2: S_N=    -6, C_h=    -37.38, B|_h=     35.69
+    h= 3: S_N=    -8, C_h=    -25.90, B|_h=     32.98
+    h= 4: S_N=   -10, C_h=     -8.42, B|_h=     13.40
+    h= 5: S_N=   -12, C_h=    -16.21, B|_h=     30.95
+p=  47: B|_h1=     24.22, Sum_h>=2=-3530195512345130.00, |tail/h1|=145728396751957.4062, M(N)= -2, h1/dsq=0.277
+    h= 1: S_N=    -2, C_h=    -76.10, B|_h=     24.22
+    h= 2: S_N=    -6, C_h=    -30.65, B|_h=     29.27
+    h= 3: S_N=    -5, C_h=    -25.89, B|_h=     20.60
+    h= 4: S_N=   -14, C_h=     -4.41, B|_h=      9.83
+    h= 5: S_N=   -12, C_h=     -5.48, B|_h=     10.46
+p=  53: B|_h1=     30.92, Sum_h>=2=-2903750930483898.50, |tail/h1|=93923405486892.3906, M(N)= -2, h1/dsq=0.255
+    h= 1: S_N=    -2, C_h=    -97.13, B|_h=     30.92
+    h= 2: S_N=    -4, C_h=    -44.73, B|_h=     28.48
+    h= 3: S_N=    -8, C_h=    -34.56, B|_h=     44.01
+    h= 4: S_N=   -16, C_h=    -21.17, B|_h=     53.92
+    h= 5: S_N=    -7, C_h=    -14.53, B|_h=     16.19
+p=  59: B|_h1=     -0.00, Sum_h>=2=-7074370721627984.00, |tail/h1|=inf, M(N)=  0, h1/dsq=-0.000
+    h= 1: S_N=     0, C_h=   -107.98, B|_h=     -0.00
+    h= 2: S_N=    -4, C_h=    -55.54, B|_h=     35.36
+    h= 3: S_N=    -9, C_h=    -28.86, B|_h=     41.34
+    h= 4: S_N=   -12, C_h=     -8.81, B|_h=     16.82
+    h= 5: S_N=   -10, C_h=    -30.02, B|_h=     47.77
+p=  61: B|_h1=     21.06, Sum_h>=2=-2864613583674130.00, |tail/h1|=135990097133974.7344, M(N)= -1, h1/dsq=0.113
+    h= 1: S_N=    -1, C_h=   -132.35, B|_h=     21.06
+    h= 2: S_N=    -7, C_h=    -73.02, B|_h=     81.35
+    h= 3: S_N=   -10, C_h=    -53.54, B|_h=     85.21
+    h= 4: S_N=   -11, C_h=    -40.64, B|_h=     71.15
+    h= 5: S_N=   -11, C_h=    -19.21, B|_h=     33.64
+p=  67: B|_h1=     24.46, Sum_h>=2=664239353414047.62, |tail/h1|=27155953163683.5273, M(N)= -1, h1/dsq=0.119
+    h= 1: S_N=    -1, C_h=   -153.69, B|_h=     24.46
+    h= 2: S_N=    -7, C_h=    -68.76, B|_h=     76.61
+    h= 3: S_N=    -4, C_h=    -58.23, B|_h=     37.07
+    h= 4: S_N=   -11, C_h=    -25.07, B|_h=     43.90
+    h= 5: S_N=   -16, C_h=    -24.48, B|_h=     62.33
+p=  71: B|_h1=     53.11, Sum_h>=2=-13207666520233582.00, |tail/h1|=248695708597523.5938, M(N)= -2, h1/dsq=0.245
+    h= 1: S_N=    -2, C_h=   -166.84, B|_h=     53.11
+    h= 2: S_N=    -4, C_h=    -77.05, B|_h=     49.05
+    h= 3: S_N=    -8, C_h=    -43.95, B|_h=     55.95
+    h= 4: S_N=   -12, C_h=    -50.09, B|_h=     95.67
+    h= 5: S_N=   -12, C_h=    -13.96, B|_h=     26.66
+p=  73: B|_h1=     94.07, Sum_h>=2=-4208556750784657.00, |tail/h1|=44740486498869.0312, M(N)= -3, h1/dsq=0.360
+    h= 1: S_N=    -3, C_h=   -197.01, B|_h=     94.07
+    h= 2: S_N=    -5, C_h=    -85.85, B|_h=     68.32
+    h= 3: S_N=    -9, C_h=    -62.76, B|_h=     89.90
+    h= 4: S_N=   -13, C_h=    -44.47, B|_h=     92.01
+    h= 5: S_N=   -13, C_h=    -55.08, B|_h=    113.96
+p=  79: B|_h1=    101.96, Sum_h>=2=-5636110157282821.00, |tail/h1|=55276433667466.1484, M(N)= -3, h1/dsq=0.370
+    h= 1: S_N=    -3, C_h=   -213.55, B|_h=    101.96
+    h= 2: S_N=    -3, C_h=   -121.89, B|_h=     58.20
+    h= 3: S_N=    -6, C_h=    -51.79, B|_h=     49.45
+    h= 4: S_N=   -15, C_h=    -58.71, B|_h=    140.16
+    h= 5: S_N=    -8, C_h=    -45.49, B|_h=     57.92
+p=  83: B|_h1=    113.44, Sum_h>=2=-24460252813686236.00, |tail/h1|=215625355976576.8750, M(N)= -3, h1/dsq=0.380
+    h= 1: S_N=    -3, C_h=   -237.59, B|_h=    113.44
+    h= 2: S_N=    -5, C_h=   -111.46, B|_h=     88.69
+    h= 3: S_N=    -6, C_h=    -61.45, B|_h=     58.68
+    h= 4: S_N=   -17, C_h=    -67.30, B|_h=    182.09
+    h= 5: S_N=    -8, C_h=    -33.76, B|_h=     42.99
+p=  89: B|_h1=     42.10, Sum_h>=2=-19788258720918776.00, |tail/h1|=470042787690741.4375, M(N)= -1, h1/dsq=0.118
+    h= 1: S_N=    -1, C_h=   -264.51, B|_h=     42.10
+    h= 2: S_N=    -7, C_h=   -115.47, B|_h=    128.64
+    h= 3: S_N=    -7, C_h=    -90.63, B|_h=    100.97
+    h= 4: S_N=   -11, C_h=    -42.41, B|_h=     74.25
+    h= 5: S_N=   -11, C_h=    -29.85, B|_h=     52.26
+p=  97: B|_h1=    -92.28, Sum_h>=2=-13823130295838274.00, |tail/h1|=149801979475100.9375, M(N)=  2, h1/dsq=-0.205
+    h= 1: S_N=     2, C_h=   -289.89, B|_h=    -92.28
+    h= 2: S_N=    -4, C_h=   -152.83, B|_h=     97.30
+    h= 3: S_N=   -10, C_h=   -108.14, B|_h=    172.12
+    h= 4: S_N=   -12, C_h=    -63.98, B|_h=    122.20
+    h= 5: S_N=   -13, C_h=    -50.40, B|_h=    104.28
+p= 101: B|_h1=    -52.13, Sum_h>=2=-21668450470438400.00, |tail/h1|=415658396031607.2500, M(N)=  1, h1/dsq=-0.109
+    h= 1: S_N=     1, C_h=   -327.55, B|_h=    -52.13
+    h= 2: S_N=    -5, C_h=   -161.25, B|_h=    128.32
+    h= 3: S_N=    -8, C_h=   -110.73, B|_h=    140.99
+    h= 4: S_N=   -13, C_h=    -70.59, B|_h=    146.06
+    h= 5: S_N=   -14, C_h=    -69.13, B|_h=    154.04
+
+Summary (Approach 3):
+  |tail|/|h=1|: min=0.7117, max=inf
+  All |tail| < |h=1|: False
+  h1/delta_sq ratios: min=-0.205, max=0.731
+
+================================================================================
+APPROACH 4: Ratio test — weaker sufficient condition
+================================================================================
+
+p=  11: D/A=0.648037, threshold/dsq=+1.3746, slack/dsq=-1.2675, POSITIVE (need B+C > 0+)
+p=  13: D/A=0.775080, threshold/dsq=+0.7537, slack/dsq=+0.0577, POSITIVE (need B+C > 0+)
+p=  17: D/A=0.863307, threshold/dsq=+0.5921, slack/dsq=-0.0348, POSITIVE (need B+C > 0+)
+p=  19: D/A=0.932308, threshold/dsq=+0.3088, slack/dsq=+0.8549, POSITIVE (need B+C > 0+)
+p=  23: D/A=0.897499, threshold/dsq=+0.5472, slack/dsq=+0.4692, POSITIVE (need B+C > 0+)
+p=  29: D/A=0.920061, threshold/dsq=+0.4202, slack/dsq=+0.9352, POSITIVE (need B+C > 0+)
+p=  31: D/A=0.940371, threshold/dsq=+0.3074, slack/dsq=+2.1616, POSITIVE (need B+C > 0+)
+p=  37: D/A=0.978772, threshold/dsq=+0.1010, slack/dsq=+1.2821, POSITIVE (need B+C > 0+)
+p=  41: D/A=0.970120, threshold/dsq=+0.1624, slack/dsq=+0.8971, POSITIVE (need B+C > 0+)
+p=  43: D/A=0.978462, threshold/dsq=+0.1165, slack/dsq=+2.1970, POSITIVE (need B+C > 0+)
+p=  47: D/A=0.983970, threshold/dsq=+0.1011, slack/dsq=+2.4202, POSITIVE (need B+C > 0+)
+p=  53: D/A=1.002696, threshold/dsq=-0.0162, slack/dsq=+2.3881, NEGATIVE (easy!)
+p=  59: D/A=0.953567, threshold/dsq=+0.3026, slack/dsq=+1.2467, POSITIVE (need B+C > 0+)
+p=  61: D/A=0.994396, threshold/dsq=+0.0306, slack/dsq=+2.2150, POSITIVE (need B+C > 0+)
+p=  67: D/A=0.993606, threshold/dsq=+0.0381, slack/dsq=+2.2166, POSITIVE (need B+C > 0+)
+p=  71: D/A=1.003956, threshold/dsq=-0.0252, slack/dsq=+2.8255, NEGATIVE (easy!)
+p=  73: D/A=0.943471, threshold/dsq=+0.3325, slack/dsq=+3.4474, POSITIVE (need B+C > 0+)
+p=  79: D/A=0.977281, threshold/dsq=+0.1473, slack/dsq=+3.3989, POSITIVE (need B+C > 0+)
+p=  83: D/A=0.997758, threshold/dsq=+0.0154, slack/dsq=+3.8732, POSITIVE (need B+C > 0+)
+p=  89: D/A=0.983210, threshold/dsq=+0.1113, slack/dsq=+2.8504, POSITIVE (need B+C > 0+)
+p=  97: D/A=0.990814, threshold/dsq=+0.0588, slack/dsq=+0.7264, POSITIVE (need B+C > 0+)
+p= 101: D/A=0.988099, threshold/dsq=+0.0765, slack/dsq=+1.5140, POSITIVE (need B+C > 0+)
+p= 197: D/A=0.989353, threshold/dsq=+0.0776, slack/dsq=+6.7098, POSITIVE (need B+C > 0+)
+p= 199: D/A=0.977646, threshold/dsq=+0.1675, slack/dsq=+7.7226, POSITIVE (need B+C > 0+)
+p= 211: D/A=0.981646, threshold/dsq=+0.1243, slack/dsq=+4.1708, POSITIVE (need B+C > 0+)
+p= 499: D/A=0.991253, threshold/dsq=+0.0651, slack/dsq=+7.8175, POSITIVE (need B+C > 0+)
+
+Summary (Approach 4):
+  Primes with threshold < 0 (trivially satisfied): 14/91
+  D/A ratio: min=0.648037, max=1.006592
+  threshold/delta_sq: min=-0.0480, max=1.3746
+  All slack > 0 (DeltaW < 0): False
+
+================================================================================
+Total time: 3.8s
+================================================================================

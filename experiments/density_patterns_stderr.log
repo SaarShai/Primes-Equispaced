@@ -1,0 +1,13 @@
+Sieving...
+Computing M and H...
+Computing T(N) for all M(p)=-3 primes...
+  100 primes processed (p=27239)
+  200 primes processed (p=132313)
+  300 primes processed (p=278387)
+  400 primes processed (p=572177)
+  500 primes processed (p=1331437)
+  600 primes processed (p=2732519)
+  700 primes processed (p=3718573)
+  800 primes processed (p=8226083)
+  900 primes processed (p=9511693)
+Done. Total M(p)=-3 primes: 922

@@ -1,0 +1,115 @@
+Using MPS (Apple Metal GPU)
+Generating sample points ...
+  Target density range: [0.039, 3.603]
+  Target density mean: 0.3814
+  Generated 5 feature-local test sets (500 pts each)
+======================================================================
+Displacement-Guided Farey 3DGS v2: Sparse-Detail Target
+======================================================================
+Target: smooth background + 5 tiny hidden features
+Config: MAX_GAUSS=1500, STEPS=7000, BATCH=8000
+Device: mps
+
+
+  [1/4] Training Standard ADC ...
+    step   500  MSE=0.000479  K=  440  t=8.1s
+    step  1000  MSE=0.000051  K=  444  t=19.6s
+    step  1500  MSE=0.000011  K=  444  t=30.9s
+    step  2000  MSE=0.000005  K=  444  t=42.1s
+    step  2500  MSE=0.000003  K=  450  t=54.0s
+    step  3000  MSE=0.000001  K=  450  t=65.6s
+    step  3500  MSE=0.000000  K=  450  t=77.1s
+    step  4000  MSE=0.000000  K=  460  t=89.2s
+    step  4500  MSE=0.000000  K=  460  t=101.1s
+    step  5000  MSE=0.000000  K=  460  t=112.9s
+    step  5500  MSE=0.000000  K=  464  t=125.1s
+    step  6000  MSE=0.000000  K=  466  t=137.4s
+    step  6500  MSE=0.000000  K=  466  t=149.6s
+    step  7000  MSE=0.000000  K=  466  t=161.4s
+  ADC done in 161.4s  Final MSE=0.000000  K=466
+  Per-feature MSE: ['0.000007', '0.002800', '0.001176', '0.000001', '0.010630']
+  Test ADC                      : MSE=0.000002  MAE=0.0003  BG_MSE=0.000000  FG_MSE=0.000527
+    (background pts: 19568, feature pts: 47)
+
+  [2/4] Training Classical Farey ...
+    step   500  MSE=0.000299  K=  244  t=7.0s
+    step  1000  MSE=0.000022  K=  338  t=22.1s
+    step  1500  MSE=0.000008  K=  338  t=38.3s
+    step  2000  MSE=0.000004  K=  338  t=54.1s
+    step  2500  MSE=0.000003  K=  338  t=71.3s
+    step  3000  MSE=0.000002  K=  338  t=86.9s
+    step  3500  MSE=0.000002  K=  338  t=102.9s
+    step  4000  MSE=0.000001  K=  338  t=118.4s
+    step  4500  MSE=0.000001  K=  338  t=134.8s
+    step  5000  MSE=0.000001  K=  338  t=149.9s
+    step  5500  MSE=0.000001  K=  338  t=165.0s
+    step  6000  MSE=0.000001  K=  338  t=180.3s
+    step  6500  MSE=0.000004  K=  338  t=190.0s
+    step  7000  MSE=0.000000  K=  338  t=199.2s
+  Farey done in 199.2s  Final MSE=0.000000  K=338
+  Per-feature MSE: ['0.000006', '0.000069', '0.000005', '0.000002', '0.001154']
+  Test Classical Farey          : MSE=0.000013  MAE=0.0006  BG_MSE=0.000010  FG_MSE=0.000007
+    (background pts: 19605, feature pts: 48)
+
+  Training Displacement-Guided (local_voronoi_a1.5, alpha=1.5) ...
+    step   500  MSE=0.000591  K=  430  t=9.1s
+    step  1000  MSE=0.000057  K=  430  t=21.0s
+    step  1500  MSE=0.000009  K=  430  t=32.4s
+    step  2000  MSE=0.000003  K=  430  t=44.1s
+    step  2500  MSE=0.000002  K=  430  t=55.7s
+    step  3000  MSE=0.000001  K=  442  t=67.8s
+    step  3500  MSE=0.000000  K=  446  t=79.8s
+    step  4000  MSE=0.000000  K=  446  t=92.1s
+    step  4500  MSE=0.000000  K=  446  t=104.1s
+    step  5000  MSE=0.000000  K=  450  t=117.0s
+    step  5500  MSE=0.000000  K=  452  t=129.6s
+    step  6000  MSE=0.000000  K=  452  t=142.0s
+    step  6500  MSE=0.000000  K=  452  t=154.4s
+    step  7000  MSE=0.000004  K=  452  t=166.5s
+  local_voronoi_a1.5 done in 166.5s  Final MSE=0.000004  K=452
+  Per-feature MSE: ['0.000156', '0.000173', '0.004776', '0.000468', '0.005980']
+  Test Local Voronoi (a=1.5)    : MSE=0.000007  MAE=0.0015  BG_MSE=0.000003  FG_MSE=0.000987
+    (background pts: 19567, feature pts: 65)
+
+  Training Displacement-Guided (global_rank_a1.5, alpha=1.5) ...
+    step   500  MSE=0.000597  K=  452  t=9.0s
+    step  1000  MSE=0.000056  K=  452  t=21.1s
+    step  1500  MSE=0.000008  K=  452  t=33.2s
+    step  2000  MSE=0.000003  K=  452  t=45.3s
+    step  2500  MSE=0.000002  K=  458  t=57.5s
+    step  3000  MSE=0.000001  K=  464  t=69.9s
+    step  3500  MSE=0.000000  K=  464  t=82.3s
+    step  4000  MSE=0.000000  K=  470  t=94.9s
+    step  4500  MSE=0.000000  K=  470  t=107.6s
+    step  5000  MSE=0.000000  K=  470  t=120.2s
+    step  5500  MSE=0.000000  K=  474  t=133.0s
+    step  6000  MSE=0.000000  K=  474  t=145.6s
+    step  6500  MSE=0.000000  K=  474  t=158.2s
+    step  7000  MSE=0.000001  K=  474  t=170.7s
+  global_rank_a1.5 done in 170.7s  Final MSE=0.000001  K=474
+  Per-feature MSE: ['0.000059', '0.000533', '0.000898', '0.000593', '0.000051']
+  Test Global Rank (a=1.5)      : MSE=0.000003  MAE=0.0009  BG_MSE=0.000001  FG_MSE=0.000445
+    (background pts: 19594, feature pts: 62)
+
+======================================================================
+RESULTS SUMMARY — Sparse-Detail Target
+======================================================================
+Method                            Final MSE     Test MSE       BG MSE       FG MSE      K     Time
+--------------------------------------------------------------------------------------------
+adc                                0.000000     0.000002     0.000000     0.000527    466   161.4s
+farey                              0.000000     0.000013     0.000010     0.000007    338   199.2s
+disp_local_voronoi                 0.000004     0.000007     0.000003     0.000987    452   166.5s
+disp_global_rank                   0.000001     0.000003     0.000001     0.000445    474   170.7s
+
+Per-feature MSE breakdown:
+  adc                           : F0=0.000007  F1=0.002800  F2=0.001176  F3=0.000001  F4=0.010630
+  farey                         : F0=0.000006  F1=0.000069  F2=0.000005  F3=0.000002  F4=0.001154
+  disp_local_voronoi            : F0=0.000156  F1=0.000173  F2=0.004776  F3=0.000468  F4=0.005980
+  disp_global_rank              : F0=0.000059  F1=0.000533  F2=0.000898  F3=0.000593  F4=0.000051
+
+Best feature detection: farey (99.3% better FG MSE than disp_local_voronoi)
+
+Total experiment time: 700.2s
+
+Results saved to /Users/saar/Desktop/Farey-Local/experiments/3dgs_results/displacement_v2_results.json
+DONE.

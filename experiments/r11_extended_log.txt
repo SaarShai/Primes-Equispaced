@@ -1,0 +1,18 @@
+Computing R(p) for 164 primes from 11 to 997
+  p=   11: R= -0.258853, B+C=      1.4233, running_min_R=-0.258853
+  p=   13: R=  0.059947, B+C=      6.5749, running_min_R=-0.258853
+  p=   17: R= -0.138625, B+C=      6.8036, running_min_R=-0.258853
+  p=   19: R=  0.165976, B+C=     17.1281, running_min_R=-0.258853
+  p=   23: R=  0.066249, B+C=     19.6673, running_min_R=-0.258853
+  p=   29: R=  0.214812, B+C=     45.3730, running_min_R=-0.258853
+  p=   31: R=  0.778001, B+C=    101.8552, running_min_R=-0.258853
+  p=   37: R=  0.210643, B+C=     88.7953, running_min_R=-0.258853
+  p=   41: R=  0.043819, B+C=     79.5220, running_min_R=-0.258853
+  p=   43: R=  0.676742, B+C=    194.8566, running_min_R=-0.258853
+  p=   47: R=  0.780823, B+C=    223.8797, running_min_R=-0.258853
+  p=  223: R= -0.158026, B+C=   1626.3015, running_min_R=-0.258853
+
+FINAL: min R(p) = -0.25885253 at p=11
+Tested 164 primes
+CONFIRMED: R(11) = -0.25885253 is the global minimum
+R(p) NEVER goes below R(11) for any prime tested

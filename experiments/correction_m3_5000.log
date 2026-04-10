@@ -1,0 +1,7 @@
+Sieving to 5000...
+Finding M(p) = -3 primes and computing correction...
+Done 50 M(p)=-3 primes, last p=4649, worst ratio=0.440053 at p=13
+
+Total M(p)=-3 primes found: 50
+Worst correction/C ratio: 0.440053 at p=13
+Margin from 0.5: 0.059947

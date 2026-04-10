@@ -1,0 +1,167 @@
+======================================================================
+DENSITY PATTERNS ANALYSIS: T(N) > 0 among M(p)=-3 primes
+======================================================================
+Total primes: 922
+T > 0: 247 (26.8%)
+T < 0: 675 (73.2%)
+T range: [-186.48, 137.34]
+Mean T: -11.3039
+Median T: -14.7314
+
+======================================================================
+Q1: DENSITY TREND (fraction of T>0 in [10^k, 10^{k+1}])
+======================================================================
+  [        10,        100):    6 primes,   0 T>0, fraction = 0.0000
+  [       100,       1000):   20 primes,   0 T>0, fraction = 0.0000
+  [      1000,      10000):   49 primes,   0 T>0, fraction = 0.0000
+  [     10000,     100000):   99 primes,   0 T>0, fraction = 0.0000
+  [    100000,    1000000):  272 primes,  27 T>0, fraction = 0.0993
+  [   1000000,   10000000):  476 primes, 220 T>0, fraction = 0.4622
+
+======================================================================
+Q2: CLUSTERING of T>0 primes
+======================================================================
+  T>0 run lengths: count=16, max=81, mean=15.44
+  T<0 run lengths: count=17, max=254, mean=39.71
+  T>0 run length distribution: {1: 5, 2: 3, 4: 1, 5: 1, 11: 1, 17: 1, 28: 1, 34: 1, 56: 1, 81: 1}
+  T<0 run length distribution (top 10): {4: 4, 2: 3, 254: 1, 54: 1, 72: 1, 16: 1, 26: 1, 36: 1, 112: 1, 32: 1}
+  Gaps between T>0 primes (index): min=1, max=113, mean=2.53, median=1.0
+  Gaps between T>0 primes (value): min=2, max=2146554, mean=33186
+
+======================================================================
+Q3: CORRELATION WITH M(N/2), M(N/3)
+======================================================================
+  Correlation(T, M(N/2)): 0.8919
+  Correlation(T, M(N/3)): 0.5123
+  Correlation(T, M(N/5)): 0.4997
+  Correlation(T, M(N/2)/2+M(N/3)/3): 0.9494
+
+  Among T>0 primes:
+    Mean M(N/2) = 198.74 (vs -26.87 for T<0)
+    Mean M(N/3) = 93.25 (vs -20.15 for T<0)
+    Fraction M(N/2) > 0: 0.972 (vs 0.356)
+    Fraction M(N/3) > 0: 0.798 (vs 0.444)
+
+    P(T>0 | M(N/2) > 0) = 0.500  (n=480)
+    P(T>0 | M(N/2) <= 0) = 0.016  (n=442)
+    P(T>0 | M(N/2) > 5) = 0.553  (n=434)
+    P(T>0 | M(N/2) < -5) = 0.011  (n=354)
+
+======================================================================
+Q4: RESIDUE CLASSES
+======================================================================
+
+  p mod 6:
+    r= 1:  485 primes, 123 T>0, frac=0.254
+    r= 5:  437 primes, 124 T>0, frac=0.284
+
+  p mod 12:
+    r= 1:  250 primes,  63 T>0, frac=0.252
+    r= 5:  218 primes,  56 T>0, frac=0.257
+    r= 7:  235 primes,  60 T>0, frac=0.255
+    r=11:  219 primes,  68 T>0, frac=0.311
+
+  p mod 30:
+    r= 1:  115 primes,  27 T>0, frac=0.235
+    r= 7:  134 primes,  33 T>0, frac=0.246
+    r=11:  117 primes,  35 T>0, frac=0.299
+    r=13:  128 primes,  32 T>0, frac=0.250
+    r=17:  118 primes,  30 T>0, frac=0.254
+    r=19:  108 primes,  31 T>0, frac=0.287
+    r=23:  107 primes,  34 T>0, frac=0.318
+    r=29:   95 primes,  25 T>0, frac=0.263
+
+  p mod 24:
+    r= 1:  124 primes,  32 T>0, frac=0.258
+    r= 5:  103 primes,  22 T>0, frac=0.214
+    r= 7:  133 primes,  25 T>0, frac=0.188
+    r=11:  114 primes,  33 T>0, frac=0.289
+    r=13:  126 primes,  31 T>0, frac=0.246
+    r=17:  115 primes,  34 T>0, frac=0.296
+    r=19:  102 primes,  35 T>0, frac=0.343
+    r=23:  105 primes,  35 T>0, frac=0.333
+
+======================================================================
+Q5: SPACING DISTRIBUTION
+======================================================================
+  T>0 prime gaps: mean=33186, median=227, std=194391
+    min=2, max=2146554
+    quartiles: Q1=42, Q3=1440
+  T<0 prime gaps: mean=14234, median=133, std=108296
+    min=2, max=2259204
+  All M=-3 prime gaps: mean=10417, median=140
+
+  Normalized T>0 gaps: P(gap < 0.5*mean) = 0.894
+                       P(gap < 1.0*mean) = 0.919
+                       P(gap > 2.0*mean) = 0.061
+
+======================================================================
+Q6: ZETA ZERO RESONANCES
+======================================================================
+  Under GRH, M(x) ~ sum x^rho / rho where rho = 1/2 + i*gamma.
+  T(N) = sum_{m=2}^N M(N/m)/m involves M at multiple scales.
+  The leading oscillation of M(x) has period ~ 2*pi/gamma_1 in log(x).
+  gamma_1 ~ 14.1347 (first zeta zero imaginary part).
+
+  Phase of gamma_1 * log(p) mod 2pi (bins of pi/6):
+    [0.00, 0.52): n=  56, T>0= 17, frac=0.304
+    [0.52, 1.05): n=  82, T>0=  0, frac=0.000
+    [1.05, 1.57): n=  41, T>0=  0, frac=0.000
+    [1.57, 2.09): n=  44, T>0=  0, frac=0.000
+    [2.09, 2.62): n=  47, T>0=  2, frac=0.043
+    [2.62, 3.14): n= 104, T>0=  0, frac=0.000
+    [3.14, 3.67): n= 118, T>0=  8, frac=0.068
+    [3.67, 4.19): n=  54, T>0= 13, frac=0.241
+    [4.19, 4.71): n=  32, T>0= 19, frac=0.594
+    [4.71, 5.24): n=  96, T>0= 65, frac=0.677
+    [5.24, 5.76): n= 123, T>0= 77, frac=0.626
+    [5.76, 6.28): n= 125, T>0= 46, frac=0.368
+
+  Circular mean (gamma_1 phase): T>0 = -1.005, T<0 = 2.273
+  Resultant length: T>0 = 0.7686, T<0 = 0.1297
+  (Resultant ~ 0 means uniform; > 0.1 means clustering)
+
+======================================================================
+Q7: RUBINSTEIN-SARNAK PREDICTION / ASYMPTOTIC DENSITY
+======================================================================
+  Rubinstein-Sarnak (1994) showed the logarithmic density of
+  {x : pi(x) > li(x)} is about 0.00000026 (Chebyshev bias).
+  The density of {N : M(N) > 0} is about 0 (Mertens oscillation).
+  For T(N) = sum M(N/m)/m, T is a smoothed/averaged version of M.
+  The smoothing should INCREASE the fraction of positive values
+  (since averaging reduces extreme negative excursions).
+
+  Running fraction of T>0 among first k M=-3 primes:
+    k=  50: fraction = 0.0000 (count=0)
+    k= 100: fraction = 0.0000 (count=0)
+    k= 174: fraction = 0.0000 (count=0)
+    k= 200: fraction = 0.0000 (count=0)
+    k= 300: fraction = 0.0033 (count=1)
+    k= 400: fraction = 0.0400 (count=16)
+    k= 500: fraction = 0.0600 (count=30)
+    k= 600: fraction = 0.1050 (count=63)
+    k= 700: fraction = 0.1657 (count=116)
+    k= 800: fraction = 0.2125 (count=170)
+    k= 900: fraction = 0.2744 (count=247)
+    k= 922: fraction = 0.2679 (count=247)
+
+  Fraction in sliding windows of 100 primes:
+    primes [1-100] (p in [13, 27239]): frac = 0.000
+    primes [101-200] (p in [27943, 132313]): frac = 0.000
+    primes [201-300] (p in [134857, 278387]): frac = 0.010
+    primes [301-400] (p in [322513, 572177]): frac = 0.150
+    primes [401-500] (p in [572179, 1331437]): frac = 0.140
+    primes [501-600] (p in [1331443, 2732519]): frac = 0.330
+    primes [601-700] (p in [2819681, 3718573]): frac = 0.530
+    primes [701-800] (p in [3718619, 8226083]): frac = 0.540
+    primes [801-900] (p in [8226209, 9511693]): frac = 0.770
+
+======================================================================
+ADDITIONAL: T(N) statistics by decade
+======================================================================
+  [        10,        100): mean T =     -2.078, std =    1.235, min =     -3.816, max =     -0.430
+  [       100,       1000): mean T =     -6.832, std =    2.215, min =     -8.837, max =     -1.975
+  [      1000,      10000): mean T =    -12.662, std =    4.093, min =    -21.960, max =     -4.612
+  [     10000,     100000): mean T =    -17.226, std =    5.563, min =    -29.672, max =     -3.817
+  [    100000,    1000000): mean T =    -19.806, std =   14.506, min =    -55.603, max =     23.120
+  [   1000000,   10000000): mean T =     -5.378, std =   56.616, min =   -186.475, max =    137.338

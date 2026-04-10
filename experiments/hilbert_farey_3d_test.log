@@ -1,0 +1,88 @@
+Hilbert+Farey 3D Test
+Config: MAX_GAUSS=1500, STEPS=7000, SAMPLES=50000
+Init: 6^3 = 216 Gaussians
+
+Generating target field (50K points)...
+  Target range: [0.0000, 1.7855]
+
+============================================================
+STRATEGY 1: Standard ADC (gradient-based 3D)
+============================================================
+  step  1000  MSE=0.00000358  K=264
+  step  2000  MSE=0.00000084  K=264
+  step  3000  MSE=0.00000030  K=264
+  step  4000  MSE=0.00000016  K=264
+  step  5000  MSE=0.00000010  K=264
+  step  6000  MSE=0.00000007  K=264
+  step  7000  MSE=0.00000016  K=264
+  ADC DONE: 2225.1s  Final MSE=0.00000016  K=264
+  ADC TEST: MSE=0.00000013  smooth=0.00000071  detail=0.00000095  K=264
+
+
+============================================================
+STRATEGY 2: Direct Farey (3D Delaunay)
+============================================================
+  step  1000  MSE=0.00000148  K=256
+  step  2000  MSE=0.00000041  K=256
+  step  3000  MSE=0.00000022  K=256
+  step  4000  MSE=0.00000016  K=256
+  step  5000  MSE=0.00000012  K=256
+  step  6000  MSE=0.00000010  K=256
+  step  7000  MSE=0.00000056  K=256
+  Farey-Delaunay DONE: 1708.4s  Final MSE=0.00000056  K=256
+  Farey-Delaunay TEST: MSE=0.00000040  smooth=0.00000060  detail=0.00000473  K=256
+
+
+============================================================
+STRATEGY 3: Hilbert+Farey (Morton curve + mediant)
+============================================================
+  step  1000  MSE=0.00000460  K=254
+  step  2000  MSE=0.00000074  K=254
+  step  3000  MSE=0.00000058  K=254
+  step  4000  MSE=0.00000022  K=254
+  step  5000  MSE=0.00000046  K=254
+  step  6000  MSE=0.00000013  K=254
+  step  7000  MSE=0.00000017  K=254
+  Hilbert+Farey DONE: 1592.4s  Final MSE=0.00000017  K=254
+  Hilbert+Farey TEST: MSE=0.00000023  smooth=0.00000047  detail=0.00000257  K=254
+
+
+============================================================
+STRATEGY 4: Hilbert+Bisection (control — midpoint)
+============================================================
+  step  1000  MSE=0.00000279  K=252
+  step  2000  MSE=0.00000105  K=252
+  step  3000  MSE=0.00000036  K=252
+  step  4000  MSE=0.00000039  K=252
+  step  5000  MSE=0.00000018  K=252
+  step  6000  MSE=0.00000016  K=252
+  step  7000  MSE=0.00000014  K=252
+  Hilbert+Bisection DONE: 1589.7s  Final MSE=0.00000014  K=252
+  Hilbert+Bisection TEST: MSE=0.00000015  smooth=0.00000045  detail=0.00000132  K=252
+
+
+======================================================================
+FINAL COMPARISON
+======================================================================
+Method                   Test MSE   Detail MSE      K     Time
+----------------------------------------------------------------------
+ADC                    0.00000013   0.00000095    264  2225.1s
+Farey-Delaunay         0.00000040   0.00000473    256  1708.4s
+Hilbert+Farey          0.00000023   0.00000257    254  1592.4s
+Hilbert+Bisection      0.00000015   0.00000132    252  1589.7s
+
+======================================================================
+KILL-OR-PROMOTE VERDICT
+======================================================================
+  Hilbert+Farey  MSE = 0.00000023
+  Hilbert+Bisect MSE = 0.00000015
+  Ratio (bisect/farey) = 0.6294
+  >>> KILL: Hilbert+Farey does NOT beat bisection. Mediant has no advantage in Hilbert ordering.
+
+  vs Farey-Delaunay: Hilbert+Farey/Delaunay = 0.5894
+  >>> Hilbert routing FASTER than Delaunay (avoid O(n log n) tetrahedralization)
+  vs ADC: best Farey variant / ADC = 1.8149
+
+Results saved to /Users/saar/Desktop/Farey-Local/experiments/hilbert_farey_3d_results.json
+
+DONE.

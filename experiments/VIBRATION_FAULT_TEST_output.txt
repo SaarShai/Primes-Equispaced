@@ -1,0 +1,8 @@
+Starting Bearing Fault Detection Simulation...
+Parameters: Fs=10000Hz, N=50000, Target=89.2Hz
+
+Testing Amplitude: 0.01
+Traceback (most recent call last):
+  File "/Users/saar/Desktop/Farey-Local/experiments/VIBRATION_FAULT_TEST.py", line 260, in <module>
+    power, snr, _ = fft_periodogram_estimate(sig, FS, F_TARGET)
+ValueError: not enough values to unpack (expected 3, got 2)

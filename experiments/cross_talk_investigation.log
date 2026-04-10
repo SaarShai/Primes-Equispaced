@@ -1,0 +1,187 @@
+    1000/5133 (0s, ETA 1s)
+    2000/5133 (1s, ETA 1s)
+    3000/5133 (2s, ETA 1s)
+    4000/5133 (4s, ETA 1s)
+    5000/5133 (6s, ETA 0s)
+/Users/saar/Desktop/Farey-Local/experiments/cross_talk_investigation.py:263: RuntimeWarning: divide by zero encountered in matmul
+  resid_chi7 = T_chi7 - A @ coef_chi7
+/Users/saar/Desktop/Farey-Local/experiments/cross_talk_investigation.py:263: RuntimeWarning: overflow encountered in matmul
+  resid_chi7 = T_chi7 - A @ coef_chi7
+/Users/saar/Desktop/Farey-Local/experiments/cross_talk_investigation.py:263: RuntimeWarning: invalid value encountered in matmul
+  resid_chi7 = T_chi7 - A @ coef_chi7
+/Users/saar/Desktop/Farey-Local/experiments/cross_talk_investigation.py:267: RuntimeWarning: divide by zero encountered in matmul
+  resid_zeta = zeta_signal - A @ coef_zeta
+/Users/saar/Desktop/Farey-Local/experiments/cross_talk_investigation.py:267: RuntimeWarning: overflow encountered in matmul
+  resid_zeta = zeta_signal - A @ coef_zeta
+/Users/saar/Desktop/Farey-Local/experiments/cross_talk_investigation.py:267: RuntimeWarning: invalid value encountered in matmul
+  resid_zeta = zeta_signal - A @ coef_zeta
+========================================================================================================================
+CROSS-TALK INVESTIGATION: Why does zeta zero appear in T_chi7 for all primes?
+========================================================================================================================
+
+[1/7] Sieving...
+  78498 primes up to 1000000
+[2/7] Computing Mertens M(n) and M_chi7(n)...
+  All primes <= 50000: 5133
+  M(p) = -3: 145
+  M(p) = -2: 136
+  M(p) = -1: 131
+  M(p) =  0: 120
+
+  M(p) distribution for primes <= 50000:
+    M(p) =  -8:    93 primes (1.8%)
+    M(p) =  -7:    94 primes (1.8%)
+    M(p) =  -6:   102 primes (2.0%)
+    M(p) =  -5:   120 primes (2.3%)
+    M(p) =  -4:   121 primes (2.4%)
+    M(p) =  -3:   145 primes (2.8%)
+    M(p) =  -2:   136 primes (2.6%)
+    M(p) =  -1:   131 primes (2.6%)
+    M(p) =   0:   120 primes (2.3%)
+    M(p) =   1:    94 primes (1.8%)
+    M(p) =   2:   109 primes (2.1%)
+    M(p) =   3:    84 primes (1.6%)
+    M(p) =   4:    62 primes (1.2%)
+
+[3/7] Computing T_plain and T_chi7 for all 5133 primes...
+  Done in 5.9s
+
+========================================================================================================================
+TEST A: Correlation between T_chi7(p-1) and M(p)
+========================================================================================================================
+  corr(T_chi7, M(p))    = 0.580730
+  corr(T_plain, M(p))   = -0.915128
+  corr(T_chi7, T_plain) = -0.620249
+    T_chi7 vs M(p)           : r = 0.580730, z = 47.5 (significant if |z| > 2)
+    T_plain vs M(p)          : r = -0.915128, z = -111.6 (significant if |z| > 2)
+    T_chi7 vs T_plain        : r = -0.620249, z = -52.0 (significant if |z| > 2)
+
+========================================================================================================================
+TEST B: T_chi7 phase-lock at ZETA zero (gamma=14.13) for various prime subsets
+========================================================================================================================
+
+  --- T_chi7 at ZETA zero (cross-talk test) ---
+  ALL primes                                                               n= 5133 frac+=0.738 sig+= 14.5x sig-= 19.4x max= 19.4x [STRONG]
+  M(p)=-3                                                                  n=  145 frac+=0.717 sig+=  1.6x sig-=  3.3x max=  3.3x [STRONG]
+  M(p)=-2                                                                  n=  136 frac+=0.794 sig+=  3.1x sig-=  2.8x max=  3.1x [STRONG]
+  M(p)=-1                                                                  n=  131 frac+=0.824 sig+=  3.9x sig-=  2.6x max=  3.9x [STRONG]
+  M(p)=0                                                                   n=  120 frac+=0.867 sig+=  2.9x sig-=  2.8x max=  2.9x [MOD]
+
+  --- Random subsamples (n=145, 10 trials) ---
+  Random subsample #1                                                      n=  145 frac+=0.772 sig+=  2.5x sig-=  3.4x max=  3.4x [STRONG]
+  Random subsample #2                                                      n=  145 frac+=0.800 sig+=  2.4x sig-=  2.4x max=  2.4x [MOD]
+  Random subsample #3                                                      n=  145 frac+=0.759 sig+=  3.2x sig-=  3.9x max=  3.9x [STRONG]
+  Random subsample max_sigma: mean=3.43, std=0.45
+
+  --- T_chi7 at OWN zero (gamma=4.97340925) ---
+  ALL primes at chi7 zero                                                  n= 5133 frac+=0.738 sig+= 11.4x sig-= 12.8x max= 12.8x [STRONG]
+  M(p)=-3 at chi7 zero                                                     n=  145 frac+=0.717 sig+=  1.2x sig-=  2.8x max=  2.8x [MOD]
+  M(p)=-2 at chi7 zero                                                     n=  136 frac+=0.794 sig+=  1.8x sig-=  2.6x max=  2.6x [MOD]
+  M(p)=-1 at chi7 zero                                                     n=  131 frac+=0.824 sig+=  2.3x sig-=  1.8x max=  2.3x [MOD]
+  M(p)=0 at chi7 zero                                                      n=  120 frac+=0.867 sig+=  1.1x sig-=  1.8x max=  1.8x [WEAK]
+
+  --- T_plain at ZETA zero (baseline) ---
+  ALL primes                                                               n= 5133 frac+=0.068 sig+= 12.9x sig-=  5.9x max= 12.9x [STRONG]
+  M(p)=-3                                                                  n=  145 frac+=0.000 sig+=  0.0x sig-=  2.3x max=  2.3x [MOD]
+  M(p)=-2                                                                  n=  136 frac+=0.015 sig+=  1.0x sig-=  2.4x max=  2.4x [MOD]
+  M(p)=-1                                                                  n=  131 frac+=0.008 sig+=  1.0x sig-=  2.8x max=  2.8x [MOD]
+  M(p)=0                                                                   n=  120 frac+=0.008 sig+=  1.0x sig-=  2.2x max=  2.2x [MOD]
+
+========================================================================================================================
+TEST E: Partial correlation — does conditioning on M(p) remove cross-talk?
+========================================================================================================================
+  corr(T_chi7, cos(gamma_zeta*log p))             = -0.008541
+  partial corr (linear in M(p))                    = 0.079989
+  Reduction: -836.5%
+
+  Stratified analysis (within each M(p) stratum):
+    M(p)= -8: n=   93, corr(T_chi7, zeta_signal) = -0.199340
+    M(p)= -7: n=   94, corr(T_chi7, zeta_signal) = -0.032432
+    M(p)= -6: n=  102, corr(T_chi7, zeta_signal) = -0.061566
+    M(p)= -5: n=  120, corr(T_chi7, zeta_signal) = 0.085686
+    M(p)= -4: n=  121, corr(T_chi7, zeta_signal) = -0.005741
+    M(p)= -3: n=  145, corr(T_chi7, zeta_signal) = 0.043594
+    M(p)= -2: n=  136, corr(T_chi7, zeta_signal) = 0.060980
+    M(p)= -1: n=  131, corr(T_chi7, zeta_signal) = 0.144125
+    M(p)=  0: n=  120, corr(T_chi7, zeta_signal) = -0.088044
+    M(p)=  1: n=   94, corr(T_chi7, zeta_signal) = -0.100806
+    M(p)=  2: n=  109, corr(T_chi7, zeta_signal) = -0.124881
+    M(p)=  3: n=   84, corr(T_chi7, zeta_signal) = -0.141409
+    M(p)=  4: n=   62, corr(T_chi7, zeta_signal) = -0.084912
+  Weighted within-stratum correlation: -0.025217
+
+========================================================================================================================
+TEST F: Sign balance — is the cross-talk driven by unbalanced T>0/T<0 split?
+========================================================================================================================
+  T_chi7 > 0 fraction (all primes): 0.7380
+  T_chi7 > 0 fraction (M(p)=-3): 0.7172 (n=145)
+  T_chi7 > 0 fraction (M(p)=-2): 0.7941 (n=136)
+  T_chi7 > 0 fraction (M(p)=-1): 0.8244 (n=131)
+  T_chi7 > 0 fraction (M(p)=0): 0.8667 (n=120)
+
+  Phase-lock sigma vs sign imbalance:
+    M(p)= -8: n=   93 frac+=0.699 max_sigma=3.91
+    M(p)= -7: n=   94 frac+=0.638 max_sigma=4.46
+    M(p)= -6: n=  102 frac+=0.745 max_sigma=2.27
+    M(p)= -5: n=  120 frac+=0.583 max_sigma=3.69
+    M(p)= -4: n=  121 frac+=0.702 max_sigma=3.02
+    M(p)= -3: n=  145 frac+=0.717 max_sigma=3.26
+    M(p)= -2: n=  136 frac+=0.794 max_sigma=3.05
+    M(p)= -1: n=  131 frac+=0.824 max_sigma=3.94
+    M(p)=  0: n=  120 frac+=0.867 max_sigma=2.89
+    M(p)=  1: n=   94 frac+=0.830 max_sigma=2.15
+    M(p)=  2: n=  109 frac+=0.752 max_sigma=2.93
+    M(p)=  3: n=   84 frac+=0.833 max_sigma=3.40
+    M(p)=  4: n=   62 frac+=0.758 max_sigma=2.97
+
+========================================================================================================================
+TEST G: Balanced resampling — subsample all primes to have 50/50 sign split
+========================================================================================================================
+  Positive: 3788, Negative: 1345
+  Balancing to 1345 each
+  Balanced trial #1                                                        n= 2690 frac+=0.500 sig+=  8.8x sig-= 19.4x max= 19.4x [STRONG]
+  Balanced trial #2                                                        n= 2690 frac+=0.500 sig+=  8.6x sig-= 19.4x max= 19.4x [STRONG]
+  Balanced trial #3                                                        n= 2690 frac+=0.500 sig+=  8.8x sig-= 19.4x max= 19.4x [STRONG]
+  Balanced subsample max_sigma: mean=19.40, std=0.00
+
+========================================================================================================================
+TEST H: T_chi7(p-1) vs M(p) — direct dependence
+========================================================================================================================
+  Mean T_chi7(p-1) by M(p) stratum:
+    M(p)= -8: n=   93 mean(T_chi7)=  5.4539 std=8.9484 mean(T_plain)=-11.3028
+    M(p)= -7: n=   94 mean(T_chi7)=  3.1050 std=10.6537 mean(T_plain)=-11.9794
+    M(p)= -6: n=  102 mean(T_chi7)=  4.1988 std=7.6324 mean(T_plain)=-11.8659
+    M(p)= -5: n=  120 mean(T_chi7)=  3.0972 std=9.6051 mean(T_plain)=-12.2970
+    M(p)= -4: n=  121 mean(T_chi7)=  5.2940 std=8.9895 mean(T_plain)=-12.7795
+    M(p)= -3: n=  145 mean(T_chi7)=  5.4089 std=9.4252 mean(T_plain)=-12.5448
+    M(p)= -2: n=  136 mean(T_chi7)=  5.8831 std=10.0875 mean(T_plain)=-12.3188
+    M(p)= -1: n=  131 mean(T_chi7)=  8.0627 std=10.6705 mean(T_plain)=-14.8069
+    M(p)=  0: n=  120 mean(T_chi7)=  7.3106 std=7.8757 mean(T_plain)=-13.9882
+    M(p)=  1: n=   94 mean(T_chi7)=  8.3995 std=9.4227 mean(T_plain)=-15.0192
+    M(p)=  2: n=  109 mean(T_chi7)=  6.6201 std=9.4030 mean(T_plain)=-15.9519
+    M(p)=  3: n=   84 mean(T_chi7)=  7.9513 std=9.3676 mean(T_plain)=-16.8746
+    M(p)=  4: n=   62 mean(T_chi7)=  6.3402 std=9.7115 mean(T_plain)=-16.5119
+
+  Normalized T_chi7(p-1)/sqrt(p) by M(p) stratum:
+    M(p)= -8: n=   93 mean(T_chi7/sqrt(p))=  0.089570 +/- 0.011602
+    M(p)= -7: n=   94 mean(T_chi7/sqrt(p))=  0.064182 +/- 0.011556
+    M(p)= -6: n=  102 mean(T_chi7/sqrt(p))=  0.074619 +/- 0.009349
+    M(p)= -5: n=  120 mean(T_chi7/sqrt(p))=  0.053005 +/- 0.009149
+    M(p)= -4: n=  121 mean(T_chi7/sqrt(p))=  0.085671 +/- 0.010336
+    M(p)= -3: n=  145 mean(T_chi7/sqrt(p))=  0.104321 +/- 0.011306
+    M(p)= -2: n=  136 mean(T_chi7/sqrt(p))=  0.127821 +/- 0.012685
+    M(p)= -1: n=  131 mean(T_chi7/sqrt(p))=  0.095323 +/- 0.009583
+    M(p)=  0: n=  120 mean(T_chi7/sqrt(p))=  0.099949 +/- 0.008785
+    M(p)=  1: n=   94 mean(T_chi7/sqrt(p))=  0.097274 +/- 0.010431
+    M(p)=  2: n=  109 mean(T_chi7/sqrt(p))=  0.074013 +/- 0.009178
+    M(p)=  3: n=   84 mean(T_chi7/sqrt(p))=  0.091855 +/- 0.011362
+    M(p)=  4: n=   62 mean(T_chi7/sqrt(p))=  0.086376 +/- 0.013410
+
+========================================================================================================================
+SUMMARY
+========================================================================================================================
+  corr(T_chi7, M(p))          = 0.580730
+  corr(T_chi7, T_plain)       = -0.620249
+  corr(T_chi7, zeta_signal)   = -0.008541
+  partial corr (cond on M(p)) = 0.079989
+  Total time: 6s

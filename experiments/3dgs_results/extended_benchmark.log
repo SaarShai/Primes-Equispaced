@@ -1,0 +1,196 @@
+Using MPS (Apple Metal GPU)
+Generating sample points ...
+  Target density range: [0.000, 2.045]
+  Target density mean: 0.1502
+======================================================================
+  3DGS SOTA Densification Comparison
+  Methods: ADC | Farey | MCMC | Revising | SteepGS | Mini-Splatting | AbsGS | Pixel-GS
+  Device: mps
+  Config: MAX_GAUSS=1500, STEPS=7000, SAMPLES=50000
+  Target: 50 multi-scale bumps (8 coarse + 18 medium + 24 fine)
+  Init: 4^3 = 64 Gaussians (underfitting regime)
+======================================================================
+
+  [1/8] Training Standard ADC ...
+    step   500  MSE=0.000040  K=  394  t=7.6s
+    step  1000  MSE=0.000011  K=  394  t=17.4s
+    step  1500  MSE=0.000007  K=  394  t=27.4s
+    step  2000  MSE=0.000005  K=  394  t=37.2s
+    step  2500  MSE=0.000004  K=  394  t=47.0s
+    step  3000  MSE=0.000003  K=  396  t=57.0s
+    step  3500  MSE=0.000001  K=  396  t=67.1s
+    step  4000  MSE=0.000001  K=  396  t=77.1s
+    step  4500  MSE=0.000001  K=  412  t=87.6s
+    step  5000  MSE=0.000000  K=  412  t=98.1s
+    step  5500  MSE=0.000000  K=  412  t=108.7s
+    step  6000  MSE=0.000000  K=  414  t=119.7s
+    step  6500  MSE=0.000001  K=  414  t=131.1s
+    step  7000  MSE=0.000001  K=  414  t=142.7s
+  ADC done in 142.7s  Final MSE=0.000001  K=414
+
+  [2/8] Training Farey-guided ...
+    step   500  MSE=0.000038  K=  244  t=5.8s
+    step  1000  MSE=0.000009  K=  244  t=15.7s
+    step  1500  MSE=0.000007  K=  244  t=25.4s
+    step  2000  MSE=0.000005  K=  244  t=35.2s
+    step  2500  MSE=0.000003  K=  244  t=45.7s
+    step  3000  MSE=0.000002  K=  244  t=55.8s
+    step  3500  MSE=0.000002  K=  244  t=66.0s
+    step  4000  MSE=0.000001  K=  244  t=76.2s
+    step  4500  MSE=0.000001  K=  244  t=86.9s
+    step  5000  MSE=0.000001  K=  244  t=97.4s
+    step  5500  MSE=0.000002  K=  274  t=108.2s
+    step  6000  MSE=0.000001  K=  274  t=120.3s
+    step  6500  MSE=0.000000  K=  274  t=130.7s
+    step  7000  MSE=0.000000  K=  274  t=141.2s
+  Farey done in 141.2s  Final MSE=0.000000  K=274
+
+  [3/8] Training 3DGS-MCMC ...
+    step   500  MSE=0.009680  K=  114  t=13.9s
+    step  1000  MSE=0.008318  K=  164  t=23.6s
+    step  1500  MSE=0.008131  K=  239  t=34.2s
+    step  2000  MSE=0.008294  K=  289  t=47.9s
+    step  2500  MSE=0.007952  K=  364  t=64.4s
+    step  3000  MSE=0.007739  K=  414  t=83.2s
+    step  3500  MSE=0.008082  K=  489  t=104.6s
+    step  4000  MSE=0.007948  K=  539  t=128.4s
+    step  4500  MSE=0.008085  K=  614  t=155.9s
+    step  5000  MSE=0.007725  K=  664  t=186.7s
+    step  5500  MSE=0.008302  K=  739  t=225.8s
+    step  6000  MSE=0.008275  K=  739  t=261.0s
+    step  6500  MSE=0.007837  K=  739  t=291.3s
+    step  7000  MSE=0.007805  K=  739  t=320.6s
+  MCMC done in 320.6s  Final MSE=0.007805  K=739
+
+  [4/8] Training Revising Densification ...
+    step   500  MSE=0.000232  K=  157  t=5.0s
+    step  1000  MSE=0.000039  K=  399  t=17.6s
+    step  1500  MSE=0.000009  K=  710  t=43.9s
+    step  2000  MSE=0.000003  K=  935  t=81.9s
+    step  2500  MSE=0.000080  K= 1180  t=128.5s
+    step  3000  MSE=0.000006  K= 1310  t=181.0s
+    step  3500  MSE=0.000002  K= 1398  t=239.1s
+    step  4000  MSE=0.000001  K= 1429  t=298.7s
+    step  4500  MSE=0.000000  K= 1500  t=360.6s
+    step  5000  MSE=0.000000  K= 1500  t=423.7s
+    step  5500  MSE=0.000000  K= 1500  t=489.0s
+    step  6000  MSE=0.000009  K= 1500  t=550.1s
+    step  6500  MSE=0.000000  K= 1500  t=611.9s
+    step  7000  MSE=0.000000  K= 1500  t=686.0s
+  Revising done in 686.0s  Final MSE=0.000000  K=1500
+
+  [5/8] Training SteepGS ...
+    step   500  MSE=0.000284  K=  478  t=13.7s
+    step  1000  MSE=0.000011  K=  898  t=48.8s
+    step  1500  MSE=0.000006  K= 1318  t=105.9s
+    step  2000  MSE=0.000001  K= 1500  t=184.0s
+    step  2500  MSE=0.000001  K= 1500  t=253.9s
+    step  3000  MSE=0.000000  K= 1500  t=329.6s
+    step  3500  MSE=0.000000  K= 1500  t=442.6s
+    step  4000  MSE=0.000000  K= 1500  t=558.3s
+    step  4500  MSE=0.000000  K= 1500  t=667.8s
+    step  5000  MSE=0.000000  K= 1500  t=765.2s
+    step  5500  MSE=0.000000  K= 1500  t=870.6s
+    step  6000  MSE=0.000000  K= 1500  t=992.3s
+    step  6500  MSE=0.000000  K= 1500  t=1112.3s
+    step  7000  MSE=0.000000  K= 1500  t=1220.4s
+  SteepGS done in 1220.4s  Final MSE=0.000000  K=1500
+
+  [6/8] Training Mini-Splatting ...
+    step   500  MSE=0.000394  K=  378  t=18.1s
+    step  1000  MSE=0.000024  K=  417  t=51.5s
+    step  1500  MSE=0.000009  K=  476  t=87.1s
+    step  2000  MSE=0.000006  K=  463  t=125.1s
+    step  2500  MSE=0.000043  K=  560  t=166.2s
+    step  3000  MSE=0.000008  K=  557  t=209.5s
+    step  3500  MSE=0.000002  K=  632  t=256.2s
+    step  4000  MSE=0.000002  K=  598  t=304.8s
+    step  4500  MSE=0.000061  K=  574  t=356.3s
+    step  5000  MSE=0.000005  K=  617  t=406.4s
+    step  5500  MSE=0.000002  K=  571  t=457.3s
+    step  6000  MSE=0.000001  K=  727  t=502.8s
+    step  6500  MSE=0.000000  K=  727  t=546.2s
+    step  7000  MSE=0.000000  K=  727  t=587.1s
+  Mini-Splatting done in 587.1s  Final MSE=0.000000  K=727
+
+  [7/8] Training AbsGS ...
+    step   500  MSE=0.000288  K=  421  t=15.2s
+    step  1000  MSE=0.000036  K=  753  t=53.1s
+    step  1500  MSE=0.000007  K= 1044  t=101.8s
+    step  2000  MSE=0.000003  K= 1366  t=154.5s
+    step  2500  MSE=0.000001  K= 1500  t=219.1s
+    step  3000  MSE=0.000000  K= 1500  t=283.4s
+    step  3500  MSE=0.000001  K= 1500  t=347.6s
+    step  4000  MSE=0.000000  K= 1500  t=412.9s
+    step  4500  MSE=0.000000  K= 1500  t=478.1s
+    step  5000  MSE=0.000000  K= 1500  t=542.6s
+    step  5500  MSE=0.000000  K= 1500  t=606.8s
+    step  6000  MSE=0.000000  K= 1500  t=672.0s
+    step  6500  MSE=0.000013  K= 1500  t=737.0s
+    step  7000  MSE=0.000002  K= 1500  t=800.8s
+  AbsGS done in 800.8s  Final MSE=0.000002  K=1500
+
+  [8/8] Training Pixel-GS ...
+    step   500  MSE=0.002868  K=   64  t=2.6s
+    step  1000  MSE=0.001944  K=   64  t=5.2s
+    step  1500  MSE=0.001359  K=   64  t=7.7s
+    step  2000  MSE=0.000919  K=   64  t=10.4s
+    step  2500  MSE=0.000600  K=   64  t=12.9s
+    step  3000  MSE=0.000427  K=   64  t=15.5s
+    step  3500  MSE=0.000325  K=   64  t=18.2s
+    step  4000  MSE=0.000264  K=   64  t=20.7s
+    step  4500  MSE=0.000243  K=   64  t=23.4s
+    step  5000  MSE=0.000223  K=   64  t=25.9s
+    step  5500  MSE=0.000201  K=   64  t=28.5s
+    step  6000  MSE=0.000158  K=   64  t=31.1s
+    step  6500  MSE=0.000131  K=   64  t=33.7s
+    step  7000  MSE=0.000116  K=   64  t=36.3s
+  Pixel-GS done in 36.3s  Final MSE=0.000116  K=64
+
+==========================================================================================
+  RESULTS: SOTA Densification Comparison
+==========================================================================================
+
+Metric                                     adc           farey            mcmc        revising         steepgs   minisplatting           absgs         pixelgs
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+final_train_mse                       0.000001        0.000000        0.007805        0.000000        0.000000        0.000000        0.000002        0.000116
+test_mse                              0.000003        0.000001        0.007770        0.000000        0.000000        0.000000        0.000001        0.000111
+test_psnr                                59.69           67.79           26.09           74.34           68.40           71.30           64.39           44.54
+test_mse_smooth                       0.000016        0.000000        0.021521        0.000001        0.000000        0.000000        0.000000        0.000026
+test_mse_detail                       0.000004        0.000001        0.011688        0.000000        0.000001        0.000000        0.000003        0.000239
+final_gaussians                            414             274             739            1500            1500             727            1500              64
+training_time_s                          142.7           141.2           320.6           686.0          1220.4           587.1           800.8            36.3
+mse_per_gaussian                      8.19e-09        1.92e-09        1.05e-05        7.74e-11        3.04e-10        3.22e-10        7.66e-10        1.73e-06
+
+  Rankings (best to worst):
+    Test MSE:    revising > minisplatting > steepgs > farey > absgs > adc > pixelgs > mcmc
+    Test PSNR:   revising > minisplatting > steepgs > farey > absgs > adc > pixelgs > mcmc
+    Efficiency:  revising > steepgs > minisplatting > absgs > farey > adc > pixelgs > mcmc
+    Compactness: pixelgs > farey > adc > minisplatting > mcmc > revising > steepgs > absgs
+
+  Farey vs SOTA:
+    vs        adc: Farey WINS MSE by 84.5% (PSNR diff: +8.10dB, Gaussians: 274 vs 414)
+    vs       mcmc: Farey WINS MSE by 100.0% (PSNR diff: +41.70dB, Gaussians: 274 vs 739)
+    vs   revising: Farey LOSES MSE by 77.9% (PSNR diff: -6.56dB, Gaussians: 274 vs 1500)
+    vs    steepgs: Farey LOSES MSE by 13.2% (PSNR diff: -0.62dB, Gaussians: 274 vs 1500)
+    vs minisplatting: Farey LOSES MSE by 55.5% (PSNR diff: -3.52dB, Gaussians: 274 vs 727)
+    vs      absgs: Farey WINS MSE by 54.3% (PSNR diff: +3.40dB, Gaussians: 274 vs 1500)
+    vs    pixelgs: Farey WINS MSE by 99.5% (PSNR diff: +23.25dB, Gaussians: 274 vs 64)
+Traceback (most recent call last):
+  File "/Users/saar/Desktop/Farey-Local/experiments/farey_3dgs_sota_comparison.py", line 1750, in <module>
+    json.dump(output, f, indent=2)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/__init__.py", line 179, in dump
+    for chunk in iterable:
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 431, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 438, in _iterencode
+    o = _default(o)
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool is not JSON serializable

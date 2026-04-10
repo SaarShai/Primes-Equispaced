@@ -1,0 +1,30 @@
+measure,rho_spearman,p_spearman,r_pearson,p_pearson,n
+syzygy_length vs lyap,0.161128,1.26e-29,0.18159194472502727,2.6576384325404186e-37,4860
+braid_word_length vs lyap,0.116187,4.46e-16,0.12341113197881118,5.910998030981061e-18,4860
+stutter_fraction vs lyap,0.124525,2.96e-18,0.2840354987854819,7.401839881891503e-91,4860
+freq_entropy vs lyap,-0.219841,2.87e-54,-0.09494558666229162,3.305133149211952e-11,4860
+transition_entropy vs lyap,0.075395,1.42e-07,0.11501135352317948,8.802090606570211e-16,4860
+reduction_ratio vs lyap,nan,nan,nan,nan,4860
+2gram_complexity vs lyap,0.143866,6.82e-24,0.14652899241098072,9.830558868384792e-25,4860
+3gram_complexity vs lyap,0.203567,1.26e-46,0.21859942522132197,1.1583825553308756e-53,4860
+num_runs vs lyap,0.089798,3.58e-10,0.1095726119454827,1.86193888362597e-14,4860
+mean_run_length vs lyap,0.124648,2.75e-18,0.28312782800788727,2.892509795366351e-90,4860
+freq_balance vs lyap,-0.247696,7.44e-69,-0.26812722780926856,8.4286637496531895e-81,4860
+stutter_frac vs lyap/step,0.429392,2.71e-217,0.4442377131504185,3.225716625168539e-234,4860
+freq_entropy vs lyap/step,-0.176708,2.21e-35,-0.058506115583397,4.48183238824874e-05,4860
+trans_entropy vs lyap/step,0.248530,2.54e-69,0.2566617626093512,5.774430786145674e-74,4860
+reduction_ratio vs lyap/step,nan,nan,nan,nan,4860
+freq_balance vs lyap/step,-0.205376,1.92e-47,-0.20629340417200995,7.337588858999109e-48,4860
+cf_nobility vs lyap,nan,nan,nan,nan,4860
+cf_period_gmean vs lyap,nan,nan,nan,nan,4860
+cf_period_length vs lyap,nan,nan,nan,nan,4860
+cf_period_mean vs lyap,nan,nan,nan,nan,4860
+cf_period_max vs lyap,nan,nan,nan,nan,4860
+log_trace vs lyap,0.124733,2.60e-18,0.10072578082501349,1.9492701579208165e-12,4860
+PARTIAL_stutter_frac vs lyap | length,0.277929,6.44e-87,,,4860
+PARTIAL_freq_entropy vs lyap | length,-0.200344,3.47e-45,,,4860
+PARTIAL_trans_entropy vs lyap | length,0.174270,1.91e-34,,,4860
+PARTIAL_reduction_ratio vs lyap | length,nan,nan,,,4860
+PARTIAL_freq_balance vs lyap | length,-0.237989,1.49e-63,,,4860
+PARTIAL_cf_nobility vs lyap | length,-0.006229,6.64e-01,,,4860
+PARTIAL_cf_period_gmean vs lyap | length,-0.006229,6.64e-01,,,4860

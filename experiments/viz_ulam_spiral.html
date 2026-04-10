@@ -406,7 +406,14 @@ function autoZoom() {
   panX = 0; panY = 0;
 }
 
-resize();
+// Set dimensions without drawing, then auto-zoom, then draw
+W = wrap.clientWidth;
+H = wrap.clientHeight;
+canvas.width = W * devicePixelRatio;
+canvas.height = H * devicePixelRatio;
+canvas.style.width = W + 'px';
+canvas.style.height = H + 'px';
+ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
 autoZoom();
 draw();
 </script>

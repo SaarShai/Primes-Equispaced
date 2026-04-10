@@ -1,0 +1,17 @@
+{
+  "started": "2026-03-27 15:02:46.763362",
+  "total_hours": 0.0,
+  "device": "mps",
+  "config": {
+    "resolution": "400x400",
+    "n_init": 1000,
+    "n_steps": 10000,
+    "densify_interval": 100,
+    "max_gauss": 6000
+  },
+  "fixes_applied": [
+    "FIX1: Farey new Gaussians inherit opacity+scale from neighbors",
+    "FIX2: Error threshold uses quantile(0.7) for ALL methods",
+    "FIX3: Adaptive gap_ratio via percentile of kNN gap ratios"
+  ]
+}

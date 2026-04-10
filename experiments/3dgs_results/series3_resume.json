@@ -1,0 +1,50 @@
+[
+  {
+    "name": "3_30",
+    "adc": {
+      "psnr": 31.87,
+      "ssim": 0.9641,
+      "n_gauss": 1370,
+      "time": 599.2
+    },
+    "farey": {
+      "psnr": 28.82,
+      "ssim": 0.9567,
+      "n_gauss": 502,
+      "time": 280.4
+    },
+    "delta_db": -3.05
+  },
+  {
+    "name": "3_100",
+    "adc": {
+      "psnr": 27.04,
+      "ssim": 0.9503,
+      "n_gauss": 2000,
+      "time": 857.5
+    },
+    "farey": {
+      "psnr": 28.82,
+      "ssim": 0.9567,
+      "n_gauss": 502,
+      "time": 293.2
+    },
+    "delta_db": 1.78
+  },
+  {
+    "name": "3_unlimited",
+    "adc": {
+      "psnr": 30.6,
+      "ssim": 0.9581,
+      "n_gauss": 2000,
+      "time": 1054.8
+    },
+    "farey": {
+      "psnr": 28.82,
+      "ssim": 0.9567,
+      "n_gauss": 502,
+      "time": 298.0
+    },
+    "delta_db": -1.78
+  }
+]

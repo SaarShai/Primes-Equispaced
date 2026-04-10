@@ -1,0 +1,52 @@
+======================================================================
+SPECTRAL ANALYSIS OF ΔW AT ZETA ZERO FREQUENCIES
+======================================================================
+
+Phase 1: Computing ΔW(N) for N = 2 to 2000...
+  N=200, W=0.00028707 (7.1s)
+  N=400, W=0.00008098 (58.5s)
+  N=600, W=0.00004016 (186.7s)
+  N=800, W=0.00002395 (460.0s)
+  N=1000, W=0.00001699 (903.3s)
+  N=1200, W=0.00001204 (1590.6s)
+  N=1400, W=0.00000988 (2561.6s)
+  N=1600, W=0.00000779 (3887.6s)
+  N=1800, W=0.00000629 (5596.3s)
+  N=2000, W=0.00000556 (7874.6s)
+Phase 1 done (7874.6s)
+
+303 primes, 1696 composites in range
+
+Phase 2: Spectral analysis...
+  Computing Lomb-Scargle periodogram for prime-indexed ΔW...
+  Done.
+
+Phase 3: Checking for peaks at zeta zero frequencies...
+     Zeta zero      LS power      Weighted    Rank  Percentile
+  ------------  ------------  ------------  ------  ----------
+     14.134725        0.0000           0.0    1034       65.5%
+     21.022040        0.0000           0.0    1121       62.6%
+     25.010858        0.0000           0.0    1275       57.5%
+     30.424876        0.0000           0.1    2542       15.3%
+     32.935062        0.0000           0.0     411       86.3%
+     37.586178        0.0000           0.0     761       74.6%
+     40.918719        0.0000           0.1     508       83.1%
+     43.327073        0.0000           0.1     578       80.7%
+     48.005151        0.0000           0.0    2757        8.1%
+     49.773832        0.0000           0.0    2300       23.3%
+
+  Mean power at zeta zeros: 0.0000
+  Mean power at random freqs: 0.0000
+  P-value (zeta zeros collectively special): 0.3010
+  Weighted p-value: 0.5734
+
+Phase 4: Generating plots...
+  Saved deltaw_spectral.png
+
+======================================================================
+SUMMARY
+======================================================================
+NOT SIGNIFICANT: Zeta zeros not special in ΔW spectrum (p=0.3010)
+NOT SIGNIFICANT (weighted): p=0.5734
+
+Done!

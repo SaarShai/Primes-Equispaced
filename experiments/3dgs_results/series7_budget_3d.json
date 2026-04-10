@@ -1,0 +1,130 @@
+[
+  {
+    "name": "7_3",
+    "adc": {
+      "test_psnr": 21.73,
+      "test_psnr_std": 14.05,
+      "n_gauss": 557,
+      "time": 63.1
+    },
+    "farey": {
+      "test_psnr": 19.7,
+      "test_psnr_std": 12.64,
+      "n_gauss": 508,
+      "time": 70.4
+    },
+    "delta_db": -2.03
+  },
+  {
+    "name": "7_5",
+    "adc": {
+      "test_psnr": 27.28,
+      "test_psnr_std": 16.85,
+      "n_gauss": 595,
+      "time": 103.4
+    },
+    "farey": {
+      "test_psnr": 19.65,
+      "test_psnr_std": 12.56,
+      "n_gauss": 509,
+      "time": 55.1
+    },
+    "delta_db": -7.63
+  },
+  {
+    "name": "7_8",
+    "adc": {
+      "test_psnr": 23.0,
+      "test_psnr_std": 14.6,
+      "n_gauss": 652,
+      "time": 129.7
+    },
+    "farey": {
+      "test_psnr": 19.45,
+      "test_psnr_std": 12.43,
+      "n_gauss": 509,
+      "time": 47.0
+    },
+    "delta_db": -3.55
+  },
+  {
+    "name": "7_10",
+    "adc": {
+      "test_psnr": 28.01,
+      "test_psnr_std": 16.35,
+      "n_gauss": 690,
+      "time": 120.7
+    },
+    "farey": {
+      "test_psnr": 19.84,
+      "test_psnr_std": 12.61,
+      "n_gauss": 509,
+      "time": 33.6
+    },
+    "delta_db": -8.17
+  },
+  {
+    "name": "7_15",
+    "adc": {
+      "test_psnr": 23.0,
+      "test_psnr_std": 15.3,
+      "n_gauss": 785,
+      "time": 128.1
+    },
+    "farey": {
+      "test_psnr": 20.22,
+      "test_psnr_std": 12.96,
+      "n_gauss": 509,
+      "time": 33.1
+    },
+    "delta_db": -2.78
+  },
+  {
+    "name": "7_20",
+    "adc": {
+      "test_psnr": 26.82,
+      "test_psnr_std": 17.52,
+      "n_gauss": 880,
+      "time": 158.1
+    },
+    "farey": {
+      "test_psnr": 20.09,
+      "test_psnr_std": 12.75,
+      "n_gauss": 509,
+      "time": 50.6
+    },
+    "delta_db": -6.73
+  },
+  {
+    "name": "7_30",
+    "adc": {
+      "test_psnr": 26.48,
+      "test_psnr_std": 17.18,
+      "n_gauss": 1070,
+      "time": 177.1
+    },
+    "farey": {
+      "test_psnr": 19.54,
+      "test_psnr_std": 12.49,
+      "n_gauss": 509,
+      "time": 28.2
+    },
+    "delta_db": -6.94
+  },
+  {
+    "name": "7_50",
+    "adc": {
+      "test_psnr": 25.19,
+      "test_psnr_std": 15.77,
+      "n_gauss": 1450,
+      "time": 205.9
+    },
+    "farey": {
+      "test_psnr": 19.43,
+      "test_psnr_std": 12.36,
+      "n_gauss": 509,
+      "time": 32.4
+    },
+    "delta_db": -5.76
+  }
+]

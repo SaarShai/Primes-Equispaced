@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Periodic Table of Algebraic Invariants — Three-Body Orbits</title>
+<style>
+body { font-family: 'Georgia', serif; background: #0a0a2e; color: #e0e0e0; margin: 0; padding: 30px; }
+h1 { text-align: center; color: #ffd700; font-size: 2.2em; }
+h2 { text-align: center; color: #87ceeb; font-weight: normal; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1200px; margin: 30px auto; }
+.cell { background: linear-gradient(135deg, #1a1a4e, #0d0d3d); border-radius: 16px; padding: 25px;
+    border: 2px solid #333366; text-align: center; cursor: pointer; transition: all 0.3s; }
+.cell:hover { border-color: #ffd700; transform: scale(1.03); }
+.cell h3 { margin: 0 0 8px 0; font-size: 1.4em; }
+.cell .field { font-size: 2em; margin: 10px 0; }
+.cell .eigenval { font-size: 0.9em; color: #aaa; font-family: monospace; }
+.cell .entropy { font-size: 0.8em; color: #666; margin-top: 8px; }
+.golden { color: #ffd700; border-color: #ffd700 !important; }
+.silver { color: #c0c0c0; border-color: #c0c0c0 !important; }
+.bronze { color: #cd7f32; border-color: #cd7f32 !important; }
+.purple { color: #9966ff; border-color: #9966ff !important; }
+.lean { background: #2a5a2a; color: #7fff7f; padding: 3px 10px; border-radius: 12px; font-size: 0.7em; }
+.subtitle { text-align: center; color: #888; max-width: 700px; margin: 0 auto 30px; }
+</style>
+</head>
+<body>
+<h1>🌀 Periodic Table of Algebraic Invariants</h1>
+<h2>Every Three-Body Orbit Maps to a Number Field</h2>
+<p class="subtitle">Each periodic orbit in the three-body problem, via the Γ(2) ≅ F₂ isomorphism, 
+defines a monodromy matrix in SL(2,ℤ). The eigenvalues live in quadratic number fields ℚ(√d), 
+creating a systematic classification by algebraic invariant.</p>
+
+<div class="grid">
+
+<div class="cell golden" onclick="location.href='viz_trace_3_golden.html'">
+<h3>T = 3</h3>
+<div class="field">ℚ(√5)</div>
+<div class="eigenval">λ = (3+√5)/2 = φ²</div>
+<div>Golden Ratio family</div>
+<div class="entropy">S = 0.962 = 2·log(φ)</div>
+<span class="lean">Lean ✓</span>
+</div>
+
+<div class="cell bronze" onclick="location.href='viz_trace_4_bronze.html'">
+<h3>T = 4</h3>
+<div class="field">ℚ(√3)</div>
+<div class="eigenval">λ = 2 + √3</div>
+<div>Bronze / √3 family</div>
+<div class="entropy">S = 1.317</div>
+</div>
+
+<div class="cell purple" onclick="location.href='viz_trace_5_sqrt21.html'">
+<h3>T = 5</h3>
+<div class="field">ℚ(√21)</div>
+<div class="eigenval">λ = (5+√21)/2</div>
+<div>√21 family</div>
+<div class="entropy">S = 1.567</div>
+</div>
+
+<div class="cell silver" onclick="location.href='viz_trace_6_silver.html'">
+<h3>T = 6</h3>
+<div class="field">ℚ(√2)</div>
+<div class="eigenval">λ = 3+2√2 = (1+√2)²</div>
+<div>Silver Ratio family</div>
+<div class="entropy">S = 1.763</div>
+</div>
+
+<div class="cell golden" onclick="location.href='viz_trace_7_phi4.html'">
+<h3>T = 7</h3>
+<div class="field">ℚ(√5)</div>
+<div class="eigenval">λ = (7+3√5)/2 = φ⁴</div>
+<div>Golden Ratio⁴</div>
+<div class="entropy">S = 1.925 = 4·log(φ)</div>
+</div>
+
+<div class="cell golden" onclick="location.href='viz_trace_18_figure_eight.html'">
+<h3>T = 18 ★</h3>
+<div class="field">ℚ(√5)</div>
+<div class="eigenval">λ = 9+4√5 = φ⁶</div>
+<div><b>Figure-Eight Orbit</b></div>
+<div class="entropy">S = 2.887 = 6·log(φ)</div>
+<span class="lean">8 Lean proofs ✓</span>
+</div>
+
+</div>
+
+<p style="text-align:center; color:#666; margin-top:30px; font-size:0.9em;">
+Each cell: Trace T → discriminant T²−4 → number field ℚ(√d) where d = squarefree(T²−4)<br>
+695 orbits classified across all trace values. Golden ratio (√5) appears at T = 3, 7, 18, 47, ...
+</p>
+
+</body>
+</html>

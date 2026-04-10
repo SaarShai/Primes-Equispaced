@@ -1,0 +1,142 @@
+/Users/saar/Desktop/Farey-Local/experiments/sphere_equidist_v2.py:162: RuntimeWarning: divide by zero encountered in matmul
+  dots = pts @ pole
+/Users/saar/Desktop/Farey-Local/experiments/sphere_equidist_v2.py:162: RuntimeWarning: overflow encountered in matmul
+  dots = pts @ pole
+/Users/saar/Desktop/Farey-Local/experiments/sphere_equidist_v2.py:162: RuntimeWarning: invalid value encountered in matmul
+  dots = pts @ pole
+======================================================================
+SPHERE EQUIDISTRIBUTION v2: Breaking Symmetry + Theta Coefficients
+======================================================================
+
+[A] WEIGHTED REPRESENTATION NUMBERS r₃(n, P)
+   These are Fourier coefficients of theta_P(z), weight 3/2 + deg(P)
+   On S¹: the analog is Σ e^{2πipf} = M(p)+2
+   On S²: r₃(p, Y₂⁰) = Σ_{a²+b²+c²=p} (2c²-a²-b²)
+
+  p=   2: r₃=  12, r₃(Y₂⁰)=      +0, r₃(Y₂²)=      +0, r₃(Y₃⁰)=      +0, M(p)= +0
+  p=   3: r₃=   8, r₃(Y₂⁰)=      +0, r₃(Y₂²)=      +0, r₃(Y₃⁰)=      +0, M(p)= -1
+  p=   5: r₃=  24, r₃(Y₂⁰)=      +0, r₃(Y₂²)=      +0, r₃(Y₃⁰)=      +0, M(p)= -2
+  p=  11: r₃=  24, r₃(Y₂⁰)=      +0, r₃(Y₂²)=      +0, r₃(Y₃⁰)=      +0, M(p)= -2
+  p=  13: r₃=  24, r₃(Y₂⁰)=      +0, r₃(Y₂²)=      +0, r₃(Y₃⁰)=      +0, M(p)= -3
+  p=  17: r₃=  48, r₃(Y₂⁰)=      +0, r₃(Y₂²)=      +0, r₃(Y₃⁰)=      +0, M(p)= -2
+  p=  19: r₃=  24, r₃(Y₂⁰)=      +0, r₃(Y₂²)=      +0, r₃(Y₃⁰)=      +0, M(p)= -3
+  p=  29: r₃=  72, r₃(Y₂⁰)=      +0, r₃(Y₂²)=      +0, r₃(Y₃⁰)=      +0, M(p)= -2
+  p=  37: r₃=  24, r₃(Y₂⁰)=      +0, r₃(Y₂²)=      +0, r₃(Y₃⁰)=      +0, M(p)= -2
+  p=  41: r₃=  96, r₃(Y₂⁰)=      +0, r₃(Y₂²)=      +0, r₃(Y₃⁰)=      +0, M(p)= -1
+  p=  43: r₃=  24, r₃(Y₂⁰)=      +0, r₃(Y₂²)=      +0, r₃(Y₃⁰)=      +0, M(p)= -3
+  p=  97: r₃=  48, r₃(Y₂⁰)=      +0, r₃(Y₂²)=      +0, r₃(Y₃⁰)=      +0, M(p)= +1
+  p= 101: r₃= 168, r₃(Y₂⁰)=      +0, r₃(Y₂²)=      +0, r₃(Y₃⁰)=      +0, M(p)= +0
+  p= 197: r₃= 120, r₃(Y₂⁰)=      +0, r₃(Y₂²)=      +0, r₃(Y₃⁰)=      +0, M(p)= -7
+
+  Analysis of r₃(p, Y₂⁰):
+    Non-zero count: 0 / 70
+    ALL ZERO — the cubic symmetry kills Y₂⁰ at integer level too!
+    Reason: (a,b,c) → (b,c,a) permutation symmetry makes
+    Σ(2c²-a²-b²) = Σ(2a²-b²-c²) = Σ(2b²-c²-a²)
+    Adding: 3·Σ(2c²-a²-b²) = 0 → Σ(2c²-a²-b²) = 0
+
+    This means: the FULL octahedral sum kills ALL degree-2 harmonics
+    for a²+b²+c²=n (any n), because the form is isotropic under S₃.
+
+  Analysis of r₃(p, Y₃⁰):
+    Non-zero count: 0 / 70
+
+======================================================================
+[B] ANISOTROPIC FORM: a² + b² + 2c² = p
+   This breaks S₃ permutation symmetry → Y₂⁰ should NOT vanish
+
+  p=   2: npts=   6, Σ(2c²-a²-b²)=      -4, M(p)= +0
+  p=   3: npts=   8, Σ(2c²-a²-b²)=      +8, M(p)= -1
+  p=   5: npts=   8, Σ(2c²-a²-b²)=     -40, M(p)= -2
+  p=   7: npts=  16, Σ(2c²-a²-b²)=     -48, M(p)= -2
+  p=  11: npts=   8, Σ(2c²-a²-b²)=     -56, M(p)= -2
+  p=  13: npts=  24, Σ(2c²-a²-b²)=     -56, M(p)= -3
+  p=  17: npts=  16, Σ(2c²-a²-b²)=    -144, M(p)= -2
+  p=  19: npts=  24, Σ(2c²-a²-b²)=    -104, M(p)= -3
+  p=  23: npts=  16, Σ(2c²-a²-b²)=    +208, M(p)= -2
+  p=  29: npts=   8, Σ(2c²-a²-b²)=    -232, M(p)= -2
+  p=  31: npts=  32, Σ(2c²-a²-b²)=    -352, M(p)= -4
+  p=  37: npts=  40, Σ(2c²-a²-b²)=    -200, M(p)= -2
+  p=  41: npts=  16, Σ(2c²-a²-b²)=    -144, M(p)= -1
+  p=  43: npts=  40, Σ(2c²-a²-b²)=    -792, M(p)= -3
+  p=  47: npts=  32, Σ(2c²-a²-b²)=    -864, M(p)= -3
+  p= 113: npts=  32, Σ(2c²-a²-b²)=    -800, M(p)= -5
+  p= 197: npts=  40, Σ(2c²-a²-b²)=   -3272, M(p)= -7
+  p= 281: npts=  32, Σ(2c²-a²-b²)=   -1696, M(p)= -4
+  p= 379: npts=  88, Σ(2c²-a²-b²)=  -11240, M(p)= -3
+
+  Non-zero r₃(p, Y₂⁰) for anisotropic form: 80 / 80
+  SUCCESS: Anisotropic form breaks the symmetry!
+  Correlation(r₃(p,Y₂⁰), M(p)) = -0.1289
+
+======================================================================
+[C] DISCREPANCY OF ORBIT REPRESENTATIVES ON S²
+   One point per octahedral orbit, normalized to S²
+
+  p=   5: orbits=  1, D=0.325851, ΔW=+0.000000, n_cum=3
+  p=  11: orbits=  1, D=0.317470, ΔW=-0.008382, n_cum=4
+  p=  13: orbits=  1, D=0.324198, ΔW=+0.006728, n_cum=5
+  p=  17: orbits=  2, D=0.315705, ΔW=-0.008493, n_cum=7
+  p=  19: orbits=  1, D=0.318101, ΔW=+0.002395, n_cum=8
+  p=  29: orbits=  2, D=0.320537, ΔW=+0.002436, n_cum=10
+  p=  83: orbits=  2, D=0.321104, ΔW=-0.001302, n_cum=26
+  p= 181: orbits=  3, D=0.324812, ΔW=+0.000221, n_cum=68
+  p= 307: orbits=  2, D=0.324793, ΔW=-0.000044, n_cum=121
+  p= 421: orbits=  3, D=0.326520, ΔW=+0.000055, n_cum=176
+
+  === SIGN THEOREM (orbit representatives) ===
+  ΔW > 0: 41 primes
+  ΔW < 0: 26 primes
+  Sign theorem FAILS for orbit reps on S²
+  Ratio positive: 61.19%
+  Correlation(ΔW_orbit, M(p)): -0.0438
+
+======================================================================
+[D] THETA SERIES WITH CHARACTERS — True Bridge Identity
+   θ(z,χ) = Σ χ(a)χ(b)χ(c) q^{a²+b²+c²}
+   Fourier coefficients: r₃(n,χ) = Σ_{a²+b²+c²=n} χ(a)χ(b)χ(c)
+
+  Using χ = Legendre symbol mod 3:
+    p=   2: r₃=  12, r₃(χ₃)=    +0, M(p)= +0
+    p=   3: r₃=   8, r₃(χ₃)=    +0, M(p)= -1
+    p=   5: r₃=  24, r₃(χ₃)=    +0, M(p)= -2
+    p=  11: r₃=  24, r₃(χ₃)=    +0, M(p)= -2
+    p=  13: r₃=  24, r₃(χ₃)=    +0, M(p)= -3
+    p=  17: r₃=  48, r₃(χ₃)=    +0, M(p)= -2
+    p=  19: r₃=  24, r₃(χ₃)=    +0, M(p)= -3
+    p=  29: r₃=  72, r₃(χ₃)=    +0, M(p)= -2
+    p=  41: r₃=  96, r₃(χ₃)=    +0, M(p)= -1
+    p= 101: r₃= 168, r₃(χ₃)=    +0, M(p)= +0
+    p= 173: r₃= 168, r₃(χ₃)=    +0, M(p)= -3
+    p= 251: r₃= 168, r₃(χ₃)=    +0, M(p)= -2
+
+  Non-zero r₃(p, χ₃): 0 / 44
+
+  Using χ = Legendre symbol mod 5:
+    p=   2: r₃=  12, r₃(χ₅)=    +0, M(p)= +0
+    p=   3: r₃=   8, r₃(χ₅)=    +8, M(p)= -1
+    p=   5: r₃=  24, r₃(χ₅)=    +0, M(p)= -2
+    p=  11: r₃=  24, r₃(χ₅)=   -24, M(p)= -2
+    p=  13: r₃=  24, r₃(χ₅)=    +0, M(p)= -3
+    p=  17: r₃=  48, r₃(χ₅)=   -24, M(p)= -2
+    p=  19: r₃=  24, r₃(χ₅)=   +24, M(p)= -3
+    p=  29: r₃=  72, r₃(χ₅)=   +48, M(p)= -2
+    p=  41: r₃=  96, r₃(χ₅)=   -72, M(p)= -1
+    p= 101: r₃= 168, r₃(χ₅)=  -144, M(p)= +0
+    p= 173: r₃= 168, r₃(χ₅)=   +48, M(p)= -3
+    p= 251: r₃= 168, r₃(χ₅)=  -120, M(p)= -2
+
+======================================================================
+[E] FUNDAMENTAL COMPARISON: S¹ vs S²
+
+  Computing cumulative discrepancy at ALL integers (not just primes):
+  Mean ΔW at composites: -0.000640
+  (On S¹: primes ALWAYS decrease discrepancy)
+
+  Plots saved to /Users/saar/Desktop/Farey-Local/experiments/sphere_equidist_v2.png
+
+  Results saved to /Users/saar/Desktop/Farey-Local/experiments/sphere_equidist_v2_results.json
+
+======================================================================
+v2 COMPUTATION COMPLETE
+======================================================================

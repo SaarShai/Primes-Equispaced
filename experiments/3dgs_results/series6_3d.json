@@ -1,0 +1,82 @@
+[
+  {
+    "name": "6a_tight",
+    "adc": {
+      "test_psnr": 26.07,
+      "test_psnr_std": 3.52,
+      "n_gauss": 290,
+      "time": 21.5
+    },
+    "farey": {
+      "test_psnr": 26.61,
+      "test_psnr_std": 2.47,
+      "n_gauss": 227,
+      "time": 43.2
+    },
+    "delta_db": 0.54
+  },
+  {
+    "name": "6b_medium",
+    "adc": {
+      "test_psnr": 32.25,
+      "test_psnr_std": 1.79,
+      "n_gauss": 470,
+      "time": 28.2
+    },
+    "farey": {
+      "test_psnr": 27.86,
+      "test_psnr_std": 1.44,
+      "n_gauss": 242,
+      "time": 11.2
+    },
+    "delta_db": -4.39
+  },
+  {
+    "name": "6c_long_tight",
+    "adc": {
+      "test_psnr": 22.83,
+      "test_psnr_std": 5.72,
+      "n_gauss": 390,
+      "time": 25.2
+    },
+    "farey": {
+      "test_psnr": 23.9,
+      "test_psnr_std": 6.48,
+      "n_gauss": 225,
+      "time": 14.8
+    },
+    "delta_db": 1.07
+  },
+  {
+    "name": "6d_long_medium",
+    "adc": {
+      "test_psnr": 28.51,
+      "test_psnr_std": 4.23,
+      "n_gauss": 770,
+      "time": 46.5
+    },
+    "farey": {
+      "test_psnr": 23.75,
+      "test_psnr_std": 6.4,
+      "n_gauss": 242,
+      "time": 11.8
+    },
+    "delta_db": -4.76
+  },
+  {
+    "name": "6e_verylong",
+    "adc": {
+      "test_psnr": 26.47,
+      "test_psnr_std": 3.35,
+      "n_gauss": 780,
+      "time": 68.5
+    },
+    "farey": {
+      "test_psnr": 23.15,
+      "test_psnr_std": 6.52,
+      "n_gauss": 236,
+      "time": 15.5
+    },
+    "delta_db": -3.32
+  }
+]

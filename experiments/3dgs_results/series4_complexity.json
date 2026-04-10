@@ -1,0 +1,66 @@
+[
+  {
+    "name": "4a_easy",
+    "adc": {
+      "psnr": 80.86,
+      "ssim": 1.0,
+      "n_gauss": 1370,
+      "time": 511.2
+    },
+    "farey": {
+      "psnr": 81.88,
+      "ssim": 1.0,
+      "n_gauss": 500,
+      "time": 292.3
+    },
+    "delta_db": 1.02
+  },
+  {
+    "name": "4b_medium",
+    "adc": {
+      "psnr": 31.87,
+      "ssim": 0.9641,
+      "n_gauss": 1370,
+      "time": 551.8
+    },
+    "farey": {
+      "psnr": 28.82,
+      "ssim": 0.9567,
+      "n_gauss": 502,
+      "time": 323.7
+    },
+    "delta_db": -3.05
+  },
+  {
+    "name": "4c_hard_multiscale",
+    "adc": {
+      "psnr": 24.98,
+      "ssim": 0.937,
+      "n_gauss": 1362,
+      "time": 546.5
+    },
+    "farey": {
+      "psnr": 20.32,
+      "ssim": 0.9052,
+      "n_gauss": 530,
+      "time": 278.6
+    },
+    "delta_db": -4.66
+  },
+  {
+    "name": "4d_extreme_dense",
+    "adc": {
+      "psnr": 18.18,
+      "ssim": 0.7066,
+      "n_gauss": 1365,
+      "time": 482.7
+    },
+    "farey": {
+      "psnr": 15.12,
+      "ssim": 0.353,
+      "n_gauss": 549,
+      "time": 260.0
+    },
+    "delta_db": -3.06
+  }
+]

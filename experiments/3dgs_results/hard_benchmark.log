@@ -1,0 +1,81 @@
+Using MPS (Apple Metal GPU)
+/Users/saar/Desktop/Farey-Local/experiments/farey_3dgs_3d_gpu_v2.py:83: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/utils/tensor_new.cpp:256.)
+  BUMP_CENTERS_T = torch.tensor([b[0] for b in BUMPS], device=DEVICE, dtype=torch.float32)
+Generating sample points ...
+  Target density range: [0.000, 2.045]
+  Target density mean: 0.1502
+======================================================================
+  3D Gaussian Splatting HARD Benchmark (v2)
+  Farey-Guided Densification vs Standard ADC
+  Device: mps
+  Config: MAX_GAUSS=1500, STEPS=7000, SAMPLES=50000
+  Target: 50 multi-scale bumps (8 coarse + 18 medium + 24 fine)
+  Init: 4^3 = 64 Gaussians (underfitting regime)
+======================================================================
+
+  Training Standard ADC (3D, GPU) ...
+  Config: MAX_GAUSS=1500, STEPS=7000, N_SAMPLE=50000
+    step   500  MSE=0.000040  K=  394  t=9.9s
+    step  1000  MSE=0.000011  K=  394  t=21.0s
+    step  1500  MSE=0.000007  K=  394  t=31.1s
+    step  2000  MSE=0.000005  K=  394  t=41.2s
+    step  2500  MSE=0.000004  K=  394  t=51.3s
+    step  3000  MSE=0.000003  K=  396  t=61.6s
+    step  3500  MSE=0.000001  K=  396  t=71.9s
+    step  4000  MSE=0.000001  K=  396  t=82.0s
+    step  4500  MSE=0.000001  K=  412  t=92.4s
+    step  5000  MSE=0.000000  K=  412  t=103.0s
+    step  5500  MSE=0.000000  K=  412  t=113.7s
+    step  6000  MSE=0.000000  K=  414  t=124.7s
+    step  6500  MSE=0.000001  K=  414  t=135.8s
+    step  7000  MSE=0.000001  K=  414  t=147.0s
+  ADC done in 147.0s  Final MSE=0.000001  K=414
+
+  Training Farey-guided (3D, GPU) ...
+  Config: MAX_GAUSS=1500, STEPS=7000, N_SAMPLE=50000
+    step   500  MSE=0.000038  K=  244  t=5.9s
+    step  1000  MSE=0.000009  K=  244  t=15.7s
+    step  1500  MSE=0.000007  K=  244  t=25.3s
+    step  2000  MSE=0.000005  K=  244  t=34.9s
+    step  2500  MSE=0.000003  K=  244  t=44.8s
+    step  3000  MSE=0.000002  K=  244  t=54.2s
+    step  3500  MSE=0.000002  K=  244  t=63.6s
+    step  4000  MSE=0.000001  K=  244  t=73.2s
+    step  4500  MSE=0.000001  K=  244  t=83.3s
+    step  5000  MSE=0.000001  K=  244  t=93.2s
+    step  5500  MSE=0.000002  K=  274  t=103.4s
+    step  6000  MSE=0.000001  K=  274  t=114.6s
+    step  6500  MSE=0.000000  K=  274  t=123.6s
+    step  7000  MSE=0.000000  K=  274  t=132.3s
+  Farey done in 132.3s  Final MSE=0.000000  K=274
+
+======================================================================
+  RESULTS: 3DGS HARD Benchmark (50 bumps, budget 1500)
+======================================================================
+
+Metric                                             ADC         Farey
+----------------------------------------------------------------------
+Final Train MSE                               0.000001      0.000000
+Test MSE (full)                               0.000003      0.000001
+Test PSNR (dB)                                   59.69         67.79
+Test MSE (smooth region)                      0.000016      0.000000
+Test MSE (detail region)                      0.000004      0.000001
+# Gaussians (final)                                414           274
+Training time (s)                                147.0         132.3
+MSE per Gaussian                              8.19e-09      1.92e-09
+Gaussians in detail (x>0.4)                        190           159
+Fraction in detail region                        0.459         0.580
+Avg sigma (smooth)                              0.2552        0.3172
+Avg sigma (detail)                              0.1787        0.1376
+
+  Winner (test MSE): FAREY
+  MSE improvement: 84.50%
+  PSNR improvement: 8.10 dB
+  Efficiency winner: FAREY (4.27x)
+
+  Results saved to /Users/saar/Desktop/Farey-Local/experiments/3dgs_results/hard_benchmark_results.json
+
+Generating figures ...
+  Saved figures to /Users/saar/Desktop/Farey-Local/experiments/3dgs_results/
+
+=== Hard Benchmark Complete ===

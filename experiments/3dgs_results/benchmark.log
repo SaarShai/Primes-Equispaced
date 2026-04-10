@@ -1,0 +1,67 @@
+Using MPS (Apple Metal GPU)
+======================================================================
+  3D Gaussian Splatting GPU Benchmark
+  Farey-Guided Densification vs Standard ADC
+  Device: mps
+  Config: MAX_GAUSS=3000, STEPS=5000, SAMPLES=10000
+  Init: 6^3 = 216 Gaussians
+======================================================================
+
+  Training Standard ADC (3D, GPU) ...
+  Config: MAX_GAUSS=3000, STEPS=5000, N_SAMPLE=10000
+    step   500  MSE=0.000023  K=  648  t=3.3s
+    step  1000  MSE=0.000006  K=  648  t=6.8s
+    step  1500  MSE=0.000003  K=  648  t=10.4s
+    step  2000  MSE=0.000002  K=  648  t=14.1s
+    step  2500  MSE=0.000001  K=  648  t=17.7s
+    step  3000  MSE=0.000001  K=  648  t=21.2s
+    step  3500  MSE=0.000000  K=  648  t=24.8s
+    step  4000  MSE=0.000000  K=  648  t=28.4s
+    step  4500  MSE=0.000000  K=  648  t=32.0s
+    step  5000  MSE=0.000000  K=  648  t=35.6s
+  ADC done in 35.6s  Final MSE=0.000000  K=648
+
+  Training Farey-guided (3D, GPU) ...
+  Config: MAX_GAUSS=3000, STEPS=5000, N_SAMPLE=10000
+    step   500  MSE=0.000020  K=  340  t=2.3s
+    step  1000  MSE=0.000005  K=  344  t=5.1s
+    step  1500  MSE=0.000003  K=  344  t=7.8s
+    step  2000  MSE=0.000002  K=  344  t=10.4s
+    step  2500  MSE=0.000001  K=  344  t=12.9s
+    step  3000  MSE=0.000001  K=  344  t=15.4s
+    step  3500  MSE=0.000001  K=  344  t=17.9s
+    step  4000  MSE=0.000001  K=  344  t=20.5s
+    step  4500  MSE=0.000000  K=  344  t=23.2s
+    step  5000  MSE=0.000000  K=  344  t=25.4s
+  Farey done in 25.4s  Final MSE=0.000000  K=344
+
+======================================================================
+  RESULTS: 3D Farey-Guided vs Standard ADC (GPU Benchmark)
+======================================================================
+
+Metric                                             ADC         Farey
+----------------------------------------------------------------------
+Final Train MSE                               0.000000      0.000000
+Test MSE (full)                               0.000000      0.000001
+Test PSNR (dB)                                   69.55         66.05
+Test MSE (smooth region)                      0.000000      0.000002
+Test MSE (detail region)                      0.000000      0.000001
+# Gaussians (final)                                648           344
+Training time (s)                                 35.6          25.4
+MSE per Gaussian                              5.21e-10      2.20e-09
+Gaussians in detail (x>0.4)                        228           158
+Fraction in detail region                        0.352         0.459
+Avg sigma (smooth)                              0.2364        0.2978
+Avg sigma (detail)                              0.2296        0.2207
+
+  Winner (test MSE): ADC
+  MSE improvement: 55.33%
+  PSNR improvement: 3.50 dB
+  Efficiency winner: ADC (4.22x)
+
+  Results saved to /Users/saar/Desktop/Farey-Local/experiments/3dgs_results/benchmark_results.json
+
+Generating figures ...
+  Saved figures to /Users/saar/Desktop/Farey-Local/experiments/3dgs_results/
+
+=== Benchmark Complete ===

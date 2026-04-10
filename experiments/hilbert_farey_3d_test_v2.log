@@ -1,0 +1,10 @@
+Hilbert+Farey 3D Test
+Config: MAX_GAUSS=1500, STEPS=7000, SAMPLES=50000
+Init: 6^3 = 216 Gaussians
+
+Generating target field (50K points)...
+  Target range: [0.0000, 1.7855]
+
+============================================================
+STRATEGY 1: Standard ADC (gradient-based 3D)
+============================================================

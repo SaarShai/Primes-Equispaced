@@ -1,0 +1,161 @@
+Computing Mobius sieve up to 20000...
+Found 91 primes with M(p)=-3 in [2, 20000]
+Primes: [13, 19, 43, 47, 53, 71, 107, 131, 173, 179, 271, 311, 379, 389, 431, 523, 617, 631, 719, 733]...
+p=   13  N=   12  |F_N|=     47  M(N)= -2  B'>0=True   corr/C'=+0.440053  [PASS(+)]  (0.0s)
+p=   19  N=   18  |F_N|=    103  M(N)= -2  B'>0=True   corr/C'=+0.334024  [PASS(+)]  (0.0s)
+p=   43  N=   42  |F_N|=    543  M(N)= -2  B'>0=True   corr/C'=-0.176742  [PASS]  (0.0s)
+p=   47  N=   46  |F_N|=    651  M(N)= -2  B'>0=True   corr/C'=-0.280823  [PASS]  (0.0s)
+p=   53  N=   52  |F_N|=    831  M(N)= -2  B'>0=True   corr/C'=-0.199873  [PASS]  (0.0s)
+p=   71  N=   70  |F_N|=   1495  M(N)= -2  B'>0=True   corr/C'=-0.408936  [PASS]  (0.0s)
+p=  107  N=  106  |F_N|=   3427  M(N)= -2  B'>0=True   corr/C'=-0.943757  [PASS]  (0.0s)
+p=  131  N=  130  |F_N|=   5155  M(N)= -2  B'>0=True   corr/C'=-0.878644  [PASS]  (0.0s)
+p=  173  N=  172  |F_N|=   9023  M(N)= -2  B'>0=True   corr/C'=-1.242759  [PASS]  (0.1s)
+p=  179  N=  178  |F_N|=   9655  M(N)= -2  B'>0=True   corr/C'=-1.224016  [PASS]  (0.1s)
+p=  271  N=  270  |F_N|=  22205  M(N)= -2  B'>0=True   corr/C'=-1.493320  [PASS]  (0.2s)
+p=  311  N=  310  |F_N|=  29231  M(N)= -2  B'>0=True   corr/C'=-1.543428  [PASS]  (0.3s)
+p=  379  N=  378  |F_N|=  43467  M(N)= -2  B'>0=True   corr/C'=-1.842405  [PASS]  (0.5s)
+p=  389  N=  388  |F_N|=  45817  M(N)= -2  B'>0=True   corr/C'=-2.170252  [PASS]  (0.5s)
+p=  431  N=  430  |F_N|=  56211  M(N)= -2  B'>0=True   corr/C'=-1.412414  [PASS]  (0.7s)
+p=  523  N=  522  |F_N|=  82909  M(N)= -2  B'>0=True   corr/C'=-2.366470  [PASS]  (1.2s)
+p=  617  N=  616  |F_N|= 115381  M(N)= -2  B'>0=True   corr/C'=-2.438770  [PASS]  (1.9s)
+p=  631  N=  630  |F_N|= 120689  M(N)= -2  B'>0=True   corr/C'=-2.458587  [PASS]  (2.1s)
+p=  719  N=  718  |F_N|= 156785  M(N)= -2  B'>0=True   corr/C'=-2.204191  [PASS]  (3.1s)
+p=  733  N=  732  |F_N|= 162969  M(N)= -2  B'>0=True   corr/C'=-2.111138  [PASS]  (3.3s)
+p=  751  N=  750  |F_N|= 171019  M(N)= -2  B'>0=True   corr/C'=-2.564913  [PASS]  (3.5s)
+p=  757  N=  756  |F_N|= 173789  M(N)= -2  B'>0=True   corr/C'=-2.514047  [PASS]  (3.6s)
+p=  769  N=  768  |F_N|= 179409  M(N)= -2  B'>0=True   corr/C'=-2.608568  [PASS]  (3.8s)
+p=  829  N=  828  |F_N|= 208537  M(N)= -2  B'>0=True   corr/C'=-2.448753  [PASS]  (4.7s)
+p=  839  N=  838  |F_N|= 213559  M(N)= -2  B'>0=True   corr/C'=-2.402100  [PASS]  (4.9s)
+p=  863  N=  862  |F_N|= 226001  M(N)= -2  B'>0=True   corr/C'=-3.186140  [PASS]  (5.4s)
+p= 1223  N= 1222  |F_N|= 454049  M(N)= -2  B'>0=True   corr/C'=-2.579945  [PASS]  (15.7s)
+p= 1237  N= 1236  |F_N|= 464497  M(N)= -2  B'>0=True   corr/C'=-3.284224  [PASS]  (16.7s)
+p= 1249  N= 1248  |F_N|= 473559  M(N)= -2  B'>0=True   corr/C'=-2.867658  [PASS]  (17.5s)
+p= 1499  N= 1498  |F_N|= 682285  M(N)= -2  B'>0=True   corr/C'=-3.837187  [PASS]  (31.2s)
+p= 1511  N= 1510  |F_N|= 693213  M(N)= -2  B'>0=True   corr/C'=-3.526333  [PASS]  (31.9s)
+p= 1567  N= 1566  |F_N|= 745543  M(N)= -2  B'>0=True   corr/C'=-2.993580  [PASS]  (36.1s)
+p= 1823  N= 1822  |F_N|=1009345  M(N)= -2  B'>0=True   corr/C'=-3.029194  [PASS]  (59.5s)
+p= 1831  N= 1830  |F_N|=1018143  M(N)= -2  B'>0=True   corr/C'=-3.043275  [PASS]  (60.6s)
+p= 1873  N= 1872  |F_N|=1065423  M(N)= -2  B'>0=True   corr/C'=-2.568933  [PASS]  (66.0s)
+p= 1877  N= 1876  |F_N|=1070023  M(N)= -2  B'>0=True   corr/C'=-2.922667  [PASS]  (66.1s)
+p= 1933  N= 1932  |F_N|=1134849  M(N)= -2  B'>0=True   corr/C'=-2.588632  [PASS]  (72.8s)
+p= 2143  N= 2142  |F_N|=1394975  M(N)= -2  B'>0=True   corr/C'=-4.743940  [PASS]  (101.8s)
+p= 2347  N= 2346  |F_N|=1672979  M(N)= -2  B'>0=True   corr/C'=-3.716437  [PASS]  (139.5s)
+p= 2377  N= 2376  |F_N|=1716135  M(N)= -2  B'>0=True   corr/C'=-4.035587  [PASS]  (145.7s)
+p= 2543  N= 2542  |F_N|=1964371  M(N)= -2  B'>0=True   corr/C'=-2.830867  [PASS]  (180.7s)
+p= 3049  N= 3048  |F_N|=2824407  M(N)= -2  B'>0=True   corr/C'=-3.778332  [PASS]  (340.4s)
+p= 3067  N= 3066  |F_N|=2857681  M(N)= -2  B'>0=True   corr/C'=-3.966859  [PASS]  (348.4s)
+p= 3079  N= 3078  |F_N|=2880211  M(N)= -2  B'>0=True   corr/C'=-3.680255  [PASS]  (358.9s)
+p= 3617  N= 3616  |F_N|=3975079  M(N)= -2  B'>0=True   corr/C'=-4.305206  [PASS]  (623.7s)
+p= 3671  N= 3670  |F_N|=4094241  M(N)= -2  B'>0=True   corr/C'=-4.261601  [PASS]  (648.3s)
+p=4547: SKIPPED (est. 6,281,748 fractions, too large for exact Fraction arithmetic)
+p=4591: SKIPPED (est. 6,403,937 fractions, too large for exact Fraction arithmetic)
+p=4643: SKIPPED (est. 6,549,859 fractions, too large for exact Fraction arithmetic)
+p=4649: SKIPPED (est. 6,566,802 fractions, too large for exact Fraction arithmetic)
+p=5147: SKIPPED (est. 8,049,358 fractions, too large for exact Fraction arithmetic)
+p=5167: SKIPPED (est. 8,112,047 fractions, too large for exact Fraction arithmetic)
+p=5179: SKIPPED (est. 8,149,778 fractions, too large for exact Fraction arithmetic)
+p=5237: SKIPPED (est. 8,333,376 fractions, too large for exact Fraction arithmetic)
+p=5939: SKIPPED (est. 10,717,712 fractions, too large for exact Fraction arithmetic)
+p=5953: SKIPPED (est. 10,768,309 fractions, too large for exact Fraction arithmetic)
+p=6113: SKIPPED (est. 11,355,032 fractions, too large for exact Fraction arithmetic)
+p=6131: SKIPPED (est. 11,422,013 fractions, too large for exact Fraction arithmetic)
+p=6199: SKIPPED (est. 11,676,827 fractions, too large for exact Fraction arithmetic)
+p=7193: SKIPPED (est. 15,722,480 fractions, too large for exact Fraction arithmetic)
+p=7207: SKIPPED (est. 15,783,750 fractions, too large for exact Fraction arithmetic)
+p=7211: SKIPPED (est. 15,801,278 fractions, too large for exact Fraction arithmetic)
+p=7229: SKIPPED (est. 15,880,273 fractions, too large for exact Fraction arithmetic)
+p=7589: SKIPPED (est. 17,501,543 fractions, too large for exact Fraction arithmetic)
+p=7603: SKIPPED (est. 17,566,184 fractions, too large for exact Fraction arithmetic)
+p=7607: SKIPPED (est. 17,584,674 fractions, too large for exact Fraction arithmetic)
+p=7717: SKIPPED (est. 18,096,981 fractions, too large for exact Fraction arithmetic)
+p=7883: SKIPPED (est. 18,884,024 fractions, too large for exact Fraction arithmetic)
+p=7933: SKIPPED (est. 19,124,368 fractions, too large for exact Fraction arithmetic)
+p=7937: SKIPPED (est. 19,143,662 fractions, too large for exact Fraction arithmetic)
+p=9241: SKIPPED (est. 25,951,690 fractions, too large for exact Fraction arithmetic)
+p=9277: SKIPPED (est. 26,154,304 fractions, too large for exact Fraction arithmetic)
+p=9281: SKIPPED (est. 26,176,866 fractions, too large for exact Fraction arithmetic)
+p=9391: SKIPPED (est. 26,801,116 fractions, too large for exact Fraction arithmetic)
+p=9397: SKIPPED (est. 26,835,378 fractions, too large for exact Fraction arithmetic)
+p=11027: SKIPPED (est. 36,953,678 fractions, too large for exact Fraction arithmetic)
+p=11159: SKIPPED (est. 37,843,771 fractions, too large for exact Fraction arithmetic)
+p=11273: SKIPPED (est. 38,621,013 fractions, too large for exact Fraction arithmetic)
+p=11287: SKIPPED (est. 38,717,008 fractions, too large for exact Fraction arithmetic)
+p=11299: SKIPPED (est. 38,799,385 fractions, too large for exact Fraction arithmetic)
+p=12919: SKIPPED (est. 50,723,856 fractions, too large for exact Fraction arithmetic)
+p=13399: SKIPPED (est. 54,563,428 fractions, too large for exact Fraction arithmetic)
+p=13441: SKIPPED (est. 54,906,054 fractions, too large for exact Fraction arithmetic)
+p=13469: SKIPPED (est. 55,135,068 fractions, too large for exact Fraction arithmetic)
+p=13513: SKIPPED (est. 55,495,909 fractions, too large for exact Fraction arithmetic)
+p=13879: SKIPPED (est. 58,543,066 fractions, too large for exact Fraction arithmetic)
+p=15277: SKIPPED (est. 70,931,803 fractions, too large for exact Fraction arithmetic)
+p=17737: SKIPPED (est. 95,616,548 fractions, too large for exact Fraction arithmetic)
+p=17863: SKIPPED (est. 96,979,931 fractions, too large for exact Fraction arithmetic)
+p=18671: SKIPPED (est. 105,952,287 fractions, too large for exact Fraction arithmetic)
+p=18749: SKIPPED (est. 106,839,437 fractions, too large for exact Fraction arithmetic)
+
+================================================================================
+SUMMARY
+================================================================================
+Total M(p)=-3 primes in [2, 20000]: 91
+Verified exactly: 46
+Skipped (too large) starting at p=4547
+  correction/C' < 0: 44
+  0 <= correction/C' < 1/2: 2
+  correction/C' >= 1/2: 0
+  B' > 0: 46 / 46
+
+RESULT: correction/C' < 0 for ALL 44 tested M(p)=-3 primes with p >= 43.
+
+Small M(p)=-3 primes (p=13,19):
+  p=13: correction/C' = +0.440053, < 1/2: True
+  p=19: correction/C' = +0.334024, < 1/2: True
+
+DETAILED TABLE:
+     p      N    |F_N|  M(N)   B>0       corr/C
+--------------------------------------------------
+    13     12       47    -2   YES    +0.440053
+    19     18      103    -2   YES    +0.334024
+    43     42      543    -2   YES    -0.176742
+    47     46      651    -2   YES    -0.280823
+    53     52      831    -2   YES    -0.199873
+    71     70     1495    -2   YES    -0.408936
+   107    106     3427    -2   YES    -0.943757
+   131    130     5155    -2   YES    -0.878644
+   173    172     9023    -2   YES    -1.242759
+   179    178     9655    -2   YES    -1.224016
+   271    270    22205    -2   YES    -1.493320
+   311    310    29231    -2   YES    -1.543428
+   379    378    43467    -2   YES    -1.842405
+   389    388    45817    -2   YES    -2.170252
+   431    430    56211    -2   YES    -1.412414
+   523    522    82909    -2   YES    -2.366470
+   617    616   115381    -2   YES    -2.438770
+   631    630   120689    -2   YES    -2.458587
+   719    718   156785    -2   YES    -2.204191
+   733    732   162969    -2   YES    -2.111138
+   751    750   171019    -2   YES    -2.564913
+   757    756   173789    -2   YES    -2.514047
+   769    768   179409    -2   YES    -2.608568
+   829    828   208537    -2   YES    -2.448753
+   839    838   213559    -2   YES    -2.402100
+   863    862   226001    -2   YES    -3.186140
+  1223   1222   454049    -2   YES    -2.579945
+  1237   1236   464497    -2   YES    -3.284224
+  1249   1248   473559    -2   YES    -2.867658
+  1499   1498   682285    -2   YES    -3.837187
+  1511   1510   693213    -2   YES    -3.526333
+  1567   1566   745543    -2   YES    -2.993580
+  1823   1822  1009345    -2   YES    -3.029194
+  1831   1830  1018143    -2   YES    -3.043275
+  1873   1872  1065423    -2   YES    -2.568933
+  1877   1876  1070023    -2   YES    -2.922667
+  1933   1932  1134849    -2   YES    -2.588632
+  2143   2142  1394975    -2   YES    -4.743940
+  2347   2346  1672979    -2   YES    -3.716437
+  2377   2376  1716135    -2   YES    -4.035587
+  2543   2542  1964371    -2   YES    -2.830867
+  3049   3048  2824407    -2   YES    -3.778332
+  3067   3066  2857681    -2   YES    -3.966859
+  3079   3078  2880211    -2   YES    -3.680255
+  3617   3616  3975079    -2   YES    -4.305206
+  3671   3670  4094241    -2   YES    -4.261601

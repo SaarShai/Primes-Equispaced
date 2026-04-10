@@ -1,0 +1,71 @@
+[22:29:38] === OVERNIGHT RUNNER STARTED ===
+[22:29:38] Will run queue items sequentially with monitoring
+[22:29:38] Phase 0: Waiting for SB LR (PID 47316) to finish...
+[22:30:38]   SB LR still running (7/12 runs)
+[22:31:38]   SB LR still running (7/12 runs)
+[22:32:38]   SB LR still running (7/12 runs)
+[22:33:38]   SB LR still running (7/12 runs)
+[22:34:38]   SB LR still running (7/12 runs)
+[22:35:38]   SB LR still running (8/12 runs)
+[22:36:38]   SB LR still running (8/12 runs)
+[22:37:38]   SB LR still running (8/12 runs)
+[22:38:38]   SB LR still running (8/12 runs)
+[22:39:38]   SB LR still running (8/12 runs)
+[22:40:38]   SB LR still running (8/12 runs)
+[22:41:38]   SB LR still running (8/12 runs)
+[22:42:38]   SB LR still running (8/12 runs)
+[22:43:38]   SB LR still running (8/12 runs)
+[22:44:38]   SB LR still running (9/12 runs)
+[22:45:38]   SB LR still running (9/12 runs)
+[22:46:38]   SB LR still running (9/12 runs)
+[22:47:38]   SB LR still running (9/12 runs)
+[22:48:38]   SB LR still running (9/12 runs)
+[22:49:38]   SB LR still running (9/12 runs)
+[22:50:38]   SB LR still running (9/12 runs)
+[22:51:38]   SB LR still running (9/12 runs)
+[22:52:38]   SB LR still running (10/12 runs)
+[22:53:38]   SB LR still running (10/12 runs)
+[22:54:38]   SB LR still running (10/12 runs)
+[22:55:38]   SB LR still running (10/12 runs)
+[22:56:38]   SB LR still running (10/12 runs)
+[22:57:38]   SB LR still running (10/12 runs)
+[22:58:38]   SB LR still running (10/12 runs)
+[22:59:38]   SB LR still running (10/12 runs)
+[23:00:38]   SB LR still running (10/12 runs)
+[23:01:38]   SB LR still running (11/12 runs)
+[23:02:38]   SB LR still running (11/12 runs)
+[23:03:38]   SB LR still running (11/12 runs)
+[23:04:38]   SB LR still running (11/12 runs)
+[23:05:38]   SB LR still running (11/12 runs)
+[23:06:38]   SB LR still running (11/12 runs)
+[23:07:38]   SB LR still running (11/12 runs)
+[23:08:38]   SB LR still running (11/12 runs)
+[23:09:38]   SB LR still running (12/12 runs)
+[23:10:38]   SB LR still running (12/12 runs)
+[23:11:38]   SB LR still running (12/12 runs)
+[23:12:38]   SB LR still running (12/12 runs)
+[23:13:38]   SB LR still running (12/12 runs)
+[23:14:38]   SB LR still running (12/12 runs)
+[23:15:38]   SB LR still running (12/12 runs)
+[23:16:38]   SB LR still running (12/12 runs)
+[23:17:38]   SB LR still running (12/12 runs)
+[23:17:38] SB LR finished. Moving to queue.
+[23:17:38] === Phase 1: Empty cell orbit search ===
+[23:17:39] Phase 1 done (exit: 127)
+[23:17:39] === Phase 2: Extended AMR shock benchmarks ===
+[23:17:39] Phase 2 done (exit: 127)
+[23:17:39] === Phase 3: Real 3DGS setup verification ===
+[23:17:39] Phase 3 import test done (exit: 127)
+[23:17:39] === Phase 4: Three-body unequal mass extension ===
+[23:17:39] Phase 4 done (exit: 127)
+[23:17:39] === Phase 5: Writing AMR paper outline ===
+[23:17:39] Phase 5 done
+[23:17:39] === OVERNIGHT RUNNER COMPLETE ===
+[23:17:39] Check results in:
+[23:17:39]   SB LR: ~/Desktop/Farey-Local/experiments/sb_lr_output.log
+[23:17:39]   Empty cell: ~/Desktop/Farey-Local/experiments/empty_cell_overnight.log
+[23:17:39]   AMR shock: ~/Desktop/Farey-Local/experiments/amr_shock_overnight.log
+[23:17:39]   3DGS imports: ~/Desktop/gsplat-mps/3dgs_import_test.log
+[23:17:39]   Three-body: ~/Desktop/Farey-Local/experiments/threebody_unequal_overnight.log
+[23:17:39]   AMR paper: ~/Desktop/Farey-Local/experiments/AMR_PAPER_OUTLINE.md
+r: ~/Desktop/Farey-Local/experiments/AMR_PAPER_OUTLINE.md

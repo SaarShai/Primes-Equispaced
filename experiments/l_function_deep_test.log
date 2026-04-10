@@ -1,0 +1,153 @@
+====================================================================================================
+L-FUNCTION DEEP EXPLORATION: EXTENDED CHARACTER TESTS
+====================================================================================================
+Sieved 78498 primes up to 1000000
+M(p)=-3 primes: 446
+All primes <= 50000: 5133
+
+================================================================================
+PART 1: Computing twisted Mertens functions
+================================================================================
+  chi5_quad           : M_chi(1000000) =      -294.00  (0.1s)
+  chi5_quartic        : M_chi(1000000) = -238.00+390.00j  (0.4s)
+  chi7_quad           : M_chi(1000000) =      -280.00  (0.1s)
+  chi7_cubic          : M_chi(1000000) = -3.00+193.99j  (0.4s)
+  chi8_a              : M_chi(1000000) =      -346.00  (0.2s)
+  chi8_b              : M_chi(1000000) =       416.00  (0.1s)
+  chi12_from3         : M_chi(1000000) =      -365.00  (0.1s)
+  chi12_from4         : M_chi(1000000) =       259.00  (0.2s)
+
+================================================================================
+PART 2: Computing T_chi values for M(p)=-3 primes
+================================================================================
+  chi5_quad           : computed 446 T values in 2.7s
+  chi5_quartic        : computed 446 T values in 2.6s
+  chi7_quad           : computed 446 T values in 2.6s
+  chi7_cubic          : computed 446 T values in 2.6s
+  chi8_a              : computed 446 T values in 2.6s
+  chi8_b              : computed 446 T values in 2.6s
+  chi12_from3         : computed 446 T values in 2.6s
+  chi12_from4         : computed 446 T values in 2.6s
+  T_plain             : computed 446 T values in 2.6s
+
+================================================================================
+PART 3: Computing T_chi for ALL primes <= 50000
+================================================================================
+  chi5_quad           : 5133 primes in 2.9s
+  chi7_quad           : 5133 primes in 2.9s
+  chi8_a              : 5133 primes in 2.9s
+  chi12_from3         : 5133 primes in 2.9s
+  chi12_from4         : 5133 primes in 2.9s
+  T_plain             : 5133 primes in 2.9s
+
+================================================================================
+PART 4: Phase-lock analysis — M(p)=-3 primes
+================================================================================
+  T_chi5_quad at gamma1(L,chi5_quad) = 6.1836                        | R+=0.1332 (2.8x) R-=0.0000 (0.0x) | MODERATE
+  T_chi5_quartic at gamma1(L,chi5_quartic) = 6.6485 [COMPLEX]        | R+=0.2761 (4.1x) R-=0.1788 (2.7x) | STRONG
+  T_chi7_quad at gamma1(L,chi7_quad) = 4.9734                        | R+=0.2867 (5.0x) R-=0.6007 (7.3x) | STRONG
+  T_chi7_cubic at gamma1(L,chi7_cubic) = 5.1981 [COMPLEX]            | R+=0.1433 (2.1x) R-=0.1440 (2.2x) | MODERATE
+  T_chi8_a at gamma1(L,chi8_a) = 5.1144                              | R+=0.0719 (1.5x) R-=0.0000 (0.0x) | WEAK
+  T_chi8_b at gamma1(L,chi8_b) = 4.0158                              | R+=0.1297 (2.6x) R-=0.1840 (1.1x) | MODERATE
+
+  --- Controls (at zeta zero) ---
+  CTRL: T_chi5_quad at gamma1(zeta) = 14.1347                        | R+=0.0521 (1.1x) R-=0.0000 (0.0x) | NONE
+  CTRL: T_chi7_quad at gamma1(zeta) = 14.1347                        | R+=0.0833 (1.4x) R-=0.2254 (2.7x) | MODERATE
+  CTRL: T_chi8_a at gamma1(zeta) = 14.1347                           | R+=0.0521 (1.1x) R-=0.0000 (0.0x) | NONE
+
+  --- Cross-controls ---
+  CROSS: T_chi5_quad at gamma1(L,chi7_quad) = 4.9734                 | R+=0.0681 (1.4x) R-=0.0000 (0.0x) | NONE
+  CROSS: T_chi7_quad at gamma1(L,chi5_quad) = 6.1836                 | R+=0.2356 (4.1x) R-=0.2040 (2.5x) | STRONG
+  CROSS: T_chi8_a at gamma1(L,chi5_quad) = 6.1836                    | R+=0.1332 (2.8x) R-=0.0000 (0.0x) | MODERATE
+
+================================================================================
+PART 5: Non-primitive characters (mod 12)
+================================================================================
+  T_chi12(from3) at gamma1(L,chi_3) = 8.0392 [NON-PRIMITIVE]         | R+=0.2327 (4.3x) R-=0.6610 (7.0x) | STRONG
+  CTRL: T_chi12(from3) at gamma1(L,chi4) = 6.0209                    | R+=0.1458 (2.7x) R-=0.0964 (1.0x) | MODERATE
+  T_chi12(from4) at gamma1(L,chi_{-4}) = 6.0209 [NON-PRIMITIVE]      | R+=0.2017 (4.0x) R-=0.4781 (3.7x) | STRONG
+  CTRL: T_chi12(from4) at gamma1(L,chi3) = 8.0392                    | R+=0.2099 (4.1x) R-=0.3704 (2.9x) | STRONG
+
+================================================================================
+PART 6: Phase-lock for ALL primes <= 50000
+================================================================================
+  ALL PRIMES: T_plain at gamma1(zeta) = 14.1347                      | R+=0.6867 (12.9x) R-=0.0851 (5.9x) | STRONG
+  ALL PRIMES: T_chi5_quad at gamma1(L,chi5_quad) = 6.1836            | R+=0.1434 (10.3x) R-=0.0000 (0.0x) | STRONG
+  ALL PRIMES: T_chi7_quad at gamma1(L,chi7_quad) = 4.9734            | R+=0.1850 (11.4x) R-=0.3502 (12.8x) | STRONG
+  ALL PRIMES: T_chi8_a at gamma1(L,chi8_a) = 5.1144                  | R+=0.1729 (12.4x) R-=0.0000 (0.0x) | STRONG
+  ALL PRIMES: T_chi12(from3) at gamma1(L,chi3) = 8.0392              | R+=0.0502 (3.4x) R-=0.9034 (20.1x) | STRONG
+
+  --- Controls (ALL primes) ---
+  ALL PRIMES CTRL: T_chi5_quad at gamma1(zeta)                       | R+=0.0547 (3.9x) R-=0.0000 (0.0x) | STRONG
+  ALL PRIMES CTRL: T_chi7_quad at gamma1(zeta)                       | R+=0.2349 (14.5x) R-=0.5289 (19.4x) | STRONG
+
+================================================================================
+PART 7: Conjugate character symmetry
+================================================================================
+  chi5_quartic: |T| range = [2.7051, 162.5143]
+  Phase(T) + Phase(conj(T)) mean = 0.000000 (should be ~0 or 2pi)
+  Phase(T) + Phase(conj(T)) std  = 0.000000
+  Confirms: T_{chi-bar} = conj(T_chi), so phase-lock is preserved under conjugation
+
+  chi7_cubic: |T| range = [4.2634, 234.2274]
+  Phase(T) + Phase(conj(T)) mean = 0.000000
+  Confirms conjugation symmetry for cubic character
+
+================================================================================
+PART 8: Perron integral structure
+================================================================================
+
+  FFT of T_chi5_quad / sqrt(N) on log(N) scale:
+  Expected peak at omega = gamma1 = 6.1836
+  Top 5 peaks:
+    omega = 2.7288, power = 656.65  
+    omega = 5.4575, power = 260.68  <-- MATCH
+    omega = 8.1863, power = 67.15  
+    omega = 19.1013, power = 24.07  
+    omega = 30.0163, power = 17.57  
+
+  FFT of T_plain / sqrt(N) on log(N) scale:
+  Expected peak at omega = gamma1(zeta) = 14.1347
+  Top 5 peaks:
+    omega = 13.6438, power = 77.27  <-- MATCH
+    omega = 2.7288, power = 33.55  
+    omega = 21.8300, power = 24.34  
+    omega = 32.7450, power = 12.40  
+    omega = 16.3725, power = 10.90  
+
+
+====================================================================================================
+GRAND SUMMARY
+====================================================================================================
+
+  Test                                                                    max sigma    Verdict
+  ------------------------------------------------------------------------------------------
+  T_chi5_quad at gamma1(L,chi5_quad) = 6.1836                                   2.8x   MODERATE
+  T_chi5_quartic at gamma1(L,chi5_quartic) = 6.6485 [COMPLEX]                   4.1x     STRONG
+  T_chi7_quad at gamma1(L,chi7_quad) = 4.9734                                   7.3x     STRONG
+  T_chi7_cubic at gamma1(L,chi7_cubic) = 5.1981 [COMPLEX]                       2.2x   MODERATE
+  T_chi8_a at gamma1(L,chi8_a) = 5.1144                                         1.5x       WEAK
+  T_chi8_b at gamma1(L,chi8_b) = 4.0158                                         2.6x   MODERATE
+  CTRL: T_chi5_quad at gamma1(zeta) = 14.1347                                   1.1x       NONE
+  CTRL: T_chi7_quad at gamma1(zeta) = 14.1347                                   2.7x   MODERATE
+  CTRL: T_chi8_a at gamma1(zeta) = 14.1347                                      1.1x       NONE
+  CROSS: T_chi5_quad at gamma1(L,chi7_quad) = 4.9734                            1.4x       NONE
+  CROSS: T_chi7_quad at gamma1(L,chi5_quad) = 6.1836                            4.1x     STRONG
+  CROSS: T_chi8_a at gamma1(L,chi5_quad) = 6.1836                               2.8x   MODERATE
+  T_chi12(from3) at gamma1(L,chi_3) = 8.0392 [NON-PRIMITIVE]                    7.0x     STRONG
+  CTRL: T_chi12(from3) at gamma1(L,chi4) = 6.0209                               2.7x   MODERATE
+  T_chi12(from4) at gamma1(L,chi_{-4}) = 6.0209 [NON-PRIMITIVE]                 4.0x     STRONG
+  CTRL: T_chi12(from4) at gamma1(L,chi3) = 8.0392                               4.1x     STRONG
+
+  --- ALL PRIMES ---
+  ALL PRIMES: T_plain at gamma1(zeta) = 14.1347                                12.9x     STRONG
+  ALL PRIMES: T_chi5_quad at gamma1(L,chi5_quad) = 6.1836                      10.3x     STRONG
+  ALL PRIMES: T_chi7_quad at gamma1(L,chi7_quad) = 4.9734                      12.8x     STRONG
+  ALL PRIMES: T_chi8_a at gamma1(L,chi8_a) = 5.1144                            12.4x     STRONG
+  ALL PRIMES: T_chi12(from3) at gamma1(L,chi3) = 8.0392                        20.1x     STRONG
+  ALL PRIMES CTRL: T_chi5_quad at gamma1(zeta)                                  3.9x     STRONG
+  ALL PRIMES CTRL: T_chi7_quad at gamma1(zeta)                                 19.4x     STRONG
+
+  Total runtime: 42.7s
+
+  Results saved to /Users/saar/Desktop/Farey-Local/experiments/l_function_deep_results.json

@@ -1,0 +1,25 @@
+Computing B+C for p=1399, N=1398
+Generating Farey sequence F_1398...
+  b=200/1398, 12233 fracs so far, 0.0s
+  b=400/1398, 48679 fracs so far, 0.0s
+  b=600/1398, 109501 fracs so far, 0.1s
+  b=800/1398, 194751 fracs so far, 0.1s
+  b=1000/1398, 304193 fracs so far, 0.2s
+  b=1200/1398, 437787 fracs so far, 0.3s
+Sorting 594211 fractions...
+|F_1398| = 594211, generation took 2.2s
+Computing cross term and C...
+  100000 fracs processed, 6.5s
+  200000 fracs processed, 10.9s
+  300000 fracs processed, 15.3s
+  400000 fracs processed, 19.6s
+  500000 fracs processed, 23.9s
+
+RESULTS for p=1399:
+  B = -98219.6007
+  C = 97585.6969
+  B + C = -633.9038
+  R = B/(2C) = -0.503248
+  B+C > 0? NO ✗ VIOLATION!
+  R > -0.5? NO ✗ VIOLATION!
+  Total time: 28.0s

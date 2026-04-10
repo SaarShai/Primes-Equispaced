@@ -1,0 +1,161 @@
+======================================================================
+AMR REAL-WORLD VALIDATION EXPERIMENTS
+Testing Farey AMR claims on realistic data
+======================================================================
+
+======================================================================
+EXPERIMENT 1: Realistic 2D Flow Fields
+======================================================================
+
+--- Lamb-Oseen ---
+  tol=0.1... F=508, Q=240, ratio=2.12, casc=0
+  tol=0.05... F=1052, Q=456, ratio=2.31, casc=0
+  tol=0.02... F=2492, Q=1224, ratio=2.04, casc=0
+  tol=0.01... F=4076, Q=1980, ratio=2.06, casc=0
+  tol=0.005... F=5868, Q=4872, ratio=1.20, casc=0
+
+--- Sod Shock ---
+  tol=0.1... F=51, Q=156, ratio=0.33, casc=5
+  tol=0.05... F=504, Q=7488, ratio=0.07, casc=954
+  tol=0.02... F=881, Q=7812, ratio=0.11, casc=984
+  tol=0.01... F=1411, Q=8244, ratio=0.17, casc=1030
+  tol=0.005... F=1528, Q=9078, ratio=0.17, casc=1150
+
+--- Kelvin-Helmholtz ---
+  tol=0.1... F=108, Q=288, ratio=0.38, casc=24
+  tol=0.05... F=183, Q=288, ratio=0.64, casc=24
+  tol=0.02... F=351, Q=924, ratio=0.38, casc=58
+  tol=0.01... F=857, Q=1008, ratio=0.85, casc=0
+  tol=0.005... F=1609, Q=2505, ratio=0.64, casc=0
+
+--- Multi-Scale ---
+  tol=0.1... F=327, Q=96, ratio=3.41, casc=0
+  tol=0.05... F=772, Q=246, ratio=3.14, casc=4
+  tol=0.02... F=1895, Q=666, ratio=2.85, casc=12
+  tol=0.01... F=3145, Q=1014, ratio=3.10, casc=0
+  tol=0.005... F=5156, Q=2553, ratio=2.02, casc=0
+  -> Saved amr_validation_exp1.png
+
+======================================================================
+EXPERIMENT 2: 3D Extension
+======================================================================
+
+--- Spherical Blast ---
+  tol=0.2... F=10216, O=3632, ratio=2.81, casc=172
+  tol=0.1... F=10528, O=3968, ratio=2.65, casc=144
+  tol=0.05... F=11056, O=3968, ratio=2.79, casc=144
+
+--- Vortex Ring ---
+  tol=0.2... F=1488, O=1448, ratio=1.03, casc=115
+  tol=0.1... F=2544, O=2064, ratio=1.23, casc=123
+  tol=0.05... F=3288, O=2176, ratio=1.51, casc=99
+  -> Saved amr_validation_exp2.png
+
+======================================================================
+EXPERIMENT 3: p4est/AMReX-like Refinement Patterns
+======================================================================
+  tol=0.1... F=327, Q=96, A=288
+  tol=0.05... F=772, Q=246, A=720
+  tol=0.02... F=1895, Q=666, A=1542
+  tol=0.01... F=3145, Q=1014, A=1632
+  tol=0.005... F=5156, Q=2553, A=5067
+  -> Saved amr_validation_exp3.png
+
+======================================================================
+EXPERIMENT 4: Compute Time (Heat Equation)
+======================================================================
+
+  N=8...
+    Uniform: 64 cells, 0.0001s, L2=2.79e-03
+    Farey:   100 cells (F_5), 0.0003s, L2=2.28e-03, steps=1
+
+  N=16...
+    Uniform: 256 cells, 0.0000s, L2=2.14e-04
+    Farey:   324 cells (F_7), 0.0020s, L2=1.36e-03, steps=4
+
+  N=32...
+    Uniform: 1024 cells, 0.0001s, L2=2.29e-04
+    Farey:   1024 cells (F_10), 0.0224s, L2=5.70e-04, steps=20
+
+  N=64...
+    Uniform: 4096 cells, 0.0003s, L2=3.53e-05
+    Farey:   4096 cells (F_14), 0.3826s, L2=2.18e-04, steps=82
+  -> Saved amr_validation_exp4.png
+
+======================================================================
+CRITICAL HONESTY CHECKS
+======================================================================
+
+[CHECK 1] Farey cell count vs Quadtree total (ratio < 1 = Farey wins)
+  Lamb-Oseen tol=0.1: ratio=2.117
+  Lamb-Oseen tol=0.05: ratio=2.307
+  Lamb-Oseen tol=0.02: ratio=2.036
+  Lamb-Oseen tol=0.01: ratio=2.059
+  Lamb-Oseen tol=0.005: ratio=1.204
+  Sod Shock tol=0.1: ratio=0.327
+  Sod Shock tol=0.05: ratio=0.067
+  Sod Shock tol=0.02: ratio=0.113
+  Sod Shock tol=0.01: ratio=0.171
+  Sod Shock tol=0.005: ratio=0.168
+  Kelvin-Helmholtz tol=0.1: ratio=0.375
+  Kelvin-Helmholtz tol=0.05: ratio=0.635
+  Kelvin-Helmholtz tol=0.02: ratio=0.380
+  Kelvin-Helmholtz tol=0.01: ratio=0.850
+  Kelvin-Helmholtz tol=0.005: ratio=0.642
+  Multi-Scale tol=0.1: ratio=3.406
+  Multi-Scale tol=0.05: ratio=3.138
+  Multi-Scale tol=0.02: ratio=2.845
+  Multi-Scale tol=0.01: ratio=3.102
+  Multi-Scale tol=0.005: ratio=2.020
+
+  MEAN ratio: 1.398
+  Farey wins: 10/20 comparisons
+
+[CHECK 2] Farey vs Quadtree (needed cells only, no cascading)
+  Lamb-Oseen tol=0.1: Farey/needed = 2.117
+  Lamb-Oseen tol=0.05: Farey/needed = 2.307
+  Lamb-Oseen tol=0.02: Farey/needed = 2.036
+  Lamb-Oseen tol=0.01: Farey/needed = 2.059
+  Lamb-Oseen tol=0.005: Farey/needed = 1.204
+  Sod Shock tol=0.1: Farey/needed = 0.338
+  Sod Shock tol=0.05: Farey/needed = 0.077
+  Sod Shock tol=0.02: Farey/needed = 0.129
+  Sod Shock tol=0.01: Farey/needed = 0.196
+  Sod Shock tol=0.005: Farey/needed = 0.193
+  Kelvin-Helmholtz tol=0.1: Farey/needed = 0.409
+  Kelvin-Helmholtz tol=0.05: Farey/needed = 0.693
+  Kelvin-Helmholtz tol=0.02: Farey/needed = 0.405
+  Kelvin-Helmholtz tol=0.01: Farey/needed = 0.850
+  Kelvin-Helmholtz tol=0.005: Farey/needed = 0.642
+  Multi-Scale tol=0.1: Farey/needed = 3.406
+  Multi-Scale tol=0.05: Farey/needed = 3.190
+  Multi-Scale tol=0.02: Farey/needed = 2.898
+  Multi-Scale tol=0.01: Farey/needed = 3.102
+  Multi-Scale tol=0.005: Farey/needed = 2.020
+
+  MEAN ratio vs needed: 1.414
+
+[CHECK 3] Max error achieved (both methods at same tolerance)
+
+[CHECK 4] 3D cascading overhead
+  Spherical Blast tol=0.2: octree cascade=172/3632 (4.7%)
+  Spherical Blast tol=0.1: octree cascade=144/3968 (3.6%)
+  Spherical Blast tol=0.05: octree cascade=144/3968 (3.6%)
+  Vortex Ring tol=0.2: octree cascade=115/1448 (7.9%)
+  Vortex Ring tol=0.1: octree cascade=123/2064 (6.0%)
+  Vortex Ring tol=0.05: octree cascade=99/2176 (4.5%)
+
+[CHECK 5] Function-dependence of advantage
+  Lamb-Oseen: mean ratio = 1.945 (range 1.204-2.307)
+  Sod Shock: mean ratio = 0.169 (range 0.067-0.327)
+  Kelvin-Helmholtz: mean ratio = 0.577 (range 0.375-0.850)
+  Multi-Scale: mean ratio = 2.902 (range 2.020-3.406)
+
+Total runtime: 48.6s
+
+======================================================================
+SUMMARY FOR REPORT
+======================================================================
+Mean Farey/Quadtree ratio (2D): 1.398
+Mean Farey/Needed ratio (2D): 1.414
+Farey wins 10/20 comparisons

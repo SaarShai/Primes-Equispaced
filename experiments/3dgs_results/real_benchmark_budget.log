@@ -1,0 +1,289 @@
+Device: mps
+Data dir: /Users/saar/Desktop/Farey-Local/experiments/3dgs_benchmark_data/kodak
+
+######################################################################
+BUDGET: 100 Gaussians
+######################################################################
+
+  Image 1/5: kodim01.png
+    [ADC (Standard 3DGS)] Step     0: PSNR=5.22dB  G=50  loss=0.300435  t=2s
+    [ADC (Standard 3DGS)] Step  1000: PSNR=19.76dB  G=95  loss=0.010563  t=39s
+    [ADC (Standard 3DGS)] Step  2000: PSNR=20.53dB  G=100  loss=0.008843  t=85s
+    [ADC (Standard 3DGS)] Step  3000: PSNR=20.69dB  G=100  loss=0.008529  t=132s
+    [ADC (Standard 3DGS)] Step  4000: PSNR=20.78dB  G=100  loss=0.008363  t=180s
+    [ADC (Standard 3DGS)] Step  4999: PSNR=21.04dB  G=100  loss=0.007874  t=229s
+    [ADC (Standard 3DGS)] FINAL: PSNR=21.04dB  SSIM=0.3553  G=100  time=229s
+
+    [Farey Densification] Step     0: PSNR=5.22dB  G=50  loss=0.300435  t=0s
+    [Farey Densification] Step  1000: PSNR=19.90dB  G=95  loss=0.010230  t=37s
+    [Farey Densification] Step  2000: PSNR=20.51dB  G=100  loss=0.008898  t=87s
+    [Farey Densification] Step  3000: PSNR=20.72dB  G=100  loss=0.008475  t=138s
+    [Farey Densification] Step  4000: PSNR=20.81dB  G=100  loss=0.008305  t=189s
+    [Farey Densification] Step  4999: PSNR=21.02dB  G=100  loss=0.007905  t=240s
+    [Farey Densification] FINAL: PSNR=21.02dB  SSIM=0.3615  G=100  time=240s
+
+    [Error-Guided (no structure)] Step     0: PSNR=5.22dB  G=50  loss=0.300435  t=0s
+    [Error-Guided (no structure)] Step  1000: PSNR=20.21dB  G=95  loss=0.009521  t=36s
+    [Error-Guided (no structure)] Step  2000: PSNR=20.85dB  G=100  loss=0.008221  t=86s
+    [Error-Guided (no structure)] Step  3000: PSNR=20.98dB  G=100  loss=0.007973  t=136s
+    [Error-Guided (no structure)] Step  4000: PSNR=21.03dB  G=100  loss=0.007892  t=185s
+    [Error-Guided (no structure)] Step  4999: PSNR=21.07dB  G=100  loss=0.007809  t=235s
+    [Error-Guided (no structure)] FINAL: PSNR=21.08dB  SSIM=0.3473  G=100  time=235s
+
+    [Random (Error-weighted)] Step     0: PSNR=5.22dB  G=50  loss=0.300435  t=0s
+    [Random (Error-weighted)] Step  1000: PSNR=20.34dB  G=95  loss=0.009238  t=34s
+    [Random (Error-weighted)] Step  2000: PSNR=21.21dB  G=100  loss=0.007572  t=83s
+    [Random (Error-weighted)] Step  3000: PSNR=21.30dB  G=100  loss=0.007410  t=132s
+    [Random (Error-weighted)] Step  4000: PSNR=21.40dB  G=100  loss=0.007238  t=181s
+    [Random (Error-weighted)] Step  4999: PSNR=21.46dB  G=100  loss=0.007138  t=229s
+    [Random (Error-weighted)] FINAL: PSNR=21.46dB  SSIM=0.3898  G=100  time=229s
+
+    [No Densification] Step     0: PSNR=5.22dB  G=50  loss=0.300435  t=0s
+    [No Densification] Step  1000: PSNR=19.69dB  G=50  loss=0.010738  t=29s
+    [No Densification] Step  2000: PSNR=19.81dB  G=50  loss=0.010459  t=58s
+    [No Densification] Step  3000: PSNR=19.90dB  G=50  loss=0.010234  t=88s
+    [No Densification] Step  4000: PSNR=19.92dB  G=50  loss=0.010177  t=117s
+    [No Densification] Step  4999: PSNR=19.92dB  G=50  loss=0.010175  t=147s
+    [No Densification] FINAL: PSNR=19.92dB  SSIM=0.3089  G=50  time=147s
+
+    [ADC (Standard 3DGS)] Step     0: PSNR=5.22dB  G=50  loss=0.300435  t=0s
+    [ADC (Standard 3DGS)] Step  1000: PSNR=19.84dB  G=95  loss=0.010365  t=42s
+    [ADC (Standard 3DGS)] Step  2000: PSNR=20.67dB  G=100  loss=0.008565  t=103s
+    [ADC (Standard 3DGS)] Step  3000: PSNR=20.75dB  G=100  loss=0.008413  t=163s
+    [ADC (Standard 3DGS)] Step  4000: PSNR=20.96dB  G=100  loss=0.008008  t=223s
+    [ADC (Standard 3DGS)] Step  4999: PSNR=21.11dB  G=100  loss=0.007742  t=283s
+    [ADC (Standard 3DGS)] FINAL: PSNR=21.11dB  SSIM=0.3622  G=100  time=283s
+
+    [Farey Densification] Step     0: PSNR=5.22dB  G=50  loss=0.300435  t=0s
+    [Farey Densification] Step  1000: PSNR=19.90dB  G=95  loss=0.010230  t=41s
+    [Farey Densification] Step  2000: PSNR=20.51dB  G=100  loss=0.008898  t=99s
+    [Farey Densification] Step  3000: PSNR=20.72dB  G=100  loss=0.008475  t=154s
+    [Farey Densification] Step  4000: PSNR=20.81dB  G=100  loss=0.008305  t=210s
+    [Farey Densification] Step  4999: PSNR=21.02dB  G=100  loss=0.007905  t=269s
+    [Farey Densification] FINAL: PSNR=21.02dB  SSIM=0.3615  G=100  time=269s
+
+    [Error-Guided (no structure)] Step     0: PSNR=5.22dB  G=50  loss=0.300435  t=0s
+    [Error-Guided (no structure)] Step  1000: PSNR=20.21dB  G=95  loss=0.009521  t=39s
+    [Error-Guided (no structure)] Step  2000: PSNR=20.85dB  G=100  loss=0.008221  t=91s
+    [Error-Guided (no structure)] Step  3000: PSNR=20.98dB  G=100  loss=0.007973  t=142s
+    [Error-Guided (no structure)] Step  4000: PSNR=21.03dB  G=100  loss=0.007892  t=191s
+    [Error-Guided (no structure)] Step  4999: PSNR=21.07dB  G=100  loss=0.007809  t=241s
+    [Error-Guided (no structure)] FINAL: PSNR=21.08dB  SSIM=0.3473  G=100  time=241s
+
+    [Random (Error-weighted)] Step     0: PSNR=5.22dB  G=50  loss=0.300435  t=0s
+    [Random (Error-weighted)] Step  1000: PSNR=20.36dB  G=95  loss=0.009196  t=34s
+    [Random (Error-weighted)] Step  2000: PSNR=21.17dB  G=100  loss=0.007633  t=84s
+    [Random (Error-weighted)] Step  3000: PSNR=21.36dB  G=100  loss=0.007312  t=135s
+    [Random (Error-weighted)] Step  4000: PSNR=21.19dB  G=100  loss=0.007595  t=186s
+    [Random (Error-weighted)] Step  4999: PSNR=21.38dB  G=100  loss=0.007286  t=234s
+    [Random (Error-weighted)] FINAL: PSNR=21.41dB  SSIM=0.3803  G=100  time=234s
+
+    [No Densification] Step     0: PSNR=5.22dB  G=50  loss=0.300435  t=0s
+    [No Densification] Step  1000: PSNR=19.69dB  G=50  loss=0.010738  t=24s
+    [No Densification] Step  2000: PSNR=19.81dB  G=50  loss=0.010459  t=49s
+    [No Densification] Step  3000: PSNR=19.90dB  G=50  loss=0.010234  t=74s
+    [No Densification] Step  4000: PSNR=19.92dB  G=50  loss=0.010177  t=101s
+    [No Densification] Step  4999: PSNR=19.92dB  G=50  loss=0.010175  t=127s
+    [No Densification] FINAL: PSNR=19.92dB  SSIM=0.3089  G=50  time=127s
+
+    [ADC (Standard 3DGS)] Step     0: PSNR=5.22dB  G=50  loss=0.300435  t=0s
+    [ADC (Standard 3DGS)] Step  1000: PSNR=19.87dB  G=95  loss=0.010300  t=37s
+    [ADC (Standard 3DGS)] Step  2000: PSNR=20.62dB  G=100  loss=0.008660  t=88s
+    [ADC (Standard 3DGS)] Step  3000: PSNR=20.76dB  G=100  loss=0.008399  t=140s
+    [ADC (Standard 3DGS)] Step  4000: PSNR=20.91dB  G=100  loss=0.008109  t=191s
+    [ADC (Standard 3DGS)] Step  4999: PSNR=21.02dB  G=100  loss=0.007898  t=244s
+    [ADC (Standard 3DGS)] FINAL: PSNR=21.02dB  SSIM=0.3577  G=100  time=244s
+
+    [Farey Densification] Step     0: PSNR=5.22dB  G=50  loss=0.300435  t=0s
+    [Farey Densification] Step  1000: PSNR=19.90dB  G=95  loss=0.010230  t=37s
+    [Farey Densification] Step  2000: PSNR=20.51dB  G=100  loss=0.008898  t=91s
+    [Farey Densification] Step  3000: PSNR=20.72dB  G=100  loss=0.008475  t=146s
+    [Farey Densification] Step  4000: PSNR=20.81dB  G=100  loss=0.008305  t=200s
+    [Farey Densification] Step  4999: PSNR=21.02dB  G=100  loss=0.007905  t=254s
+    [Farey Densification] FINAL: PSNR=21.02dB  SSIM=0.3615  G=100  time=255s
+
+    [Error-Guided (no structure)] Step     0: PSNR=5.22dB  G=50  loss=0.300435  t=0s
+    [Error-Guided (no structure)] Step  1000: PSNR=20.21dB  G=95  loss=0.009521  t=39s
+    [Error-Guided (no structure)] Step  2000: PSNR=20.85dB  G=100  loss=0.008221  t=94s
+    [Error-Guided (no structure)] Step  3000: PSNR=20.98dB  G=100  loss=0.007973  t=150s
+    [Error-Guided (no structure)] Step  4000: PSNR=21.03dB  G=100  loss=0.007892  t=204s
+    [Error-Guided (no structure)] Step  4999: PSNR=21.07dB  G=100  loss=0.007809  t=253s
+    [Error-Guided (no structure)] FINAL: PSNR=21.08dB  SSIM=0.3473  G=100  time=253s
+
+    [Random (Error-weighted)] Step     0: PSNR=5.22dB  G=50  loss=0.300435  t=0s
+    [Random (Error-weighted)] Step  1000: PSNR=20.54dB  G=95  loss=0.008831  t=37s
+    [Random (Error-weighted)] Step  2000: PSNR=20.94dB  G=100  loss=0.008058  t=85s
+    [Random (Error-weighted)] Step  3000: PSNR=21.02dB  G=100  loss=0.007904  t=134s
+    [Random (Error-weighted)] Step  4000: PSNR=21.23dB  G=100  loss=0.007537  t=186s
+    [Random (Error-weighted)] Step  4999: PSNR=21.24dB  G=100  loss=0.007511  t=235s
+    [Random (Error-weighted)] FINAL: PSNR=21.23dB  SSIM=0.3731  G=100  time=235s
+
+    [No Densification] Step     0: PSNR=5.22dB  G=50  loss=0.300435  t=0s
+    [No Densification] Step  1000: PSNR=19.69dB  G=50  loss=0.010738  t=24s
+    [No Densification] Step  2000: PSNR=19.81dB  G=50  loss=0.010459  t=49s
+    [No Densification] Step  3000: PSNR=19.90dB  G=50  loss=0.010234  t=74s
+    [No Densification] Step  4000: PSNR=19.92dB  G=50  loss=0.010177  t=98s
+    [No Densification] Step  4999: PSNR=19.92dB  G=50  loss=0.010175  t=122s
+    [No Densification] FINAL: PSNR=19.92dB  SSIM=0.3089  G=50  time=123s
+
+
+  Image 2/5: kodim02.png
+    [ADC (Standard 3DGS)] Step     0: PSNR=3.42dB  G=50  loss=0.455222  t=0s
+    [ADC (Standard 3DGS)] Step  1000: PSNR=25.17dB  G=95  loss=0.003037  t=34s
+    [ADC (Standard 3DGS)] Step  2000: PSNR=26.28dB  G=100  loss=0.002356  t=82s
+    [ADC (Standard 3DGS)] Step  3000: PSNR=26.69dB  G=100  loss=0.002142  t=130s
+    [ADC (Standard 3DGS)] Step  4000: PSNR=26.74dB  G=100  loss=0.002118  t=178s
+    [ADC (Standard 3DGS)] Step  4999: PSNR=26.82dB  G=100  loss=0.002078  t=227s
+    [ADC (Standard 3DGS)] FINAL: PSNR=26.82dB  SSIM=0.6766  G=100  time=227s
+
+    [Farey Densification] Step     0: PSNR=3.42dB  G=50  loss=0.455222  t=0s
+    [Farey Densification] Step  1000: PSNR=24.89dB  G=95  loss=0.003242  t=36s
+    [Farey Densification] Step  2000: PSNR=25.74dB  G=100  loss=0.002665  t=85s
+    [Farey Densification] Step  3000: PSNR=25.93dB  G=100  loss=0.002555  t=133s
+    [Farey Densification] Step  4000: PSNR=25.99dB  G=100  loss=0.002518  t=182s
+    [Farey Densification] Step  4999: PSNR=26.32dB  G=100  loss=0.002332  t=230s
+    [Farey Densification] FINAL: PSNR=26.32dB  SSIM=0.6729  G=100  time=230s
+
+    [Error-Guided (no structure)] Step     0: PSNR=3.42dB  G=50  loss=0.455222  t=0s
+    [Error-Guided (no structure)] Step  1000: PSNR=25.50dB  G=95  loss=0.002820  t=36s
+    [Error-Guided (no structure)] Step  2000: PSNR=26.38dB  G=100  loss=0.002299  t=87s
+    [Error-Guided (no structure)] Step  3000: PSNR=26.65dB  G=100  loss=0.002163  t=136s
+    [Error-Guided (no structure)] Step  4000: PSNR=26.66dB  G=100  loss=0.002158  t=185s
+    [Error-Guided (no structure)] Step  4999: PSNR=26.68dB  G=100  loss=0.002150  t=235s
+    [Error-Guided (no structure)] FINAL: PSNR=26.68dB  SSIM=0.6817  G=100  time=235s
+
+    [Random (Error-weighted)] Step     0: PSNR=3.42dB  G=50  loss=0.455222  t=0s
+    [Random (Error-weighted)] Step  1000: PSNR=25.86dB  G=95  loss=0.002596  t=38s
+    [Random (Error-weighted)] Step  2000: PSNR=26.77dB  G=100  loss=0.002106  t=90s
+    [Random (Error-weighted)] Step  3000: PSNR=26.87dB  G=99  loss=0.002056  t=145s
+    [Random (Error-weighted)] Step  4000: PSNR=26.99dB  G=100  loss=0.001998  t=200s
+    [Random (Error-weighted)] Step  4999: PSNR=27.10dB  G=100  loss=0.001951  t=256s
+    [Random (Error-weighted)] FINAL: PSNR=27.10dB  SSIM=0.6982  G=100  time=256s
+
+    [No Densification] Step     0: PSNR=3.42dB  G=50  loss=0.455222  t=2s
+    [No Densification] Step  1000: PSNR=24.94dB  G=50  loss=0.003204  t=31s
+    [No Densification] Step  2000: PSNR=25.18dB  G=50  loss=0.003032  t=58s
+    [No Densification] Step  3000: PSNR=25.34dB  G=50  loss=0.002927  t=86s
+    [No Densification] Step  4000: PSNR=25.49dB  G=50  loss=0.002823  t=114s
+    [No Densification] Step  4999: PSNR=25.49dB  G=50  loss=0.002823  t=145s
+    [No Densification] FINAL: PSNR=25.50dB  SSIM=0.6467  G=50  time=145s
+
+    [ADC (Standard 3DGS)] Step     0: PSNR=3.42dB  G=50  loss=0.455222  t=0s
+    [ADC (Standard 3DGS)] Step  1000: PSNR=25.08dB  G=95  loss=0.003108  t=42s
+    [ADC (Standard 3DGS)] Step  2000: PSNR=26.34dB  G=100  loss=0.002320  t=89s
+    [ADC (Standard 3DGS)] Step  3000: PSNR=26.61dB  G=100  loss=0.002181  t=139s
+    [ADC (Standard 3DGS)] Step  4000: PSNR=26.66dB  G=100  loss=0.002157  t=195s
+    [ADC (Standard 3DGS)] Step  4999: PSNR=26.74dB  G=100  loss=0.002119  t=249s
+    [ADC (Standard 3DGS)] FINAL: PSNR=26.74dB  SSIM=0.6748  G=100  time=249s
+
+    [Farey Densification] Step     0: PSNR=3.42dB  G=50  loss=0.455222  t=0s
+    [Farey Densification] Step  1000: PSNR=24.89dB  G=95  loss=0.003242  t=41s
+    [Farey Densification] Step  2000: PSNR=25.74dB  G=100  loss=0.002665  t=98s
+    [Farey Densification] Step  3000: PSNR=25.93dB  G=100  loss=0.002555  t=154s
+    [Farey Densification] Step  4000: PSNR=25.99dB  G=100  loss=0.002518  t=210s
+    [Farey Densification] Step  4999: PSNR=26.32dB  G=100  loss=0.002332  t=263s
+    [Farey Densification] FINAL: PSNR=26.32dB  SSIM=0.6729  G=100  time=263s
+
+    [Error-Guided (no structure)] Step     0: PSNR=3.42dB  G=50  loss=0.455222  t=4s
+    [Error-Guided (no structure)] Step  1000: PSNR=25.50dB  G=95  loss=0.002820  t=44s
+    [Error-Guided (no structure)] Step  2000: PSNR=26.38dB  G=100  loss=0.002299  t=94s
+    [Error-Guided (no structure)] Step  3000: PSNR=26.65dB  G=100  loss=0.002163  t=146s
+    [Error-Guided (no structure)] Step  4000: PSNR=26.66dB  G=100  loss=0.002158  t=197s
+    [Error-Guided (no structure)] Step  4999: PSNR=26.68dB  G=100  loss=0.002150  t=249s
+    [Error-Guided (no structure)] FINAL: PSNR=26.68dB  SSIM=0.6817  G=100  time=249s
+
+    [Random (Error-weighted)] Step     0: PSNR=3.42dB  G=50  loss=0.455222  t=5s
+    [Random (Error-weighted)] Step  1000: PSNR=26.12dB  G=95  loss=0.002445  t=44s
+    [Random (Error-weighted)] Step  2000: PSNR=27.27dB  G=100  loss=0.001877  t=98s
+    [Random (Error-weighted)] Step  3000: PSNR=27.33dB  G=100  loss=0.001851  t=157s
+    [Random (Error-weighted)] Step  4000: PSNR=27.48dB  G=100  loss=0.001787  t=228s
+    [Random (Error-weighted)] Step  4999: PSNR=27.64dB  G=100  loss=0.001722  t=298s
+    [Random (Error-weighted)] FINAL: PSNR=27.65dB  SSIM=0.7057  G=100  time=298s
+
+    [No Densification] Step     0: PSNR=3.42dB  G=50  loss=0.455222  t=0s
+    [No Densification] Step  1000: PSNR=24.94dB  G=50  loss=0.003204  t=33s
+    [No Densification] Step  2000: PSNR=25.18dB  G=50  loss=0.003032  t=67s
+    [No Densification] Step  3000: PSNR=25.34dB  G=50  loss=0.002927  t=100s
+    [No Densification] Step  4000: PSNR=25.49dB  G=50  loss=0.002823  t=133s
+    [No Densification] Step  4999: PSNR=25.49dB  G=50  loss=0.002823  t=166s
+    [No Densification] FINAL: PSNR=25.50dB  SSIM=0.6467  G=50  time=166s
+
+    [ADC (Standard 3DGS)] Step     0: PSNR=3.42dB  G=50  loss=0.455222  t=0s
+    [ADC (Standard 3DGS)] Step  1000: PSNR=24.91dB  G=95  loss=0.003226  t=45s
+    [ADC (Standard 3DGS)] Step  2000: PSNR=26.27dB  G=100  loss=0.002360  t=110s
+    [ADC (Standard 3DGS)] Step  3000: PSNR=26.45dB  G=100  loss=0.002263  t=173s
+    [ADC (Standard 3DGS)] Step  4000: PSNR=26.58dB  G=100  loss=0.002197  t=235s
+    [ADC (Standard 3DGS)] Step  4999: PSNR=26.65dB  G=100  loss=0.002163  t=297s
+    [ADC (Standard 3DGS)] FINAL: PSNR=26.65dB  SSIM=0.6769  G=100  time=297s
+
+    [Farey Densification] Step     0: PSNR=3.42dB  G=50  loss=0.455222  t=0s
+    [Farey Densification] Step  1000: PSNR=24.89dB  G=95  loss=0.003242  t=44s
+    [Farey Densification] Step  2000: PSNR=25.74dB  G=100  loss=0.002665  t=108s
+    [Farey Densification] Step  3000: PSNR=25.93dB  G=100  loss=0.002555  t=171s
+    [Farey Densification] Step  4000: PSNR=25.99dB  G=100  loss=0.002518  t=231s
+    [Farey Densification] Step  4999: PSNR=26.32dB  G=100  loss=0.002332  t=287s
+    [Farey Densification] FINAL: PSNR=26.32dB  SSIM=0.6729  G=100  time=287s
+
+    [Error-Guided (no structure)] Step     0: PSNR=3.42dB  G=50  loss=0.455222  t=0s
+    [Error-Guided (no structure)] Step  1000: PSNR=25.50dB  G=95  loss=0.002820  t=42s
+    [Error-Guided (no structure)] Step  2000: PSNR=26.38dB  G=100  loss=0.002299  t=99s
+    [Error-Guided (no structure)] Step  3000: PSNR=26.65dB  G=100  loss=0.002163  t=154s
+    [Error-Guided (no structure)] Step  4000: PSNR=26.66dB  G=100  loss=0.002158  t=211s
+    [Error-Guided (no structure)] Step  4999: PSNR=26.68dB  G=100  loss=0.002150  t=268s
+    [Error-Guided (no structure)] FINAL: PSNR=26.68dB  SSIM=0.6817  G=100  time=268s
+
+    [Random (Error-weighted)] Step     0: PSNR=3.42dB  G=50  loss=0.455222  t=0s
+    [Random (Error-weighted)] Step  1000: PSNR=25.96dB  G=95  loss=0.002538  t=40s
+    [Random (Error-weighted)] Step  2000: PSNR=26.98dB  G=100  loss=0.002006  t=97s
+    [Random (Error-weighted)] Step  3000: PSNR=27.14dB  G=100  loss=0.001933  t=153s
+    [Random (Error-weighted)] Step  4000: PSNR=27.13dB  G=100  loss=0.001937  t=209s
+    [Random (Error-weighted)] Step  4999: PSNR=27.24dB  G=100  loss=0.001888  t=264s
+    [Random (Error-weighted)] FINAL: PSNR=27.24dB  SSIM=0.6904  G=100  time=264s
+
+    [No Densification] Step     0: PSNR=3.42dB  G=50  loss=0.455222  t=0s
+    [No Densification] Step  1000: PSNR=24.94dB  G=50  loss=0.003204  t=29s
+    [No Densification] Step  2000: PSNR=25.18dB  G=50  loss=0.003032  t=58s
+    [No Densification] Step  3000: PSNR=25.34dB  G=50  loss=0.002927  t=87s
+    [No Densification] Step  4000: PSNR=25.49dB  G=50  loss=0.002823  t=115s
+    [No Densification] Step  4999: PSNR=25.49dB  G=50  loss=0.002823  t=144s
+    [No Densification] FINAL: PSNR=25.50dB  SSIM=0.6467  G=50  time=144s
+
+
+  Image 3/5: kodim03.png
+    [ADC (Standard 3DGS)] Step     0: PSNR=4.57dB  G=50  loss=0.348869  t=0s
+    [ADC (Standard 3DGS)] Step  1000: PSNR=23.78dB  G=95  loss=0.004193  t=40s
+    [ADC (Standard 3DGS)] Step  2000: PSNR=24.69dB  G=100  loss=0.003399  t=101s
+    [ADC (Standard 3DGS)] Step  3000: PSNR=24.79dB  G=100  loss=0.003322  t=161s
+    [ADC (Standard 3DGS)] Step  4000: PSNR=24.89dB  G=100  loss=0.003246  t=220s
+    [ADC (Standard 3DGS)] Step  4999: PSNR=24.97dB  G=100  loss=0.003185  t=278s
+    [ADC (Standard 3DGS)] FINAL: PSNR=24.97dB  SSIM=0.7004  G=100  time=278s
+
+    [Farey Densification] Step     0: PSNR=4.57dB  G=50  loss=0.348869  t=0s
+    [Farey Densification] Step  1000: PSNR=24.35dB  G=95  loss=0.003669  t=44s
+    [Farey Densification] Step  2000: PSNR=25.53dB  G=100  loss=0.002800  t=106s
+    [Farey Densification] Step  3000: PSNR=25.66dB  G=100  loss=0.002719  t=164s
+    [Farey Densification] Step  4000: PSNR=25.73dB  G=100  loss=0.002671  t=220s
+    [Farey Densification] Step  4999: PSNR=25.83dB  G=100  loss=0.002615  t=275s
+    [Farey Densification] FINAL: PSNR=25.82dB  SSIM=0.7208  G=100  time=275s
+
+    [Error-Guided (no structure)] Step     0: PSNR=4.57dB  G=50  loss=0.348869  t=0s
+    [Error-Guided (no structure)] Step  1000: PSNR=23.69dB  G=95  loss=0.004275  t=39s
+    [Error-Guided (no structure)] Step  2000: PSNR=24.80dB  G=100  loss=0.003308  t=95s
+    [Error-Guided (no structure)] Step  3000: PSNR=24.87dB  G=100  loss=0.003256  t=150s
+    [Error-Guided (no structure)] Step  4000: PSNR=24.93dB  G=100  loss=0.003213  t=205s
+    [Error-Guided (no structure)] Step  4999: PSNR=25.01dB  G=100  loss=0.003157  t=260s
+    [Error-Guided (no structure)] FINAL: PSNR=25.01dB  SSIM=0.7045  G=100  time=260s
+
+    [Random (Error-weighted)] Step     0: PSNR=4.57dB  G=50  loss=0.348869  t=0s
+    [Random (Error-weighted)] Step  1000: PSNR=25.23dB  G=95  loss=0.002996  t=39s
+    [Random (Error-weighted)] Step  2000: PSNR=26.14dB  G=100  loss=0.002431  t=96s
+    [Random (Error-weighted)] Step  3000: PSNR=26.22dB  G=100  loss=0.002391  t=143s
+    [Random (Error-weighted)] Step  4000: PSNR=26.22dB  G=100  loss=0.002389  t=173s
+    [Random (Error-weighted)] Step  4999: PSNR=26.27dB  G=100  loss=0.002358  t=204s
+    [Random (Error-weighted)] FINAL: PSNR=26.27dB  SSIM=0.7285  G=100  time=204s
+
+Traceback (most recent call last):
+  File "/Users/saar/Desktop/Farey-Local/experiments/3dgs_real_benchmark.py", line 977, in <module>
+  File "/Users/saar/Desktop/Farey-Local/experiments/3dgs_real_benchmark.py", line 964, in main
+  File "/Users/saar/Desktop/Farey-Local/experiments/3dgs_real_benchmark.py", line 872, in run_budget_matched
+PermissionError: [Errno 1] Operation not permitted: '/Users/saar/Desktop/Farey-Local/experiments/3dgs_results/real_budget_matched_results.json'

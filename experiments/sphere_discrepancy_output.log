@@ -1,0 +1,90 @@
+Spherical discrepancy computation: n = 1..500
+Using 100 random spherical caps
+/Users/saar/Desktop/Farey-Local/experiments/sphere_discrepancy_computation.py:104: RuntimeWarning: divide by zero encountered in matmul
+  dots = pts @ centers.T  # shape (n_pts, n_caps)
+/Users/saar/Desktop/Farey-Local/experiments/sphere_discrepancy_computation.py:104: RuntimeWarning: overflow encountered in matmul
+  dots = pts @ centers.T  # shape (n_pts, n_caps)
+/Users/saar/Desktop/Farey-Local/experiments/sphere_discrepancy_computation.py:104: RuntimeWarning: invalid value encountered in matmul
+  dots = pts @ centers.T  # shape (n_pts, n_caps)
+  n=100, elapsed=0.0s
+  n=200, elapsed=0.1s
+  n=300, elapsed=0.2s
+  n=400, elapsed=0.3s
+  n=500, elapsed=0.4s
+
+=== RESULTS ===
+
+All integers: 340 values
+  Mean DeltaW: 1.895684e-04
+  Median DeltaW: 3.022706e-05
+  Fraction DeltaW < 0: 0.4618
+
+Primes: 62 values
+  Mean DeltaW: 9.155069e-04
+  Median DeltaW: 3.514880e-04
+  Fraction DeltaW < 0: 0.2258 (14/62)
+  Primes with DeltaW >= 0: [2, 5, 11, 13, 17, 41, 53, 59, 73, 83, 89, 97, 101, 109, 131, 137, 139, 149, 173, 179]...
+
+Primes p=1 (mod 4): 36 values
+  Mean DeltaW: 1.434050e-03
+  Fraction DeltaW < 0: 0.0833 (3/36)
+
+Primes p=3 (mod 4): 25 values
+  Mean DeltaW: -3.681930e-05
+  Fraction DeltaW < 0: 0.4400 (11/25)
+
+=== r3 and Discrepancy Connection ===
+     n    r3(n)       W_sphere         DeltaW
+     2       12   2.572388e-03   6.056099e-03
+     3        8   4.045759e-03  -1.473371e-03
+     5       24   9.306736e-04   7.697814e-03
+     7        0            N/A            N/A
+    11       24   1.148140e-03   9.732930e-04
+    13       24   1.230992e-03   2.814768e-03
+    17       48   5.562407e-04   8.072247e-03
+    19       24   1.622905e-03  -8.988065e-04
+    23        0            N/A            N/A
+    29       72   3.064003e-04            N/A
+    31        0            N/A            N/A
+    37       24   5.029043e-03  -4.139187e-03
+    41       96   1.939807e-04   1.927452e-03
+    43       24   1.936462e-03  -9.407601e-04
+    47        0            N/A            N/A
+    53       72   3.138511e-04   9.171407e-04
+    59       72   2.400717e-04   1.282015e-03
+    61       72   7.586549e-04            N/A
+    67       24   6.766209e-04  -5.123101e-04
+    71        0            N/A            N/A
+    73       48   4.944047e-04   2.296940e-04
+    79        0            N/A            N/A
+    83       72   2.740206e-04   1.312478e-03
+    89      144   1.532580e-04   2.229125e-03
+    97       48   7.089389e-04   1.909576e-04
+   101      168   8.573529e-05   6.969887e-04
+   103        0            N/A            N/A
+   107       72   4.511805e-04  -8.033935e-05
+   109       72   2.007260e-04   1.045438e-03
+   113       96   3.215244e-04            N/A
+
+=== Spherical Harmonics Sums (first 15 primes) ===
+  p=    2: |Y_1^0 sum|=0.0000, |Y_2^0 sum|=0.0000, |Y_3^0 sum|=0.0000, r3=12
+  p=    3: |Y_1^0 sum|=0.0000, |Y_2^0 sum|=0.0000, |Y_3^0 sum|=0.0000, r3=8
+  p=    5: |Y_1^0 sum|=0.0000, |Y_2^0 sum|=0.0000, |Y_3^0 sum|=0.0000, r3=24
+  p=   11: |Y_1^0 sum|=0.0000, |Y_2^0 sum|=0.0000, |Y_3^0 sum|=0.0000, r3=24
+  p=   13: |Y_1^0 sum|=0.0000, |Y_2^0 sum|=0.0000, |Y_3^0 sum|=0.0000, r3=24
+  p=   17: |Y_1^0 sum|=0.0000, |Y_2^0 sum|=0.0000, |Y_3^0 sum|=0.0000, r3=48
+  p=   19: |Y_1^0 sum|=0.0000, |Y_2^0 sum|=0.0000, |Y_3^0 sum|=0.0000, r3=24
+  p=   29: |Y_1^0 sum|=0.0000, |Y_2^0 sum|=0.0000, |Y_3^0 sum|=0.0000, r3=72
+  p=   37: |Y_1^0 sum|=0.0000, |Y_2^0 sum|=0.0000, |Y_3^0 sum|=0.0000, r3=24
+  p=   41: |Y_1^0 sum|=0.0000, |Y_2^0 sum|=0.0000, |Y_3^0 sum|=0.0000, r3=96
+  p=   43: |Y_1^0 sum|=0.0000, |Y_2^0 sum|=0.0000, |Y_3^0 sum|=0.0000, r3=24
+
+=== Normalized |sum Y_ell^m| / r3(p) for zonal harmonics ===
+  |Y_1^0|/r3: mean=0.000000, std=0.000000
+  |Y_2^0|/r3: mean=0.000000, std=0.000000
+
+  Correlation(DeltaW, r3) over primes: 0.0525
+  Correlation(DeltaW, log r3) over primes: 0.0255
+
+Results saved to /Users/saar/Desktop/Farey-Local/experiments/sphere_discrepancy_results.json
+Total time: 0.4s

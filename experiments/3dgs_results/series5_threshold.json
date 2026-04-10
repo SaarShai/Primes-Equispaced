@@ -1,0 +1,50 @@
+[
+  {
+    "name": "5_gap1.0",
+    "adc": {
+      "psnr": 24.98,
+      "ssim": 0.937,
+      "n_gauss": 1362,
+      "time": 477.7
+    },
+    "farey": {
+      "psnr": 20.55,
+      "ssim": 0.9089,
+      "n_gauss": 637,
+      "time": 297.9
+    },
+    "delta_db": -4.43
+  },
+  {
+    "name": "5_gap2.0",
+    "adc": {
+      "psnr": 24.98,
+      "ssim": 0.937,
+      "n_gauss": 1362,
+      "time": 494.2
+    },
+    "farey": {
+      "psnr": 20.32,
+      "ssim": 0.9052,
+      "n_gauss": 530,
+      "time": 258.4
+    },
+    "delta_db": -4.66
+  },
+  {
+    "name": "5_gap4.0",
+    "adc": {
+      "psnr": 24.98,
+      "ssim": 0.937,
+      "n_gauss": 1362,
+      "time": 480.5
+    },
+    "farey": {
+      "psnr": 18.3,
+      "ssim": 0.8835,
+      "n_gauss": 499,
+      "time": 271.1
+    },
+    "delta_db": -6.68
+  }
+]

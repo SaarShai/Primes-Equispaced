@@ -1,0 +1,63 @@
+[
+  {
+    "config": "8a_5sph",
+    "method": "errgate",
+    "n_seeds": 5,
+    "max_new": 10,
+    "percentile": 75,
+    "psnr_mean": 58.047,
+    "psnr_std": 6.469,
+    "psnr_min": 53.729,
+    "psnr_max": 70.713,
+    "psnr_cv": 0.1114,
+    "gauss_mean": 1990,
+    "time_mean": 1055.8,
+    "per_seed": [
+      {
+        "seed": 42,
+        "test_psnr": 53.729,
+        "test_psnr_std": 33.346,
+        "test_psnr_min": 7.516,
+        "test_psnr_max": 84.448,
+        "n_gauss": 1990,
+        "time_s": 496.4
+      },
+      {
+        "seed": 123,
+        "test_psnr": 70.713,
+        "test_psnr_std": 9.95,
+        "test_psnr_min": 53.464,
+        "test_psnr_max": 83.07,
+        "n_gauss": 1990,
+        "time_s": 817.9
+      },
+      {
+        "seed": 456,
+        "test_psnr": 53.942,
+        "test_psnr_std": 33.239,
+        "test_psnr_min": 7.081,
+        "test_psnr_max": 81.147,
+        "n_gauss": 1990,
+        "time_s": 1082.2
+      },
+      {
+        "seed": 777,
+        "test_psnr": 57.39,
+        "test_psnr_std": 29.882,
+        "test_psnr_min": 7.899,
+        "test_psnr_max": 82.375,
+        "n_gauss": 1990,
+        "time_s": 1242.8
+      },
+      {
+        "seed": 999,
+        "test_psnr": 54.46,
+        "test_psnr_std": 28.684,
+        "test_psnr_min": 7.664,
+        "test_psnr_max": 82.36,
+        "n_gauss": 1990,
+        "time_s": 1639.7
+      }
+    ]
+  }
+]

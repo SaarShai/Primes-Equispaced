@@ -1,0 +1,200 @@
+Device: mps
+PyTorch: 2.8.0
+======================================================================
+Stern-Brocot / Golden Ratio LR Schedule Experiment
+======================================================================
+
+LR Schedule Preview (first 10 epochs + key epochs):
+ Epoch       Step     Cosine     Golden   SB Noble
+     0   0.100000   0.100000   0.100000   0.100000
+     1   0.100000   0.099976   0.097623   0.100000
+     2   0.100000   0.099902   0.095302   0.100000
+     3   0.100000   0.099780   0.093036   0.050000
+     4   0.100000   0.099610   0.090824   0.050000
+     5   0.100000   0.099391   0.088665   0.033333
+     6   0.100000   0.099123   0.086557   0.033333
+     7   0.100000   0.098808   0.084500   0.033333
+     8   0.100000   0.098445   0.082491   0.020000
+     9   0.100000   0.098035   0.080530   0.020000
+    25   0.100000   0.085502   0.054798   0.007692
+    30   0.010000   0.079595   0.048587   0.007692
+    50   0.010000   0.050500   0.030028   0.004762
+    60   0.001000   0.035204   0.023607   0.002941
+    75   0.001000   0.015498   0.016455   0.002941
+    80   0.000100   0.010454   0.014590   0.002941
+    89   0.000100   0.003926   0.011749   0.001818
+    99   0.000100   0.001024   0.009237   0.001818
+
+Model params: 1,070,986
+
+Loading CIFAR-10...
+
+--- Run 1/12: A_step_decay, seed=42 ---
+  [A_step_decay] seed=42 epoch= 25  lr=0.100000  train_loss=1.0509  test_acc=69.03%  (5.8s)
+  [A_step_decay] seed=42 epoch= 50  lr=0.010000  train_loss=0.7124  test_acc=78.82%  (7.4s)
+  [A_step_decay] seed=42 epoch= 75  lr=0.001000  train_loss=0.6331  test_acc=81.15%  (7.2s)
+  [A_step_decay] seed=42 epoch=100  lr=0.000100  train_loss=0.6173  test_acc=81.54%  (7.7s)
+  Done in 773.2s. Final test acc: 81.54%
+
+--- Run 2/12: A_step_decay, seed=123 ---
+  [A_step_decay] seed=123 epoch= 25  lr=0.100000  train_loss=1.0685  test_acc=70.17%  (7.6s)
+  [A_step_decay] seed=123 epoch= 50  lr=0.010000  train_loss=0.7223  test_acc=78.89%  (6.9s)
+  [A_step_decay] seed=123 epoch= 75  lr=0.001000  train_loss=0.6448  test_acc=80.49%  (6.8s)
+  [A_step_decay] seed=123 epoch=100  lr=0.000100  train_loss=0.6268  test_acc=81.08%  (7.0s)
+  Done in 788.8s. Final test acc: 81.08%
+
+--- Run 3/12: A_step_decay, seed=777 ---
+  [A_step_decay] seed=777 epoch= 25  lr=0.100000  train_loss=1.0568  test_acc=68.56%  (7.4s)
+  [A_step_decay] seed=777 epoch= 50  lr=0.010000  train_loss=0.7069  test_acc=79.04%  (7.4s)
+  [A_step_decay] seed=777 epoch= 75  lr=0.001000  train_loss=0.6182  test_acc=80.73%  (7.3s)
+  [A_step_decay] seed=777 epoch=100  lr=0.000100  train_loss=0.6066  test_acc=81.43%  (6.1s)
+  Done in 812.0s. Final test acc: 81.43%
+
+--- Run 4/12: B_cosine, seed=42 ---
+  [B_cosine] seed=42 epoch= 25  lr=0.086584  train_loss=1.0244  test_acc=67.63%  (7.2s)
+  [B_cosine] seed=42 epoch= 50  lr=0.052055  train_loss=0.8612  test_acc=74.95%  (7.0s)
+  [B_cosine] seed=42 epoch= 75  lr=0.016615  train_loss=0.7140  test_acc=78.82%  (6.7s)
+  [B_cosine] seed=42 epoch=100  lr=0.001024  train_loss=0.5794  test_acc=82.11%  (6.7s)
+  Done in 760.4s. Final test acc: 82.11%
+
+--- Run 5/12: B_cosine, seed=123 ---
+  [B_cosine] seed=123 epoch= 25  lr=0.086584  train_loss=1.0403  test_acc=67.66%  (6.8s)
+  [B_cosine] seed=123 epoch= 50  lr=0.052055  train_loss=0.8734  test_acc=74.02%  (6.7s)
+  [B_cosine] seed=123 epoch= 75  lr=0.016615  train_loss=0.7075  test_acc=78.72%  (6.6s)
+  [B_cosine] seed=123 epoch=100  lr=0.001024  train_loss=0.5726  test_acc=82.10%  (6.8s)
+  Done in 745.4s. Final test acc: 82.10%
+
+--- Run 6/12: B_cosine, seed=777 ---
+  [B_cosine] seed=777 epoch= 25  lr=0.086584  train_loss=1.0142  test_acc=65.32%  (4.4s)
+  [B_cosine] seed=777 epoch= 50  lr=0.052055  train_loss=0.8702  test_acc=72.16%  (4.4s)
+  [B_cosine] seed=777 epoch= 75  lr=0.016615  train_loss=0.6979  test_acc=79.31%  (4.5s)
+  [B_cosine] seed=777 epoch=100  lr=0.001024  train_loss=0.5679  test_acc=82.48%  (4.5s)
+  Done in 544.3s. Final test acc: 82.48%
+
+--- Run 7/12: C_golden_ratio, seed=42 ---
+  [C_golden_ratio] seed=42 epoch= 25  lr=0.056133  train_loss=0.9211  test_acc=67.99%  (4.6s)
+  [C_golden_ratio] seed=42 epoch= 50  lr=0.030760  train_loss=0.7830  test_acc=76.61%  (4.5s)
+  [C_golden_ratio] seed=42 epoch= 75  lr=0.016856  train_loss=0.7115  test_acc=78.93%  (4.5s)
+  [C_golden_ratio] seed=42 epoch=100  lr=0.009237  train_loss=0.6429  test_acc=79.74%  (4.5s)
+  Done in 509.0s. Final test acc: 79.74%
+
+--- Run 8/12: C_golden_ratio, seed=123 ---
+  [C_golden_ratio] seed=123 epoch= 25  lr=0.056133  train_loss=0.9351  test_acc=74.20%  (4.7s)
+  [C_golden_ratio] seed=123 epoch= 50  lr=0.030760  train_loss=0.7960  test_acc=76.64%  (4.7s)
+  [C_golden_ratio] seed=123 epoch= 75  lr=0.016856  train_loss=0.7096  test_acc=77.90%  (4.6s)
+  [C_golden_ratio] seed=123 epoch=100  lr=0.009237  train_loss=0.6366  test_acc=80.25%  (4.6s)
+  Done in 515.8s. Final test acc: 80.25%
+
+--- Run 9/12: C_golden_ratio, seed=777 ---
+  [C_golden_ratio] seed=777 epoch= 25  lr=0.056133  train_loss=0.9360  test_acc=71.89%  (4.5s)
+  [C_golden_ratio] seed=777 epoch= 50  lr=0.030760  train_loss=0.7914  test_acc=75.41%  (4.5s)
+  [C_golden_ratio] seed=777 epoch= 75  lr=0.016856  train_loss=0.7037  test_acc=79.50%  (4.6s)
+  [C_golden_ratio] seed=777 epoch=100  lr=0.009237  train_loss=0.6397  test_acc=79.83%  (4.4s)
+  Done in 507.3s. Final test acc: 79.83%
+
+--- Run 10/12: D_sb_noble, seed=42 ---
+  [D_sb_noble] seed=42 epoch= 25  lr=0.007692  train_loss=0.8112  test_acc=75.08%  (4.5s)
+  [D_sb_noble] seed=42 epoch= 50  lr=0.004762  train_loss=0.7375  test_acc=78.71%  (4.5s)
+  [D_sb_noble] seed=42 epoch= 75  lr=0.002941  train_loss=0.6939  test_acc=79.09%  (4.5s)
+  [D_sb_noble] seed=42 epoch=100  lr=0.001818  train_loss=0.6578  test_acc=79.87%  (4.8s)
+  Done in 502.1s. Final test acc: 79.87%
+
+--- Run 11/12: D_sb_noble, seed=123 ---
+  [D_sb_noble] seed=123 epoch= 25  lr=0.007692  train_loss=0.8500  test_acc=74.98%  (4.5s)
+  [D_sb_noble] seed=123 epoch= 50  lr=0.004762  train_loss=0.7712  test_acc=76.39%  (4.5s)
+  [D_sb_noble] seed=123 epoch= 75  lr=0.002941  train_loss=0.7278  test_acc=78.72%  (4.5s)
+  [D_sb_noble] seed=123 epoch=100  lr=0.001818  train_loss=0.6906  test_acc=79.69%  (4.6s)
+  Done in 503.2s. Final test acc: 79.69%
+
+--- Run 12/12: D_sb_noble, seed=777 ---
+  [D_sb_noble] seed=777 epoch= 25  lr=0.007692  train_loss=0.8354  test_acc=75.57%  (4.5s)
+  [D_sb_noble] seed=777 epoch= 50  lr=0.004762  train_loss=0.7569  test_acc=77.51%  (4.6s)
+  [D_sb_noble] seed=777 epoch= 75  lr=0.002941  train_loss=0.7084  test_acc=79.56%  (4.6s)
+  [D_sb_noble] seed=777 epoch=100  lr=0.001818  train_loss=0.6723  test_acc=79.99%  (4.5s)
+  Done in 505.4s. Final test acc: 79.99%
+
+======================================================================
+All 12 runs completed in 7467s (124.4 min)
+Raw results saved to /Users/saar/Desktop/Farey-Local/experiments/sb_lr_raw_results.json
+
+Generating plots...
+Saved sb_lr_comparison.png
+Saved sb_lr_smoothness.png
+
+Generating report...
+Report saved to /Users/saar/Desktop/Farey-Local/experiments/SB_LR_RESULTS.md
+
+# Stern-Brocot / Golden Ratio LR Schedule Experiment Results
+
+## Setup
+- **Model**: Simple CNN (~1070986 params)
+- **Dataset**: CIFAR-10 (50K train, 10K test)
+- **Optimizer**: SGD, momentum=0.9, weight_decay=5e-4
+- **Epochs**: 100, batch size 128
+- **Seeds**: [42, 123, 777]
+- **Device**: mps
+- **Total time**: 7467s (124.4 min)
+
+## LR Schedules
+| Schedule | Description |
+|----------|-------------|
+| A. Step Decay | LR=0.1, drop 10x at epochs 30, 60, 80 |
+| B. Cosine | Cosine annealing 0.1 -> 0.001 |
+| C. Golden Ratio | LR = 0.1 * phi^(-epoch/20), phi=1.6180 |
+| D. SB Noble | Fibonacci-timed drops, Fibonacci denominators |
+
+## Test Accuracy at Checkpoints (mean +/- std)
+
+| Schedule | Epoch 25 | Epoch 50 | Epoch 75 | Epoch 100 |
+|----------|---------|---------|---------|---------|
+| A. Step Decay | 69.25 +/- 0.68 | 78.92 +/- 0.09 | 80.79 +/- 0.27 | 81.35 +/- 0.20 |
+| B. Cosine | 66.87 +/- 1.10 | 73.71 +/- 1.16 | 78.95 +/- 0.26 | 82.23 +/- 0.18 |
+| C. Golden Ratio | 71.36 +/- 2.56 | 76.22 +/- 0.57 | 78.78 +/- 0.66 | 79.94 +/- 0.22 |
+| D. SB Noble | 75.21 +/- 0.26 | 77.54 +/- 0.95 | 79.12 +/- 0.34 | 79.85 +/- 0.12 |
+
+## Best Test Accuracy (any epoch)
+| Schedule | Best Acc (mean) | Best Epoch | Final Acc (mean) |
+|----------|----------------|------------|-----------------|
+| A. Step Decay | 81.35% | 100 | 81.35% |
+| B. Cosine | 82.23% | 100 | 82.23% |
+| C. Golden Ratio | 80.65% | 90 | 79.94% |
+| D. SB Noble | 80.09% | 91 | 79.85% |
+
+## Convergence Smoothness
+| Schedule | Mean |dLoss| | Std |dLoss| | Max |dLoss| | Acc Variance (last 20ep) |
+|----------|-----------|----------|----------|--------------------------|
+| A. Step Decay | 0.01419 | 0.04032 | 0.32541 | 0.049 |
+| B. Cosine | 0.01403 | 0.03632 | 0.32776 | 0.088 |
+| C. Golden Ratio | 0.01356 | 0.03740 | 0.32975 | 0.553 |
+| D. SB Noble | 0.01363 | 0.04120 | 0.32541 | 0.291 |
+
+## Training Time
+| Schedule | Avg time/epoch (s) | Total (s) |
+|----------|--------------------|-----------|
+| A. Step Decay | 7.12 | 712 |
+| B. Cosine | 6.15 | 615 |
+| C. Golden Ratio | 4.59 | 459 |
+| D. SB Noble | 4.53 | 453 |
+
+## Analysis
+
+### Final Accuracy Ranking
+1. **B. Cosine**: 82.23% +/- 0.18
+2. **A. Step Decay**: 81.35% +/- 0.20
+3. **C. Golden Ratio**: 79.94% +/- 0.22
+4. **D. SB Noble**: 79.85% +/- 0.12
+
+### Key Question: Do golden ratio / SB schedules achieve comparable or better accuracy with smoother convergence?
+
+**Result**: Standard schedules lead by 2.3% in final accuracy.
+
+### Observations
+
+- **Smoothest convergence**: C. Golden Ratio (mean |dLoss|=0.01356)
+- **Roughest convergence**: A. Step Decay (mean |dLoss|=0.01419)
+- Golden ratio schedule final: 79.94%, SB noble: 79.85%
+- Step decay final: 81.35%, Cosine: 82.23%
+
+### Figures
+- `sb_lr_comparison.png` - Main comparison (accuracy, loss, LR curves, final bars)
+- `sb_lr_smoothness.png` - Convergence smoothness and stability analysis

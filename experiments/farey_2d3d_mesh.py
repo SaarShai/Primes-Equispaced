@@ -120,28 +120,39 @@ def tensor_product_analysis():
         new_fracs = farey_new_fractions(N + 1)
         phi_N1 = len(new_fracs)
 
-        # Old grid: rectangles defined by consecutive pairs in F_N
-        old_points = set((x, y) for x in F_N for y in F_N)
-        new_points = set((x, y) for x in F_N1 for y in F_N1) - old_points
+        # Optimized: use 1D gap analysis instead of full cartesian product
+        n = len(F_N)
+        F_N_set = set(F_N)
+        new_1d = sorted(set(F_N1) - F_N_set)
 
-        # For each rectangle [F_N[i], F_N[i+1]] x [F_N[j], F_N[j+1]],
-        # count how many new points fall strictly inside
+        # Precompute: for each gap, how many new fracs AND how many old+new total
+        gap_new_count = []
+        gap_old_interior = []  # old fracs strictly inside gap (always 0 for consecutive)
+        for i in range(n - 1):
+            cnt = sum(1 for f in new_1d if F_N[i] < f < F_N[i + 1])
+            gap_new_count.append(cnt)
+            gap_old_interior.append(0)  # consecutive in F_N means no old fracs inside
+
+        # For each rectangle, count new 2D points:
+        # A point (x, y) is new if x or y is new.
+        # In rect [F_N[i],F_N[i+1]] x [F_N[j],F_N[j+1]]:
+        #   x can be: F_N[i], new_x's, F_N[i+1]  (2 + gap_new_count[i] x-values)
+        #   y can be: F_N[j], new_y's, F_N[j+1]  (2 + gap_new_count[j] y-values)
+        #   total grid points in rect = (2+nx)*(2+ny)
+        #   old grid points = 2*2 = 4 (just the 4 corners)
+        #   new points = (2+nx)*(2+ny) - 4
+
         max_new_in_rect = 0
         total_rects = 0
         new_per_rect = []
 
-        for i in range(len(F_N) - 1):
-            for j in range(len(F_N) - 1):
-                x_lo, x_hi = F_N[i], F_N[i + 1]
-                y_lo, y_hi = F_N[j], F_N[j + 1]
+        for i in range(n - 1):
+            nx = gap_new_count[i]
+            for j in range(n - 1):
+                ny = gap_new_count[j]
                 total_rects += 1
 
-                count = 0
-                for (px, py) in new_points:
-                    if x_lo <= px <= x_hi and y_lo <= py <= y_hi:
-                        # On boundary or interior
-                        count += 1
-
+                count = (2 + nx) * (2 + ny) - 4
                 new_per_rect.append(count)
                 if count > max_new_in_rect:
                     max_new_in_rect = count
@@ -153,18 +164,21 @@ def tensor_product_analysis():
         for c in new_per_rect:
             count_hist[c] += 1
 
+        # Total new 2D points: |F_{N+1}|^2 - |F_N|^2
+        total_new_2d = len(F_N1)**2 - len(F_N)**2
+
         results[N] = {
             'max_new': max_new_in_rect,
             'avg_new': avg_new,
             'total_rects': total_rects,
-            'total_new_points': len(new_points),
+            'total_new_points': total_new_2d,
             'phi_N1': phi_N1,
             'histogram': dict(count_hist),
             'F_N_size': len(F_N),
         }
 
         print(f"\nN={N} -> N+1={N+1}: |F_N|={len(F_N)}, phi(N+1)={phi_N1}")
-        print(f"  Rectangles: {total_rects}, New points: {len(new_points)}")
+        print(f"  Rectangles: {total_rects}, New 2D points: {total_new_2d}")
         print(f"  Max new points per rectangle: {max_new_in_rect}")
         print(f"  Avg new points per rectangle: {avg_new:.3f}")
         print(f"  Distribution: {dict(sorted(count_hist.items()))}")
@@ -247,16 +261,14 @@ def build_farey_triangulation_2d(N):
     return points, triangles
 
 
-def farey_triangulation_injection(N_max=20):
+def farey_triangulation_injection(N_max=15):
     """
     Test: when refining Farey triangulation from N to N+1,
     does each existing triangle get at most 1 new vertex?
 
-    Key insight: the Farey triangulation is built on the tensor product
-    grid, so this is closely related to Idea 1 but with triangles.
-
-    A more interesting triangulation uses the FAREY GRAPH structure
-    directly in the hyperbolic plane / unit disk.
+    Optimized: instead of point-in-triangle for all new 2D points,
+    use the 1D injection to directly count new points per rectangle,
+    then split into triangle counts analytically.
     """
     print("\n" + "=" * 70)
     print("IDEA 2: FAREY TRIANGULATION — INJECTION TEST")
@@ -267,44 +279,85 @@ def farey_triangulation_injection(N_max=20):
     for N in range(2, N_max + 1):
         F_N = farey_sequence(N)
         F_N1 = farey_sequence(N + 1)
-        new_fracs = set(F_N1) - set(F_N)
-
-        # Build triangulation on F_N x F_N grid
+        new_fracs_list = sorted(set(F_N1) - set(F_N))
+        F_N_set = set(F_N)
         n = len(F_N)
 
-        # Each rectangle -> 2 triangles. Check how many new F_{N+1} x F_{N+1}
-        # points land in each triangle.
-
-        # New points in 2D
-        new_2d = set()
-        for x in F_N1:
-            for y in F_N1:
-                if x not in set(F_N) or y not in set(F_N):
-                    # This is a genuinely new 2D point (at least one coord is new)
-                    # But we only count points NOT in old grid
-                    if (x, y) not in set((a, b) for a in F_N for b in F_N):
-                        new_2d.add((float(x), float(y)))
+        # Precompute: for each gap [F_N[i], F_N[i+1]], which new fractions?
+        gap_new = {}
+        for i in range(n - 1):
+            gap_new[i] = [f for f in new_fracs_list if F_N[i] < f < F_N[i + 1]]
 
         max_new_in_tri = 0
         tri_counts = []
 
         for i in range(n - 1):
+            nx_list = gap_new[i]  # new x-values in this gap
             for j in range(n - 1):
+                ny_list = gap_new[j]  # new y-values in this gap
+
+                # Rectangle [F_N[i], F_N[i+1]] x [F_N[j], F_N[j+1]]
+                # Split into 2 triangles:
+                #   Lower: (x0,y0)-(x1,y0)-(x1,y1) — the x>=y diagonal side
+                #   Upper: (x0,y0)-(x1,y1)-(x0,y1) — the x<=y diagonal side
+
+                # New points in rectangle:
+                # Type A: (new_x, old_y_lo) or (new_x, old_y_hi) — on edges
+                # Type B: (old_x_lo, new_y) or (old_x_hi, new_y) — on edges
+                # Type C: (new_x, new_y) — interior
+
+                # For triangle assignment, we use the fact that the diagonal
+                # goes from (x0,y0) to (x1,y1). A point (px,py) is in the lower
+                # triangle if (px-x0)/(x1-x0) >= (py-y0)/(y1-y0), i.e., the point
+                # is below or on the diagonal.
+
+                # Since each gap has at most 1 new fraction (1D injection),
+                # len(nx_list) <= 1 and len(ny_list) <= 1
+
+                # Count for each triangle
                 x0, x1 = float(F_N[i]), float(F_N[i + 1])
                 y0, y1 = float(F_N[j]), float(F_N[j + 1])
+                dx = x1 - x0
+                dy = y1 - y0
 
-                # Two triangles: lower-left (x0,y0)-(x1,y0)-(x1,y1)
-                #                 upper-right (x0,y0)-(x1,y1)-(x0,y1)
-                for tri_verts in [
-                    ((x0, y0), (x1, y0), (x1, y1)),
-                    ((x0, y0), (x1, y1), (x0, y1))
-                ]:
-                    count = 0
-                    for (px, py) in new_2d:
-                        if point_in_triangle(px, py, tri_verts):
-                            count += 1
-                    tri_counts.append(count)
-                    max_new_in_tri = max(max_new_in_tri, count)
+                lower_count = 0
+                upper_count = 0
+
+                # Type A: (new_x, y0) -> on lower triangle edge
+                #         (new_x, y1) -> on upper triangle edge (shared diagonal vertex)
+                for nx in nx_list:
+                    fnx = float(nx)
+                    # (nx, y0) is on the bottom edge — part of lower triangle
+                    lower_count += 1
+                    # (nx, y1) is on the top edge — part of upper triangle
+                    upper_count += 1
+
+                # Type B: (x0, new_y) -> on upper triangle left edge
+                #         (x1, new_y) -> on lower triangle right edge
+                for ny in ny_list:
+                    # (x0, ny) is on the left edge — part of upper triangle
+                    upper_count += 1
+                    # (x1, ny) is on the right edge — part of lower triangle
+                    lower_count += 1
+
+                # Type C: (new_x, new_y) — need to check which triangle
+                for nx in nx_list:
+                    for ny in ny_list:
+                        fnx, fny = float(nx), float(ny)
+                        # Check: is (fnx, fny) below diagonal?
+                        # Diagonal from (x0,y0) to (x1,y1)
+                        # Point below diagonal: (fnx-x0)*dy <= (fny-y0)*dx
+                        if dx > 0 and dy > 0:
+                            if (fnx - x0) * dy >= (fny - y0) * dx:
+                                lower_count += 1
+                            else:
+                                upper_count += 1
+                        else:
+                            lower_count += 1  # degenerate
+
+                tri_counts.append(lower_count)
+                tri_counts.append(upper_count)
+                max_new_in_tri = max(max_new_in_tri, lower_count, upper_count)
 
         count_hist = defaultdict(int)
         for c in tri_counts:
@@ -1091,123 +1144,88 @@ each ideal triangle receives exactly 1 new vertex (the mediant).
     # GENERATE PLOTS
     # ============================================================
     if HAS_PLOT:
-        generate_plots(tensor_results)
+        fig, axes = plt.subplots(2, 2, figsize=(16, 14))
+        fig.suptitle("Farey Injection in 2D Mesh Refinement", fontsize=16, fontweight='bold')
 
+        # Plot 1: Tensor product mesh for N=5
+        ax = axes[0, 0]
+        Np = 5
+        F = farey_sequence(Np)
+        F1 = farey_sequence(Np + 1)
+        old_set = set(F)
+        old_2d = set((a, b) for a in F for b in F)
 
-def generate_plots(tensor_results):
-    """Generate visualization plots."""
-
-    fig, axes = plt.subplots(2, 2, figsize=(16, 14))
-    fig.suptitle("Farey Injection in 2D Mesh Refinement", fontsize=16, fontweight='bold')
-
-    # Plot 1: Tensor product mesh for N=5
-    ax = axes[0, 0]
-    N = 5
-    F = farey_sequence(N)
-    F1 = farey_sequence(N + 1)
-    old_set = set(F)
-
-    # Draw old grid
-    for x in F:
-        ax.axvline(float(x), color='lightblue', linewidth=0.5, alpha=0.5)
-    for y in F:
-        ax.axhline(float(y), color='lightblue', linewidth=0.5, alpha=0.5)
-
-    # Old points
-    for x in F:
+        for x in F:
+            ax.axvline(float(x), color='lightblue', linewidth=0.5, alpha=0.5)
         for y in F:
-            ax.plot(float(x), float(y), 'b.', markersize=4)
-
-    # New points
-    for x in F1:
-        for y in F1:
-            if x not in old_set or y not in old_set:
-                if (x, y) not in set((a, b) for a in F for b in F):
+            ax.axhline(float(y), color='lightblue', linewidth=0.5, alpha=0.5)
+        for x in F:
+            for y in F:
+                ax.plot(float(x), float(y), 'b.', markersize=4)
+        for x in F1:
+            for y in F1:
+                if (x, y) not in old_2d:
                     ax.plot(float(x), float(y), 'r.', markersize=3, alpha=0.7)
 
-    ax.set_title(f"Tensor Product F_{N} (blue) -> F_{N+1} (red new)")
-    ax.set_xlabel("x")
-    ax.set_ylabel("y")
-    ax.set_xlim(-0.02, 1.02)
-    ax.set_ylim(-0.02, 1.02)
-    ax.set_aspect('equal')
+        ax.set_title(f"Tensor Product F_{Np} (blue) -> F_{Np+1} (red new)")
+        ax.set_xlabel("x"); ax.set_ylabel("y")
+        ax.set_xlim(-0.02, 1.02); ax.set_ylim(-0.02, 1.02)
+        ax.set_aspect('equal')
 
-    # Plot 2: Max new points per rectangle vs N
-    ax = axes[0, 1]
-    Ns = sorted(tensor_results.keys())
-    max_news = [tensor_results[n]['max_new'] for n in Ns]
-    avg_news = [tensor_results[n]['avg_new'] for n in Ns]
+        # Plot 2: Max new points per rectangle vs N
+        ax = axes[0, 1]
+        Ns = sorted(tensor_results.keys())
+        max_news = [tensor_results[n]['max_new'] for n in Ns]
+        avg_news = [tensor_results[n]['avg_new'] for n in Ns]
+        ax.plot(Ns, max_news, 'ro-', label='Max new per rect', markersize=6)
+        ax.plot(Ns, avg_news, 'bs-', label='Avg new per rect', markersize=4)
+        ax.axhline(y=5, color='gray', linestyle='--', alpha=0.5, label='Theoretical max=5')
+        ax.set_xlabel("N"); ax.set_ylabel("New points per rectangle")
+        ax.set_title("Tensor Product: New Points per Rectangle")
+        ax.legend(); ax.grid(True, alpha=0.3)
 
-    ax.plot(Ns, max_news, 'ro-', label='Max new per rect', markersize=6)
-    ax.plot(Ns, avg_news, 'bs-', label='Avg new per rect', markersize=4)
-    ax.axhline(y=5, color='gray', linestyle='--', alpha=0.5, label='Theoretical max=5')
-    ax.set_xlabel("N")
-    ax.set_ylabel("New points per rectangle")
-    ax.set_title("Tensor Product: New Points per Rectangle")
-    ax.legend()
-    ax.grid(True, alpha=0.3)
+        # Plot 3: Farey graph ideal triangles
+        ax = axes[1, 0]
+        Np = 6
+        F = farey_sequence(Np)
+        for i in range(len(F) - 1):
+            x0, x1 = float(F[i]), float(F[i + 1])
+            gap = x1 - x0
+            mid_x = (x0 + x1) / 2
+            height = float(gap) * 2
+            ax.plot([x0, mid_x, x1], [0, height, 0], 'b-', linewidth=0.8, alpha=0.6)
+            p, q = F[i].numerator, F[i].denominator
+            r, s = F[i + 1].numerator, F[i + 1].denominator
+            if r * q - p * s == 1:
+                mediant = Fraction(p + r, q + s)
+                if q + s == Np + 1:
+                    ax.plot(float(mediant), 0, 'rv', markersize=8)
+        for f in F:
+            ax.plot(float(f), 0, 'bo', markersize=5)
+        ax.set_title(f"Farey Graph F_{Np}: Blue=old, Red=new mediants")
+        ax.set_xlabel("x"); ax.set_xlim(-0.02, 1.02)
 
-    # Plot 3: Farey graph ideal triangles for N=5
-    ax = axes[1, 0]
-    N = 6
-    F = farey_sequence(N)
+        # Plot 4: Mediant vs Midpoint denominator growth
+        ax = axes[1, 1]
+        med_denoms = [1]
+        p1, p2 = Fraction(0, 1), Fraction(1, 1)
+        for _ in range(7):
+            med = Fraction(p1.numerator + p2.numerator, p1.denominator + p2.denominator)
+            med_denoms.append(med.denominator)
+            p2 = med
+        mid_denoms = [1]
+        p = Fraction(1, 1)
+        for _ in range(7):
+            p = p / 2
+            mid_denoms.append(p.denominator)
+        ax.semilogy(range(len(med_denoms)), med_denoms, 'go-', label='Mediant (additive)', markersize=6)
+        ax.semilogy(range(len(mid_denoms)), mid_denoms, 'rs-', label='Midpoint (doubling)', markersize=6)
+        ax.set_xlabel("Refinement step"); ax.set_ylabel("Denominator (log scale)")
+        ax.set_title("Mediant vs Midpoint: Denominator Growth")
+        ax.legend(); ax.grid(True, alpha=0.3)
 
-    # Draw the Farey graph: connect consecutive fractions
-    for i in range(len(F) - 1):
-        x0, x1 = float(F[i]), float(F[i + 1])
-        # Draw arc (simplified as a line at height proportional to gap)
-        gap = x1 - x0
-        mid_x = (x0 + x1) / 2
-        height = float(gap) * 2  # proportional to gap
-        ax.plot([x0, mid_x, x1], [0, height, 0], 'b-', linewidth=0.8, alpha=0.6)
-
-        # Mark Farey neighbor edges
-        p, q = F[i].numerator, F[i].denominator
-        r, s = F[i + 1].numerator, F[i + 1].denominator
-        if r * q - p * s == 1:
-            mediant = Fraction(p + r, q + s)
-            mx = float(mediant)
-            if q + s == N + 1:
-                ax.plot(mx, 0, 'rv', markersize=8)  # new vertex
-
-    for f in F:
-        ax.plot(float(f), 0, 'bo', markersize=5)
-
-    ax.set_title(f"Farey Graph F_{N}: Blue=old, Red=new mediants")
-    ax.set_xlabel("x")
-    ax.set_xlim(-0.02, 1.02)
-
-    # Plot 4: Mediant vs Midpoint refinement
-    ax = axes[1, 1]
-
-    # Show denominator growth
-    steps = list(range(1, 8))
-
-    # Mediant chain: 0/1 -> 1/2 -> 1/3 -> 1/4 -> ... (always mediant with 0/1)
-    med_denoms = [1]
-    p1, p2 = Fraction(0, 1), Fraction(1, 1)
-    for _ in range(7):
-        med = Fraction(p1.numerator + p2.numerator, p1.denominator + p2.denominator)
-        med_denoms.append(med.denominator)
-        p2 = med
-
-    # Midpoint chain: 0 -> 1/2 -> 1/4 -> 1/8 -> ...
-    mid_denoms = [1]
-    p = Fraction(1, 1)
-    for _ in range(7):
-        p = p / 2
-        mid_denoms.append(p.denominator)
-
-    ax.semilogy(range(len(med_denoms)), med_denoms, 'go-', label='Mediant (additive)', markersize=6)
-    ax.semilogy(range(len(mid_denoms)), mid_denoms, 'rs-', label='Midpoint (doubling)', markersize=6)
-    ax.set_xlabel("Refinement step")
-    ax.set_ylabel("Denominator (log scale)")
-    ax.set_title("Mediant vs Midpoint: Denominator Growth")
-    ax.legend()
-    ax.grid(True, alpha=0.3)
-
-    plt.tight_layout()
-    outpath = os.path.join(OUTPUT_DIR, "farey_2d3d_mesh.png")
-    plt.savefig(outpath, dpi=150, bbox_inches='tight')
-    print(f"\nPlot saved to: {outpath}")
-    plt.close()
+        plt.tight_layout()
+        outpath = os.path.join(OUTPUT_DIR, "farey_2d3d_mesh.png")
+        plt.savefig(outpath, dpi=150, bbox_inches='tight')
+        print(f"\nPlot saved to: {outpath}")
+        plt.close()

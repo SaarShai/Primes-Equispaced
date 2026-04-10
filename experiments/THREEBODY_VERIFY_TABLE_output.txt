@@ -1,0 +1,10 @@
+Loading data from: /Users/saar/Desktop/Farey-Local/experiments/threebody_periodic_table.json
+Loaded 0 orbits.
+Populated cells: 0
+Empty cells: 72
+Populated cells with family data: 0
+Average Family Percentage: 0.00%
+Note: Expected 21 empty cells, found 72. These may be artifacts or different binning.
+Average Neighbor Property Similarity Score (count): 0.0000
+Plot saved to: /Users/saar/Desktop/Farey-Local/experiments/grid_visualization.png
+Verification complete.

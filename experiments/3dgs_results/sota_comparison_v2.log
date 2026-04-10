@@ -1,0 +1,35 @@
+Using MPS (Apple Metal GPU)
+/Users/saar/Desktop/Farey-Local/experiments/farey_3dgs_sota_comparison.py:82: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/utils/tensor_new.cpp:256.)
+  BUMP_CENTERS_T = torch.tensor([b[0] for b in BUMPS], device=DEVICE, dtype=torch.float32)
+Generating sample points ...
+  Target density range: [0.000, 2.045]
+  Target density mean: 0.1502
+======================================================================
+  3DGS SOTA Densification Comparison
+  Methods: ADC | Farey | 3DGS-MCMC | Revising | SteepGS
+  Device: mps
+  Config: MAX_GAUSS=1500, STEPS=7000, SAMPLES=50000
+  Target: 50 multi-scale bumps (8 coarse + 18 medium + 24 fine)
+  Init: 4^3 = 64 Gaussians (underfitting regime)
+======================================================================
+
+  [1/5] Training Standard ADC ...
+    step   500  MSE=0.000040  K=  394  t=7.3s
+    step  1000  MSE=0.000011  K=  394  t=16.6s
+    step  1500  MSE=0.000007  K=  394  t=26.4s
+    step  2000  MSE=0.000005  K=  394  t=36.3s
+    step  2500  MSE=0.000004  K=  394  t=46.2s
+    step  3000  MSE=0.000003  K=  396  t=56.1s
+    step  3500  MSE=0.000001  K=  396  t=66.4s
+    step  4000  MSE=0.000001  K=  396  t=76.5s
+    step  4500  MSE=0.000001  K=  412  t=87.2s
+    step  5000  MSE=0.000000  K=  412  t=98.0s
+    step  5500  MSE=0.000000  K=  412  t=108.4s
+    step  6000  MSE=0.000000  K=  414  t=119.0s
+    step  6500  MSE=0.000001  K=  414  t=129.9s
+    step  7000  MSE=0.000001  K=  414  t=140.6s
+  ADC done in 140.6s  Final MSE=0.000001  K=414
+Traceback (most recent call last):
+  File "/Users/saar/Desktop/Farey-Local/experiments/farey_3dgs_sota_comparison.py", line 1044, in <module>
+    all_params = {}
+NameError: name 'mu' is not defined

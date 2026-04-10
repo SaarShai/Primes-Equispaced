@@ -1,0 +1,11 @@
+/Users/saar/Desktop/Farey-Local/experiments/GRAPH_SPECTROSCOPE_TEST.py:124: RuntimeWarning: divide by zero encountered in matmul
+  L_norm = np.eye(num_nodes) - D_inv_sqrt @ adj_matrix @ D_inv_sqrt
+/Users/saar/Desktop/Farey-Local/experiments/GRAPH_SPECTROSCOPE_TEST.py:124: RuntimeWarning: overflow encountered in matmul
+  L_norm = np.eye(num_nodes) - D_inv_sqrt @ adj_matrix @ D_inv_sqrt
+/Users/saar/Desktop/Farey-Local/experiments/GRAPH_SPECTROSCOPE_TEST.py:124: RuntimeWarning: invalid value encountered in matmul
+  L_norm = np.eye(num_nodes) - D_inv_sqrt @ adj_matrix @ D_inv_sqrt
+/Users/saar/Desktop/Farey-Local/experiments/GRAPH_SPECTROSCOPE_TEST.py:154: RuntimeWarning: k >= N for N * N square matrix. Attempting to use scipy.linalg.eigh instead.
+  eigenvalues, eigenvectors = eigsh(L_norm, k=num_nodes, which='LM')
+Analysis complete. Files saved to: /Users/saar/Desktop/Farey-Local
+Markdown Report: /Users/saar/Desktop/Farey-Local/experiments/GRAPH_SPECTROSCOPE_TEST.md
+Figure: /Users/saar/Desktop/Farey-Local/figures/graph_spectroscopy.png

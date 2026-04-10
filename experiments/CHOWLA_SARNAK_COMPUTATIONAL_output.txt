@@ -1,0 +1,17 @@
+============================================================
+Chowla Conjecture Spectroscope Test
+============================================================
+Range: γ ∈ [5, 80]
+Number of points: 20000
+Möbius values computed for n = 1 to 100000
+Number of peaks detected: 8
+Peak γ values (first 10): [49.69098455 59.45647282 60.64903245 67.05810291 69.5219761  75.90479524
+ 77.06360318 79.24246212]
+Mean F (raw): 1.537546
+Mean F_whitened: 3608.067159
+Std F_whitened: 5093.533043
+Chi-squared statistic: 143811507.491713
+Chi-squared p-value: 0.000000
+============================================================
+⚠ Residual shows structure - potential deviations from Chowla
+============================================================

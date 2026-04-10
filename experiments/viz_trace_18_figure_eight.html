@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Trace 18: Golden Ratio ⁶</title>
+<style>
+body { font-family: 'Georgia', serif; background: #0a0a2e; color: #e0e0e0; margin: 0; padding: 30px; }
+.container { max-width: 900px; margin: 0 auto; text-align: center; }
+h1 { color: #ffd700; font-size: 2.5em; margin-bottom: 5px; }
+h2 { color: #ff6600; font-size: 1.3em; font-weight: normal; margin-top: 0; }
+.equation { font-size: 2.2em; color: #ffd700; padding: 25px;
+    background: linear-gradient(135deg, #1a0a3e, #0a1a4e); border-radius: 16px; 
+    margin: 25px auto; display: inline-block; min-width: 400px; }
+.sub { font-size: 0.5em; color: #aaa; display: block; margin-top: 8px; }
+canvas { border-radius: 16px; margin: 20px auto; display: block; }
+.stats { display: flex; justify-content: center; gap: 20px; margin: 20px 0; flex-wrap: wrap; }
+.stat { background: #1a1a4e; border-radius: 12px; padding: 15px 25px; border: 1px solid #333366; min-width: 120px; }
+.stat-num { font-size: 1.8em; color: #ffd700; display: block; }
+.stat-label { font-size: 0.75em; color: #888; }
+.badge { background: #2a5a2a; color: #7fff7f; padding: 4px 14px; border-radius: 20px; 
+    font-size: 0.85em; font-weight: bold; display: inline-block; margin: 3px; }
+.matrix { font-family: monospace; font-size: 1.6em; background: #0d0d3d; 
+    border-radius: 10px; padding: 15px 30px; display: inline-block; margin: 15px; }
+.fib { color: #ffd700; font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>Trace 18: The Golden Ratio ⁶</h1>
+<h2>Three-body orbit word: <span style="font-family:monospace; color:#ff6600;">BabA</span></h2>
+
+<div>
+<span class="badge">✓ Lean 4 Verified</span>
+<span class="badge">✓ Algebraic Identity</span>
+<span class="badge">✓ Not Coincidence</span>
+</div>
+
+<canvas id="spiralCanvas" width="800" height="350"></canvas>
+
+<div class="equation">
+λ = 9 + 4√5 = φ⁶
+<span class="sub">Eigenvalue of the Γ(2) monodromy matrix — lives in ℚ(√5)</span>
+</div>
+
+<div class="stats">
+<div class="stat"><span class="stat-num">18</span><span class="stat-label">Trace</span></div>
+<div class="stat"><span class="stat-num">√5</span><span class="stat-label">Number Field</span></div>
+<div class="stat"><span class="stat-num">2.887</span><span class="stat-label">Entropy</span></div>
+<div class="stat"><span class="stat-num">17.9443</span><span class="stat-label">Spectral Radius</span></div>
+<div class="stat"><span class="stat-num">320</span><span class="stat-label">Discriminant</span></div>
+</div>
+
+</div>
+
+<script>
+const c = document.getElementById('spiralCanvas').getContext('2d');
+const w = 800, h = 350;
+const cx = w/2, cy = h/2;
+
+// Draw spiral
+const phi = 1.618033988749895;
+c.strokeStyle = '#ffd700';
+c.lineWidth = 2.5;
+c.beginPath();
+let r = 3;
+for(let theta = 0; theta < 10*Math.PI; theta += 0.03) {
+    const x = cx + r * Math.cos(theta);
+    const y = cy + r * Math.sin(theta);
+    theta === 0 ? c.moveTo(x, y) : c.lineTo(x, y);
+    r *= Math.pow(phi, 0.03/(2*Math.PI));
+    if (r > 170) break;
+}
+c.stroke();
+
+// Draw orbit path (figure-8 variant based on trace)
+c.globalAlpha = 0.3;
+c.strokeStyle = '#ff6600';
+c.lineWidth = 1.5;
+c.beginPath();
+const T_val = 18;
+for(let t = 0; t <= 4*Math.PI; t += 0.02) {
+    const x = cx + 120 * Math.sin(t * T_val/6);
+    const y = cy + 60 * Math.sin(t * 2);
+    t === 0 ? c.moveTo(x, y) : c.lineTo(x, y);
+}
+c.stroke();
+c.globalAlpha = 1;
+
+// Label
+c.fillStyle = '#aaa';
+c.font = '14px Georgia';
+c.fillText('Golden Spiral', cx + 140, cy - 130);
+c.fillText('Growth ratio: 1.6180', cx + 140, cy - 110);
+</script>
+
+</body>
+</html>

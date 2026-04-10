@@ -1,0 +1,47 @@
+Loading zeta zeros data...
+Loaded 30 zeros (first 30 Riemann zeta zeros)
+First zero: gamma_1 = 14.13472514202492 Last zero: gamma_ 30 = 89.4235405913
+Mean gamma: 59.37212165632784
+
+Processing 20 zeros ( 190 pairs)...
+Computing pairwise differences...
+Computing Montgomery formula...
+Computing RMSE in range [0, 4]...
+Computing nearest neighbor spacing...
+  Found 190 normalized alpha values
+  RMSE (alpha in [0,4]): 1.7743626356595643
+
+Processing 30 zeros ( 435 pairs)...
+Computing pairwise differences...
+Computing Montgomery formula...
+Computing RMSE in range [0, 4]...
+Computing nearest neighbor spacing...
+  Found 435 normalized alpha values
+  RMSE (alpha in [0,4]): 1.6437707747297445
+
+============================================================
+PAIR CORRELATION ANALYSIS OF RIEMANN ZETA ZEROS
+============================================================
+
+Results with 20 zeros ( 190 pairs):
+  RMSE (alpha in [0,4]): 1.7743626356595643
+  Mean gamma: 48.08758966852025
+  Mean nearest neighbor spacing: 3.0149707687004255
+
+Results with 30 zeros ( 435 pairs):
+  RMSE (alpha in [0,4]): 1.6437707747297445
+  Mean gamma: 59.37212165632784
+  Mean nearest neighbor spacing: 2.5961660499750026
+
+============================================================
+COMPARISON: Does more data improve Montgomery match?
+============================================================
+RMSE with 20 zeros ( 190 pairs): 1.7743626356595643
+RMSE with 30 zeros ( 435 pairs): 1.6437707747297445
+Difference (30 - 20): -0.13059186092981978
+
+MORE DATA IMPROVES the match to Montgomery conjecture
+As predicted by random matrix theory (GUE statistics)
+Visualization saved as: pair_correlation_analysis.png
+
+Analysis complete!

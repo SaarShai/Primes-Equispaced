@@ -1,0 +1,107 @@
+Using MPS (Apple Metal GPU)
+Generating sample points ...
+  Target density range: [0.000, 2.045]
+  Target density mean: 0.1502
+======================================================================
+  3DGS SOTA Densification Comparison
+  Methods: ADC | Farey | MCMC | Revising | SteepGS | Mini-Splatting | AbsGS | Pixel-GS
+  Device: mps
+  Config: MAX_GAUSS=1500, STEPS=7000, SAMPLES=50000
+  Target: 50 multi-scale bumps (8 coarse + 18 medium + 24 fine)
+  Init: 4^3 = 64 Gaussians (underfitting regime)
+======================================================================
+
+  [1/8] Training Standard ADC ...
+    step   500  MSE=0.000040  K=  394  t=6.9s
+    step  1000  MSE=0.000011  K=  394  t=16.0s
+    step  1500  MSE=0.000007  K=  394  t=25.5s
+    step  2000  MSE=0.000005  K=  394  t=34.9s
+    step  2500  MSE=0.000004  K=  394  t=44.4s
+    step  3000  MSE=0.000003  K=  396  t=54.1s
+    step  3500  MSE=0.000001  K=  396  t=63.9s
+    step  4000  MSE=0.000001  K=  396  t=73.7s
+    step  4500  MSE=0.000001  K=  412  t=83.6s
+    step  5000  MSE=0.000000  K=  412  t=93.9s
+    step  5500  MSE=0.000000  K=  412  t=104.2s
+    step  6000  MSE=0.000000  K=  414  t=114.5s
+    step  6500  MSE=0.000001  K=  414  t=124.9s
+    step  7000  MSE=0.000001  K=  414  t=135.3s
+  ADC done in 135.3s  Final MSE=0.000001  K=414
+
+  [2/8] Training Farey-guided ...
+    step   500  MSE=0.000038  K=  244  t=5.8s
+    step  1000  MSE=0.000009  K=  244  t=15.4s
+    step  1500  MSE=0.000007  K=  244  t=24.8s
+    step  2000  MSE=0.000005  K=  244  t=34.1s
+    step  2500  MSE=0.000003  K=  244  t=44.0s
+    step  3000  MSE=0.000002  K=  244  t=53.3s
+    step  3500  MSE=0.000002  K=  244  t=62.7s
+    step  4000  MSE=0.000001  K=  244  t=72.1s
+    step  4500  MSE=0.000001  K=  244  t=82.1s
+    step  5000  MSE=0.000001  K=  244  t=91.4s
+    step  5500  MSE=0.000002  K=  274  t=101.0s
+    step  6000  MSE=0.000001  K=  274  t=112.0s
+    step  6500  MSE=0.000000  K=  274  t=120.9s
+    step  7000  MSE=0.000000  K=  274  t=130.0s
+  Farey done in 130.0s  Final MSE=0.000000  K=274
+
+  [3/8] Training 3DGS-MCMC ...
+
+  ERROR in mcmc: MPS backend out of memory (MPS allocated: 8.00 MiB, other allocations: 48.10 GiB, max allowed: 47.74 GiB). Tried to allocate 512 bytes on private pool. Use PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 to disable upper limit for memory allocations (may cause system failure).
+  Skipping mcmc and continuing...
+
+  [4/8] Training Revising Densification ...
+
+  ERROR in revising: MPS backend out of memory (MPS allocated: 8.00 MiB, other allocations: 48.10 GiB, max allowed: 47.74 GiB). Tried to allocate 256 bytes on private pool. Use PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 to disable upper limit for memory allocations (may cause system failure).
+  Skipping revising and continuing...
+
+  [5/8] Training SteepGS ...
+
+  ERROR in steepgs: MPS backend out of memory (MPS allocated: 8.00 MiB, other allocations: 48.10 GiB, max allowed: 47.74 GiB). Tried to allocate 256 bytes on private pool. Use PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 to disable upper limit for memory allocations (may cause system failure).
+  Skipping steepgs and continuing...
+
+  [6/8] Training Mini-Splatting ...
+
+  ERROR in minisplatting: MPS backend out of memory (MPS allocated: 8.00 MiB, other allocations: 48.10 GiB, max allowed: 47.74 GiB). Tried to allocate 256 bytes on private pool. Use PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 to disable upper limit for memory allocations (may cause system failure).
+  Skipping minisplatting and continuing...
+
+  [7/8] Training AbsGS ...
+
+  ERROR in absgs: MPS backend out of memory (MPS allocated: 8.00 MiB, other allocations: 48.10 GiB, max allowed: 47.74 GiB). Tried to allocate 256 bytes on private pool. Use PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 to disable upper limit for memory allocations (may cause system failure).
+  Skipping absgs and continuing...
+
+  [8/8] Training Pixel-GS ...
+
+  ERROR in pixelgs: MPS backend out of memory (MPS allocated: 8.00 MiB, other allocations: 48.10 GiB, max allowed: 47.74 GiB). Tried to allocate 256 bytes on private pool. Use PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 to disable upper limit for memory allocations (may cause system failure).
+  Skipping pixelgs and continuing...
+
+==========================================================================================
+  RESULTS: SOTA Densification Comparison
+==========================================================================================
+
+Metric                                     adc           farey
+--------------------------------------------------------------
+final_train_mse                       0.000001        0.000000
+test_mse                              0.000003        0.000001
+test_psnr                                59.69           67.79
+test_mse_smooth                       0.000016        0.000000
+test_mse_detail                       0.000004        0.000001
+final_gaussians                            414             274
+training_time_s                          135.3           130.0
+mse_per_gaussian                      8.19e-09        1.92e-09
+
+  Rankings (best to worst):
+    Test MSE:    farey > adc
+    Test PSNR:   farey > adc
+    Efficiency:  farey > adc
+    Compactness: farey > adc
+
+  Farey vs SOTA:
+    vs        adc: Farey WINS MSE by 84.5% (PSNR diff: +8.10dB, Gaussians: 274 vs 414)
+
+  Results saved to /Users/saar/Desktop/Farey-Local/experiments/3dgs_results/sota_comparison.json
+
+Generating SOTA comparison figures ...
+  Saved SOTA comparison figures to /Users/saar/Desktop/Farey-Local/experiments/3dgs_results/
+
+=== SOTA Comparison Complete ===

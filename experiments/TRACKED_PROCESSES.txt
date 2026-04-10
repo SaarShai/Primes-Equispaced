@@ -1,0 +1,59 @@
+# PID | NAME | RESTART_CMD
+# No active processes — monitor is OFF until user gives 'go'
+# All nohup processes from session 8 have completed (R(p) extended to p=997)
+
+# PENDING (killed, need to complete later):
+# - Spectral Analysis (MPR-20): deltaw_spectral_analysis.py — FFT of ΔW at zeta zero frequencies. Was running but spawned duplicates. Needs clean single run.
+
+# COMPLETED:
+# 2026-03-28 ~12:14 — B+C > 0 VERIFIED for ALL 1895 primes to p=99991 (11605s)
+# 2026-03-28 — process_monitor.sh killed (was spawning duplicate spectral analysis instances)
+46030 farey_3dgs_3d_gpu.py benchmark Sat Mar 28 18:00:26 GMT 2026
+Sat Mar 28 18:05:10 GMT 2026: PID 46647 farey_3dgs_3d_gpu_v2.py hard benchmark
+62244  farey_3dgs_displacement_guided.py  Sat Mar 28 21:25:59 GMT 2026  displacement-guided benchmark
+63692
+sphere_equidistribution.py (PID 63692) started at Sat Mar 28 21:39:45 GMT 2026
+63921 sphere_equidist_v2.py Sat Mar 28 21:42:40 GMT 2026
+66670 farey_3dgs_sota_comparison.py (restarted with python3, JSON fix applied)
+PID 97841
+Sun Mar 29 04:56:20 BST 2026: Restarted farey_3dgs_sota_comparison.py (PID 97841) after JSON bool serialization fix
+sphere_discrepancy_computation.py PID=10715 started Sun Mar 29 07:15:45 BST 2026
+Sun Mar 29 07:18:03 BST 2026: PID 10939 — farey_3dgs_displacement_v2.py (displacement v2 sparse detail)
+18803  hilbert_farey_3d_test.py  Sun Mar 29 08:49:02 BST 2026  hilbert_farey_3d_test.log
+51292 b_verify_100k (B' verify M(p)=-3 to 100K) Mon Mar 30 18:43:52 BST 2026
+
+# Session 11 (2026-04-02) — Delegated tasks
+# Ollama lit review PID 41157 -> ~/.farey_research/ollama_sessions/lit_review_result.txt
+# Ollama figure gen PID 41158 -> ~/.farey_research/ollama_sessions/figure_gen_result.txt
+# Codex B+C proof PID 41200 -> ~/.farey_research/codex_sessions/bc_proof_result.txt
+# Codex adversarial audit PID 41218 -> ~/.farey_research/codex_sessions/adversarial_audit_result.txt
+## Ollama Lit Review — PID 50598 — 2026-04-02 — model: qwen3.5:27b
+## Ollama Figures   — PID 50599 — 2026-04-02 — model: qwen3:8b
+## Ollama Lit Review (RELAUNCHED) — PID 50802 — 2026-04-02 — model: qwen3.5:27b port 11435
+## Ollama Figures (RELAUNCHED)   — PID 50803 — 2026-04-02 — model: qwen3:8b port 11435
+
+## === 6-HOUR RUN 2026-04-02 ===
+## 35b Lit Review          PID 51963
+## 35b BC Dedekind         PID 51964
+## 35b Adversarial Audit   PID 51965
+## Codex BC Transfer       PID 51705
+## Codex U_pm Bound        PID 51966
+## Aristotle FDeltaIdentity: c68cb680-bf3c-447f-8a09-1b00a29db53e
+## Aristotle WeilBound:      16ef093a-5778-41a3-aa33-998c103faddf
+## Queue Worker — PID 60564 — 2026-04-02 — autonomous 12h run
+## Aristotle fdelta_v2: 9d3498c8-9aae-46ff-ad29-00c27f59ebf1 — 2026-04-03
+## Aristotle displacement_sum: 6eca48eb-c5df-4222-a28c-0c0a93f43fdb — 2026-04-03
+## Aristotle bc_algebraic: 8659053f-f2ff-4473-a6e0-95f85a37b5a5 — 2026-04-03
+## Aristotle sign_cases: f74752f9-6c7f-44ea-b2f2-fa961489e1e4 — 2026-04-03
+## Aristotle weil_small: 0f65d7fd-2cd5-4fa5-9c81-98079c81bde8 — 2026-04-03
+## Codex bc_extend: PID 16336 — 2026-04-03
+## Codex mertens_primes: PID 16505 — 2026-04-03
+## Codex figure_runner: PID 16664 — 2026-04-03
+## Aristotle fdelta_final: 46e6c6e1-5b03-44aa-b95f-149d0b0fdd49 — 2026-04-03
+## Aristotle r_positive: 2b889348-7b7f-4ebc-9c50-ceac0e411af4 — 2026-04-03
+## Aristotle suffix_sum: 78e9c0a2-c7b2-41f3-bd70-2a33b7a4a847 — 2026-04-03
+## Aristotle bc_positive_cases: bbe7668b-8e97-4381-9c85-90bef753888e — 2026-04-03
+## Aristotle delta_sum_zero: 7a10d35a-8f78-4cd5-9bb4-7ced1d5393c7 — 2026-04-03
+## Codex bc_100k: PID 12000 — 2026-04-03
+## Codex suffix_sums_p13: PID 12039 — 2026-04-03
+## Codex fourier_bc: PID 12331 — 2026-04-03

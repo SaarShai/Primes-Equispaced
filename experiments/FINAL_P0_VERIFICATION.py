@@ -579,7 +579,7 @@ def main():
     print("-" * 100)
     print()
 
-    csv_path = "/Users/new/Downloads/a3f522e1-8fdf-4aba-8a5e-6b5385438b6c_aristotle/experiments/wobble_primes_100000.csv"
+    csv_path = "/Users/saar/Desktop/Farey-Local/experiments/wobble_primes_100000.csv"
 
     csv_data = []
     with open(csv_path, 'r') as f:

@@ -1,0 +1,53 @@
+Device: mps
+Data dir: /Users/saar/Desktop/Farey-Local/experiments/3dgs_benchmark_data/kodak
+
+======================================================================
+Image 1/5: kodim01.png (384x256)
+======================================================================
+
+  Seed 1/3
+    [ADC (Standard 3DGS)] Step     0: PSNR=4.36dB  G=64  loss=0.366815  t=0s
+    [ADC (Standard 3DGS)] Step  1000: PSNR=20.60dB  G=260  loss=0.008714  t=61s
+    [ADC (Standard 3DGS)] Step  2000: PSNR=22.47dB  G=510  loss=0.005658  t=235s
+    [ADC (Standard 3DGS)] Step  3000: PSNR=23.44dB  G=760  loss=0.004532  t=532s
+    [ADC (Standard 3DGS)] Step  4000: PSNR=23.93dB  G=985  loss=0.004050  t=940s
+    [ADC (Standard 3DGS)] Step  4999: PSNR=24.52dB  G=985  loss=0.003529  t=1471s
+    [ADC (Standard 3DGS)] FINAL: PSNR=24.52dB  SSIM=0.6381  G=985  time=1471s
+
+    [Farey Densification] Step     0: PSNR=4.36dB  G=64  loss=0.366815  t=0s
+    [Farey Densification] Step  1000: PSNR=20.69dB  G=289  loss=0.008535  t=89s
+    [Farey Densification] Step  2000: PSNR=22.66dB  G=539  loss=0.005424  t=305s
+    [Farey Densification] Step  3000: PSNR=23.69dB  G=789  loss=0.004273  t=626s
+    [Farey Densification] Step  4000: PSNR=24.28dB  G=1014  loss=0.003735  t=1070s
+    [Farey Densification] Step  4999: PSNR=24.89dB  G=1014  loss=0.003247  t=1576s
+    [Farey Densification] FINAL: PSNR=24.89dB  SSIM=0.6476  G=1014  time=1576s
+
+    [Error-Guided (no structure)] Step     0: PSNR=4.36dB  G=64  loss=0.366815  t=0s
+    [Error-Guided (no structure)] Step  1000: PSNR=20.99dB  G=289  loss=0.007965  t=78s
+    [Error-Guided (no structure)] Step  2000: PSNR=22.10dB  G=539  loss=0.006167  t=265s
+    [Error-Guided (no structure)] Step  3000: PSNR=23.03dB  G=789  loss=0.004981  t=560s
+    [Error-Guided (no structure)] Step  4000: PSNR=23.48dB  G=1001  loss=0.004488  t=975s
+    [Error-Guided (no structure)] Step  4999: PSNR=24.56dB  G=1000  loss=0.003502  t=1465s
+    [Error-Guided (no structure)] FINAL: PSNR=24.56dB  SSIM=0.6223  G=1000  time=1465s
+
+    [Random (Error-weighted)] Step     0: PSNR=4.36dB  G=64  loss=0.366815  t=0s
+    [Random (Error-weighted)] Step  1000: PSNR=21.53dB  G=289  loss=0.007031  t=88s
+    [Random (Error-weighted)] Step  2000: PSNR=22.79dB  G=539  loss=0.005262  t=298s
+    [Random (Error-weighted)] Step  3000: PSNR=23.36dB  G=789  loss=0.004611  t=620s
+    [Random (Error-weighted)] Step  4000: PSNR=23.91dB  G=1014  loss=0.004069  t=1124s
+    [Random (Error-weighted)] Step  4999: PSNR=24.86dB  G=1014  loss=0.003264  t=1707s
+    [Random (Error-weighted)] FINAL: PSNR=24.87dB  SSIM=0.6552  G=1014  time=1707s
+
+    [Uniform Random] Step     0: PSNR=4.36dB  G=64  loss=0.366815  t=0s
+    [Uniform Random] Step  1000: PSNR=21.50dB  G=289  loss=0.007073  t=86s
+    [Uniform Random] Step  2000: PSNR=22.82dB  G=539  loss=0.005225  t=303s
+    [Uniform Random] Step  3000: PSNR=23.41dB  G=789  loss=0.004557  t=643s
+    [Uniform Random] Step  4000: PSNR=23.76dB  G=1014  loss=0.004209  t=1131s
+    [Uniform Random] Step  4999: PSNR=24.58dB  G=1014  loss=0.003487  t=1656s
+    [Uniform Random] FINAL: PSNR=24.58dB  SSIM=0.6453  G=1014  time=1656s
+
+Traceback (most recent call last):
+  File "/Users/saar/Desktop/Farey-Local/experiments/3dgs_real_benchmark.py", line 977, in <module>
+  File "/Users/saar/Desktop/Farey-Local/experiments/3dgs_real_benchmark.py", line 957, in main
+  File "/Users/saar/Desktop/Farey-Local/experiments/3dgs_real_benchmark.py", line 807, in run_full_benchmark
+PermissionError: [Errno 1] Operation not permitted: '/Users/saar/Desktop/Farey-Local/experiments/3dgs_results/real_benchmark_results.json'

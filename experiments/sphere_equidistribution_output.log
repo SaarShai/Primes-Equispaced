@@ -1,0 +1,120 @@
+/Users/saar/Desktop/Farey-Local/experiments/sphere_equidistribution.py:135: RuntimeWarning: divide by zero encountered in matmul
+  dots = pts @ pole
+/Users/saar/Desktop/Farey-Local/experiments/sphere_equidistribution.py:135: RuntimeWarning: overflow encountered in matmul
+  dots = pts @ pole
+/Users/saar/Desktop/Farey-Local/experiments/sphere_equidistribution.py:135: RuntimeWarning: invalid value encountered in matmul
+  dots = pts @ pole
+======================================================================
+SPHERE EQUIDISTRIBUTION: Extending Farey ΔW to S²
+======================================================================
+
+[1/5] Computing r₃(n) for n=0..1000 ...
+  Done in 0.0s
+  r₃(0)=1, r₃(1)=6, r₃(2)=12, r₃(3)=8
+  r₃(4)=6, r₃(5)=24, r₃(7)=0
+  Zeros of r₃ in [1,100]: [7, 15, 23, 28, 31, 39, 47, 55, 60, 63, 71, 79, 87, 92, 95]
+  (Should be 4^a(8b+7): 7,15,23,28,31,39,47,55,56,60,...)
+
+[2/5] Primes with r₃(p)>0: 125 out of 168
+  Primes p≡7(mod 8) with r₃=0: [7, 23, 31, 47, 71, 79, 103, 127, 151, 167, 191, 199, 223, 239, 263, 271, 311, 359, 367, 383]
+
+[3/5] Computing spherical discrepancy for each prime...
+  p=   2  r₃(p)=  12  D_single=0.058942  D_cum=0.058942  ΔW=+0.000000
+  p=   3  r₃(p)=   8  D_single=0.078182  D_cum=0.046056  ΔW=-0.012886
+  p=   5  r₃(p)=  24  D_single=0.037128  D_cum=0.025406  ΔW=-0.020650
+  p=  11  r₃(p)=  24  D_single=0.036614  D_cum=0.016609  ΔW=-0.008797
+  p=  13  r₃(p)=  24  D_single=0.039071  D_cum=0.018199  ΔW=+0.001591
+  p=  17  r₃(p)=  48  D_single=0.026417  D_cum=0.012032  ΔW=-0.006168
+  p=  19  r₃(p)=  24  D_single=0.043121  D_cum=0.010406  ΔW=-0.001626
+  p=  29  r₃(p)=  72  D_single=0.021145  D_cum=0.009919  ΔW=-0.000487
+  p=  37  r₃(p)=  24  D_single=0.074087  D_cum=0.008443  ΔW=-0.001476
+  p=  41  r₃(p)=  96  D_single=0.013437  D_cum=0.007522  ΔW=-0.000921
+  p= 107  r₃(p)=  72  D_single=0.020353  D_cum=0.004281  ΔW=+0.000062
+  p= 257  r₃(p)= 192  D_single=0.017801  D_cum=0.002184  ΔW=-0.000330
+  p= 419  r₃(p)= 216  D_single=0.012372  D_cum=0.001759  ΔW=-0.000019
+  p= 587  r₃(p)= 168  D_single=0.016666  D_cum=0.001326  ΔW=+0.000023
+  p= 761  r₃(p)= 480  D_single=0.007407  D_cum=0.001170  ΔW=+0.000045
+  p= 947  r₃(p)= 120  D_single=0.017252  D_cum=0.001123  ΔW=+0.000023
+
+[4/5] Computing spherical harmonic sums for primes...
+  On S¹: Σ e^{2πipf} = M(p)+2
+  On S²: Σ_{a²+b²+c²=p} Y_l^m(a/√p, b/√p, c/√p) = ???
+  p=   2: r₃= 12, M(p)= +0, Y₀₀_sum=3.385 (exp=3.385), |Y₁|=0.000000, |Y₂|=0.000
+  p=   3: r₃=  8, M(p)= -1, Y₀₀_sum=2.257 (exp=2.257), |Y₁|=0.000000, |Y₂|=0.000
+  p=   5: r₃= 24, M(p)= -2, Y₀₀_sum=6.770 (exp=6.770), |Y₁|=0.000000, |Y₂|=0.000
+  p=  11: r₃= 24, M(p)= -2, Y₀₀_sum=6.770 (exp=6.770), |Y₁|=0.000000, |Y₂|=0.000
+  p=  13: r₃= 24, M(p)= -3, Y₀₀_sum=6.770 (exp=6.770), |Y₁|=0.000000, |Y₂|=0.000
+  p=  17: r₃= 48, M(p)= -2, Y₀₀_sum=13.541 (exp=13.541), |Y₁|=0.000000, |Y₂|=0.000
+  p=  19: r₃= 24, M(p)= -3, Y₀₀_sum=6.770 (exp=6.770), |Y₁|=0.000000, |Y₂|=0.000
+  p=  29: r₃= 72, M(p)= -2, Y₀₀_sum=20.311 (exp=20.311), |Y₁|=0.000000, |Y₂|=0.000
+  p=  37: r₃= 24, M(p)= -2, Y₀₀_sum=6.770 (exp=6.770), |Y₁|=0.000000, |Y₂|=0.000
+  p=  41: r₃= 96, M(p)= -1, Y₀₀_sum=27.081 (exp=27.081), |Y₁|=0.000000, |Y₂|=0.000
+  p=  43: r₃= 24, M(p)= -3, Y₀₀_sum=6.770 (exp=6.770), |Y₁|=0.000000, |Y₂|=0.000
+  p=  97: r₃= 48, M(p)= +1, Y₀₀_sum=13.541 (exp=13.541), |Y₁|=0.000000, |Y₂|=0.000
+  p= 101: r₃=168, M(p)= +0, Y₀₀_sum=47.392 (exp=47.392), |Y₁|=0.000000, |Y₂|=0.000
+  p= 197: r₃=120, M(p)= -7, Y₀₀_sum=33.851 (exp=33.851), |Y₁|=0.000000, |Y₂|=0.000
+
+[5/5] Analysis and plotting...
+
+  === SIGN THEOREM ANALOG ON S² ===
+  ΔW > 0 (discrepancy INCREASED): 41 primes
+  ΔW < 0 (discrepancy DECREASED): 83 primes
+  ΔW = 0: 0 primes
+  SIGN THEOREM FAILS on S²! Positive ΔW at: [13, 61, 97, 107, 137, 163, 211, 251, 269, 313, 317, 331, 347, 373, 401, 421, 433, 449, 521, 523]
+
+  Correlation(ΔW_sphere, M(p)): -0.0101
+  (On S¹, ΔW correlates strongly with M(p) — does it on S²?)
+
+  === SPHERICAL HARMONIC BRIDGE IDENTITY ===
+  l=1 sums (should vanish by sign symmetry):
+    p=2: |Y₁_sum| = 0.00e+00
+    p=3: |Y₁_sum| = 0.00e+00
+    p=5: |Y₁_sum| = 1.57e-16
+    p=11: |Y₁_sum| = 4.51e-16
+    p=13: |Y₁_sum| = 2.00e-16
+
+  l=2 sums (first non-trivial — analog of exponential sum):
+    p=   2: |Y₂_sum|=   0.000, r₃(p)=  12, M(p)= +0
+    p=   3: |Y₂_sum|=   0.000, r₃(p)=   8, M(p)= -1
+    p=   5: |Y₂_sum|=   0.000, r₃(p)=  24, M(p)= -2
+    p=  11: |Y₂_sum|=   0.000, r₃(p)=  24, M(p)= -2
+    p=  13: |Y₂_sum|=   0.000, r₃(p)=  24, M(p)= -3
+    p=  17: |Y₂_sum|=   0.000, r₃(p)=  48, M(p)= -2
+    p=  19: |Y₂_sum|=   0.000, r₃(p)=  24, M(p)= -3
+    p=  29: |Y₂_sum|=   0.000, r₃(p)=  72, M(p)= -2
+    p=  37: |Y₂_sum|=   0.000, r₃(p)=  24, M(p)= -2
+    p=  41: |Y₂_sum|=   0.000, r₃(p)=  96, M(p)= -1
+
+  |Y₂_sum|/r₃(p) ratios:
+    p=2: 0.000000
+    p=3: 0.000000
+    p=5: 0.000000
+    p=11: 0.000000
+    p=13: 0.000000
+    p=17: 0.000000
+    p=19: 0.000000
+    p=29: 0.000000
+    p=37: 0.000000
+    p=41: 0.000000
+    Mean ratio: 0.000000
+    Max ratio:  0.000000
+    → Duke's theorem says this → 0 as p → ∞
+
+  Y₂⁰ sum specifically (the 'z²-1/3' test):
+    p=   2: Y₂⁰_sum =    -0.0000, normalized = -0.000000
+    p=   3: Y₂⁰_sum =    +0.0000, normalized = +0.000000
+    p=   5: Y₂⁰_sum =    +0.0000, normalized = +0.000000
+    p=  11: Y₂⁰_sum =    +0.0000, normalized = +0.000000
+    p=  13: Y₂⁰_sum =    -0.0000, normalized = -0.000000
+    p=  17: Y₂⁰_sum =    -0.0000, normalized = -0.000000
+    p=  19: Y₂⁰_sum =    +0.0000, normalized = +0.000000
+    p=  29: Y₂⁰_sum =    -0.0000, normalized = -0.000000
+    p=  37: Y₂⁰_sum =    +0.0000, normalized = +0.000000
+    p=  41: Y₂⁰_sum =    +0.0000, normalized = +0.000000
+
+  Results saved to /Users/saar/Desktop/Farey-Local/experiments/sphere_equidistribution_results.json
+  Plot saved to /Users/saar/Desktop/Farey-Local/experiments/sphere_equidistribution.png
+
+======================================================================
+COMPUTATION COMPLETE
+======================================================================

@@ -1,0 +1,23 @@
+Sieving to 10000000...
+Sieve done in 0.05 sec
+Scanning primes...
+
+=== SUMMARY ===
+Total M(p) = -3 primes up to 10000000: 922
+Min alpha = -136.340757 at p = 3535369
+Max alpha = 187.475271 at p = 6951391
+Max R(N) on M(N)=-2: 22.723459 at p = 3535369
+Min R(N) on M(N)=-2: -31.245879 at p = 6951391
+
+CRITICAL: If min_alpha < 0 (i.e., R(N) > 0), then alpha+rho < -1 is possible.
+If min_alpha stays >> 1, the Sign Theorem is safe.
+
+Scanning ALL N with M(N)=-2 for R(N) > 0...
+  R(N) > 0: N=565000, R=0.306799, 6R=1.840793, alpha=-1.840793
+  R(N) > 0: N=1363000, R=2.176521, 6R=13.059124, alpha=-13.059124
+  R(N) > 0: N=1416000, R=5.368809, 6R=32.212851, alpha=-32.212851
+  R(N) > 0: N=3719000, R=1.823240, 6R=10.939442, alpha=-10.939442
+  R(N) > 0: N=8226000, R=1.532894, 6R=9.197367, alpha=-9.197367
+
+M(N)=-2 scan: R(N) > 0 count = 5
+Max R(N) among M(N)=-2: 5.368809 at N = 1416000 (alpha = -32.212851)

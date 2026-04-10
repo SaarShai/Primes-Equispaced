@@ -1,0 +1,16 @@
+================================================================================
+BEARING FAULT DETECTION TEST
+================================================================================
+Sample Rate: 10000 Hz
+Number of regular samples: 50000
+Number of irregular samples: 2470
+Dropout rate: 5.0%
+Fault frequency: 89.2 Hz
+Test amplitudes: [0.01, 0.02, 0.05, 0.1, 0.2]
+================================================================================
+Traceback (most recent call last):
+  File "/Users/saar/Desktop/Farey-Local/experiments/VIBRATION_FAULT_TEST_V2.py", line 134, in <module>
+    lomb_power = compute_lomb_scargle_power(signal_with_fault, t_irregular, fault_frequency)
+  File "/Users/saar/Desktop/Farey-Local/experiments/VIBRATION_FAULT_TEST_V2.py", line 67, in compute_lomb_scargle_power
+    powers = signal.lombscargle(times, signal, freqs, precentered=True)
+AttributeError: 'numpy.ndarray' object has no attribute 'lombscargle'

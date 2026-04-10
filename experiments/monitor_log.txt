@@ -1,0 +1,112 @@
+[2026-03-28 08:47:15] === PROCESS MONITOR STARTED ===
+[2026-03-28 11:00:22] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 627)
+[2026-03-28 11:00:22]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 11:00:22]    ✅ Restarted as PID 16963
+[2026-03-28 11:01:22] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 627)
+[2026-03-28 11:01:22]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 11:01:22]    ✅ Restarted as PID 17038
+[2026-03-28 11:02:22] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 627)
+[2026-03-28 11:02:22]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 11:02:22]    ✅ Restarted as PID 17127
+[2026-03-28 11:03:22] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 627)
+[2026-03-28 11:03:22]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 11:03:22]    ✅ Restarted as PID 17201
+[2026-03-28 11:04:22] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 627)
+[2026-03-28 11:04:22]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 11:04:22]    ✅ Restarted as PID 17303
+[2026-03-28 12:14:25] ☠️ DEAD: B+C to p=100K (MPR-1) (PID 2533)
+[2026-03-28 12:14:25]    Attempting restart: cd /Users/saar/Library/CloudStorage/GoogleDrive-saar.shai@gmail.com/My Drive/Farey Folder/experiments && nohup ./bc_extend_fast2 100000 45677 > ~/Desktop/Farey-Local/experiments/bc_100k_output.log 2>&1
+[2026-03-28 12:14:25]    ✅ Restarted as PID 22285
+[2026-03-28 12:15:25] ☠️ DEAD: B+C to p=100K (MPR-1) (PID 2533)
+[2026-03-28 12:15:25]    Attempting restart: cd /Users/saar/Library/CloudStorage/GoogleDrive-saar.shai@gmail.com/My Drive/Farey Folder/experiments && nohup ./bc_extend_fast2 100000 45677 > ~/Desktop/Farey-Local/experiments/bc_100k_output.log 2>&1
+[2026-03-28 12:15:25]    ✅ Restarted as PID 22357
+[2026-03-28 12:16:25] ☠️ DEAD: B+C to p=100K (MPR-1) (PID 2533)
+[2026-03-28 12:16:25]    Attempting restart: cd /Users/saar/Library/CloudStorage/GoogleDrive-saar.shai@gmail.com/My Drive/Farey Folder/experiments && nohup ./bc_extend_fast2 100000 45677 > ~/Desktop/Farey-Local/experiments/bc_100k_output.log 2>&1
+[2026-03-28 12:16:25]    ✅ Restarted as PID 22423
+[2026-03-28 12:17:25] ☠️ DEAD: B+C to p=100K (MPR-1) (PID 2533)
+[2026-03-28 12:17:25]    Attempting restart: cd /Users/saar/Library/CloudStorage/GoogleDrive-saar.shai@gmail.com/My Drive/Farey Folder/experiments && nohup ./bc_extend_fast2 100000 45677 > ~/Desktop/Farey-Local/experiments/bc_100k_output.log 2>&1
+[2026-03-28 12:17:25]    ✅ Restarted as PID 22492
+[2026-03-28 12:18:25] ☠️ DEAD: B+C to p=100K (MPR-1) (PID 2533)
+[2026-03-28 12:18:25]    Attempting restart: cd /Users/saar/Library/CloudStorage/GoogleDrive-saar.shai@gmail.com/My Drive/Farey Folder/experiments && nohup ./bc_extend_fast2 100000 45677 > ~/Desktop/Farey-Local/experiments/bc_100k_output.log 2>&1
+[2026-03-28 12:18:25]    ✅ Restarted as PID 22561
+[2026-03-28 12:19:25] ☠️ DEAD: B+C to p=100K (MPR-1) (PID 2533)
+[2026-03-28 12:19:25]    Attempting restart: cd /Users/saar/Library/CloudStorage/GoogleDrive-saar.shai@gmail.com/My Drive/Farey Folder/experiments && nohup ./bc_extend_fast2 100000 45677 > ~/Desktop/Farey-Local/experiments/bc_100k_output.log 2>&1
+[2026-03-28 12:19:25]    ✅ Restarted as PID 22690
+[2026-03-28 12:20:25] ☠️ DEAD: B+C to p=100K (MPR-1) (PID 2533)
+[2026-03-28 12:20:25]    Attempting restart: cd /Users/saar/Library/CloudStorage/GoogleDrive-saar.shai@gmail.com/My Drive/Farey Folder/experiments && nohup ./bc_extend_fast2 100000 45677 > ~/Desktop/Farey-Local/experiments/bc_100k_output.log 2>&1
+[2026-03-28 12:20:25]    ✅ Restarted as PID 22779
+[2026-03-28 13:11:28] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 16965)
+[2026-03-28 13:11:28]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 13:11:28]    ✅ Restarted as PID 26635
+[2026-03-28 13:12:28] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 16965)
+[2026-03-28 13:12:28]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 13:12:28]    ✅ Restarted as PID 26710
+[2026-03-28 13:13:28] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 16965)
+[2026-03-28 13:13:28]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 13:13:28]    ✅ Restarted as PID 26792
+[2026-03-28 13:14:28] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 16965)
+[2026-03-28 13:14:28]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 13:14:28]    ✅ Restarted as PID 26863
+[2026-03-28 13:15:28] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 16965)
+[2026-03-28 13:15:28]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 13:15:28]    ✅ Restarted as PID 26933
+[2026-03-28 13:16:28] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 16965)
+[2026-03-28 13:16:28]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 13:16:28]    ✅ Restarted as PID 27007
+[2026-03-28 13:17:28] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 16965)
+[2026-03-28 13:17:28]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 13:17:28]    ✅ Restarted as PID 27079
+[2026-03-28 13:18:28] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 16965)
+[2026-03-28 13:18:28]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 13:18:28]    ✅ Restarted as PID 27151
+[2026-03-28 13:19:28] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 16965)
+[2026-03-28 13:19:28]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 13:19:28]    ✅ Restarted as PID 27307
+[2026-03-28 13:20:28] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 16965)
+[2026-03-28 13:20:28]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 13:20:28]    ✅ Restarted as PID 27421
+[2026-03-28 15:23:34] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 26637)
+[2026-03-28 15:23:34]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 15:23:34]    ✅ Restarted as PID 36614
+[2026-03-28 15:24:34] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 26637)
+[2026-03-28 15:24:34]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 15:24:34]    ✅ Restarted as PID 36731
+[2026-03-28 15:25:34] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 26637)
+[2026-03-28 15:25:34]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 15:25:34]    ✅ Restarted as PID 36849
+[2026-03-28 15:26:34] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 26637)
+[2026-03-28 15:26:34]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 15:26:34]    ✅ Restarted as PID 36952
+[2026-03-28 15:27:34] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 26637)
+[2026-03-28 15:27:34]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 15:27:34]    ✅ Restarted as PID 37026
+[2026-03-28 15:28:34] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 26637)
+[2026-03-28 15:28:34]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 15:28:34]    ✅ Restarted as PID 37115
+[2026-03-28 15:29:34] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 26637)
+[2026-03-28 15:29:34]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 15:29:34]    ✅ Restarted as PID 37256
+[2026-03-28 15:30:34] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 26637)
+[2026-03-28 15:30:34]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 15:30:34]    ✅ Restarted as PID 37340
+[2026-03-28 15:31:34] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 26637)
+[2026-03-28 15:31:34]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 15:31:34]    ✅ Restarted as PID 37425
+[2026-03-28 15:32:34] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 26637)
+[2026-03-28 15:32:34]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 15:32:34]    ✅ Restarted as PID 37560
+[2026-03-28 15:33:34] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 26637)
+[2026-03-28 15:33:34]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 15:33:34]    ✅ Restarted as PID 37683
+[2026-03-28 15:34:34] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 26637)
+[2026-03-28 15:34:34]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 15:34:34]    ✅ Restarted as PID 37813
+[2026-03-28 15:35:34] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 26637)
+[2026-03-28 15:35:34]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 15:35:34]    ✅ Restarted as PID 38006
+[2026-03-28 15:36:34] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 26637)
+[2026-03-28 15:36:34]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 15:36:34]    ✅ Restarted as PID 38181
+[2026-03-28 15:37:34] ☠️ DEAD: Spectral Analysis (MPR-20) (PID 26637)
+[2026-03-28 15:37:34]    Attempting restart: cd ~/Desktop/Farey-Local/experiments && nohup python3 -u deltaw_spectral_analysis.py > deltaw_spectral_output.log 2>&1
+[2026-03-28 15:37:34]    ✅ Restarted as PID 38313

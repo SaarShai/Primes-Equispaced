@@ -1,0 +1,10 @@
+Starting Arithmetic Steganography Test...
+Generated 1000 primes.
+First few primes: [ 2  3  5  7 11 13 17 19 23 29]
+Secret Frequency: 7.77
+Traceback (most recent call last):
+  File "/Users/saar/Desktop/Farey-Local/experiments/ARITHMETIC_STEGANOGRAPHY_TEST.py", line 225, in <module>
+    run_test()
+  File "/Users/saar/Desktop/Farey-Local/experiments/ARITHMETIC_STEGANOGRAPHY_TEST.py", line 163, in run_test
+    - **Secret Frequency ($f_{secret}$):** {F_SECRET}
+NameError: name 'secret' is not defined
