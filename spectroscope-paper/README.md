@@ -44,17 +44,19 @@ The Montgomery-Vaughan large sieve inequality guarantees that the spectroscope m
 
 The framework applies to any L-function with an Euler product over primes.
 
-| L-function | Coefficients at prime p | What zeros reveal | Batch speedup |
-|-----------|----------------------|------------------|---------------|
-| **Riemann ζ(s)** | Mertens function M(p) | Prime distribution | 20/20 zeros detected |
-| **Dirichlet L(s,χ)** | χ(p)·M(p) | Primes in progressions | **12x** at q=10⁴, **141x** at q=10⁶ |
-| **Elliptic curve L(s,E)** | a_p(E) = p+1−#E(𝔽_p) | Rank of E (BSD conjecture) | **7x** at N_E=10⁴ (~2,150 curves) |
-| **Modular form L(s,f)** | Hecke eigenvalues a_p(f) | Ramanujan, Sato-Tate | **5x** at N=10⁴, **89x** at N=10⁵ |
-| **Dedekind ζ_K(s)** | Prime ideal splitting in K | Class numbers | **19x** at D=10⁴ (~6,000 fields) |
-| **Hecke L(s,ψ)** | Hecke character values | Class field theory | **12x** at q=10⁴, **141x** at q=10⁶ |
-| **Hasse-Weil (genus 2)** | Frobenius char. poly on H¹ | Arithmetic of curves | **26x** at N=10³, **564x** at N=10⁴ |
+| L-function | Coefficients at prime p | What zeros reveal | Detection | Batch speedup (est.) |
+|-----------|----------------------|------------------|-----------|---------------------|
+| **Riemann ζ(s)** | Mertens function M(p) | Prime distribution | ✅ 20/20 zeros, 8.4x peak | — |
+| **Dirichlet L(s,χ)** | Twisted Mertens M_χ(p) | Primes in progressions | ✅ Verified (χ₄: 2.8x, χ₋₂₀: 3.8x) | **12x** at q=10⁴, **141x** at q=10⁶ |
+| **Elliptic curve L(s,E)** | a_p(E) = p+1−#E(𝔽_p) | Rank of E (BSD conjecture) | 🔄 Peaks found (8.4x), matching pending | **7x** at N_E=10⁴ (estimated) |
+| **Modular form L(s,f)** | Hecke eigenvalues a_p(f) | Ramanujan, Sato-Tate | ⏳ Not yet tested | **5x** at N=10⁴ (estimated) |
+| **Dedekind ζ_K(s)** | Twisted Mertens for χ_d | Class numbers | ✅ Verified (χ₋₂₀: 3.8x) | **19x** at D=10⁴ (estimated) |
+| **Hecke L(s,ψ)** | Hecke character values | Class field theory | Same as Dirichlet | **12x** at q=10⁴ (estimated) |
+| **Hasse-Weil (genus 2)** | Frobenius char. poly on H¹ | Arithmetic of curves | ⏳ Not yet tested | **26x** at N=10³ (estimated) |
 
-Batch advantage grows as √(conductor) or faster. Applicable to any L-function family with >~100 members. Larger families (higher genus, higher degree) give even bigger speedups.
+✅ = zero detection verified by computation. 🔄 = in progress. ⏳ = not yet tested.
+
+Batch speedups marked "estimated" are operation-count projections; detection for those L-functions needs verification with correct coefficient data. Dirichlet and Dedekind batch speedups are confirmed (detection verified).
 
 ---
 
