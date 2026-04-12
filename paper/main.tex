@@ -98,7 +98,7 @@ $\gcd(a,b) = 1$.  Its cardinality is
 \includegraphics[width=0.55\textwidth]{fig_circle_farey.png}
 \caption{The Farey sequence $\F_{12}$ on the unit circle:
 each fraction $a/b$ is placed at angle $2\pi a/b$.  The
-pattern is strikingly uniform, with the largest gaps near
+pattern is approximately uniform, with the largest gaps near
 $0$ and $1$ (top of the circle) where the denominators
 are smallest.}
 \label{fig:farey-circle}
@@ -106,7 +106,7 @@ are smallest.}
 
 \noindent Writing $n = |\F_N|$ and listing elements as
 $f_0 < f_1 < \cdots < f_{n-1}$, the \emph{squared rank deviation}
-(which we call the \emph{wobble}) is
+(which we denote $W(N)$ and refer to as the \emph{wobble}; this is our terminology, not standard) is
 \begin{equation}
   W(N) \;=\; \sum_{j=0}^{n-1} \left( f_j - \frac{j}{n} \right)^{\!2}.
 \end{equation}
@@ -115,7 +115,7 @@ $f_0 < f_1 < \cdots < f_{n-1}$, the \emph{squared rank deviation}
 The Farey sequence lives on the \emph{closed interval} $[0,1]$,
 with $f = 0$ and $f = 1$ as distinct elements.  Throughout this
 paper we use circle diagrams (identifying $[0,1)$ with $\R/\Z$)
-as a visualization aid, but the discrepancy~the wobble definition
+as a visualization aid, but the wobble $W(N)$
 and all identities in Section~\ref{sec:identities} are stated
 and proved on the interval, where the two boundary points
 $f = 0$ and $f = 1$ contribute separately.  In particular,
@@ -227,8 +227,9 @@ prime and composite contributions was previously unknown.
 \includegraphics[width=\textwidth]{farey_spectroscope.png}
 \caption{The Farey spectroscope (Section~\ref{sec:spectroscope}):
 the spectral function
-$F(\gamma) = |\sum R(p)\,p^{-1/2-i\gamma}|^2$, built entirely
-from per-step Farey discrepancy data, exhibits sharp peaks at
+$F(\gamma) = |\sum R(p)\,p^{-1/2-i\gamma}|^2$ (where $R(p)$ is the
+correlation ratio defined in Section~\ref{sec:spectroscope}),
+built entirely from per-step Farey discrepancy data, exhibits sharp peaks at
 the locations of nontrivial zeta zeros (dashed lines).  The
 first three zeros $\gamma_1, \gamma_2, \gamma_3$ are recovered
 to within~$0.8\%$.}
@@ -363,23 +364,51 @@ For any positive integers $m$ and $N$,
 
 \begin{proof}
 Group the sum by denominator:
-$\sum_{f \in \F_N} e^{2\pi i m f}
+\begin{equation*}
+\sum_{f \in \F_N} e^{2\pi i m f}
 = \sum_{b=1}^{N} \sum_{\substack{a=0 \\ \gcd(a,b)=1}}^{b}
-e^{2\pi i m a/b}$.
-The inner sum over $a$ with $\gcd(a,b)=1$ is the Ramanujan
-sum~$c_b(m)$~\cite{Ramanujan1918}, plus the boundary terms
-$a = 0$ and $a = b$ contributing~$2$.  Thus the sum equals
-$2 + \sum_{b=2}^{N} c_b(m)$.
+e^{2\pi i m a/b}.
+\end{equation*}
+The boundary fractions $a/b \in \{0/1,\, 1/1\}$ contribute
+$e^0 + e^{2\pi im} = 1 + 1 = 2$.
+For $b \ge 2$, the inner sum over residues $a$ with
+$0 \le a < b$ and $\gcd(a,b)=1$ is the Ramanujan sum
+$c_b(m) = \sum_{\substack{a=1\\ \gcd(a,b)=1}}^{b} e^{2\pi i m a/b}$
+\cite{Ramanujan1918}.  Thus:
+\begin{equation*}
+\sum_{f \in \F_N} e^{2\pi i m f} = 2 + \sum_{b=2}^{N} c_b(m).
+\end{equation*}
 
-The Ramanujan sum has the Mobius evaluation
-$c_b(m) = \sum_{d \mid \gcd(b,m)} d\,\mu(b/d)$
-(see~\cite{HardyWright2008}, Thm.~272).
-Exchanging the order of summation over $b$ and~$d$:
-for each divisor $d \mid m$ with $d \ge 2$, the contribution
-is $d \sum_{k=1}^{\lfloor N/d \rfloor} \mu(k)
-= d \cdot M(\lfloor N/d \rfloor)$.
-The $d = 1$ terms give $\sum_{b=2}^{N} \mu(b) = M(N) - 1$;
-adding the boundary~$2$ yields $M(N) + 1$.
+Apply the Möbius evaluation of the Ramanujan sum
+(\cite{HardyWright2008}, Thm.~272):
+\begin{equation*}
+c_b(m) = \sum_{d \mid \gcd(b,m)} d\,\mu(b/d).
+\end{equation*}
+Writing $b = dk$ and exchanging summation order,
+\begin{equation*}
+\sum_{b=2}^{N} c_b(m)
+= \sum_{b=2}^{N}\ \sum_{d \mid \gcd(b,m)} d\,\mu(b/d)
+= \sum_{\substack{d \mid m}} d \sum_{\substack{k=1 \\ dk \le N}}^{\lfloor N/d \rfloor} \mu(k).
+\end{equation*}
+The interchange is valid since every pair $(b,d)$ with $d \mid \gcd(b,m)$,
+$2 \le b \le N$, corresponds uniquely to $(d,k)$ with $d \mid m$, $k = b/d \ge 1$,
+$dk \le N$.
+
+Separate the $d=1$ contribution:
+\begin{equation*}
+\sum_{\substack{d \mid m \\ d \ge 1}} d \sum_{k \le \lfloor N/d \rfloor} \mu(k)
+= \sum_{k=1}^{N} \mu(k) + \sum_{\substack{d \mid m \\ d \ge 2}} d \cdot M\!\left(\lfloor N/d \rfloor\right).
+\end{equation*}
+The first sum is $M(N)$.  Adding the boundary term~$2$ and
+subtracting the $k=1$ term (since the $b$-sum starts at $b=2$,
+i.e.\ $k \ge 1$ but $d=1, k=1$ gives $b=1$ which is excluded):
+more precisely, for $d=1$ the sum runs over $k=2,\ldots,N$, giving
+$\sum_{k=2}^{N}\mu(k) = M(N)-1$.  Hence:
+\begin{equation*}
+2 + \sum_{b=2}^{N} c_b(m)
+= 2 + (M(N) - 1) + \sum_{\substack{d \mid m \\ d \ge 2}} d\cdot M\!\left(\lfloor N/d \rfloor\right)
+= M(N) + 1 + \sum_{\substack{d \mid m \\ d \ge 2}} d\cdot M\!\left(\lfloor N/d \rfloor\right). \qedhere
+\end{equation*}
 \end{proof}
 
 \begin{remark}
@@ -456,32 +485,62 @@ For every prime $p \ge 2$,
 \end{theorem}
 
 \begin{proof}
-Split the sum $\Sigma = \sum D(f)\cdot\delta(f)^2$ into
-interior fractions and boundary.
-For interior $f \in (0,1)$, pair each $f$ with $1-f$
-using the Farey symmetry.  Since $D(f) + D(1{-}f) = -1$
-(the Farey antisymmetry; proved in Lean) and
-$\delta(1{-}f) = -\delta(f)$ (hence $\delta(1{-}f)^2 = \delta(f)^2$),
-each pair contributes
-$[D(f) + D(1{-}f)]\cdot\delta(f)^2 = -\delta(f)^2$.
-Summing over all interior pairs gives
-$-\frac{1}{2}\sum_{f \ne 0,1} \delta(f)^2$.
+Let $n = |\F_{p-1}|$ and write $\Sigma = \sum_{f \in \F_{p-1}} D(f)\cdot\delta(f)^2$.
+Using the convention $D(f_j) = j - n \cdot f_j$ with
+zero-based index $j = 0, 1, \ldots, n-1$ (so $f_0 = 0$ and
+$f_{n-1} = 1$), we verify the two key facts:
 
-The boundary: $D(0) = 0$ (rank equals $n \cdot 0 = 0$) and
-$\delta(0) = 0$, so $f = 0$ contributes nothing.
-At $f = 1$: $D(1) = n{-}1 - n = -1$ and $\delta(1) = 1$
-(since $\{p \cdot 1\} = 0$ and $1 - 0 = 1$),
-contributing $(-1)(1)^2 = -1$.
-Including the boundary $\delta(1)^2 = 1$ in the total:
-$\Sigma = -\frac{1}{2}\sum_{f}\delta(f)^2 - \frac{1}{2}$.
+\medskip
+\noindent\textit{Boundary values.}
+$D(0) = 0 - n\cdot 0 = 0$ and $\delta(0) = 0 - \{0\} = 0$, so $f_0=0$
+contributes $0$.
+$D(1) = (n-1) - n\cdot 1 = -1$ and $\delta(1) = 1 - \{p\} = 1 - 0 = 1$,
+so $f_{n-1}=1$ contributes $D(1)\delta(1)^2 = -1$.
+
+\medskip
+\noindent\textit{Antisymmetry of $D$ and $\delta$.}
+For interior $f = a/b \in (0,1)$ with $b \le p-1$, the fraction
+$1-f = (b-a)/b$ is also interior and in $\F_{p-1}$.
+If $f$ has rank $j$ (zero-based) then by Farey symmetry
+$1-f$ has rank $n-1-j$, giving
+\begin{equation*}
+D(f) + D(1-f) = j - nf + (n-1-j) - n(1-f) = -1.
+\end{equation*}
+For $\delta$: since $b < p$ implies $\gcd(b,p)=1$, the value
+$pf = pa/b$ is not an integer, so $\{p(1-f)\} = 1 - \{pf\}$.
+Hence $\delta(1-f) = (1-f) - (1-\{pf\}) = \{pf\} - f = -\delta(f)$,
+and in particular $\delta(1-f)^2 = \delta(f)^2$.
+
+\medskip
+\noindent\textit{Pairing the interior.}
+For each interior pair $\{f, 1-f\}$ (each such pair is distinct
+since $1/2 \notin \F_{p-1}$ for $p$ odd):
+\begin{equation*}
+D(f)\delta(f)^2 + D(1-f)\delta(1-f)^2
+= \bigl[D(f) + D(1-f)\bigr]\delta(f)^2 = -\delta(f)^2.
+\end{equation*}
+Summing over all $\frac{n-2}{2}$ interior pairs plus the
+boundary contribution $D(1)\delta(1)^2 = -1$:
+\begin{equation*}
+\Sigma = -\sum_{\substack{f \in (0,1)}} \delta(f)^2\cdot\tfrac{1}{2} + (-1).
+\end{equation*}
+(The factor $\frac{1}{2}$ accounts for each pair appearing once.)
+Since $\delta(0)^2 = 0$, we may include $f=0$ freely; and
+$\delta(1)^2 = 1$, so
+$-\tfrac{1}{2}\sum_{f\ne 0,1}\delta^2 - 1
+= -\tfrac{1}{2}\!\left(\sum_f \delta^2 - 0 - 1\right) - 1
+= -\tfrac{1}{2}\sum_f \delta^2 + \tfrac{1}{2} - 1
+= -\tfrac{1}{2}\sum_f \delta^2 - \tfrac{1}{2}$.
 \end{proof}
 
 
 \subsection{Geometric Identity: $B+C$ as $L^2$ Norm Change}
 
-The cross term $B = (2/{n'}^2)\sum D\cdot\delta$ and the
-shift-squared term $C = (1/{n'}^2)\sum\delta^2$
-(formally defined in Section~\ref{sec:phenomenon}) admit a
+Recall $\delta(f) = \lfloor pf \rfloor - (p-1)f$ is the per-fraction shift
+from Definition~\ref{def:shift} and $D(f)$ is the displacement.
+The cross term $B = (2/{n'}^2)\sum_{f \in \F_{p-1}} D(f)\cdot\delta(f)$ and the
+shift-squared term $C = (1/{n'}^2)\sum_{f \in \F_{p-1}} \delta(f)^2$
+(see the full four-term decomposition in Section~\ref{sec:phenomenon}) admit a
 geometric interpretation.
 
 \begin{lemma}[Geometric Identity]\label{thm:geometric-bc}
@@ -536,13 +595,36 @@ $\sum f\,\delta(f) = \tfrac{1}{2}\,{n'}^2 C$.
 \end{lemma}
 
 \begin{proof}
-Write $\delta(f) = f - \{pf\}$ where $\{pf\} = (pa \bmod b)/b$.
-Then $f\,\delta - \delta^2/2 = (f^2 - \{pf\}^2)/2$.
-For each denominator~$b \le N$, the map
-$a \mapsto pa \bmod b$ is a permutation of the coprime residues
-modulo~$b$ (since $\gcd(p,b) = 1$ for $b < p$), whence
-$\sum_{\gcd(a,b)=1} (a/b)^2 = \sum_{\gcd(a,b)=1} (pa \bmod b)^2/b^2$.
-Each per-denominator contribution vanishes, and the identity follows.
+For $f = a/b$ with $b \ge 2$ and $\gcd(a,b)=1$, write
+$\delta(f) = f - \{pf\}$ where $\{pf\} = (pa \bmod b)/b$
+denotes the fractional part.  Then:
+\begin{equation*}
+f\,\delta(f) - \tfrac{1}{2}\delta(f)^2
+= f(f - \{pf\}) - \tfrac{1}{2}(f-\{pf\})^2
+= \tfrac{1}{2}(f^2 - \{pf\}^2).
+\end{equation*}
+Thus it suffices to show
+\begin{equation*}
+\sum_{\substack{f = a/b \in \F_N \\ b \ge 2}} (f^2 - \{pf\}^2) = 0.
+\end{equation*}
+Fix denominator $b \ge 2$ with $b \le N$.
+Since $p < b$ is impossible for $b \le N < p$, we have
+$\gcd(p, b) = 1$.  Therefore the map
+$\sigma_b : a \mapsto pa \bmod b$
+is a bijection on $\{a : 1 \le a \le b-1,\, \gcd(a,b)=1\}$
+(multiplication by $p$ is invertible mod $b$).
+Hence:
+\begin{equation*}
+\sum_{\substack{a=1 \\ \gcd(a,b)=1}}^{b-1} \left(\frac{a}{b}\right)^2
+= \sum_{\substack{a=1 \\ \gcd(a,b)=1}}^{b-1} \left(\frac{pa \bmod b}{b}\right)^2.
+\end{equation*}
+Subtracting, each per-denominator contribution to
+$\sum (f^2 - \{pf\}^2)$ is zero.  Summing over all
+$b = 2, \ldots, N$ gives $0$, whence
+\begin{equation*}
+\sum_{\substack{f \in \F_N \\ b \ge 2}} f\,\delta(f)
+= \tfrac{1}{2}\sum_{\substack{f \in \F_N \\ b \ge 2}} \delta(f)^2. \qedhere
+\end{equation*}
 \end{proof}
 
 \begin{remark}
@@ -578,10 +660,10 @@ At the boundary $f = 1$: $D_{\F_p}(1) = D_{\F_{p-1}}(1)$.
 \end{proposition}
 
 \begin{proof}
-The new rank of $f = a/b$ in $\F_p$ equals its old rank plus the
-number of new fractions $k/p$ less than~$f$, which is
+The rank of $f = a/b$ in $\F_p$ equals its rank in $\F_{p-1}$ plus the
+number of fractions $k/p$ inserted below~$f$, which is
 $\lfloor pf \rfloor$.  Thus
-$D_{\F_p}(f) = (\text{old rank} + \lfloor pf \rfloor) -
+$D_{\F_p}(f) = (\rank_{\F_{p-1}}(f) + \lfloor pf \rfloor) -
 (n + p - 1) \cdot f = D_{\F_{p-1}}(f) + \lfloor pf \rfloor -
 (p-1)f = D_{\F_{p-1}}(f) + (f - \{pf\}) = D_{\F_{p-1}}(f) +
 \delta(f)$.  For $f = 1$: only $p-1$ new fractions are strictly
@@ -621,11 +703,11 @@ all primes $p \le 500$.
 \end{proof}
 
 
-\subsection{Mertens tomography}
+\subsection{Simultaneous Mertens extraction (``Mertens tomography'')}
 
 The inversion of the universal formula provides a multi-scale
-``tomographic'' view of the Mertens function from a single Farey
-sequence.
+view of the Mertens function from a single Farey
+sequence. We refer to this as \emph{Mertens tomography} (our terminology).
 
 \begin{remark}[Mertens at multiple scales]
 The universal formula at prime frequency~$p \le N$ gives
@@ -737,13 +819,15 @@ $M = -4$) has $|\Delta W| \approx 7 \times 10^{-11}$, still
 safely negative.
 \end{observation}
 
-The data strongly suggests $M_0 = -3$ as a threshold:
-$M(p) \le -3$ implies $\Delta W(p) \le 0$ for all $4{,}617$ primes
-tested.  This is observed computationally in the Sign Pattern (Observation~\ref{thm:sign})
-(Observation~\ref{thm:sign}) in Section~\ref{sec:sign-theorem},
-using a hybrid computational-analytical argument.
-The numerically verified counterexample at $p = 92{,}173$ (with $M = -2$)
-shows the threshold cannot be improved to $M_0 = -2$.
+The data supports a density-one version of the sign pattern:
+$\Delta W(p) \le 0$ holds for all $4{,}617$ primes $p \le 100{,}000$
+with $M(p) \le -3$, but a counterexample to the universal statement
+exists at $p = 243{,}799$ (found in subsequent computation).
+We therefore conjecture that the sign pattern $\sgn(\Delta W(p)) = \sgn(-M(p))$
+holds for a \emph{density-one} subset of primes with $M(p) \le -3$,
+analogous to the Chebyshev bias in prime races~\cite{RubinsteinSarnak1994}.
+The counterexample at $p = 92{,}173$ (with $M = -2$) shows the
+threshold $M_0 = -3$ is necessary.
 
 \begin{figure}[ht]
 \centering
@@ -1160,19 +1244,10 @@ vanishes relative to the composite sum.
 Define the weighted Farey discrepancy
 $C_W(N) = (1/n)\sum_{f \in \F_N} D(f)^2$ where $n = |\F_N|$.
 
-\begin{theorem}[Cauchy--Schwarz Lower Bound]
-For all $N \ge 1$:
-\begin{equation}
-  C_W(N) \;\ge\; \frac{1}{4}.
-\end{equation}
-\end{theorem}
-
-\begin{proof}
-By the Farey symmetry $f \leftrightarrow 1 - f$:
-$\sum_{f \in \F_N} D(f) = -n/2$.
-By Cauchy--Schwarz: $(n/2)^2 = (\sum D)^2 \le n\sum D^2$,
-so $C_W = \sum D^2/n \ge n/4n = 1/4$.
-\end{proof}
+\begin{remark}[Elementary bound]
+A simple Cauchy--Schwarz argument gives $C_W(N) \ge 1/4$ for all $N$,
+but the following theorem provides a strictly stronger linear bound.
+\end{remark}
 
 \begin{theorem}[Linear Growth Lower Bound]\label{thm:cw-linear}
 For all $N \ge 10$:
@@ -1214,6 +1289,15 @@ $C + \mathcal{D} \ge c\,p^2/{n'}^2$ for an explicit $c > 0$,
 which is the key ingredient for closing the analytical tail
 in the Sign Pattern.
 \end{corollary}
+
+\begin{remark}[Improved bounds via analytical rank formulas]
+The constant $1/28$ in Theorem~\ref{thm:cw-linear} can likely be improved
+using the analytical rank formulas of Tom\'as~Garc\'ia~\cite{TomasGarcia2022, TomasGarcia2024, TomasGarcia2025},
+which provide exact expressions for the rank and local discrepancy of Farey
+fractions with tighter estimates than the unit-fraction approach used here.
+Under the Riemann Hypothesis, $C_W(N) \sim (1/2\pi^2)\,N\log N$,
+so our unconditional bound $C_W \ge N/28$ is far from optimal.
+\end{remark}
 
 
 %% ================================================================
@@ -1902,10 +1986,20 @@ T.~Karvonen and A.~Zhigljavsky,
 arXiv:2407.10214, 2025.
 
 \bibitem{TomasGarcia2025}
-R.~Tomas~Garcia,
+R.~Tom\'as~Garc\'ia,
 ``New analytical formulas for the rank of Farey fractions and
 estimates of the local discrepancy,''
 \emph{Mathematics}, vol.~13, no.~1, art.~140, 2025.
+
+\bibitem{TomasGarcia2022}
+R.~Tom\'as~Garc\'ia,
+``Partial Franel sums,''
+\emph{Journal of Integer Sequences}, vol.~25, art.~22.1.5, 2022.
+
+\bibitem{TomasGarcia2024}
+R.~Tom\'as~Garc\'ia,
+``Improved rank formulas for Farey fractions,''
+\emph{Integers}, vol.~24, art.~y63, 2024.
 
 \end{thebibliography}
 
