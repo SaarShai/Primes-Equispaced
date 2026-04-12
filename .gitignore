@@ -1,19 +1,65 @@
+# Build artifacts
 .lake/
 .DS_Store
 *.olean
 *.ilean
 *.trace
-experiments/wobble_c_data_20000.csv
-experiments/wobble_primes_100000.csv
-experiments/wobble_primes_56k_clean.csv
-experiments/*.json
-experiments/*.png
-experiments/wobble_largescale
-experiments/wobble_primes_only
-experiments/pipeline.log
-experiments/pipeline.pid
-experiments/wobble_100k.pid
-experiments/wobble_100k_output.log
-gh.zip
-gh_2.88.1_macOS_arm64/
+*.c.hash
+
+# Internal tracking (not for public)
+*HANDOFF*.md
+*QUEUE*.txt
+*NEXT_TASKS*.txt
+*TRACKER*.md
+*ENDORSER*.md
+*OUTREACH*.md
+*SUBMISSION*.md
+*TODO_LIST*.md
+MASTER_TABLE*.md
+TOP_DISCOVERIES.md
+PAPER_CONSTELLATION.md
+SPECTROSCOPE_APPLICABILITY.md
+SPECTROSCOPE_PAPER2_PLAN.md
+MATH_VALUE_TRACKER.md
+PROOF_STATUS.md
+TRACKED_PROCESSES.txt
+research_tracker.json
+
+# Aristotle archives
+*-aristotle*
+aristotle_*
+tmp_aristotle*
+extract_*
+
+# Internal working files
+.internal/
+model_context/
+experiments/
 *.tar.gz
+prism_handoff.zip
+farey_3dgs/
+demo/
+data/
+
+# Misc
+TERRAIN_LOD*.md
+GRAPHICS_APPLICATION*.md
+PrimeCircleExploration.md
+ANTICORRELATION_STRATEGY.md
+NOVEL_EXPLORATIONS.md
+EXPLORATION_SUMMARY.md
+RESEARCH_DIRECTIONS.md
+INSIGHTS.md
+DISCOVERY_DATABASE.md
+CODEX_*.md
+GRH_CONDITIONAL_THEOREM.md
+PAPER_GAPS.md
+PAPER_PLAN.md
+PAPER_CLEANUP_ISSUES.md
+REFEREE_REPORT*.md
+README_FOR_GITHUB.md
+Desktop/
+Desktop 2/
+Library/
+Library 2/
+-Users-*
