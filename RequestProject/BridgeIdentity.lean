@@ -312,7 +312,7 @@ theorem bridge_identity (p : ℕ) (hp : Nat.Prime p) :
     norm_cast;
   -- Use mertens_pred_prime to replace mertens(p-1) with mertens(p) + 1.
   have h_mertens_pred : mertens (p - 1) = mertens p + 1 := by
-    exact?;
+    exact mertens_pred_prime p hp
   rw [ h_split, h_sum_moebius, h_sum_moebius_Icc_2, h_mertens_pred ] ; push_cast ; ring
 
 /-! ## Computational verification for small primes
