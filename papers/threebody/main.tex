@@ -1,0 +1,752 @@
+\documentclass[11pt]{article}
+
+%%% Packages
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{mathtools}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+
+%%% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+%%% Notation
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\HH}{\mathbb{H}}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\AUC}{AUC}
+
+\title{Continued Fraction Invariants of Three-Body Periodic Orbits:\\
+The Golden Ratio Structure of the Figure-Eight\\
+and a Periodic Table of 695 Orbits}
+
+\author{
+  Saar Shai\thanks{Independent Researcher. Email: \texttt{saar.shai@gmail.com}.}
+  \and
+  Claude Opus 4.6\thanks{AI research assistant by Anthropic; contributed to mathematical analysis, exact-arithmetic computation, and manuscript preparation.}
+}
+
+\date{March 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Planar three-body periodic orbits are classified topologically by
+braid words in the free group~$F_2$. Using the classical isomorphism
+$F_2 \cong \Gamma(2) \subset \SL(2,\Z)$, each orbit determines a
+$2 \times 2$ integer matrix whose attracting fixed point is a
+quadratic irrational with an eventually periodic continued fraction
+(CF). We apply exact quadratic-surd arithmetic to all 695
+equal-mass orbits in the Li--Liao catalog, correcting the 17.7\%
+CF corruption rate of naive floating-point computation. For the
+figure-eight orbit, the fixed-point equation is exactly
+$z^2 - z - 1 = 0$, the minimal polynomial of the golden
+ratio~$\varphi$; this identity is forced by the Fibonacci structure
+of the commutator matrix in~$\Gamma(2)$ and is
+convention-independent (trace~$= 18$, discriminant~$= 320 = 64
+\times 5$). Across the full catalog, CF ``nobility'' (fraction of
+partial quotients equal to~$1$) anticorrelates with braid entropy
+at partial~$\rho = -0.890$ ($p < 10^{-50}$, controlling for word
+length) and predicts low-entropy orbits with $\AUC = 0.980$ on a
+held-out test set of 195 orbits, providing a microsecond-cost
+screening tool for orbit discovery.  \textbf{Caveat:} braid entropy
+measures topological complexity of the symbolic coding, not physical
+dynamical stability; confirming the latter requires Floquet
+multiplier computations not yet available for this catalog. We organize all 691 orbits with detected CF
+periods into a $9 \times 8$ ``periodic table'' indexed by CF
+period length and geometric mean, revealing structure orthogonal to
+topological family classification (69\% purity per cell) and
+identifying empty cells as predictions for undiscovered orbit
+types. While the $F_2 \to \Gamma(2) \to \text{CF}$ bridge is
+classical and the KAM-theoretic connection between noble
+frequencies and stability is well known, our contribution is the
+systematic exact-arithmetic quantification across the largest
+available catalog, extending Kin--Nakamura--Ogawa's
+Stern--Brocot framework from ${\sim}\!13$ Lissajous orbits to
+695 orbits across all families.
+\end{abstract}
+
+\medskip
+\noindent\textbf{Keywords:} three-body problem, periodic orbits, continued fractions, Farey tessellation, golden ratio, braid groups, Stern--Brocot tree, KAM theory.
+
+\noindent\textbf{MSC 2020:} 70F07, 37J40, 11A55, 37E30, 70H12.
+
+%% ================================================================
+\section{Introduction}\label{sec:intro}
+%% ================================================================
+
+\subsection{Periodic orbits of the three-body problem}
+
+The gravitational three-body problem remains one of the central
+unsolved problems in classical mechanics. While the general problem
+is chaotic and admits no closed-form solution, \emph{periodic}
+orbits play a distinguished role: by the Birkhoff--Lewis theorem
+they are dense in the phase space, and they organize the global
+dynamics as the skeleton around which quasi-periodic and chaotic
+trajectories are arranged.
+
+The modern era of three-body periodic orbit discovery began with
+Moore's~\cite{Moore1993} numerical discovery of the figure-eight
+orbit and its existence proof by Chenciner and
+Montgomery~\cite{ChencinerMontgomery2000}. Large-scale numerical
+searches by \v{S}uvakov and Dmitra\v{s}inovi\'{c}~\cite{Suvakov2013}
+and Li and Liao~\cite{LiLiao2017, LiLiao2019} have produced catalogs
+of hundreds to thousands of periodic orbits for equal-mass systems
+with zero angular momentum.
+
+\subsection{Topological classification via braids}
+
+Montgomery~\cite{Montgomery1998} observed that three-body orbits in
+the plane can be classified by their \emph{braid type}: the
+worldlines of three bodies in spacetime $(x, y, t)$ form a
+three-strand braid. For planar orbits avoiding triple collision, the
+relevant structure is the fundamental group of the shape sphere
+(configuration space modulo translations and rotations, with collision
+points removed), which is isomorphic to the free group $F_2$ on two
+generators.
+
+The Li--Liao catalog assigns each orbit a free-group word in the
+generators $\{a, b, A, B\}$ (where $A = a^{-1}$, $B = b^{-1}$),
+encoding how the orbit's projection to the shape sphere winds
+around the two-body collision singularities.
+
+\subsection{Why number theory?}
+
+The free group $F_2$ is isomorphic to the principal congruence
+subgroup $\Gamma(2) \subset \SL(2,\Z)$ via the standard generators
+\begin{equation}\label{eq:generators}
+a \mapsto \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}, \qquad
+b \mapsto \begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}.
+\end{equation}
+Each word $w \in F_2$ thus determines a $2 \times 2$ integer matrix
+$M(w) \in \Gamma(2)$ acting on the upper half-plane~$\HH$ by
+M\"obius transformations. When $|\tr(M)| > 2$ (the hyperbolic case,
+which holds for all 695 orbits in the catalog), $M$ has two real
+fixed points, both quadratic irrationals. Their continued fraction
+expansions are eventually periodic (by Lagrange's theorem) and
+encode arithmetic information about the orbit.
+
+This perspective connects three-body dynamics to the \emph{Farey
+tessellation} of~$\HH$: the tessellation by ideal triangles whose
+vertices are Farey fractions, invariant under $\SL(2,\Z)$. The
+cutting sequence of the geodesic connecting the two fixed points of
+$M(w)$ through the Farey tessellation directly yields the CF
+expansion. This framework was developed by
+Series~\cite{Series1985} and applied to three-body braids by
+Kin, Nakamura, and Ogawa~\cite{KNO2023}, who classified Lissajous
+three-braids via the Stern--Brocot tree for approximately 13 orbits.
+
+\subsection{Our contribution}
+
+We extend the Kin--Nakamura--Ogawa framework from ${\sim}\!13$
+Lissajous orbits to the full Li--Liao catalog of 695 equal-mass,
+zero-angular-momentum periodic orbits. Our specific contributions
+are:
+
+\begin{enumerate}
+\item \textbf{An exact anchor result:} the figure-eight orbit maps
+  to the golden ratio~$\varphi$ under~$\Gamma(2)$, an algebraic
+  identity forced by the Fibonacci structure of the commutator
+  matrix (Section~\ref{sec:figure-eight}).
+
+\item \textbf{Exact arithmetic at scale:} we replace floating-point
+  CF computation (which corrupts 17.7\% of orbits) with exact
+  quadratic-surd arithmetic, obtaining correct periodic CFs for 691
+  of 695 orbits (Section~\ref{sec:catalog}).
+
+\item \textbf{A CF periodic table:} we organize all 691 orbits into
+  a $9 \times 8$ grid indexed by CF period length and geometric
+  mean, revealing structure orthogonal to topological classification
+  (Section~\ref{sec:periodic-table}).
+
+\item \textbf{Quantified predictive power:} CF nobility achieves
+  $\AUC = 0.980$ for blind prediction of low-entropy orbits,
+  providing a microsecond-cost screening tool
+  (Section~\ref{sec:prediction}).
+
+\item \textbf{Honest accounting of limitations:} we carefully
+  distinguish algebraic correlations (CF vs.\ trace of the
+  \emph{same} matrix) from physical ones (CF vs.\ orbital period
+  $T^*$ from numerical integration), and state what would be needed
+  for full physical validation (Section~\ref{sec:discussion}).
+\end{enumerate}
+
+We emphasize that the mathematical framework ($F_2 \cong \Gamma(2)$,
+CF of quadratic irrationals, Farey tessellation) is entirely
+classical. The novelty lies in the systematic, exact-arithmetic
+application across the largest available catalog.
+
+
+%% ================================================================
+\section{Mathematical Framework}\label{sec:framework}
+%% ================================================================
+
+\subsection{From free-group words to $\Gamma(2)$ matrices}
+
+Let $F_2 = \langle a, b \rangle$ be the free group on two
+generators. The map $\phi: F_2 \to \Gamma(2)$ defined
+by~\eqref{eq:generators} is an isomorphism onto
+$\Gamma(2) = \ker(\SL(2,\Z) \to \SL(2,\Z/2\Z))$.
+The inverses are
+\[
+\phi(A) = \begin{pmatrix} 1 & -2 \\ 0 & 1 \end{pmatrix}, \qquad
+\phi(B) = \begin{pmatrix} 1 & 0 \\ -2 & 1 \end{pmatrix}.
+\]
+For a word $w = g_1 g_2 \cdots g_n$ with $g_i \in \{a, b, A, B\}$,
+the matrix is $M(w) = \phi(g_1)\phi(g_2) \cdots \phi(g_n)$.
+
+\subsection{Fixed points and quadratic irrationals}
+
+The matrix $M = \bigl(\begin{smallmatrix} \alpha & \beta \\
+\gamma & \delta \end{smallmatrix}\bigr)$ acts on
+$\hat{\R} = \R \cup \{\infty\}$ by the M\"obius transformation
+$T(z) = (\alpha z + \beta)/(\gamma z + \delta)$. When
+$|\tr(M)| = |\alpha + \delta| > 2$, the transformation is
+\emph{hyperbolic} with two real fixed points:
+\begin{equation}\label{eq:fixed-points}
+z_{\pm} = \frac{(\alpha - \delta) \pm
+\sqrt{(\alpha + \delta)^2 - 4}}{2\gamma}.
+\end{equation}
+The discriminant $\Delta = \tr(M)^2 - 4$ is a positive non-square
+integer for all 695 orbits, so the fixed points are quadratic
+irrationals in $\Q(\sqrt{\Delta})$.
+
+The \emph{attracting} fixed point~$z_+$ (where $|T'(z_+)| < 1$) is
+the one we associate to the orbit. By Lagrange's theorem, every
+quadratic irrational has an eventually periodic CF expansion.
+
+\begin{remark}[Invariance]
+The trace $\tr(M)$ is a conjugacy-class invariant: cyclic
+permutations of the word yield conjugate matrices with the same
+trace and discriminant.
+\end{remark}
+
+\subsection{Continued fraction invariants}
+
+Every quadratic irrational~$\alpha$ has a CF expansion
+$\alpha = [a_0; a_1, a_2, \ldots]$ that is eventually periodic.
+We define the following CF invariants for each orbit:
+\begin{itemize}
+\item \textbf{CF period length}~$\ell$: the minimal period of the
+  eventually periodic CF.
+\item \textbf{CF geometric mean}
+  $G = \bigl(\prod_{i=k}^{k+\ell-1} a_i\bigr)^{1/\ell}$:
+  geometric mean of partial quotients in one period.
+\item \textbf{CF nobility}
+  $\nu = \#\{i \in [k, k+\ell): a_i = 1\} / \ell$:
+  fraction of partial quotients equal to~$1$.
+\end{itemize}
+
+We use ``nobility'' by analogy with noble numbers in KAM theory.
+\textbf{This is a non-standard extension} of the classical binary
+(noble/not-noble) concept; the standard measures in KAM theory are
+the Diophantine exponent and Brjuno sum.
+
+\subsection{The Farey tessellation and cutting sequences}
+
+The \emph{Farey tessellation} of the upper half-plane~$\HH$ is the
+ideal triangulation whose edges connect Farey neighbors $p/q$ and
+$r/s$ (with $|ps - qr| = 1$) by hyperbolic geodesics.  This
+tessellation is invariant under $\SL(2,\Z)$, and the quotient
+$\HH/\Gamma(2)$ is the thrice-punctured sphere---which is also the
+shape sphere of the planar three-body problem with collision points
+removed~\cite{Montgomery1998}.
+
+For a hyperbolic element $M \in \Gamma(2)$ with attracting and
+repelling fixed points $z_+, z_-$, the \emph{cutting sequence} of the
+geodesic from $z_-$ to $z_+$ through the Farey tessellation encodes
+the CF expansion of~$z_+$: each time the geodesic crosses $a_i$
+consecutive edges of one type, the CF records the partial
+quotient~$a_i$.  This gives a geometric realization of the CF: the
+Farey tessellation is the geometric substrate, and the CF is the
+combinatorial record of how the orbit's axis traverses
+it~\cite{Series1985}.
+
+\subsection{Braid entropy}
+
+For a hyperbolic matrix~$M$ with $|\tr(M)| > 2$, the \emph{braid
+entropy} is
+\begin{equation}\label{eq:entropy}
+h(w) = \frac{\log \lambda(M)}{|w|}
+\end{equation}
+where $\lambda(M)$ is the spectral radius and $|w|$ is the word
+length.
+
+\textbf{Important caveat:} This is the entropy of the symbolic
+coding (the braid), not the Lyapunov exponent of the physical
+orbit. The correlation between braid entropy and true dynamical
+stability, while expected on general grounds, remains to be verified
+by direct computation of Floquet multipliers.
+
+
+%% ================================================================
+\section{The Figure-Eight and the Golden Ratio}\label{sec:figure-eight}
+%% ================================================================
+
+\subsection{The computation}
+
+The figure-eight orbit has the free-group word $BabA$, which is a
+cyclic rotation of the commutator $[a,b] = abAB$. Computing the
+$\Gamma(2)$ matrix:
+\begin{equation}\label{eq:fig-eight-matrix}
+M(BabA) = \phi(B)\phi(a)\phi(b)\phi(A) =
+\begin{pmatrix} 5 & -8 \\ -8 & 13 \end{pmatrix}.
+\end{equation}
+This matrix has trace~$18$, determinant~$1$, and discriminant
+$\Delta = 18^2 - 4 = 320 = 64 \times 5$. The fixed points satisfy
+$\frac{5z - 8}{-8z + 13} = z$, which simplifies to
+\begin{equation}\label{eq:golden-poly}
+z^2 - z - 1 = 0,
+\end{equation}
+the \emph{minimal polynomial of the golden ratio}
+$\varphi = (1+\sqrt{5})/2$.
+
+\subsection{Why the golden ratio is structurally forced}
+
+The appearance of~$\varphi$ is not a numerical coincidence. The
+matrix entries $\{5, 8, 13\}$ are consecutive Fibonacci numbers
+$F_5, F_6, F_7$, a consequence of the commutator structure. The
+characteristic polynomial reduces to $z^2 - z - 1 = 0$ precisely
+because the Fibonacci relation is encoded in the matrix. The
+factor of~$5$ in the discriminant $320 = 64 \times 5$ guarantees
+that $\sqrt{5}$ --- and hence $\varphi$ --- appears in every
+fixed-point computation, regardless of generator conventions. All
+fixed points across all conjugate representatives are golden-ratio
+algebraic conjugates living in $\Q(\sqrt{5})$.
+
+\subsection{Verification}
+
+The figure-eight fixed point was verified to 60 decimal places
+using arbitrary-precision arithmetic. The CF expansion
+$\varphi = [1; \overline{1}]$ was verified to 30 terms. This is an
+exact algebraic identity.
+
+
+%% ================================================================
+\section{Continued Fraction Properties of the Full Catalog}\label{sec:catalog}
+%% ================================================================
+
+\subsection{Data and methodology}
+
+We analyzed all 695 equal-mass, zero-angular-momentum periodic
+orbits from the Li--Liao catalog~\cite{LiLiao2017, LiLiao2019}.
+
+\textbf{High-precision arithmetic.} Naive floating-point computation of CFs
+degrades catastrophically for orbits with long words: 123 of 695
+orbits (17.7\%) had corrupted CF data with float64 arithmetic. We
+replaced this with exact integer quadratic-surd tracking: since every
+fixed point has the form $(P + q\sqrt{D})/Q$ with integers
+$P, q, Q, D$, the CF can be computed by tracking the integer state
+$(P_n, q_n, Q_n)$ at each step using exact integer arithmetic, with
+\texttt{mpmath} at 100 digits used only for floor evaluation. This
+yielded correct periodic CFs for 691 of 695 orbits (99.4\%); the
+remaining 4 have CF periods exceeding 300 terms.
+
+The improvement was dramatic: the partial correlation
+$\rho(\text{nobility}, \text{braid entropy})$ strengthened from
+$-0.538$ (float64) to $-0.890$ (exact).
+
+\subsection{Catalog-wide correlations}
+
+All 695 orbits are hyperbolic ($|\tr(M)| > 2$). The following are
+Spearman rank correlations; partial correlations control for word
+length via OLS residualization.
+
+\begin{table}[ht]
+\centering
+\caption{Key correlations ($N = 695$, exact surd arithmetic).}
+\label{tab:correlations}
+\begin{tabular}{llrl}
+\toprule
+Relationship & Type & $\rho$ & Note \\
+\midrule
+Nobility vs.\ braid entropy & Partial (ctrl.\ $|w|$)
+  & $-0.890$ & (a) \\
+Nobility vs.\ CF period length & Partial (ctrl.\ $|w|$)
+  & $-0.962$ & (a) \\
+Nobility vs.\ $T^*$ & Raw & $-0.535$ & (b) \\
+Nobility vs.\ $\log|\tr|$ & Raw & $-0.546$ & (a) \\
+Word length vs.\ $T^*$ & Raw & $+0.999$ & Baseline \\
+\bottomrule
+\end{tabular}
+
+\medskip
+\small
+Notes: (a)~Braid entropy and $\log|\tr|$ are computed from the
+\emph{same} $\Gamma(2)$ matrix as CF properties; these correlations
+are partly algebraic. (b)~$T^*$ is the physical period from numerical
+orbit integration, independent of the matrix.
+\end{table}
+
+All reported correlations survive permutation testing (10,000
+permutations, $p < 0.0001$). Within-family correlations remain
+strong ($\rho \sim -0.85$ for families I.A, I.B, II.C
+individually).
+
+\subsection{Family structure}
+
+The Kruskal--Wallis test detects significant differences in mean
+nobility across topological families ($H = 16.36$, $p = 0.0026$).
+
+\begin{table}[ht]
+\centering
+\caption{CF properties by topological family.}
+\label{tab:families}
+\begin{tabular}{lrrrr}
+\toprule
+Family & $N$ & Mean nobility & Mean CF geom.\ mean & CF period mode \\
+\midrule
+I.A   & 190 & 0.713 & 1.358 & 14 \\
+I.B   & 191 & 0.686 & 1.391 & 5 \\
+II.A  & 4   & 0.921 & 1.066 & 1 \\
+II.B  & 10  & 0.755 & 1.368 & 1 \\
+II.C  & 300 & 0.732 & 1.406 & varies \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+%% ================================================================
+\section{A Periodic Table of Three-Body Orbits}\label{sec:periodic-table}
+%% ================================================================
+
+The CF invariants naturally suggest a two-dimensional organization,
+analogous to the chemical periodic table. We construct a
+$9 \times 8$ grid in which \textbf{rows} correspond to CF period
+length (binned) and \textbf{columns} correspond to the geometric
+mean of the periodic CF partial quotients (binned from $1.00$
+to~$1.45$). Rows index algebraic complexity; columns index nobility
+(a braid-entropy proxy, not a direct physical stability measure).
+
+Of the 72 cells, 51 are populated and 21 are empty. The
+figure-eight orbit occupies the (period~$1$, gmean $1.00$--$1.05$)
+cell \emph{alone} among all 691 orbits --- it is ``hydrogen'' in
+the analogy. Its CF is $[0; \overline{1}]$, the simplest possible.
+
+\textbf{Orthogonality to topological classification.} The average
+family purity per cell is only 0.688, meaning the dominant family
+in a typical cell accounts for just 69\% of its orbits. The CF
+organization captures structure \textbf{orthogonal} to the
+topological family classification.
+
+\textbf{Empty-cell predictions.} Among the 21 empty cells, several
+are surrounded by populated neighbors, suggesting orbits with those
+CF properties may exist but have not yet been cataloged.  These
+constitute tentative predictions: orbits with these specific
+combinations of algebraic complexity and nobility could be sought
+in future numerical searches.
+
+\textbf{Noble gases.}  For each row (CF period class), the orbit
+with the highest nobility serves as the analog of a noble gas---the
+lowest braid-entropy element of its period.  These orbits systematically have
+$G \approx 1.0$, meaning their CF partial quotients are predominantly
+$1$s (Fibonacci-like structure).  As the CF period increases, the
+noble-gas nobility converges toward the golden-ratio limit, connecting
+braid entropy to Fibonacci structure quantitatively.
+
+
+%% ================================================================
+\section{Predictive Power}\label{sec:prediction}
+%% ================================================================
+
+\subsection{Blind classification of low-entropy orbits}
+
+We split the 695 orbits into training (500) and test (195) sets.
+The target is whether braid entropy falls in the bottom 30th
+percentile.
+
+\begin{table}[ht]
+\centering
+\caption{Blind prediction results (test set, $N = 195$).}
+\label{tab:prediction}
+\begin{tabular}{lrr}
+\toprule
+Model features & Accuracy & AUC \\
+\midrule
+Word length only & 0.677 & 0.741 \\
+Nobility only & 0.974 & 0.980 \\
+Word length + nobility & 0.959 & 0.985 \\
+Full CF features & 0.979 & 0.991 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Critical caveat.} The prediction target (braid entropy) is
+computed from the same $\Gamma(2)$ matrix as the CF features. This
+test demonstrates that CF properties efficiently encode information
+about matrix trace growth --- algebraically interesting but not the
+same as predicting physical stability. A fully physical validation
+would require Floquet multipliers from linearized orbit integration.
+
+\subsection{Nobility-guided orbit search}
+
+As a more physically grounded test, we compared two strategies for
+finding near-periodic solutions (return errors below a threshold of
+$1.0$--$2.0$ in position):
+\begin{itemize}
+\item \textbf{Random search:} uniform sampling of initial conditions
+  $(v_1, v_2) \in [-1,1]^2$.
+\item \textbf{Nobility-guided search:} generate $\Gamma(2)$ elements
+  of word length $2$--$8$, rank by CF nobility, and focus numerical
+  integration around the most noble candidates.
+\end{itemize}
+In a preliminary experiment (200 trials), the nobility-guided search
+found approximately twice as many near-periodic orbits as random
+search at loose return-error thresholds ($1.0$--$2.0$).  At the
+stricter threshold of~$0.5$, the advantage narrowed to a factor
+of~${\sim}\!1.06$, suggesting nobility provides coarse guidance
+toward the right region of phase space but does not substitute for
+fine numerical refinement.
+
+\subsection{Nobility as a microsecond screening tool}
+
+Computing CF nobility requires only integer matrix multiplication
+and exact CF expansion via the quadratic-surd algorithm (microseconds).
+In contrast, computing braid entropy from a physical trajectory
+requires hours of numerical integration. At $\AUC = 0.980$, the
+nobility filter correctly ranks 98\% of orbit pairs by relative
+braid entropy, eliminating the need to numerically integrate
+${\sim}\!70\%$ of high-entropy candidates.
+
+We propose the following screening pipeline for large-scale orbit
+discovery: (1)~generate candidate braid words of target complexity;
+(2)~compute nobility via exact surd CF (cost: microseconds per
+candidate); (3)~rank candidates and apply a nobility threshold;
+(4)~invest in full numerical integration only for candidates
+passing the threshold.
+
+The screening tool's effectiveness depends critically on exact surd
+computation: with float64 arithmetic, $\AUC$ drops to $0.853$.
+
+
+%% ================================================================
+\section{Discussion}\label{sec:discussion}
+%% ================================================================
+
+\subsection{What this means}
+
+The central finding is that the classical
+$F_2 \to \Gamma(2) \to \text{CF}$ correspondence, applied
+systematically, reveals a strong and quantifiable relationship
+between CF structure and orbital complexity. The figure-eight
+anchors the picture at one extreme: it maps to the golden ratio
+with the simplest CF. More complex orbits map to less noble fixed
+points.
+
+\subsection{Connection to KAM theory}
+
+The qualitative picture is consistent with KAM theory
+(Kolmogorov~\cite{Kolmogorov1954}, Arnold~\cite{Arnold1963},
+Moser~\cite{Moser1962}): orbits whose frequency ratios are
+well-approximated by rationals (resonant, low nobility) are less
+stable, while those with noble frequency ratios resist
+resonance-driven instability.  Our quantitative finding---that
+nobility explains significant variance in braid entropy even after
+controlling for word length---suggests that the CF structure encodes
+information beyond mere orbit complexity.
+
+However, \emph{braid entropy is not the same as dynamical
+instability}.  The braid entropy measures topological complexity of
+the symbolic coding; the dynamical Lyapunov exponent measures
+divergence of nearby physical trajectories.  Confirming the physical
+KAM connection requires Floquet-multiplier computations that the
+current catalog does not provide.
+
+\subsection{Limitations}
+
+\begin{enumerate}
+\item \textbf{Algebraic vs.\ physical correlations.} The braid
+  entropy is computed from the same matrix as the CF properties.
+  Strong correlations are therefore partly algebraic.
+
+\item \textbf{No physical stability data.} The catalog provides
+  orbital periods but not Floquet multipliers or Lyapunov exponents.
+
+\item \textbf{Gap predictions are not validated.} Direct $N$-body
+  integration of top predictions found 0 strictly periodic orbits.
+
+\item \textbf{Non-standard ``nobility'' measure.} Our continuous
+  $\nu \in [0,1]$ is highly correlated ($|\rho| = 0.994$) with the
+  CF geometric mean.
+
+\item \textbf{Catalog dependence.} All results depend on the
+  correctness of the Li--Liao catalog's word assignments.
+\end{enumerate}
+
+\subsection{Future directions}
+
+\begin{enumerate}
+\item Compute Floquet multipliers for the Li--Liao catalog and test
+  whether CF nobility predicts linear stability.
+\item Extend to unequal-mass three-body problems.
+\item Correlate Hamilton's action with CF properties.
+\item Target the empty cells in the periodic table with focused
+  numerical searches.
+\item Investigate analogous structure for the $N$-body problem
+  ($N > 3$) in higher braid groups.
+\end{enumerate}
+
+
+%% ================================================================
+\section{Conclusion}\label{sec:conclusion}
+%% ================================================================
+
+The classical isomorphism $F_2 \cong \Gamma(2)$ provides a concrete
+bridge between three-body periodic orbits and number theory.  The
+figure-eight orbit maps exactly to the golden ratio~$\varphi =
+(1+\sqrt{5})/2$, with the fixed-point equation $z^2 - z - 1 = 0$
+forced by the Fibonacci structure of the commutator matrix
+$\bigl(\begin{smallmatrix}5&-8\\-8&13\end{smallmatrix}\bigr)$---not
+a numerical coincidence.  Across all 695 orbits in the Li--Liao
+catalog (691 with exact CF periods), continued-fraction properties
+computed with exact quadratic-surd arithmetic correlate strongly with
+braid entropy (partial $\rho = -0.890$, $\AUC = 0.980$ on a held-out
+test set of 195 orbits from a 500/195 train/test split), survive
+permutation testing, and organize
+the catalog into a $9 \times 8$ periodic table (51 populated cells)
+that reveals structure orthogonal to topological family
+classification.
+
+The golden ratio's appearance is the algebraic shadow of the
+simplest commutator in~$\Gamma(2)$, projected through the Farey
+tessellation.  Its quantitative reach across 695 orbits---predicting
+braid entropy (a topological, not physical, measure) at $\AUC = 0.98$
+from continued fractions alone on a held-out test set,
+organizing the full catalog into a periodic table that reveals
+structure invisible to topological classification, and identifying
+empty cells as candidates for undiscovered orbits---suggests that
+the number theory of quadratic irrationals has more to say about
+celestial mechanics than has yet been fully explored.  Whether these
+algebraic correlations extend to physical dynamical stability remains
+an open question requiring Floquet multiplier data.
+
+
+%% ================================================================
+\section*{Acknowledgments}
+%% ================================================================
+
+We thank Xiaoming Li and Shijun Liao for making their three-body
+periodic orbit catalog publicly available, and Eiko Kin, Hidetoshi
+Nakamura, and Mitsuhiko Ogawa for the foundational work connecting
+three-body braids to the Stern--Brocot tree.
+
+
+\section*{Data and Code Availability}
+
+The Li--Liao three-body periodic orbit catalog is available at
+\url{https://github.com/sjtu-liao/three-body}. Our computational
+pipeline and all 695 orbit CF decompositions will be made available
+at \url{https://github.com/SaarShai/Primes-Equispaced} upon
+publication.
+
+
+%% ================================================================
+\begin{thebibliography}{99}
+
+\bibitem{Arnold1963}
+V.~I.~Arnold,
+``Small denominators and problems of stability of motion in
+classical and celestial mechanics,''
+\emph{Russian Math.\ Surveys}, \textbf{18}(6):85--191, 1963.
+
+\bibitem{ChencinerMontgomery2000}
+A.~Chenciner and R.~Montgomery,
+``A remarkable periodic solution of the three-body problem in the
+case of equal masses,''
+\emph{Ann.\ Math.}, \textbf{152}(3):881--901, 2000.
+
+\bibitem{KNO2023}
+E.~Kin, H.~Nakamura, and M.~Ogawa,
+``Lissajous 3-braids,''
+\emph{J.\ Math.\ Soc.\ Japan}, \textbf{75}(1):195--228, 2023.
+
+\bibitem{Kolmogorov1954}
+A.~N.~Kolmogorov,
+``On the conservation of conditionally periodic motions under small
+perturbation of the Hamiltonian,''
+\emph{Dokl.\ Akad.\ Nauk SSSR}, \textbf{98}:527--530, 1954.
+
+\bibitem{LiLiao2017}
+X.~Li and S.~Liao,
+``More than six hundred new families of Newtonian periodic planar
+collisionless three-body orbits,''
+\emph{Sci.\ China Phys.\ Mech.\ Astron.},
+\textbf{60}(12):129511, 2017.
+
+\bibitem{LiLiao2019}
+X.~Li and S.~Liao,
+``Collisionless periodic orbits in the free-fall three-body
+problem,''
+\emph{New Astronomy}, \textbf{70}:22--26, 2019.
+
+\bibitem{Montgomery1998}
+R.~Montgomery,
+``The $N$-body problem, the braid group, and action-minimizing
+periodic solutions,''
+\emph{Nonlinearity}, \textbf{11}(2):363, 1998.
+
+\bibitem{Moore1993}
+C.~Moore,
+``Braids in classical dynamics,''
+\emph{Phys.\ Rev.\ Lett.}, \textbf{70}(24):3675--3679, 1993.
+
+\bibitem{Moser1962}
+J.~Moser,
+``On invariant curves of area-preserving mappings of an annulus,''
+\emph{Nachr.\ Akad.\ Wiss.\ G\"ottingen}, II:1--20, 1962.
+
+\bibitem{Series1985}
+C.~Series,
+``The modular surface and continued fractions,''
+\emph{J.\ London Math.\ Soc.}, \textbf{31}(1):69--80, 1985.
+
+\bibitem{Suvakov2013}
+M.~\v{S}uvakov and V.~Dmitra\v{s}inovi\'{c},
+``Three classes of Newtonian three-body planar periodic orbits,''
+\emph{Phys.\ Rev.\ Lett.}, \textbf{110}(11):114301, 2013.
+
+\end{thebibliography}
+
+\appendix
+
+\section{Exact Quadratic-Surd CF Algorithm}\label{app:surd}
+
+For a fixed point $z = (P + q\sqrt{D})/Q$ with integers
+$P, q, Q, D$ (where $D$ is not a perfect square), the CF is
+computed using exact integer quadratic surd representation, with
+\texttt{mpmath} at 100 digits used only for floor evaluation:
+\begin{enumerate}
+\item Compute $a_n = \lfloor z_n \rfloor$ using \texttt{mpmath}
+  at 100-digit precision for the floor of the surd.
+\item Update $z_{n+1} = 1/(z_n - a_n)$, yielding a new quadratic
+  surd with integer coefficients via denominator rationalization
+  (this step is exact integer arithmetic).
+\item Record the state $(P_n, q_n, Q_n)$; the first repetition
+  detects the exact period.
+\end{enumerate}
+The surd tracking is exact; only the floor computation uses
+floating-point (at 100 digits, far beyond the precision needed).
+This eliminates the CF corruption that affected 17.7\% of orbits
+in naive float64 implementations.
+
+\end{document}
