@@ -172,3 +172,8 @@ The "422 Lean 4 results" likely refer to the formalization of basic properties o
 **Final synthesis:** The spectroscope is not just a heuristic; it is a discrete sampling of the spectral density of the L-function. By aligning the discrete sum with the theoretical explicit formula, we validate the arithmetic properties of $E$. The detection of the zeros confirms the underlying modular structure, which is the cornerstone of the BSD conjecture.
 
 (End of Detailed Analysis)
+CRITICAL ERROR — WRONG CURVE
+
+This file analyzed y²=x³-x (conductor 32, CM by Z[i]) NOT 37a1 (y²+y=x³-x, conductor 37).
+All a_p values in this file are for the WRONG curve. DO NOT USE.
+Correct 37a1 a_p: a_2=-2,a_3=-3,a_5=-2,a_7=-1,a_11=-5,a_13=-2 — see NDC_EC_UNIVERSALITY_COMPUTATION.md

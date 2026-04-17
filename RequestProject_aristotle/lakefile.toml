@@ -1,5 +1,5 @@
 name = "RequestProject"
-defaultTargets = ["aristotle_results_new", "AbstractCauchySchwarz", "BridgeIdentity", "CWBound", "CauchySchwarzBound", "CharacterBridge", "CrossTermPositive", "DeltaCosine", "DenominatorSum", "DisplacementShift", "FourierModeExploration", "GeneralInjection", "InjectionPrinciple", "MediantMinimality", "MertensGrowth", "MulPPerm", "PermSum", "PermutationIdentity", "PrimeCircle", "SignTheorem", "SquareSumIdentity", "StrictPositivity", "SubGapPermutation"]
+defaultTargets = ["aristotle_results_new", "AbstractCauchySchwarz", "BridgeIdentity", "CWBound", "CauchySchwarzBound", "CharacterBridge", "CrossTermPositive", "DeltaCosine", "DenominatorSum", "DisplacementShift", "FourierModeExploration", "GeneralInjection", "InjectionPrinciple", "LogPrimeQLinear", "MediantMinimality", "MertensGrowth", "MulPPerm", "PermSum", "PermutationIdentity", "PrimeCircle", "SignTheorem", "SquareSumIdentity", "StrictPositivity", "SubGapPermutation"]
 
 [[require]]
 name = "mathlib"
@@ -57,6 +57,10 @@ globs = ["GeneralInjection"]
 [[lean_lib]]
 name = "InjectionPrinciple"
 globs = ["InjectionPrinciple"]
+
+[[lean_lib]]
+name = "LogPrimeQLinear"
+globs = ["LogPrimeQLinear"]
 
 [[lean_lib]]
 name = "MediantMinimality"

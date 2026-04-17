@@ -32,3 +32,6 @@ Tue Apr  7 20:32:01 BST 2026 overnight-9hr-relaunch PID=11493
 Tue Apr  7 21:43:12 BST 2026 phase5 PID=17532
 Tue Apr  7 21:44:00 BST 2026 Literature research tasks launched
 Wed Apr  8 05:37:37 BST 2026 research-sprint PID=50162
+turan_stress_test.py PID=20123
+amplitude_matching.py PID=20318
+13986 koyama_dk_computation.py

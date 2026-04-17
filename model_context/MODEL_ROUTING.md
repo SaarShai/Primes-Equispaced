@@ -48,6 +48,17 @@
 - DON'T re-send failed tasks verbatim — reformulate first
 - DON'T auto-generate tasks — always curate based on result review
 
+## DEEPSEEK FABRICATION GUARD (added 2026-04-13 — MANDATORY)
+Deepseek-r1:32b FABRICATES when asked to "derive" algebraic identities from scratch.
+CONFIRMED FABRICATIONS:
+  - "ΔW(p) = (p-1)/2·M(p)" — produced TWICE unprompted. FALSE at all tested primes.
+  - "R₂ ≥ 0 manifestly" — FALSE. R₂(197) = -2.831e-06 < 0 (locally verified).
+ROOT CAUSE: deepseek pattern-matches to "plausible" boxed formula when asked to derive.
+FIX: anti-fabrication rules now injected via remote_ollama_deepseek.sh system prompt.
+USAGE RULE: DON'T ask deepseek to "derive" ΔW = f(M(p)). DO ask it to VERIFY numerically.
+USAGE RULE: DON'T ask deepseek to "prove R₂ ≥ 0". DO ask it to compute R₂(p) for p≤300.
+USAGE RULE: Always give deepseek the counterexample IN THE PROMPT when known.
+
 ## Codex Special Rules
 - codex:codex-rescue = THINKING ONLY
 - Cannot write to ~/Desktop/Farey-Local/ (sandbox)

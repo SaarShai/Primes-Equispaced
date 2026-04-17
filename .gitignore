@@ -17,3 +17,30 @@ experiments/wobble_100k_output.log
 gh.zip
 gh_2.88.1_macOS_arm64/
 *.tar.gz
+
+# Session state / runtime noise
+M5MAX_ENABLED
+M5MAX_*PAUSED*.txt
+M5MAX_*BACKUP*.txt
+M1MAX_*BACKUP*.txt
+*QUEUE_REFILL_LOG*.txt
+TRACKED_PROCESSES.txt
+
+# Aristotle transient submissions (re-uploaded each run)
+aristotle_result/
+aristotle_result_*/
+aristotle_results/
+aristotle_results_*/
+*-aristotle/
+*-aristotle.tar.gz
+
+# Separate repos (not submodule)
+batch-spectroscope/
+
+# Prism handoff archives
+prism_handoff.zip
+
+# Other transient
+tmp_aristotle*
+*.bak
+*.bak_*

@@ -54,24 +54,33 @@ We study how the uniformity of the Farey sequence changes
 each time a new integer is included---a per-step perspective
 that appears not to have been previously investigated.
 Primes and composites play opposite roles: composites
-improve uniformity while primes disrupt it, with the
-direction of each prime's effect controlled by the
-Mertens function.
+improve uniformity while primes disrupt it.
 
-We prove exact algebraic identities for the per-step
-discrepancy change, including a four-term decomposition,
-an injection principle showing each new fraction enters
-a distinct gap, and a dominance result for the
-fraction~$1/p$.  These identities reveal that the sign
-of the prime disruption correlates strongly ($r = 0.77$)
-with the leading zero of the Riemann zeta function,
-connecting Farey geometry to the Chebyshev bias framework
-of Rubinstein and Sarnak.
+\textbf{Proved results.}
+We establish exact algebraic identities for the per-step
+change~$\Delta W(p)$: a four-term decomposition into dilution,
+cross, shift-squared, and new-fraction terms; an injection
+principle showing each new prime fraction enters a distinct
+gap; a dominance result for the fraction~$1/p$; and a
+near-cancellation theorem showing the dilution and new-fraction
+terms are equal to order~$O(1/p)$, so the net wobble change
+is controlled by the cross and shift-squared terms alone.
+All identities are formally verified in Lean~4
+(441~results across 31~files; the Bridge Identity,
+Injection Principle, four-term decomposition, and
+Displacement-Shift identity are fully proved with
+zero~\texttt{sorry} in their files).
 
+\textbf{Computational observations.}
+The sign of~$\Delta W(p)$ correlates ($r = 0.77$) with the
+leading Riemann zero via the Mertens function and the
+Chebyshev bias framework of Rubinstein--Sarnak.
 A spectral function built from the per-step data detects
-the first three nontrivial zeta zeros from Farey
-discrepancy data alone.  All core identities are formally
-verified in Lean~4 (422~results, zero~\texttt{sorry}).
+the first three nontrivial zeta zeros from Farey discrepancy
+data alone.  A certified counterexample at $p = 92{,}173$
+($M(p) = -2$, $\Delta W(p) > 0$) shows the na\"ive sign
+conjecture fails; zero counterexamples are found among primes
+with $M(p) \le -3$ up to $p = 100{,}000$.
 \end{abstract}
 
 \medskip
@@ -110,6 +119,21 @@ $f_0 < f_1 < \cdots < f_{n-1}$, the \emph{squared rank deviation}
 \begin{equation}
   W(N) \;=\; \sum_{j=0}^{n-1} \left( f_j - \frac{j}{n} \right)^{\!2}.
 \end{equation}
+
+\begin{remark}[Natural normalization: $N \cdot W(N)$]
+Since $W(N) \to 0$ as $N \to \infty$, the rate of decay is the
+object of interest.  The Franel--Landau theorem states that RH
+is equivalent to $W(N) = O(N^{-1+\varepsilon})$ for every
+$\varepsilon > 0$, i.e., $N \cdot W(N) = O(N^\varepsilon)$.
+The quantity $N \cdot W(N)$ removes the built-in decay and
+isolates the true signal.  Computationally, $p \cdot W(p)$
+grows slowly from $\approx 0.28$ at $p=2$ to $\approx 0.56$
+at $p=113$ and $\approx 0.87$ at $p=2000$, so $W(N)$ decays
+strictly slower than $1/N$.  The precise growth rate of
+$N \cdot W(N)$---and whether it is $O(\log N)$,
+$O((\log N)^\alpha)$ for some $0 < \alpha < 1$, or
+something else---is an open problem even conditionally on RH.
+\end{remark}
 
 \begin{remark}[Interval vs.\ circle]
 The Farey sequence lives on the \emph{closed interval} $[0,1]$,
@@ -195,7 +219,19 @@ arcs) due to missing coprime numerators.}
 
 Despite decades of work on the Franel--Landau framework, the
 \emph{per-step} behavior---how $W$ changes when a single integer
-is appended---appears never to have been studied.  We define
+is appended---appears never to have been studied.
+Steinerberger~\cite{Steinerberger2019} constructs \emph{greedy}
+sequences on $[0,1]$ that minimize a logarithmic potential energy
+at each step, achieving discrepancy $D_N \lesssim (\log N)/\sqrt{N}$
+and conjecturally the Schmidt-optimal $O((\log N)/N)$.
+The Farey construction is fundamentally different: it is
+defined by arithmetic (coprimality), not by discrepancy
+minimization.  As we show, prime levels~$\F_p$ always insert
+new fractions at their mediant positions---the local geometric
+optimum within each gap---yet this can \emph{increase} global
+discrepancy.  This contrast illustrates why the per-step view
+is nontrivial: geometric optimality at the local level does not
+imply discrepancy minimization at the global level.  We define
 \begin{equation}
   \Delta W(N) \;=\; W(N{-}1) - W(N),
 \end{equation}
@@ -447,22 +483,61 @@ unit circle.  Their vector sum (red arrow) equals $M(p) + 2$.
 
 \subsection{The Displacement--Cosine Identity}
 
-\begin{observation}[Displacement--Cosine Identity]
-For every prime $p \ge 2$,
+\begin{theorem}[Displacement--Cosine Identity]\label{thm:disp-cos}
+For every odd prime $p$,
 \begin{equation}
   \sum_{f \in \F_{p-1}} D(f) \cdot \cos(2\pi p f)
   \;=\; -1 - \frac{M(p)}{2}.
 \end{equation}
-\end{observation}
+\end{theorem}
 
-\noindent\textbf{Evidence.}\quad
-This holds unconditionally: the quadratic
-$2(r-2)(r-(q+1)/2)$ has roots at $r=2$ and $r=(q+1)/2$,
-and since the leading coefficient is positive, the function
-is $\le 0$ on $[2,(q+1)/2] \supseteq [2,(q-1)/2]$.  A proof via the Walfisz--Ramanujan identity
-$\sum D(f)\,e^{2\pi ikf} = -\tfrac{1}{2}\sum_{d|k} d\,M(\lfloor N/d\rfloor)$
-should yield the result for $N=p{-}1$, $k=p$, but the details have
-not been fully verified.  See~\cite{Walfisz1963}.
+\begin{proof}
+Partition $\F_{p-1}$ into four parts.
+
+\smallskip\noindent\textit{Boundary $f=0$.}\quad
+$D(0) = 0$, so the contribution is~$0$.
+
+\smallskip\noindent\textit{Boundary $f=1$.}\quad
+$D(1) = (n-1) - n \cdot 1 = -1$ and $\cos(2\pi p) = 1$,
+contributing~$-1$.
+
+\smallskip\noindent\textit{Midpoint $f = 1/2$.}\quad
+Since $n = |\F_{p-1}|$ is always odd (the symmetry
+$f \leftrightarrow 1-f$ pairs all non-boundary, non-midpoint
+elements, so $n = 2k + 3$ for some $k \ge 0$),
+$\operatorname{rank}(1/2) = (n-1)/2$ and
+$D(1/2) = (n-1)/2 - n/2 = -1/2$.
+For odd prime $p$, $\cos(\pi p) = -1$, contributing
+$(-1/2)(-1) = 1/2$.
+
+\smallskip\noindent\textit{Interior pairs $\{f,\, 1-f\}$ with $f \in (0,1/2)$.}\quad
+By the antisymmetry proved in the cross-term section
+(Theorem~\ref{thm:cross-term}), $D(f) + D(1-f) = -1$.
+Since $\cos(2\pi p(1-f)) = \cos(2\pi p - 2\pi pf) = \cos(2\pi pf)$
+(integer period), each pair contributes
+$[D(f) + D(1-f)] \cdot \cos(2\pi pf) = -\cos(2\pi pf)$.
+
+\smallskip\noindent Summing all parts:
+\begin{equation*}
+  \sum_{f \in \F_{p-1}} D(f)\cos(2\pi pf)
+  = 0 + \tfrac{1}{2} + (-1) - S
+  = -\tfrac{1}{2} - S,
+\end{equation*}
+where $S = \sum_{f \in (0,1/2) \cap \F_{p-1}} \cos(2\pi pf)$.
+
+\smallskip\noindent\textit{Evaluating $S$ via the Bridge Identity.}\quad
+Taking the real part of the Bridge Identity
+(Theorem~\ref{thm:bridge}):
+$\sum_{f \in \F_{p-1}} \cos(2\pi pf) = M(p) + 2$.
+Decomposing this sum as $1$ (from $f=0$) $+$ $(-1)$ (from
+$f = 1/2$, since $\cos(\pi p) = -1$) $+$ $1$ (from $f=1$)
+$+$ $2S$ (pairing interior fractions), we get
+$1 - 1 + 1 + 2S = M(p) + 2$, hence
+$S = (M(p)+1)/2$.
+
+\smallskip\noindent Substituting:
+$-1/2 - S = -1/2 - (M(p)+1)/2 = -1 - M(p)/2$.
+\end{proof}
 
 \begin{remark}
 This is the keystone identity: the Fourier coefficient of the
@@ -513,14 +588,16 @@ and in particular $\delta(1-f)^2 = \delta(f)^2$.
 
 \medskip
 \noindent\textit{Pairing the interior.}
-For each interior pair $\{f, 1-f\}$ (each such pair is distinct
-since $1/2 \notin \F_{p-1}$ for $p$ odd):
+Note that $\delta(1/2) = 1/2 - \{p/2\} = 0$ for odd~$p$
+(since $p/2 = k + 1/2$ has fractional part $1/2$),
+so the midpoint $1/2 \in \F_{p-1}$ contributes~$0$.
+For each interior pair $\{f, 1-f\}$ with $f \in (0, 1/2)$:
 \begin{equation*}
 D(f)\delta(f)^2 + D(1-f)\delta(1-f)^2
 = \bigl[D(f) + D(1-f)\bigr]\delta(f)^2 = -\delta(f)^2.
 \end{equation*}
-Summing over all $\frac{n-2}{2}$ interior pairs plus the
-boundary contribution $D(1)\delta(1)^2 = -1$:
+Summing over the $\frac{n-3}{2}$ such pairs (excluding the midpoint)
+plus the boundary contribution $D(1)\delta(1)^2 = -1$:
 \begin{equation*}
 \Sigma = -\sum_{\substack{f \in (0,1)}} \delta(f)^2\cdot\tfrac{1}{2} + (-1).
 \end{equation*}
@@ -876,6 +953,43 @@ distinguish it from the rank discrepancy function~$D(f)$.
 Thus $\Delta W(p) \le 0$ (wobble worsens) if and only if
 $B + C + \mathcal{D} \ge A$.
 
+\begin{remark}[Structure of the dilution term]
+The term $A = W(p-1) \cdot (n'^2 - n^2)/n^2$ is not an
+independent quantity: it equals $W(p-1)$ scaled by a purely
+geometric factor.  For large~$p$, since $n'/n = |\F_p|/|\F_{p-1}|
+\approx p/(p-1)$, we have $n'^2/n^2 - 1 \approx 2/p$, so
+$A \approx 2W(p-1)/p$.  The key theorem~$\mathcal{D}/A =
+1 + O(1/p)$ therefore says: the new-fraction discrepancy
+nearly cancels the dilution.  Substituting into the
+decomposition, the two $W(p-1)$-dependent terms almost cancel:
+\[
+  n'^2\,\Delta W(p) \approx -(B + C).
+\]
+The net per-step change is thus determined by $B$ and $C$
+alone---sums over \emph{existing} fractions' shifts---with
+no dependence on the global state $W(p-1)$.  One could state
+the main result directly as $n'^2\,\Delta W(p) \approx -(B+C)$
+without naming $A$; the term~$A$ is retained because the
+theorem $|\mathcal{D}/A - 1| = O(1/p)$ is its cleanest statement.
+\end{remark}
+
+\begin{remark}[Two-layer structure of the decomposition]
+The terms $A$, $B$, $C$ in the decomposition
+$\Delta W(p) = A - B - C - \mathcal{D}$ are defined
+entirely from the existing fractions $\F_{p-1}$: they
+involve only the current displacements $D_{\F_{p-1}}(f)$
+and the shifts $\delta(f) = f - \{pf\}$.  No primality
+of~$p$ is required for these terms individually.  The
+connection to the arithmetic of the Riemann zeros enters
+exclusively through~$\mathcal{D}$: the new fractions
+$\{k/p : 1 \le k < p\}$ are equispaced precisely because
+$\varphi(p) = p - 1$ (primality), and their squared
+displacements in $\F_p$ carry the spectroscopic signal.
+This separation---Farey-intrinsic identity plus arithmetic
+input from primality---is what allows the per-step view
+to go beyond a restatement of the primes-to-zeros chain.
+\end{remark}
+
 Computation through $p = 100{,}000$ reveals a striking near-cancellation:
 
 \begin{observation}[Near-cancellation]
@@ -931,8 +1045,13 @@ $|M(p)|$ is large, within-denominator correlations become
 positive, breaking the cancellation and explaining why
 $|R|$ tracks $|M(p)|$.  Formalizing this cancellation
 structure---perhaps via character sum techniques and the
-Weil bound for Dedekind sums---is a
-candidate approach.
+Weil bound for Dedekind sums---is a candidate approach.
+The reformulation $B + C = (-2/{n'}^2)\sum R(f)\,\delta(f)$
+may connect to the theory of averaged Dedekind sums over
+Farey fractions developed by
+Minelli--Sourmelidis--Technau~\cite{Minelli2023a,Minelli2023b},
+whose results on restricted averages over $(0,1/2)$ are
+directly analogous to our per-denominator decomposition.
 
 The Permutation Square-Sum Identity
 (Lemma~\ref{thm:perm-sq}) makes this connection
@@ -972,15 +1091,18 @@ new way.
 Key supporting results have been formally verified in Lean~4
 using the Mathlib library, with the Aristotle automated theorem
 prover~\cite{Aristotle2025} generating proof strategies.
-The formalization spans fifteen Lean~4 files containing 258
-theorems, lemmas, and definitions, with
-zero~\texttt{sorry}.  (The universal Sign Pattern conjecture,
-\texttt{sign\_theorem\_conj}, was disproved at $p = 243{,}799$
-and has been removed from the formalization; the bounded-range
-version for $p \le 140$ remains fully proved via
-\texttt{native\_decide}.)
-All fifteen files compile with no axiom
-violations.  The files are:
+The formalization spans 31~Lean~4 files containing 441~named
+results (theorems, lemmas, definitions, and instances).
+The core identity files---Bridge Identity, Injection Principle,
+Displacement-Shift, Strict Positivity, and four-term
+decomposition---compile with zero~\texttt{sorry} and no axiom
+violations.  Two files contain~\texttt{sorry} in secondary
+results: \texttt{MediantMinimality.lean} (the classical Farey
+gap upper bound, used only for background) and
+\texttt{SignTheorem.lean} (the universal sign conjecture,
+which is retained as a placeholder for the disproved statement
+at $p = 243{,}799$; the bounded-range version
+$p \le 140$ is fully proved via \texttt{native\_decide}).  The files are:
 \begin{itemize}
   \item \texttt{PrimeCircle.lean} (14 results): Farey cardinality,
     Ramanujan sums, wobble decomposition.
@@ -1762,6 +1884,7 @@ Claim & Status & Method \\
 \midrule
 Bridge Identity & Proved & Algebraic + Lean~4 \\
 Universal Exponential Sum & Proved & Algebraic + Lean~4 \\
+Displacement-Cosine Identity & Proved & Bridge Identity + antisymmetry \\
 Four-term decomposition & Proved & Algebraic + Lean~4 \\
 $D(1/p) = 1 - |\F_p|/p$ & Proved & Elementary \\
 $R(p) > 0$ for $p \le 106{,}649$ & Computational & C program \\
@@ -1842,7 +1965,25 @@ modular structure of~$\delta$.
     problem of question~2.
 
   
-% [Open Questions 6-10 moved to supplementary]
+  \item \textbf{Growth rate of $N \cdot W(N)$.}
+    The Franel--Landau theorem gives $W(N) = O(N^{-1+\varepsilon})$
+    under RH, but the precise sub-polynomial rate is unknown.
+    Computationally, $N \cdot W(N)$ grows from $\approx 0.28$ at
+    $N = 2$ to $\approx 0.87$ at $N = 2000$; the ratio
+    $N \cdot W(N) / \log N$ decreases from $0.119$ to $0.086$ over
+    the same range, not converging to a constant.  What is the
+    true asymptotic of $W(N)$---unconditionally and under RH?
+
+  \item \textbf{Steinerberger optimality.}
+    Steinerberger~\cite{Steinerberger2019} conjectures that greedily
+    constructed sequences achieve discrepancy $O((\log N)/N)$,
+    matching Schmidt's lower bound.  The Farey sequence is not
+    greedy, yet the same rate $W(N) \sim C (\log N)/N$ is suggested
+    by data (though not confirmed).  Is Farey discrepancy
+    asymptotically Schmidt-optimal, despite being arithmetically
+    (not greedily) defined?
+
+% [Open Questions moved to supplementary]
 \end{enumerate}
 
 
@@ -2000,6 +2141,24 @@ R.~Tom\'as~Garc\'ia,
 R.~Tom\'as~Garc\'ia,
 ``Improved rank formulas for Farey fractions,''
 \emph{Integers}, vol.~24, art.~y63, 2024.
+
+\bibitem{Steinerberger2019}
+S.~Steinerberger,
+``Dynamically defined sequences with small discrepancy,''
+arXiv:1902.03269, 2019.
+
+\bibitem{Minelli2023a}
+P.~Minelli, A.~Sourmelidis, and N.~Technau,
+``Bias in the number of steps in the Euclidean algorithm
+and a conjecture of Ito on Dedekind sums,''
+\emph{Mathematische Annalen} \textbf{387} (2023), 291--320.
+arXiv:2206.03214.
+
+\bibitem{Minelli2023b}
+P.~Minelli, A.~Sourmelidis, and N.~Technau,
+``On restricted averages of Dedekind sums,''
+\emph{International Mathematics Research Notices} (2024).
+arXiv:2301.00441.
 
 \end{thebibliography}
 

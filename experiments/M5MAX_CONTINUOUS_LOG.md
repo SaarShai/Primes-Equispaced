@@ -73,3 +73,481 @@ Fri Apr 10 05:36:25 BST 2026 Starting: M5_FIGURE_EIGHT_OTHER_ORBITS [qwen3.5:35b
 Fri Apr 10 05:39:51 BST 2026 Done: M5_FIGURE_EIGHT_OTHER_ORBITS (   15457 bytes)
 Fri Apr 10 05:39:56 BST 2026 Starting: M5_DS_CHOWLA_ANALYTICAL [deepseek-r1:32b]
 Fri Apr 10 05:46:42 BST 2026 Done: M5_DS_CHOWLA_ANALYTICAL (    2900 bytes)
+=== M5 Max Continuous Runner started Sat Apr 11 05:35:51 BST 2026 PID=52752 ===
+Sat Apr 11 05:35:51 BST 2026 Starting: M5_DS_TURAN_INDEPENDENT_VERIFICATION [deepseek-r1:32b]
+Sat Apr 11 05:38:19 BST 2026 Done: M5_DS_TURAN_INDEPENDENT_VERIFICATION (    2353 bytes)
+Sat Apr 11 05:38:24 BST 2026 Starting: M5_DS_LOJASIEWICZ_EXPONENT [deepseek-r1:32b]
+Sat Apr 11 05:58:06 BST 2026 Done: M5_DS_LOJASIEWICZ_EXPONENT (    1473 bytes)
+Sat Apr 11 05:58:11 BST 2026 Starting: M5_TURAN_LFUNC_EXTENSION [qwen3.5:35b]
+Sat Apr 11 06:01:36 BST 2026 Done: M5_TURAN_LFUNC_EXTENSION (   19677 bytes)
+Sat Apr 11 06:01:41 BST 2026 Starting: M5_TURAN_EXCEPTIONAL_SET_BOUND [qwen3.5:35b]
+Sat Apr 11 06:04:49 BST 2026 Done: M5_TURAN_EXCEPTIONAL_SET_BOUND (   21537 bytes)
+Sat Apr 11 06:04:54 BST 2026 Starting: M5_TURAN_SNR_QUANTIFICATION [qwen3.5:35b]
+Sat Apr 11 06:09:15 BST 2026 Done: M5_TURAN_SNR_QUANTIFICATION (   18844 bytes)
+Sat Apr 11 06:09:20 BST 2026 Starting: M5_GEMMA_TURAN_PRIOR_ART [gemma4:26b]
+Sat Apr 11 06:10:36 BST 2026 Done: M5_GEMMA_TURAN_PRIOR_ART (   13101 bytes)
+Sat Apr 11 06:10:41 BST 2026 Starting: M5_GEMMA_IMPLICATIONS_SURVEY [gemma4:26b]
+Sat Apr 11 06:11:49 BST 2026 Done: M5_GEMMA_IMPLICATIONS_SURVEY (   12057 bytes)
+Sat Apr 11 06:11:54 BST 2026 Starting: M5_GEMMA_CLASS_NUMBER_VIA_TURAN [gemma4:26b]
+Sat Apr 11 06:13:01 BST 2026 Done: M5_GEMMA_CLASS_NUMBER_VIA_TURAN (   11621 bytes)
+Sat Apr 11 06:13:06 BST 2026 Starting: M5_PAPER_C_TURAN_SECTION_DRAFT [qwen3.5:35b]
+Sat Apr 11 06:15:32 BST 2026 Done: M5_PAPER_C_TURAN_SECTION_DRAFT (   15863 bytes)
+Sat Apr 11 06:15:37 BST 2026 Starting: M5_DS_STRENGTHEN_TO_ALL_ZEROS [deepseek-r1:32b]
+Sat Apr 11 06:18:36 BST 2026 Done: M5_DS_STRENGTHEN_TO_ALL_ZEROS (    2928 bytes)
+Sat Apr 11 06:33:41 BST 2026 Starting: M5_EXTENDED_CERTIFICATE_DESIGN [qwen3.5:35b]
+Sat Apr 11 06:38:25 BST 2026 Done: M5_EXTENDED_CERTIFICATE_DESIGN (   37222 bytes)
+Sat Apr 11 07:58:30 BST 2026 Starting: M5_DS_DOUBLE_OBSTRUCTION_PROOF [deepseek-r1:32b]
+Sat Apr 11 08:01:44 BST 2026 Done: M5_DS_DOUBLE_OBSTRUCTION_PROOF (    3500 bytes)
+Sat Apr 11 08:01:49 BST 2026 Starting: M5_GAUSS_CIRCLE_SPECTROSCOPE_COMPUTE [qwen3.5:35b]
+Sat Apr 11 08:04:22 BST 2026 Done: M5_GAUSS_CIRCLE_SPECTROSCOPE_COMPUTE (   15884 bytes)
+Sat Apr 11 08:04:27 BST 2026 Starting: M5_PARTITION_SPECTROSCOPE_COMPUTE [qwen3.5:35b]
+Sat Apr 11 08:07:09 BST 2026 Done: M5_PARTITION_SPECTROSCOPE_COMPUTE (   21011 bytes)
+Sat Apr 11 08:07:14 BST 2026 Starting: M5_DS_K5_NONVANISHING_ATTEMPT [deepseek-r1:32b]
+Sat Apr 11 08:14:10 BST 2026 Done: M5_DS_K5_NONVANISHING_ATTEMPT (    2520 bytes)
+Sat Apr 11 08:14:15 BST 2026 Starting: M5_GEMMA_PERSTEP_LITERATURE [gemma4:26b]
+Sat Apr 11 08:15:13 BST 2026 Done: M5_GEMMA_PERSTEP_LITERATURE (   11241 bytes)
+Sat Apr 11 08:15:18 BST 2026 Starting: M5_GEMMA_ALMOST_PRIME_LITERATURE [gemma4:26b]
+Sat Apr 11 08:16:18 BST 2026 Done: M5_GEMMA_ALMOST_PRIME_LITERATURE (   11286 bytes)
+Sat Apr 11 08:16:23 BST 2026 Starting: M5_PARTITION_MOD5_SPECTROSCOPE [qwen3.5:35b]
+Sat Apr 11 08:19:00 BST 2026 Done: M5_PARTITION_MOD5_SPECTROSCOPE (   15773 bytes)
+=== M5 Max Continuous Runner started Sun Apr 12 20:04:27 BST 2026 PID=60530 ===
+Sun Apr 12 20:04:27 BST 2026 Starting: M5_DS_DRH_BRIDGE_QUANTITATIVE [deepseek-r1:32b]
+Sun Apr 12 20:06:17 BST 2026 Done: M5_DS_DRH_BRIDGE_QUANTITATIVE (    3907 bytes)
+Sun Apr 12 20:06:22 BST 2026 Starting: M5_GDPAC_GL2_MODULAR [qwen3.5:35b]
+Sun Apr 12 20:11:11 BST 2026 Done: M5_GDPAC_GL2_MODULAR (   37305 bytes)
+Sun Apr 12 20:11:16 BST 2026 Starting: M5_DS_DENSITY_ONE_GONEK [deepseek-r1:32b]
+Sun Apr 12 20:13:22 BST 2026 Done: M5_DS_DENSITY_ONE_GONEK (    1909 bytes)
+Sun Apr 12 20:13:28 BST 2026 Starting: M5_PERRON_ERROR_NUMERICAL [qwen3.5:35b]
+Sun Apr 12 20:17:06 BST 2026 Done: M5_PERRON_ERROR_NUMERICAL (   16077 bytes)
+Sun Apr 12 20:17:11 BST 2026 Starting: M5_GEMMA_PRIOR_ART_MOBIUS [gemma4:26b]
+Sun Apr 12 20:18:33 BST 2026 Done: M5_GEMMA_PRIOR_ART_MOBIUS (   13806 bytes)
+Sun Apr 12 20:18:38 BST 2026 Starting: M5_GEMMA_DRH_LITERATURE [gemma4:26b]
+Sun Apr 12 20:20:00 BST 2026 Done: M5_GEMMA_DRH_LITERATURE (   14464 bytes)
+Sun Apr 12 20:20:05 BST 2026 Starting: M5_PAPER_C_REMAINING_SECTIONS [qwen3.5:35b]
+Sun Apr 12 20:23:47 BST 2026 Done: M5_PAPER_C_REMAINING_SECTIONS (   27896 bytes)
+Sun Apr 12 20:23:52 BST 2026 Starting: M5_DS_K5_PHASE_ANALYSIS [deepseek-r1:32b]
+Sun Apr 12 20:26:43 BST 2026 Done: M5_DS_K5_PHASE_ANALYSIS (    2815 bytes)
+Sun Apr 12 21:16:48 BST 2026 Starting: M5_C5_NUMERICAL_ZEROS [qwen3.5:35b]
+Sun Apr 12 21:19:35 BST 2026 Done: M5_C5_NUMERICAL_ZEROS (   15995 bytes)
+Sun Apr 12 21:19:40 BST 2026 Starting: M5_DS_PERRON_CORRECTION_RIGOROUS [deepseek-r1:32b]
+Sun Apr 12 21:32:39 BST 2026 Done: M5_DS_PERRON_CORRECTION_RIGOROUS (    2645 bytes)
+Sun Apr 12 21:32:45 BST 2026 Starting: M5_PAPER_C_SECTION1_INTRO [qwen3.5:35b]
+Sun Apr 12 21:35:18 BST 2026 Done: M5_PAPER_C_SECTION1_INTRO (   17534 bytes)
+Sun Apr 12 21:35:23 BST 2026 Starting: M5_GEMMA_NOVELTY_DPAC_VERIFICATION [gemma4:26b]
+Sun Apr 12 21:36:30 BST 2026 Done: M5_GEMMA_NOVELTY_DPAC_VERIFICATION (   12225 bytes)
+Sun Apr 12 21:36:35 BST 2026 Starting: M5_KOYAMA_REPLY_DRAFT [qwen3.5:35b]
+Sun Apr 12 21:39:07 BST 2026 Done: M5_KOYAMA_REPLY_DRAFT (   16053 bytes)
+Mon Apr 13 00:24:12 BST 2026 Starting: M5_DS_C5_ACTUAL_MPMATH [deepseek-r1:32b]
+Mon Apr 13 00:26:19 BST 2026 Done: M5_DS_C5_ACTUAL_MPMATH (    2352 bytes)
+Mon Apr 13 00:26:24 BST 2026 Starting: M5_DENSITY_ONE_K_GROWS [qwen3.5:35b]
+Mon Apr 13 00:32:08 BST 2026 Done: M5_DENSITY_ONE_K_GROWS (   42908 bytes)
+Mon Apr 13 00:32:13 BST 2026 Starting: M5_FLOC_POLISH_FINAL [qwen3.5:35b]
+Mon Apr 13 00:34:48 BST 2026 Done: M5_FLOC_POLISH_FINAL (   15924 bytes)
+Mon Apr 13 00:34:53 BST 2026 Starting: M5_DS_K5_INTERVAL_CERT [deepseek-r1:32b]
+Mon Apr 13 00:36:49 BST 2026 Done: M5_DS_K5_INTERVAL_CERT (    2477 bytes)
+Mon Apr 13 02:26:54 BST 2026 Starting: M5_DS_DENSITY_ONE_K_POLYNOMIAL [deepseek-r1:32b]
+Mon Apr 13 02:29:05 BST 2026 Done: M5_DS_DENSITY_ONE_K_POLYNOMIAL (    1666 bytes)
+Mon Apr 13 02:29:10 BST 2026 Starting: M5_PERRON_LIMIT_DPAC_IMPLICATION [qwen3.5:35b]
+Mon Apr 13 02:31:29 BST 2026 Done: M5_PERRON_LIMIT_DPAC_IMPLICATION (   18631 bytes)
+Mon Apr 13 02:31:35 BST 2026 Starting: M5_SELBERG_MOLLIFIER_AT_ZEROS_LIT [gemma4:26b]
+Mon Apr 13 02:32:58 BST 2026 Done: M5_SELBERG_MOLLIFIER_AT_ZEROS_LIT (   14168 bytes)
+Mon Apr 13 02:33:03 BST 2026 Starting: M5_FLOC_FINAL_ABSTRACT [qwen3.5:35b]
+Mon Apr 13 02:36:34 BST 2026 Done: M5_FLOC_FINAL_ABSTRACT (   11743 bytes)
+Mon Apr 13 04:26:40 BST 2026 Starting: M5_DS_PERRON_LIMIT_NUMERICAL [deepseek-r1:32b]
+Mon Apr 13 04:28:38 BST 2026 Done: M5_DS_PERRON_LIMIT_NUMERICAL (    3784 bytes)
+Mon Apr 13 04:28:43 BST 2026 Starting: M5_PERRON_LIMIT_LITERATURE_SEARCH [gemma4:26b]
+Mon Apr 13 04:32:45 BST 2026 Done: M5_PERRON_LIMIT_LITERATURE_SEARCH (   11364 bytes)
+Mon Apr 13 04:32:50 BST 2026 Starting: M5_FLOC_ABSTRACT_CORRECTED [qwen3.5:35b]
+Mon Apr 13 04:35:09 BST 2026 Done: M5_FLOC_ABSTRACT_CORRECTED (   17226 bytes)
+Mon Apr 13 05:50:14 BST 2026 Starting: M5_FLOC_FINAL_CLEAN_ABSTRACT [qwen3.5:35b]
+Mon Apr 13 05:54:09 BST 2026 Done: M5_FLOC_FINAL_CLEAN_ABSTRACT (   12959 bytes)
+Mon Apr 13 05:54:14 BST 2026 Starting: M5_DS_PERRON_SIGN_RIGOROUS [deepseek-r1:32b]
+Mon Apr 13 06:07:53 BST 2026 Done: M5_DS_PERRON_SIGN_RIGOROUS (    2531 bytes)
+Mon Apr 13 06:07:58 BST 2026 Starting: M5_DS_C5_ZEROS_NUMERICAL [deepseek-r1:32b]
+Mon Apr 13 06:13:13 BST 2026 Done: M5_DS_C5_ZEROS_NUMERICAL (    1900 bytes)
+Mon Apr 13 06:13:18 BST 2026 Starting: M5_DRH_EULER_PRODUCT_COMPARISON [qwen3.5:35b]
+Mon Apr 13 06:18:15 BST 2026 Done: M5_DRH_EULER_PRODUCT_COMPARISON (   15787 bytes)
+=== M5 Max Continuous Runner started Mon Apr 13 20:17:09 BST 2026 PID=7791 ===
+Mon Apr 13 20:17:09 BST 2026 Starting: M5_GDPAC_MECHANISM_PURE_ANALYSIS [gemma4:26b]
+Mon Apr 13 20:19:05 BST 2026 Done: M5_GDPAC_MECHANISM_PURE_ANALYSIS (   13545 bytes)
+Mon Apr 13 20:19:10 BST 2026 Starting: M5_DS_DISCREPANCY_STEP_PROOF [deepseek-r1:32b]
+Mon Apr 13 20:25:09 BST 2026 Done: M5_DS_DISCREPANCY_STEP_PROOF (    2185 bytes)
+Mon Apr 13 20:25:14 BST 2026 Starting: M5_PAPER_C_INTRO_DRAFT [qwen3.5:35b]
+Mon Apr 13 20:28:12 BST 2026 Done: M5_PAPER_C_INTRO_DRAFT (   13053 bytes)
+Mon Apr 13 20:28:17 BST 2026 Starting: M5_B_TERM_SIGN_ANALYSIS [qwen3.5:35b]
+Mon Apr 13 20:31:32 BST 2026 Done: M5_B_TERM_SIGN_ANALYSIS (   16151 bytes)
+Mon Apr 13 20:31:37 BST 2026 Starting: M5_DS_BRIDGE_GENERAL_CASE [deepseek-r1:32b]
+Mon Apr 13 20:44:37 BST 2026 Done: M5_DS_BRIDGE_GENERAL_CASE (    3820 bytes)
+Mon Apr 13 20:44:42 BST 2026 Starting: M5_FAREY_C1C2C3_UNIQUENESS [qwen3.5:35b]
+Mon Apr 13 20:47:59 BST 2026 Done: M5_FAREY_C1C2C3_UNIQUENESS (   14966 bytes)
+Mon Apr 13 20:48:04 BST 2026 Starting: M5_DS_CA_NUMERICAL_VERIFY [deepseek-r1:32b]
+Mon Apr 13 20:57:52 BST 2026 Done: M5_DS_CA_NUMERICAL_VERIFY (    5793 bytes)
+Mon Apr 13 20:57:57 BST 2026 Starting: M5_PAPER_A_RH_COROLLARY_DRAFT [qwen3.5:35b]
+Mon Apr 13 21:02:25 BST 2026 Done: M5_PAPER_A_RH_COROLLARY_DRAFT (   40715 bytes)
+Mon Apr 13 21:02:30 BST 2026 Starting: M5_DS_FRANEL_LANDAU_PRECISE [deepseek-r1:32b]
+Mon Apr 13 21:05:06 BST 2026 Done: M5_DS_FRANEL_LANDAU_PRECISE (    5003 bytes)
+Mon Apr 13 21:05:11 BST 2026 Starting: M5_PAPER_B_AMPLITUDE_SECTION [qwen3.5:35b]
+Mon Apr 13 21:08:18 BST 2026 Done: M5_PAPER_B_AMPLITUDE_SECTION (   16181 bytes)
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+head: /Users/saar/Desktop/Farey-Local/M5MAX_QUEUE.txt: Operation not permitted
+=== M5 Max Continuous Runner started Tue Apr 14 11:18:55 BST 2026 PID=17975 ===
+Tue Apr 14 11:18:55 BST 2026 Starting: M5_GDPAC_MECHANISM_PURE_ANALYSIS [gemma4:26b]
+Tue Apr 14 11:24:19 BST 2026 Done: M5_GDPAC_MECHANISM_PURE_ANALYSIS (   12218 bytes)
+Tue Apr 14 18:12:07 BST 2026 Starting: M5_DK_CONSTANT_WHY_ZETA2 [deepseek-r1:32b]
+Tue Apr 14 18:25:58 BST 2026 Done: M5_DK_CONSTANT_WHY_ZETA2 (    4715 bytes)
+Tue Apr 14 18:26:03 BST 2026 Starting: M5_EK_CONVERGENCE_ANALYSIS [qwen3.5:35b]
+Tue Apr 14 18:32:24 BST 2026 Done: M5_EK_CONVERGENCE_ANALYSIS (   34275 bytes)
+Tue Apr 14 18:32:29 BST 2026 Starting: M5_TERMB_DEDEKIND_NUMERICAL [deepseek-r1:32b]
+Tue Apr 14 18:49:42 BST 2026 Done: M5_TERMB_DEDEKIND_NUMERICAL (    1361 bytes)
+Tue Apr 14 18:49:47 BST 2026 Starting: M5_PAPER_A_INTRO_DRAFT [qwen3.5:35b]
+Tue Apr 14 18:54:19 BST 2026 Done: M5_PAPER_A_INTRO_DRAFT (   18972 bytes)
+Tue Apr 14 18:54:24 BST 2026 Starting: M5_NDC_SUBLEADING_ANALYSIS [deepseek-r1:32b]
+Tue Apr 14 19:03:59 BST 2026 Done: M5_NDC_SUBLEADING_ANALYSIS (    3573 bytes)
+Tue Apr 14 19:04:04 BST 2026 Starting: M5_NDC_PAPER_INTRO_DRAFT [qwen3.5:35b]
+Tue Apr 14 19:08:05 BST 2026 Done: M5_NDC_PAPER_INTRO_DRAFT (   18907 bytes)
+Tue Apr 14 20:03:10 BST 2026 Starting: M5_NDC_HIGH_K_OVERNIGHT [deepseek-r1:32b]
+Tue Apr 14 20:15:30 BST 2026 Done: M5_NDC_HIGH_K_OVERNIGHT (    3347 bytes)
+Tue Apr 14 20:15:36 BST 2026 Starting: M5_NDC_SUBLEADING_CORRECTED [qwen3.5:35b]
+Tue Apr 14 20:19:22 BST 2026 Done: M5_NDC_SUBLEADING_CORRECTED (   17086 bytes)
+Tue Apr 14 20:24:27 BST 2026 Starting: M5_NDC_HIGH_K_OVERNIGHT [deepseek-r1:32b]
+Tue Apr 14 20:26:19 BST 2026 Done: M5_NDC_HIGH_K_OVERNIGHT (    2372 bytes)
+Tue Apr 14 20:26:24 BST 2026 Starting: M5_NDC_SUBLEADING_CORRECTED [qwen3.5:35b]
+Tue Apr 14 20:29:44 BST 2026 Done: M5_NDC_SUBLEADING_CORRECTED (   19664 bytes)
+Tue Apr 14 20:29:49 BST 2026 Starting: M5_AK_BK_DECOMPOSITION [deepseek-r1:32b]
+Tue Apr 14 20:33:21 BST 2026 Done: M5_AK_BK_DECOMPOSITION (    6516 bytes)
+Tue Apr 14 20:33:26 BST 2026 Starting: M5_WHY_ZETA2_FORMAL [deepseek-r1:32b]
+Tue Apr 14 20:41:40 BST 2026 Done: M5_WHY_ZETA2_FORMAL (    2224 bytes)
+Tue Apr 14 20:41:45 BST 2026 Starting: M5_NDC_PAPER_MAIN_SECTION [qwen3.5:35b]
+Tue Apr 14 20:44:34 BST 2026 Done: M5_NDC_PAPER_MAIN_SECTION (   17597 bytes)
+Tue Apr 14 21:24:39 BST 2026 Starting: M5_NDC_HIGH_K_OVERNIGHT [deepseek-r1:32b]
+Tue Apr 14 21:27:19 BST 2026 Done: M5_NDC_HIGH_K_OVERNIGHT (    6667 bytes)
+Tue Apr 14 21:27:24 BST 2026 Starting: M5_NDC_SUBLEADING_CORRECTED [qwen3.5:35b]
+Tue Apr 14 21:30:26 BST 2026 Done: M5_NDC_SUBLEADING_CORRECTED (   15886 bytes)
+Tue Apr 14 21:30:31 BST 2026 Starting: M5_AK_BK_DECOMPOSITION [deepseek-r1:32b]
+Tue Apr 14 21:33:18 BST 2026 Done: M5_AK_BK_DECOMPOSITION (    5903 bytes)
+Tue Apr 14 21:33:23 BST 2026 Starting: M5_WHY_ZETA2_FORMAL [deepseek-r1:32b]
+Tue Apr 14 21:35:09 BST 2026 Done: M5_WHY_ZETA2_FORMAL (    2268 bytes)
+Tue Apr 14 21:35:14 BST 2026 Starting: M5_NDC_PAPER_MAIN_SECTION [qwen3.5:35b]
+Tue Apr 14 21:37:50 BST 2026 Done: M5_NDC_PAPER_MAIN_SECTION (   15023 bytes)
+Tue Apr 14 22:27:55 BST 2026 Starting: M5_BK_CONVERGENCE_NUMERICAL [deepseek-r1:32b]
+Tue Apr 14 22:37:20 BST 2026 Done: M5_BK_CONVERGENCE_NUMERICAL (    5290 bytes)
+Tue Apr 14 23:22:25 BST 2026 Starting: M5_BK_CONVERGENCE_NUMERICAL [deepseek-r1:32b]
+Tue Apr 14 23:31:58 BST 2026 Done: M5_BK_CONVERGENCE_NUMERICAL (    4858 bytes)
+Tue Apr 14 23:32:03 BST 2026 Starting: M5_NDC_MECHANISM_PAPER_SECTION [qwen3.5:35b]
+Tue Apr 14 23:35:36 BST 2026 Done: M5_NDC_MECHANISM_PAPER_SECTION (   18417 bytes)
+Wed Apr 15 00:25:41 BST 2026 Starting: M5_NDC_AK_CONSTANT_MECHANISM [qwen3.5:35b]
+Wed Apr 15 00:29:19 BST 2026 Done: M5_NDC_AK_CONSTANT_MECHANISM (   14553 bytes)
+Wed Apr 15 00:29:24 BST 2026 Starting: M5_NDC_PAPER_SECTION5_UNIVERSALITY [deepseek-r1:32b]
+Wed Apr 15 00:31:29 BST 2026 Done: M5_NDC_PAPER_SECTION5_UNIVERSALITY (    2762 bytes)
+Wed Apr 15 01:26:34 BST 2026 Starting: M5_AK_FORMAL_DERIVATION [deepseek-r1:32b]
+Wed Apr 15 01:29:30 BST 2026 Done: M5_AK_FORMAL_DERIVATION (    3000 bytes)
+Wed Apr 15 02:24:35 BST 2026 Starting: M5_AK_FORMAL_DERIVATION [deepseek-r1:32b]
+Wed Apr 15 02:32:37 BST 2026 Done: M5_AK_FORMAL_DERIVATION (    1941 bytes)
+Wed Apr 15 02:32:42 BST 2026 Starting: M5_NDC_BK_PROOF_PAPER [qwen3.5:35b]
+Wed Apr 15 02:36:31 BST 2026 Done: M5_NDC_BK_PROOF_PAPER (   16479 bytes)
+Wed Apr 15 03:26:36 BST 2026 Starting: M5_BK_MODULUS_PROOF [deepseek-r1:32b]
+Wed Apr 15 03:31:53 BST 2026 Done: M5_BK_MODULUS_PROOF (    2646 bytes)
+Wed Apr 15 04:21:58 BST 2026 Starting: M5_BK_MODULUS_PROOF [deepseek-r1:32b]
+Wed Apr 15 04:25:43 BST 2026 Done: M5_BK_MODULUS_PROOF (    1450 bytes)
+Wed Apr 15 04:25:48 BST 2026 Starting: M5_BK_REGULARIZATION_PROOF [deepseek-r1:32b]
+Wed Apr 15 04:27:20 BST 2026 Done: M5_BK_REGULARIZATION_PROOF (    2146 bytes)
+Wed Apr 15 05:22:25 BST 2026 Starting: M5_NDC_PAPER_SECTION2_DEFS [qwen3.5:35b]
+Wed Apr 15 05:27:13 BST 2026 Done: M5_NDC_PAPER_SECTION2_DEFS (   37890 bytes)
+Wed Apr 15 05:52:19 BST 2026 Starting: M5_NDC_TAIL_ESTIMATE_PROOF [deepseek-r1:32b]
+Wed Apr 15 05:54:22 BST 2026 Done: M5_NDC_TAIL_ESTIMATE_PROOF (    3151 bytes)
+=== M5 Max Continuous Runner started Wed Apr 15 05:55:19 BST 2026 PID=54798 ===
+Wed Apr 15 06:00:19 BST 2026 Starting: M5_NDC_AK_CONVERGENCE_ANALYSIS [qwen3.5:35b]
+Wed Apr 15 06:02:34 BST 2026 Done: M5_NDC_AK_CONVERGENCE_ANALYSIS (    3696 bytes)
+Wed Apr 15 06:22:39 BST 2026 Starting: M5_NDC_AK_CONVERGENCE_ANALYSIS [qwen3.5:35b]
+Wed Apr 15 06:25:02 BST 2026 Done: M5_NDC_AK_CONVERGENCE_ANALYSIS (   16482 bytes)
+Wed Apr 15 06:25:07 BST 2026 Starting: M5_NDC_PERRON_SUBLEADING_NUMERICAL [deepseek-r1:32b]
+Wed Apr 15 06:27:12 BST 2026 Done: M5_NDC_PERRON_SUBLEADING_NUMERICAL (       1 bytes)
+Wed Apr 15 06:27:17 BST 2026 Starting: M5_NDC_PAPER_SECTION3_PERRON [qwen3.5:35b]
+Wed Apr 15 06:31:36 BST 2026 Done: M5_NDC_PAPER_SECTION3_PERRON (   10180 bytes)
+Wed Apr 15 07:21:41 BST 2026 Starting: M5_EK_PARTIAL_EULER_RATE [deepseek-r1:32b]
+Wed Apr 15 07:23:50 BST 2026 Done: M5_EK_PARTIAL_EULER_RATE (    3711 bytes)
+Wed Apr 15 07:23:55 BST 2026 Starting: M5_NDC_HIGH_K_VERIFICATION [deepseek-r1:32b]
+Wed Apr 15 07:28:49 BST 2026 Done: M5_NDC_HIGH_K_VERIFICATION (    8631 bytes)
+=== M5 Max Continuous Runner started Wed Apr 15 15:22:30 BST 2026 PID=2060 ===
+Wed Apr 15 15:22:30 BST 2026 Starting: M5_BINFTY_FORMULA_VERIFICATION [qwen3.5:35b]
+Wed Apr 15 15:22:30 BST 2026 Done: M5_BINFTY_FORMULA_VERIFICATION (      53 bytes)
+Wed Apr 15 15:32:35 BST 2026 Starting: M5_ELLIPTIC_CURVE_37A1_SPECTROSCOPE [qwen3.5:35b]
+Wed Apr 15 15:32:35 BST 2026 Done: M5_ELLIPTIC_CURVE_37A1_SPECTROSCOPE (      53 bytes)
+Wed Apr 15 15:37:40 BST 2026 Starting: M5_BINFTY_FORMULA_VERIFICATION [qwen3.5:35b]
+Wed Apr 15 15:39:46 BST 2026 Done: M5_BINFTY_FORMULA_VERIFICATION (    2287 bytes)
+Wed Apr 15 15:39:51 BST 2026 Starting: M5_ELLIPTIC_CURVE_37A1_SPECTROSCOPE [qwen3.5:35b]
+Wed Apr 15 15:41:04 BST 2026 Done: M5_ELLIPTIC_CURVE_37A1_SPECTROSCOPE (   10447 bytes)
+Wed Apr 15 17:06:09 BST 2026 Starting: M5_NDC_ADDITIONAL_CHARACTERS [qwen3.5:35b]
+Wed Apr 15 17:08:14 BST 2026 Done: M5_NDC_ADDITIONAL_CHARACTERS (    3552 bytes)
+Wed Apr 15 17:08:20 BST 2026 Starting: M5_NDC_ELLIPTIC_37A1_NUMERICAL [deepseek-r1:32b]
+Wed Apr 15 17:19:31 BST 2026 Done: M5_NDC_ELLIPTIC_37A1_NUMERICAL (    2904 bytes)
+Wed Apr 15 17:24:36 BST 2026 Starting: M5_NDC_UNIVERSALITY_THEORY [qwen3.5:35b]
+Wed Apr 15 17:26:47 BST 2026 Done: M5_NDC_UNIVERSALITY_THEORY (   12601 bytes)
+Wed Apr 15 19:46:52 BST 2026 Starting: M5_PA_LIT_FAREY [gemma4:26b]
+Wed Apr 15 19:47:52 BST 2026 Done: M5_PA_LIT_FAREY (    5483 bytes)
+Wed Apr 15 19:47:57 BST 2026 Starting: M5_PA_LIT_MERTENS [gemma4:26b]
+Wed Apr 15 19:48:53 BST 2026 Done: M5_PA_LIT_MERTENS (    7895 bytes)
+Wed Apr 15 19:48:58 BST 2026 Starting: M5_PA_PROOFREAD_1 [qwen3.5:35b]
+Wed Apr 15 19:51:28 BST 2026 Done: M5_PA_PROOFREAD_1 (    8260 bytes)
+Wed Apr 15 19:51:33 BST 2026 Starting: M5_PA_PROOFREAD_2 [deepseek-r1:32b]
+Wed Apr 15 19:53:47 BST 2026 Done: M5_PA_PROOFREAD_2 (    2830 bytes)
+Wed Apr 15 19:53:52 BST 2026 Starting: M5_PA_EXPMATH_PAPERS [gemma4:26b]
+Wed Apr 15 19:55:00 BST 2026 Done: M5_PA_EXPMATH_PAPERS (   10598 bytes)
+Wed Apr 15 19:55:05 BST 2026 Starting: M5_PA_REFEREE_SIM2 [qwen3.5:35b]
+Wed Apr 15 19:57:34 BST 2026 Done: M5_PA_REFEREE_SIM2 (   15855 bytes)
+Wed Apr 15 19:57:39 BST 2026 Starting: M5_PA_OPEN_QUESTIONS [qwen3.5:35b]
+Wed Apr 15 19:59:58 BST 2026 Done: M5_PA_OPEN_QUESTIONS (   13537 bytes)
+Wed Apr 15 20:00:03 BST 2026 Starting: M5_PA_LEAN_REVIEW [deepseek-r1:32b]
+Wed Apr 15 20:02:28 BST 2026 Done: M5_PA_LEAN_REVIEW (    5860 bytes)
+Wed Apr 15 20:02:33 BST 2026 Starting: M5_PA_FRAMING [gemma4:26b]
+Wed Apr 15 20:03:41 BST 2026 Done: M5_PA_FRAMING (   10582 bytes)
+Wed Apr 15 20:03:46 BST 2026 Starting: M5_PA_NOVELTY_FRAMEWORK [qwen3.5:35b]
+Wed Apr 15 20:06:30 BST 2026 Done: M5_PA_NOVELTY_FRAMEWORK (   15722 bytes)
+Wed Apr 15 20:16:35 BST 2026 Starting: M5_BGEQ0_THEOREM [deepseek-r1:32b]
+Wed Apr 15 20:24:00 BST 2026 Done: M5_BGEQ0_THEOREM (    3898 bytes)
+Wed Apr 15 20:24:05 BST 2026 Starting: M5_PB_PHASE_DERIVATION [qwen3.5:35b]
+Wed Apr 15 20:26:27 BST 2026 Done: M5_PB_PHASE_DERIVATION (    5716 bytes)
+Wed Apr 15 20:26:32 BST 2026 Starting: M5_PB_LIT_CHEBYSHEV [gemma4:26b]
+Wed Apr 15 20:27:33 BST 2026 Done: M5_PB_LIT_CHEBYSHEV (    8040 bytes)
+Wed Apr 15 20:27:38 BST 2026 Starting: M5_PB_INTRO_DRAFT [qwen3.5:35b]
+Wed Apr 15 20:29:58 BST 2026 Done: M5_PB_INTRO_DRAFT (    5729 bytes)
+Wed Apr 15 20:30:03 BST 2026 Starting: M5_WN_ASYMPTOTIC [deepseek-r1:32b]
+Wed Apr 15 20:34:52 BST 2026 Done: M5_WN_ASYMPTOTIC (    3113 bytes)
+Wed Apr 15 20:34:57 BST 2026 Starting: M5_PC_TURAN_SECTION [qwen3.5:35b]
+Wed Apr 15 20:37:14 BST 2026 Done: M5_PC_TURAN_SECTION (    7762 bytes)
+Wed Apr 15 20:37:19 BST 2026 Starting: M5_STEINERBERGER_CONNECTION [gemma4:26b]
+Wed Apr 15 20:38:19 BST 2026 Done: M5_STEINERBERGER_CONNECTION (    6723 bytes)
+Wed Apr 15 20:38:24 BST 2026 Starting: M5_DEDEKIND_CROSSTERM [deepseek-r1:32b]
+Wed Apr 15 20:46:08 BST 2026 Done: M5_DEDEKIND_CROSSTERM (    3193 bytes)
+Wed Apr 15 20:46:13 BST 2026 Starting: M5_PB_SIGN_SECTION [qwen3.5:35b]
+Wed Apr 15 20:48:29 BST 2026 Done: M5_PB_SIGN_SECTION (   10520 bytes)
+Wed Apr 15 20:48:34 BST 2026 Starting: M5_PAPER_CONSTELLATION [gemma4:26b]
+Wed Apr 15 20:49:33 BST 2026 Done: M5_PAPER_CONSTELLATION (    9755 bytes)
+Wed Apr 15 22:24:37 BST 2026 Starting: M5_CROSSTERM_SIGN_PROOF [deepseek-r1:32b]
+Wed Apr 15 22:27:35 BST 2026 Done: M5_CROSSTERM_SIGN_PROOF (    2608 bytes)
+Wed Apr 15 22:27:40 BST 2026 Starting: M5_PB_SPECTRAL_SECTION [qwen3.5:35b]
+Wed Apr 15 22:30:10 BST 2026 Done: M5_PB_SPECTRAL_SECTION (    9037 bytes)
+Wed Apr 15 22:30:15 BST 2026 Starting: M5_LEAN_COUNT_AUDIT [gemma4:26b]
+Wed Apr 15 22:31:29 BST 2026 Done: M5_LEAN_COUNT_AUDIT (    5881 bytes)
+Wed Apr 15 22:31:34 BST 2026 Starting: M5_SPECTROSCOPE_RIGOROUS [deepseek-r1:32b]
+Wed Apr 15 22:34:10 BST 2026 Done: M5_SPECTROSCOPE_RIGOROUS (    2531 bytes)
+Wed Apr 15 22:34:15 BST 2026 Starting: M5_PC_PAPER_DRAFT_OUTLINE [qwen3.5:35b]
+Wed Apr 15 22:36:45 BST 2026 Done: M5_PC_PAPER_DRAFT_OUTLINE (   15071 bytes)
+Wed Apr 15 23:21:53 BST 2026 Starting: M5_MATHCOMP_FIT_ASSESSMENT [gemma4:26b]
+Wed Apr 15 23:23:01 BST 2026 Done: M5_MATHCOMP_FIT_ASSESSMENT (   10147 bytes)
+Wed Apr 15 23:23:06 BST 2026 Starting: M5_LEAN_DISP_COSINE [deepseek-r1:32b]
+Wed Apr 15 23:26:31 BST 2026 Done: M5_LEAN_DISP_COSINE (    4130 bytes)
+Wed Apr 15 23:26:36 BST 2026 Starting: M5_FRANEL_LANDAU_L2 [qwen3.5:35b]
+Wed Apr 15 23:29:06 BST 2026 Done: M5_FRANEL_LANDAU_L2 (       1 bytes)
+Wed Apr 15 23:29:12 BST 2026 Starting: M5_AISTLEITNER_RESPONSE [gemma4:26b]
+Wed Apr 15 23:30:23 BST 2026 Done: M5_AISTLEITNER_RESPONSE (    8871 bytes)
+Wed Apr 15 23:30:28 BST 2026 Starting: M5_GRH_DETECTION_THEOREM [deepseek-r1:32b]
+Wed Apr 15 23:33:51 BST 2026 Done: M5_GRH_DETECTION_THEOREM (    3795 bytes)
+Thu Apr 16 00:23:56 BST 2026 Starting: M5_MATHCOMP_FIT_ASSESSMENT [gemma4:26b]
+Thu Apr 16 00:25:09 BST 2026 Done: M5_MATHCOMP_FIT_ASSESSMENT (   11680 bytes)
+Thu Apr 16 00:25:14 BST 2026 Starting: M5_LEAN_DISP_COSINE [deepseek-r1:32b]
+Thu Apr 16 00:27:40 BST 2026 Done: M5_LEAN_DISP_COSINE (    3338 bytes)
+Thu Apr 16 00:27:45 BST 2026 Starting: M5_FRANEL_LANDAU_L2 [qwen3.5:35b]
+Thu Apr 16 00:30:15 BST 2026 Done: M5_FRANEL_LANDAU_L2 (       1 bytes)
+Thu Apr 16 00:30:20 BST 2026 Starting: M5_AISTLEITNER_RESPONSE [gemma4:26b]
+Thu Apr 16 00:31:30 BST 2026 Done: M5_AISTLEITNER_RESPONSE (    9531 bytes)
+Thu Apr 16 00:31:35 BST 2026 Starting: M5_GRH_DETECTION_THEOREM [deepseek-r1:32b]
+Thu Apr 16 00:37:47 BST 2026 Done: M5_GRH_DETECTION_THEOREM (    6371 bytes)
+Thu Apr 16 01:22:52 BST 2026 Starting: FRANEL_LANDAU_L2_WHAT_IS_PROVED [qwen3.5:35b]
+Thu Apr 16 01:25:14 BST 2026 Done: FRANEL_LANDAU_L2_WHAT_IS_PROVED (       1 bytes)
+Thu Apr 16 01:25:19 BST 2026 Starting: SPECTROSCOPE_DETECTION_THRESHOLD [qwen3.5:35b]
+Thu Apr 16 01:27:48 BST 2026 Done: SPECTROSCOPE_DETECTION_THRESHOLD (    7293 bytes)
+Thu Apr 16 02:22:53 BST 2026 Starting: FRANEL_LANDAU_L2_WHAT_IS_PROVED [qwen3.5:35b]
+Thu Apr 16 02:25:08 BST 2026 Done: FRANEL_LANDAU_L2_WHAT_IS_PROVED (       1 bytes)
+Thu Apr 16 02:25:13 BST 2026 Starting: FRANEL_L2_GEMMA [gemma4:26b]
+Thu Apr 16 02:26:08 BST 2026 Done: FRANEL_L2_GEMMA (       1 bytes)
+Thu Apr 16 03:26:13 BST 2026 Starting: FRANEL_L2_GEMMA [gemma4:26b]
+Thu Apr 16 03:27:09 BST 2026 Done: FRANEL_L2_GEMMA (    1089 bytes)
+Thu Apr 16 03:27:14 BST 2026 Starting: NDC_DK_NUMERICAL_CONVERGENCE [phi4:14b]
+Thu Apr 16 03:28:07 BST 2026 Done: NDC_DK_NUMERICAL_CONVERGENCE (    6302 bytes)
+Thu Apr 16 04:23:12 BST 2026 Starting: FRANEL_L2_GEMMA [gemma4:26b]
+Thu Apr 16 04:24:08 BST 2026 Done: FRANEL_L2_GEMMA (       1 bytes)
+Thu Apr 16 04:24:13 BST 2026 Starting: NDC_DK_NUMERICAL_CONVERGENCE [phi4:14b]
+Thu Apr 16 04:25:11 BST 2026 Done: NDC_DK_NUMERICAL_CONVERGENCE (    6551 bytes)
+Thu Apr 16 04:25:16 BST 2026 Starting: NDC_EULER_PRODUCT_LITERATURE [gemma4:26b]
+Thu Apr 16 04:26:12 BST 2026 Done: NDC_EULER_PRODUCT_LITERATURE (    8963 bytes)
+Already running (PID 2060).
+Thu Apr 16 05:26:17 BST 2026 Starting: NDC_KOYAMA_LITERATURE_SEARCH [gemma4:26b]
+Thu Apr 16 05:27:11 BST 2026 Done: NDC_KOYAMA_LITERATURE_SEARCH (    4890 bytes)
+=== M5 Max Continuous Runner started Thu Apr 16 07:58:03 BST 2026 PID=30250 ===
+Thu Apr 16 07:58:03 BST 2026 Starting: NDC_PAPER_MAIN_SECTION [qwen3.5:35b]
+Thu Apr 16 08:00:20 BST 2026 Done: NDC_PAPER_MAIN_SECTION (   12512 bytes)
+=== M5 Max Continuous Runner started Thu Apr 16 21:27:01 BST 2026 PID=64471 ===
+Thu Apr 16 21:27:01 BST 2026 Starting: LIT_PARTIAL_EULER_PRODUCTS_SURVEY [gemma4:26b]
+Thu Apr 16 21:28:02 BST 2026 Done: LIT_PARTIAL_EULER_PRODUCTS_SURVEY (    4211 bytes)
+Thu Apr 16 21:28:07 BST 2026 Starting: LIT_FAREY_HOROCYCLE_FLOW_SURVEY [gemma4:26b]
+Thu Apr 16 21:29:01 BST 2026 Done: LIT_FAREY_HOROCYCLE_FLOW_SURVEY (    8441 bytes)
+Thu Apr 16 21:29:07 BST 2026 Starting: LIT_DELTAW_NOVELTY_CONFIRM [gemma4:26b]
+Thu Apr 16 21:30:04 BST 2026 Done: LIT_DELTAW_NOVELTY_CONFIRM (    7422 bytes)
+Thu Apr 16 21:30:09 BST 2026 Starting: VERIFY_ZETA_DERIV_VALUES [phi4:14b]
+Thu Apr 16 21:31:01 BST 2026 Done: VERIFY_ZETA_DERIV_VALUES (    4477 bytes)
+Thu Apr 16 21:31:06 BST 2026 Starting: VERIFY_MIKOLAS_EQ16_SMALL_N [phi4:14b]
+Thu Apr 16 21:31:54 BST 2026 Done: VERIFY_MIKOLAS_EQ16_SMALL_N (    4378 bytes)
+Thu Apr 16 21:32:00 BST 2026 Starting: SYM2_E_CONNECTION_EXPLORATION [qwen3.5:35b]
+Thu Apr 16 21:34:37 BST 2026 Done: SYM2_E_CONNECTION_EXPLORATION (    7918 bytes)
+Thu Apr 16 21:34:42 BST 2026 Starting: B_INF_TAYLOR_LEMMA [deepseek-r1:32b]
+Thu Apr 16 21:39:42 BST 2026 Done: B_INF_TAYLOR_LEMMA (    4273 bytes)
+Thu Apr 16 22:24:47 BST 2026 Starting: NDC_GL2_UNIVERSALITY_DEEP_ANALYSIS [qwen3.5:35b]
+Thu Apr 16 22:26:58 BST 2026 Done: NDC_GL2_UNIVERSALITY_DEEP_ANALYSIS (    5030 bytes)
+Thu Apr 16 22:37:03 BST 2026 Starting: LIT_TRACE_FORMULA_SPECTROSCOPE [gemma4:26b]
+Thu Apr 16 22:37:56 BST 2026 Done: LIT_TRACE_FORMULA_SPECTROSCOPE (    7851 bytes)
+Thu Apr 16 22:38:01 BST 2026 Starting: LIT_MODULAR_FORMS_MAASS_SPECTROSCOPE [gemma4:26b]
+Thu Apr 16 22:38:53 BST 2026 Done: LIT_MODULAR_FORMS_MAASS_SPECTROSCOPE (    8431 bytes)
+Thu Apr 16 22:38:58 BST 2026 Starting: LIT_BOUNDED_GAPS_UNIVERSALITY [gemma4:26b]
+Thu Apr 16 22:39:49 BST 2026 Done: LIT_BOUNDED_GAPS_UNIVERSALITY (    9534 bytes)
+Thu Apr 16 22:39:54 BST 2026 Starting: VERIFY_NDC_NUMERICAL_TIGHT [phi4:14b]
+Thu Apr 16 22:40:53 BST 2026 Done: VERIFY_NDC_NUMERICAL_TIGHT (    6768 bytes)
+Thu Apr 16 22:40:58 BST 2026 Starting: VERIFY_CONSTANTS_HIGH_PRECISION [phi4:14b]
+Thu Apr 16 22:41:26 BST 2026 Done: VERIFY_CONSTANTS_HIGH_PRECISION (    3137 bytes)
+Thu Apr 16 22:41:31 BST 2026 Starting: VERIFY_FOUR_TERM_DECOMP_SMALL_P [phi4:14b]
+Thu Apr 16 22:42:19 BST 2026 Done: VERIFY_FOUR_TERM_DECOMP_SMALL_P (    6426 bytes)
+Thu Apr 16 23:22:25 BST 2026 Starting: FOUR_TERM_EXPLICIT_FORMULAS [qwen3.5:35b]
+Thu Apr 16 23:24:30 BST 2026 Done: FOUR_TERM_EXPLICIT_FORMULAS (    3773 bytes)
+Thu Apr 16 23:39:35 BST 2026 Starting: LIT_RANKIN_SELBERG_NDC [gemma4:26b]
+Thu Apr 16 23:40:29 BST 2026 Done: LIT_RANKIN_SELBERG_NDC (    7322 bytes)
+Thu Apr 16 23:40:34 BST 2026 Starting: LIT_PAIR_CORRELATION_SPECTROSCOPE [gemma4:26b]
+Thu Apr 16 23:41:25 BST 2026 Done: LIT_PAIR_CORRELATION_SPECTROSCOPE (    8587 bytes)
+Thu Apr 16 23:41:30 BST 2026 Starting: LIT_SARNAK_MOBIUS_DISJOINTNESS [gemma4:26b]
+Thu Apr 16 23:42:21 BST 2026 Done: LIT_SARNAK_MOBIUS_DISJOINTNESS (    7487 bytes)
+Thu Apr 16 23:42:26 BST 2026 Starting: VERIFY_NDC_RHO_CHI3 [phi4:14b]
+Thu Apr 16 23:43:21 BST 2026 Done: VERIFY_NDC_RHO_CHI3 (    6399 bytes)
+Thu Apr 16 23:43:26 BST 2026 Starting: VERIFY_EULER_PRODUCT_ASYMPTOTIC [phi4:14b]
+Thu Apr 16 23:44:05 BST 2026 Done: VERIFY_EULER_PRODUCT_ASYMPTOTIC (    4927 bytes)
+Thu Apr 16 23:44:10 BST 2026 Starting: VERIFY_MU_M_COMPUTATION [phi4:14b]
+Thu Apr 16 23:44:44 BST 2026 Done: VERIFY_MU_M_COMPUTATION (    5474 bytes)
+Fri Apr 17 00:24:50 BST 2026 Starting: FOUR_TERM_EXPLICIT_FORMULAS [qwen3.5:35b]
+Fri Apr 17 00:26:56 BST 2026 Done: FOUR_TERM_EXPLICIT_FORMULAS (       1 bytes)
+Fri Apr 17 00:27:01 BST 2026 Starting: # M5MAX_NEXT_TASKS — exhausted (task moved to queue 2026-04-17) [# M5MAX_NEXT_TASKS — exhausted (task moved to queue 2026-04-17)]
+Fri Apr 17 00:27:01 BST 2026 Done: # M5MAX_NEXT_TASKS — exhausted (task moved to queue 2026-04-17) (      35 bytes)
+Fri Apr 17 00:27:06 BST 2026 Starting: AK_CONSTANT_FORMAL_DERIVATION [deepseek-r1:32b]
+Fri Apr 17 00:30:09 BST 2026 Done: AK_CONSTANT_FORMAL_DERIVATION (    4956 bytes)
+Fri Apr 17 00:40:14 BST 2026 Starting: LIT_GALLAGHER_EXCEPTIONAL_SETS [gemma4:26b]
+Fri Apr 17 00:41:07 BST 2026 Done: LIT_GALLAGHER_EXCEPTIONAL_SETS (    9162 bytes)
+Fri Apr 17 00:41:12 BST 2026 Starting: LIT_CONRAD_EULER_PRODUCTS [gemma4:26b]
+Fri Apr 17 00:42:03 BST 2026 Done: LIT_CONRAD_EULER_PRODUCTS (    6608 bytes)
+Fri Apr 17 00:42:08 BST 2026 Starting: LIT_KKK_DEEP_RH_GLN [gemma4:26b]
+Fri Apr 17 00:42:59 BST 2026 Done: LIT_KKK_DEEP_RH_GLN (    6785 bytes)
+Fri Apr 17 00:43:04 BST 2026 Starting: VERIFY_D_K_MULTI_PAIRS [phi4:14b]
+Fri Apr 17 00:44:05 BST 2026 Done: VERIFY_D_K_MULTI_PAIRS (    7292 bytes)
+Fri Apr 17 00:44:10 BST 2026 Starting: D_K_UNIVERSAL_DERIVATION_REFINED [qwen3.5:35b]
+Fri Apr 17 00:46:23 BST 2026 Done: D_K_UNIVERSAL_DERIVATION_REFINED (    2489 bytes)
+Fri Apr 17 00:46:28 BST 2026 Starting: PROOF_NDC_DK_ZETA2 [deepseek-r1:32b]
+Fri Apr 17 00:49:38 BST 2026 Done: PROOF_NDC_DK_ZETA2 (    1985 bytes)
+Fri Apr 17 01:24:43 BST 2026 Starting: DK_VARIANCE_SCAN_GEOMETRIC [qwen3.5:35b]
+Fri Apr 17 01:26:49 BST 2026 Done: DK_VARIANCE_SCAN_GEOMETRIC (    5158 bytes)
+Fri Apr 17 01:36:54 BST 2026 Starting: LIT_DK_PRODUCT_CONVERGENCE [gemma4:26b]
+Fri Apr 17 01:37:50 BST 2026 Done: LIT_DK_PRODUCT_CONVERGENCE (    4224 bytes)
+Fri Apr 17 01:37:55 BST 2026 Starting: LIT_SELBERG_CLASS_EXTENSION [gemma4:26b]
+Fri Apr 17 01:38:49 BST 2026 Done: LIT_SELBERG_CLASS_EXTENSION (    5996 bytes)
+Fri Apr 17 01:38:54 BST 2026 Starting: LIT_TITCHMARSH_ZERO_BOUNDS [gemma4:26b]
+Fri Apr 17 01:39:48 BST 2026 Done: LIT_TITCHMARSH_ZERO_BOUNDS (    5996 bytes)
+Fri Apr 17 01:39:53 BST 2026 Starting: VERIFY_DK_CHI_M4_RHO2 [phi4:14b]
+Fri Apr 17 01:40:40 BST 2026 Done: VERIFY_DK_CHI_M4_RHO2 (    6278 bytes)
+Fri Apr 17 01:40:45 BST 2026 Starting: VERIFY_DK_CHI11_COMPUTATION [phi4:14b]
+Fri Apr 17 01:41:25 BST 2026 Done: VERIFY_DK_CHI11_COMPUTATION (    5365 bytes)
+Fri Apr 17 01:41:30 BST 2026 Starting: PAPER_C_THEOREM_STATEMENTS_CLEAN [qwen3.5:35b]
+Fri Apr 17 01:43:49 BST 2026 Done: PAPER_C_THEOREM_STATEMENTS_CLEAN (    6452 bytes)
+Fri Apr 17 02:23:54 BST 2026 Starting: DK_VARIANCE_SCAN_GEOMETRIC [qwen3.5:35b]
+Fri Apr 17 02:26:05 BST 2026 Done: DK_VARIANCE_SCAN_GEOMETRIC (       1 bytes)
+Fri Apr 17 02:26:10 BST 2026 Starting: T_INF_L2RHO_NUMERICAL_VERIFY [qwen3.5:35b]
+Fri Apr 17 02:28:16 BST 2026 Done: T_INF_L2RHO_NUMERICAL_VERIFY (    7168 bytes)
+Fri Apr 17 02:38:21 BST 2026 Starting: LIT_L_FUNCTION_ZEROS_COMPUTATION [gemma4:26b]
+Fri Apr 17 02:39:18 BST 2026 Done: LIT_L_FUNCTION_ZEROS_COMPUTATION (    8369 bytes)
+Fri Apr 17 02:39:23 BST 2026 Starting: LIT_DEDEKIND_ZETA_SPECTROSCOPE [gemma4:26b]
+Fri Apr 17 02:40:18 BST 2026 Done: LIT_DEDEKIND_ZETA_SPECTROSCOPE (    5524 bytes)
+Fri Apr 17 02:40:24 BST 2026 Starting: VERIFY_DK_KAPPA_LARGE [phi4:14b]
+Fri Apr 17 02:41:08 BST 2026 Done: VERIFY_DK_KAPPA_LARGE (    5532 bytes)
+Fri Apr 17 02:41:13 BST 2026 Starting: VERIFY_SPECTROSCOPE_TWIN_PRIMES [phi4:14b]
+Fri Apr 17 02:41:48 BST 2026 Done: VERIFY_SPECTROSCOPE_TWIN_PRIMES (    5791 bytes)
+Fri Apr 17 02:41:53 BST 2026 Starting: PAPER_C_SECTION_3_THEOREMS [qwen3.5:35b]
+Fri Apr 17 02:44:16 BST 2026 Done: PAPER_C_SECTION_3_THEOREMS (   10290 bytes)
+Fri Apr 17 02:44:21 BST 2026 Starting: PAPER_G_SECTION_3_NDC_STATEMENTS [qwen3.5:35b]
+Fri Apr 17 02:46:36 BST 2026 Done: PAPER_G_SECTION_3_NDC_STATEMENTS (   12036 bytes)
+Fri Apr 17 03:36:41 BST 2026 Starting: LIT_MODULAR_FORMS_ZERO_SPECTROSCOPE [gemma4:26b]
+Fri Apr 17 03:37:35 BST 2026 Done: LIT_MODULAR_FORMS_ZERO_SPECTROSCOPE (    3649 bytes)
+Fri Apr 17 03:37:40 BST 2026 Starting: LIT_MAASS_FORMS_NDC [gemma4:26b]
+Fri Apr 17 03:38:31 BST 2026 Done: LIT_MAASS_FORMS_NDC (    6752 bytes)
+Fri Apr 17 03:38:36 BST 2026 Starting: LIT_CHEBYSHEV_BIAS_PREDECESSORS [gemma4:26b]
+Fri Apr 17 03:39:27 BST 2026 Done: LIT_CHEBYSHEV_BIAS_PREDECESSORS (    4731 bytes)
+Fri Apr 17 03:39:32 BST 2026 Starting: VERIFY_DK_PAIRS_BATCH [phi4:14b]
+Fri Apr 17 03:40:23 BST 2026 Done: VERIFY_DK_PAIRS_BATCH (    6237 bytes)
+Fri Apr 17 03:40:28 BST 2026 Starting: PAPER_B_SECTION_3_AMPLITUDE [qwen3.5:35b]
+Fri Apr 17 03:42:34 BST 2026 Done: PAPER_B_SECTION_3_AMPLITUDE (   11437 bytes)
+Fri Apr 17 03:42:39 BST 2026 Starting: PAPER_H_SECTION_3_CLASSIFICATION [qwen3.5:35b]
+Fri Apr 17 03:44:39 BST 2026 Done: PAPER_H_SECTION_3_CLASSIFICATION (   10223 bytes)
+Fri Apr 17 04:24:45 BST 2026 Starting: FRANEL_MEISSEL_FOURTERM_BOUND [deepseek-r1:32b]
+Fri Apr 17 04:26:22 BST 2026 Done: FRANEL_MEISSEL_FOURTERM_BOUND (    3341 bytes)
+Fri Apr 17 04:36:27 BST 2026 Starting: PAPER_C_REFERENCES_BIBLIOGRAPHY [qwen3.5:35b]
+Fri Apr 17 04:38:58 BST 2026 Done: PAPER_C_REFERENCES_BIBLIOGRAPHY (   11777 bytes)
+=== M5 Max Continuous Runner started Fri Apr 17 05:10:48 BST 2026 PID=22204 ===
+Fri Apr 17 05:15:48 BST 2026 Starting: LIT_K_LEQ_4_HISTORICAL_STATUS [gemma4:26b]
+Fri Apr 17 05:16:44 BST 2026 Done: LIT_K_LEQ_4_HISTORICAL_STATUS (    6755 bytes)
+Fri Apr 17 05:16:49 BST 2026 Starting: PARI_LFUNINIT_INTEGRATION_SPEC [qwen3.5:35b]
+Fri Apr 17 05:18:58 BST 2026 Done: PARI_LFUNINIT_INTEGRATION_SPEC (   14387 bytes)
+Fri Apr 17 05:19:03 BST 2026 Starting: COHEN_LENSTRA_BENCHMARK_SPEC [qwen3.5:35b]
+Fri Apr 17 05:21:34 BST 2026 Done: COHEN_LENSTRA_BENCHMARK_SPEC (   10957 bytes)
+Fri Apr 17 05:21:39 BST 2026 Starting: VERIFY_BATCH_SPEEDUP_SMALL [phi4:14b]
+Fri Apr 17 05:22:26 BST 2026 Done: VERIFY_BATCH_SPEEDUP_SMALL (    5655 bytes)

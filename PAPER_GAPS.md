@@ -24,7 +24,7 @@
    - **No figure needed** — clean formula with verification table
 
 4. **Composites ω(n)≥2 Characterization** (Section 6 addition)
-   - ALL non-healers are prime powers. ω(n)≥2 always heals.
+   - ω(n)≥2 conjecture DISPROVED: N=94=2×47, N=146=2×73 have ω=2 and ΔW<0. Correct: statistical tendency only.
    - **Figure needed:** Scatter plot of ΔW(n) colored by ω(n)
 
 5. **GK Concentration** (Section 6 addition)

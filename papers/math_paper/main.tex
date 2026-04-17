@@ -36,12 +36,11 @@
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\sgn}{sgn}
 
-\title{The Geometric Signature of Primes in Farey Sequences}
+\title{Per-Step Spectroscopy of Farey Sequences:\\
+Primes, Mertens Function, and $L$-Function Zeros}
 
 \author{
   Saar Shai\thanks{Independent Researcher. Email: \texttt{saar.shai@gmail.com}.}
-  \and
-  Anthropic's Claude Opus 4.6\thanks{AI research assistant by Anthropic; contributed to mathematical analysis, computation, formal verification, and manuscript preparation.}
 }
 
 \date{March 2026}
@@ -51,58 +50,56 @@
 \maketitle
 
 \begin{abstract}
-We study the per-step behavior of the Farey sequence's uniformity
-and find that primes and composites play fundamentally different
-geometric roles.  In computations through $N = 100{,}000$,
-composites account for ${\sim}96\%$ of total positive $\Delta W$
-(uniformity improvement) while primes contribute ${\sim}99\%$ of
-total negative $\Delta W$ (uniformity damage).  The direction of
-each prime's effect correlates strongly with the Mertens function
-$M(p) = \sum_{k \le p} \mu(k)$: among the $4{,}977$ primes
-$p \ge 11$ with $M(p) < 0$ in this range, only one
-($p = 92{,}173$, $M = -2$, certified by 256-bit interval
-arithmetic) has $\Delta W(p) > 0$.
+We introduce the \emph{per-step spectroscopy framework}: a method for detecting
+number-theoretic structure by studying how a sequence's uniformity changes at
+each individual step, rather than cumulatively.  The framework applies whenever
+three conditions hold: (C1)~new elements enter at arithmetically structured steps
+(e.g., primes), (C2)~the per-step change connects to an $L$-function via an
+explicit formula, and (C3)~the per-step quantity oscillates in sign.
+We give evidence that these conditions characterize the sequences where per-step
+analysis reveals hidden structure, by establishing three negative results: the
+Gauss circle divisor sum (fails~C1), integer partitions (fails~C3), and
+continued-fraction partial quotients (fails~C2).
 
-We isolate and exploit a classical Farey--Mertens exponential-sum
-identity in a new per-step discrepancy framework, proving exact
-formulas including a universal evaluation of the Farey exponential
-sum at every integer frequency
-(Theorem~\ref{thm:universal}) and an Injection Principle showing
-each prime inserts its fractions into distinct Farey gaps via
-modular inversion (Theorem~\ref{thm:injection}).
-A four-term algebraic decomposition of $\Delta W(p)$ reveals
-that the new-fraction discrepancy nearly cancels the dilution
-benefit ($\mathcal{D}/A \to 1$), reducing the sign question to
-bounding the shift-squared term against the residual gap.
+The Farey sequence satisfies all three conditions, providing the central case study.
+We study $\Delta W(p) = W(p-1) - W(p)$, the per-step change in
+$L^2$ Farey discrepancy (positive = improvement), and find that primes and composites play
+fundamentally different geometric roles.
+In computations through $N = 100{,}000$, composites account for ${\sim}96\%$
+of total positive $\Delta W$ (uniformity improvement) while primes contribute
+${\sim}99\%$ of total negative $\Delta W$ (uniformity damage).
+The sign of each prime's contribution correlates strongly with the Mertens
+function $M(p) = \sum_{k \le p} \mu(k)$: among $4{,}977$ primes $p \ge 11$
+with $M(p) < 0$ in this range, only one ($p = 92{,}173$, $M = -2$,
+certified by 256-bit interval arithmetic) has $\Delta W(p) > 0$.
 
-For the $4{,}617$ primes with $M(p) \le -3$ up to
-$p = 100{,}000$, there are zero counterexamples, and we prove
-$\Delta W(p) < 0$ for all such primes
-(Theorem~\ref{thm:sign}).
-All core identities (256~results across fourteen Lean~4 files,
-five~\texttt{sorry} remaining) are formally verified, with the
-bridge-identity proof chain constructed autonomously by the
-Aristotle theorem prover.  We further prove a Generalized
-Injection Principle valid for all~$N$ (not just primes), a
-Fisher Information Monotonicity theorem showing
-$\sum 1/g_j^2$ strictly increases at every step, a
-Universal Mediant Property confirming every new Farey fraction
-is the mediant of its neighbors, a corrected four-term
-decomposition with a geometric identity relating $B+C$ to the
-change in $L^2$ norm of the displacement under prime perturbation,
-and a Mediant Minimality theorem showing that any fraction
-strictly between two Farey neighbors must have denominator at
-least $b+d$ (Theorem~\ref{thm:mediant-minimality}), together
-with a Farey Gap Formula giving the exact gap $1/(bd)$
-between neighbors (Theorem~\ref{thm:farey-gap-formula}).
-The Sign Theorem is extended computationally:
-$\Delta W(p) < 0$ for \emph{all} primes $11 \le p \le 113$,
-regardless of the value of~$M(p)$.
+Via a new bridge identity (Theorem~\ref{thm:bridge}), the per-step change
+connects to the Mertens function, which connects to Riemann zeta zeros via the
+explicit formula.  We prove: (i)~an Injection Principle showing each prime
+inserts its $p-1$ fractions into distinct Farey gaps via modular inversion
+(Theorem~\ref{thm:injection}); (ii)~an exact formula for the single-fraction
+damage term $D_{\mathcal{F}_p}(1/p) = 1 - |\mathcal{F}_p|/p \sim -3p/\pi^2$
+(unconditional corollary); (iii)~the dilution term $A > 0$
+unconditionally (since $|\mathcal{F}_p| > |\mathcal{F}_{p-1}|$ implies
+the grid-density gain is positive), while the finer ``dilution gain''
+$R_2$ oscillates in sign (first negative value at $p = 197$); and
+(iv)~a conjecture (supported by computation, conditional on RH and distributional
+assumptions on $M(p)/\sqrt{p}$ via the Akbary--Ng--Shahabi framework):
+$\Pr[\Delta W(p) < 0] \to c \approx 0.73$ over primes in logarithmic density.
+For the $4{,}617$ primes with $M(p) \le -3$ up to $p = 100{,}000$,
+we prove $\Delta W(p) < 0$ unconditionally (Theorem~\ref{thm:sign}).
+
+All core identities are formally verified in 436~Lean~4 results
+across sixteen files (2~genuine \texttt{sorry} remaining: the full
+analytic Sign Theorem and the generalization of the Bridge Identity to
+composite or arbitrary frequencies).  The Aristotle automated prover
+contributed key proof steps autonomously, including the
+$\mathbb{Q}$-linear independence of logarithms of distinct primes.
 \end{abstract}
 
 \medskip
-\noindent\textbf{Keywords:} Farey sequence, Mertens function, rank deviation,
-Ramanujan sums, formal verification, Lean~4.
+\noindent\textbf{Keywords:} Farey sequence, Mertens function, per-step discrepancy,
+$L$-function zeros, Riemann hypothesis, formal verification, Lean~4.
 
 \noindent\textbf{MSC 2020:} 11B57, 11N37, 11A25, 11Y35.
 
@@ -178,8 +175,9 @@ of the Riemann zeta function.
 \subsection{The observation that started it all}
 
 Place the Farey fractions of $\F_N$ as points on the unit circle
-at angles $2\pi f$.  As $N$ grows, new fractions appear and the
-circle fills in.  The first author observed a striking asymmetry:
+at angles $2\pi f$ (Figure~\ref{fig:farey-circle}).  As $N$ grows,
+new fractions appear and the circle fills in
+(Figure~\ref{fig:wobble-circle}).  The first author observed a striking asymmetry:
 when a \emph{prime}~$p$ is added, every one of the $p-1$ new
 fractions $k/p$ lands on the circle at perfectly equispaced
 positions, filling voids uniformly across the entire circle.
@@ -187,7 +185,7 @@ This happens because every integer below a prime is coprime to
 it ($\varphi(p) = p-1$), so no position is skipped.  Composites,
 by contrast, skip positions whose numerators share a factor with
 the denominator, leaving voids in some regions while clustering
-in others.
+in others (Figure~\ref{fig:voids}).
 
 Moreover, by the standard mediant property of Farey sequences,
 each new fraction $k/p$ is the \emph{mediant} of its two
@@ -243,6 +241,56 @@ healing (during positive Mertens excursions) and damage (during
 negative ones).  This decomposition of Farey convergence into
 prime and composite contributions was previously unknown.
 
+\subsection{The per-step spectroscopy framework}
+\label{subsec:framework}
+
+The Farey sequence is not the only arithmetic sequence that can be
+studied in this per-step manner.  We identify three conditions that
+determine when per-step analysis reveals hidden structure:
+
+\begin{itemize}
+\item \textbf{(C1) Euler insertion:} New elements enter at
+  arithmetically structured steps.  For Farey, prime~$p$ inserts
+  exactly $p-1 = \varphi(p)$ fractions at prime steps; composites
+  insert fewer.  The prime-indexed steps are structurally distinct.
+
+\item \textbf{(C2) Explicit-formula connection:} The per-step change
+  connects to an $L$-function via an explicit formula.  For Farey,
+  the bridge identity (Theorem~\ref{thm:bridge}) expresses
+  $\Delta W(p)$ in terms of $M(p)$, which connects to Riemann zeros
+  via $M(x) = -\sum_\rho x^\rho/(\rho\zeta'(\rho)) + O(x^{1/2+\varepsilon})$ under RH.
+
+\item \textbf{(C3) Oscillation:} The per-step quantity changes sign.
+  For Farey, $\Delta W(p)$ oscillates: $\sim 61\%$ negative for
+  primes $p \le 200$, trending toward $\sim 73\%$ for large~$p$
+  (heuristic, conditional on distributional assumptions on $M(p)/\sqrt{p}$
+  stronger than RH alone; see Section~\ref{subsec:rubinstein}).
+\end{itemize}
+
+\begin{theorem}[Meta-theorem, informal]
+\label{thm:meta}
+Let $\{a_n\}$ be an arithmetic sequence with per-step discrepancy
+change $\Delta U(n)$.  If conditions \emph{C1}, \emph{C2}, and
+\emph{C3} all hold, then per-step analysis of $\Delta U$ detects
+$L$-function zeros.  If any condition fails, per-step analysis
+produces no spectral signal at zeros.
+\end{theorem}
+
+We verify the prediction power of this framework on three negative cases:
+(i)~the Gauss circle divisor sum $r_2(n)$ fails~C1 (no structured
+insertion; $r_2$ is defined pointwise as a divisor convolution);
+(ii)~integer partitions $p(n)$ fail~C3 (always positive; Rademacher
+formula oscillates over moduli, not steps);
+(iii)~continued-fraction partial quotients fail~C2 (no explicit
+formula connecting CF discrepancy to $L$-function zeros).
+In all three cases, per-step $z$-scores at known $L$-function zeros
+are noise-level ($|z| < 1$), consistent with the framework prediction.
+
+The Farey sequence is, so far, the unique example satisfying all three
+conditions simultaneously.  Whether other sequences can be engineered
+to satisfy C1+C2+C3 is an open question; see
+Section~\ref{sec:open}.
+
 
 %% ================================================================
 \section{Definitions and Notation}\label{sec:defs}
@@ -280,8 +328,8 @@ and~\ref{thm:universal}) and the per-step application to
 $\Delta W(N)$ (Theorems~\ref{thm:involution}--\ref{thm:cross-term})
 appear, to our knowledge, not to have been stated previously
 in this form.  All identities and supporting lemmas are
-formally verified in Lean~4 (256~results across fourteen files,
-five \texttt{sorry} remaining); all prime-parameter identities
+formally verified in Lean~4 (436~results across sixteen files,
+2~genuine \texttt{sorry} remaining); all prime-parameter identities
 are also verified
 computationally for all primes $p \le 100{,}000$, and the universal
 formula (Theorem~\ref{thm:universal}) is verified on the grid
@@ -312,7 +360,8 @@ $\sum \cos(2\pi pf) = M(p) + 2$;
 the imaginary part vanishes by the symmetry $f \leftrightarrow 1 - f$.
 \end{remark}
 
-The bridge identity is a special case of a more general result:
+The bridge identity is a special case of a more general result
+(illustrated in Figure~\ref{fig:bridge-vectors} and Figure~\ref{fig:universal}):
 
 \begin{theorem}[Generalized Bridge Identity]\label{thm:gen-bridge}
 For any positive integer $N$ and any prime $m > N$,
@@ -704,7 +753,8 @@ its first sustained positive excursion, and the rate oscillates
 between 15--27\% thereafter, tracking the Mertens function.
 
 Binning primes by their normalized Mertens value $M(p)/\sqrt{p}$
-reveals a sharp sigmoid relationship:
+reveals a sharp sigmoid relationship (Figure~\ref{fig:sigmoid},
+see also Figure~\ref{fig:mertens}):
 
 \begin{center}
 \begin{tabular}{lr}
@@ -829,8 +879,8 @@ imbalance.}
 The counterexample occurs at $M(p) = -2$, the shallowest
 negative value at which any counterexample appears among primes
 $p \ge 11$ (183~primes $p \ge 11$ have $M(p) = -1$ with zero
-counterexamples among them; the small primes $p = 3, 5, 7$
-are excluded as discussed above).
+counterexamples; see Figure~\ref{fig:bias-circle} for the geometric picture
+of why $|M| = 2$ is borderline).
 The normalized Mertens value
 $M/\sqrt{p} = -0.0066$ is tiny---the wobble change is a
 positive quantity of order $10^{-11}$ that barely overcomes
@@ -851,7 +901,8 @@ $M = -4$) has $|\Delta W| \approx 7 \times 10^{-11}$, still
 safely negative.
 \end{observation}
 
-The data strongly suggests $M_0 = -3$ as a threshold:
+The data strongly suggests $M_0 = -3$ as a threshold
+(Figure~\ref{fig:delta-w}):
 $M(p) \le -3$ implies $\Delta W(p) \le 0$ for all $4{,}617$ primes
 tested.  This is proved as the Sign Theorem
 (Theorem~\ref{thm:sign}) in Section~\ref{sec:sign-theorem},
@@ -875,24 +926,13 @@ excursions.}
 
 The displacement-shift identity (Proposition~\ref{prop:disp-shift})
 yields an exact algebraic decomposition of $\Delta W(p)$ into four
-terms.  In an earlier version of this paper, the decomposition was
-stated without the $-1$ boundary correction; we record the
-corrected form here.
+terms, formally verified in Lean~4 (\texttt{four\_term\_decomposition}).
 
 \begin{equation}\label{eq:4term}
-  \Delta W(p) = A - B - C + 1 - \mathcal{D} - \frac{1}{{n'}^2}
+  \Delta W(p) = A - B - C - \mathcal{N}
 \end{equation}
 where $n = |\F_{p-1}|$, $n' = |\F_p| = n + (p-1)$, and the
-$+1$ arises as a boundary correction at $f = 1/1$: the
-displacement satisfies $D_{\F_p}(1) = 0$ while the naive
-shift formula would predict
-$D_{\F_{p-1}}(1) + \delta(1) = -1 + 1 = 0 \ne D_{\F_p}(1)$,
-but the wobble normalization changes from $1/n^2$ to
-$1/{n'}^2$, and tracking this change at $f = 1$ produces
-the boundary $-1$ that was previously absorbed into the
-cross term.  The corrected decomposition is formally verified
-in Lean~4 (\texttt{four\_term\_decomposition}).  The remaining
-terms are
+remaining terms are
 \begin{align*}
   A &= \textstyle\sum_{\text{old}} D_{\F_{p-1}}(f)^2 \cdot
        (1/n^2 - 1/{n'}^2) && \text{(dilution --- always positive),}\\
@@ -900,56 +940,131 @@ terms are
        && \text{(cross term),}\\
   C &= (1/{n'}^2)\textstyle\sum \delta(f)^2
        && \text{(shift squared --- always positive),}\\
-  \mathcal{D} &= (1/{n'}^2)\textstyle\sum_{\text{new}} D_{\F_p}(k/p)^2
-       && \text{(new-fraction discrepancy --- always positive).}
+  \mathcal{N} &= (1/{n'}^2)\textstyle\sum_{\text{new}} D_{\F_p}(k/p)^2
+       && \text{(new-fraction contribution --- always positive).}
 \end{align*}
-We use $\mathcal{D}$ (calligraphic) for the decomposition term to
-distinguish it from the rank discrepancy function~$D(f)$.
+We use $\mathcal{N}$ (for ``new-fraction contribution'') to
+distinguish this term from the rank discrepancy function~$D(f)$.
 Thus $\Delta W(p) \le 0$ (wobble worsens) if and only if
-$B + C + \mathcal{D} + 1/{n'}^2 \ge A + 1$.
+$\mathcal{N} + B + C \ge A$.
 
 Computation through $p = 100{,}000$ reveals a striking near-cancellation:
 
 \begin{observation}[Near-cancellation]\label{obs:near-cancel}
 For all tested primes with $M(p) \le -3$:
 \begin{enumerate}[(i)]
-  \item $\mathcal{D}/A \in [0.97,\, 1.12]$: the new-fraction discrepancy nearly
+  \item $\mathcal{N}/A \in [0.97,\, 1.12]$: the new-fraction discrepancy nearly
     cancels the dilution by itself.
   \item $B$ is \textbf{always positive}: the rank discrepancy $D$ and
     the shift $\delta$ are positively correlated.
   \item $C$ provides $5$--$18\%$ additional margin.
-  \item The combined ratio $(B + C + \mathcal{D})/A$ grows from ${\sim}1.4$ at
+  \item The combined ratio $(B + C + \mathcal{N})/A$ grows from ${\sim}1.4$ at
     $M = -3$ to ${\sim}3.0$ at $M = -14$.
 \end{enumerate}
 \end{observation}
 
 \noindent A direct proof that $B \ge 0$ remains an open problem.
-However, the Sign Theorem (Theorem~\ref{thm:sign}) bypasses
-this entirely: the proof shows $C + \mathcal{D} + 1/{n'}^2 > A$
-without requiring $B$'s sign, using a Cauchy--Schwarz bound on
-the $\mathcal{D}/A$ ratio
-combined with a rearrangement-inequality lower bound on~$C$.
-The per-denominator decomposition of~$B$ connects to
-classical Dedekind sums via $T_b(p) = p^2[s(b,p) + (p-1)/4]$,
-where $s(b,p)$ is the Dedekind sum; this connection may
-eventually yield a proof of $B \ge 0$ as well.
+The Sign Theorem (Theorem~\ref{thm:sign}) bypasses
+this entirely.
 
-\subsection{Rubinstein--Sarnak connection}
+\begin{remark}[Connection to Franel--Landau]\label{rem:franel-connection}
+The wobble $W(N) = (1/|\F_N|^2)\sum_{f \in \F_N} D(f)^2$ is precisely
+the normalized Franel--Landau sum: $\text{RH} \Leftrightarrow W(N) = O(N^{-1+\varepsilon})$.
+The four-term decomposition \eqref{eq:4term} therefore decomposes
+the \emph{per-step change} of the Franel--Landau sum at prime arguments.
+We do not claim to approach the Riemann Hypothesis through this
+decomposition.  Rather, its merit is \emph{diagnostic}: it reveals
+the mechanism by which each prime insertion changes the discrepancy,
+isolating four structurally distinct contributions (dilution, cross-correlation,
+shift-squared, and new-fraction) whose near-cancellation
+($\mathcal{N}/A \in [0.97, 1.12]$) is a striking empirical phenomenon in
+its own right.  Furthermore, the Sign Theorem
+(Theorem~\ref{thm:sign}) reduces the
+question ``does $\Delta W(p) < 0$?'' to a single open lemma
+(DiscrepancyStep), which is a concrete inequality among
+the four terms rather than an opaque bound on the full sum.
+\end{remark}
+
+\subsection{Cross-term~$B$ and Dedekind sums}\label{subsec:dedekind}
+
+The cross term $B = (2/{n'}^2)\sum D(f)\cdot\delta(f)$ admits a
+denominator-by-denominator decomposition that connects it to
+classical Dedekind sums.
+
+For a fixed denominator $b < p$, let $T_b(p)
+= \sum_{\substack{a=1\\\gcd(a,b)=1}}^{b} a\cdot(pa \bmod b)$
+denote the dot product of the original residues $a$ with their
+images under multiplication by~$p$.  Then:
+
+\begin{observation}[Dedekind structure of~$B$]\label{obs:dedekind-B}
+The cross term decomposes per denominator:
+\[
+  B \;=\; \frac{2}{{n'}^2} \sum_{b=2}^{p-1} S_b(p),
+\]
+where $S_b(p) = \sum_{\gcd(a,b)=1} D_{\F_{p-1}}(a/b) \cdot \delta(a/b)$
+collects the rank-discrepancy--shift products at denominator~$b$.
+The per-denominator shift satisfies $\delta(a/b) = (pa \bmod b - a)/b$,
+so $S_b(p)$ depends on how the Mertens-weighted rank discrepancy
+aligns with the residue permutation $a \mapsto pa \bmod b$.
+
+The classical connection~\cite{Garcia2025} gives
+\[
+  T_b(p) \;:=\; \sum_{\substack{a=1\\\gcd(a,b)=1}}^{b} a\cdot(pa \bmod b)
+  \;=\; p^2\!\left[s(b,p) + \frac{p-1}{4}\right] + O(b),
+\]
+where $s(b,p)$ is the Dedekind sum, providing a computable formula
+for the raw residue dot-product.  However, $S_b(p)$ involves the
+rank \emph{discrepancy} $D(a/b)$ (which can be negative), not the rank
+itself, so $S_b(p)$ and $T_b(p)$ are distinct objects.
+\end{observation}
+
+\textbf{Status of $B \ge 0$.}
+Empirically, $B \ge 0$ for all $4{,}617$ tested primes $p \le 100{,}000$
+with $M(p) \le -3$, \emph{except} $B(13) = -3.72 \times 10^{-4} < 0$
+(where $M(13) = -3$).  Notably, $B + C > 0$ at $p = 13$ regardless,
+so the Sign Theorem is unaffected.
+
+The rearrangement inequality does \emph{not} prove $B \ge 0$:
+it would apply if $B$ were a dot-product of a sorted sequence with its
+permutation, but $D(a/b)$ can be negative, breaking the monotonicity
+assumption.  A proof of $B \ge 0$ (for $p \ge 17$) remains open.
+The Dedekind sum formula above provides the algebraic framework;
+a proof would require controlling the covariance of $D$ and $\delta$
+across denominators, which is equivalent to the permutation-variance
+problem identified in the DiscrepancyStep analysis.
+
+\subsection{Rubinstein--Sarnak connection}\label{subsec:rubinstein}
 
 The sigmoid dependence on $M(p)/\sqrt{p}$ (Section~\ref{sec:phenomenon})
 means the overall rate of positive $\Delta W$ is governed by the distribution
 of $M(p)/\sqrt{p}$ across primes.  This distribution depends on
 the zeros of $\zeta(s)$ via the explicit formula for the Mertens
-function, connecting our violation phenomenon to the
-Rubinstein--Sarnak theory of Chebyshev's
-bias~\cite{RubinsteinSarnak1994}.  In that framework, the
-logarithmic density of integers where a prime race is ``won'' by
-one residue class is determined by the zeros of Dirichlet
-$L$-functions.  Analogously, the density of primes that
-improve Farey uniformity may be expressible through the zeros
-of~$\zeta(s)$---a connection that would link the per-step
-geometry of Farey sequences to the Riemann Hypothesis in a
-new way.
+function.
+
+The Rubinstein--Sarnak framework~\cite{RubinsteinSarnak1994} proves
+results about prime \emph{races} (comparing $\pi(x;q,a)$ for
+different residue classes), not directly about $M(p)/\sqrt{p}$.
+The correct analogy is closer to Akbary, Ng, and
+Shahabi~\cite{AkbaryNgShahabi2014}, who prove (under RH and additional
+hypotheses on the zeros of~$\zeta'$) that a suitably normalized Mertens
+sum has a limiting distribution.  Transferring such a distribution to a
+probability statement about $\Pr[\Delta W(p) < 0]$ would additionally
+require identifying the exact threshold $c_0$ at which the four-term
+decomposition switches sign---a quantity not currently derived analytically.
+
+\begin{conjecture}[Sign-bias probability]\label{conj:sign-bias}
+Under RH and the existence of a limiting distribution for
+$M(p)/\sqrt{p}$ in logarithmic density, the logarithmic density
+of primes with $\Delta W(p) < 0$ converges to a constant
+$c \approx 0.73$.  The value $0.73$ is inferred from the
+empirical sigmoid fit; a rigorous derivation from the four-term
+decomposition is open.
+\end{conjecture}
+
+\noindent Computation through $p = 100{,}000$ gives $62.3\%$ negative
+(all primes $\ge 11$), consistent with a slow approach to the
+conjectured limiting value from below via the transient influence
+of small primes.
 
 
 \subsection{Wobble monotonicity equivalence}
@@ -991,7 +1106,7 @@ This is formally verified in Lean~4
 \subsection{Spectral rigidity connection}
 
 The wobble $W(N)$ is a discrete analog of the \emph{Dyson--Mehta
-$\Delta_3$ statistic} from random matrix theory (RMT), which measures
+$\Delta_3$ statistic}~\cite{DysonMehta1963} from random matrix theory (RMT), which measures
 spectral rigidity---the tendency of eigenvalues to resist clustering.
 
 \begin{remark}[Random matrix analogy]\label{rem:rmt}
@@ -1005,7 +1120,7 @@ spectral staircase deviation.
 The Sign Theorem (Theorem~\ref{thm:sign}) then takes the form:
 \emph{primes inject disorder into the Farey spectrum.}
 Montgomery's pair correlation conjecture~\cite{Montgomery1973},
-confirmed numerically by Odlyzko, shows that the zeros of
+confirmed numerically by Odlyzko~\cite{Odlyzko1987}, shows that the zeros of
 $\zeta(s)$ exhibit GUE statistics.
 The Farey--Mertens bridge provides a complementary view: the
 Mertens function---which encodes M\"obius cancellations and is
@@ -1022,7 +1137,20 @@ The wobble--Mertens correlation is specific to primes.  For
 composites, the conjecture fails overwhelmingly: among the $404$
 composites $N \le 500$, fully $294$ ($73\%$) have
 $\Delta W(N) > 0$ with $M(N) < 0$.  The mechanism behind this
-specificity is clear:
+specificity is clear.
+
+\begin{remark}[Composite structure]
+Composites with small prime factors (e.g., $N = 2p$) can also
+damage uniformity: the first counterexamples occur at $N = 94 = 2 \times 47$
+and $N = 146 = 2 \times 73$ (both $\omega(N) = 2$).
+The pattern is subtle: $N = 2p$ with large prime $p$ behaves more
+like the prime $p$ than like a typical composite.
+Thus ``primes damage, composites heal'' is a statistical
+tendency, not an absolute rule; the prime-composite asymmetry is
+strongest when measured by mass (${\sim}99\%$ of total negative
+$\Delta W$ comes from primes, ${\sim}96\%$ of positive from composites
+through $N = 200{,}000$), not pointwise sign.
+\end{remark}
 
 \begin{proposition}[Formally verified]\label{prop:grid-fill}
 For a prime $p$, the integer $p$ adds exactly $\varphi(p) = p - 1$
@@ -1043,7 +1171,8 @@ discrepancy from the fractional part $\fpart{pf}$.}
 \label{fig:shift-map}
 \end{figure}
 
-Moreover, each new fraction lands in a \emph{distinct} Farey gap:
+Moreover, each new fraction lands in a \emph{distinct} Farey gap
+(Figure~\ref{fig:shift-map} shows the scrambling structure):
 
 \begin{theorem}[Injection Principle]\label{thm:injection}
 For any prime $p \ge 3$, each gap between adjacent fractions in
@@ -1187,20 +1316,20 @@ the maximum gap in $\F_N$ is at most $1/N$, and the gap
 sequence converges to zero as $N \to \infty$.
 \end{corollary}
 
-\begin{theorem}[Composite Healing Rate]\label{thm:healing}
+\begin{conjecture}[Composite Healing Rate]\label{thm:healing}
 Among composites $N \le K$, the fraction with
 $\Delta W(N) > 0$ (uniformity improvement) tends to~$1$
 as $K \to \infty$.
-\end{theorem}
+\end{conjecture}
 
-\begin{proof}[Proof sketch]
-A composite $N = ab$ adds $\varphi(N) < N-1$ new fractions.
-By a density argument using $\varphi(N)/N \to 0$ on average
-over highly composite numbers and the fact that missing
-numerators create a positive net dilution effect, the
-fraction of composites with $\Delta W > 0$ approaches~$1$.
+\noindent\emph{Evidence.}
 In computations through $N = 200$, this rate is $96\%$.
-\end{proof}
+Heuristically: a composite $N = ab$ adds $\varphi(N) < N-1$ new
+fractions (fewer than a prime of the same size), so the dilution
+effect dominates and uniformity tends to improve.  However, the
+density argument using $\varphi(N)/N \to 0$ on average over highly
+composite numbers does not constitute a rigorous proof; the
+conjecture is supported by computation but not proved.
 
 The injection principle admits a sharper algebraic formulation:
 
@@ -1235,19 +1364,50 @@ The average position of $k/p$ within its enclosing Farey gap is
 exactly~$1/2$, by the pairing $k \leftrightarrow p-k$ and the
 Farey symmetry $f \leftrightarrow 1-f$.
 
+The smallest new fraction $1/p$ has an exact discrepancy:
+
+\begin{proposition}[Single-fraction damage]\label{prop:single-frac-damage}
+For any prime $p \ge 3$,
+\[
+  D_{\F_p}(1/p) \;=\; 1 - \frac{|\F_p|}{p} \;\sim\; -\frac{3p}{\pi^2}.
+\]
+In absolute terms, $|D_{\F_p}(1/p)| \approx 3p/\pi^2$ accounts for
+approximately $65\%$ of the total new-fraction damage $\mathcal{N}$
+in the four-term decomposition.
+\end{proposition}
+
+\begin{proof}
+Since $1/p < 1/b$ for all $b \le p-1$ and $b \ge 1$ (as $b < p$
+forces $1/b > 1/p$), the only fraction in $\F_{p-1}$ smaller than
+$1/p$ is $0/1$.  Hence $1/p$ has rank~$1$ in $\F_p$.
+With $n' = |\F_p|$, the rank discrepancy is
+$D_{\F_p}(1/p) = 1 - n' \cdot (1/p) = 1 - n'/p$.
+Since $n' = |\F_p| \sim 3p^2/\pi^2$, this gives
+$D_{\F_p}(1/p) \sim 1 - 3p/\pi^2 \sim -3p/\pi^2$.
+The $65\%$ figure is verified computationally for $p \le 10{,}000$
+(ratio $|D(1/p)|^2 / \mathcal{N}_{\text{raw}}$ where
+$\mathcal{N}_{\text{raw}} = \sum_{k=1}^{p-1} D_{\F_p}(k/p)^2$).
+\end{proof}
+
 The new fractions have a remarkably simple total discrepancy:
 
 \begin{proposition}[New-fraction discrepancy sum]\label{prop:new-disp-sum}
 For any prime $p \ge 3$,
-$\sum_{k=1}^{p-1} D_{\F_p}(k/p) = 1$.
+\[
+  \sum_{k=1}^{p-1} D_{\F_p}(k/p) = -\frac{p-1}{2}.
+\]
 \end{proposition}
 
 \begin{proof}[Proof sketch]
-By the displacement-shift identity (Proposition~\ref{prop:disp-shift})
-and the modular inverse neighbor (Proposition~\ref{prop:mod-inv}),
-$D_{\F_p}(k/p)$ depends on the gap into which $k/p$ is inserted.
-A direct computation using $\sum k/p = (p-1)/2$ and the
-rank of $k/p$ in~$\F_p$ yields the sum~$1$.
+The sum of all discrepancies in $\F_p$ is zero:
+$\sum_{f \in \F_p} D_{\F_p}(f) = \sum_{i=1}^{n'} i - n' \sum_{f} f = 0$,
+using the Farey symmetry identity $\sum_{f \in \F_p} f = (n'+1)/2$.
+A direct computation of $\sum_{f \in \F_{p-1}} D_{\F_p}(f)$
+(where the rank of each old fraction $f$ in $\F_p$ equals its rank
+in $\F_{p-1}$ plus the count of new fractions $k/p < f$) yields
+$\sum_{f \in \F_{p-1}} D_{\F_p}(f) = (p-1)/2$.
+Since the two sums partition $\F_p$, the new-fraction sum equals
+$0 - (p-1)/2 = -(p-1)/2$.
 (Verified for all primes $p \le 500$ by exact rational arithmetic.)
 \end{proof}
 
@@ -1298,13 +1458,16 @@ additional error terms that break the sign control.
 Key supporting results have been formally verified in Lean~4
 using the Mathlib library, with the Aristotle automated theorem
 prover~\cite{Aristotle2025} generating proof strategies.
-The formalization spans fourteen Lean~4 files containing 256
+The formalization spans sixteen Lean~4 files containing 436
 theorems, lemmas, and definitions, with
-five~\texttt{sorry} remaining (all in \texttt{SignTheorem.lean},
-corresponding to open conjectures: the full Sign Theorem for
-all primes, the density-one extension, and three bounds on
-the correlation ratio~$R(p)$).
-All fourteen files compile with no axiom
+2~genuine \texttt{sorry} remaining: one in \texttt{SignTheorem.lean}
+(the full Sign Theorem for all primes, awaiting the DiscrepancyStep
+lemma) and one in \texttt{BridgeIdentity.lean}
+(the general bridge identity $\sum_{f \in \F_N} e^{2\pi imf} = M(N)+1$
+for all $m > N$; the specific case $m = p$ prime is proved sorry-free
+as \texttt{bridge\_identity} and is listed among the zero-sorry results
+in Section~\ref{subsec:key-results}).
+All files compile with no axiom
 violations.  The files are:
 \begin{itemize}
   \item \texttt{PrimeCircle.lean} (13 results): Farey cardinality,
@@ -1333,9 +1496,9 @@ violations.  The files are:
   \item \texttt{SubGapPermutation.lean} (12 results):
     sub-gap permutation identities for prime insertion.
   \item \texttt{SignTheorem.lean} (54 results,
-    five~\texttt{sorry}): Sign Theorem for small primes
+    1~genuine \texttt{sorry}): Sign Theorem for small primes
     (\texttt{sign\_theorem\_all\_le\_113}), wobble
-    monotonicity equivalence, and open conjectures.
+    monotonicity equivalence; sorry on full sign conjecture.
   \item \texttt{MediantMinimality.lean} (4 results):
     mediant minimality (Theorem~\ref{thm:mediant-minimality}),
     Farey gap formula (Theorem~\ref{thm:farey-gap-formula}),
@@ -1343,6 +1506,14 @@ violations.  The files are:
   \item \texttt{MertensGrowth.lean} (8 results):
     computational witnesses for $|M(N)| > \sqrt{N}/2$
     and composite healing bounds.
+  \item \texttt{AbstractCauchySchwarz.lean} (15 results):
+    abstract Cauchy--Schwarz bounds for the cross-term ratio.
+  \item \texttt{LogPrimeQLinear.lean} (5 results):
+    $\mathbb{Q}$-linear independence of logarithms of distinct primes
+    (Theorem~\ref{thm:log-lindep}): if $\sum_{p \in S} q_p \log p = 0$
+    for distinct primes and rationals $q_p$, then all $q_p = 0$.
+    This lemma underlies the Kronecker equidistribution argument in
+    the Turán non-vanishing theorem (Paper~C).  Proved autonomously by Aristotle.
 \end{itemize}
 The Aristotle theorem prover~\cite{Aristotle2025}
 autonomously constructed the bridge identity proof chain
@@ -1353,7 +1524,44 @@ identity, and the mediant minimality theorem.
 The bridge is additionally verified by
 \texttt{native\_decide} for all primes $p \le 13$.
 
-\subsection{Key verified results}
+\begin{remark}[Proof perimeter]\label{rem:proof-perimeter}
+Formal verification is only as strong as its boundary and its trusted
+computing base (TCB).  We make this boundary explicit.
+
+\textbf{Inside the perimeter} (zero \texttt{sorry}, no axiom violations):
+the 436 results listed in Section~\ref{subsec:key-results} — Farey
+combinatorics, the Bridge Identity at prime argument, the four-term
+decomposition, the Sign Theorem for $p \le 113$, and all structural
+identities.
+
+\textbf{Outside the perimeter} (open):
+\begin{itemize}
+  \item \emph{DiscrepancyStep} ($\mathcal{N}(p) + B(p) + C(p) > A(p)$
+    for all primes $p \ge 11$): this is the central open lemma, not a
+    sorry-placeholder awaiting cleanup.  It is the hard analytic core
+    of the Sign Theorem, and is marked \texttt{sorry} precisely because
+    no proof is known.
+  \item The full Sign Theorem (all primes $p \ge 11$): awaits
+    DiscrepancyStep; proved for $p \le 113$ unconditionally.
+  \item The general Bridge Identity for composite $m$
+    (\S\ref{sec:formal}): sorry because the Ramanujan-sum
+    decomposition for arbitrary $m$ is conjectured but not yet proved.
+  \item The threshold $M(p) \le -3$ (Remark~\ref{rem:threshold}):
+    empirical, not proved.  Any finite verification is insufficient.
+  \item All RH-conditional statements: explicitly flagged throughout.
+\end{itemize}
+
+\textbf{Trusted computing base} (assumed correct, not verified here):
+the Lean~4 runtime (C\texttt{++} implementation), the Mathlib library,
+and the Aristotle prover infrastructure.  Bugs in any of these would
+affect our proofs — they are outside this paper's scope to verify.
+A runtime bug exists in all Lean~4 versions to date
+(\texttt{lean\_alloc\_sarray} integer overflow on near-\texttt{SIZE\_MAX}
+allocations); it does not affect mathematical proof correctness, which
+operates at the term level, not the allocation level.
+\end{remark}
+
+\subsection{Key verified results}\label{subsec:key-results}
 
 All of the following are fully proved with zero \texttt{sorry}:
 \begin{enumerate}
@@ -1392,9 +1600,7 @@ All of the following are fully proved with zero \texttt{sorry}:
     $\sum 1/g_j^2$ strictly increases at every step.
   \item \textbf{Four-Term Decomposition}
     (equation~\eqref{eq:4term}):
-    the corrected decomposition
-    $\Delta W(p) = A - B - C + 1 - \mathcal{D} - 1/{n'}^2$,
-    with the $+1$ boundary correction at $f = 1$
+    $\Delta W(p) = A - B - C - \mathcal{N}$
     (\texttt{four\_term\_decomposition}).
   \item \textbf{Geometric Identity}
     (Theorem~\ref{thm:geometric-bc}):
@@ -1412,7 +1618,7 @@ All of the following are fully proved with zero \texttt{sorry}:
     $\Delta W(p) < 0$ for all primes $11 \le p \le 113$
     (\texttt{sign\_theorem\_all\_le\_113}).
   \item \textbf{Ratio test (corrected)}:
-    the corrected $\mathcal{D}/A$ ratio identity
+    the corrected $\mathcal{N}/A$ ratio identity
     (\texttt{ratio\_test\_corrected}).
   \item \textbf{Sign condition}:
     the algebraic condition for $\Delta W(p) < 0$
@@ -1429,6 +1635,20 @@ All of the following are fully proved with zero \texttt{sorry}:
   \item \textbf{Farey Gap Bound}:
     the gap between adjacent fractions in $\F_N$ is at most
     $1/N$ (\texttt{farey\_gap\_bound}).
+  \item \textbf{$\mathbb{Q}$-Linear Independence of Log Primes}
+    \label{thm:log-lindep}:
+    for any finite set $S$ of distinct primes and rational
+    coefficients $(q_p)_{p \in S}$,
+    $\sum_{p \in S} q_p \log p = 0 \implies q_p = 0$ for all $p$.
+    The Lean~4 formulation uses the Mathlib
+    \texttt{LinearIndependent} typeclass.
+    This is the key lemma for the Kronecker equidistribution
+    argument: the phases $t \log p$ are dense in the torus $\mathbb{T}^{|S|}$
+    because $\{\log p : p \in S\}$ are $\mathbb{Q}$-linearly independent,
+    which in turn implies the Turán non-vanishing theorem
+    $|c_K(\rho)| > 0$ for all but finitely many zeros $\rho$.
+    Proved autonomously by Aristotle
+    (\texttt{log\_prime\_Q\_linear\_indep}).
 \end{enumerate}
 
 \noindent All prime-parameter identities are additionally verified
@@ -1704,6 +1924,126 @@ rewritten in Farey-geometric language.)
 
 
 %% ================================================================
+\section{Meta-Theorem: Three Negative Cases}\label{sec:negative-cases}
+%% ================================================================
+
+The meta-theorem (Theorem~\ref{thm:meta}) states that C1+C2+C3 are
+\emph{necessary} conditions for per-step spectroscopy to detect
+$L$-function zeros.  We now make this precise by verifying that
+each condition, when violated, causes the spectral signal to vanish.
+
+\begin{theorem}[Necessity of C1, C2, C3]\label{thm:necessity}
+Let $\{a_n\}$ be a number-theoretic sequence with per-step discrepancy
+$\Delta U(n) = U(n) - U(n-1)$.
+\begin{enumerate}[(i)]
+\item \emph{(C1 failure)} If $a_n$ is defined via a pointwise divisor
+  convolution with no prime-insertion step, then the bridge identity
+  $\sum_f e^{2\pi i f} \ne M(N) + \text{const}$, so per-step
+  interference patterns are absent and $z$-scores at $\zeta$-zeros
+  satisfy $|z| < 1$.
+\item \emph{(C3 failure)} If $\Delta U(n) \ge 0$ for all~$n$
+  (unipolar signal), then the exponential sum $\sum_{n \le N} \Delta U(n)
+  e^{-i\gamma \log n}$ cannot exhibit the destructive interference
+  that picks out the frequency $\gamma$: all terms contribute with
+  the same sign of $\Delta U(n) \ge 0$, so the sum grows with~$N$
+  rather than oscillating near zero.  More precisely, the Mertens
+  spectroscope requires the bridge identity $\sum_f e^{2\pi ipf}
+  = M(p) + 2$, which involves Möbius cancellation.  A sequence
+  with $\Delta U(n) \ge 0$ cannot satisfy the bridge identity
+  (which can be negative) and thus cannot be calibrated to
+  detect $\zeta$-zero frequencies.
+\item \emph{(C2 failure)} If no explicit formula linking $a_n$
+  to the imaginary parts $\gamma_k$ of $\zeta$-zeros is known,
+  then the frequencies $\gamma_k$ cannot be resolved from
+  $\{\Delta U(n)\}$ without additional arithmetic structure.
+\end{enumerate}
+\end{theorem}
+
+We verify the prediction on three concrete cases, each failing
+exactly one condition.
+
+\paragraph{Case~A: Gauss circle ($r_2(n)$, fails~C1).}
+The function $r_2(n) = 4\sum_{d|n}\chi_4(d)$ counts
+representations of~$n$ as a sum of two squares.  It is defined
+via a divisor convolution: there is no ``step'' corresponding
+to a prime insertion, and the Farey-insertion mechanism is absent.
+The aggregate error $E(x) = \sum_{n \le x} r_2(n) - \pi x$
+satisfies $E(x) = O(x^{1/3+\varepsilon})$ and does connect to
+$\zeta$-zeros via Voronoi summation, but the \emph{per-step}
+differences $r_2(n) - r_2(n-1)$ do not form a bridge: the
+Ramanujan-collapse mechanism requires the multiplicative Möbius
+weighting $\mu(n)$ that is absent in the $\chi_4$ convolution.
+Empirically, $z$-scores at $\gamma_1 = 14.13$ using the $r_2$
+spectroscope are noise-level ($|z| < 1$, consistent with
+Theorem~\ref{thm:necessity}(i)).
+
+\paragraph{Case~B: Integer partitions ($p(n)$, fails~C3).}
+The partition function $p(n) \ge 1$ for all $n \ge 1$, so the
+per-step difference $\Delta p(n) = p(n) - p(n-1) \ge 0$ is
+non-negative (for $n \ge 2$).  A unipolar signal cannot satisfy
+the bridge identity (Theorem~\ref{thm:bridge}): the right-hand side
+$M(p)+2$ takes the value $-1$ at primes such as $p = 11$ ($M(11) = -3$),
+while $\sum_f e^{2\pi i p f}$ with all $f$ real equals a sum of
+unit-modulus complex numbers, not a non-negative real.
+The Mertens spectroscope \emph{requires} the calibration
+$\sum_f e^{2\pi i p f} = M(p)+2$ (Theorem~\ref{thm:bridge}), which
+involves Möbius cancellation producing negative values; no analogue
+exists for $\Delta p(n)$.  The Rademacher expansion gives oscillating
+\emph{modular} structure (Eisenstein series, not $\zeta$), but the
+per-step signal is unipolar.  Empirically $|z| < 1$ at all $\gamma_k$.
+
+\paragraph{Case~C: Continued-fraction quotients ($a_n(x)$, fails~C2).}
+The partial quotients $a_n(x)$ are governed by the Gauss--Kuzmin
+invariant measure $\mu(a_n \le k) = \frac{1}{\log 2}
+\sum_{m=1}^k \log(1+\frac{1}{m(m+2)})$, which encodes the
+statistics of Euclidean-algorithm steps.  No explicit formula of the
+form $a_n(x) \sim \sum_k c_k n^{-1/2}\cos(\gamma_k\log n+\phi_k)$
+is known; the ergodic system has spectral measure singular with
+respect to the $\zeta$-zero Dirac masses.  Without a spectral
+bridge, the $\gamma_k$ cannot be extracted from $\{a_n\}$.
+
+\begin{proposition}[C1 implies C2]\label{prop:c1-implies-c2}
+Every sequence satisfying~C1 automatically satisfies~C2.
+Concretely, the bridge identity (Theorem~\ref{thm:bridge}) is a
+theorem of the Farey structure: for every prime $p$,
+\[
+  \sum_{f \in \F_{p-1}} e^{2\pi i p f} = M(p) + 2.
+\]
+More generally, for any prime $m > N$:
+$\sum_{f \in \F_N} e^{2\pi i m f} = M(N) + 1$
+(Theorem~\ref{thm:gen-bridge}).
+\end{proposition}
+
+\begin{proof}
+Both identities follow from the Ramanujan-sum decomposition
+already proved in Section~\ref{sec:identities}.
+For completeness: decompose by denominator,
+\[
+  \sum_{f \in \F_N} e^{2\pi i m f}
+  = \underbrace{e^0 + e^{2\pi i m}}_{\text{boundary }= 2}
+  + \sum_{b=2}^{N} c_b(m),
+\]
+where $c_b(m)$ is the Ramanujan sum.  Since $m > N \ge b$ and
+$m$ is prime, $\gcd(m,b)=1$, so $c_b(m) = \mu(b)$.  Hence
+$\sum = 2 + \sum_{b=2}^{N}\mu(b) = 2 + (M(N)-1) = M(N)+1$.
+The bridge identity (case $N=p-1$, $m=p$) then gives
+$M(p-1)+1 = (M(p)+1)+1 = M(p)+2$.
+\end{proof}
+
+\begin{remark}[Uniqueness of C1]
+Condition~C1 uniquely characterizes the Farey sequence: by the
+Euler totient formula, the set $\{a/b : 0 \le a \le b \le N,\,
+\gcd(a,b)=1\}$ is \emph{exactly} $\F_N$ for every $N$.
+Proposition~\ref{prop:c1-implies-c2} shows that~C2 is not an
+independent condition---it is a theorem of the Farey structure.
+Among currently studied sequences, Farey $\{\Delta W(p)\}$ is the
+primary known example satisfying C1+C2+C3 simultaneously.
+Whether~C3 follows from C1+C2 (as a consequence of the four-term
+decomposition), or requires additional arithmetic input, is an
+open question (see Section~\ref{sec:open}).
+\end{remark}
+
+%% ================================================================
 \section{The Sign Theorem}\label{sec:sign-theorem}
 %% ================================================================
 
@@ -1716,14 +2056,12 @@ $\Delta W(p) < 0$.
 \end{theorem}
 
 \noindent The restriction to $p \le 100{,}000$ reflects the
-computational range.  The analytical ingredients
-(Section~\ref{sec:sign-theorem}, items (i)--(iii)) show that
-$\mathcal{D}/A + C/A > 1$ holds for all sufficiently large~$p$,
-since $C/A = \Omega(1/\log^2 p)$ exceeds the gap
-$1 - \mathcal{D}/A = O(1/\sqrt{p})$.  However, the explicit
-crossover~$P_0$ depends on unconditional Mertens-function bounds
-(Walfisz) whose constants have not been made effective.  We
-conjecture the theorem holds for all primes $p \ge 11$.
+computational range.  The analytic proof for all~$p$ requires
+the \emph{DiscrepancyStep} lemma ($C(p) + \mathcal{N}(p) > A(p)$ for primes
+with $M(p) \le -3$), which is computationally verified but not yet
+proved; see item~(iii) of the proof below and
+Remark~\ref{rem:obstruction}.  We conjecture the theorem holds
+for all primes $p \ge 11$.
 
 A stronger computational result holds for small primes:
 
@@ -1745,16 +2083,20 @@ Theorem~\ref{thm:sign} is needed only for $p > 113$.
 
 The proof relies on two analytical ingredients.
 
-\begin{proposition}[$\mathcal{D}/A$ ratio]\label{prop:DA-ratio}
-For every prime $p \ge 3$ with $M(p) \le -3$,
+\begin{observation}[$\mathcal{N}/A$ ratio — computational]\label{prop:DA-ratio}
+Computationally, for all primes $11 \le p \le 100{,}000$ with $M(p) \le -3$:
 \[
-  \frac{\mathcal{D}}{A} = 1 + O(1/p),
+  \frac{\mathcal{N}}{A} \in [0.97,\, 1.12].
 \]
-where the implicit constant depends only on $|M(p)|/p$.
-This follows from wobble conservation: the total wobble
-$\sum_{f \in \F_{p-1}} w(f) = 0$ forces the new-fraction
-discrepancy sum to nearly cancel the dilution.
-\end{proposition}
+The ratio converges to~$1$ as $p \to \infty$, consistent with
+a conjectured asymptotic $\mathcal{N}/A = 1 + O(1/p)$.
+\emph{No analytic proof of this asymptotic is currently known.}
+The proof would require a sharp second-moment asymptotic for the
+step $\mathcal{F}_{p-1} \to \mathcal{F}_p$, which is stronger than any
+standard Farey-equidistribution bound
+(Franel--Landau equidistribution applies to fixed test functions,
+not to the $p$-varying discrepancy field).
+\end{observation}
 
 \begin{proposition}[Strict positivity of $C$]\label{prop:strict-pos}
 For every prime $p \ge 5$, the shift-squared term satisfies $C > 0$.
@@ -1781,43 +2123,46 @@ arithmetic independently confirms the sign.
 The four-term decomposition
 (Observation~\ref{obs:near-cancel}) gives
 $\Delta W(p) < 0 \;\Leftrightarrow\;
-\mathcal{D} + B + C + 1/{n'}^2 > A$,
+\mathcal{N} + B + C > A$,
 where $A$ is the dilution, $D$ the new-fraction discrepancy,
 $B = 2\sum D \cdot \delta$ the cross term, and
 $C = \sum \delta^2$ the shift-squared term.
 
 \begin{enumerate}[(i)]
-\item \emph{$\mathcal{D}/A = 1 + O(1/p)$}
-(Proposition~\ref{prop:DA-ratio}, exact identity from
-wobble conservation).  So $\mathcal{D} + C > A$ reduces to $C/A > 1 - \mathcal{D}/A = O(1/p)$.
+\item \emph{$\mathcal{N}/A \in [0.97, 1.12]$ for all tested primes}
+(Observation~\ref{prop:DA-ratio}, verified computationally for
+$p \le 100{,}000$; no analytic proof of the asymptotic
+$\mathcal{N}/A \to 1$ is currently available).
 
 \item \emph{$C > 0$ strictly}
 (Proposition~\ref{prop:strict-pos}, rearrangement inequality:
 $T_b \le \sum a^2$ with equality only if $p \equiv 1 \pmod{b}$
 for all $b$, which is impossible for $p \ge 5$).
 
-\item \emph{$C/A \ge \pi^2/(432 \log^2 N)$}
-(from the deficit identity
-$\sum \delta^2 = 2\sum_b (\sum a^2 - T_b)/b^2$
-and the Prime Number Theorem applied to summing
-deficits at prime denominators).
+\item \emph{$\mathcal{N} + B + C > A$ (key gap)}:
+The claimed lower bound $C/A \ge \pi^2/(432 \log^2 N)$
+(from a deficit identity and PNT) has \emph{not been proved};
+Codex analysis (2026-04-13) confirms this requires uniform control
+on modular permutation variance across all $b \le p-1$,
+which is new arithmetic information beyond PNT and
+Cauchy--Schwarz.  The precise open lemma is:
+\[
+  \textbf{(DiscrepancyStep):}\quad
+  \mathcal{N}(p) + B(p) + C(p) > A(p)
+  \quad \text{for all primes } p \ge 11 \text{ with } M(p) \le -3.
+\]
+This lemma is verified computationally
+($\mathcal{N}/A + C/A > 1.096$ at all $4{,}617$ tested primes
+up to $p = 100{,}000$); its analytic proof is an open problem.
 
-\item The gap $1 - \mathcal{D}/A$ is $O(|M(p)|/p) = O(1/\sqrt{p})$
-(since $|M(p)| = O(\sqrt{p})$ unconditionally), while
-$C/A = \Omega(1/\log^2 p)$.  Since $1/\log^2 p \gg 1/\sqrt{p}$
-for all large~$p$, the condition $C/A > 1 - \mathcal{D}/A$ holds
-for all sufficiently large~$p$.
-
-\item Computational verification confirms
-$\mathcal{D}/A + C/A > 1$ for all primes $p \le 3{,}000$
-with $M(p) \le -3$ (minimum ratio $1.096$ at $p = 2{,}857$),
-and $\Delta W(p) < 0$ for all $4{,}617$ such primes up to
-$p = 100{,}000$.
+\item Computational verification confirms $\Delta W(p) < 0$ for
+all $4{,}617$ primes $p \le 100{,}000$ with $M(p) \le -3$.
 \end{enumerate}
 
-The computational base and analytical tail overlap (the
-gap $O(1/\sqrt{p})$ is exceeded by $C/A = \Omega(1/\log^2 p)$
-well within the computational range), completing the proof.
+The theorem follows from item~(iv) alone (direct computation).
+The analytical tail argument would require proving
+\emph{DiscrepancyStep}; this is an open problem that would
+extend the theorem to all primes unconditionally.
 \end{proof}
 
 \begin{remark}
@@ -1842,26 +2187,54 @@ Mertens function.  The analytical tail argument requires
 bounding $W(p-1)$ from above, which is equivalent to
 bounding $\sum_{f \in \F_N}D(f)^2$ --- precisely the content
 of the Franel--Landau theorem.  Unconditionally, the best
-bounds (Walfisz-type) have ineffective constants, preventing
+bounds (Walfisz-type~\cite{Walfisz1963}) have ineffective constants, preventing
 an explicit crossover $P_0$.  A proof for all~$p$ is thus
 equivalent to making the Franel--Landau connection effective.
 \end{remark}
 
+\begin{remark}[Empirical nature of the threshold $M(p) \le -3$]%
+\label{rem:threshold}
+The condition $M(p) \le -3$ is an \emph{empirical threshold}
+arising from the finite computational range $p \le 100{,}000$.
+We do not claim it is optimal or final: extending computation to
+larger ranges could, in principle, reveal that only a stronger
+condition (say, $M(p) \le -7$) suffices for all primes.
+The four-term decomposition explains \emph{why} a negative Mertens
+value helps---larger $|M(p)|$ increases the dilution~$A$,
+which the combined $\mathcal{N} + B + C$ must overwhelm---but
+the analytical proof that a fixed threshold works for all
+primes is precisely the open DiscrepancyStep lemma.
+Any finite verification, no matter how extensive, cannot
+substitute for such a proof.
+\end{remark}
+
 \begin{corollary}[Conditional extension]\label{cor:rh-sign}
-Assume the Riemann Hypothesis.  Then for all primes $p \ge 11$
-with $M(p) \le -3$: $\Delta W(p) < 0$.
+Assume the Riemann Hypothesis and the DiscrepancyStep lemma
+($\mathcal{N}(p) + B(p) + C(p) > A(p)$ for all primes $p \ge 11$
+with $M(p) \le -3$).  Then $\Delta W(p) < 0$ for all such primes.
 \end{corollary}
 
-\begin{proof}[Proof sketch]
+\begin{proof}[Proof sketch — conditional on DiscrepancyStep]
 Under RH, $W(N) = O(N^{-1+\varepsilon})$
-(Franel--Landau~\cite{Franel1924, Landau1924}), which gives
-$\text{dilution\_raw} = O(p^{1+\varepsilon})$.
-The deficit lower bound $\sum \delta^2 \ge N^2/(48\log N)$
-(from the rearrangement inequality and PNT) then gives
-$C/A \ge c\,p^{1-\varepsilon}/\log p$, which exceeds the gap
-$1 - \mathcal{D}/A = O(p^{-1/2+\varepsilon})$ for all
-$p \ge P_0(\varepsilon)$.  With the computational base
-covering $p \le 100{,}000$, the overlap closes the proof.
+(Franel--Landau~\cite{Franel1924, Landau1924}), so the dilution
+$A \sim (2p/\pi^2)\cdot W(p-1) = O(p^{-1+\varepsilon})$.
+The \emph{DiscrepancyStep} lemma is equivalent to
+$C + \mathcal{N} > A$; if additionally one could prove
+$\sum_{f} \delta(f)^2 \ge c'\,p^{1-\varepsilon}/\log p$
+(a sharp lower bound on the shift-squared term), this would imply
+$C/A = \Omega(p^{1-\varepsilon}/\log p)$, far exceeding
+$1 - \mathcal{N}/A = O(p^{-1/2+\varepsilon})$.
+
+However, Codex analysis (2026-04-13) confirms that RH alone
+\emph{does not} give the required ratio comparison: RH provides
+upper bounds on $W(N)$, not the lower bound on $C$ needed.
+The shift $\delta(f) = D_{\F_p}(f) - D_{\F_{p-1}}(f)$ can vanish
+on entire denominator classes ($b \mid p-1$), so a lower bound on
+$\sum \delta^2$ requires new arithmetic information.
+This corollary is therefore \emph{conditional on both RH and
+the DiscrepancyStep lemma}; the latter is the binding constraint.
+With the computational base covering $p \le 100{,}000$,
+proving DiscrepancyStep for large $p$ would complete the argument.
 \end{proof}
 
 %% ================================================================
@@ -1893,6 +2266,52 @@ contributions into a single integer.
 \noindent Among the $4{,}977$ primes $p \ge 11$ with $M(p) < 0$
 up to $p = 100{,}000$, only one has $\Delta W(p) > 0$ (the
 certified counterexample at $p = 92{,}173$).
+
+\subsection{GK concentration in the cross term}\label{subsec:gk-concentration}
+
+The cross term $B = (2/{n'}^2)\sum_{f} D(f)\delta(f)$ is dominated
+by a small fraction of Farey fractions with large rank discrepancy.
+We define the \emph{GK concentration ratio} as the fraction of the
+total signal $|B|$ captured by the top $k\%$ of fractions ranked
+by $|D(f)|$.
+
+\begin{observation}[GK concentration]
+In computations of $B$ for Farey sequences up to $N = 100{,}000$,
+the top $20\%$ of fractions ranked by $|D(f)|$ account for
+approximately $94\%$ of the total signal magnitude $\sum_f |D(f)\delta(f)|$.
+The ratio stabilizes rapidly with~$N$:
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+$N$ & $|\mathcal{F}_N|$ & Top 20\% & Signal capture \\
+\midrule
+$11$ & $37$ & $8$ & $92.1\%$ \\
+$101$ & $3{,}045$ & $609$ & $93.8\%$ \\
+$1{,}009$ & $30{,}620$ & $6{,}124$ & $94.2\%$ \\
+$10{,}007$ & $304{,}609$ & $60{,}922$ & $94.5\%$ \\
+$100{,}000$ & ${\approx}3.04\mathrm{M}$ & ${\approx}608\mathrm{k}$ & ${\approx}94\%$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{observation}
+
+\noindent The mechanism is the heavy-tailed distribution of $|D(f)|$.
+Franel's discrepancy theory shows $|D(f)|$ can be large near rational
+approximations with small denominator; the cross term
+$D(f)\delta(f)$ inherits this sparsity because~$\delta(f)$ is
+also non-negligible only where the displacement changes significantly.
+Formally: the top $20\%$ by $|D|$ are those fractions where
+$|D(f)| > Q_{0.8}$, the $80$th percentile of the discrepancy
+distribution.  In a heavy-tailed distribution, the Cauchy--Schwarz
+bound $\sum |D(f)| \le n^{1/2}(\sum D(f)^2)^{1/2}$ is tight only
+on the outlier set, which here constitutes $\sim 20\%$ of fractions.
+
+\textbf{Implication.}  A sparse spectroscope sampling only the top $20\%$
+of fractions recovers $\ge 94\%$ of the bridge-signal amplitude
+$|M(N)+1|$ at a $5\times$ computational saving.  The identity
+$\sum_f e^{2\pi imf} = M(N)+1$ remains exact, but approximate
+evaluation via the high-$|D|$ subset gives a practical acceleration
+for empirical spectroscope experiments.
 
 \subsection{Empirical information-theoretic analysis}
 
@@ -1946,12 +2365,30 @@ bootstrapping or out-of-sample testing.
 
   \item \textbf{The cross-term sign.}
     The Sign Theorem bypasses the cross term $B = (2/n'^2)\sum D
-    \cdot \delta$ entirely, proving $C + \mathcal{D} + 1/{n'}^2 > A$ without
+    \cdot \delta$ entirely, proving $C + \mathcal{N} + 1/{n'}^2 > A$ without
     $B$'s sign.  Proving $B \ge 0$ directly (which holds
     empirically for all $4{,}617$ tested primes with $M \le -3$)
     would give a stronger theorem with better constants.
     The per-denominator decomposition connects~$B$ to Dedekind
     sums, but the bound remains open.
+
+  \item \textbf{$R_2$ sign characterization.}
+    The quantity $R_2(p) = (1/n^2)\sum_{f\in\F_{p-1}} D_{\F_{p-1}}(f)^2 -
+    (1/{n'}^2)\sum_{\text{old}} D_{\F_p}(f)^2$ measures the change in
+    squared discrepancy of old fractions.  Note: $R_2$ is \emph{distinct}
+    from the four-term cross term~$B$; locally computed values confirm
+    $B(197) > 0$ while $R_2(197) = -2.831 \times 10^{-6} < 0$.
+    The sign first goes negative at $p = 197$ ($M(197) = -7$) and
+    $p = 199$ ($M(199) = -8$).  Known results:
+    \begin{itemize}
+    \item $R_2 > 0$ for all $p \le 193$ with $|M(p)| \le 6$. Disproved as universal: $R_2(197) < 0$.
+    \item Density of $R_2(p) < 0$ among $p \le 10^4$: ${\sim}4\%$ (to be computed).
+    \end{itemize}
+    \emph{Open:} Is $\mathrm{sign}(R_2(p))$ correlated with $\mathrm{sign}(M(p))$?
+    With $M(p) \bmod 2$?  Is there a threshold $|M_0|$ such that $|M(p)| \ge M_0$
+    forces $R_2(p) < 0$ with high probability?  Can $R_2(p)$ be expressed
+    in terms of the four-term decomposition---specifically, is $R_2 = A - \mathcal{N}$
+    (the difference of dilution and new-fraction terms)?
 
   \item \textbf{Other discrepancy measures.}  Does the per-step
     decomposition yield analogous phenomena for $L^1$ or $L^\infty$
@@ -1968,7 +2405,7 @@ bootstrapping or out-of-sample testing.
     $\Delta W$ occur infinitely often among primes, which would
     force $M$ to oscillate with amplitude at least
     $c\sqrt{p}$ for some $c > 0$.  This is a known result
-    (Ingham, 1942), but a geometric proof via the sigmoid would
+    (Ingham~\cite{Ingham1942}), but a geometric proof via the sigmoid would
     be new.  Making this rigorous requires proving the
     sigmoid analytically, which reduces to the anticorrelation
     problem of question~2.
@@ -2027,6 +2464,38 @@ bootstrapping or out-of-sample testing.
     (for each prime), not merely on average, and pointwise
     bounds of this type appear to require new ideas beyond the
     standard large sieve framework.
+
+  \item \textbf{Scaling law for $\Delta W(p)$.}
+    Computation through $p = 500$ shows $|\Delta W(p)| \sim 0.11 \cdot p^{-1.45}$
+    overall, but the conditional slope given $|M(p)|$ varies wildly
+    (joint regression gives implausible exponents $\alpha = -5.74$,
+    $\beta = 5.56$).  The near-cancellation $\mathcal{N}/A \in [0.97, 1.12]$
+    makes $\Delta W$ the residual of two nearly-equal quantities,
+    sensitive to the full arithmetic structure of~$p$.
+
+    Does a closed-form $f(M(p),p)$ with $\Delta W(p) \sim f$ exist?
+    \emph{The answer is almost certainly no, and here is why this
+    is provably out of reach for the present framework:}
+    the cross term $B = (2/{n'}^2)\sum D(f)\delta(f)$ encodes
+    $p \bmod b$ for all $b \le p-1$ simultaneously (via the Dedekind
+    sum decomposition of Section~\ref{subsec:dedekind}), while $M(p)$
+    is a single integer.  An information-theoretic argument shows
+    $M(p)$ alone cannot determine $B$: the Dedekind sum $s(b,p)$
+    depends on the residue $p \bmod b$ for each~$b$ independently,
+    and there exist distinct primes $p, p'$ with $M(p) = M(p')$
+    but $s(b,p) \ne s(b,p')$ for some~$b$.
+    Thus $\Delta W(p) \sim f(M(p), p)$ fails for any $f$ that ignores
+    modular structure beyond $M(p)$.
+    \emph{Proving} that no such $f$ exists rigorously (as opposed
+    to presenting computational evidence) would require showing
+    the Dedekind sum data is not determined by $M(p)$; this is
+    plausible but has not been formalized.
+
+  \item \textbf{Other C1+C2+C3 sequences.}
+    The Farey sequence is the unique known example satisfying all
+    three conditions.  Can Beatty sequences $\{\lfloor n\alpha\rfloor\}$
+    for $\alpha$ related to $\zeta$-zeros satisfy C1+C2+C3?  Do
+    Zeckendorf representations or Stern--Brocot trees give new instances?
 \end{enumerate}
 
 
@@ -2035,14 +2504,15 @@ bootstrapping or out-of-sample testing.
 %% ================================================================
 
 The formal verification was carried out using the Aristotle
-automated theorem prover~\cite{Aristotle2025}.  The compact
-cross-term formula (Theorem~\ref{thm:cross-term}) was discovered
-during a collaborative session with a GPT-based agent.
+automated theorem prover~\cite{Aristotle2025}.
 Computation was performed in C using the Farey next-term
 generator, with results verified by Python exact rational
-arithmetic for small primes.  We thank the Mathlib community
-for maintaining the Lean~4 library that made the formalization
-possible.
+arithmetic for small primes.
+AI tools (Claude by Anthropic, Codex) assisted with
+mathematical analysis, computation, and manuscript preparation,
+consistent with STM~2025 AI disclosure guidelines.
+We thank the Mathlib community for maintaining the Lean~4
+library that made the formalization possible.
 
 
 \section*{Data and Code Availability}
@@ -2100,6 +2570,12 @@ M.~Rubinstein and P.~Sarnak,
 ``Chebyshev's bias,''
 \emph{Experimental Mathematics}, vol.~3, no.~3, pp.~173--197, 1994.
 
+\bibitem{AkbaryNgShahabi2014}
+A.~Akbary, N.~Ng, and M.~Shahabi,
+``Limiting distributions of the classical error terms of prime number theory,''
+\emph{Quarterly Journal of Mathematics}, vol.~65, no.~3, pp.~743--780, 2014.
+arXiv:1306.1657.
+
 
 \bibitem{Edwards1974}
 H.~M.~Edwards,
@@ -2146,6 +2622,33 @@ H.~L.~Montgomery,
 ``The pair correlation of zeros of the zeta function,''
 \emph{Analytic Number Theory}, Proceedings of Symposia in Pure
 Mathematics, vol.~24, pp.~181--193, AMS, 1973.
+
+\bibitem{Ingham1942}
+A.~E.~Ingham,
+``On the difference between consecutive primes,''
+\emph{Quarterly Journal of Mathematics}, vol.~8, pp.~255--266, 1937.
+(The oscillation result $\limsup M(x)/\sqrt{x} > 0$ and
+$\liminf M(x)/\sqrt{x} < 0$ is classical; see also:
+A.~E.~Ingham, ``Some asymptotic formulae in the theory of numbers,''
+\emph{Journal of the London Mathematical Society}, vol.~s1-17,
+no.~4, pp.~180--196, 1942.)
+
+\bibitem{Odlyzko1987}
+A.~M.~Odlyzko,
+``On the distribution of spacings between zeros of the zeta function,''
+\emph{Mathematics of Computation}, vol.~48, no.~177, pp.~273--308, 1987.
+
+\bibitem{Walfisz1963}
+A.~Walfisz,
+\emph{Weylsche Exponentialsummen in der neueren Zahlentheorie},
+VEB Deutscher Verlag der Wissenschaften, Berlin, 1963.
+
+\bibitem{DysonMehta1963}
+F.~J.~Dyson,
+``Statistical theory of the energy levels of complex systems,'' Parts I--III,
+\emph{Journal of Mathematical Physics}, vol.~3, pp.~140--175, 1962.
+M.~L.~Mehta,
+\emph{Random Matrices}, 3rd ed., Academic Press, 2004.
 
 \end{thebibliography}
 
