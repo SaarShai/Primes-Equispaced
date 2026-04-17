@@ -1,0 +1,101 @@
+%% KEY ADDITIONS for paper restructure
+%% Each block goes into the specified section
+
+%% ============================================================
+%% FOR SECTION 2: D(1/p) Proposition
+%% ============================================================
+
+\begin{proposition}[Dominance of $1/p$]\label{prop:D1p}
+For every prime $p\ge3$, the rank deviation of the fraction $1/p$ satisfies
+\[
+  D\!\left(\tfrac{1}{p}\right) = 1 - \frac{|{\F}_{p-1}|}{p}
+  \;=\; 1 - \frac{1+\sum_{k=1}^{p-1}\varphi(k)}{p}
+  \;\sim\; -\frac{3p}{\pi^2}
+  \quad(p\to\infty).
+\]
+Moreover, the product $D(1/p)\cdot\delta(1/p) = D(1/p)/p \to -3/\pi^2\approx -0.304$
+is a universal constant, independent of~$p$.  Computationally, this single fraction
+accounts for $65{-}73\%$ of the total $|\sum D\cdot\delta|$ for $p\le199$.
+\end{proposition}
+
+\begin{proof}
+Since $p\ge3$ is prime, $1/(p{-}1) > 1/p$, so $1/p$ lies strictly between
+$0/1$ and $1/(p{-}1)$ in ${\F}_{p-1}$.  The only fraction in ${\F}_{p-1}$
+at most $1/p$ is $0/1$, giving $\rank(1/p, {\F}_{p-1}) = 1$.
+The formula follows.  The asymptotic uses
+$\sum_{k=1}^{N}\varphi(k) = 3N^2/\pi^2 + O(N\log N)$ (Mertens, 1874).
+\end{proof}
+
+%% ============================================================
+%% FOR SECTION 3: Damage/Response Decomposition
+%% ============================================================
+
+\begin{observation}[Damage--Response decomposition]\label{obs:damage-response}
+Define the \emph{damage ratio} $R_1(p)$ by summing $D\cdot\delta_1$
+over new fractions $a/p$ entering ${\F}_p$, and the \emph{response ratio}
+$R_2(p)$ by summing $D\cdot\delta_2$ over existing fractions $a/b$ in
+${\F}_{p-1}$, where $\delta_2(a/b) = (a - pa\bmod b)/b$ is the
+insertion deviation.
+
+For all $4{,}617$ primes with $M(p)\le-3$ and $p\le100{,}000$:
+\begin{itemize}
+\item $R_1(p) < 0$ always (new fractions \emph{damage} regularity);
+\item $R_2(p) > 0$ always (existing fractions shift to
+  \emph{overcompensate} the damage).
+\end{itemize}
+The net effect $\Delta W(p) < 0$ (regularity improves) arises because
+the response dominates the damage.
+\end{observation}
+
+\begin{remark}
+The sign alignment underlying $R_2>0$ is weak:
+for $p=31$, only $59\%$ of old fractions have
+$\sgn(D)\cdot\sgn(\delta_2)>0$.  The positivity of
+$\sum D\cdot\delta_2$ is driven primarily by magnitude:
+fractions with large positive $D$ also have large positive $\delta_2$,
+contributing disproportionately.  An analytical proof of $R_2>0$
+remains open.
+\end{remark}
+
+%% ============================================================
+%% FOR SECTION 3 or 6: Composites Characterization
+%% ============================================================
+
+\begin{observation}[Healing characterization]\label{obs:composites}
+For $n\le 500$:
+\begin{enumerate}
+\item Every composite $n$ with $\omega(n)\ge 2$
+  (two or more distinct prime factors) satisfies $\Delta W(n) > 0$.
+\item The non-healing composites ($\Delta W(n) \le 0$) are
+  precisely the prime powers $p^k$.
+\end{enumerate}
+The number-theoretic boundary between damage and healing is exactly
+$\omega(n) = 1$ versus $\omega(n)\ge 2$.
+\end{observation}
+
+%% ============================================================
+%% FOR SECTION 6: GK Concentration
+%% ============================================================
+
+\begin{observation}[Gauss--Kuzmin concentration]\label{obs:gk-conc}
+For each qualifying prime~$p$, sort the new fractions $a/p$
+by their terminal continued-fraction quotient $c_m(a/p)$
+in decreasing order.  The top $20\%$ of fractions
+(those with the largest $c_m$) contribute over $93\%$
+of the total $|\sum D\cdot\delta|$.  This heavy-tail concentration
+is stable across all tested primes ($p=31$ to $199$) and reflects
+the infinite mean of the Gauss--Kuzmin distribution.
+\end{observation}
+
+%% ============================================================
+%% FOR ABSTRACT: Updated last paragraph
+%% ============================================================
+
+% ADD after current abstract content:
+% We introduce the \emph{Farey spectroscope}, a spectral function
+% $F(\gamma) = |\sum_p R_2(p)\,p^{-1/2-i\gamma}|^2$ whose peaks
+% detect the locations of nontrivial zeta zeros from Farey data alone.
+% The first zero $\gamma_1 = 14.135$ is recovered at $14.05$ ($0.6\%$ error)
+% from $2{,}729$ qualifying primes.  Twisting by Dirichlet characters
+% extends detection to $L$-function zeros.  Predicted and observed
+% peak amplitudes correlate at $r = 0.953$.
