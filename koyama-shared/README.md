@@ -9,9 +9,20 @@
 
 ---
 
+## ⚠️ BUGFIX NOTICE (2026-04-20)
+
+The scripts have been corrected after a code review identified a systematic error in the $\mu_f(p^2)$ coefficient:
+
+- **Old (wrong)**: used $a_{p^2}$ (Hecke eigenvalue) for $\mu_f(p^2)$
+- **New (correct)**: uses $p^{k-1}$ from the Euler factor $(1 - a_p x + p^{k-1} x^2)$
+
+Specifically: EC scripts used `a_p² - p` (should be `p`); Δ script used `τ(p)² - p^{11}` (should be `p^{11}`). The results in `results/` are **pre-bugfix** and being recomputed. The scripts are now correct.
+
+---
+
 ## What this is
 
-All computational artefacts underlying our **April 18 correspondence update** on the $C_1(f,\rho)$ invariant and the failure of the naive $|D_K|\cdot\zeta(2)\to 1$ universality. Intended to let the Toyo team reproduce any of our numbers from source.
+All computational artefacts underlying our **April 18–20 correspondence** on the $C_1(f,\rho)$ invariant and the failure of the naive $|D_K|\cdot\zeta(2)\to 1$ universality. Intended to let the Toyo team reproduce any of our numbers from source.
 
 ## Contents
 

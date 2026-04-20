@@ -1,4 +1,6 @@
-"""Heavy: C₁ at 1000 zeros of 37a1 at K=50,000. Takes ~30+ min."""
+"""Heavy: C₁ at 1000 zeros of 37a1 at K=50,000. Takes ~30+ min.
+BUGFIX 2026-04-20: μ_E(p²) corrected to p (Euler factor coeff), was wrongly a_p²-p=a_{p²}.
+"""
 import mpmath as mp, json, statistics, time
 from pathlib import Path
 mp.mp.dps = 25
@@ -22,7 +24,8 @@ for n in range(2, K+1):
     while m % p == 0: m //= p; kpow += 1
     a = AP[p]
     bad = 37 % p == 0
-    v = -a if kpow==1 else (0 if bad else (a*a-p if kpow==2 else 0))
+    # μ_E(p)=-a_p, μ_E(p²)=p (from Euler factor 1-a_p x+p x²), μ_E(p^k)=0 k≥3
+    v = -a if kpow==1 else (0 if bad else (p if kpow==2 else 0))
     if kpow > 2: v = 0
     mu[n] = mp.mpf(v) * mu[m]
 print(f"μ table built for K={K}")

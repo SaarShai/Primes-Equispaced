@@ -1,4 +1,6 @@
-"""Heavy: Same but for Δ at K=50K across 500 zeros."""
+"""Heavy: Same but for Δ at K=50K across 500 zeros.
+BUGFIX 2026-04-20: μ_Δ(p²) corrected to p^11 (Euler factor coeff), was wrongly τ(p)²-p^11=τ(p²).
+"""
 import mpmath as mp, json, statistics, time
 from pathlib import Path
 mp.mp.dps = 25
@@ -21,7 +23,8 @@ for n in range(2, K+1):
     m = n; kpow = 0
     while m % p == 0: m //= p; kpow += 1
     tp = TAU[p]
-    v = -tp if kpow==1 else (tp*tp - p**11 if kpow==2 else 0)
+    # μ_Δ(p)=-τ(p), μ_Δ(p²)=p^11 (from Euler factor 1-τ(p)x+p^11 x², weight 12), μ_Δ(p^k)=0 k≥3
+    v = -tp if kpow==1 else (p**11 if kpow==2 else 0)
     mu[n] = mp.mpf(v) * mu[m]
 print(f"μ table built for K={K}")
 

@@ -45,7 +45,8 @@ for n in range(2, K+1):
     while m % p == 0: m //= p; kpow += 1
     a = AP[p]
     bad = N_cond % p == 0
-    v = -a if kpow==1 else (0 if bad else (a*a-p if kpow==2 else 0))
+    # μ_E(p)=-a_p, μ_E(p²)=p (from Euler factor 1-a_p x+p x²), μ_E(p^k)=0 k≥3
+    v = -a if kpow==1 else (0 if bad else (p if kpow==2 else 0))
     if kpow > 2: v = 0
     mu[n] = mp.mpf(v) * mu[m]
 

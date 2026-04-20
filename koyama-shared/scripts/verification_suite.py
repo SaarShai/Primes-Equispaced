@@ -161,8 +161,9 @@ def compute_c_K(K, rho):
         m = n; kpow = 0
         while m % p == 0: m //= p; kpow += 1
         tp = TAU[p]
+        # BUGFIX 2026-04-20: μ_Δ(p²)=p^11, was wrongly tp*tp-p**11=τ(p²)
         if kpow == 1: mupk = -tp
-        elif kpow == 2: mupk = tp*tp - p**11
+        elif kpow == 2: mupk = p**11
         else: mupk = 0
         mu[n] = mp.mpf(mupk) * mu[m]
     c_K = mp.mpc(0)
