@@ -118,5 +118,4 @@ python3 scripts/rank4_5_extension.py
 
 ## Latest Commit Reference
 
-<!-- PLACEHOLDER: filled after push -->
-Updated `koyama-shared/` at commit PLACEHOLDER_HASH: https://github.com/SaarShai/Primes-Equispaced/tree/PLACEHOLDER_HASH/koyama-shared
+Updated `koyama-shared/` at commit c1b5642 (c1b56420641c9281f0b784aafe5b6a344f498166): https://github.com/SaarShai/Primes-Equispaced/tree/c1b56420641c9281f0b784aafe5b6a344f498166/koyama-shared
