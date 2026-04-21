@@ -1,3 +1,4 @@
+<!-- ⚠ PRE-BUGFIX DATA — μ_f(p²) was wrong for EC; numbers below are INVALID. See PHASE1_RECOMPUTE_SUMMARY.md for corrected values (37a1→2.19, 389a1→3.11, Δ→0.95). Applied 2026-04-21. -->
 
 37a1 N=500:
   Mean   = 1.4803
