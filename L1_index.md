@@ -1,0 +1,45 @@
+# L1 Index
+
+Compact pointers. Fetch details on demand.
+
+- start -> `start.md`
+- config -> `token-economy.yaml`
+- model registry -> `models.yaml`
+- L0 rules -> `L0_rules.md`
+- schema -> `schema.md`
+- wiki catalog -> `index.md`
+- log -> `log.md`
+- raw sources -> `raw/` (search only; fetch after relevance)
+- AGENT_ONBOARDING (page) -> `AGENT_ONBOARDING.md`
+- README (page) -> `README.md`
+- ROADMAP (project tags=roadmap,tracking) -> `ROADMAP.md`
+- projects/compound-compression-pipeline/RESULTS (project tags=compression,measured) -> `projects/compound-compression-pipeline/RESULTS.md`
+- projects/context-keeper-v2/README (project tags=context-keeper,v2,L0-L4,spec) -> `projects/context-keeper-v2/README.md`
+- projects/context-refresh/README (project tags=context-refresh,checkpoint,compaction) -> `projects/context-refresh/README.md`
+- projects/delegate-router/README (project tags=delegation,routing,subagents,models) -> `projects/delegate-router/README.md`
+- projects/semdiff/README (project tags=semantic-diff,ast,context-compression) -> `projects/semdiff/README.md`
+- projects/wiki-search/README (project tags=retrieval,progressive-disclosure,mcp,wiki) -> `projects/wiki-search/README.md`
+- stable/README (project tags=stable,release,curated) -> `stable/README.md`
+- HANDOFF (handoff tags=handoff,farey,repo-local,startup) -> `HANDOFF.md`
+- INSTALL (page) -> `INSTALL.md`
+- L2_facts/farey-claim-ledger (fact tags=farey,claims,ledger,supersession) -> `L2_facts/farey-claim-ledger.md`
+- L2_facts/farey-current-state (fact tags=farey,current-state,c1,verified) -> `L2_facts/farey-current-state.md`
+- L4_archive/farey-context-rot (handoff tags=farey,archive,context-rot,warnings) -> `L4_archive/farey-context-rot.md`
+- bench/README (project tags=benchmarks,kaggle,eval-infra) -> `bench/README.md`
+- bench/notebooks/kaggle_eval_template (page) -> `bench/notebooks/kaggle_eval_template.md`
+- concepts/devices-inventory (concept tags=infra,devices,inventory,compute) -> `concepts/devices-inventory.md`
+- concepts/optimization-axes (concept tags=framework,categorization,meta) -> `concepts/optimization-axes.md`
+- concepts/semantic-diff-edits (concept tags=semantic-diff,ast,context-compression,code-editing) -> `concepts/semantic-diff-edits.md`
+- concepts/turboquant-kv-cache (concept tags=turboquant,kv-cache,llama-cpp,apple-silicon,gguf-stack) -> `concepts/turboquant-kv-cache.md`
+- concepts/wiki-governance (concept tags=wiki,governance,schema) -> `concepts/wiki-governance.md`
+- extensions/README (page) -> `extensions/README.md`
+- people/shin-ya-koyama (person tags=person,koyama,farey,collaborator) -> `people/shin-ya-koyama.md`
+- projects/agents-triage/SKILL (page) -> `projects/agents-triage/SKILL.md`
+- projects/context-keeper/README (project tags=compaction,context-management,memory,hooks) -> `projects/context-keeper/README.md`
+- projects/farey-research/README (project tags=farey,c1,modular-forms,token-economy) -> `projects/farey-research/README.md`
+- projects/farey-research/c1-spectroscope (project tags=farey,c1,spectroscope,bugfix) -> `projects/farey-research/c1-spectroscope.md`
+- projects/farey-research/compute-agents (procedure tags=farey,compute,agents,queues) -> `projects/farey-research/compute-agents.md`
+- projects/farey-research/koyama-correspondence (project tags=farey,koyama,correspondence,collaboration) -> `projects/farey-research/koyama-correspondence.md`
+- projects/farey-research/task-queue (project tags=farey,tasks,queue,priorities) -> `projects/farey-research/task-queue.md`
+- projects/farey-research/w2-prime (project tags=farey,w2-prime,rank,conductor,regression) -> `projects/farey-research/w2-prime.md`
+- projects/skill-crystallizer/README (project tags=skill,L3-sop,automation) -> `projects/skill-crystallizer/README.md`
