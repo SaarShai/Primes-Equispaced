@@ -77,7 +77,21 @@ Terminology: **ComCom** = our compound-compression project (disambiguate from Cl
 
 - Recorded the durable rule to close only completed idle subagents so thread slots clear cleanly.
 - Recorded the monitor-subagent rule: once spawned, let the monitor keep dispatching until the queue is complete or Saar stops it, and do not intervene or review early.
+## [2026-04-24] sync | queue commit and context refresh
+
+- Confirmed `6cccca7 Extend Farey long-haul queue` is pushed to `origin/main`.
+- Confirmed `./te context host-controls --agent auto` returned an invalid-choice error in this CLI, and the resulting checkpoint at `.token-economy/checkpoints/20260424-142312-fresh-session.md` is a generic handoff.
 ## [2026-04-24 13:39 BST] dispatch-update | First wave results
 - K01 done on Gemini; K04 done on Cohere; D01 done on M1B; W01 done on M1B; C01 done on M1B.
 - T01 blocked on M1 because `curl: (7) Failed to connect to 127.0.0.1 port 11434 after 0 ms: Couldn't connect to server`.
 - W01 used `projects/farey-research/data/W2_PRIME_FIT.json` and matched stored coefficients to within `3.764e-14`.
+## [2026-04-24] review | incoming Koyama and breakthrough queue
+
+- Added [[projects/farey-research/incoming-results-review-2026-04-24]].
+- Reviewed K02, K03, K05, K06 plus first-wave K01, K04, D01, W01, C01, and T01 at roadmap level.
+- Updated [[projects/farey-research/active-agent-queue]] with the breakthrough queue and marked K06 as reject-as-written.
+
+## [2026-04-24] routing | M2 enabled for active campaign
+
+- Saar approved using M2 Ollama models for the new tasks.
+- Updated active routing to allow M2, especially `qwen3.6:latest`, while keeping Codex API excluded.

@@ -32,6 +32,7 @@ Fresh local repo for Farey Research using Token Economy retrieval and documentat
 - Task queue: [[projects/farey-research/task-queue]]
 - Active agent queue: [[projects/farey-research/active-agent-queue]]
 - Recent results review: [[projects/farey-research/recent-results-review]]
+- Incoming results review 2026-04-24: [[projects/farey-research/incoming-results-review-2026-04-24]]
 - Context rot blacklist: [[L4_archive/farey-context-rot]]
 
 ## Repo Layout
@@ -55,7 +56,7 @@ Fresh local repo for Farey Research using Token Economy retrieval and documentat
 
 - M1: long proof/writeup work.
 - M1B: numerical/PARI scripts and recomputations.
-- M2: local Ollama only after daemon check.
+- M2: local Ollama after daemon check; current campaign may use `qwen3.6:latest` for local theory/drafting/review and `gemma4:31b` for literature/novelty brainstorming.
 - Aristotle: Lean 4 formalization.
 - Gemini, Mistral, Cohere, SambaNova, Groq, OpenRouter: external API routing for writeups, proofs, summaries, and quick checks depending on depth and quota.
 - `farey-publisher`: repo checkpoint commits and pushes at sensible intervals.

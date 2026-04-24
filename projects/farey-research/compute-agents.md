@@ -27,7 +27,7 @@ This page records capabilities and queue formats only. Old cron jobs, hourly rou
 |---|---|---|---|
 | M1 Ollama | `new@192.168.1.218` | `deepseek-r1:32b`, `qwen3.5:35b`; long proof/writeup tasks | `MODEL|TASK_NAME|PROMPT` |
 | M1B Python | `za@192.168.1.64` | CPU Python 3.9 + PARI/mpmath; numerical scripts | `SCRIPT_PATH|TASK_NAME` |
-| M2 local | `localhost:11434` | local Ollama; use only after daemon check | `MODEL|TASK_NAME|PROMPT` |
+| M2 local | `localhost:11434` | local Ollama; after daemon check, prefer `qwen3.6:latest` for theory/drafting/review and `gemma4:31b` for literature/novelty brainstorming | `MODEL|TASK_NAME|PROMPT` |
 
 Drain/skip flags live externally in `/Users/saar/Library/FareyState/*.flag`; check them before any new routine design.
 
@@ -35,7 +35,7 @@ Permanent/known-disabled resources:
 
 - M5B: permanently off.
 - EXO: skipped until corrupt model/download issue is intentionally repaired.
-- M2: verify `curl -s http://localhost:11434/api/tags` before use.
+- M2: verify `curl -s http://localhost:11434/api/tags` before use; current campaign may use M2, especially `qwen3.6:latest`.
 
 ## APIs
 
@@ -63,6 +63,6 @@ Build new routines from this capability map and [[projects/farey-research/task-q
 - Lean 4 formalization: Aristotle first.
 - Medium writeups and synthesis: Gemini Flash/Pro, Mistral small/medium, Cohere, OpenRouter, or SambaNova depending on latency and quota.
 - Quick summaries / fact lookups: Groq or Gemini Flash-lite.
-- Numerical/PARI work: M1B first, then M2 if the daemon is healthy.
+- Numerical/PARI work: M1B first; use M2 for analysis, planning, and code review unless a local Ollama task is explicitly appropriate.
 - Large local proof/writing: M1.
 - Repo checkpoint commits and pushes: `farey-publisher` on `gpt-5.4-mini`.
