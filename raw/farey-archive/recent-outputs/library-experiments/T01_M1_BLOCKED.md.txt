@@ -1,0 +1,6 @@
+# T01 M1 blocked
+
+- Provider/device: M1 Ollama
+- Check: SSH to `new@192.168.1.218` worked, but the Ollama socket on `127.0.0.1:11434` was down.
+- Exact error: `curl: (7) Failed to connect to 127.0.0.1 port 11434 after 0 ms: Couldn't connect to server`
+- Route taken after block: M1B W01, then C01.

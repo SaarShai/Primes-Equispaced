@@ -1,0 +1,24 @@
+# W01 M1B canonical W2 regression
+
+n_points: 22
+model: E[C1_sq] = alpha + beta*rank + gamma*log(N)
+
+## Refit
+alpha = 0.478539180069382
+beta_rank = -0.166791835013259
+gamma_logN = 0.472697226948305
+R2 = 0.809819343516
+RMSE = 0.277909458451
+
+## Stored coefficients
+alpha = 0.478539180069419
+beta_rank = -0.166791835013247
+gamma_logN = 0.472697226948292
+
+## Check
+max_abs_diff = 3.764e-14
+rank_only_R2 = 0.687348150362
+R2_improvement_from_logN = 0.122471193154
+95pct_CI_alpha = [-0.35103603180222787, 1.3081143919410667]
+95pct_CI_beta_rank = [-0.6411347018645718, 0.30755103183807875]
+95pct_CI_gamma_logN = [0.18985342242914244, 0.7555410314674422]

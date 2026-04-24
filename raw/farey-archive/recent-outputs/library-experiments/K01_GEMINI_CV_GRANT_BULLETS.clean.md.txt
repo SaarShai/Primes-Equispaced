@@ -1,0 +1,7 @@
+* Active contributor to the Fresh Farey Research project, focusing on the analysis of C1 modular L-functions and related computational number theory.
+* Leverages Lean 4 for formalization as an integral part of the research methodology and infrastructure.
+* Conducts large-scale, reproducible computations, including extensive analysis of L-function zeros and precise numerical verification of theoretical anchors.
+* Investigates high-precision number theory, specifically the properties of modular L-functions, their spectral interpretations, and related conjectures.
+* Performs detailed numerical analysis to verify complex theoretical claims, such as second moments and rank/conductor behavior, across wide computational ranges.
+* Contributes to advanced theoretical challenges, including the "Dominance of -1" problem, requiring sophisticated computational and analytical techniques.
+* Saar can be described cautiously as a specialist in formal verification and high-performance number theory, based on Lean 4 formalization and computational number theory work.

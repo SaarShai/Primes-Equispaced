@@ -61,3 +61,13 @@ Terminology: **ComCom** = our compound-compression project (disambiguate from Cl
 - Created [[projects/farey-research/active-agent-queue]] after Saar approved the 30-task campaign.
 - Scope: Koyama reply, Dominance-of-minus-one compute design, W2 prime validation, C1/Delta normalization, and theory/paper pipeline.
 - Routing excludes M2 and Codex API for this campaign; dispatcher should use M1, M1B, Gemini, Aristotle, Groq, Cohere, SambaNova, Cerebras, OpenRouter, and Mistral.
+
+## [2026-04-24] dispatch | First wave results
+
+- Completed K01, K04, D01, W01, C01, and T01 for the active Farey campaign.
+- T01 first blocked on M1 because Ollama was down, then completed via Mistral.
+- Created heartbeat automation `farey-agent-queue-monitor` for 15-minute queue checks.
+## [2026-04-24 13:39 BST] dispatch-update | First wave results
+- K01 done on Gemini; K04 done on Cohere; D01 done on M1B; W01 done on M1B; C01 done on M1B.
+- T01 blocked on M1 because `curl: (7) Failed to connect to 127.0.0.1 port 11434 after 0 ms: Couldn't connect to server`.
+- W01 used `projects/farey-research/data/W2_PRIME_FIT.json` and matched stored coefficients to within `3.764e-14`.

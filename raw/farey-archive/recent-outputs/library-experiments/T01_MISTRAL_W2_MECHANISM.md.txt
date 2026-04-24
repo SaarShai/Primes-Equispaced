@@ -1,0 +1,48 @@
+# T01 Mistral W2 mechanism derivation attempt
+
+Here’s a concise response for **Fresh Farey Research (T01)**:
+
+---
+
+### **(1) Plausible Derivation Route**
+Use the **Rankin-Selberg method** for \( L(\text{Sym}^2 f, s) \), combined with an **explicit formula** (e.g., Weil-type) to relate moments to zeros/primes. Key steps:
+- Express \( \mathbb{E}[C_1^2] \) as a weighted average of \( L(\text{Sym}^2 f, k)/\langle f,f \rangle \) over forms \( f \) of level \( N \), using Petersson’s formula.
+- Apply the **approximate functional equation** for \( L(\text{Sym}^2 f, s) \), isolating the conductor-dependent terms (e.g., \( \log N \) from Gamma factors or archimedean integrals).
+- Use the **explicit formula** to link \( L \)-function zeros (via \( \Lambda'(s) \)) to prime sums, where rank/central zeros may leak into lower-order terms.
+
+---
+
+### **(2) Exact Terms Carrying \( \log N \)**
+- **Gamma factors**: The archimedean part of \( L(\text{Sym}^2 f, s) \) contributes \( \log(N) \) via Stirling’s approximation for \( \Gamma(s/2 + \text{weights}) \).
+- **Conductor term**: The explicit formula’s prime sum includes \( \log N \) from the conductor’s contribution to \( \Lambda(n) \) (e.g., \( \log N \) in the test function’s support).
+- **Petersson weights**: The denominator \( \langle f,f \rangle \) scales as \( N \log N \) (via Watson’s formula or Rankin-Selberg), introducing \( \log N \) after normalization.
+
+---
+
+### **(3) Rank/Central-Zero Leakage**
+- **Rank**: The order of vanishing of \( L(\text{Sym}^2 f, s) \) at \( s = k \) (or \( s = 1 \) for \( L(f \otimes f, s) \)) may appear in:
+  - Residues of the Rankin-Selberg integral (e.g., \( \text{Res}_{s=1} L(f \otimes f, s) \)).
+  - Lower-order terms in the explicit formula (e.g., \( \sum_{\rho} \text{ord}_\rho \cdot \text{test function} \)), where \( \rho \) are zeros near \( s = 1 \).
+- **Central zeros**: If \( L(\text{Sym}^2 f, k/2) = 0 \), the leading term in the moment expansion may vanish, exposing rank-dependent corrections.
+
+---
+
+### **(4) Testable Predictions**
+- **Log-conductor dominance**: For large \( N \), \( \mathbb{E}[C_1^2] \sim c \log N \), but the empirical model’s \( \log N \) coefficient (0.4727) should match the theoretical \( \Gamma \)-factor contribution (test via higher-\( N \) data).
+- **Rank suppression**: If rank leaks into lower-order terms, the empirical rank coefficient (-0.1668) should correlate with the average order of vanishing of \( L(\text{Sym}^2 f, k) \) (check against known \( L \)-function data).
+- **Prime-level anomalies**: The ratio \( 37a_1 / 389a_1 \) should deviate from raw proportionality due to \( \log N \) and rank terms (quantify via explicit formula residuals).
+
+---
+
+### **(5) What *Not* to Claim to Koyama**
+- **Do not claim**:
+  - A proven link between \( \mathbb{E}[C_1^2] \) and \( L(\text{Sym}^2 f, k) \) without accounting for rank/\( \log N \) (the raw proportionality is falsified).
+  - That the empirical model’s \( \log N \) term arises *solely* from Gamma factors (it may mix with conductor/rank effects).
+  - That the rank coefficient is statistically significant (its \( p \)-value is 0.47).
+  - That "Deligne’s bounds" or "Gamma fixes" resolve the discrepancy (they don’t, per the prompt).
+- **Do emphasize**:
+  - The need to isolate \( \log N \) from archimedean vs. arithmetic sources.
+  - That rank/central-zero leakage is a plausible explanation for the residual variance.
+  - Open questions about the interplay between \( L \)-function zeros and moments.
+
+---

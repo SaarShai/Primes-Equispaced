@@ -1,0 +1,12 @@
+[K04 Cohere output]
+1. What is the modulus and residue class(s) being considered in the context of "Dominance of -1"?
+
+2. Is the claim about a fixed range of x values or a dynamic range? Please specify the range(s) if applicable.
+
+3. Could you provide the precise definition of the prime-counting statistic or dominance inequality you are referring to?
+
+4. At what baseline scale have you already verified this phenomenon?
+
+5. What specific output format or script do you require for the data representation, and what reproducibility standards should be met?
+
+6. Are there any threshold or normalization conventions that need to be applied to the data?

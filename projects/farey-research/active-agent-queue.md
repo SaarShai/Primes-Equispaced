@@ -59,36 +59,43 @@ Every 15 minutes while active, check whether M1 or M1B is idle and whether API t
 
 | id | direction | route | deliverable | status |
 |---|---|---|---|---|
-| K01 | Koyama reply | Gemini | factual CV/grant bullet block | queued |
+| K01 | Koyama reply | Gemini | factual CV/grant bullet block | done |
 | K02 | Koyama reply | Gemini | structured email outline, no send | queued |
 | K03 | Koyama reply | Mistral or OpenRouter | unsafe-claim/adversarial review of draft claims | queued |
-| K04 | Koyama reply | Cohere | exact Dominance-of-minus-one clarification questions | queued |
+| K04 | Koyama reply | Cohere | exact Dominance-of-minus-one clarification questions | done |
 | K05 | Koyama reply | Gemini | cautious W2 prime paragraph for Koyama | queued |
 | K06 | Koyama reply | Cohere | bugfix and raw Sym2 falsification paragraph | queued |
-| D01 | Dominance | M1B | feasibility estimate for hundreds-of-trillions dynamic prime-bias verification | queued |
+| D01 | Dominance | M1B | feasibility estimate for hundreds-of-trillions dynamic prime-bias verification | done |
 | D02 | Dominance | M1B | segmented counting/data schema for dynamic `x` curves | queued |
 | D03 | Dominance | Gemini | algorithms/tools memo for `pi(x;q,a)` scale work | queued |
 | D04 | Dominance | M1B | M1/M1B runtime and storage estimate | queued |
 | D05 | Dominance | M1B | minimal pilot below `13e12` | queued |
 | D06 | Dominance | Gemini | email paragraph on feasibility and prerequisites | queued |
-| W01 | W2 prime | M1B | reproducible W2 regression from canonical data | queued |
+| W01 | W2 prime | M1B | reproducible W2 regression from canonical data | done |
 | W02 | W2 prime | M1B | leave-one-out and bootstrap diagnostics | queued |
 | W03 | W2 prime | Gemini | rank-0 high-conductor control curve list | queued |
 | W04 | W2 prime | M1B | fixed/narrow-conductor rank-contrast experiment plan | queued |
 | W05 | W2 prime | M1B | 37a/37b sanity report | queued |
 | W06 | W2 prime | Cerebras or OpenRouter | adversarial statistical critique of W2 prime | queued |
-| C01 | C1/Delta | M1B | audit `mu_f(p^2)` convention in scripts/data | queued |
+| C01 | C1/Delta | M1B | audit `mu_f(p^2)` convention in scripts/data | done |
 | C02 | C1/Delta | M1B | bad-prime local-factor convention note | queued |
 | C03 | C1/Delta | M1B | Delta K-sweep plan for approach-to-1 test | queued |
 | C04 | C1/Delta | M1B | kernel/smoothing-dependence experiment matrix | queued |
 | C05 | C1/Delta | Aristotle | exactness notes for C1 formula/formalization candidates | queued |
 | C06 | C1/Delta | Cohere | safe Delta-only conjecture wording | queued |
-| T01 | Theory/papers | M1 | W2 mechanism derivation attempt via Rankin-Selberg/explicit formula | queued |
+| T01 | Theory/papers | M1, rerouted to Mistral | W2 mechanism derivation attempt via Rankin-Selberg/explicit formula | done |
 | T02 | Theory/papers | Mistral | Sym2/Deligne normalization possibilities memo | queued |
 | T03 | Theory/papers | Aristotle | Paper C arithmetic-surrogate failure/formal risk note | queued |
 | T04 | Theory/papers | M1 | density/proportion/mollifier replacement theorem plan | queued |
 | T05 | Theory/papers | Gemini | primary-source pair-correlation citation memo | queued |
 | T06 | Theory/papers | Gemini | integrated draft Koyama response from reviewed packets, no send | queued |
+
+## Dispatch State
+
+- Done: K01, K04, D01, W01, C01, T01.
+- T01 first blocked on M1. Exact M1 Ollama error: `curl: (7) Failed to connect to 127.0.0.1 port 11434 after 0 ms: Couldn't connect to server`.
+- T01 was rerouted to Mistral and completed at `raw/farey-archive/recent-outputs/library-experiments/T01_MISTRAL_W2_MECHANISM.md.txt`.
+- M1B stayed single-queue, so W01 and C01 ran after D01.
 
 ## First Wave
 

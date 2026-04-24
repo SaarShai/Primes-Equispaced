@@ -1,0 +1,23 @@
+# C01 M1B mu_f(p^2) convention audit
+
+## raw/farey-archive/compute-agent-scripts/m1b/m1b_verify_mu_f.py
+- EC good-prime square coefficient = p
+- Delta square coefficient = p^11
+- stale tau(p)^2 - p^11 language
+
+## raw/farey-archive/compute-agent-scripts/m1b/m1b_rank0_ec_w2prime.py
+- EC good-prime square coefficient = p
+
+## raw/farey-archive/compute-agent-scripts/m1b/m1b_rank1_highconductor.py
+- EC good-prime square coefficient = p
+
+## raw/farey-archive/compute-agent-scripts/m1b/m1b_loocv_w2prime.py
+- no direct square-coefficient convention string found
+
+## raw/farey-archive/compute-agent-scripts/m1b/m1b_kmoment_c1.py
+- no direct square-coefficient convention string found
+
+## Verdict
+- Current M1B worker scripts are aligned on the corrected convention: EC uses mu(p^2)=p, Delta uses mu(p^2)=p^11.
+- The repo still contains explanatory text about the old buggy formula, but only as a wrong-formula counterexample in the verifier script.
+- No active script/data convention scanned here still encodes the old square coefficient rule as the live convention.
