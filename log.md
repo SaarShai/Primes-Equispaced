@@ -1,5 +1,13 @@
 # Log
 
+## [2026-04-24] review | recent compute/API outputs
+
+Reviewed the recent M1/API output bundle under `raw/farey-archive/recent-outputs/`. Promoted only roadmap-level consequences: W2 prime remains the main validation track; the log-conductor term stays live; simple Deligne/Gamma normalization does not explain C1; Paper C arithmetic-surrogate theorem language is blocked; pair-correlation work needs primary-source review and a fresh script. Marked stale-baseline, `CANNOT COMPUTE`, traceback, and placeholder-citation outputs as archive-only/context rot.
+
+## [2026-04-24] sync | Koyama reply and routing refresh
+
+Updated the Koyama correspondence record and claim ledger to reflect the latest reply: Koyama endorsed the bugfix-and-recompute update, highlighted the linear-in-rank observation as interesting, and introduced the "Dominance of -1" challenge with an explicit request for dynamic-range verification beyond the 13 trillion baseline. Also expanded the Farey routing docs so Groq, Cohere, SambaNova, Cerebras, OpenRouter, Mistral, Gemini, Aristotle, M1, M1B, M2, and farey-publisher are all represented in routing decisions.
+
 ## [2026-04-24] ingest | Fresh Farey Research
 
 Reinitialized this folder as a local Fresh Farey repo, archived relevant old Farey evidence under `raw/farey-archive/` with `MANIFEST.jsonl`, copied canonical working data/scripts into `projects/farey-research/`, and synthesized lean Token Economy pages for current state, claim ledger, C1, W2 prime, Koyama correspondence, compute agents, task queue, and context rot.

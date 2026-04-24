@@ -41,13 +41,14 @@ Permanent/known-disabled resources:
 
 | provider | best use | notes |
 |---|---|---|
-| Codex high effort | proof construction, adversarial review | use sparingly |
+| Codex high effort | proof construction, adversarial review | available, but avoid for routine use unless explicitly needed |
 | Gemini Pro OAuth | deep thinking, long review | OAuth may need interactive login |
 | Mistral | proof/reasoning and code tasks | use exact endpoint/key conventions |
 | OpenRouter | broad deep writeups | paid/credit-aware |
 | Cohere | synthesis and RAG-style summaries | cheap/default tier |
 | SambaNova | deep analysis | use exact `DeepSeek-V3.1`; curl subprocess |
 | Groq | quick checks and fast summaries | cheap/default tier |
+| Cerebras | bursty large-model calls | model names change; verify current access first |
 | Aristotle | Lean 4 formalization | use only for Lean submission tasks |
 
 Credentials are not stored in this repo. Paths only: `~/.farey_api_keys`, `~/.aristotle_api_key`, `~/.ssh/id_ed25519`.
@@ -55,3 +56,13 @@ Credentials are not stored in this repo. Paths only: `~/.farey_api_keys`, `~/.ar
 ## New Routine Design Rule
 
 Build new routines from this capability map and [[projects/farey-research/task-queue]]. Do not copy old cron files or scheduled-agent definitions.
+
+## Routing At A Glance
+
+- Deep proof review: Gemini Pro OAuth, Mistral large, or Codex high effort if the user explicitly wants Codex.
+- Lean 4 formalization: Aristotle first.
+- Medium writeups and synthesis: Gemini Flash/Pro, Mistral small/medium, Cohere, OpenRouter, or SambaNova depending on latency and quota.
+- Quick summaries / fact lookups: Groq or Gemini Flash-lite.
+- Numerical/PARI work: M1B first, then M2 if the daemon is healthy.
+- Large local proof/writing: M1.
+- Repo checkpoint commits and pushes: `farey-publisher` on `gpt-5.4-mini`.

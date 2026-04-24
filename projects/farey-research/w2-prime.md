@@ -13,6 +13,7 @@ sources:
   - projects/farey-research/data/PATH_B_20FORMS.csv
   - projects/farey-research/data/CONDUCTOR_CONTROL_37b.json
   - raw/farey-archive/state-docs/CLAIM_STATUS.md.txt
+  - projects/farey-research/recent-results-review.md
 supersedes: []
 superseded-by: 
 tags: [farey, w2-prime, rank, conductor, regression]
@@ -49,6 +50,13 @@ Interpretation: log-conductor is robust in this fit; rank remains a live mechani
 
 Find the mechanism coupling off-central C1 second moments to conductor and rank-related low-lying structure.
 Candidate route: explicit formula terms plus central-zero residue leaking into off-central averages.
+
+## Recent Review Notes
+
+- The recent conductor-bias simulation is useful but heuristic: it suggests rank/conductor collinearity alone is probably too small to explain the observed `0.472697 * log(N)` coefficient.
+- The Samba mechanism note gives a plausible route through `D_E(s) = sum |mu_E(n)|^2 n^{-s}`, Sym2-family averages, and Rankin-Selberg second moments. Treat it as a derivation target, not as proof.
+- The OpenRouter Deligne/Gamma review argues simple archimedean or Deligne-period rescalings do not collapse the raw Sym2/Petersson ratio to the observed C1 second moments.
+- Several recent M1 outputs used stale `1.087/1.175` baselines or returned `CANNOT COMPUTE`; they should not be used to update this model.
 
 ## Next Verification
 

@@ -40,6 +40,6 @@ Compact pointers. Fetch details on demand.
 - projects/farey-research/c1-spectroscope (project tags=farey,c1,spectroscope,bugfix) -> `projects/farey-research/c1-spectroscope.md`
 - projects/farey-research/compute-agents (procedure tags=farey,compute,agents,queues) -> `projects/farey-research/compute-agents.md`
 - projects/farey-research/koyama-correspondence (project tags=farey,koyama,correspondence,collaboration) -> `projects/farey-research/koyama-correspondence.md`
+- projects/farey-research/recent-results-review (project tags=farey,compute-results,review,roadmap) -> `projects/farey-research/recent-results-review.md`
 - projects/farey-research/task-queue (project tags=farey,tasks,queue,priorities) -> `projects/farey-research/task-queue.md`
 - projects/farey-research/w2-prime (project tags=farey,w2-prime,rank,conductor,regression) -> `projects/farey-research/w2-prime.md`
-- projects/skill-crystallizer/README (project tags=skill,L3-sop,automation) -> `projects/skill-crystallizer/README.md`

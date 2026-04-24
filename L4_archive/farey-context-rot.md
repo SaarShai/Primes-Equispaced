@@ -33,6 +33,10 @@ Material here is retained for warning/provenance, not active reasoning.
 - Failed M2 six-byte stubs.
 - Unrelated 3DGS, AMR, biotech, and other non-Farey files from old experiment sprawl.
 - Old routine state, cron logs, scheduled-agent definitions, and live queue files.
+- Recent output files that use stale `1.087/1.175` C1 baselines after the corrected `2.189911545/3.113923728` anchors.
+- Recent `W2PRIME_*` desktop outputs that contain only connection-refused tracebacks.
+- Recent outputs marked `CANNOT COMPUTE`, placeholder-only, or containing placeholder citations such as `[Author] (Year)`.
+- Broad literature surveys from recent API outputs until their citations and formulas are checked against primary sources.
 
 ## Provenance Rule
 
