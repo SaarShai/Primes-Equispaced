@@ -37,6 +37,7 @@ Compact pointers. Fetch details on demand.
 - projects/agents-triage/SKILL (page) -> `projects/agents-triage/SKILL.md`
 - projects/context-keeper/README (project tags=compaction,context-management,memory,hooks) -> `projects/context-keeper/README.md`
 - projects/farey-research/README (project tags=farey,c1,modular-forms,token-economy) -> `projects/farey-research/README.md`
+- projects/farey-research/active-agent-queue (project tags=farey,agents,queue,koyama,w2-prime) -> `projects/farey-research/active-agent-queue.md`
 - projects/farey-research/c1-spectroscope (project tags=farey,c1,spectroscope,bugfix) -> `projects/farey-research/c1-spectroscope.md`
 - projects/farey-research/compute-agents (procedure tags=farey,compute,agents,queues) -> `projects/farey-research/compute-agents.md`
 - projects/farey-research/koyama-correspondence (project tags=farey,koyama,correspondence,collaboration) -> `projects/farey-research/koyama-correspondence.md`

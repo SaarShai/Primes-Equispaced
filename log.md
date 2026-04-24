@@ -56,3 +56,8 @@ Terminology: **ComCom** = our compound-compression project (disambiguate from Cl
 ## [2026-04-20 22:36 BST] download-complete | Qwen3.6-35B-A3B-5bit | M1B all 5 shards verified (24.73 GB) via LAN HTTP server; shard1 required fresh download after dual-curl corruption; see /tmp/resume_qwen36_report.md
 ## [2026-04-20] download-finish | Qwen3.6-35B-A3B-5bit | M1=complete, M1B=complete (LAN transfer from M1:8888, all 5 shards verified, ~23GB, completed ~14:36 PDT)
 ## [2026-04-21] download-finish | Qwen3.6-35B-A3B-5bit | M1=complete, M1B=complete
+## [2026-04-24] dispatch | Active Farey agent queue
+
+- Created [[projects/farey-research/active-agent-queue]] after Saar approved the 30-task campaign.
+- Scope: Koyama reply, Dominance-of-minus-one compute design, W2 prime validation, C1/Delta normalization, and theory/paper pipeline.
+- Routing excludes M2 and Codex API for this campaign; dispatcher should use M1, M1B, Gemini, Aristotle, Groq, Cohere, SambaNova, Cerebras, OpenRouter, and Mistral.

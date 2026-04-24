@@ -30,6 +30,7 @@ No old routine was imported. This is the seed queue for designing new work.
 4. Refill compute queues from this page, not from old `NEXT_TASKS` files.
 5. Publish the current checkpoint through `farey-publisher` once the bundle is clean.
 6. When a fresh Koyama reply + Saar reply pair arrives, spawn a `gpt-5.4-mini` record-updater subagent first, then apply the lean record refresh before any broader research work.
+7. Active approved campaign: [[projects/farey-research/active-agent-queue]].
 
 ## P1
 

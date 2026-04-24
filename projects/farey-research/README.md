@@ -30,6 +30,7 @@ Fresh local repo for Farey Research using Token Economy retrieval and documentat
 - Koyama correspondence: [[projects/farey-research/koyama-correspondence]]
 - Compute agents: [[projects/farey-research/compute-agents]]
 - Task queue: [[projects/farey-research/task-queue]]
+- Active agent queue: [[projects/farey-research/active-agent-queue]]
 - Recent results review: [[projects/farey-research/recent-results-review]]
 - Context rot blacklist: [[L4_archive/farey-context-rot]]
 
