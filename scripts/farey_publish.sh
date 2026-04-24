@@ -50,15 +50,10 @@ allow_patterns = [
 ]
 
 status = subprocess.check_output(
-    ["git", "status", "--porcelain=1"], text=True
+    ["git", "ls-files", "--modified", "--others", "--exclude-standard"], text=True
 )
 items = []
-for line in status.splitlines():
-    if not line:
-        continue
-    path = line[3:]
-    if " -> " in path:
-        path = path.split(" -> ", 1)[1]
+for path in status.splitlines():
     rel = Path(path)
     if rel.exists() and any(rel.match(pattern) for pattern in allow_patterns):
         items.append(path)
