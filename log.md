@@ -67,6 +67,16 @@ Terminology: **ComCom** = our compound-compression project (disambiguate from Cl
 - Completed K01, K04, D01, W01, C01, and T01 for the active Farey campaign.
 - T01 first blocked on M1 because Ollama was down, then completed via Mistral.
 - Created heartbeat automation `farey-agent-queue-monitor` for 15-minute queue checks.
+
+## [2026-04-24] dispatch | Long-haul queue extension
+
+- Added a long-haul batch to [[projects/farey-research/active-agent-queue]] so M1B and M1 have several hours of follow-on work.
+- Long-haul work is mostly M1B numerical/comparison tasks, with M1 theory/writeup tasks carrying explicit fallback routes so the queue can keep moving if the M1 daemon stays down.
+
+## [2026-04-24] rule | subagent queue discipline
+
+- Recorded the durable rule to close only completed idle subagents so thread slots clear cleanly.
+- Recorded the monitor-subagent rule: once spawned, let the monitor keep dispatching until the queue is complete or Saar stops it, and do not intervene or review early.
 ## [2026-04-24 13:39 BST] dispatch-update | First wave results
 - K01 done on Gemini; K04 done on Cohere; D01 done on M1B; W01 done on M1B; C01 done on M1B.
 - T01 blocked on M1 because `curl: (7) Failed to connect to 127.0.0.1 port 11434 after 0 ms: Couldn't connect to server`.

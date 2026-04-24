@@ -100,3 +100,26 @@ Every 15 minutes while active, check whether M1 or M1B is idle and whether API t
 ## First Wave
 
 Start with K01, K04, D01, W01, C01, and T01. This gives the Koyama reply immediate substance while numerical and theory lanes begin in parallel.
+
+## Long-Haul Batch
+
+These tasks are meant to keep M1B busy for hours and give M1 enough theory/writeup work to stay fed if the daemon is healthy. If M1 is unavailable, reroute the M1 tasks to the listed fallback and keep the batch moving without pausing for review.
+
+| id | direction | route | deliverable | status |
+|---|---|---|---|---|
+| H01 | Dominance | M1B | segmented dynamic `pi(x;q,a)` pilot plan for a bounded modulus set | queued |
+| H02 | Dominance | M1B | storage and checkpoint budget for several-hour prime sweeps | queued |
+| H03 | W2 prime | M1B | leave-one-out residual table with a one-page interpretation | queued |
+| H04 | W2 prime | M1B | rank-0 high-conductor comparison table from canonical data | queued |
+| H05 | W2 prime | M1B | 37a1 vs 389a1 vs 5077a1 standardized comparison note | queued |
+| H06 | C1/Delta | M1B | Delta per-zero K-convergence cross-check using canonical scripts/data | queued |
+| H07 | C1/Delta | M1B | kernel/smoothing sensitivity note with recommended default | queued |
+| H08 | C1/Delta | M1B | reproducibility manifest for current C1 and W2 scripts | queued |
+| H09 | Koyama reply | M1 | cautious grant/CV reply outline, with `Mistral` fallback if M1 is down | queued |
+| H10 | Koyama reply | M1 | Dominance-of-minus-one question framing memo, with `OpenRouter` fallback if M1 is down | queued |
+| H11 | Theory/papers | M1 | Rankin-Selberg / explicit-formula mechanism note for W2 prime, with `Mistral` fallback if M1 is down | queued |
+| H12 | Theory/papers | M1 | Paper C replacement theorem sketch using density/proportion/mollifier language, with `Mistral` fallback if M1 is down | queued |
+| H13 | Theory/papers | M1 | primary-source pair-correlation bibliography and citation-safe summary, with `Gemini` fallback if M1 is down | queued |
+| H14 | Theory/papers | M1 | claim-safe paragraph set for an eventual Koyama email, with `OpenRouter` fallback if M1 is down | queued |
+| H15 | W2 prime | M1B | narrow-conductor contrast experiment design for the next compute window | queued |
+| H16 | Dominance | M1B | minimal pilot definition below `13e12` that still answers Koyama's dynamic-x request | queued |
