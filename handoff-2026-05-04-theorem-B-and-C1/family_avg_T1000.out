@@ -1,0 +1,133 @@
+  ***   Warning: new stack size = 2000000000 (1907.349 Mbytes).
+  ***   Warning: new maximum stack size = 8000012288 (7629.406 Mbytes).
+=== family_avg_T1000 ===
+Formula: u_f(T) = sum_{|gamma|<=T} |L'(1+i*gamma,E)|^2 / (c_f * T * logX^4)
+         c_f = lfun(lfunsympow(E,2), 2) / zeta(2)  [task formula]
+         X = sqrt(N*T)/(2*pi)
+Predicted asymptotic: 2/(3*pi) = 0.21220659
+Cage: [0.13152579, 0.77035222]
+zeta(2) = 1.64493407
+
+
+========== T = 400 ==========
+[11a1 T=400] N=11 c_task=0.642943 c_rs=0.589365 #pos_zeros=555 S_full=136255.9122 X=10.5571 logX=2.35680 u_task=17.172349 u_rs=18.733472 (13.2s)
+[14a1 T=400] N=14 c_task=0.716539 c_rs=0.835962 #pos_zeros=570 S_full=113415.6800 X=11.9101 logX=2.47738 u_task=10.505101 u_rs=9.004373 (13.7s)
+[15a1 T=400] N=15 c_task=0.569317 c_rs=0.711646 #pos_zeros=574 S_full=105677.9201 X=12.3281 logX=2.51188 u_task=11.656671 u_rs=9.325337 (14.3s)
+[17a1 T=400] N=17 c_task=0.477226 c_rs=0.676071 #pos_zeros=582 S_full=113416.0481 X=13.1243 logX=2.57446 u_task=13.525217 u_rs=9.547212 (16.2s)
+[19a1 T=400] N=19 c_task=0.564097 c_rs=0.893154 #pos_zeros=590 S_full=121777.3960 X=13.8748 logX=2.63007 u_task=11.279250 u_rs=7.123737 (15.9s)
+[21a1 T=400] N=21 c_task=0.627217 c_rs=1.097630 #pos_zeros=596 S_full=120378.7282 X=14.5868 logX=2.68012 u_task=9.299445 u_rs=5.313969 (16.3s)
+[26a1 T=400] N=26 c_task=0.790624 c_rs=1.713018 #pos_zeros=609 S_full=132738.8178 X=16.2307 logX=2.78690 u_task=6.957936 u_rs=3.211355 (16.6s)
+[33a1 T=400] N=33 c_task=0.712264 c_rs=1.958725 #pos_zeros=625 S_full=144800.8886 X=18.2855 logX=2.90611 u_task=7.125624 u_rs=2.591136 (17.4s)
+[35a1 T=400] N=35 c_task=0.507461 c_rs=1.480094 #pos_zeros=628 S_full=126240.7134 X=18.8315 logX=2.93553 u_task=8.375127 u_rs=2.871472 (16.5s)
+[37a1 T=400] N=37 c_task=1.515114 c_rs=4.671600 #pos_zeros=632 S_full=286794.1809 X=19.3620 logX=2.96331 u_task=6.136975 u_rs=1.990370 (18.6s)
+[38a1 T=400] N=38 c_task=0.685658 c_rs=2.171249 #pos_zeros=633 S_full=136475.8309 X=19.6219 logX=2.97665 u_task=6.338381 u_rs=2.001594 (18.5s)
+[43a1 T=400] N=43 c_task=1.324434 c_rs=4.745887 #pos_zeros=642 S_full=256398.6196 X=20.8730 logX=3.03846 u_task=5.678245 u_rs=1.584627 (18.1s)
+[53a1 T=400] N=53 c_task=1.040943 c_rs=4.597500 #pos_zeros=655 S_full=228373.2699 X=23.1733 logX=3.14300 u_task=5.620565 u_rs=1.272581 (17.8s)
+[57a1 T=400] N=57 c_task=1.428345 c_rs=6.784640 #pos_zeros=660 S_full=264024.8335 X=24.0319 logX=3.17938 u_task=4.522529 u_rs=0.952111 (19.5s)
+
+=== SUMMARY T=400 ===
+label       N    c_task    c_rs      S_full         logX    u_task    u_rs      cage_task
+11a1       11  0.642943  0.589365   136255.9122  2.35680  17.172349  18.733472  N
+14a1       14  0.716539  0.835962   113415.6800  2.47738  10.505101  9.004373  N
+15a1       15  0.569317  0.711646   105677.9201  2.51188  11.656671  9.325337  N
+17a1       17  0.477226  0.676071   113416.0481  2.57446  13.525217  9.547212  N
+19a1       19  0.564097  0.893154   121777.3960  2.63007  11.279250  7.123737  N
+21a1       21  0.627217  1.097630   120378.7282  2.68012  9.299445  5.313969  N
+26a1       26  0.790624  1.713018   132738.8178  2.78690  6.957936  3.211355  N
+33a1       33  0.712264  1.958725   144800.8886  2.90611  7.125624  2.591136  N
+35a1       35  0.507461  1.480094   126240.7134  2.93553  8.375127  2.871472  N
+37a1       37  1.515114  4.671600   286794.1809  2.96331  6.136975  1.990370  N
+38a1       38  0.685658  2.171249   136475.8309  2.97665  6.338381  2.001594  N
+43a1       43  1.324434  4.745887   256398.6196  3.03846  5.678245  1.584627  N
+53a1       53  1.040943  4.597500   228373.2699  3.14300  5.620565  1.272581  N
+57a1       57  1.428345  6.784640   264024.8335  3.17938  4.522529  0.952111  N
+
+Family average u_bar_task  = 8.87095823   ratio/pred = 41.80341
+Family average u_bar_rs    = 5.39452459   ratio/pred = 25.42110
+Cage [0.1315, 0.7704]: u_bar_task in cage? NO
+
+========== T = 1000 ==========
+[11a1 T=1000] N=11 c_task=0.642943 c_rs=0.589365 #pos_zeros=1678 S_full=617763.2457 X=16.6923 logX=2.81495 u_task=15.302690 u_rs=16.693844 (363.3s)
+[14a1 T=1000] N=14 c_task=0.716539 c_rs=0.835962 #pos_zeros=1716 S_full=508119.5888 X=18.8315 logX=2.93553 u_task=9.549501 u_rs=8.185286 (464.3s)
+[15a1 T=1000] N=15 c_task=0.569317 c_rs=0.711646 #pos_zeros=1727 S_full=459530.3983 X=19.4924 logX=2.97003 u_task=10.373360 u_rs=8.298688 (404.4s)
+[17a1 T=1000] N=17 c_task=0.477226 c_rs=0.676071 #pos_zeros=1747 S_full=491535.0844 X=20.7513 logX=3.03261 u_task=12.177704 u_rs=8.596026 (294.9s)
+[19a1 T=1000] N=19 c_task=0.564097 c_rs=0.893154 #pos_zeros=1762 S_full=560689.3367 X=21.9380 logX=3.08822 u_task=10.927862 u_rs=6.901807 (287.6s)
+[21a1 T=1000] N=21 c_task=0.627217 c_rs=1.097630 #pos_zeros=1781 S_full=521353.2083 X=23.0637 logX=3.13826 u_task=8.569535 u_rs=4.896877 (260.3s)
+[26a1 T=1000] N=26 c_task=0.790624 c_rs=1.713018 #pos_zeros=1814 S_full=586019.3483 X=25.6630 logX=3.24505 u_task=6.684319 u_rs=3.085070 (357.8s)
+[33a1 T=1000] N=33 c_task=0.712264 c_rs=1.958725 #pos_zeros=1852 S_full=623385.6335 X=28.9119 logX=3.36425 u_task=6.832203 u_rs=2.484437 (342.3s)
+[35a1 T=1000] N=35 c_task=0.507461 c_rs=1.480094 #pos_zeros=1861 S_full=524655.5260 X=29.7752 logX=3.39367 u_task=7.794550 u_rs=2.672417 (262.7s)
+[37a1 T=1000] N=37 c_task=1.515114 c_rs=4.671600 #pos_zeros=1871 S_full=1304913.2563 X=30.6141 logX=3.42146 u_task=6.284790 u_rs=2.038310 (262.0s)
+[38a1 T=1000] N=38 c_task=0.685658 c_rs=2.171249 #pos_zeros=1875 S_full=584008.7221 X=31.0250 logX=3.43479 u_task=6.119408 u_rs=1.932445 (264.7s)
+[43a1 T=1000] N=43 c_task=1.324434 c_rs=4.745887 #pos_zeros=1895 S_full=1205836.7604 X=33.0031 logX=3.49660 u_task=6.090799 u_rs=1.699758 (391.4s)
+[53a1 T=1000] N=53 c_task=1.040943 c_rs=4.597500 #pos_zeros=1928 S_full=1003518.7241 X=36.6402 logX=3.60115 u_task=5.732383 u_rs=1.297898 (319.8s)
+[57a1 T=1000] N=57 c_task=1.428345 c_rs=6.784640 #pos_zeros=1940 S_full=1140915.9207 X=37.9977 logX=3.63753 u_task=4.562427 u_rs=0.960511 (277.2s)
+
+=== SUMMARY T=1000 ===
+label       N    c_task    c_rs      S_full         logX    u_task    u_rs      cage_task
+11a1       11  0.642943  0.589365   617763.2457  2.81495  15.302690  16.693844  N
+14a1       14  0.716539  0.835962   508119.5888  2.93553  9.549501  8.185286  N
+15a1       15  0.569317  0.711646   459530.3983  2.97003  10.373360  8.298688  N
+17a1       17  0.477226  0.676071   491535.0844  3.03261  12.177704  8.596026  N
+19a1       19  0.564097  0.893154   560689.3367  3.08822  10.927862  6.901807  N
+21a1       21  0.627217  1.097630   521353.2083  3.13826  8.569535  4.896877  N
+26a1       26  0.790624  1.713018   586019.3483  3.24505  6.684319  3.085070  N
+33a1       33  0.712264  1.958725   623385.6335  3.36425  6.832203  2.484437  N
+35a1       35  0.507461  1.480094   524655.5260  3.39367  7.794550  2.672417  N
+37a1       37  1.515114  4.671600  1304913.2563  3.42146  6.284790  2.038310  N
+38a1       38  0.685658  2.171249   584008.7221  3.43479  6.119408  1.932445  N
+43a1       43  1.324434  4.745887  1205836.7604  3.49660  6.090799  1.699758  N
+53a1       53  1.040943  4.597500  1003518.7241  3.60115  5.732383  1.297898  N
+57a1       57  1.428345  6.784640  1140915.9207  3.63753  4.562427  0.960511  N
+
+Family average u_bar_task  = 8.35725225   ratio/pred = 39.38262
+Family average u_bar_rs    = 4.98166975   ratio/pred = 23.47557
+Cage [0.1315, 0.7704]: u_bar_task in cage? NO
+
+========== INFLATION ANALYSIS ==========
+Inflation factor per curve: u_f(T) / (2/(3*pi))
+Finite-T inflation = u_f_task / const_pred
+
+  ***   syntax error, unexpected end of file, expecting )-> or ',' or ')': 
+  ***   ...6s %8s %8s %8s %8s\n",
+  ***                           ^-
+... skipping file 'family_avg_T1000.gp'
+  ***   syntax error, unexpected ',', expecting end of file: "label"
+  ***   ,"N","T=400","infl400","T=1000","infl10
+  ***   ^---------------------------------------
+  ***   syntax error, unexpected end of file, expecting )-> or ',' or ')': 
+  ***   for(i=1,#labels,
+  ***                  ^-
+  ***   at top-level: u4=res400[i][8]
+  ***                           ^-----
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   at top-level: u10=res1000[i][8]
+  ***                             ^-----
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   syntax error, unexpected end of file, expecting )-> or ',' or ')': ...f 
+  ***   %8.5f %8.3f %+.3f\n",
+  ***                       ^-
+  ***   syntax error, unexpected ',', expecting end of file: labels[i]
+  ***   ,res400[i][1],u4,infl4,u10,infl10,inf
+  ***   ^-------------------------------------
+  ***   syntax error, unexpected ')', expecting end of file: );
+  ***                                                        ^--
+
+u_bar_task(T=400)  = 8.870958,  inflation = 41.8034
+u_bar_task(T=1000) = 8.357252,  inflation = 39.3826
+Trend: delta_u_bar = -0.513706
+
+Convergence check (T=400 -> T=1000): positive delta = moving AWAY from pred
+  ***   syntax error, unexpected end of file, expecting )-> or ',' or ')': 
+  ***   for(i=1,#labels,
+  ***                  ^-
+  ***   at top-level: d=res1000[i][8]-res400[i][8]
+  ***                           ^------------------
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   at top-level: if(d>0,n_up++,n_dn++)
+  ***                     ^-----------------
+  *** _>_: forbidden comparison t_POL , t_INT.
+  ***   syntax error, unexpected ')', expecting end of file: );
+  ***                                                        ^--
+0 curves moving up, 0 curves moving down
+
+DONE.

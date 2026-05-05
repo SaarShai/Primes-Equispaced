@@ -1,0 +1,44 @@
+Residue (= coeff of t^0 in Gamma(1+t)^2 * qhat^{2t} * B):
+2.333333333333333333333333333333333333333*L^3 - 1.731646994704598581819536270247207293126*L^2 + 2.165658223496310335387994687606711004262*L - 0.7488792082173569915449995888761852970138
+
+Q_h^{diag, leading} = 2*qhat * Residue. Coefficients in L = log qhat:
+4.666666666666666666666666666666666666667*L^3 - 3.463293989409197163639072540494414586253*L^2 + 4.331316446992620670775989375213422008525*L - 1.497758416434713983089999177752370594028
+
+Leading (log qhat)^3 coefficient of Q_h^{diag} / qhat:
+4.666666666666666666666666666666666666667
+
+Leading (log qhat)^2 coefficient:
+-3.463293989409197163639072540494414586253
+Leading (log qhat)^1 coefficient:
+4.331316446992620670775989375213422008525
+Leading (log qhat)^0 coefficient:
+-1.497758416434713983089999177752370594028
+
+=== Translation to L'(1/2,f) on odd subfamily ===
+
+Note: KMV eq. (5) gives unmollified harmonic 2nd moment of
+Lambda^(k)(f,1/2) over ALL of S_2*(q) as ~ c'_k (log qhat)^{2k+1}.
+For k=1: power is (log qhat)^3.
+
+On odd subfamily, |Lambda'(1/2,f)|^2 = qhat * |L'(1/2,f)|^2.
+On even subfamily, |Lambda'(1/2,f)|^2 = qhat * |log(qhat)*L(1/2,f) + ...|^2,
+which is (log qhat)^2 * |L(1/2,f)|^2 to leading order, contributing
+(log qhat)^2 * (log qhat)  = (log qhat)^3 from the L^2 average ~ log qhat.
+
+Hence the (log qhat)^3 leading total in eq. (5) comes from BOTH subfamilies.
+
+On odd subfamily ALONE, sum^h |L'(1/2,f)|^2 has leading order
+at most (log qhat)^3, NOT (log qhat)^4 as the S4 chain claims.
+
+Numerical leading L^3 coefficient:
+4.666666666666666666666666666666666666667
+
+Predicted target (per the note): 4/(3*Pi) ~
+0.4244131815783875620503567023267049654252
+Or 2/(3*Pi) ~
+0.2122065907891937810251783511633524827126
+
+Ratio leadL3 / (4/(3*Pi)):
+10.99557428756427633461925184147826009469
+Ratio leadL3 / (2/(3*Pi)):
+21.99114857512855266923850368295652018938

@@ -1,0 +1,24 @@
+  ***   Warning: new stack size = 1000000000 (953.674 Mbytes).
+  ***   Warning: new maximum stack size = 8000012288 (7629.406 Mbytes).
+Target 1/(24*pi) = 0.0132629119243246113140736469477
+Run started: 1
+
+[1/3] Computing zeros up to T=5000 ...
+  Found 4520 zeros in 549.972000000000000000000000000 s
+
+[2/3] Computing |zeta'(rho)|^2 at all 4520 zeros ...
+  k=1000 t=91.5310000000000000000000000000s
+  k=2000 t=887.491000000000000000000000000s
+  k=3000 t=47.9480000000000000000000000000s
+  k=4000 t=47.1350000000000000000000000000s
+  Done in 23.9750000000000000000000000000 s
+
+=== RESULTS (T_max=5000) ===
+T          N(T)       Sum|zp|^2       u_zeta(T)            rel_dev
+  ***   syntax error, unexpected end of file, expecting )-> or ',' or ')': 
+  ***   while(ti<=#Ts,
+  ***                ^-
+... skipping file 'zeta_prime_calibration_v2.gp'
+100        29         117.62166        0.002615197988976692    0.802819  
+  ***   syntax error, unexpected ')', expecting end of file: ti+=1);
+  ***                                                             ^--

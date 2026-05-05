@@ -1,0 +1,59 @@
+  ***   Warning: new stack size = 1073741824 (1024.000 Mbytes).
+=== T8 v3: sym²(11a1) Δ-machine, fixed for L~s² at 0 ===
+
+L(s)/s² near 0 (should converge):
+  L(1. e-2)/1.00000000000000000000000000000000000000000000000000000000 e-2² = 9.623331050380593 e-1
+  L(1. e-3)/1.00000000000000000000000000000000000000000000000000000000 e-3² = 9.627256633044087 e-1
+  L(1. e-4)/1.00000000000000000000000000000000000000000000000000000000 e-4² = 9.627585211009891 e-1
+  L(1. e-5)/1.00000000000000000000000000000000000000000000000000000000 e-5² = 9.627617424759632 e-1
+  L(1. e-6)/1.00000000000000000000000000000000000000000000000000000000 e-6² = 9.627620639689891 e-1
+  L(1. e-7)/1.00000000000000000000000000000000000000000000000000000000 e-7² = 9.627620961118466 e-1
+
+Leading coefficient: L(s) ≈ c2·s² + ..., c2 ≈ 0.9627256633044087070629438480326257318657
+
+Numerical R_0 = Res_{s=0} N^s W~(s)/L(s, sym²f):
+  N=10^1:  R_0 = 3.980216,  predicted (log²N)/(2c2) = 2.753587
+  N=10^2:  R_0 = 12.468016,  predicted (log²N)/(2c2) = 11.014349
+  N=10^3:  R_0 = 26.462782,  predicted (log²N)/(2c2) = 24.782285
+  N=10^4:  R_0 = 45.964514,  predicted (log²N)/(2c2) = 44.057395
+  N=10^5:  R_0 = 70.973212,  predicted (log²N)/(2c2) = 68.839680
+  N=10^6:  R_0 = 101.488876,  predicted (log²N)/(2c2) = 99.129139
+
+μ_{sym²f}(n) for n ≤ 800000
+  μ done in 6.389000000000000000000000000000000000000 s
+  S(N=1000) = -4714.792277
+  S(N=3000) = -4109.346597
+  S(N=10000) = 170479.958291
+  S(N=30000) = 191338.171863
+  S(N=100000) = -2884618.544029
+
+121 zeros up to height 80
+
+Full explicit-formula prediction:
+  N         | R_0          | Σ_zeros (40)  | total_pred   | observed     | rel_err
+  ----------+--------------+---------------+--------------+--------------+----------
+  ***   syntax error, unexpected end of file, expecting )-> or ',' or ')': 
+  ***   for(k=1,#Nlist,
+  ***                 ^-
+... skipping file 'GL3_sym2_11a1_v3.gp'
+  ***   at top-level: Nv=Nlist[k]
+  ***                          ^--
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   syntax error, unexpected end of file, expecting )-> or ',' or ')': 
+  ***   for(j=1,Nz_use,
+  ***                 ^-
+  ***   at top-level: rho=1/2+I*zeros[j]
+  ***                                 ^--
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   syntax error, unexpected ')', expecting end of file: );
+  ***                                                        ^--
+  ***   at top-level: rel=(S_obs[k]-total)/abs(S_obs[k])
+  ***                            ^-----------------------
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   at top-level: ...",Nv,R0,zsum,total,S_obs[k],rel)
+  ***                                             ^-------
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   syntax error, unexpected ')', expecting end of file: );
+  ***                                                        ^--
+
+=== Total time: 28.56200000000000000000000000000000000000 s ===

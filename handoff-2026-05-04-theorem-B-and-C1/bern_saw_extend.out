@@ -1,0 +1,14 @@
+# primes = 167, range [11, 1019]
+  p=   11  n=     33  Bern=0.13358962  Saw=0.11135086  ratio=0.833529  B_raw>0? True
+  p=   53  n=    831  Bern=0.42148928  Saw=0.24631732  ratio=0.584398  B_raw>0? True
+  p=  101  n=   3045  Bern=0.38379262  Saw=0.25865451  ratio=0.673943  B_raw>0? True
+  p=  211  n=  13415  Bern=0.62995308  Saw=0.27493068  ratio=0.43643  B_raw>0? True
+  p=  401  n=  48679  Bern=0.73198235  Saw=0.29437897  ratio=0.402167  B_raw>0? True
+  p=  601  n= 109501  Bern=0.59304628  Saw=0.30484177  ratio=0.514027  B_raw>0? True
+  p=  809  n= 198487  Bern=0.55381378  Saw=0.30716083  ratio=0.554628  B_raw>0? True
+  p= 1019  n= 315127  Bern=0.83034031  Saw=0.31402029  ratio=0.378183  B_raw>0? True
+
+MAX ratio |Saw|/Bern = 0.8381410308 at p=223
+All B_raw > 0? 167/167
+max ratio = 0.838141, min ratio = 0.239063, mean = 0.453509
+min margin (1 - ratio) = 0.161859

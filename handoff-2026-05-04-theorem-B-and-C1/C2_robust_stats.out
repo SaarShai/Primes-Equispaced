@@ -1,0 +1,83 @@
+# Robust stats: log|Lambda(1)|^2 for SO(2N), CUE U(N), CUE U(2N)
+# Reports: mean(log), std(log), median(log), various quantiles
+
+SO(2N)     N= 50 K= 5000 dt=21.4s
+           mean(log) = -4.4325  std(log) = 5.9552
+           median(log) = -3.8910  q25 = -7.7396  q75 = -0.4407
+           geom_mean = exp(mean log) = 1.1885e-02
+           sample_mean = 1.3416e+02
+           lognormal_mean = exp(mean+sigma^2/2) = 5.9703e+05
+
+CUE U(N)   N= 50 K= 5000 dt=10.9s
+           mean(log) = -0.1175  std(log) = 3.3654
+           median(log) = +0.1588  q25 = -2.0982  q75 = +2.1596
+           geom_mean = exp(mean log) = 8.8910e-01
+           sample_mean = 7.6836e+01
+           lognormal_mean = exp(mean+sigma^2/2) = 2.5608e+02
+
+CUE U(2N)  N= 50 K= 5000 dt=84.5s
+           mean(log) = +0.0040  std(log) = 3.4705
+           median(log) = +0.1924  q25 = -2.1022  q75 = +2.3421
+           geom_mean = exp(mean log) = 1.0040e+00
+           sample_mean = 1.0021e+02
+           lognormal_mean = exp(mean+sigma^2/2) = 4.1412e+02
+
+SO(2N)     N=100 K= 5000 dt=98.6s
+           mean(log) = -5.1382  std(log) = 6.1705
+           median(log) = -4.5986  q25 = -8.8159  q75 = -0.9129
+           geom_mean = exp(mean log) = 5.8684e-03
+           sample_mean = 3.7604e+02
+           lognormal_mean = exp(mean+sigma^2/2) = 1.0875e+06
+
+CUE U(N)   N=100 K= 5000 dt=81.6s
+           mean(log) = +0.0539  std(log) = 3.4810
+           median(log) = +0.3090  q25 = -2.0244  q75 = +2.3959
+           geom_mean = exp(mean log) = 1.0554e+00
+           sample_mean = 9.7157e+01
+           lognormal_mean = exp(mean+sigma^2/2) = 4.5145e+02
+
+CUE U(2N)  N=100 K= 5000 dt=451.3s
+           mean(log) = +0.0068  std(log) = 3.7239
+           median(log) = +0.2137  q25 = -2.3453  q75 = +2.5196
+           geom_mean = exp(mean log) = 1.0068e+00
+           sample_mean = 2.9105e+02
+           lognormal_mean = exp(mean+sigma^2/2) = 1.0331e+03
+
+SO(2N)     N=200 K= 2000 dt=206.1s
+           mean(log) = -5.7864  std(log) = 6.3459
+           median(log) = -5.2606  q25 = -9.6600  q75 = -1.2270
+           geom_mean = exp(mean log) = 3.0690e-03
+           sample_mean = 5.8092e+02
+           lognormal_mean = exp(mean+sigma^2/2) = 1.7043e+06
+
+CUE U(N)   N=200 K= 2000 dt=144.3s
+           mean(log) = +0.0808  std(log) = 3.6455
+           median(log) = +0.2810  q25 = -2.1941  q75 = +2.5341
+           geom_mean = exp(mean log) = 1.0841e+00
+           sample_mean = 1.9749e+02
+           lognormal_mean = exp(mean+sigma^2/2) = 8.3357e+02
+
+CUE U(2N)  N=200 K= 2000 dt=686.6s
+           mean(log) = +0.2511  std(log) = 3.8986
+           median(log) = +0.5759  q25 = -2.2436  q75 = +2.9638
+           geom_mean = exp(mean log) = 1.2854e+00
+           sample_mean = 3.0595e+02
+           lognormal_mean = exp(mean+sigma^2/2) = 2.5672e+03
+
+================================================================================
+Direct ratio at SAME matrix size 2N: SO(2N)[Lambda^2] / CUE U(2N)[|Lambda|^2]
+================================================================================
+N= 50: SO(2N)=1.342e+02, CUE U(2N)=1.002e+02, ratio=1.3388
+   geom_mean ratio = 0.0118
+   median(log) diff = -4.0834
+N=100: SO(2N)=3.760e+02, CUE U(2N)=2.911e+02, ratio=1.2920
+   geom_mean ratio = 0.0058
+   median(log) diff = -4.8122
+N=200: SO(2N)=5.809e+02, CUE U(2N)=3.060e+02, ratio=1.8987
+   geom_mean ratio = 0.0024
+   median(log) diff = -5.8365
+
+================================================================================
+Same matrix size N: SO(N=2*half) vs CUE U(N=2*half) at half-dim N=50,100,200
+This is the actual apples-to-apples comparison.
+================================================================================

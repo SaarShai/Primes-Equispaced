@@ -1,0 +1,26 @@
+  ***   Warning: new maximum stack size = 4000006144 (3814.703 Mbytes).
+  ***   syntax error, unexpected ')', expecting )-> or ',': ...efix," 
+  ***   orbit#",Str(orb)))),E,for(emb=1,#Lvec,i
+  ***                     ^---------------------
+
+############ k=12 (Delta) ############
+  ***   at top-level: ...2 (Delta) ############");run_orbit(mfinit([1,1
+  ***                                             ^---------------------
+  ***   not a function in function call
+
+############ k=24 ############
+  ***   at top-level: ...#### k=24 ############");run_orbit(mfinit([1,2
+  ***                                             ^---------------------
+  ***   not a function in function call
+
+############ k=36 ############
+  ***   at top-level: ...#### k=36 ############");run_orbit(mfinit([1,3
+  ***                                             ^---------------------
+  ***   not a function in function call
+
+############ k=2, level 11 (11a1, sanity check) ############
+  ***   at top-level: ...ty check) ############");run_orbit(mfinit([11,
+  ***                                             ^---------------------
+  ***   not a function in function call
+
+=== DONE ===

@@ -1,0 +1,16 @@
+  ***   Warning: new maximum stack size = 16000008192 (15258.797 Mbytes).
+  ***   Warning: new stack size = 2000000000 (1907.349 Mbytes).
+# 37a1 conductor: 37 factor: Mat([37, 1])
+# L'/L_anal(1, sym^2) = -0.6446477380
+# L''/L_anal(1, sym^2) = 0.6808067805
+# S_mult = 0.0976637155  (wrap §5.3 = 0.0977)
+# H_unram = 0.4926346883 (wrap §5.3 = 0.479)
+# B(f)   = 1.1675140687  (wrap §5.3 = 1.154)
+# L_cum    = 0.2652360744
+# k2_mult  = 1.0203436866
+# kappa_2  = -2.1491218539
+# a_3/a_4 = 0.6700562748
+# a_2/a_4 = -6.7263653441
+# Y = 5.019500
+# r_pred (a_3 only)  = 0.133491  (wrap §5.3 reports 0.1227)
+# r_pred (a_3 + a_2) = -0.133478

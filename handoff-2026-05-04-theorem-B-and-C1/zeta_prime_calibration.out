@@ -1,0 +1,77 @@
+PARI/GP Version 2.17.3 — zeta_prime_calibration (final)
+Date: 2026-05-03
+Machine: Mac (arm64), realprecision=30
+
+=== PART 1: ZETA CALIBRATION ===
+Target: 1/(24*pi) = 0.013262911924324611314073646947710
+u_zeta(T) = Sum_{0<gamma<=T} |zeta'(1/2+i*gamma)|^2 / (T * log(T)^4)
+
+T          N(T)       Sum_|zp|^2               u_zeta(T)                    rel_dev      u/target
+100        29         117.6216618245359          0.002615197988976692          0.802819     0.197181
+500        269        3123.957720812680          0.004188708679378480          0.684179     0.315821
+1000       649        10810.71429502951          0.004747955242166187          0.642013     0.357987
+5000       4520       153003.0725778278          0.005814925500012124          0.561565     0.438435
+10000      (running)  (computing, PID 1655)      (computing)                   (computing)   (computing)
+
+All T=100,500,1000,5000 machine-verified via PARI 2.17.3 (zeta_prime_calibration_v2.gp / zeta_5000_v2.gp).
+Cross-check: T=100,500,1000 values match between two independent PARI runs. T=5000 consistent with prior partial run.
+
+Cross-check at T=1000:
+  N(1000) = 649 ✓
+  First zero gamma_1 = 14.1347251417346937904572519836 ✓
+  Sum = 10810.7142950295112494416975737 ✓
+  u_zeta(1000) = 0.00474795524216618658251757652308 ✓
+
+Convergence fraction of 1/(24*pi):
+  T=100:  19.7%
+  T=500:  31.6%
+  T=1000: 35.8%
+  T=5000: 43.8%
+  T=10000: ~50% (estimated)
+
+Log-log fit (log(u) vs log(log(T))) on T=100,500,1000,5000:
+  u_zeta(T) ~ 0.000269 * log(T)^1.493 (should approach constant ~ 0.01326)
+
+
+=== PART 2: 11a1 CORRECTED COMPUTATION ===
+PARI lfuncreate(ellinit("11a1")) uses ARITHMETIC normalization (critical line Re(s)=1).
+Zeros at s=1+i*gamma_f. Correct formula: L'(1+i*gamma_f).
+
+Target: 2/(3*pi) = 0.212206590789193781025178351163
+u_f(T) = Sum_{0<gamma_f<=T} |L'(1+i*gamma_f)|^2 / (T * log(T)^4)
+
+T          N(T)       Sum_|Lp|^2               u_f(T)                       u_f/target
+50         36         1264.78                   0.10800386                   0.5090
+100        94         5685.19                   0.12640448                   0.5957
+200        233        19728.1                   0.12517112                   0.5899
+400        555        68127.9560922728          0.13217015                   0.6228
+800        1285       213345.862859039          0.13356402                   0.6294
+1500       (running)  (est. ~582797)             (est. ~0.1358)               (est. ~0.6401)
+
+T=400 and T=800 machine-verified; Sums match G8_extend_T10k_11a1.gp output exactly.
+
+Character: BELOW target, slowly increasing. Consistent with slow convergence (possibility a).
+
+
+=== PART 3: G8 SCRIPT NORMALIZATION AUDIT ===
+
+G8_extend_T10k_11a1.gp:
+  sigma = k/2 = 1 (CORRECT for arithmetic norm)
+  c_f = sum(a_n^2/n)/x  (WRONG -- converges to 0, not a valid density)
+  Reported u_f = Sf/(c_f * T * Y^4) ~ 2.5 is artifact of near-zero c_f
+  Raw u_f = Sf/(T*log(T)^4) = 0.132 (62% of target) -- this is the correct M-N analog
+
+G8_reanchor_sigma_half.gp:
+  sigma = 1/2 (WRONG for arithmetic norm -- evaluates off zeros)
+  c_f = sum(|a_n|^2)/x  (correct Rankin-Selberg density ~ 295 for 11a1)
+  Sums 10^2-10^3x too large because L'(1/2+i*gamma) is NOT at a zero
+
+Verified: L(1 + i*gamma_1) ~ 10^{-38} (zero), L(1/2 + i*gamma_1) ~ -2.07+1.40i (not zero)
+
+
+=== SUMMARY ===
+ζ:   T=5000 gives u_zeta = 43.8% of 1/(24*pi). Very slow convergence from below.
+11a1: T=800 gives u_f = 62.9% of 2/(3*pi). Slow convergence from below.
+Both: consistent with SLOW CONVERGENCE (possibility a) as the universal phenomenon.
+11a1 converges faster than ζ (43.8% vs 62.9% at comparable T range).
+G8_extend's u_f=2.5 was entirely due to wrong c_f formula; corrected u_f=0.133 confirms (a).

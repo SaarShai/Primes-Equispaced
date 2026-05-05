@@ -1,0 +1,48 @@
+  ***   Warning: new stack size = 1073741824 (1024.000 Mbytes).
+=== T8 v5: GL(3) Δ-machine via sym²(11a1), critical line Re=3/2 ===
+Conductor of sym² L-function: 121 = 11²
+L(1, sym²f) = 0.589364640046589782376715534725
+L(3/2, sym²f) = 0.893396046101988577524275455389
+
+μ_{sym²f}(n) for n ≤ 1000000
+  μ done in 7.87900000000000000000000000000 s
+  |μ_{sym²f}(n)| sample sizes:
+    |μ(10)| = 8.00
+    |μ(100)| = 80.00
+    |μ(1000)| = 1000.00
+    |μ(10000)| = 0.00
+    |μ(100000)| = 0.00
+    |μ(1000000)| = 0.00
+  S(N=1000) = -4714.792277, S/N^(3/2) = -0.149095
+  S(N=3162) = -12496.022538, S/N^(3/2) = -0.070280
+  S(N=10000) = 170479.958291, S/N^(3/2) = 0.170480
+  S(N=31623) = 393746.746374, S/N^(3/2) = 0.070018
+  S(N=100000) = -2884618.544029, S/N^(3/2) = -0.091220
+
+64 zeros up to height 50.  First 5: [3.89928149477134478224250230536, 4.73459545807522825713237327118, 6.18947738757214155981726777366, 7.31203862321685786430904042092, 8.65014756313504536331490860838]
+
+Verify L(3/2 + i·γ_1) = -6.17898118195509190115661493478 E-39 - 4.03791578912556752536946593524 E-39*I, abs=7.381 e-39
+
+Prediction S(N) ≈ Σ_ρ N^ρ · W~(ρ) / L'(ρ):
+  N        | predicted   | observed    | rel_err     | match digits
+  ---------+-------------+-------------+-------------+-------------
+  ***   syntax error, unexpected end of file, expecting )-> or ',' or ')': 
+  ***   for(k=1,#Nlist,
+  ***                 ^-
+... skipping file 'GL3_sym2_11a1_v5.gp'
+  ***   at top-level: my(Nv=Nlist[k],pred=0,Nz_use=min(40,#zeros))
+  ***                             ^--------------------------------
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   at top-level: for(j=1,Nz_use,my(rho=3/2+I*zeros[j],term=2*re
+  ***                 ^----------------------------------------------
+  *** for: forbidden comparison t_POL , t_INT.
+  ***   at top-level: my(rel=(S_obs[k]-pred)/S_obs[k],digits=if(abs(
+  ***                               ^--------------------------------
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   at top-level: ... | %.2f\n",Nv,pred,S_obs[k],rel,digits)
+  ***                                             ^--------------
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   syntax error, unexpected ')', expecting end of file: );
+  ***                                                        ^--
+
+=== Total time: 10.2830000000000000000000000000 s ===

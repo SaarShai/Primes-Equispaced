@@ -1,0 +1,31 @@
+# remaining primes: 498, first 1021, last 4999
+  p= 1021  n=  316401  Bern=0.903134  Saw=0.311577  ratio=0.344996  B_raw>0? True  t=0.1s
+  p= 1103  n=  369355  Bern=1.390987  Saw=0.316800  ratio=0.227752  B_raw>0? True  t=2.0s
+  p= 1201  n=  437787  Bern=0.920722  Saw=0.308916  ratio=0.335515  B_raw>0? True  t=4.1s
+  p= 1301  n=  513845  Bern=0.998256  Saw=0.314258  ratio=0.314807  B_raw>0? True  t=7.2s
+  p= 1303  n=  515505  Bern=1.058482  Saw=0.314034  ratio=0.296683  B_raw>0? True  t=7.4s
+  p= 1601  n=  778233  Bern=1.236007  Saw=0.312242  ratio=0.252622  B_raw>0? True  t=18.3s
+  p= 1801  n=  985059  Bern=1.199286  Saw=0.310814  ratio=0.259166  B_raw>0? True  t=28.4s
+  p= 1901  n= 1097459  Bern=1.047540  Saw=0.315627  ratio=0.301303  B_raw>0? True  t=33.7s
+  p= 2003  n= 1218541  Bern=0.654130  Saw=0.316431  ratio=0.483743  B_raw>0? True  t=40.3s
+  p= 2203  n= 1474077  Bern=0.473739  Saw=0.317209  ratio=0.669586  B_raw>0? True  t=54.1s
+  p= 2503  n= 1903107  Bern=1.030671  Saw=0.316542  ratio=0.307122  B_raw>0? True  t=82.9s
+  p= 2801  n= 2383313  Bern=2.103141  Saw=0.317236  ratio=0.150839  B_raw>0? True  t=120.8s
+  p= 2803  n= 2387045  Bern=2.214162  Saw=0.319296  ratio=0.144206  B_raw>0? True  t=121.8s
+  p= 2903  n= 2560483  Bern=1.827559  Saw=0.323634  ratio=0.177085  B_raw>0? True  t=133.7s
+  p= 3001  n= 2736189  Bern=1.339915  Saw=0.319192  ratio=0.238218  B_raw>0? True  t=146.5s
+  p= 3203  n= 3116789  Bern=0.401100  Saw=0.316762  ratio=0.789734  B_raw>0? True  t=174.7s
+  p= 3301  n= 3310345  Bern=-0.037939  Saw=0.318876  ratio=inf  B_raw>0? False  t=189.9s
+  p= 3701  n= 4161857  Bern=1.471821  Saw=0.318913  ratio=0.216679  B_raw>0? True  t=275.9s
+  p= 3803  n= 4394465  Bern=1.497201  Saw=0.321036  ratio=0.214424  B_raw>0? True  t=298.3s
+  p= 4001  n= 4863603  Bern=1.338253  Saw=0.319175  ratio=0.238501  B_raw>0? True  t=341.9s
+  p= 4003  n= 4868835  Bern=1.395912  Saw=0.319865  ratio=0.229144  B_raw>0? True  t=344.0s
+  p= 4201  n= 5362063  Bern=1.306528  Saw=0.316639  ratio=0.242352  B_raw>0? True  t=394.1s
+  p= 4603  n= 6438061  Bern=1.033289  Saw=0.318976  ratio=0.308700  B_raw>0? True  t=515.0s
+  p= 4703  n= 6721067  Bern=1.127471  Saw=0.321910  ratio=0.285515  B_raw>0? True  t=548.9s
+  p= 4801  n= 7004199  Bern=0.809079  Saw=0.320024  ratio=0.395542  B_raw>0? True  t=584.2s
+  p= 4903  n= 7304315  Bern=0.051204  Saw=0.318071  ratio=6.211818  B_raw>0? False  t=608.8s
+
+FINAL: 665 primes, B_raw>0 count = 623/665
+max ratio = inf, min ratio = 0.144206
+min margin (1 - max_ratio) = -inf

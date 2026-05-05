@@ -1,0 +1,45 @@
+  ***   Warning: new stack size = 1073741824 (1024.000 Mbytes).
+=== T8 v2: sym²(11a1) Δ-machine — explicit formula match ===
+L data structure inspection:
+  L params: [[Vecsmall([11]), [[[0, -1, 1, -10, -20, -4, -20, -79, -21, 496, 20008, -161051, -122023936/161051, Vecsmall([1]), [Vecsmall([192, -1])], [0, 0, 0, 0, 0, [11, 5, Mat([11, 1]), [[1, 9, 0, 5]]], [1, Vecsmall([-1])], [[]~]]], 2], [[11, -1/(x - 1)]]]], 0, [0, 0, 1], 3, 121, 1]
+
+Probing L(s, sym²f) near s=0:
+  L(1. e-2) = 9.62333105038059273987 e-5
+  L(1. e-3) = 9.62725663304408707063 e-7
+  L(1. e-4) = 9.62758521100989134535 e-9
+  L(1. e-5) = 9.62761742475963152542 e-11
+  L(1. e-6) = 9.62762063968989115645 e-13
+
+L'(0, sym²f) ≈ -3.571349036172601907532205824012335421380 E-14
+Residue of 1/L(s) at s=0: -28000623570293.63146225847518074165773360
+
+Numerical residue of W~(s)/L(s) at s=0 via circle contour:
+  R_0 (residue at s=0) at N=10000: 45.9645141430
+
+--- Sanity check: classical Möbius vs ζ ---
+Σ μ(n) exp(-n²/(2·1000²)) for n≤8000 = -2.0002823574
+Classical predicted main: ~ -2 (from s=0 pole of Γ(s/2))
+
+μ_{sym²f}(n) for n ≤ 100000
+
+Weighted Möbius sums S(N) = Σ μ_{sym²f}(n) W(n/N):
+  S(N=500) = 947.681565
+  S(N=1000) = -4714.792277
+  S(N=5000) = -56161.117360
+  S(N=10000) = 170479.958291
+
+83 nontrivial zeros up to height 60
+
+Explicit-formula prediction (residue at 0 + first 20 zeros):
+  ***   sorry, embedded braces (in parser) is not yet implemented.
+... skipping file 'GL3_sym2_11a1_v2.gp'
+  ***   unexpected closing brace.
+  ***   syntax error, unexpected end of file, expecting )-> or ',' or ')': 
+  ***   ...served=%.6f, diff=%.6f\n",
+  ***                               ^-
+  ***   syntax error, unexpected ',', expecting end of file: Nv
+  ***   ,res_main,zsum,total_pred,S_obs[k],S_obs[k]-
+  ***   ^--------------------------------------------
+  ***   unexpected closing brace.
+
+=== Total time: 4.125000000000000000000000000000000000000 s ===

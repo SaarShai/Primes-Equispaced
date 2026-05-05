@@ -1,0 +1,39 @@
+Crypto Bias Audit Framework v2 — RACE methodology
+============================================================
+
+=== POSITIVE CONTROL: primes ≤ 10,000,000 ===
+Sieving primes...
+  Found 664,579 primes in 7.6s
+
+--- Chebyshev race q=4 (a=3 vs a=1) ---
+  fraction(3 leads) = 0.9995
+  Rubinstein-Sarnak prediction: 0.9959
+  final n_3=332,398, n_1=332,180, diff=+218
+  ✓ DETECTED
+
+--- -1 dominance race (Koyama) ---
+  q=5: q=5: -1 is QR (q ≡ 1 mod 4), test not applicable
+  q=7: -1=6, qnr=[3, 5, 6], frac(-1 leads)=0.2850, uniform=0.3333, excess=-0.0484
+  q=8: -1=7, qnr=[3, 5, 7], frac(-1 leads)=0.2715, uniform=0.3333, excess=-0.0618
+  q=11: -1=10, qnr=[2, 6, 7, 8, 10], frac(-1 leads)=0.1760, uniform=0.2000, excess=-0.0240
+  q=13: q=13: -1 is QR (q ≡ 1 mod 4), test not applicable
+  q=16: -1=15, qnr=[3, 5, 7, 11, 13, 15], frac(-1 leads)=0.1214, uniform=0.1667, excess=-0.0452
+
+=== NEGATIVE CONTROL: /dev/urandom, K=1,000,000 ===
+Reading random bytes...
+  Got 1,000,000 64-bit samples in 0.2s
+
+--- Chebyshev race q=4 ---
+  fraction(3 leads) = 0.9851
+  Expected (uniform null): ~0.5
+  FAIL!
+
+--- -1 dominance race ---
+  q=5: q=5: -1 is QR (q ≡ 1 mod 4), test not applicable
+  q=7: frac(-1 leads)=0.0975, uniform=0.3333, excess=-0.2358  FAIL!
+  q=8: frac(-1 leads)=0.1772, uniform=0.3333, excess=-0.1561  FAIL!
+  q=11: frac(-1 leads)=0.0000, uniform=0.2000, excess=-0.2000  FAIL!
+  q=13: q=13: -1 is QR (q ≡ 1 mod 4), test not applicable
+
+============================================================
+DONE.

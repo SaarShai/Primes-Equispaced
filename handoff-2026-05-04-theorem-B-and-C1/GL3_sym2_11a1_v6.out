@@ -1,0 +1,69 @@
+  ***   Warning: new stack size = 1073741824 (1024.000 Mbytes).
+=== T8 v6: GL(3) Δ-machine sym²(11a1), critical Re=3/2 ===
+Computing μ_{sym²f}(n) for n ≤ 1000000
+121 zeros up to height 80
+
+Prediction S(N) ≈ Σ N^ρ W~(ρ)/L'(ρ) over first K zero pairs:
+N         K=10        K=20        K=40        K=60        Observed
+  ***   syntax error, unexpected end of file, expecting )-> or ',' or ')': 
+  ***   for(k=1,nN,
+  ***             ^-
+... skipping file 'GL3_sym2_11a1_v6.gp'
+  ***   at top-level: my(Nv=Nlist[k],p10,p20,p40,p60)
+  ***                             ^-------------------
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   at top-level: p10=predictN(Nv,10)
+  ***                     ^---------------
+  ***   in function predictN: ...rimeAt(rho);p=p+2*real(Nv^rho*Wt(rho)/lp););p
+  ***                                                     ^--------------------
+  *** _^_: domain error in gpow [irrational exponent]: valuation != 0
+  ***   at top-level: p20=predictN(Nv,20)
+  ***                     ^---------------
+  ***   in function predictN: ...rimeAt(rho);p=p+2*real(Nv^rho*Wt(rho)/lp););p
+  ***                                                     ^--------------------
+  *** _^_: domain error in gpow [irrational exponent]: valuation != 0
+  ***   at top-level: p40=predictN(Nv,40)
+  ***                     ^---------------
+  ***   in function predictN: ...rimeAt(rho);p=p+2*real(Nv^rho*Wt(rho)/lp););p
+  ***                                                     ^--------------------
+  *** _^_: domain error in gpow [irrational exponent]: valuation != 0
+  ***   at top-level: p60=predictN(Nv,60)
+  ***                     ^---------------
+  ***   in function predictN: ...rimeAt(rho);p=p+2*real(Nv^rho*Wt(rho)/lp););p
+  ***                                                     ^--------------------
+  *** _^_: domain error in gpow [irrational exponent]: valuation != 0
+  ***   at top-level: ...Nv,p10,p20,p40,p60,S_obs[k])
+  ***                                             ^---
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   syntax error, unexpected ')', expecting end of file: );
+  ***                                                        ^--
+
+Match table (K=60 zeros):
+N          predicted     observed      diff           rel_err     digits_match
+  ***   syntax error, unexpected end of file, expecting )-> or ',' or ')': 
+  ***   for(k=1,nN,
+  ***             ^-
+  ***   at top-level: my(Nv=Nlist[k],p,d,r,dg)
+  ***                             ^------------
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   at top-level: p=predictN(Nv,60)
+  ***                   ^---------------
+  ***   in function predictN: ...rimeAt(rho);p=p+2*real(Nv^rho*Wt(rho)/lp););p
+  ***                                                     ^--------------------
+  *** _^_: domain error in gpow [irrational exponent]: valuation != 0
+  ***   at top-level: d=S_obs[k]-p
+  ***                         ^----
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   at top-level: r=if(S_obs[k]!=0,d/S_obs[k],0)
+  ***                            ^-------------------
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   at top-level: dg=if(abs(r)>1e-30,-log(abs(r))/log(10),30)
+  ***                             ^-------------------------------
+  *** _>_: forbidden comparison t_POL , t_REAL.
+  ***   at top-level: ...0.2e %.2f\n",Nv,p,S_obs[k],d,r,dg)
+  ***                                            ^----------
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   syntax error, unexpected ')', expecting end of file: );
+  ***                                                        ^--
+
+=== Time: 10.8360000000000000000000000000 s ===

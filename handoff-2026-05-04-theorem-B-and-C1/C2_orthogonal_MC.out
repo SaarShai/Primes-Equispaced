@@ -1,0 +1,88 @@
+# C2 orthogonal MC: SO(2N) and SO(2N+1) Haar 2nd moments of |Lambda'(1)|^2
+# Hughes/Conrey-Rubinstein-Snaith literature constants of interest:
+#   2/3   = 0.666667
+#   1/12  = 0.083333  (CUE unitary G(3)^2/G(5))
+#   1/18  = 0.055556  (1/12 * 16/24)
+# For SO(2N): |Lambda'(1)|^2 = N^2 * Lambda(1)^2 (exact)
+# For SO(2N+1): |Lambda'(1)|^2 = (prod_j 4 sin^2(theta_j/2))^2
+
+================================================================================
+SO(2N) Haar:  E[Lambda_A(1)^2]  and derived  E|Lambda'(1)|^2 / N^2 = same
+================================================================================
+N= 50 K=10000 skipped=  0 dt=33.1s
+  log_max_seen = +13.568  (samples are heavy-tailed if log_max large)
+  mean(log L^2) = -4.5712  std(log L^2) = 5.9208
+  E[Lambda(1)^2] = 2.646665e+02  +/-  1.051e+02
+     vs 2/3 = 0.6667 : ratio = 396.9997
+     vs 1/12 = 0.0833: ratio = 3175.9979
+     vs 1/18 = 0.0556: ratio = 4763.9968
+  E|Lambda'(1)|^2 = N^2 * E[L^2] = 6.6167e+05
+
+N=100 K=10000 skipped=  0 dt=146.6s
+  log_max_seen = +14.187  (samples are heavy-tailed if log_max large)
+  mean(log L^2) = -5.1789  std(log L^2) = 6.1364
+  E[Lambda(1)^2] = 2.906410e+02  +/-  1.489e+02
+     vs 2/3 = 0.6667 : ratio = 435.9615
+     vs 1/12 = 0.0833: ratio = 3487.6917
+     vs 1/18 = 0.0556: ratio = 5231.5376
+  E|Lambda'(1)|^2 = N^2 * E[L^2] = 2.9064e+06
+
+N=200 K= 4000 skipped=  0 dt=308.5s
+  log_max_seen = +13.586  (samples are heavy-tailed if log_max large)
+  mean(log L^2) = -5.7379  std(log L^2) = 6.3256
+  E[Lambda(1)^2] = 2.868384e+02  +/-  1.999e+02
+     vs 2/3 = 0.6667 : ratio = 430.2576
+     vs 1/12 = 0.0833: ratio = 3442.0612
+     vs 1/18 = 0.0556: ratio = 5163.0917
+  E|Lambda'(1)|^2 = N^2 * E[L^2] = 1.1474e+07
+
+================================================================================
+SO(2N+1) Haar:  E|Lambda'_A(1)|^2 = E[(prod_j 4 sin^2(theta_j/2))^2]
+================================================================================
+N= 50 K=10000 skipped=  0 dt=40.4s
+  log_max_seen = +21.241
+  mean(log Lp^2) = +5.8226  std(log Lp^2) = 3.8726
+  E|Lambda'(1)|^2 = 3.549889e+05  +/-  1.728e+05
+  / N     = 7.0998e+03  (compare across N)
+  / N^1.5 = 1.0041e+03  (compare across N)
+  / N^2   = 1.4200e+02  (compare across N)
+  / N^3   = 2.8399e+00  (compare across N)
+
+N=100 K=10000 skipped=  0 dt=190.6s
+  log_max_seen = +22.151
+  mean(log Lp^2) = +6.5841  std(log Lp^2) = 4.2679
+  E|Lambda'(1)|^2 = 1.556418e+06  +/-  4.789e+05
+  / N     = 1.5564e+04  (compare across N)
+  / N^1.5 = 1.5564e+03  (compare across N)
+  / N^2   = 1.5564e+02  (compare across N)
+  / N^3   = 1.5564e+00  (compare across N)
+
+N=200 K= 4000 skipped=  0 dt=416.3s
+  log_max_seen = +24.334
+  mean(log Lp^2) = +7.3755  std(log Lp^2) = 4.4672
+  E|Lambda'(1)|^2 = 1.397120e+07  +/-  9.445e+06
+  / N     = 6.9856e+04  (compare across N)
+  / N^1.5 = 4.9396e+03  (compare across N)
+  / N^2   = 3.4928e+02  (compare across N)
+  / N^3   = 1.7464e+00  (compare across N)
+
+================================================================================
+Fits across N (assume E ~ C * N^p)
+================================================================================
+SO(2N)   E[Lambda(1)^2] ~ 2.1470e+02 * N^+0.058
+  (for SO(2N), E|Lambda'(1)|^2 = N^2 * E[L^2] ~ 2.1470e+02 * N^+2.058)
+
+SO(2N+1) E|Lambda'(1)|^2 ~ 9.9385e+00 * N^+2.649
+
+================================================================================
+VERDICT
+================================================================================
+Reading off leading constants and powers:
+  SO(2N)   coeff (Lambda^2):  C ~ 214.7014,  power ~ +0.058
+  SO(2N+1) coeff (|Lambda'|^2): C ~ 9.9385, power ~ +2.649
+
+For C2 to pass as user-stated (1/12 unitary baseline + d^{2k}/(2k)!=2/3):
+  Need orthogonal coefficient = 1/18 = 0.0556 [if interpreted multiplicatively]
+  OR = 1/12 = 0.0833 [if 16/24 already absorbed elsewhere]
+Hughes-Snaith standard result for SO(2N+1) derivative 2nd moment:
+  predicts power and constant (compute from Barnes G - check arXiv 0707.4129)

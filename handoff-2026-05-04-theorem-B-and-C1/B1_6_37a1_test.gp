@@ -1,0 +1,45 @@
+default(parisizemax, 16000000000);
+default(parisize, 2000000000);
+default(realprecision, 30);
+
+E = ellinit("37a1");
+Ncond = ellglobalred(E)[1];
+Nf = factor(Ncond);
+print("# 37a1 conductor: ", Ncond, " factor: ", Nf);
+L = lfunsympow(E, 2);
+LpL  = lfun(L, 2, 1) / lfun(L, 2);
+LppL = lfun(L, 2, 2) / lfun(L, 2);
+printf("# L'/L_anal(1, sym^2) = %.10f\n", LpL);
+printf("# L''/L_anal(1, sym^2) = %.10f\n", LppL);
+zL = lfuncreate(1);
+zp_z2 = lfun(zL, 2, 1)/lfun(zL, 2);
+gE = 0.57721566490153286061;
+
+\\ 37 is multiplicative bad prime (37 || 37, e=1)
+p37 = 37; lg37 = log(p37); lg37sq = lg37^2; u37 = 1.0/p37;
+sumlp = lg37/(p37+1);
+S_mult = p37*lg37/(p37^2-1);
+S_add  = 0.0;
+k2_mult = lg37sq*p37/(p37+1)^2 + 2*lg37sq*u37/(1+u37);
+k2_add  = 0.0;
+H_unram = LpL - 2*zp_z2 + sumlp - S_mult - S_add;
+B_f = gE + H_unram + S_mult + S_add;
+printf("# S_mult = %.10f  (wrap §5.3 = 0.0977)\n", S_mult);
+printf("# H_unram = %.10f (wrap §5.3 = 0.479)\n", H_unram);
+printf("# B(f)   = %.10f  (wrap §5.3 = 1.154)\n", B_f);
+L_cum = LppL - LpL^2;
+kappa2 = 0.75*L_cum - 0.5*k2_mult - 0.25*k2_add - log(2*Pi);
+printf("# L_cum    = %.10f\n", L_cum);
+printf("# k2_mult  = %.10f\n", k2_mult);
+printf("# kappa_2  = %.10f\n", kappa2);
+a3_a4 = -4 + 4*B_f;
+a2_a4 = 12 - 12*B_f + 6*B_f^2 + 6*kappa2;
+printf("# a_3/a_4 = %.10f\n", a3_a4);
+printf("# a_2/a_4 = %.10f\n", a2_a4);
+Y = 5.0195;
+r_a3 = a3_a4/Y;
+r_full = a3_a4/Y + a2_a4/Y^2;
+printf("# Y = %.6f\n", Y);
+printf("# r_pred (a_3 only)  = %.6f  (wrap §5.3 reports 0.1227)\n", r_a3);
+printf("# r_pred (a_3 + a_2) = %.6f\n", r_full);
+quit;

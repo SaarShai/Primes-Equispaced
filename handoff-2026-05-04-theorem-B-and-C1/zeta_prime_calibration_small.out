@@ -1,0 +1,6 @@
+  ***   Warning: new stack size = 1000000000 (953.674 Mbytes).
+  ***   Warning: new maximum stack size = 8000012288 (7629.406 Mbytes).
+Target 1/(24 pi) = 0.013262911924324611314073646947710
+lfuninit h=10000 der=1 ...
+  lfuninit 60933 ms
+zeros up to 10000

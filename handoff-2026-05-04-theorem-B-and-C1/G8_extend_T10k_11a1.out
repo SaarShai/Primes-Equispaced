@@ -1,0 +1,18 @@
+  ***   Warning: new maximum stack size = 8000012288 (7629.406 Mbytes).
+
+############ 11a1 EXTENDED to T=10000 ############
+
+--- 11a1_extended | q=11 k=2 σ=k/2=1 ---
+  Target 2/(3π) = 0.212207, cage = [0.1315, 0.7704]
+  c_f (x=20k) = 0.588608
+
+    T   |  N_f  | Σ|L'|^2            | u_f      | Y      | % off 2/(3π) | in_cage
+  ------+-------+---------------------+----------+--------+--------------+--------
+    400 |   555 |        68127.956092 | 2.5130   | 3.276  |  +1084.2%    | N   (7.6s)
+    800 |  1285 |       213345.862859 | 2.6316   | 3.622  |  +1140.1%    | N   (83.0s)
+  *** lfunzeros: Warning: increasing stack size to 16000000.
+   1500 |  2709 |       582796.656559 | 2.7486   | 3.937  |  +1195.2%    | N   (1053.6s)
+  *** lfunzeros: Warning: increasing stack size to 32000000.
+  *** lfunzeros: Warning: increasing stack size to 64000000.
+   3000 |  6081 |      1700363.198564 | 2.8610   | 4.283  |  +1248.2%    | N   (10513.5s)
+  *** lfunzeros: Warning: increasing stack size to 128000000.

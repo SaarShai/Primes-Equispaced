@@ -1,0 +1,14 @@
+default(parisizemax, 8000000000);
+default(parisize, 1000000000);
+default(realprecision, 30);
+E = ellinit("5005b1");
+L = lfunsympow(E, 2);
+h = 1e-8;
+v0 = lfun(L, 1);
+vp = lfun(L, 1+h);
+vm = lfun(L, 1-h);
+vpp= lfun(L, 1+2*h);
+vmm= lfun(L, 1-2*h);
+ratio = (vmm - 8*vm + 8*vp - vpp) / (12*h*v0);
+printf("5005b1,5005,%.18f\n", ratio);
+quit;

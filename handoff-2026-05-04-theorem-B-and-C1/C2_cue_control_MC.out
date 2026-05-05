@@ -1,0 +1,27 @@
+# C2 CUE control MC
+# Compare CUE value moments and derivative log-moments
+
+CUE N= 50 K=10000  dt=14.2s
+  E[|Lambda(1)|^2]      = 5.0832e+01 +/- 5.96e+00
+  E[|Lambda'(1)|^2]     = 4.2678e+04 +/- 3.90e+03
+  E[|L'/L|^2]           = 2.5906e+07 +/- 1.85e+07
+  E[|Lambda'|^2] / N^3  = 3.4143e-01
+  E[|L'/L|^2] / N^2     = 1.0363e+04  -- expect 1/12 ~ 0.0833? or other
+  E[|L'/L|^2] / N       = 5.1813e+05
+
+CUE N=100 K=10000  dt=143.9s
+  E[|Lambda(1)|^2]      = 1.2214e+02 +/- 2.28e+01
+  E[|Lambda'(1)|^2]     = 3.9273e+05 +/- 6.03e+04
+  E[|L'/L|^2]           = 5.4330e+07 +/- 4.05e+07
+  E[|Lambda'|^2] / N^3  = 3.9273e-01
+  E[|L'/L|^2] / N^2     = 5.4330e+03  -- expect 1/12 ~ 0.0833? or other
+  E[|L'/L|^2] / N       = 5.4330e+05
+
+CUE N=200 K= 4000  dt=283.8s
+  E[|Lambda(1)|^2]      = 3.0607e+02 +/- 7.36e+01
+  E[|Lambda'(1)|^2]     = 3.8273e+06 +/- 7.78e+05
+  E[|L'/L|^2]           = 8.2970e+10 +/- 8.30e+10
+  E[|Lambda'|^2] / N^3  = 4.7842e-01
+  E[|L'/L|^2] / N^2     = 2.0743e+06  -- expect 1/12 ~ 0.0833? or other
+  E[|L'/L|^2] / N       = 4.1485e+08
+

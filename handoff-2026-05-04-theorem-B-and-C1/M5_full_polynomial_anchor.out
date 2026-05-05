@@ -1,0 +1,61 @@
+  ***   Warning: new stack size = 2000000000 (1907.349 Mbytes).
+  ***   Warning: new maximum stack size = 16000008192 (15258.797 Mbytes).
+=========================================================
+M5: Theorem B empirical anchor — full polynomial closure
+=========================================================
+
+### Section 1: 16 EC k=2 curves ###
+
+curve       N       T       Y    B(f)    kap2   u_emp  u_pred   ratio   diff%
+  ***   syntax error, unexpected end of file, expecting )-> or ',' or ')': 
+  ***   for(i=1,#curves_k2,
+  ***                     ^-
+  ***   at top-level: cn=curves_k2[i]
+  ***                              ^--
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   at top-level: E=ellinit(cn)
+  ***                   ^-----------
+  *** ellinit: incorrect type in ellinit (t_POL).
+  ***   at top-level: N=ellglobalred(E)[1]
+  ***                   ^------------------
+  *** ellglobalred: incorrect type in checkell (t_POL).
+  ***   at top-level: T=T_per_k2[i]
+  ***                            ^--
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   at top-level: X=sqrt(N)*T/(2*Pi)
+  ***                   ^----------------
+  *** sqrt: domain error in sqrtn: valuation != Mod(0, 2)
+  ***   at top-level: Y=log(X)
+  ***                   ^------
+  *** log: domain error in log: series valuation != 0
+  ***   at top-level: Lsym=lfunsympow(E,2)
+  ***                      ^---------------
+  *** lfunsympow: sorry, lfunsympow is not yet implemented.
+  ***   at top-level: Bf=compute_Bf(LpL,N)
+  ***                    ^-----------------
+  ***   in function compute_Bf: ...c)[1],my(p=fac[i,1]);B=B+
+  ***   log(p)/(p+1););return
+  ***   ^---------------------
+  *** log: domain error in log: series valuation != 0
+  ***   at top-level: k2=compute_kappa2(LpL,LppL,N)
+  ***                    ^--------------------------
+  ***   in function compute_kappa2: ...2a);L_cum=LppL-LpL^2;k2m=
+  ***   compute_k2mult(N);k2a
+  ***   ^---------------------
+  ***   in function compute_k2mult: ...,e=fac[i,2]);if(e==1,s=s+
+  ***   log(p)^2*(p/(p+1)^2+2
+  ***   ^---------------------
+  *** log: domain error in log: series valuation != 0
+  ***   at top-level: u_e=u_emp_k2[i]
+  ***                              ^--
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   syntax error, unexpected end of file, expecting )-> or ',' or ')': ...f 
+  ***   %7.4f %7.3f %+6.1f%%\n",
+  ***                          ^-
+  ***   syntax error, unexpected ',', expecting end of file: cn
+  ***   ,N,T,Y,Bf,k2,u_e,u_p,ratio,100*(ratio-1));
+  ***   ^------------------------------------------
+  ***   syntax error, unexpected ')', expecting end of file: );
+  ***                                                        ^--
+
+k=2 EC ladder ratio mean = u_e*Y^2/(1.27323954473516268615107010698*Bf^2 + (0.848826363156775124100713404653*Y - 2.54647908947032537230214021396)*Bf + (1.27323954473516268615107010698*k2 + (0.212206590789193781025178351163*Y^2 - 0.848826363156775124100713404653*Y + 2.54647908947032537230214021396)))

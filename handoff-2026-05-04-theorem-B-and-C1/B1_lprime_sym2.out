@@ -1,0 +1,24 @@
+curve,N,Lp_over_L_sym2_at_1,abserr_est,method,time_sec
+11a1,11,1.252077865588207488,3.34 e-18,pari_lfunsymsqr_5pt,0.04
+14a1,14,0.933994930191732195,8.57 e-18,pari_lfunsymsqr_5pt,0.03
+15a1,15,0.791435316425949935,7.99 e-18,pari_lfunsymsqr_5pt,0.03
+17a1,17,0.531600243515118876,8.33 e-18,pari_lfunsymsqr_5pt,0.03
+19a1,19,0.442862157282751723,1.18 e-17,pari_lfunsymsqr_5pt,0.03
+20a1,20,1.320362233623441846,1.30 e-18,pari_lfunsymsqr_5pt,0.02
+21a1,21,0.299069046781266060,1.48 e-17,pari_lfunsymsqr_5pt,0.03
+24a1,24,1.117883446887942509,4.39 e-18,pari_lfunsymsqr_5pt,0.02
+100a1,100,1.320362233623441846,1.30 e-18,pari_lfunsymsqr_5pt,0.02
+106c1,106,-2.615043308096167325,3.53 e-16,pari_lfunsymsqr_5pt,0.10
+200a1,200,0.465452343300473970,2.03 e-17,pari_lfunsymsqr_5pt,0.03
+221a1,221,-3.374855409201785821,1.65 e-15,pari_lfunsymsqr_5pt,0.18
+240a1,240,-1.436281139723226523,4.22 e-17,pari_lfunsymsqr_5pt,0.06
+496b1,496,-3.185368713597740860,5.13 e-16,pari_lfunsymsqr_5pt,0.11
+510a1,510,-5.405395264844339263,1.08 e-14,pari_lfunsymsqr_5pt,0.40
+  ***   at top-level: ...funsympow(E,2);h=1e-8;v0=lfun(L,1);vp=lfun(L,1
+  ***                                             ^---------------------
+  *** lfun: the PARI stack overflows !
+  current stack size: 8000000 (7.629 Mbytes)
+  [hint] set 'parisizemax' to a nonzero value in your GPRC
+
+... skipping file 'B1_lprime_sym2.gp'
+done

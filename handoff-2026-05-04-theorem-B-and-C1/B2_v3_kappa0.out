@@ -1,0 +1,13 @@
+∫|M_W|²            = 2.711886   (Soshnikov NAIVE — no Palm)
+∫|M_W|²(1−sinc²)   = 2.332825   (Soshnikov w/ Palm — predicted Var)
+∫M_W(iy) dy        = (3.138895986069613+0j)        (used for E[S] subtraction)
+
+κ = 0.0,  samples = 500
+    N                   E[S]        E|S|²     Var(S)    α_full    α_Palm
+  250        (2.505-0.001j)      6.4161     0.1397    0.0515    0.0599
+        SE(E|S|²) = 0.0610    elapsed: 40.2s
+  500        (2.531+0.004j)      6.5472     0.1415    0.0522    0.0607
+        SE(E|S|²) = 0.0599    elapsed: 240.8s
+
+Prediction: α_Palm ≈ 1.0 (Soshnikov w/ Palm), α_full < 1 (sinc² eats fraction).
+Sinc² correction fraction = (I_full − I_ON)/I_full = 0.1398

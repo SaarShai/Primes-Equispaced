@@ -1,0 +1,78 @@
+  ***   Warning: new maximum stack size = 16000008192 (15258.797 Mbytes).
+  ***   Warning: new stack size = 2000000000 (1907.349 Mbytes).
+  ***   syntax error, unexpected end of file, expecting ',': curves=[
+  ***                                                               ^-
+... skipping file 'B3_50curves_numerical.gp'
+  ***   syntax error, unexpected ',', expecting end of file: ["11a1",11]
+  ***   ,["14a1",14],["15a1",15],["17a1",17
+  ***   ^-----------------------------------
+  ***   syntax error, unexpected ',', expecting end of file: ["20a1",20]
+  ***   ,["21a1",21],["24a1",24],["26a1",26
+  ***   ^-----------------------------------
+  ***   syntax error, unexpected ',', expecting end of file: ["32a1",32]
+  ***   ,["33a1",33],["35a1",35],["36a1",36
+  ***   ^-----------------------------------
+  ***   syntax error, unexpected ',', expecting end of file: ["38a1",38]
+  ***   ,["39a1",39],["40a1",40],["43a1",43
+  ***   ^-----------------------------------
+  ***   syntax error, unexpected ',', expecting end of file: ["45a1",45]
+  ***   ,["46a1",46],["48a1",48],["50a1",50
+  ***   ^-----------------------------------
+  ***   syntax error, unexpected ',', expecting end of file: ["51a1",51]
+  ***   ,["53a1",53],["54a1",54],["55a1",55
+  ***   ^-----------------------------------
+  ***   syntax error, unexpected ',', expecting end of file: ["57a1",57]
+  ***   ,["58a1",58],["100a1",100],["106c1"
+  ***   ^-----------------------------------
+  ***   syntax error, unexpected ',', expecting end of file: ["121b1",121]
+  ***   ,["121c1",121],["121d1",121],["20
+  ***   ^---------------------------------
+  ***   syntax error, unexpected ',', expecting end of file: ["240a1",240]
+  ***   ,["258a1",258],["294a1",294],["38
+  ***   ^---------------------------------
+  ***   syntax error, unexpected ',', expecting end of file: ["496b1",496]
+  ***   ,["510a1",510],["681a1",681],["10
+  ***   ^---------------------------------
+  ***   syntax error, unexpected ',', expecting end of file: ["2048a1",2048]
+  ***   ,["5005b1",5005]
+  ***   ^----------------
+  ***   syntax error, unexpected ']', expecting end of file: ];
+  ***                                                        ^--
+# 50+ curve numerical: u_f at first 100 zeros
+# Target: 2/(3π) ≈ 0.212; Lower cage edge c⁻ ≈ 0.132; Upper cage 0.770
+
+curve,N,T_max,n_zeros,U_f,Y,c_f,u_f
+  ***   syntax error, unexpected end of file, expecting )-> or ',' or ')': 
+  ***   for(idx=1,#curves,
+  ***                    ^-
+  ***   at top-level: cn=curves[idx][1];N_cond=curves[idx][2]
+  ***                           ^-----------------------------
+  ***   incorrect type in gtos [integer expected] (t_POL).
+  ***   at top-level: E_check=ellinit(cn,0)
+  ***                         ^-------------
+  *** ellinit: incorrect type in ellinit (t_POL).
+  ***   syntax error, unexpected end of file, expecting )-> or ',' or ')': 
+  ***   ...eck)=="t_INT"&&E_check==0,
+  ***                               ^-
+  ***   syntax error, unexpected ',', expecting end of file: ...%s: ellinit 
+  ***   failed\n",cn),
+  ***                ^-
+  ***   at top-level: E=ellinit(cn)
+  ***                   ^-----------
+  *** ellinit: incorrect type in ellinit (t_POL).
+  ***   at top-level: L_sym2=lfunsympow(E,2)
+  ***                        ^---------------
+  *** lfunsympow: sorry, lfunsympow is not yet implemented.
+  ***   at top-level: X=sqrt(N_cond)*T_max/(2*Pi)
+  ***                   ^-------------------------
+  *** sqrt: domain error in sqrtn: valuation != Mod(0, 2)
+  ***   at top-level: Y=log(X)
+  ***                   ^------
+  *** log: domain error in log: series valuation != 0
+  ***   at top-level: printf("%s,%d,%.2f,%d,%.4f,%.4f,%.4f,%.6f\n",c
+  ***                 ^----------------------------------------------
+  *** printf: not a t_INT in integer format conversion: N_cond.
+  ***   syntax error, unexpected ')', expecting end of file: )
+  ***                                                        ^-
+  ***   syntax error, unexpected ')', expecting end of file: );
+  ***                                                        ^--

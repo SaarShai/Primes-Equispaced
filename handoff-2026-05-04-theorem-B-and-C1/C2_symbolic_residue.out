@@ -1,0 +1,45 @@
+================================================================================
+C2 SYMBOLIC residue verification
+================================================================================
+
+UNITARY (CUE) k=2 leading coefficient:
+  E[|Lambda(1)|^4] / N^4 -> G(3)^2/G(5) = 1/12 = 0.0833333...
+
+SO(2N) k=2 leading: f_O(2) = 360 = 360.0000
+  E[Lambda^4] / N^3 -> 360
+  Power of N: k(2k-1)/2 = 3
+  So E[Lambda^4] ~ 360 N^3, NOT a fixed constant.
+
+================================================================================
+CFKRS recipe coefficients (the 'at-zeros' interpretation)
+================================================================================
+
+Verified identities (from Barnes-G recursion):
+  G(3) = 1, G(4) = 2, G(5) = 12
+  G(3)^2/G(5) = 1/12 = 1/12
+
+Decomposition of 2/(3π) (per G1_zeta_baseline_FIX.md):
+  2/(3π) = (1/π) * (2/3)
+      density 1/π  ←  GL2 Riemann-von Mangoldt
+      coefficient 2/3 ←  orthogonal at-zeros (CFKRS / CS 2007)
+
+Compared to ζ baseline 1/(24π):
+  1/(24π) = (1/(2π)) * (1/12)
+      density 1/(2π)  ←  ζ Riemann-von Mangoldt
+      coefficient 1/12 = G(3)^2/G(5)  ←  unitary at-zeros (Gonek/HKO)
+
+  ratio: 2/(3π) / 1/(24π) = 16 = 2 * 8
+    2 = density ratio (degree d=2)
+    8 = at-zeros coefficient ratio = (2/3) / (1/12)
+    Verify: 2*8 = 16
+    (2/3) / (1/12) = 8
+
+So the question 'C2 holds' reduces to:
+  Does the orthogonal 4-shift coalescing recipe give exactly 2/3?
+This is a CFKRS-recipe / Conrey-Snaith ratios-formula computation,
+NOT directly a Haar matrix Monte-Carlo expectation.
+
+Symbolic verification of 2/3 via CFKRS contour requires implementing
+the orthogonal 4-shift integrand explicitly.  This is left as a 
+symbolic next step; the MC presented here CANNOT directly verify it,
+because the relevant 2/3 is a contour residue, not a Haar average.

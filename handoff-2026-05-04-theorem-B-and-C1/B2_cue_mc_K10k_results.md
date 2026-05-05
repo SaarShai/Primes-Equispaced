@@ -1,0 +1,6 @@
+# B2 Q5 #3 — CUE MC R_neigh, K=10², 10³, 10⁴
+# predicted asymptotic ratio ON/OFF → 2.3147
+# K | N | samples | E|S|²_ON | E|S|²_OFF | ratio | dt
+K=100 N=230 samples=200 ON=12.408±0.356 OFF=209.666±2.904 ratio=0.0592 dt=13s
+K=1000 N=345 samples=200 ON=43.227±0.912 OFF=19.670±0.990 ratio=2.1976 dt=35s
+K=10000 N=460 samples=100 ON=15.512±0.956 OFF=124.329±4.934 ratio=0.1248 dt=31s
