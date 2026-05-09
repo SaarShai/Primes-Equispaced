@@ -1,0 +1,163 @@
+# C2 ORTHOGONAL MC EXTENDED
+# date: 2026-05-09
+# numpy 2.0.2, scipy.stats.ortho_group
+
+================================================================================
+Section 0. Symbolic Barnes-G verification (mpmath dps=60)
+================================================================================
+  G(3) = 1.0
+  G(5) = 12.0
+  G(3)^2/G(5) = 0.0833333333333333333333333333333333333333333333333333333333333
+  1/12 (mpmath 50dps) = 0.0833333333333333333333333333333333333333333333333333333333333
+  delta = -2.91703841149741017522378002520943323777668070408804709364115e-62
+
+================================================================================
+Section 1. CUE U(N) baseline: ∫|Λ'(1)|^2 dA_N ~ b_1 N^3, b_1 = 1/3
+                              ∫|Z'(1)|^2 dA_N ~ b'_1 N^3, b'_1 = 1/12
+================================================================================
+
+N=  50  K=  8000  skipped=0  dt=12.0s
+  E[|Lam(1)|^2]    = 5.4521e+01 +/- 8.12e+00    /N = 1.0904  (KS exact: 1)
+  E[|Lam'(1)|^2]   = 4.5688e+04 +/- 5.92e+03    /N^3 = 0.36551   (b_1 = 1/3 = 0.33333)
+  E[|Z'(1)|^2]     = 1.1613e+04 +/- 1.24e+03    /N^3 = 0.09290   (b'_1 = 1/12 = 0.08333)
+
+N= 100  K=  4000  skipped=0  dt=49.3s
+  E[|Lam(1)|^2]    = 6.8148e+01 +/- 8.83e+00    /N = 0.6815  (KS exact: 1)
+  E[|Lam'(1)|^2]   = 2.4030e+05 +/- 2.59e+04    /N^3 = 0.24030   (b_1 = 1/3 = 0.33333)
+  E[|Z'(1)|^2]     = 6.9932e+04 +/- 6.92e+03    /N^3 = 0.06993   (b'_1 = 1/12 = 0.08333)
+
+N= 200  K=  2000  skipped=0  dt=103.9s
+  E[|Lam(1)|^2]    = 1.0073e+02 +/- 1.95e+01    /N = 0.5037  (KS exact: 1)
+  E[|Lam'(1)|^2]   = 1.4299e+06 +/- 2.21e+05    /N^3 = 0.17874   (b_1 = 1/3 = 0.33333)
+  E[|Z'(1)|^2]     = 4.2260e+05 +/- 5.91e+04    /N^3 = 0.05283   (b'_1 = 1/12 = 0.08333)
+
+N= 400  K=   800  skipped=0  dt=224.8s
+  E[|Lam(1)|^2]    = 2.1988e+02 +/- 6.60e+01    /N = 0.5497  (KS exact: 1)
+  E[|Lam'(1)|^2]   = 1.5717e+07 +/- 4.84e+06    /N^3 = 0.24557   (b_1 = 1/3 = 0.33333)
+  E[|Z'(1)|^2]     = 6.9215e+06 +/- 3.61e+06    /N^3 = 0.10815   (b'_1 = 1/12 = 0.08333)
+
+N= 800  K=   300  skipped=0  dt=498.1s
+  E[|Lam(1)|^2]    = 1.5394e+02 +/- 3.51e+01    /N = 0.1924  (KS exact: 1)
+  E[|Lam'(1)|^2]   = 5.1819e+07 +/- 1.55e+07    /N^3 = 0.10121   (b_1 = 1/3 = 0.33333)
+  E[|Z'(1)|^2]     = 2.7189e+07 +/- 1.31e+07    /N^3 = 0.05310   (b'_1 = 1/12 = 0.08333)
+
+================================================================================
+Section 2. SO(2N): ∫|Λ(1)|^2 dA_N (and |Λ'(1)|^2 = N^2 |Λ(1)|^2 exactly)
+================================================================================
+
+SO(2N) N=  50  K=  8000  skipped=0  dt=19.9s
+  E[|Lam(1)|^2]    = 1.2105e+02 +/- 3.24e+01
+  E[|Lam(1)|^2]/sqrt(N) = 17.1189    (KS f_O(1) = 2 expected)
+  E[|Lam'(1)|^2]   = 3.0262e+05 +/- 8.09e+04    /N^3 = 2.42098
+      vs 1/12 = 0.08333: ratio = 29.0517
+      vs 1/3  = 0.33333: ratio = 7.2629
+  median(|Lam(1)|^2) = 1.9836e-02  trim_mean(5-95) = 2.1252e+00
+
+SO(2N) N= 100  K=  4000  skipped=0  dt=50.3s
+  E[|Lam(1)|^2]    = 9.9000e+02 +/- 8.90e+02
+  E[|Lam(1)|^2]/sqrt(N) = 98.9996    (KS f_O(1) = 2 expected)
+  E[|Lam'(1)|^2]   = 9.9000e+06 +/- 8.90e+06    /N^3 = 9.89996
+      vs 1/12 = 0.08333: ratio = 118.7995
+      vs 1/3  = 0.33333: ratio = 29.6999
+  median(|Lam(1)|^2) = 1.0811e-02  trim_mean(5-95) = 1.5169e+00
+
+SO(2N) N= 200  K=  2000  skipped=0  dt=109.9s
+  E[|Lam(1)|^2]    = 1.1191e+02 +/- 5.33e+01
+  E[|Lam(1)|^2]/sqrt(N) = 7.9133    (KS f_O(1) = 2 expected)
+  E[|Lam'(1)|^2]   = 4.4765e+06 +/- 2.13e+06    /N^3 = 0.55956
+      vs 1/12 = 0.08333: ratio = 6.7147
+      vs 1/3  = 0.33333: ratio = 1.6787
+  median(|Lam(1)|^2) = 3.3902e-03  trim_mean(5-95) = 8.6315e-01
+
+SO(2N) N= 400  K=  1000  skipped=0  dt=313.2s
+  E[|Lam(1)|^2]    = 3.4647e+02 +/- 2.02e+02
+  E[|Lam(1)|^2]/sqrt(N) = 17.3235    (KS f_O(1) = 2 expected)
+  E[|Lam'(1)|^2]   = 5.5435e+07 +/- 3.23e+07    /N^3 = 0.86617
+      vs 1/12 = 0.08333: ratio = 10.3941
+      vs 1/3  = 0.33333: ratio = 2.5985
+  median(|Lam(1)|^2) = 2.4220e-03  trim_mean(5-95) = 6.9742e-01
+
+SO(2N) N= 800  K=   400  skipped=0  dt=505.0s
+  E[|Lam(1)|^2]    = 3.7657e+02 +/- 2.39e+02
+  E[|Lam(1)|^2]/sqrt(N) = 13.3139    (KS f_O(1) = 2 expected)
+  E[|Lam'(1)|^2]   = 2.4101e+08 +/- 1.53e+08    /N^3 = 0.47072
+      vs 1/12 = 0.08333: ratio = 5.6486
+      vs 1/3  = 0.33333: ratio = 1.4122
+  median(|Lam(1)|^2) = 1.5136e-03  trim_mean(5-95) = 9.7555e-01
+
+================================================================================
+Section 3. SO(2N+1): ∫|Λ'(1)|^2 dA_N (the forced-zero derivative)
+================================================================================
+
+SO(2N+1) N=  50  K=  8000  skipped=0  dt=19.8s
+  E[|Lam'(1)|^2]   = 1.2353e+05 +/- 1.58e+04
+  /N^(3/2) = 349.3928    /N^2 = 49.4116    /N^3 = 0.9882
+  Hughes thesis predicts ~ Const * N^{3/2} for k=1, with constant from Barnes-G
+  vs 1/12 * N^3 = 1.0417e+04, ratio = 11.8588
+
+SO(2N+1) N= 100  K=  4000  skipped=0  dt=50.7s
+  E[|Lam'(1)|^2]   = 9.9898e+05 +/- 3.67e+05
+  /N^(3/2) = 998.9801    /N^2 = 99.8980    /N^3 = 0.9990
+  Hughes thesis predicts ~ Const * N^{3/2} for k=1, with constant from Barnes-G
+  vs 1/12 * N^3 = 8.3333e+04, ratio = 11.9878
+
+SO(2N+1) N= 200  K=  2000  skipped=0  dt=108.9s
+  E[|Lam'(1)|^2]   = 4.7481e+06 +/- 2.41e+06
+  /N^(3/2) = 1678.6947    /N^2 = 118.7016    /N^3 = 0.5935
+  Hughes thesis predicts ~ Const * N^{3/2} for k=1, with constant from Barnes-G
+  vs 1/12 * N^3 = 6.6667e+05, ratio = 7.1221
+
+SO(2N+1) N= 400  K=  1000  skipped=0  dt=316.4s
+  E[|Lam'(1)|^2]   = 1.9444e+07 +/- 1.41e+07
+  /N^(3/2) = 2430.4532    /N^2 = 121.5227    /N^3 = 0.3038
+  Hughes thesis predicts ~ Const * N^{3/2} for k=1, with constant from Barnes-G
+  vs 1/12 * N^3 = 5.3333e+06, ratio = 3.6457
+
+SO(2N+1) N= 800  K=   400  skipped=0  dt=526.3s
+  E[|Lam'(1)|^2]   = 2.3350e+07 +/- 7.77e+06
+  /N^(3/2) = 1031.9301    /N^2 = 36.4842    /N^3 = 0.0456
+  Hughes thesis predicts ~ Const * N^{3/2} for k=1, with constant from Barnes-G
+  vs 1/12 * N^3 = 4.2667e+07, ratio = 0.5473
+
+================================================================================
+Section 4. log-log fits: E ~ C * N^p
+================================================================================
+CUE  E[|Λ'(1)|^2]:    C = 1.45750  power = 2.6326    (CRS exact: C=1/3=0.33333, power=3)
+CUE  E[|Z'(1)|^2]:    C = 0.12177  power = 2.9015    (CRS exact: C=1/12=0.08333, power=3)
+CUE  E[|Λ(1)|^2]:     C = 8.76055  power = 0.4685    (KS exact: C=1, power=1)
+SO(2N) E[|Λ'(1)|^2]:  C = 110.56489  power = 2.1760
+SO(2N) E[|Λ(1)|^2]:   C = 110.56489  power = 0.1760    (KS f_O(1)=2, power 1/2)
+SO(2N+1) E[|Λ'(1)|^2]: C = 104.53140  power = 1.9408
+
+================================================================================
+Section 5. Alternative-α candidate residuals for the SO(2N+1) coefficient
+(scaled to make |Λ'(1)|^2/N^3 the comparison)
+================================================================================
+At N=800: SO(2N+1) E[|Λ'|^2]/N^p with p=1.941 = 5.4213e+01
+At N=800: SO(2N+1) E[|Λ'|^2]/N^3                = 4.56053e-02
+  vs 1/12 (HM/CRS unitary Barnes-G)      = 0.08333    relative residual 45.3%
+  vs 1/3 (CRS unitary |Λ'|^2 leading)    = 0.33333    relative residual 86.3%
+  vs 1/(2π^2) (Plancherel rough)         = 0.05066    relative residual 10.0%
+  vs 1/π^2                               = 0.10132    relative residual 55.0%
+  vs 2/π^2                               = 0.20264    relative residual 77.5%
+  vs 1/(4π)                              = 0.07958    relative residual 42.7%
+  vs 1/24                                = 0.04167    relative residual 9.5%
+  vs 1/6                                 = 0.16667    relative residual 72.6%
+  vs 2/3 (orth at-zeros)                 = 0.66667    relative residual 93.2%
+
+================================================================================
+Section 6. κ=0 vs κ-matched falsifier — orthogonal bulk-scaled S statistic
+================================================================================
+Following B2 v3 polished (unitary): predicts Var(S_κ) → I_ON with α_ratio=1
+for κ ≈ (2π)² ≈ 39.48; very different (smaller) prediction at κ=0.
+Run on SO(2N) Haar bulk for N ∈ {200, 400}, ~300 samples per κ.
+
+  I_ON = ∫|M_W|^2 (1 - sinc^2(πy)) dy = 2.32604  (analytic prediction for high-κ Var(S))
+  SO(400)  κ=  0.00  samples=300  Var(S) = 0.1436 +/- 0.0773
+  SO(400)  κ= 39.48  samples=300  Var(S) = 2.4292 +/- 0.1281
+  SO(800)  κ=  0.00  samples=150  Var(S) = 0.1520 +/- 0.1195
+  SO(800)  κ= 39.48  samples=150  Var(S) = 2.0298 +/- 0.1738
+
+Results written to /Users/za/Documents/Farey NOW/primes-equispaced/handoff-2026-05-09-followup/C2_orthogonal_MC_extended.out
+Raw samples in /Users/za/Documents/Farey NOW/primes-equispaced/handoff-2026-05-09-followup/raw_samples/
+JSON summary at /Users/za/Documents/Farey NOW/primes-equispaced/handoff-2026-05-09-followup/C2_orthogonal_MC_extended.summary.json

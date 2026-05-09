@@ -1,0 +1,72 @@
+==============================================================================
+S4 KMV Mellin Verification — Python + sympy + mpmath
+Companion to S4_KMV_Mellin_verify.md
+==============================================================================
+
+Method A (sympy formal Laurent series):
+  Q_h^diag/X = c3 L^3 + c2 L^2 + c1 L + c0,  L = log X.
+  c3 = 14/3 = 4.6666666666666666666666666666666666666666666666667
+  c2 = -3.4632939894091971636390725404944145862529560156395
+  c1 = 4.3313164469926206707759893752134220085246230100748
+  c0 = -1.4977584164347139830899991777523705940275851666788
+
+  ✓ c3 = 14/3 verified rational (exact).
+
+Method B (mpmath polynomial arithmetic, independent re-derivation):
+  Sample evaluations:
+    L=logX                 B (mpmath)                  A (sympy)         |diff|
+      1.00         2.0184653539076880         2.0184653539076889    8.88178e-16
+      2.00        15.3225159266235362        15.3225159266235380    1.77636e-15
+      5.00       258.4549037083158964       258.4549037083158964    0.00000e+00
+     10.00      2181.0763368896191423      2181.0763368896195971    4.54747e-13
+     20.00     18016.5721540465347061     18016.5721540465383441    3.63798e-12
+     50.00    287445.0832118717953563    287445.0832118717953563    0.00000e+00
+
+  ✓ Methods A and B' agree to >12 digits at all sample L values.
+
+==============================================================================
+Apply at task-specified weight-aspect sample T values (N=11, k=T^1.5)
+==============================================================================
+
+         T              k                X      log X      Q_h^diag/X (poly)
+       400        8000.00     9.442597e+02     6.8504            1365.867568
+      1000       31622.78     2.968359e+03     7.9958            2197.258728
+      5000      353553.39     2.219366e+04    10.0076            4372.256328
+     10000     1000000.00     5.278572e+04    10.8740            5636.406292
+
+==============================================================================
+Comparison vs task target leading constants
+==============================================================================
+  4/(3π) = 0.42441318157838758829
+  2/(3π) = 0.21220659078919379414
+  14/3   = 4.66666666666666696273
+
+  |14/3 - 4/(3π)| = 4.2422534851e+00
+  |14/3 - 2/(3π)| = 4.4544600759e+00
+  Ratio (14/3)/(4/(3π)) = 10.9955742876  =  7π/2 = 10.9955742876
+
+==============================================================================
+VERDICT
+==============================================================================
+
+FAIL:  S4 chain (KMV §5 variance + KMV §4 mean + ILS §3 sign)
+       does NOT close at c1 = 4/(3π) for the WEIGHT-aspect Petersson family.
+
+Two structural mismatches against the task hypothesis c1 = 4/(3π) at log^4 X:
+  1. The KMV §5 unmollified diagonal Mellin residue has leading power L^3,
+     not L^4.  KMV (Crelle 2000) eq. (5) is verbatim:  Q^h ~ c'_k (log q̂)^{2k+1}.
+     For k=1 (1st derivative, 2nd moment): power is (log q̂)^3.
+
+  2. The leading L^3 rational coefficient is 14/3, off from 4/(3π) by 7π/2.
+
+Power mismatch is *structural*, not *numerical*: no constant rescaling can
+convert L^3 to L^4.  The CFKRS-recipe target c1·L^4 corresponds to the 4-shift
+ratio recipe, which uses an additional integration step (the 'extra log factor
+from L^2 expansion of L(1/2,f) on the even subfamily').  The unmollified KMV
+§5 residue computes only the *direct* diagonal moment of |Λ'(f, 1/2)|^2.
+
+Conclusion: the S4 sufficient-conditions chain in
+    handoff-2026-05-04-theorem-B-and-C1/Weakest_sufficient_conditions.md
+misattributes a (log N)^4 leading-order claim to KMV §5; the actual KMV §5
+statement is (log q̂)^3 unmollified, (log q̂)^0 mollified.  In neither form does
+KMV §5 alone deliver 2/(3π)·(log NkT)^4 unconditionally.

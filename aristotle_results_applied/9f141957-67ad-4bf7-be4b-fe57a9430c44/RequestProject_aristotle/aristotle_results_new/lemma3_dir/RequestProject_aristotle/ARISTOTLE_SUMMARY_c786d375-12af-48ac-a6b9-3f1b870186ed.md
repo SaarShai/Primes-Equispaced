@@ -1,2 +1,0 @@
-# Summary of changes
-Proved `square_sum_identity` in `SquareSumIdentity.lean`. The proof is simply `ring`, which handles the algebraic identity automatically by normalizing both sides over ℚ. The file compiles without errors or sorries.

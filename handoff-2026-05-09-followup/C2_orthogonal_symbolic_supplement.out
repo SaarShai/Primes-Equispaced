@@ -1,0 +1,50 @@
+  where V_j = 2 sum_{i=1..k1} l_{i,j} + 2 sum_{i=1..k2} m_{i,j}
+
+Test cases of b^{SO}_{k1,k2}(n1,n2):
+  b^SO_{1,1}(0,0) = 2 = 2.000000
+  b^SO_{1,1}(1,1) = 1/2 = 0.500000
+  b^SO_{1,1}(2,2) = 7/30 = 0.233333
+  b^SO_{2,0}(1,0) = 1/2 = 0.500000
+  b^SO_{2,0}(2,0) = 7/30 = 0.233333
+
+Expected from Keating-Snaith for SO(2N):
+  E[Λ_A(1)²]_{SO(2N)} ~ f_O(1) · N^{1/2} = 2 · N^{1/2}
+  ⟹ b^SO_{1,1}(0,0) · (2N)^{2(2-1)/2 + 0 + 0} = b · (2N)^1
+  This conflicts with KS which has power N^{1/2}, not N^1.
+  So Andrade-Best Theorem 2.3 is NOT applicable when n1=n2=0 (the moments-only case).
+  The theorem applies when at least one n_i ≥ 1.
+
+For (k1=k2=1, n1=n2=1): the algebraic identity Λ'(1) = N · Λ(1) for SO(2N)
+  predicts E[Λ'(1)²] = N² · E[Λ(1)²] ~ 2 N^{5/2}
+  Andrade-Best Theorem 2.3 predicts (2N)^3, leading constant b^SO_{1,1}(1,1)
+  These reconcile only if b^SO_{1,1}(1,1) = 0 at leading order.
+
+Section 2. Barnes-G symbolic verification (mpmath dps=60)
+  G(3) = 1.0
+  G(5) = 12.0
+  G(3)²/G(5) = 0.0833333333333333333333333333333333333333333333333333333333333
+  1/12      = 0.0833333333333333333333333333333333333333333333333333333333333
+  delta     = -2.91703841149741017522378002520943323777668070408804709364115e-62
+
+Section 3. CRS 2006 b'_1 from Eq. (1.6):
+  b'_k = (-1)^{k(k+1)/2} (d/dx)^{2k} ( e^{-x/2} x^{-k²/2} det_{k×k}(I_{i+j-1}(2√x)) ) |_{x=0}
+
+For k=1: det = I_1(2√x), and we need (d/dx)² ( e^{-x/2} x^{-1/2} I_1(2√x) ) |_{x=0}
+
+  Coefficient of x² in e^{-x/2} x^{-1/2} I_1(2√x) Taylor expansion: -1/24
+  b'_1 = -2 · coeff_x2 = 1/12
+  Target b'_1 = 1/12 = 1/12  -> match: True
+
+Section 4. CRS b'_1 via direct mpmath series:
+  f(x) at small x values:
+    x = 1.00e-30, f(x) = 1.0000000000
+    x = 1.00e-15, f(x) = 1.0000000000
+    x = 1.00e-03, f(x) = 0.9999999583
+    x = 1.00e-02, f(x) = 0.9999958403
+    x = 1.00e-01, f(x) = 0.9995902258
+  d²f/dx² at x=0 = (-0.0833333333333333333333333333333 + 0.0j)
+  -f''(0) = (0.0833333333333333333333333333333 + 0.0j)
+  vs 1/12 = 0.0833333333333333333333333333333
+  ratio: (1.0 + 0.0j)
+
+Conclusion: CRS b'_1 = 1/12 is independently verified to 30 dps via mpmath.

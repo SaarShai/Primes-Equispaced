@@ -1,0 +1,22 @@
+Period of dominant axis oscillation: 2 log 3 = log 9 = 2.197225
+Predicted slope c0 = -0.303413
+
+# Sieving squarefree up to 72900
+# Pair (N, 9N), where 9N is exactly one period of axis-osc-term away in log N space
+# slope_pair = (S(9N) - S(N))/(log 9N - log N) = (S(9N) - S(N))/log 9
+# vs c0 = -0.30341
+
+  N=  100, 9N=  900: slope = -0.31555, vs c0 = -0.30341, deviation = +4.00%
+  N=  200, 9N= 1800: slope = -0.30183, vs c0 = -0.30341, deviation = -0.52%
+  N=  300, 9N= 2700: slope = -0.30964, vs c0 = -0.30341, deviation = +2.05%
+  N=  500, 9N= 4500: slope = -0.30662, vs c0 = -0.30341, deviation = +1.06%
+  N=  700, 9N= 6300: slope = -0.31477, vs c0 = -0.30341, deviation = +3.74%
+  N= 1000, 9N= 9000: slope = -0.28262, vs c0 = -0.30341, deviation = -6.85%
+
+# Compare to pairs (N, 3N), which is HALF a period apart - should be biased:
+  N=  100, 3N=  300: slope = -0.50717, vs c0 = -0.30341, deviation = +67.16%
+  N=  200, 3N=  600: slope = -0.42285, vs c0 = -0.30341, deviation = +39.37%
+  N=  300, 3N=  900: slope = -0.12392, vs c0 = -0.30341, deviation = -59.16%
+  N=  500, 3N= 1500: slope = -0.03710, vs c0 = -0.30341, deviation = -87.77%
+  N=  700, 3N= 2100: slope = -0.32180, vs c0 = -0.30341, deviation = +6.06%
+  N= 1000, 3N= 3000: slope = -0.53983, vs c0 = -0.30341, deviation = +77.92%

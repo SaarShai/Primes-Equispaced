@@ -1,0 +1,80 @@
+# B_geq_0_identity_audit_FINAL.py — exact-rational + mpmath
+
+==============================================================================
+SECTION (a): Lean cross-check of Python translation of crossTerm
+==============================================================================
+  B(5) = -2/9  expected -2/9  [OK]  n=|F_{5-1}|=7
+  B(11) = -55/36  expected -55/36  [OK]  n=|F_{11-1}|=33
+  B(13) = 271/385  expected 271/385  [OK]  n=|F_{13-1}|=47
+  B(19) = 2905619/680680  expected 2905619/680680  [OK]  n=|F_{19-1}|=103
+  B(23) = 14608817/6348888  expected 14608817/6348888  [OK]  n=|F_{23-1}|=151
+  RESULT: PASS on Lean hard-coded values
+
+==============================================================================
+SECTION (b1): EXACT identity audit B(p)*n'^2/2 ?= Bern(p)-Saw(p)
+              over primes p in [11, 1500]
+==============================================================================
+  primes to audit: 235
+    p=   11  n=      33  B= -1.52778e+00  Bern=   0.13359  Saw=   0.11135  delta=  -1.4125e+03  t=0.0s
+    p=   13  n=      47  B=  7.03896e-01  Bern=    0.1943  Saw=   0.12283  delta=   1.2251e+03  t=0.0s
+    p=   17  n=      81  B= -2.60988e+00  Bern=   0.19703  Saw=   0.15451  delta=  -1.2278e+04  t=0.0s
+    p=   23  n=     151  B=  2.30100e+00  Bern=   0.24351  Saw=   0.17795  delta=   3.4433e+04  t=0.0s
+    p=   89  n=    2369  B=  7.01336e+02  Bern=   0.48173  Saw=   0.25858  delta=   2.1169e+09  t=0.0s
+    p=   97  n=    2807  B= -9.51256e+01  Bern=   0.32645  Saw=   0.26301  delta=  -4.0083e+08  t=0.0s
+    p=  193  n=   11231  B=  8.84302e+03  Bern=    0.7486  Saw=   0.27198  delta=   5.7694e+11  t=0.1s
+    p=  223  n=   14991  B= -7.51516e+02  Bern=   0.33514  Saw=    0.2809  delta=  -8.6964e+10  t=0.2s
+    p=  311  n=   29231  B=  1.91853e+04  Bern=   0.70047  Saw=   0.29199  delta=   8.3712e+12  t=0.5s
+    p=  433  n=   56785  B=  4.50902e+04  Bern=   0.77692  Saw=   0.29763  delta=   7.3808e+13  t=1.2s
+    p=  503  n=   76699  B=  8.20741e+04  Bern=   0.93049  Saw=   0.31532  delta=   2.4458e+14  t=2.0s
+    p=  569  n=   98123  B=  5.64576e+03  Bern=   0.41168  Saw=   0.30162  delta=   2.7495e+13  t=2.6s
+    p=  683  n=  141483  B=  2.52870e+05  Bern=    1.2855  Saw=   0.31007  delta=   2.5554e+15  t=4.7s
+    p=  827  n=  207447  B=  1.68997e+05  Bern=   0.79601  Saw=   0.30649  delta=   3.6654e+15  t=7.9s
+    p=  971  n=  286077  B=  1.91035e+05  Bern=   0.72901  Saw=   0.31308  delta=   7.8703e+15  t=12.3s
+    p= 1097  n=  365327  B=  7.18402e+05  Bern=    1.3839  Saw=   0.31822  delta=   4.8228e+16  t=18.2s
+    p= 1249  n=  473559  B=  5.30274e+05  Bern=   0.95526  Saw=   0.31225  delta=   5.9773e+16  t=25.9s
+    p= 1399  n=  594211  B= -9.82196e+04  Bern=   0.30893  Saw=   0.30946  delta=  -1.7422e+16  t=34.6s
+    p= 1423  n=  614641  B= -3.55280e+05  Bern=   0.10575  Saw=   0.31213  delta=  -6.7420e+16  t=35.7s
+    p= 1499  n=  682285  B=  9.75183e+05  Bern=    1.1151  Saw=   0.31804  delta=   2.2798e+17  t=44.7s
+  pass 1 complete in 44.7s
+  identity holds: 0 / 235 primes
+  identity fails: 235 / 235 primes
+  RESULT: identity FAILS at every counted prime; smallest counterexample p = 11
+
+==============================================================================
+SECTION (b2): FLOAT64 identity audit (upper-range sample)
+              SAMPLED primes: [1499, 1999, 2999, 3299, 3989, 4001, 4441, 4889, 4937, 4999]
+==============================================================================
+    p= 1499  B~  9.7518e+05  Bern~   1.1151  Saw~   0.3180  delta~  2.2798e+17  ratio= 2.860e+17  [FAIL]  t=0.4s
+    p= 1999  B~  3.6535e+05  Bern~   0.5497  Saw~   0.3165  delta~  2.7002e+17  ratio= 1.158e+18  [FAIL]  t=0.8s
+    p= 2999  B~  4.6583e+06  Bern~   1.2564  Saw~   0.3213  delta~  1.7428e+19  ratio= 1.864e+19  [FAIL]  t=1.7s
+    p= 3299  B~ -3.4246e+06  Bern~  -0.1192  Saw~   0.3159  delta~ -1.8755e+19  ratio= 4.310e+19  [FAIL]  t=2.1s
+    p= 3989  B~  9.2792e+06  Bern~   1.3636  Saw~   0.3212  delta~  1.0864e+20  ratio= 1.042e+20  [FAIL]  t=3.1s
+    p= 4001  B~  9.1038e+06  Bern~   1.3383  Saw~   0.3192  delta~  1.0785e+20  ratio= 1.058e+20  [FAIL]  t=3.1s
+    p= 4441  B~  8.6159e+06  Bern~   1.1217  Saw~   0.3196  delta~  1.5492e+20  ratio= 1.931e+20  [FAIL]  t=3.8s
+    p= 4889  B~ -5.1824e+06  Bern~   0.0453  Saw~   0.3190  delta~ -1.3687e+20  ratio= 5.001e+20  [FAIL]  t=4.6s
+    p= 4937  B~ -1.8171e+06  Bern~   0.2809  Saw~   0.3205  delta~ -4.9903e+19  ratio= 1.260e+21  [FAIL]  t=4.7s
+    p= 4999  B~  8.3831e+06  Bern~   0.9560  Saw~   0.3208  delta~  2.4201e+20  ratio= 3.810e+20  [FAIL]  t=4.8s
+  pass 2: identity holds at 0/10, fails at 10/10
+
+==============================================================================
+SECTION (c): B(3299) DIRECT from Lean def, and M(3299)
+==============================================================================
+  computing M(3299) ...
+    M(3299) = 20
+    Mertens-restricted condition M(p) <= -3 satisfied? False
+  computing B(3299) (this can take ~5-10s) ...
+    B(3299) computed in 1.9s
+    n = |F_{3299-1}| = 3306247
+    B(3299) numerator has 4716 bits, denominator has 4694 bits
+    B(3299) ~= -3424576.596
+    sign(B(3299)) = NEGATIVE
+
+==============================================================================
+FINAL VERDICT MATRIX (Step 8 of task)
+==============================================================================
+  Identity holds at every audited prime?     False
+  B(3299) > 0 (Lean def)?                    False
+  M(3299) <= -3 (Mertens-restricted)?        False
+
+  Row 3: Identity BUGGY & B(3299) < 0 but M(3299) > -3 -> 3299 OUTSIDE Mertens-restricted domain -> B+ (Mertens-restricted) SURVIVES
+

@@ -1,0 +1,47 @@
+# Sieving Mobius up to NMAX = 2400000 ...
+# Done sieving.
+# Predicted slope c_0 = -(2/3)/log(9) = -1/(3 log 3) = -0.30341308
+
+# N, S(N), S(N)/log(N), residual R(N) = S(N) - c0*log(N), R(N)/log log N, R(N)/sqrt(log N), R(N)/(log log N / log N)
+  N=    100  S(N)=-0.687027  S/log N=-0.14919  R=+0.710242  R/log log N=+0.46507  R/sqrt(log N)=+0.33097
+  N=    300  S(N)=-1.244215  S/log N=-0.21814  R=+0.486387  R/log log N=+0.27935  R/sqrt(log N)=+0.20366
+  N=   1000  S(N)=-1.383868  S/log N=-0.20034  R=+0.712036  R/log log N=+0.36843  R/sqrt(log N)=+0.27092
+  N=   3000  S(N)=-1.976929  S/log N=-0.24692  R=+0.452307  R/log log N=+0.21743  R/sqrt(log N)=+0.15985
+  N=  10000  S(N)=-2.034496  S/log N=-0.22089  R=+0.760042  R/log log N=+0.34231  R/sqrt(log N)=+0.25044
+  N=  30000  S(N)=-2.744909  S/log N=-0.26626  R=+0.382962  R/log log N=+0.16415  R/sqrt(log N)=+0.11927
+  N= 100000  S(N)=-2.753786  S/log N=-0.23919  R=+0.739386  R/log log N=+0.30260  R/sqrt(log N)=+0.21791
+  N= 300000  S(N)=-3.349436  S/log N=-0.26559  R=+0.477069  R/log log N=+0.18822  R/sqrt(log N)=+0.13434
+
+# Pairwise slope (S(N2)-S(N1))/(log N2 - log N1)
+  (   100,    300): slope = -0.50717, vs predicted -0.30341, ratio = 1.6716, deviation = +67.16%
+  (   100,   1000): slope = -0.30263, vs predicted -0.30341, ratio = 0.9974, deviation = -0.26%
+  (   100,   3000): slope = -0.37925, vs predicted -0.30341, ratio = 1.2499, deviation = +24.99%
+  (   100,  10000): slope = -0.29260, vs predicted -0.30341, ratio = 0.9644, deviation = -3.56%
+  (   100,  30000): slope = -0.36079, vs predicted -0.30341, ratio = 1.1891, deviation = +18.91%
+  (   100, 100000): slope = -0.29919, vs predicted -0.30341, ratio = 0.9861, deviation = -1.39%
+  (   100, 300000): slope = -0.33254, vs predicted -0.30341, ratio = 1.0960, deviation = +9.60%
+  (   300,   1000): slope = -0.11599, vs predicted -0.30341, ratio = 0.3823, deviation = -61.77%
+  (   300,   3000): slope = -0.31821, vs predicted -0.30341, ratio = 1.0488, deviation = +4.88%
+  (   300,  10000): slope = -0.22537, vs predicted -0.30341, ratio = 0.7428, deviation = -25.72%
+  (   300,  30000): slope = -0.32587, vs predicted -0.30341, ratio = 1.0740, deviation = +7.40%
+  (   300, 100000): slope = -0.25986, vs predicted -0.30341, ratio = 0.8565, deviation = -14.35%
+  (   300, 300000): slope = -0.30476, vs predicted -0.30341, ratio = 1.0044, deviation = +0.44%
+  (  1000,   3000): slope = -0.53983, vs predicted -0.30341, ratio = 1.7792, deviation = +77.92%
+  (  1000,  10000): slope = -0.28256, vs predicted -0.30341, ratio = 0.9313, deviation = -6.87%
+  (  1000,  30000): slope = -0.40017, vs predicted -0.30341, ratio = 1.3189, deviation = +31.89%
+  (  1000, 100000): slope = -0.29747, vs predicted -0.30341, ratio = 0.9804, deviation = -1.96%
+  (  1000, 300000): slope = -0.34461, vs predicted -0.30341, ratio = 1.1358, deviation = +13.58%
+  (  3000,  10000): slope = -0.04781, vs predicted -0.30341, ratio = 0.1576, deviation = -84.24%
+  (  3000,  30000): slope = -0.33353, vs predicted -0.30341, ratio = 1.0993, deviation = +9.93%
+  (  3000, 100000): slope = -0.22154, vs predicted -0.30341, ratio = 0.7302, deviation = -26.98%
+  (  3000, 300000): slope = -0.29804, vs predicted -0.30341, ratio = 0.9823, deviation = -1.77%
+  ( 10000,  30000): slope = -0.64665, vs predicted -0.30341, ratio = 2.1312, deviation = +113.12%
+  ( 10000, 100000): slope = -0.31238, vs predicted -0.30341, ratio = 1.0296, deviation = +2.96%
+  ( 10000, 300000): slope = -0.38661, vs predicted -0.30341, ratio = 1.2742, deviation = +27.42%
+  ( 30000, 100000): slope = -0.00737, vs predicted -0.30341, ratio = 0.0243, deviation = -97.57%
+  ( 30000, 300000): slope = -0.26254, vs predicted -0.30341, ratio = 0.8653, deviation = -13.47%
+  (100000, 300000): slope = -0.54218, vs predicted -0.30341, ratio = 1.7869, deviation = +78.69%
+
+# Mean R = +0.59005, std R = 0.15395
+#   Fit R ~ a + b log log N : a = +0.77301, b = -0.08706
+#   Residual std after fit : 0.16298
