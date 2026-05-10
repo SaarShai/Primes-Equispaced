@@ -22,9 +22,11 @@ tags: [handoff, primes-equispaced, theorem-B, b+-conjecture, mertens-lb, breakth
 
 # Primes-Equispaced Current Handoff
 
-## Start here
+## Start here (post-Koyama-pivot, end of 2026-05-09 session)
 
-→ [`SESSION_SUMMARY_2026-05-09.md`](SESSION_SUMMARY_2026-05-09.md) — single-stop reference with executive summary, deliverables index, confidence map.
+→ [`handoff-2026-05-09-followup/KOYAMA_PIVOT_FINAL_SUMMARY.md`](handoff-2026-05-09-followup/KOYAMA_PIVOT_FINAL_SUMMARY.md) — final state of the Koyama-correspondence track resolution, with all 6 conjectures' verdicts, the constant correction (`1/ζ(2)` → `1/e^γ`), and honest significance assessment.
+
+→ [`SESSION_SUMMARY_2026-05-09.md`](SESSION_SUMMARY_2026-05-09.md) — mid-session summary covering the pre-Koyama work (Theorem B / cage / B+ Mertens-restricted / Δ-machine).
 
 ## One-paragraph state
 
@@ -37,6 +39,21 @@ The 5 near-term routes to **Theorem B-exact unconditional `2/(3π)`** are all fo
 > Prove: `1 + Σ_{k=1}^N M(⌊N/k⌋)/k ≤ −c'` for all `N ≥ N_0`, with explicit `c' > 1`.
 
 Closes the SP-2 layer of B+ unconditional. Concrete, falsifiable. Plausibly attackable via Lambert series, Selberg's symmetry formula, explicit-formula direct estimation, or computational disproof at large N (Pólya-style — itself a major result if it lands). May transfer technique to the SP-1 layer.
+
+## Koyama-track results (this session, post-pivot)
+
+Pivoted from B+ Mertens-restricted track (which was killed by (MERTENS-LB) Pólya-flips) to Saar's correspondence with Koyama. **Three theorems proved, one constant corrected, one universality empirically falsified, one dispatched to Aristotle.**
+
+| # | Conjecture | Verdict | Conf |
+|---|---|---|---:|
+| C1 | NDC universality | **PROVED, REVISED**: `D_K → 1/e^γ` (not `1/ζ(2)`) | ~0.94 |
+| C2 | AK constant | **PROVED with correction**: `E_K · log K → L'/e^γ` (Aoki-Koyama 2023 eq. (1.4) p.235 had it; Saar/Koyama/my-prompt all missed it). Catch #16. | 0.97 |
+| C3 | Subleading C_1 = −L''/(2L'²) | **PROVED** (Inoue 2021 framework, DRH-conditional) | 0.94 |
+| C4 | B_∞ explicit formula | **PROVED UNCONDITIONALLY** | 0.96 |
+| C5 | EC NDC universality | **EMPIRICALLY FALSIFIED** — rank-dependent constants | — |
+| C6 | DPAC | dispatched to Aristotle (project `59d181d5-...`) | async |
+
+**16 misattributions caught total** since 2026-05-03 (12 in research artifacts, 4 in my own dispatch briefs). The 4-way chain Saar→Koyama→Saar→me on AK 2023 eq. (1.4) was the most consequential — caught a 8% wrong-constant claim before publication.
 
 ## Three programs — current status
 

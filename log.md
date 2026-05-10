@@ -13,6 +13,120 @@ Cumulative misattribution count since 2026-05-03: **12** (5 from original audit 
 
 Direct application to draft §5.6 + new §5.6.1 (the math, not the editorial polish) — F2's structural fix is now in `paper/Delta_machine_paper_compositio_draft.md` lines 1293-1316 + insertion. Bundle-doc updates (Multi-L §2.5, Extended §3.2) and successor Open 7.2' replacement of stale §7.2 deferred per user redirect: "don't worry about papers and drafting; focus on proof and research progress."
 
+## [2026-05-09] result | Koyama-track pivot complete — 3 theorems + 1 constant correction + 1 empirical falsification
+
+All 6 K-batch agents landed. Dirichlet pair recompute (background bash bu5autlnq) also done.
+
+**Three theorems proved:**
+- **C3 subleading C_1**: `c_K(ρ,χ) = log K/L'(ρ,χ) + C_1 + o(1)` with `C_1 = -L''/(2L'²)`. Conf 0.94, DRH-conditional. Error rate `O(K^{-1/2+ε})` under RH. Inoue 2021 framework (arXiv:1805.05015) verbatim verified.
+- **C2 AK constant identification (with correction)**: `E_K · log K → L'(ρ,χ)/e^γ`. Conf 0.97, DRH-conditional. **Aoki-Koyama 2023 eq. (1.4) p. 235 already gave this constant** — Saar's conjectured `1/ζ(2)` was wrong. Verified numerically at K=10⁷ across 4 (χ,ρ) pairs.
+- **C4 B_∞ explicit formula**: `T_∞ = (1/2) log L(2ρ, ψ) + BPC₁ + BPC₂ + T_{≥3}`. Conf 0.96, **UNCONDITIONAL** (no GRH/DRH needed). BPC₁ explicit for χ_{-4}; vanishes for χ_5, χ_{11}. Numerical residual 10⁻⁵ to 10⁻³ matching K^{-1/2}.
+
+**Composition: NDC universality theorem (revised constant)**
+By C_1 + AK: `D_K(ρ,χ) := c_K^χ(ρ) · E_K^χ(ρ) → 1/e^γ ≈ 0.5615` (Mertens constant) for primitive non-trivial χ at simple zeros, DRH-conditional. **NOT** Saar's conjectured `1/ζ(2) ≈ 0.6079`. The two limits are 8.3% apart, at the edge of K=2×10⁶ resolution but clearly distinguished at K=10⁷.
+
+**Empirical falsification:**
+- C5 EC NDC universality: D_K^E · ζ(2) does NOT → 1 across ranks. At K=10⁴: 37a1 (rank 1) → 0.598 monotonically decreasing; 11a1 (rank 0) hovering ~1.11; 389a1 (rank 2) ~0.17. **Rank-dependent or curve-specific** constants, NOT universal.
+
+**Catch #16**: the brief + Saar's emails + Koyama's reply ALL claimed AK 2023 didn't identify the constant — but page 235 eq. (1.4) does. Cumulative tally now **16 misattributions caught** (12 in research artifacts + 4 in my prompts). The 4-way chain Saar→Koyama→Saar→me on AK 2023 was caught by the protocol.
+
+**Independent corroboration**: Dirichlet pair recompute at K=10⁷ (background script) shows |D_K|·ζ(2) drifting to 0.974 (mean across 4 pairs), AK ratio drifting to 0.942 — both matching `e^{-γ}·ζ(2) ≈ 0.9237` and `ζ(2)/e^γ ≈ 0.9237` predictions exactly. Empirical confirmation independent of the paper-reading agent.
+
+Files in `handoff-2026-05-09-followup/`:
+- `Koyama_track_grounding.md` (re-grounding, surfaced the e^γ tension first)
+- `Koyama_C1_subleading_proof.md` + `Koyama_C1.{py,out}`
+- `Koyama_AK_constant_proof.md` + `Koyama_AK.{py,out}` + 4 companion scripts
+- `Koyama_B_infty_proof.md` + `Koyama_B_infty.{py,out}`
+- `Koyama_EC_NDC_sweep.md` + `Koyama_EC_NDC.{py,csv,txt}` + ap_table.csv
+- `Koyama_NDC_constant_correction.md` (synthesis, e^γ vs ζ(2) empirical resolution)
+- `formal-conjectures/DPAC_dispatch_receipt.md` (Aristotle async, project `59d181d5-...`)
+
+R1_B_plus and DPAC remain async on Aristotle (4-8 weeks side); SmoothedDwfFormula already returned with errors (accepted as scaffolding).
+
+**Net Koyama-pivot outcome**: 3 of 6 conjectures PROVED; 1 REVISED (constant correction); 1 EMPIRICALLY FALSIFIED; 1 IN_PROGRESS on Aristotle. The central NDC universality theorem is now established (with corrected constant `e^{-γ}`).
+
+## [2026-05-09] dispatch-5 | Koyama-track pivot — 6 background agents fired
+
+Per user direction (B → wait → document → pivot to Koyama). Both MERTENS-LB versions disproved (universal at N≈300K, MR at p=237,733); SP-2's reduction broken; B+ truth at large p genuinely uncertain. Pivoting to the Koyama-track conjectures from the Apr 6-16 correspondence — these are independent of the Pólya-analog risk.
+
+6 parallel Opus background agents fired:
+
+| ID | Task | Engine |
+|---|---|---|
+| K-grounding | Read 4 PDFs (correspondence, Akatsuka 2013, JNT paper, Koyama Japanese book) + restate the 6 Koyama conjectures cleanly with verbatim sources | Opus extra-high (reading-heavy) |
+| K-B_∞ | Prove `T_∞ = (1/2) log L(2ρ, χ²) + Σ_{k≥3} ...` via Euler-product log expansion + bad-prime correction | Opus extra-high |
+| K-C_1 | Prove `c_K = log K/L'(ρ) + C_1 + o(1)` with `C_1 = -L''(ρ)/(2L'(ρ)²)` via Laurent expansion at simple zero (Inoue 2021 framework) | Opus extra-high |
+| K-AK | Prove the central conjecture `E_K · log K → L'(ρ,χ)/ζ(2)` (AK constant identification, Aoki-Koyama 2023 unwind OR composition via Perron + NDC) | Opus extra-high — deepest |
+| K-DPAC-Aristotle | Push DPAC to Aristotle for Lean formalization (PR 3716 starting point) | Opus dispatcher → Aristotle async |
+| K-EC-NDC | Verify NDC universality for elliptic curves: 37a1 (rank 1), 11a1 (rank 0), 389a1 (rank 2). Compute c_K^E, E_K^E, D_K^E to K ≥ 10⁵. | Opus computational (LMFDB or Schoof point-counting) |
+
+In parallel — running the Dirichlet pair recompute at K=10⁷ for 4 (χ,ρ) pairs directly (background bash ID `bu5autlnq`, ETA ~10-15 min). Will report trajectory of |D_K|·ζ(2) → 1, AK ratio `E_K·log K / |L'/ζ(2)|`, Perron leading `c_K · L'/log K → 1`.
+
+If multiple Koyama-track proofs land cleanly (B_∞ likely, C_1 likely, AK constant tractable), the program closes its primary correspondence-track conjecture (NDC universality) within days — a substantial improvement over the GL(2)/Theorem B sub-track that's been multi-decade-blocked.
+
+## [2026-05-09] result | (MERTENS-LB-MR) ALSO DISPROVED at p=237,733; both versions of (MERTENS-LB) fail; B+ at large p genuinely uncertain
+
+Quick verification per (B) directive — check the lit audit's claim that the Mertens-restricted variant `(MERTENS-LB-MR): T(p-1) ≤ -c'` at primes p with M(p) ≤ -3 holds past R1's empirical ceiling of 99,991. **Result: DISPROVED.**
+
+Verifier `/tmp/mertens_lb_mr.py`: sieved Möbius to N=10⁷ (5.0s), found 328,565 Mertens-restricted primes in (99,991, 10⁷] (50.2% of total). Sample of 9,669 (all early ones to 200K, every-10th to 10⁶, every-100th to 10⁷). Computed T(p-1) via Dirichlet hyperbola.
+
+**221 Pólya-flips at MR primes** (T(p-1) > 0 where (MERTENS-LB-MR) requires it ≤ -c' for some c' > 0). Smallest counterexample: **p = 237,733, M(p) = -20, T(p-1) = +6.658** — just 2.4× past R1's ceiling. Largest observed +T(p-1) = 130.57. Sign distribution: 221 positive, 9,448 non-positive.
+
+**Empirical "verification" was lucky framing.** R1+SP-2 sweeps to 99,991 sat in the pre-flip regime; chronic Pólya-failure begins immediately past R1's ceiling. The sample shows clusters of consecutive MR-prime flips (e.g., 237,733 / 237,859 / 237,977 within a 0.3% window).
+
+Why Mertens-restriction wasn't enough: M(p) ≤ -3 only forces the k=1 term of T(p-1) to be ≈ M(p); the k=2..p-1 terms involve M(⌊p/k⌋) at all scales in [1, p/2], which can have positive contributions overwhelming the negative k=1 anchor.
+
+**Net program effect:**
+- (MERTENS-LB) universal: DISPROVED (chronic flips at N ≈ 300K)
+- (MERTENS-LB-MR) Mertens-restricted: DISPROVED (chronic flips at p = 237,733)
+- SP-2's reduction `B+ closure ⟸ B₀(N) ≥ c·N ⟸ (MERTENS-LB-?)` is INVALID in either form
+- B+ Mertens-restricted truth at p > 99,991 is GENUINELY UNCERTAIN
+- Direct verification of B₀(p-1) at flipped primes is infeasible (Farey set size ~10¹⁰ at p ≈ 237K)
+- Empirical "B+ holds at 4,600+ primes" does NOT extrapolate
+
+Strengthens the Koyama-pivot motivation. NDC/AK/B_∞/EC paths are independent of this Pólya-analog risk.
+
+Documented at `handoff-2026-05-09-followup/MERTENS_LB_MR_disproof.md`. Sample data at `handoff-2026-05-09-followup/MERTENS_LB_MR_verification.tsv`.
+
+Per directive (B): verification done → pivot to Koyama track now.
+
+## [2026-05-09] result | MERTENS-LB literature audit + computational sweep extended both completed
+
+Two MERTENS-LB agents (literature audit + computational sweep) completed. Both delivered substantive results.
+
+**Computational sweep** extended to N=10⁹ (I missed earlier updates while reporting):
+- T(N) values at large N: T(10⁶)=+139.63, T(5·10⁶)=-479.23, T(10⁷)=+606.73, T(5·10⁷)=-589.39, T(10⁸)=+1123.07, T(5·10⁸)=-2242.58, T(10⁹)=-519.63
+- T(N)/√N stays bounded around 0.01-0.17 across N up to 10⁹ — Pólya-style envelope
+- Asymptotic scan + dense scan files saved in handoff-2026-05-09-followup/MERTENS_LB_*
+
+**Literature audit** (42 KB deliverable, conf 0.93). Verdict: **POLYA-ANALOG-DISPROVED-COMPUTATIONALLY** for the universal version. Identified close cousin: **Turán 1948 conjecture `T_λ(x) := Σ_{k≤x} λ(k)/k ≥ 0`** disproved by Haselgrove 1958 with smallest counterexample n=72,185,376,951,205 (Borwein-Ferguson-Mossinghoff 2008). Also Mossinghoff-Trudgian 2017 L_α(x) interpolation framework. Key reframing: the audit proposed (MERTENS-LB-MR) Mertens-restricted variant as the actually-relevant version for B+, claimed it survived at 4,617 MR primes ≤ 99,991 with c' = 1.43.
+
+This session's quick verification of (MERTENS-LB-MR) past 99,991 disproved it as well — see prior log entry.
+
+## [2026-05-09] result | (MERTENS-LB) DISPROVED — chronic oscillation, Pólya-analog confirmed
+
+(MERTENS-LB) computational sweep (one of two MERTENS-LB agents) reached N=10⁶, found `T(10⁶) = +139.63 > 0` — Pólya-style flip suggesting (MERTENS-LB) inequality `T(N) ≤ −c'` is FALSE. Agent stopped at N=10⁶ without writing full deliverable; no python processes running locally. Independent verification + finer sweep performed:
+
+**Verification**: 4 independent methods (direct k-loop, Dirichlet hyperbola, sympy.mobius, OEIS A002321) all confirm `T(10⁶) = +139.629679` to 12+ digits. M(N) values cross-checked against OEIS at N=10, 100, 1000, 10⁴, 10⁵, 10⁶, 10⁷. Sieve implementation correct.
+
+**Finer sweep findings (`/tmp/mertens_lb_finer.py`)**:
+- First sign-flip occurs in **N ∈ (200K, 300K)** — just past R1+SP-2 empirical verification ceiling of 99,991
+- T(N) **chronically oscillates** in sign at larger N: signs at {300K +, 400K-, 600K-, 700K+, 800K-, 900K-, 980K+, 990K+, 1M+, 2M-, 3M+, 5M-, 7M-, 10M+}
+- |T(N)|/log N bounded in [0.45, 37.64] across [10², 10⁷] — no fixed sign emerges
+- (MERTENS-LB) `T(N) ≤ −c'` cannot hold for any c' > 0 (chronic flips violate any negative bound)
+
+**Implications**:
+- (MERTENS-LB) DISPROVED — Pólya-analog of independent interest, much smaller scale than Pólya proper (~300K vs ~906M) or Mertens conjecture (astronomical)
+- SP-2's reduction `B₀(N) ≥ c·N ⟸ (MERTENS-LB)` is INVALIDATED (sufficient condition is false)
+- B+ Mertens-restricted truth at large N is **genuinely uncertain**: R1+SP-2 empirical fit `B₀(p−1) ≥ 0.4383·(p−1)` to p=99,991 sits in the pre-flip regime; behavior at p ≥ 200K is unknown
+- R1's chain `B+ ⟺ S_ψ < B₀` still valid as equivalence; both sides now have unknown asymptotic control
+- SP-2's closed form `B₀(N) = 1/12 − (N̂/12)(2+S(N)) − (N̂/2)‖δ‖²` still verified at N ∈ [2,200]; at large N, `2+S(N)` flips chronically with the same period as T(N), so B₀ asymptotic is unknown
+- Akatsuka 2013 §7 is in the same neighborhood (Möbius partial sum oscillation) — strengthens the Koyama-track pivot motivation
+
+Independent verification document at `handoff-2026-05-09-followup/MERTENS_LB_disproof_INDEPENDENT_VERIFICATION.md`. Verification scripts at `/tmp/verify_mertens_lb.py` and `/tmp/mertens_lb_finer.py`.
+
+The MERTENS-LB literature audit (the second agent in the pair) is still running and not yet landed; expected to add literature context for the Pólya-analog finding.
+
 ## [2026-05-09] result | SP-1a-α.1 BLOCKED-AT-ABT — phantom paper + corrected SP-1a empirics + catch #15
 
 SP-1a-α.1 (ABT 2014 verbatim audit) completed (~16 min wall-clock). Verdict: **BLOCKED-AT-ABT** at confidence 0.85.

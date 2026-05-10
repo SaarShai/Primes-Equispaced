@@ -1,0 +1,69 @@
+[15:40:33] mem=0.03GB free=12.57GB | ========================================================================
+[15:40:33] mem=0.03GB free=12.57GB | MERTENS_LB_sweep.py  --  Nmax = 1,000,000
+[15:40:33] mem=0.03GB free=12.57GB | ========================================================================
+[15:40:33] mem=0.03GB free=12.57GB | Available memory: 12.57 GB
+[15:40:33] mem=0.03GB free=12.57GB | Expected memory: mu (int8) = 0.00 GB, M (int32) = 0.00 GB, total = 0.01 GB
+[15:40:33] mem=0.03GB free=12.57GB | Step 1: Mobius sieve up to N = 1,000,000
+[15:40:33] mem=0.03GB free=12.57GB |   done sieve, mu.dtype=int8, mu.nbytes/1e9=0.00 GB, elapsed 0.1s
+[15:40:33] mem=0.03GB free=12.57GB |   mu sanity OK on small n.
+[15:40:33] mem=0.03GB free=12.57GB | Step 2: Cumulative Mertens M[n] = sum_{k<=n} mu[k]
+[15:40:33] mem=0.04GB free=12.56GB |   done cumsum, M.dtype=int32, M.nbytes/1e9=0.00 GB, elapsed 0.0s
+[15:40:33] mem=0.04GB free=12.56GB |   M(n) verified against OEIS A084237 at all known anchor points <= 1000000.
+[15:40:33] mem=0.04GB free=12.56GB | Sanity check vs SP-2 at N in [2, 200] (exact rational T(N))
+[15:40:33] mem=0.04GB free=12.56GB |   Sanity OK: all 200 values of N in [1, 200] agree.
+[15:40:33] mem=0.04GB free=12.56GB | Step 3: sweep T(N) at N in {1e1..1e+06}
+[15:40:33] mem=0.04GB free=12.56GB | --- N = 10 ---
+[15:40:33] mem=0.04GB free=12.56GB |   T(N) = -0.6876984127  (elapsed 0.0s)
+[15:40:33] mem=0.04GB free=12.56GB |   T(N)/log N = -0.298664
+[15:40:33] mem=0.04GB free=12.56GB |   -T(N) (smallest c' that holds at this N) = 0.687698
+[15:40:33] mem=0.04GB free=12.56GB | --- N = 50 ---
+[15:40:33] mem=0.04GB free=12.56GB |   T(N) = -4.9681167533  (elapsed 0.0s)
+[15:40:33] mem=0.04GB free=12.56GB |   T(N)/log N = -1.269961
+[15:40:33] mem=0.04GB free=12.56GB |   -T(N) (smallest c' that holds at this N) = 4.968117
+[15:40:33] mem=0.04GB free=12.56GB | --- N = 100 ---
+[15:40:33] mem=0.04GB free=12.56GB |   T(N) = -3.6358657036  (elapsed 0.0s)
+[15:40:33] mem=0.04GB free=12.56GB |   T(N)/log N = -0.789518
+[15:40:33] mem=0.04GB free=12.56GB |   -T(N) (smallest c' that holds at this N) = 3.635866
+[15:40:33] mem=0.04GB free=12.56GB | --- N = 500 ---
+[15:40:33] mem=0.04GB free=12.56GB |   T(N) = -11.3339148603  (elapsed 0.0s)
+[15:40:33] mem=0.04GB free=12.56GB |   T(N)/log N = -1.823754
+[15:40:33] mem=0.04GB free=12.56GB |   -T(N) (smallest c' that holds at this N) = 11.333915
+[15:40:33] mem=0.04GB free=12.56GB | --- N = 1,000 ---
+[15:40:33] mem=0.04GB free=12.56GB |   T(N) = -8.1934298256  (elapsed 0.0s)
+[15:40:33] mem=0.04GB free=12.56GB |   T(N)/log N = -1.186120
+[15:40:33] mem=0.04GB free=12.56GB |   -T(N) (smallest c' that holds at this N) = 8.193430
+[15:40:33] mem=0.04GB free=12.56GB | --- N = 5,000 ---
+[15:40:33] mem=0.04GB free=12.56GB |   T(N) = -11.4713642085  (elapsed 0.0s)
+[15:40:33] mem=0.04GB free=12.56GB |   T(N)/log N = -1.346848
+[15:40:33] mem=0.04GB free=12.56GB |   -T(N) (smallest c' that holds at this N) = 11.471364
+[15:40:33] mem=0.04GB free=12.56GB | --- N = 10,000 ---
+[15:40:33] mem=0.04GB free=12.56GB |   T(N) = -27.1479327735  (elapsed 0.0s)
+[15:40:33] mem=0.04GB free=12.56GB |   T(N)/log N = -2.947549
+[15:40:33] mem=0.04GB free=12.56GB |   -T(N) (smallest c' that holds at this N) = 27.147933
+[15:40:33] mem=0.04GB free=12.56GB | --- N = 50,000 ---
+[15:40:33] mem=0.04GB free=12.56GB |   T(N) = -7.0291946874  (elapsed 0.0s)
+[15:40:33] mem=0.04GB free=12.56GB |   T(N)/log N = -0.649662
+[15:40:33] mem=0.04GB free=12.56GB |   -T(N) (smallest c' that holds at this N) = 7.029195
+[15:40:33] mem=0.04GB free=12.56GB | --- N = 100,000 ---
+[15:40:33] mem=0.04GB free=12.56GB |   T(N) = -49.0155757469  (elapsed 0.0s)
+[15:40:33] mem=0.04GB free=12.56GB |   T(N)/log N = -4.257439
+[15:40:33] mem=0.04GB free=12.56GB |   -T(N) (smallest c' that holds at this N) = 49.015576
+[15:40:33] mem=0.04GB free=12.56GB | --- N = 500,000 ---
+[15:40:33] mem=0.05GB free=12.56GB |   T(N) = -37.8674574459  (elapsed 0.0s)
+[15:40:33] mem=0.05GB free=12.56GB |   T(N)/log N = -2.885719
+[15:40:33] mem=0.05GB free=12.56GB |   -T(N) (smallest c' that holds at this N) = 37.867457
+[15:40:33] mem=0.05GB free=12.56GB | --- N = 1,000,000 ---
+[15:40:33] mem=0.05GB free=12.55GB |   *** POLYA-FLIP: T(1000000) = 139.629679 > 0 ***
+[15:40:33] mem=0.05GB free=12.55GB |   T(N) = 139.6296785129  (elapsed 0.0s)
+[15:40:33] mem=0.05GB free=12.55GB |   T(N)/log N = 10.106733
+[15:40:33] mem=0.05GB free=12.55GB |   -T(N) (smallest c' that holds at this N) = -139.629679
+[15:40:33] mem=0.05GB free=12.55GB | ========================================================================
+[15:40:33] mem=0.05GB free=12.55GB | Sweep complete.  min(-T(N)) over swept N's = 0.687698 at N = 10
+[15:40:33] mem=0.05GB free=12.55GB | Near-flips: [(10, -0.6876984126984129, 'T > -1')]
+[15:40:33] mem=0.05GB free=12.55GB | ========================================================================
+[15:40:33] mem=0.05GB free=12.55GB | Cross-check at largest N = 1,000,000
+[15:40:33] mem=0.05GB free=12.55GB |   Cross-check at N=1000000 (Dirichlet block walk vs direct sum)
+[15:40:33] mem=0.05GB free=12.55GB |     Method 1 (block walk float64): T=139.629678512919412  (0.01s)
+[15:40:33] mem=0.09GB free=12.52GB |     Method 2 (direct k-loop float64): T=139.629678512919185  (0.01s)
+[15:40:33] mem=0.09GB free=12.52GB |     diff=2.274e-13  rel=1.628e-15
+[15:40:33] mem=0.09GB free=12.52GB |   Cross-check OK: T=139.629678512919 vs T_alt=139.629678512919, diff=2.27e-13
