@@ -1,19 +1,31 @@
 ---
 schema_version: 5
-title: "Primes-Equispaced Current Handoff (post 2026-05-10 continuation)"
+title: "Primes-Equispaced Current Handoff (post 2026-05-11 Koyama moonshot)"
 type: handoff
 domain: project
 tier: working
 confidence: 0.95
 created: 2026-05-09
-updated: 2026-05-10
-verified: 2026-05-10
+updated: 2026-05-11
+verified: 2026-05-11
 sources:
   - SESSION_SUMMARY_2026-05-09.md
   - log.md
   - handoff-2026-05-04-theorem-B-and-C1/THEOREM_B_HANDOFF.md
   - handoff-2026-05-04-theorem-B-and-C1/C1_SELF_RESIDUE_HANDOFF.md
   - handoff-2026-05-09-followup/*.md
+  - handoff-2026-05-11-gpt55-wave/*.md
+  - handoff-2026-05-11-ec-smoothing-blockers/*.md
+  - handoff-2026-05-11-ec-h2-mertens-sprint/*.md
+  - handoff-2026-05-11-ec-s1-explicit-formula-sprint/*.md
+  - handoff-2026-05-11-ec-theorem-closure-wave/*.md
+  - handoff-2026-05-11-h1-reciprocal-perron-wave/*.md
+  - handoff-2026-05-11-h1-residue-control-wave/*.md
+  - handoff-2026-05-11-h1-breakthrough-proof-wave/*.md
+  - handoff-2026-05-11-h1-shell-moment-wave/*.md
+  - handoff-2026-05-11-breakthrough-wave-2/*.md
+  - handoff-2026-05-11-breakthrough-wave-3-plan.md
+  - handoff-2026-05-11-breakthrough-wave-3/*.md
   - paper/Delta_machine_paper_*.md
 supersedes:
   - 2026-05-09 (mid-session) HANDOFF
@@ -22,13 +34,53 @@ tags: [handoff, primes-equispaced, theorem-B, b+-conjecture, mertens-lb, breakth
 
 # Primes-Equispaced Current Handoff
 
-## Start here (post-Koyama decision memo + 2026-05-10 B+ correction)
+## Start here (post-Koyama moonshot + 2026-05-10 B+ correction)
 
 → [`handoff-2026-05-09-followup/B_plus_direct_counterexamples.md`](handoff-2026-05-09-followup/B_plus_direct_counterexamples.md) — **2026-05-10 correction:** Conjecture B+ Mertens-restricted is directly false. Lean-canonical `B(p)<0` at `p=237733` with `M(p)=-20`, and at `p=243799` with `M(p)=-3`.
 
-→ [`handoff-2026-05-09-followup/KOYAMA_NEXT_SPRINT_SYNTHESIS_2026-05-10.md`](handoff-2026-05-09-followup/KOYAMA_NEXT_SPRINT_SYNTHESIS_2026-05-10.md) — several-hour Koyama follow-up sprint synthesis. Perron-leading remains `DEFER`; EC mixed residual diagnostics do not promote a normalization; Path B has a conductor-control queue; DPAC needs log-prime phase hypotheses.
+→ [`handoff-2026-05-09-followup/KOYAMA_GPT55_DEEP_GAP_SYNTHESIS_2026-05-11.md`](handoff-2026-05-09-followup/KOYAMA_GPT55_DEEP_GAP_SYNTHESIS_2026-05-11.md) — GPT-5.5 xhigh follow-up on the hardest Koyama gaps. No theorem promoted. Adds an EC finite-bad-prime no-go for the tested sharp-cutoff class, a Path B control runner, a DPAC scaffold patch, and an adversarial claim audit.
 
-→ [`handoff-2026-05-09-followup/KOYAMA_RESEARCH_DECISION_MEMO_2026-05-10.md`](handoff-2026-05-09-followup/KOYAMA_RESEARCH_DECISION_MEMO_2026-05-10.md) — claim-safe 2026-05-10 Koyama decision memo. Supersedes older unconditional promotion language: `D_K -> e^{-gamma}` is conditional until the Perron-leading theorem is dependency-closed.
+→ [`handoff-2026-05-11-gpt55-extra-high-continuation/DISPATCH_MANIFEST_2026-05-11.md`](handoff-2026-05-11-gpt55-extra-high-continuation/DISPATCH_MANIFEST_2026-05-11.md) and [`BIGGEST_CHALLENGES_MATRIX_2026-05-11.md`](handoff-2026-05-11-gpt55-extra-high-continuation/BIGGEST_CHALLENGES_MATRIX_2026-05-11.md) — continuation wave across GL(1), EC H1/H2, numerics, literature, and fallback theorem modes. No theorem promoted. Main progress: GL(1) sharp Perron obstruction packaged; GL(1) smoothing/filtering separated as a conditional theorem mode; EC H1 horizontal height is conditionally source-routed via Li-Zaharescu under normalized EC/newform RH/no-right-half-zero; fixed-weight PV has a precise no-go/conditional package; rank-zero has a profile/product-average theorem mode; old EC smoothstep gate fails load-bearing null controls.
+
+→ [`handoff-2026-05-11-all-in-wave/ALL_IN_WAVE_SYNTHESIS_2026-05-11.md`](handoff-2026-05-11-all-in-wave/ALL_IN_WAVE_SYNTHESIS_2026-05-11.md), [`EC_G3_FAILURE_DIAGNOSTIC_2026-05-11.md`](handoff-2026-05-11-all-in-wave/EC_G3_FAILURE_DIAGNOSTIC_2026-05-11.md), and [`EC_C2_PRIME_DIAGNOSTIC_PROTOCOL_2026-05-11.md`](handoff-2026-05-11-all-in-wave/EC_C2_PRIME_DIAGNOSTIC_PROTOCOL_2026-05-11.md) — all-in GPT-5.5 xhigh wave plus local EC controls. No theorem promoted. Main upgrade: deterministic EC C2 gates now pass (kernel robustness, rank permutations, curve-label permutations, leave-one-K/curve, tail stability). Full Sato-Tate G3 was run at `512` iid and `128` shared seeds; both families have `0` old/primary gate passes, but overall status is `G3_FAIL` because empirical p gates fail (`iid p_ratio=0.062378167641325533`, shared p_score `0.046511627906976744`). Diagnostic split: no null beats real CV or passes old/primary, but ratio-only/additive-score empirical tests are not specific enough. C2-prime is future-only with fresh seeds and CV/Pareto p-values; it cannot rescue failed G3. H1 positive-rank closure gains a weaker weighted-`l1` target, now sharpened under legal `q=2` moving heights to `R_E,1(T)=o(T^2(logT)^(r-1))`; GL1 sharp remains blocked by named off-target/PV control; H2/Sym2 local algebra is closed but endpoint lemmas remain conditional; B+ tier-1B bridge sweep is the recommended bounded cluster job.
+
+→ [`handoff-2026-05-11-breakthrough-wave/BREAKTHROUGH_WAVE_SYNTHESIS_2026-05-11.md`](handoff-2026-05-11-breakthrough-wave/BREAKTHROUGH_WAVE_SYNTHESIS_2026-05-11.md) — 10-agent GPT-5.5 xhigh breakthrough wave. No theorem promoted. Main durable movement: H1 rank-one target has exact layer-cake/pointwise/sparse-exception reductions for `R_E,1(T)=o(T^2)`; fixed-weight PV is `NO_GO` from current spacing/square-moment inputs; multiple-zero Laurent control is packaged by effective degree `<r`; H2 closes weighted good-prime Mertens and pure S1 zero-summability but still needs S1 branch-contour and exact good-prime Sym2 finite-part closure; GL1 sharp remains conditional on moving off-target PV; G3 remains failed; B+ is a finite sign-cluster protocol; DPAC and Delta only gain formal/registry reductions.
+
+→ [`handoff-2026-05-11-breakthrough-wave-2/BREAKTHROUGH_WAVE_2_SYNTHESIS_2026-05-11.md`](handoff-2026-05-11-breakthrough-wave-2/BREAKTHROUGH_WAVE_2_SYNTHESIS_2026-05-11.md) — second 10-agent GPT-5.5 xhigh breakthrough wave. No theorem promoted. Main durable movement: H1 rank-one source closure remains blocked, now reduced to a fixed-curve GL2/EC negative first reciprocal-derivative moment with bad-set budget strong enough for `R_E,1(T)=o(T^2)`; actual-coefficient moving PV is separated from spacing models; the H1 finite-box theorem is assembled conditionally; exact good-prime Sym2 finite part is source-closed as a component with `kappa_sym=0`; full H2 is reduced to `S1-CutPlane-LogGrowth(E,W,eta)` plus right-branch handling; GL1 has no sharp-cutoff shortcut; B+, DPAC, and Delta produce compute/formal/registry patch plans only.
+
+→ [`handoff-2026-05-11-breakthrough-wave-3-plan.md`](handoff-2026-05-11-breakthrough-wave-3-plan.md) — executed dispatch plan for Wave 3. Focus was seven H1 reciprocal-derivative agents, two H2 S1 cut-plane agents, and one GL1/H1 actual-PV coupling agent. B+, DPAC, Delta, and EC numerics were out of scope except as boundary context.
+
+→ [`handoff-2026-05-11-breakthrough-wave-3/BREAKTHROUGH_WAVE_3_SYNTHESIS_2026-05-11.md`](handoff-2026-05-11-breakthrough-wave-3/BREAKTHROUGH_WAVE_3_SYNTHESIS_2026-05-11.md) — third 10-agent GPT-5.5 xhigh breakthrough wave. No theorem promoted. Main durable movement: fixed-curve reciprocal-derivative source hunt is `NO_GO`; BFMT adaptation is reduced to `GL2-LandauGonek-DPMV(E,theta)` plus `EC-BFMT-BadSetBudget(E,c)`; separation/minimum-modulus/PV routes have exact no-go boundaries; H1 finite-box conditional theorem section is packaged; literal S1 cut-plane log growth at smoothstep `|t|^-2` is replaced by `S1-CutPlane-RenormalizedLogGrowth(E,W,eta)` or stronger kernel decay; S1 right branches must be retained as `B_S1^+(K;E,W,c)` unless a no-right-zero/cancellation theorem is supplied.
+
+→ [`handoff-2026-05-11-gpt55-wave/WAVE_SYNTHESIS_2026-05-11.md`](handoff-2026-05-11-gpt55-wave/WAVE_SYNTHESIS_2026-05-11.md) — 8-agent GPT-5.5 xhigh wave. No theorem promoted. The smoothed EC finite pattern is reproducible but is no longer a proof candidate after null controls; Perron target-zero-simplicity closure is a no-go; B+ is a sign-cluster program; DPAC and Delta gained rigorous reductions.
+
+→ [`handoff-2026-05-11-gpt55-extra-high-continuation/EC_NULL_CONTROL_GATES_2026-05-11.md`](handoff-2026-05-11-gpt55-extra-high-continuation/EC_NULL_CONTROL_GATES_2026-05-11.md) — EC smoothed proxy null-control gate. Status `NO_GO`: primary `all, alpha=0.75` still passes old gate (`ratio=1.347375492996`, max CV `0.063297427334`), but predeclared nulls `cP_only`, `P_only`, and `PL2_only` also pass at `alpha=0.75`; best-null score delta is only `7.97e-05` versus required `0.01`.
+
+→ [`handoff-2026-05-11-ec-smoothing-blockers/EC_SMOOTHING_BLOCKER_SYNTHESIS_2026-05-11.md`](handoff-2026-05-11-ec-smoothing-blockers/EC_SMOOTHING_BLOCKER_SYNTHESIS_2026-05-11.md) — theorem-priority blocker sprint. No theorem promoted. Converts EC smoothing into a rigorous reduction: fixed-curve stabilization would follow from `H1` smoothed reciprocal Perron offcentral-zero control plus `H2` smoothed EC-Mertens product expansion; T2 explains the finite pass as `c/P` endpoint covariance damping.
+
+→ [`handoff-2026-05-11-ec-h2-mertens-sprint/H2_SPRINT_SYNTHESIS_2026-05-11.md`](handoff-2026-05-11-ec-h2-mertens-sprint/H2_SPRINT_SYNTHESIS_2026-05-11.md) — H2 smoothed EC-Mertens sprint. No theorem promoted. Naive pointwise `log P_E,W(K)=-rank loglogK+B+o(1)` is unsafe; repaired targets are conditional H2-limit, oscillatory H2 with `Z_E,W(log K)`, or averaged H2. Next theorem fork is the smoothed explicit formula for `sum_p W(p/K)a_p/p`.
+
+→ [`handoff-2026-05-11-ec-s1-explicit-formula-sprint/S1_EXPLICIT_FORMULA_SYNTHESIS_2026-05-11.md`](handoff-2026-05-11-ec-s1-explicit-formula-sprint/S1_EXPLICIT_FORMULA_SYNTHESIS_2026-05-11.md) — S1 explicit-formula sprint. No theorem promoted, but the H2 fork moved forward: for `S_1,W(K)=sum_p W(p/K)a_p/p`, offcentral logarithmic branch zeros contribute `K^(iγ) W_hat(iγ)/log K`, not persistent `K^(iγ)`, under branch/zero-summability hypotheses.
+
+→ [`handoff-2026-05-11-ec-theorem-closure-wave/THEOREM_CLOSURE_SYNTHESIS_2026-05-11.md`](handoff-2026-05-11-ec-theorem-closure-wave/THEOREM_CLOSURE_SYNTHESIS_2026-05-11.md) — EC theorem-closure GPT-5.5 xhigh wave. No theorem promoted. S1 branch and zero-summability are now coherent proof candidates under explicit hypotheses; H2 local bookkeeping is coherent; the main blocker is H1 reciprocal Perron pole residues, which do not inherit the H2 `1/log K` branch damping.
+
+→ [`handoff-2026-05-11-h1-reciprocal-perron-wave/H1_RECIPROCAL_PERRON_SYNTHESIS_2026-05-11.md`](handoff-2026-05-11-h1-reciprocal-perron-wave/H1_RECIPROCAL_PERRON_SYNTHESIS_2026-05-11.md) — H1 reciprocal Perron GPT-5.5 xhigh wave. No theorem promoted. Central residue algebra is now fixed: normalized kernels give leading term `(log K)^r/L^(r)(E,1)`. Exact H1 closure remains literature-blocked by reciprocal derivative/Laurent coefficient control at offcentral zeros; rank zero requires oscillatory or product-averaged handling unless residues vanish/cancel.
+
+→ [`handoff-2026-05-11-h1-residue-control-wave/H1_RESIDUE_CONTROL_SYNTHESIS_2026-05-11.md`](handoff-2026-05-11-h1-residue-control-wave/H1_RESIDUE_CONTROL_SYNTHESIS_2026-05-11.md) — H1 residue-control GPT-5.5 xhigh wave. No theorem promoted. Produces the canonical finite-box H1 residue scaffold, exact positive-rank closure criteria, rank-zero oscillatory profile, and product-average diagonal constant; source hunt remains `LITERATURE_BLOCKED` for fixed-curve reciprocal derivative/Laurent control.
+
+→ [`handoff-2026-05-11-h1-breakthrough-proof-wave/H1_BREAKTHROUGH_PROOF_SYNTHESIS_2026-05-11.md`](handoff-2026-05-11-h1-breakthrough-proof-wave/H1_BREAKTHROUGH_PROOF_SYNTHESIS_2026-05-11.md) — H1 breakthrough proof GPT-5.5 xhigh wave. No theorem promoted. Direct Li-Zaharescu/mollifier transfer is `NO_GO`; new exact positive-rank target is the shell moment `J_E,2(T)<=C_E T^(3-delta)` for smoothstep-scale `q=2`, plus contour assumptions `H-height/H-left` and multiple-zero exceptional-term control.
+
+→ [`handoff-2026-05-11-h1-shell-moment-wave/H1_SHELL_MOMENT_SYNTHESIS_2026-05-11.md`](handoff-2026-05-11-h1-shell-moment-wave/H1_SHELL_MOMENT_SYNTHESIS_2026-05-11.md) — H1 shell-moment closure wave. No theorem promoted. Source audit is close-but-insufficient; analytic work reduces the shell bound to anti-small-derivative inputs; RMT says the target is plausibly weak but heuristic only; fixed-weight PV needs a new uniform cancellation theorem; `H-left` is closed for `eta>1/2`. The later continuation wave upgrades horizontal `H-height(A<2)` from generic-Cartan open to conditionally source-routed via Li-Zaharescu selected heights under normalized EC/newform RH/no-right-half-zero. Rank-zero fallback is profile/product-average only.
+
+→ [`handoff-2026-05-11-h1-shell-moment-wave/TC_HEIGHT_EXPONENT_AUDIT.md`](handoff-2026-05-11-h1-shell-moment-wave/TC_HEIGHT_EXPONENT_AUDIT.md) — TC-height exponent audit. `NO_GO` for generic Cartan/Jensen closing `A_TC<2`: with only local zero count, the natural zero-product loss is `T^(O(loglogT))`. The contour route now needs a real EC/GL2 minimum-modulus theorem with explicit exponent below `2`, a stronger kernel, or a profile/conditional theorem mode.
+
+→ [`handoff-2026-05-09-followup/KOYAMA_ROADMAP_PROGRESS_2026-05-11.md`](handoff-2026-05-09-followup/KOYAMA_ROADMAP_PROGRESS_2026-05-11.md) — continuation roadmap packet. Adds a claim-safe Koyama note outline, a draft email to Koyama, EC theory next questions, and a MERTENS-LB phase-transition correction. No theorem promoted.
+
+→ [`handoff-2026-05-09-followup/KOYAMA_MOONSHOT_SYNTHESIS_2026-05-11.md`](handoff-2026-05-09-followup/KOYAMA_MOONSHOT_SYNTHESIS_2026-05-11.md) — 2026-05-11 Koyama moonshot synthesis. No theorem promoted. GL(1) Perron-leading has a sharper off-target-zero obstruction; EC-NDC is negative through `K=1000000`; Path B fails local conductor-controlled gates; DPAC has a claim-safe almost-everywhere phase proof sketch but no zeta-zero bridge.
+
+→ [`handoff-2026-05-09-followup/KOYAMA_NEXT_SPRINT_SYNTHESIS_2026-05-10.md`](handoff-2026-05-09-followup/KOYAMA_NEXT_SPRINT_SYNTHESIS_2026-05-10.md) — several-hour Koyama follow-up sprint synthesis, updated by the 2026-05-11 EC continuation and superseded for current status by the moonshot synthesis. Perron-leading remains `DEFER`; EC mixed residual diagnostics do not promote a normalization; Path B has a conductor-control queue; DPAC needs log-prime phase hypotheses.
+
+→ [`handoff-2026-05-09-followup/KOYAMA_RESEARCH_DECISION_MEMO_2026-05-10.md`](handoff-2026-05-09-followup/KOYAMA_RESEARCH_DECISION_MEMO_2026-05-10.md) — claim-safe 2026-05-10 Koyama decision memo. Supersedes older over-promotion language: `D_K -> e^{-gamma}` is conditional until the Perron-leading theorem is dependency-closed.
 
 → [`handoff-2026-05-09-followup/KOYAMA_PIVOT_FINAL_SUMMARY.md`](handoff-2026-05-09-followup/KOYAMA_PIVOT_FINAL_SUMMARY.md) — May 9 Koyama-correspondence summary. Keep for sources and history, but apply the May 10 decision memo before drafting theorem claims.
 
@@ -36,11 +88,17 @@ tags: [handoff, primes-equispaced, theorem-B, b+-conjecture, mertens-lb, breakth
 
 ## One-paragraph state
 
-The 5 near-term routes to **Theorem B-exact unconditional `2/(3π)`** are all formally closed (S4, C2, geometric/motivic, C1 Synthesis (E), B'-denom). Only the multi-decade Grand Density Conjecture support-4 wall remains. **Conjecture B+ Mertens-restricted is now directly falsified** in the Lean-canonical `crossTerm` definition: `B(237733) = -3.018492026640170e10` with `M(237733)=-20`, and `B(243799) = -9.190201299936827e9` with `M(243799)=-3`. R1 + SP-1a + SP-2 remain theorem-grade exact identities and reduce B+ to `S_ψ(p) < B₀(p−1)`, but that inequality is false at explicit Mertens-restricted primes. `(MERTENS-LB)` and `(MERTENS-LB-MR)` are both false; they are now negative results, not proof targets.
+Current handoff records the 5 near-term routes to **Theorem B-exact unconditional `2/(3π)`** as closed under prior audits (S4, C2, geometric/motivic, C1 Synthesis (E), B'-denom). Only the multi-decade Grand Density Conjecture support-4 wall remains. **Conjecture B+ Mertens-restricted is now directly falsified** in the Lean-canonical `crossTerm` definition: `B(237733) = -3.018492026640170e10` with `M(237733)=-20`, and at `p=243799` with `M(p)=-3`. R1 + SP-1a + SP-2 remain theorem-grade exact identities and reduce B+ to `B(p)/2 = B0(p-1) - Spsi(p)`; the useful target is now dense MR-prime sign-cluster classification. `(MERTENS-LB)` and `(MERTENS-LB-MR)` are both false; fixed `K0<=100` global negative-tail envelopes are also falsified on the `1e9` log grid. The Koyama GPT-5.5 waves kept GL(1) claim-safe: target-zero simplicity does not close shifted Perron-leading, checked sources do not provide the missing noncentral theorem, and smooth finite filtering gives only a separate conditional `c_{W,K}` theorem mode, not the sharp cutoff. EC-NDC smoothing is reproducible as a finite numerical pattern through `K<=1000000`, but the new null-control gate demotes it: `cP_only`, `P_only`, and `PL2_only` pass the old gate at `alpha=0.75`, so the old smoothstep gate is not load-bearing. The EC theorem-closure wave improved H2 bookkeeping; the H1 reciprocal wave fixed the central polynomial coefficient `(log K)^r/L^(r)(E,1)`; the H1 residue-control wave added exact positive-rank criteria, rank-zero oscillatory profile, and product-average fallback. The H1 breakthrough/shell waves ruled out direct Li-Zaharescu/mollifier transfer and isolated `H1-shell-moment(E,delta)` or fixed-weight PV as the real positive-rank H1 targets. The continuation wave sharpened contour status: `H-left` closes for `eta>1/2`, and horizontal `H-height(A<2)` is conditionally source-routed by Li-Zaharescu selected heights under normalized EC/newform RH/no-right-half-zero, but this does not control reciprocal residues. **No theorem was promoted** because exact fixed-curve H1 remains blocked by reciprocal derivatives/PV/shell moments and H2/Sym2 branch closure is still conditional.
+
+All-in update: deterministic EC smoothing controls are now stronger than the previous ablation-only no-go. `EC_KERNEL_NULL_SUITE_2026-05-11.py` exactly reproduces the primary anchor (`ratio=1.3473754929960748`, max CV `0.063297427334436704`) and passes kernel robustness, rank-permutation specificity, curve-label specificity, leave-one-K/curve, and tail-stability gates. `EC_STOCHASTIC_NULLS_2026-05-11.py` now has a full Sato-Tate G3 run: `0/512` iid and `0/128` shared seeds pass the old or primary gate, but status is `G3_FAIL` because empirical p gates fail (`iid p_ratio=0.062378167641325533 > 0.01`; shared p_score `0.046511627906976744 > 0.02`). `EC_G3_FAILURE_DIAGNOSTIC_2026-05-11.md` shows the split: no null beats real CV or passes old/primary, but `31/512` iid and `20/128` shared nulls beat real ratio, and `5/128` shared nulls beat real additive score. `EC_C2_PRIME_DIAGNOSTIC_PROTOCOL_2026-05-11.md` freezes any future EC numerical continuation as non-retroactive diagnostics with fresh seeds and CV/Pareto p-values. This is still **not theorem evidence**; EC continuation needs a new predeclared diagnostic gate before holdout curves or denser/larger `K` can serve even as serious promotion tests. H1 positive-rank closure has a weaker sufficient target than the old `J_E,2` shell moment: weighted `l1` reciprocal tails. The new `H1_WEIGHTED_L1_ATTACK_PACKET_2026-05-11.md` refines this further: absolute convergence for smoothstep-scale `q=2` follows already from `R_E,1(T)<=T^2(logT)^(-1-delta)`, and positive-rank finite-box closure only needs weighted partial growth `M_W(u)=o(u^r)` along legal Perron heights. `H1_LEGAL_HEIGHT_L1_CLOSURE_2026-05-11.md` then sharpens "legal": with source-safe `sigma>1/2` and `q=2`, moving-box contour tails force exponential `T_box(u)`, so the simple-zero target is `R_E,1(T)=o(T^2(logT)^(r-1))` (rank one: `o(T^2)`). `EC_POINTWISE_THEOREM_SPINE_2026-05-11.md` packages the conditional positive-rank spine: H1 legal-height reciprocal-pole control plus H2 S1/Sym2 finite-part closure gives `c_E,W(e^u)P_E,W(e^u)->exp(B_H2)/L^(r)(E,1)`. GL1 sharp Perron remains blocked by a named `GL1-Sharp-OffTarget-Control`/fixed-weight PV theorem. H2/Sym2 local algebra is closed; endpoint S1/Sym2 lemmas remain conditional.
+
+Breakthrough Wave 2 update: exact good-prime Sym2 is now source-closed as a component in the standard adjoint/Sym2 reconciliation (`kappa_sym=0`), so the live H2 endpoint is specifically `S1-CutPlane-LogGrowth(E,W,eta)` plus right-branch bookkeeping. H1 rank-one remains the higher-leverage wall: checked sources do not close `R_E,1(T)=o(T^2)`, and the next theorem target is a fixed-curve GL2/EC negative first reciprocal-derivative moment with a separated-zero plus bad-set budget. Actual-coefficient moving PV and GL1 off-target PV remain separate uniform-cancellation problems.
+
+Breakthrough Wave 3 update: the broad H1 source hunt is now a `NO_GO`; the next H1 target is specifically `GL2-LandauGonek-DPMV(E,theta)` for the BFMT separated-zero adaptation, paired with `EC-BFMT-BadSetBudget(E,c)`. Minimum-modulus certificates beat rank-one H1 only if `m_T/r_T >= T^(-alpha)(logT)^lambda` with `alpha<1` or `alpha=1, lambda>1`. The literal H2 S1 cut-plane theorem at `|W_hat|<<|t|^-2` should not be promoted; use `S1-CutPlane-RenormalizedLogGrowth(E,W,eta)` or stronger kernel decay, and retain `B_S1^+(K;E,W,c)` unless right branches are excluded.
 
 ## Current breakthrough nominee
 
-**No B+ positivity proof target remains.** The useful research target is now classification: characterize the sign clusters of Lean-canonical `B(p)` among primes with `M(p) <= -3`, and explain why `T(p-1)` and `B(p)` decouple (`p=243799` has `T(p-1)<0` but `B(p)<0`). The strongest positive track is the claim-safe Koyama GL(1) note: corrected AK constant under DRH/EDRH, local Perron residue, corrected `B_∞`, and `D_K -> e^{-gamma}` only as conditional on Perron-leading.
+**No B+ sign-positivity target remains.** The useful Paper B target is classification: characterize sign clusters of Lean-canonical `B(p)` among primes with `M(p) <= -3`, and explain why `T(p-1)` and `B(p)` decouple (`p=243799` has `T(p-1)<0` but `B(p)<0`). The closest meaningful EC breakthrough is now proof-structural rather than numerical: prove `GL2-LandauGonek-DPMV(E,theta)` in the coefficient range needed for BFMT-separated zeros, then prove `EC-BFMT-BadSetBudget(E,c)`; or prove `H1-ActualDyadicShellPV(E,W,r,H)` directly. Rank zero is best stated as `Q_0+Z_c(u)+o(1)` plus arithmetic product-average diagonal theorem unless residues are killed/subtracted. Numerically, the old three-curve smoothstep gate is a failed load-bearing gate and must be replaced by kernel suites, stochastic nulls, rank/curve-label permutations, holdout curves, and denser/larger `K`.
 
 ## Koyama-track results (claim-safe after 2026-05-10 review)
 
@@ -48,14 +106,14 @@ Pivoted from B+ Mertens-restricted track to Saar's correspondence with Koyama. T
 
 | # | Conjecture | Verdict | Conf |
 |---|---|---|---:|
-| C1 | NDC universality | **CONDITIONAL, REVISED**: `D_K -> e^{-gamma}` (not `1/zeta(2)`), pending dependency-closed Perron-leading | — |
+| C1 | NDC universality | **CONDITIONAL, REVISED**: `D_K -> e^{-gamma}` (not `1/zeta(2)`), pending dependency-closed Perron-leading. 2026-05-11 moonshot sharpened the blocker: off-target zero residues, especially possible multiple zeros, must be handled. | — |
 | C2 | AK constant | **CONDITIONAL on AK/DRH**: `E_K * log K -> L'/e^gamma` from Aoki-Koyama 2023 (1.4), p.235; Catch #16 | 0.97 |
-| C3 | Perron/C1 term | **LOCAL RESIDUE PROVED; GLOBAL ASYMPTOTIC DEFER**. Do not state `c_K = log K/L' + C_1 + o(1)` as closed. | — |
+| C3 | Perron/C1 term | **LOCAL RESIDUE PROVED; GLOBAL ASYMPTOTIC DEFER**. Do not state `c_K = log K/L' + o(log K)` or stronger as closed. Target-zero simplicity alone is insufficient because off-target multiple zeros could create `log K`-scale residues. | — |
 | C4 | `B_∞` explicit formula | **PROVED** only with `psi`, `BPC1`, `BPC2`, and `T_{>=3}` included | 0.96 |
-| C5 | EC NDC universality | **FALSIFIED** for simple `D_K^E*zeta(2)->1`; no normalization promoted. Mixed residual diagnostics were implemented, but the available `a_p` table stops at `p=541` and the truncated ratios are worse than the current benchmark. | — |
-| C6 | DPAC | **DOWNGRADED/DEFER**. Aristotle artifact is a two-sorry scaffold; LI bridge is unsafe without log-prime phase independence. | — |
+| C5 | EC NDC universality | **FALSIFIED** for simple `D_K^E*zeta(2)->1`; sharp-cutoff finite/per-curve-constant normalizations do not promote through `K=1000000`. Smoothed finite proxy is reproducible on the three-curve grid. The old ablation audit remains a promotion blocker (`cP_only`, `P_only`, and `PL2_only` also pass the old gate at `alpha=0.75`), deterministic all-in controls pass kernel/rank/curve-label/tail gates, and the full Sato-Tate G3 run has `0/512` iid and `0/128` shared old/primary gate passes. However G3 status is `FAIL` because empirical p gates fail (`iid p_ratio=0.062378167641325533`; shared p_score `0.046511627906976744`). Holdout curves and denser/larger `K` are still unrun, and EC continuation must explain the G3 empirical-p failure before any promotion. EC theorem closure gives a `RIGOROUS_REDUCTION`: S1 branch and zero-summability are conditional proof candidates and H2 bookkeeping is coherent. H1 central algebra and finite-box residue scaffolding are fixed locally; positive-rank pointwise closure reduces to weighted reciprocal-tail / shell / PV hypotheses plus multiple-zero effective-degree control. In the current source-safe `q=2` moving-box mode, legal heights are exponential and the simple-zero weighted-tail target sharpens to `R_E,1(T)=o(T^2(logT)^(r-1))`. For the current `q=2` kernel, `H-left` closes after shifting with `eta>1/2`, and horizontal `H-height(A<2)` is conditionally source-routed via Li-Zaharescu under normalized EC/newform RH/no-right-half-zero; neither controls H1 residues. Direct Li-Zaharescu/mollifier transfer is `NO_GO`; rank zero is profile/product-average unless residues are killed/subtracted. No BSD or `L(E,2)` evidence is promoted. | — |
+| C6 | DPAC | **DOWNGRADED/DEFER**. Aristotle artifact is a two-sorry scaffold; LI bridge is unsafe without log-prime phase independence. `DPAC_full.lean` now tombstones `dpac_of_LI` and names explicit phase-avoidance bridges; no Lean build was available. | — |
 
-**16 misattributions caught total** since 2026-05-03 (12 in research artifacts, 4 in my own dispatch briefs). The 4-way chain Saar→Koyama→Saar→me on AK 2023 eq. (1.4) was the most consequential — caught a 8% wrong-constant claim before publication.
+**At least 15 citation/misattribution failures caught** since 2026-05-03; exact count needs reconciliation before external use. The 4-way chain Saar→Koyama→Saar→me on AK 2023 eq. (1.4) was the most consequential — caught a 8% wrong-constant claim before publication.
 
 ## Three programs — current status
 
@@ -84,11 +142,11 @@ Poll: `./scripts/poll_aristotle.sh` (one-shot) or `./scripts/poll_aristotle.sh -
 5. **Single confidence aggregation rule** stated at top of any deliverable, never switched mid-document
 6. **Adversarial reviewer pass** before any "PASS" verdict
 
-This protocol caught **15 misattributions in this session** — 12 in research artifacts and 3 in my own dispatch briefs (R3 phantom Cohen-Friedlander, SP-1a-β wrong RH bound on `Σ|D|`, SP-1a-α.1 phantom ABT 2014). Without it the session would have shipped 15 confident wrong claims.
+This protocol caught **at least 15 citation/misattribution failures** across the recent work, including bundle artifacts and dispatch-brief errors (R3 phantom Cohen-Friedlander, SP-1a-β wrong RH bound on `Σ|D|`, SP-1a-α.1 phantom ABT 2014). Reconcile the exact count before external use.
 
 ## Drop / defer
 
-- TB-exact uncond via S4, C2, geometric, C1 Synthesis (E), B'-denom — all formally closed this session
+- TB-exact uncond via S4, C2, geometric, C1 Synthesis (E), B'-denom — recorded as closed under prior audits; not reverified by the 2026-05-11 Koyama moonshot
 - Theorem B level-aspect full uncond (honest 0.18-0.22 post audits)
 - Paper C `K log K` arithmetic-surrogate (likely false)
 - Force-unification posture (Posture B from PROGRAM_REORIENT)
@@ -102,10 +160,19 @@ This protocol caught **15 misattributions in this session** — 12 in research a
 
 | | Cost | Description |
 |---|---|---|
-| **B+ counterexample cluster map** | local C sweep, ~1 day | Scan Mertens-restricted primes around 200K-1M for Lean-canonical `B(p)` sign, cluster structure, and relation to `T(p-1)` |
-| **Koyama claim-safe short note** | 1-3 days | Use the new claim-safe outline; promote corrected `B_∞` and local Perron residue; state AK/NDC only under DRH/EDRH + Perron-leading; include EC negative result and the mixed-residual truncation caveat |
-| **BCL 2024 q-averaged → fixed-level transfer probe** | Opus extra-high, 3-6 weeks | Would unlock TB-exact uncond. Specialized literature attack. |
-| **Open 7.2' axis-pole multiplicities for higher-rank cross-Selberg** | Opus extra-high, ~1-2 days | Δ-machine extension surfaced by F2 |
+| **B+ counterexample cluster map** | local C sweep, ~10 core-hours for tier 1B | Build the canonical dense MR bridge `237733 <= p <= 243799` first (468 MR rows, about 9.94 core-hours) before any 1e6 atlas. `T` is sizing/classification data only, not a sign proxy. |
+| **H1 anti-small-derivative theorem** | GPT-5.5 xhigh, 1-3 days | Prefer the refined positive-rank target `H1-legal-l1-rank-threshold`: for the current source-safe `q=2` moving-box contour mode, prove `R_E,1(T)=o(T^2(logT)^(r-1))` along simple offcentral zeros; rank one needs `o(T^2)`. Absolute convergence follows from the stronger `R_E,1(T)<=C_E T^2(logT)^(-1-delta)`, and `R_E,1(T)<=C_E T^(2-epsilon)` is stronger still. The older `J_E,2(T)<=C_E T^(3-delta)` also works but is not necessary. Direct Li-Zaharescu transfer is closed as `NO_GO`; checked sources are close-but-insufficient. |
+| **H1 fixed-weight PV theorem** | GPT-5.5 xhigh, 1-3 days | Prove a uniform cancellation theorem for `sum W_hat(iγ)e^(iγu)/L'(E,1+iγ)` giving `Z_PV(u)=o(u^r)` in the required windows. Spacing plus square moments only supports averaged/profile modes. |
+| **H1 contour height bound** | source verification/writeup, ~1 day | With `eta>1/2`, treat `H-left` as closed. Horizontal `H-height(A<2)` is now conditionally source-routed via Li-Zaharescu selected heights under normalized EC/newform RH/no-right-half-zero; write the normalization/reflection lemma carefully and keep it separate from residue/PV control. |
+| **Rank-zero/product-average fallback paper** | GPT-5.5 xhigh, 1-2 days | Polish the new `Q_0+Z_c(u)+o(1)` profile and arithmetic product-average diagonal constant into a paper-ready conditional section. |
+| **H2/Sym2 theorem closure** | GPT-5.5 xhigh, 1-3 days | Local H2 algebra is closed. Close branch-continuation for `S_1,W`, finite-part continuation for exact good-prime `S_sym,W`, and weighted good-prime Mertens for the same `W`. Positive-rank pointwise composition is now packaged in `EC_POINTWISE_THEOREM_SPINE_2026-05-11.md`; product-average still requires joint H1/H2 profile tail extraction, not averaged `log P` alone. |
+| **Kernel-filtered diagnostics** | local compute/theory, ~1 day | Construct finite signed kernels with `W_hat(iγ_j)=0` for named low zeros to test whether observed finite smoothing is dominated by the first H1 residues; do not promote as fixed-kernel asymptotics. |
+| **Koyama claim-safe short note** | only if user asks | Use the claim-safe outline plus synthesis; promote corrected `B_∞` and local Perron residue; state AK/NDC only under DRH/EDRH + Perron-leading. Do not update correspondence/email drafts unless explicitly requested. |
+| **EC smoothing controls** | local analysis, ~1 day | Deterministic C2 controls pass, and full stochastic G3 has `0/512` iid and `0/128` shared old/primary gate passes, but G3 fails empirical p gates. Next EC work is to diagnose whether the empirical-p failure is a real null-specificity failure, a score/gate-design issue, or a finite-grid artifact; no promotion before that and before holdout/denser/larger `K`. |
+| **MERTENS-LB `K0=200` gate** | local + theory, 1 day | Fixed `K0<=100` global negative tails are falsified; dense `R_10<0` holds only through `1e6`; test/attack `K0=200` beyond the current log-grid sample |
+| **Shifted Perron remainder theorem hunt** | GPT-5.5 xhigh, 1-3 days | Search/prove `GL1-Sharp-OffTarget-Control`: fixed-weight PV/off-target zero aggregate plus rectangle/trivial-residue control for `K^w/(w L(rho+w,chi))`. All-zeros-simple alone still leaves the simple-zero PV sum. |
+| **B+ sign-cluster atlas** | local C sweep, ~1 day for tier 1 | Implement dense MR-prime rows and clusters split by `B`, `T`, `B0`, and `Spsi` |
+| **Open 7.2' ramified axis-pole multiplicities** | Opus extra-high / local theorem writeup, ~1-2 days | Delta extension: unit-circle roots of ramified correction polynomials give the full axis-pole lattice with collision and Mellin multiplicities |
 | **Aristotle Mathlib prereqs** (uniform Stirling on strips + Titchmarsh `1/ζ` polynomial growth) | Aristotle dispatcher | needs tighter signature design first to avoid vacuous-witness pattern |
 
 ## Conventions (now permanent)
