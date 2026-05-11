@@ -24,7 +24,7 @@
 - Δ = 0.9502 ±0.03 (analytic normalization unaffected)
 - All Dirichlet results
 - GUE pair-correlation results
-- Rank-linear pattern W2 (now confirmed with corrected values)
+- Upward rank signal for W2 (still needs conductor/rank separation; see 2026-05-10 audit caveat below)
 
 ---
 
@@ -37,17 +37,28 @@
 | 389a1 | 2 | 3.11 | 0.03 |
 | 5077a1 | 3 | 4.62 | 0.04 |
 
-Working conjecture W2: E[C₁²] ≈ 1.47 + 0.90·rank (R² ≈ 0.998, 4 anchor points).
+Working conjecture W2: E[C₁²] increases with rank, but the coefficient is not
+yet isolated from conductor effects.
 
 ---
 
 ## Status
 
-- **W2 rank-linear conjecture:** working conjecture, not proved. Linear fit extremely tight.
+- **W2 rank-linear conjecture:** working conjecture, not proved. Local audit downgrades the earlier tight-fit claim because rank and conductor are collinear in the available EC data.
 - **Sym²/⟨f,f⟩ proportionality (Koyama 2002 specific constant):** empirically falsified across rank families. The Sym²/⟨f,f⟩ ratio is constant (~2.0) while E[C₁²] varies — rank carries additional information. See `results/sym2_collapse_analysis.md`.
 - **Deligne door:** open. Rank dependence may reflect arithmetic conductor growth or RMT family change.
 - **Δ → 1 target:** Δ = 0.9502 ≈ 1 consistent with rank-0 analytic conjecture. Not proved.
 - **Shimura 8π³/N identity:** numerically verified for 37a1, 389a1. Confirms normalization convention.
+
+### 2026-05-10 local audit caveat
+
+`results/PATH_B_LOCAL_AUDIT_2026-05-10.md` recomputes the Path B regressions
+from the local `data/PATH_B_20FORMS.csv`. The EC-only CSV supports an upward
+rank signal, but does **not** support the stronger `R² ≈ 0.998` rank-only claim:
+`log(conductor)` explains more variance than rank alone in the 19 EC rows, and
+rank/conductor are collinear in the current design. Treat W2 as plausible but
+not isolated from conductor until more rank-3/4 and rank-matched controls are
+computed.
 
 ---
 

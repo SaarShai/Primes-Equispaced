@@ -1,5 +1,42 @@
 # Log
 
+## [2026-05-10] sprint | Koyama follow-up integration and verification
+
+Ran the requested several-hour Koyama follow-up sprint with five parallel worker lanes and coordinator verification. Added `handoff-2026-05-09-followup/KOYAMA_NEXT_SPRINT_SYNTHESIS_2026-05-10.md`.
+
+Decisions: GL(1) Perron-leading remains `DEFER` because the shifted Perron nonlocal remainder lemma is still missing; the local double-pole residue and corrected `B_infty` remain the safe GL(1) promotions. EC mixed residual diagnostics were implemented in `Koyama_EC_NDC_mixed_residual.py`; both truncated candidates fail the `1.42083` cross-curve-ratio benchmark and the source `a_p` table stops at `p=541`, so no normalization is promoted. Path B now has a conductor-control queue in `koyama-shared/results/PATH_B_CONTROL_QUEUE_2026-05-10.md`; local NumPy refit reconfirms rank/conductor confounding. DPAC hygiene is captured in `formal-conjectures/DPAC_NEXT_STEPS_2026-05-10.md` with explicit finite log-prime phase replacement hypotheses. The GL(1) short-note outline is claim-safe only with the NDC limit conditional on Perron-leading.
+
+## [2026-05-10] decision | Koyama sprint claim-safe synthesis
+
+Recovered the Koyama sprint after the old Codex session stalled at compaction. All five worker lanes had completed: GL(1) theorem registry, EC-NDC normalization matrix, EC local-factor theory, Path B rank/conductor deconfounding, and DPAC hygiene. Integrated them into `handoff-2026-05-09-followup/KOYAMA_RESEARCH_DECISION_MEMO_2026-05-10.md`.
+
+Claim-safe decisions: corrected GL(1) NDC constant is `e^{-gamma}` but remains `CONDITIONAL` until Perron-leading is dependency-closed; local Perron residue is `PROVED`; corrected `B_infty` with `BPC1`, `BPC2`, and `T_{>=3}` is `PROVED`; original `1/zeta(2)` NDC is `FALSIFIED`; EC simple universality is `FALSIFIED`; no EC normalization is promoted; Path B isolated rank-only claim is conductor-confounded; DPAC LI bridge is unsafe without log-prime phase independence. Updated `HANDOFF.md` and `L2_facts/farey-claim-ledger.md` to remove older unconditional NDC-promotion language.
+
+## [2026-05-10] audit | Koyama Path B local records
+
+Resumed the Koyama trail and found two live layers: the May 9 NDC/AK/DPAC pivot and the older `koyama-shared` GL(2) Path B C1-ensemble track. Aristotle DPAC returned `COMPLETE_WITH_ERRORS`; downloaded `formal-conjectures/DPAC_full.lean` and the result tarball, but the theorem and LI bridge remain `sorry`. Audited local `PATH_B_20FORMS.csv`: EC-only rank signal is real but weaker than the README claim, with `log(conductor)` explaining more variance than rank alone. Added `koyama-shared/results/PATH_B_LOCAL_AUDIT_2026-05-10.md` and a README caveat; next useful experiment needs more rank-3/4 and rank-matched conductor controls.
+
+## [2026-05-10] result | Conjecture B+ Mertens-restricted DIRECTLY DISPROVED
+
+Continuation research resolved the ambiguity left after `(MERTENS-LB-MR)` failed. Direct streaming verifier `handoff-2026-05-09-followup/B_plus_direct_verify.c` computes the Lean-canonical
+
+`B(p) = 2 * Σ_{f ∈ F_{p-1}} D_{p-1}(f) * δ_p(f)`
+
+with the same rank/shift conventions as `CrossTermPositive.lean`; it first reproduces the 5 Lean `native_decide` anchors: `B(5)=-2/9`, `B(11)=-55/36`, `B(13)=271/385`, `B(19)=2905619/680680`, `B(23)=14608817/6348888`.
+
+Two Mertens-restricted counterexamples verified:
+
+| p | M(p) | T(p-1) | |F_{p-1}| | B(p) | B/C |
+|---:|---:|---:|---:|---:|---:|
+| 237,733 | -20 | +6.657511751192 | 17,178,971,883 | -3.018492026640170e10 | -10.543163714952145 |
+| 243,799 | -3 | -0.834778256610 | 18,066,862,385 | -9.190201299936827e9 | -3.052438040867344 |
+
+`p=243799` reproduces the older March `experiments/B_VERIFY_243799.md` B-value, now tied to the May 9 R1 definitions and Mertens/T checks. The diagnostic `C` differs by +1 from the old file because the new verifier includes boundary `f=1` where `δ=1` and `D=0`; `B` is unchanged.
+
+Net: **B+ positivity itself is false**, not merely unproved. R1/SP-1a/SP-2 remain valuable exact identities; Paper B must be reframed as a negative/identity map. Handoff updated to drop B+ as a proof target and suggest a counterexample cluster map instead.
+
+Deliverable: `handoff-2026-05-09-followup/B_plus_direct_counterexamples.md`.
+
 ## [2026-05-09] result | F2 PASS (Open Prob 7.2 RESOLVED) + F3 BLOCKED-FOR-EXACT
 
 **F2 (cross-Selberg slope diagnosis) verdict: STRUCTURAL FIX, conf 0.94.** The 12-19% slope mismatch was missing axis poles at `s = iπk/log 3` from the local p=3 ramified factor `(1 − 3^{−2s})^{−1}`. Each axis pole has `|N^{s_k}| = 1` — oscillating in log N, not decaying with N (so "extend to N=10⁶" wouldn't have worked). Leading k=±1 amplitude ≈ 0.168 with period `Δ log N = 2 log 3 ≈ 2.197`. The original N-grid `{100, 300, 1000, ..., 30000}` is spaced by exactly half the period — maximal aliasing. Period-paired slopes (N → 9N) match c₀ = -0.303 to within 0.5-7%. Full predicted formula matches direct sieved sum to |error| ≤ 1.7×10⁻⁷ at N=3×10⁵ using 30 ζ-zeros + 100 axis poles. Bug was hiding in plain sight: `Delta_machine_extended.md §3.2` line 318 correctly identifies axis poles, line 322 leaves them as placeholder. Open Problem 7.2 demoted from open list to resolved 2026-05-09; spawned successor Open 7.2': characterize axis-pole multiplicities for higher-rank cross-Selberg pairs at shared ramified primes as function of Satake data.
