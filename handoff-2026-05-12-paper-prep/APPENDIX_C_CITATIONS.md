@@ -37,35 +37,62 @@ communicated by S. J. Miller. Page 235, equation (1.4).
 **Role in the manuscript.** Specialized to a simple noncentral zero
 ($m = 1$, $\rho \ne \tfrac12$) it gives Hypothesis AK of §X.4.3.
 
-## C.2 Akatsuka (2013), Lemma 2.1 and equation (2.5)
+## C.2 Akatsuka (2013), equation (2.5) (within the proof of Lemma 2.1)
 
 **Source.** H. Akatsuka, *The Euler product for the Riemann
 zeta-function in the critical strip*, preprint, dated February 14,
-2013; published in Journal of Number Theory (date as in the project's
-internal record). Project copy: `akatsukaDRH3.pdf`.
+2013 (the project's copy is at `akatsukaDRH3.pdf`); cited in the
+literature in connection with the framework for partial Euler
+products at points $1/2 \le \mathrm{Re}(s) < 1$. The result we cite
+appears in the proof of Lemma 2.1, at p. 7–8 of the preprint.
 
-**Role of Lemma 2.1 / equation (2.5).** Mertens-type estimate for
-the prime sum on the boundary line:
-\[
-\sum_{p \le X}\frac{1}{p^{1 + 2it_0}}
-\;=\; c(t_0) \;+\; O\bigl((\log X)^{-1}\bigr),
-\qquad t_0 \ne 0.
-\]
-Proved by partial summation against the prime number theorem with
-explicit error term. **Unconditional**: the result does not require
-RH or any GRH-type hypothesis.
+**Verbatim quotation, equation (2.5), p. 7.**
 
-**Verbatim quotation.** *(To be inserted from the PDF before
-submission. The internal proof packets `Koyama_B_infty_proof.md`
-§4.4 and `Koyama_C1_subleading_proof.md` §6 reproduce the
-character analogue and use this result; the literal quote of
-Lemma 2.1 and eq. (2.5) is in the PDF at
-`~/Downloads/akatsukaDRH3.pdf`.)*
+> *"$$\sum_{p \le X} \frac{1}{p^{1 + 2it_0}}
+> \;=\; \begin{cases}\log\log X + c(0) + O((\log X)^{-1}) & \text{if } t_0 = 0,\\
+> c(t_0) + O((\log X)^{-1}) & \text{if } t_0 \ne 0,
+> \end{cases}\qquad (2.5)$$*
+> *"where $c(t_0)$ is a constant determined by $t_0$ and the implied
+> constants depend only on $t_0$."*
 
-**Role in the manuscript.** Establishes the analytic continuation of
-the $k = 1$ Dirichlet prime sum
-$\sum_p \chi^2(p)\,p^{-2\rho}$ to the boundary line, underwriting
-Theorem X.4.1 (Appendix A §A.2.3 and A.6).
+The proof is by partial summation against the prime number theorem
+with explicit error term (Akatsuka 2013, eq. (2.6)–(2.7), p. 8).
+The argument uses $\pi(x) = x/\log x + O(x/(\log x)^2)$. The
+result is **unconditional** — it does not assume RH or any GRH-type
+hypothesis. The character analogue
+$\sum_{p \le X} \chi^2(p) / p^{1 + 2i\tau}$ for primitive $\chi$,
+$\tau \ne 0$ follows by the same partial-summation argument with
+$\chi^2$-twisted PNT (the Dirichlet PNT with explicit error term).
+
+**Role in the manuscript.** Establishes the boundary-line convergence
+of the $k = 1$ prime sum $\sum_p \chi^2(p)\,p^{-2\rho}$, underwriting
+the analytic continuation of identity (4.3) of Appendix A to
+$s = 2\rho$ on $\mathrm{Re}(s) = 1$. Used in Appendix A §A.2.3 and §A.6.
+
+**Related framework facts from the same paper.** Akatsuka 2013
+Theorem 1 gives the equivalence between Riemann-Hypothesis-flavored
+hypotheses and convergence of the normalized partial Euler product
+for $\zeta(s)$ on the critical line (p. 2–3); the
+**limiting constant for $\zeta$** at a simple non-trivial zero
+$s_0 = \tfrac12 + i t_0$ with $t_0 \ne 0$ is $(s_0 - 1)\,\zeta'(s_0)$
+(specialization of eq. (1.5), p. 3, at $m = 1$, $t_0 \ne 0$;
+the $(s_0 - 1)$ prefactor reflects $\zeta$'s simple pole at $s = 1$).
+Aoki–Koyama (2023) extends this to Dirichlet $L$-functions for
+non-principal $\chi$, where $L(s, \chi)$ is entire and the
+$(s_0 - 1)$ prefactor is absent, leaving the manuscript's $e^{-\gamma}$
+constant; see §C.1.
+
+**Numerical scale in Akatsuka 2013.** Akatsuka tested the analogous
+$\zeta$ statement numerically at $x \in (10^9,\,2 \cdot 10^9] \cap 10^6\,\mathbb{Z}$
+(Akatsuka 2013, Table 1 + Figure 1, p. 20). The empirical envelope
+$R(1/2; x) := E(1/2; x)/C(1/2) \in [0.975, 1.036]$ on that range. He
+also computes the Möbius-side partial sum
+$M_2(1/2; x) := \sum_{2 \le n \le x} \mu(n)/(n^{1/2}\log n)$ over the
+same range and reports oscillation in $[-0.022, +0.014]$ around the
+predicted limit $\int_{1/2}^\infty (1/\zeta(s) - 1)\,ds = -1.77779\ldots$
+(eq. (7.4) of Akatsuka, p. 23, and Figure 3, p. 24). The
+$\zeta$-side numerical scale is larger than our Dirichlet-side scale
+($K \le 10^7$ in our work), but for a different object.
 
 ## C.3 Inoue (2021), Theorem 1, p. 3
 
