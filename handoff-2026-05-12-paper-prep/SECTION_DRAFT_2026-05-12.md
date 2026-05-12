@@ -767,35 +767,61 @@ $\mathrm{BPC}_2$ and $T_{\ge 3}$ are tightened from $p \le 10^6$ to
 $p \le 10^7$**, so the truncation in those absolutely convergent sums
 is *not* the source of the gap with the L1 residual.
 
-**Honest reconciliation with the K = 2·10⁶ mpmath residuals.** The
-mpmath proof packet (`Koyama_B_infty_proof.md §7.1`) reports
-$|T_K - \mathrm{RHS}|$ at $K = 2\cdot 10^6$ of $4.24 \cdot 10^{-5}$
-for $\chi_5$ and $3.33 \cdot 10^{-5}$ for $\chi_{11}$ — about an
-order of magnitude *smaller* than the PARI values at $K = 10^7$. We
-do not yet have a complete explanation; both calculations agree on
-the *identity itself* at the $\sim 10^{-3}$ level on every pair, but
-the apparent slowdown of the residual envelope from $\sim 4 \cdot
-10^{-5}$ at $K = 2\cdot 10^6$ to $\sim 5\cdot 10^{-4}$ at $K = 10^7$
-is in the *wrong direction* for a $K^{-1/2}/\log K$ decay rate
-(which predicts $\sim 1.9 \cdot 10^{-5}$ at $K = 10^7$ given $4 \cdot
-10^{-5}$ at $K = 2\cdot 10^6$). Likely candidates: (a) the
-$\sim 4 \cdot 10^{-5}$ figure at $K = 2 \cdot 10^6$ may be
-artificially small because of a methodology choice in
-`Koyama_B_infty.py` (e.g., a partial-summation convention in the
-$T_K$ evaluation, or component-sum truncation choices that happen
-to align with the partial $T_K$ at that specific $K$);
-(b) the empirical decay rate may genuinely be slower than the
-predicted $K^{-1/2}/\log K$; (c) precision-level numerical artifacts
-at the $\sim 10^{-4}$ scale are simply dominating at the cross-stack
-comparison level. We **do not retract** the identity itself
-(Theorem X.4.1 is established analytically in Appendix A,
-independent of finite-$K$ residual rates), but we **retract any
-quantitative claim of $K^{-1/2}/\log K$ decay**: the available
-cross-stack evidence at $K = 10^7$ is bounded by $\sim 10^{-3}$,
-consistent with the identity but not yet a clean slope measurement
-of the decay rate. A consistent-methodology mpmath rerun at $K = 10^7$
-(estimated $\sim 6$ hours single-core) is the queued cross-check that
-would resolve this.
+**Honest cross-stack reconciliation at $K = 2 \cdot 10^6$.** To
+diagnose the apparent gap with the L1 mpmath figures of $\sim 3$–$4
+\cdot 10^{-5}$ at $K = 2\cdot 10^6$, we ran the PARI script at the
+*same* $K = 2 \cdot 10^6$ (with $\mathrm{BPC}_2 / T_{\ge 3}$
+component sums also at $p \le 2 \cdot 10^6$, identical truncation
+conventions to the L1 calculation). The result:
+
+| Pair | $|T_K - \mathrm{RHS}|$ at $K = 2\cdot 10^6$ (mpmath L1, proof packet) | $|T_K - \mathrm{RHS}|$ at $K = 2\cdot 10^6$ (PARI L2, this work) |
+|---|---:|---:|
+| $\chi_5$ | $4.24 \cdot 10^{-5}$ | $4.84 \cdot 10^{-4}$ |
+| $\chi_{11}$ | $3.33 \cdot 10^{-5}$ | $6.54 \cdot 10^{-4}$ |
+
+The two stacks **disagree by about an order of magnitude on the
+residual** at the same $K$, on the same $(\chi, \rho)$ pairs, with
+identical truncation conventions. Critically:
+
+- The $T_K(\chi, \rho)$ values themselves **match between mpmath
+  and PARI to 5+ significant digits** on each component (real and
+  imaginary). The disagreement is *not* in the partial-Möbius
+  spectroscope sum.
+- The RHS values, by contrast, **disagree at the $\sim 3$–$5
+  \cdot 10^{-4}$ level** on each of $\mathrm{BPC}_2$ and
+  $T_{\ge 3}$ (the two absolutely convergent component sums).
+  Adding the disagreements gives the observed RHS gap.
+
+This means **the L1 mpmath proof-packet residuals at $K = 2 \cdot
+10^6$ and the PARI L2 residuals at the same $K$ are computed under
+*systematically different* conventions for the component sums
+$\mathrm{BPC}_2$ and $T_{\ge 3}$**, and the gap is in the
+component-sum-evaluation methodology, not in the identity. The
+correct PARI residuals at $K = 2 \cdot 10^6$ are $\sim 5 \cdot
+10^{-4}$, and they remain at $\sim 5 \cdot 10^{-4}$ at $K = 10^7$ —
+so the PARI residual is **bounded but does not visibly decay** on
+the available data, which is *not* what a $K^{-1/2}/\log K$ rate
+would predict.
+
+We do not retract Theorem X.4.1 itself — Appendix A establishes the
+identity analytically, independent of any finite-$K$ rate. **We do
+retract the quantitative claim that the empirical residual decays as
+$K^{-1/2}/\log K$**: the cross-stack evidence shows the residual
+envelope is bounded by $\sim 5 \cdot 10^{-4}$ on both clean-character
+pairs across $K \in [2 \cdot 10^6, 10^7]$ in the PARI methodology,
+which is **consistent with the identity at the $10^{-3}$ level** but
+does not support an empirical decay rate claim.
+
+The L1 mpmath residual of $\sim 4 \cdot 10^{-5}$ appears to be a
+methodology artifact (e.g., a different series-acceleration choice
+for the component sums, or a partial-summation cancellation that
+exploits a coincidental alignment between the truncations of $T_K$
+and the components at $K = 2 \cdot 10^6$). A consistent-methodology
+rerun reproducing the precise mpmath `Koyama_B_infty.py` summation
+strategy under PARI — or vice versa — is the cross-stack
+verification that would close this. Until that is done, we present
+only the **$\sim 5 \cdot 10^{-4}$ bound at $K = 10^7$** as the
+honest cross-language verification of Theorem X.4.1.
 
 ### X.5.5 Elliptic-curve and $\Delta$-form spectroscope ensemble
 
