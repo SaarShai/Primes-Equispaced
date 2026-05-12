@@ -1,0 +1,12 @@
+family,name,status,detail
+gate,G0_reproducibility,PASS,finite_positive=True; anchor_ratio=1.3473754929960748; anchor_max_cv=0.063297427334436704
+gate,G1_primary_survival,PASS,"old=True; loo_k=7/7; leave_one_curve=True,True,True"
+kernel_representatives,G2_none,PASS,smoothstep(none):True; hann(none):True; riesz(2):True; exponential(3):True; gaussian(0.50):True
+kernel_representatives,G2_continuous,PASS,smoothstep(none):True; hann(none):True; riesz(2):True; exponential(3):True; gaussian(0.50):True
+kernel_representatives,G2_discrete_both,PASS,smoothstep(none):True; hann(none):True; riesz(2):True; exponential(3):True; gaussian(0.50):True
+permutation,G4_rank_specificity,PASS,nonidentity_pass=0/5; identity_score=0.3614560483477629; best_nonidentity=0_1_2 score=1.3345275042237115
+permutation,G4_curve_label_specificity,PASS,nonidentity_pass=0/5; identity_score=0.3614560483477629; best_nonidentity=11a1_37a1_389a1 score=1.3345275042237115
+gate,G5_tail_stability,PASS,tail_ratio=1.4023997514636641; tail_max_cv=0.05158036084512034; max_abs_slope=0.024791742743129768
+leave_one_curve,37a1,True,ratio=1.1597262732614431; cv=0.040314798205058552
+leave_one_curve,11a1,True,ratio=1.3467724722662582; cv=0.015589562672353854
+leave_one_curve,389a1,True,ratio=1.1612847818639083; cv=0.063297427334436704

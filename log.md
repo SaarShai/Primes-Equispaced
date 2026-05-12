@@ -1,5 +1,69 @@
 # Log
 
+## [2026-05-11] implementation | Breakthrough plan execution artifacts
+
+- Added `handoff-2026-05-11-implementation-wave/IMPLEMENTATION_SYNTHESIS_2026-05-11.md` plus H1, H2, GL1, Theorem B, B+, and EC implementation packets.
+- Result: `IMPLEMENTED_NO_THEOREM_PROMOTED`. The main new H1 action is `Degree2WeakShiftedNeg_q(E)` for `q=3,4` plus `RootedInvProdCorr_p(E,A)` for `p=3/2,4/3`, replacing the square Palm-first queue.
+- Patched `handoff-2026-05-11-all-in-wave/EC_STOCHASTIC_NULLS_2026-05-11.py` with `--gate c2-prime`, fresh seed-start arguments, and CV/Pareto p-values needed for the predeclared C2-prime gate.
+- Patched `paper/Delta_machine_paper_theorem_registry.md` and `paper/Delta_machine_paper_compositio_draft.md` with `Proposition 2.5b` on ramified correction divisors and axis-pole multiplicities. This is a local Delta theorem-registry patch with no Theorem B impact.
+- B+ remains classification only; the 9.94-core-hour tier 1B bridge was not launched in this implementation wave.
+
+## [2026-05-11] research | Post-Wave-5 weak separated BFMT pivot
+
+- Added `handoff-2026-05-11-post-wave5-pivot/WEAK_SEPARATED_BFMT_PIVOT_2026-05-11.md`.
+- Result: `RIGOROUS_REDUCTION`, no theorem promoted. The key correction is target-level: Wave 5 killed the strong zeta-quality separated theorem `sum_F |L'|^-1 << T^(1+delta)`, but rank-one H1 only needs the separated contribution to be `o(T^2)`.
+- New exact audit target: `WeakSeparatedEC-BFMT-H1-Audit(E,c)`, checking whether the conductor-normalized BFMT ledger actually proves `sum_F |L'|^-1 << T^(3/2+delta)`. If yes, the separated simple-zero branch is H1-harmless despite the Wave 5 no-go.
+- If the weak separated audit passes, the first H1 blocker shifts to the bad-set complement. Best new route: `ClusterShiftDerivativeComparison(E,A)`, comparing bad-zero `1/L'(rho)` to shifted values `1/L(rho+1/logT)` with inverse-product cluster weights, then pairing shifted negative moments with rooted inverse-product correlations `J_m(T;A)`. This avoids the killed zero-centered `MinMod` route.
+
+## [2026-05-11] research | Breakthrough Wave 5, conductor-normalized BFMT no-go
+
+- Added `handoff-2026-05-11-breakthrough-wave-5/DISPATCH_MANIFEST_2026-05-11.md`, twelve Wave 5 agent packets, and `handoff-2026-05-11-breakthrough-wave-5/BREAKTHROUGH_WAVE_5_SYNTHESIS_2026-05-11.md`.
+- Result: `NO_GO` for the current separated EC-BFMT route at `k=1/2`; no H1 theorem promoted. The Wave 4 `Section5-GL2-ConductorAudit(E,k=1/2)` blocker resolves negatively.
+- Exact obstruction: fixed-curve GL2 has `log C_E(t)=2logT+O_E(1)`, so BFMT Lemma 2.4 into Section 5 `(5.13)` changes the coefficient from `2k` to `4k`. At `k=1/2`, the small-block sign condition becomes `a(2d-1)>2`, unavailable in the BFMT support regime. Prime powers, bad primes, zero-sampling, derivative-shift, polylog, and `T^o(1)` losses are not the obstruction.
+- New first H1 blocker: `ConductorNormalized-BFMT-Section5-SignLemma(E,k=1/2)` or a genuinely different degree-2 separated negative-moment theorem. Downstream blockers remain `MinMod`/direct complement tail and multiple-zero disposition.
+- Bad-set updates: no source-closed `MinMod(E,c,A,h)`; `ProductLayer` reduces to rooted inverse-product correlation `J_m(T;A)`; direct complement tail remains a fixed-EC reciprocal-derivative upper-tail gap. Multiple-zero packaging should use `H1-MultipleZeroDisposition(E,W,r)`, not BFMT-specific naming.
+- H2 pointwise finite part is conditionally assembled with full `R_S1^+`; blockers remain `RegularLogLeftEdge`, `Sym2-ZeroLedger-RegularLog`, and right-profile cancellation. GL1 sharp remains `NO_GO`; Delta-2.5b is an execution-plan lane only; EC numerics are diagnostic only.
+
+## [2026-05-11] research | Breakthrough Wave 4, H1 BFMT closure stack
+
+- Added `handoff-2026-05-11-breakthrough-wave-4/DISPATCH_MANIFEST_2026-05-11.md`, twelve agent packets, and `handoff-2026-05-11-breakthrough-wave-4/BREAKTHROUGH_WAVE_4_SYNTHESIS_2026-05-11.md`.
+- Result: `RIGOROUS_REDUCTION`, no source-closed H1 theorem promoted. The H1 finite-box theorem is now a complete conditional stack with no silent `H1-SimpleReciprocalBudget` assumption.
+- Main advance: both separated-branch local GL2 inputs are conditionally available. `GL2-ShiftDerivativeComparison(E,c)` closes under fixed-newform RH, and `GL2-BFMT-PrimePolynomialLowerBound(E)` closes in conductor-normalized form with prime powers and bad primes costing only `O_E(loglogT)`.
+- New top blocker: `Section5-GL2-ConductorAudit(E,k=1/2)`. Agent 01 changes the BFMT Section 5 bookkeeping because the GL2 archimedean/conductor term uses `C_E(t) asymp_E T^2`, not the literal zeta scale.
+- Remaining independent H1 blockers after that audit: bad-set complement via `MinMod(E,c,A,h)+ProductLayer(E,c,A,h)` or equivalent reciprocal-tail theorem, and `H1-MultipleEffectiveDegree-BFMT(E,W,r)` for multiple zeros. H2 improved to a conditional S1 endpoint with full `R_S1^+` right-lip handling; GL1 sharp remains `NO_GO`; Delta-2.5b is the best secondary theorem-shaped task; EC numerics stay diagnostic only.
+
+## [2026-05-11] research | BFMT EC transcription at k=1/2
+
+- Added `handoff-2026-05-11-homogeneous-bfmt-dpmv/BFMT_EC_TRANSCRIPTION_K_HALF_2026-05-11.md`.
+- Result: `CONDITIONAL_TRANSCRIPTION`, no final H1 theorem promoted. The coefficient side of the separated BFMT route transcribes to fixed EC/newform coefficients: insert `lambda_E(p)` in the BFMT prime polynomials and use homogeneous zero-sampling for the expanded Dirichlet polynomials.
+- New reduction: the Milinovich-Ng/Landau-Gonek DPMV theorem is no longer the missing input for the separated branch. Under `GL2-ShiftDerivativeComparison(E,c)` and `GL2-BFMT-PrimePolynomialLowerBound(E)`, the separated simple-zero sum satisfies `sum_(gamma in F_E(T,c)) |L'(E,1+i gamma)|^(-1) <<_(E,c,delta) T^(1+delta)`.
+- Remaining blockers: no source-backed GL2 BFMT prime-polynomial lower-bound packet was found by narrow repo/wiki retrieval or old-session query; `EC-BFMT-BadSetBudget(E,c)` remains independent and open.
+
+## [2026-05-11] research | zero-sampling route to homogeneous BFMT DPMV
+
+- Added `handoff-2026-05-11-homogeneous-bfmt-dpmv/ZERO_SAMPLING_HOMOGENEOUS_BFMT_DPMV_2026-05-11.md`.
+- Added `handoff-2026-05-11-homogeneous-bfmt-dpmv/ZERO_SAMPLE_BFMT_SUBSTITUTION_AUDIT_2026-05-11.md`.
+- Result: `RIGOROUS_REDUCTION`, no final H1 theorem promoted. New route around the top-10 Milinovich-Ng obstruction: use a homogeneous zero-sampling large-sieve bound for EC zero ordinates,
+  `sum_{T<gamma<=2T}|A(1/2+i gamma)|^2 <<_E T(logT)^3 sum |a_n|^2/n` for Dirichlet polynomial length `N<=T`.
+- This bypasses both killed MN paths: no coefficient-free additive error multiplied by `(s_0!)^2`, and no MN conditions (39)/(40), so the BFMT P2.6 terminal factorial coefficients are legal inside the natural `l2` norm.
+- The substitution audit passes for the visible BFMT Propositions 2.5-2.7 and Section 5 bookkeeping: the extra fixed polylog factor is absorbed by existing `T^delta` slack. New exact task: `BFMT-EC-Transcription(E,k=1/2)`, writing the GL2 logarithmic approximation/coefficient families with `lambda_f` factors and then verifying the separated negative first derivative moment. If this passes, separated-zero H1 advances to the independent `EC-BFMT-BadSetBudget(E,c)` blocker.
+
+## [2026-05-11] research | Top 10 challenge wave complete
+
+- Launched six GPT-5.5 xhigh agents for the top-10 challenge wave, then after closing completed worker slots launched the four previously blocked agents. All ten packets are complete.
+- Updated `handoff-2026-05-11-top10-challenge-wave/DISPATCH_MANIFEST_2026-05-11.md` and `handoff-2026-05-11-top10-challenge-wave/TOP10_CHALLENGE_WAVE_SYNTHESIS_2026-05-11.md`.
+- Result: `NO_GO` for the direct Milinovich-Ng route to `BFMT-CoefficientDPMV(E,k=1/2)`. Agent 01 kills BFMT P2.5 due to nonhomogeneous MN errors after `(s_0!)^2`; Agent 02 kills BFMT P2.6 against MN 4.1/4.3 due to condition (40) failure and the `T^(2/3)` support wall.
+- Surviving H1 target is now `Homogeneous-GL2-BFMT-DPMV(E,k=1/2)`, a stronger new theorem input with BFMT-compatible homogeneous errors, plus the independent `EC-BFMT-BadSetBudget(E,c)`. Agent 07 packages the rank-one finite-box theorem only conditionally on those inputs plus finite-box and multiple-zero hypotheses.
+- Agent 08 keeps H2 as a `RIGOROUS_REDUCTION`: use `S1-CutPlane-RenormalizedLogGrowth(E,W,eta;c)` or stronger kernel decay, and retain/subtract the full right cut-lip term `R_S1^+(K;E,W,eta,c)` when `Re a>0`; the first Watson term `B_S1^+` alone is not enough.
+- Agent 09 is `NO_GO` for transferring H1 DPMV/PV to GL1 sharp cutoff. The GL1 coefficient `1/((lambda-rho)L'(lambda,chi))` creates a separate harmonic-weight problem needing `GL1-ActualMovingShellPV` or a critical weighted reciprocal-derivative theorem.
+- Agent 10 selects Delta-2.5b registry execution as the highest-leverage secondary task, with explicit no Theorem B impact. B+ remains compute-ready sign-cluster work; DPAC remains Lean bridge hygiene.
+
+## [2026-05-11] research | GL2 Landau-Gonek DPMV split
+
+- Added `handoff-2026-05-11-dpmv-continuation/GL2_LANDAU_GONEK_DPMV_SPLIT_2026-05-11.md`.
+- Result: `RIGOROUS_REDUCTION`, no theorem promoted. The Wave 3 `GL2-LandauGonek-DPMV(E,theta)` target splits into source-closed GL2 Landau-Gonek explicit formula, source-backed but not BFMT-complete modular-form zero mean-value tools, and one live coefficient audit.
+- New exact target: `BFMT-CoefficientErrorCheck(E)`, checking that BFMT `k=1/2` coefficient families satisfy the Milinovich-Ng Proposition 4.1 hypotheses and absorb the GL2 convolution/off-diagonal errors. If it closes, the separated-zero BFMT route survives; if it fails, that route is dead before the bad-set budget.
+
 ## [2026-05-11] research | Breakthrough wave 3, 10 GPT-5.5 xhigh agents
 
 - Launched and integrated the Wave 3 plan in `handoff-2026-05-11-breakthrough-wave-3/BREAKTHROUGH_WAVE_3_SYNTHESIS_2026-05-11.md`; dispatch manifest is complete.
@@ -946,3 +1010,34 @@ Terminology: **ComCom** = our compound-compression project (disambiguate from Cl
 - Added `raw/farey-archive/correspondence/koyama-gmail-record-2026-05-11.md`.
 - Updated `correspondence/KOYAMA.md` and `projects/farey-research/koyama-correspondence.md`.
 - Latest incoming: 2026-05-04 19:46:20 +09:00, Koyama received the full replication bundle and will get back after the proposal deadline.
+
+## [2026-05-11] research | Post-Wave-5 weak separated BFMT continuation
+
+- Picked up the blocked Codex session `019e17fa-5d0c-7172-a633-3faef2109769` from the post-Wave-5 pivot.
+- Added `handoff-2026-05-11-post-wave5-pivot/WEAK_SEPARATED_BFMT_H1_AUDIT_2026-05-11.md`.
+- Result: `CONDITIONAL_PASS_FOR_SEPARATED_H1`, not full H1 promotion. Source audit of BFMT Theorem 1.1 and Section 5 shows the GL2 conductor-doubled second branch gives `T^(3/2+delta)` for the separated simple-zero reciprocal first-derivative sum under Wave 4 local inputs and zero-sampling transcription; this is `o(T^2)` for rank-one H1.
+- Added `handoff-2026-05-11-post-wave5-pivot/CLUSTER_SHIFT_DERIVATIVE_COMPARISON_2026-05-11.md`.
+- Result: `CONDITIONAL_LOCAL_THEOREM`. Local factorization around a bad zero gives an exact comparison from `L'(rho)^(-1)` to `L(rho+1/logT)^(-1)` times explicit inverse-product cluster weights; the noncluster factor is `T^o(1)` under the same fixed-newform RH/local zero-count inputs as the separated derivative-shift comparison.
+- Added `handoff-2026-05-11-post-wave5-pivot/SHIFTED_CLUSTER_WEIGHT_CRITERION_2026-05-11.md`.
+- Result: `RIGOROUS_REDUCTION`. Hölder closes the bad set from `ShiftedNeg_q(E)` with exponent `q+1/2` and `RootedInvProdCorr_p(E,A)` with `p=q/(q-1)`, giving `R_B(T,c) << T^(2-1/(2q)+epsilon+o(1))`. Best next audit is fixed `q>3/2`, so pair-layer cubic repulsion would have `p<3`; higher clusters still need singular inverse-product control.
+- Added `handoff-2026-05-11-post-wave5-pivot/DEGREE2_WEAK_SHIFTED_NEG_Q2_AUDIT_2026-05-11.md`.
+- Result: `CONDITIONAL_PASS_FOR_SHIFTED_Q2`. BFMT Lemma 2.4 directly gives the shifted-value negative second moment `sum |L(rho+1/logT)|^{-2} << T^(5/2+epsilon)` under Wave 4 local inputs, zero-sampling transcription, and the GL2 conductor-doubled ledger. Paired with `RootedInvProdCorr_2(E,A)`, Cauchy would give `R_B(T,c) << T^(7/4+epsilon+o(1))`.
+- Added `handoff-2026-05-11-post-wave5-pivot/ROOTED_INVPROD_CORR2_REDUCTION_2026-05-11.md`.
+- Result: `RIGOROUS_REDUCTION_NOT_PROVED`. `RootedInvProdCorr_2(E,A)` follows from the exponential square rooted statistic `sum_m C_A^(2m)/m! J_m^(2)(T;A) << TlogT`; a close-pair law with exponent `beta>2` closes only `J_1^(2)`, while higher layers need singular rooted Palm/repulsion control or direct summable `J_m^(2)` bounds.
+- Added `handoff-2026-05-11-post-wave5-pivot/ROOTED_PALM_REPULSION_SOURCE_AUDIT_2026-05-11.md`.
+- Result: `SOURCE_GAP`. Rudnick-Sarnak/Hejhal-style n-level correlation inputs use smooth restricted-support tests and do not supply the uniform singular inverse-square rooted moment; PCC/density-one simplicity also does not control exceptional close clusters.
+- Added `handoff-2026-05-11-post-wave5-pivot/UNIFORM_SMALL_GAP_SOURCE_HUNT_2026-05-11.md`.
+- Result: `SOURCE_GAP_WITH_PARTIAL_INPUTS`. Chirre-Goncalves, GL2/Selberg-class gaps, Inoue 2026, and Hall-type evidence are adjacent but prove existence/proportion/evidence, not the uniform small-gap upper law `Q_1(T;u) << TlogT u^beta` with `beta>2` or higher rooted singular moments.
+- Added `handoff-2026-05-11-post-wave5-pivot/H1_SIMPLE_ZERO_CONDITIONAL_STACK_2026-05-11.md`.
+- Result: `CONDITIONAL_SIMPLE_ZERO_CLOSURE`. Under Wave 4 local inputs, zero-sampling transcription, and `RootedPalmRepulsionExpMoment_2(E,A)`, the separated branch gives `T^(3/2+epsilon)` and the bad branch gives `T^(7/4+epsilon+o(1))`, hence `R_E,1^simp(T)=o(T^2)`.
+- Added `handoff-2026-05-11-post-wave5-pivot/H1_MULTIPLE_ZERO_DISPOSITION_CURRENT_2026-05-11.md`.
+- Result: `RIGOROUS_PACKAGING_REDUCTION`. The current H1 package should use `H1-MultipleZeroDisposition(E,W,r)`, not `H1-MultipleEffectiveDegree-BFMT`. Multiple-zero residues must be absent, kernel-killed, retained in a profile, or central-negligible by effective degree and aggregate control; rank-one unretained critical-line terms need `D_alpha<=0` and `Z_0^mult(u)=o(u)`.
+- Remaining blocker: prove/audit `RootedPalmRepulsionExpMoment_2(E,A)` or equivalent uniform small-gap/Palm majorant; multiple-zero source closure and finite-box contour hypotheses remain separate.
+
+## [2026-05-11] research | H1 displacement wall-breaking synthesis
+
+- Launched and collected focused GPT-5.5 xhigh wall-break agents on Beurling-Selberg/restricted n-level density, finite-cluster truncation, direct reciprocal tails, higher-q escape, determinantal Palm transfer, and adversarial route ranking.
+- Added `handoff-2026-05-11-post-wave5-pivot/H1_DISPLACEMENT_WALL_SYNTHESIS_2026-05-11.md`.
+- Result: `WALL_NARROWED_NOT_BROKEN`, not theorem promotion. The best simple-zero H1 route is now the q=3 displacement stack: `Degree2WeakShiftedNeg_3(E)` plus `PrimeScaleRootedPalmBox_beta(E,A;W)` for some `beta>3/2`, all rooted cluster sizes, summable constants. This gives the conditional bad-set bound `R_B(T,c) << T^(11/6+epsilon+o(1))`.
+- Main no-go: restricted Rudnick-Sarnak/Hejhal n-level density cannot prove the shrinking rooted box law by positive Beurling-Selberg majorants because the needed bandwidth is `Delta~1/r`, while the legal support is bounded. Pair/Palm cubic repulsion is model-correct but only closes the one-mate layer.
+- Finite cluster truncation and direct reciprocal-tail bypass do not break the wall from checked sources. A hard near-cluster cap would suffice but is unsourced; a Palm-free route would require fixed-EC/GL2 reciprocal derivative negative moments not found in current source packets.

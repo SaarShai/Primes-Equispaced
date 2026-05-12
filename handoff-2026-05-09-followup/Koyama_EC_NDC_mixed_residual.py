@@ -29,13 +29,14 @@ import sys
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Iterable, List, Sequence
+from typing import Dict, Iterable, List, Optional, Sequence, Set
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 DEFAULT_SWEEP = SCRIPT_DIR / "Koyama_EC_NDC.csv"
 DEFAULT_AP_TABLE = SCRIPT_DIR / "Koyama_EC_NDC_ap_table.csv"
 DEFAULT_REPORT = SCRIPT_DIR / "Koyama_EC_NDC_mixed_residual_2026-05-10.md"
+REPORT_DATE = "2026-05-11"
 
 CURVES = ("37a1", "11a1", "389a1")
 ZETA2 = math.pi * math.pi / 6.0
@@ -157,10 +158,27 @@ def read_ap_table(path: Path) -> List[APRow]:
     return rows
 
 
+def primes_upto(n: int) -> List[int]:
+    if n < 2:
+        return []
+    sieve = bytearray(b"\x01") * (n + 1)
+    sieve[0:2] = b"\x00\x00"
+    for p in range(2, int(n**0.5) + 1):
+        if sieve[p]:
+            start = p * p
+            sieve[start : n + 1 : p] = b"\x00" * len(range(start, n + 1, p))
+    return [i for i in range(2, n + 1) if sieve[i]]
+
+
+def table_complete_for_k(table_primes: Set[int], k: int) -> bool:
+    return all(p in table_primes for p in primes_upto(k))
+
+
 def residual_for_row(row: SweepRow, ap_rows: Sequence[APRow]) -> ResidualRow:
     p_table_max = ap_rows[-1].p if ap_rows else 0
     p_product_max = min(row.K, p_table_max)
-    product_complete = p_table_max >= row.K
+    table_primes = {ap_row.p for ap_row in ap_rows}
+    product_complete = table_complete_for_k(table_primes, row.K)
 
     log_R_mix = 0.0
     log_C2_tail = 0.0
@@ -216,9 +234,10 @@ def coefficient_of_variation(values: Sequence[float]) -> float:
 
 
 def metrics(rows: Sequence[ResidualRow]) -> List[MetricRow]:
+    suffix = "" if rows and all(row.product_complete for row in rows) else "_truncated"
     candidates = {
-        "D_mix_good_truncated": lambda r: r.D_mix_good,
-        "D_2_good_truncated": lambda r: r.D_2_good,
+        f"D_mix_good{suffix}": lambda r: r.D_mix_good,
+        f"D_2_good{suffix}": lambda r: r.D_2_good,
     }
     out: List[MetricRow] = []
     for name, getter in candidates.items():
@@ -311,10 +330,12 @@ def markdown_report(
     ap_table_path: Path,
     elapsed: float,
     max_k: int,
+    report_path: Optional[Path] = None,
 ) -> str:
     complete = all(row.product_complete for row in rows)
     max_table_prime = max((row.p_table_max for row in rows), default=0)
     max_seen_k = max((row.K for row in rows), default=0)
+    report_target = report_path if report_path is not None else DEFAULT_REPORT
     promotion = [m for m in metric_rows if m.promoted]
     outcome = "no normalization promoted"
     if promotion:
@@ -323,7 +344,7 @@ def markdown_report(
     lines: List[str] = [
         "# Koyama EC-NDC mixed residual audit",
         "",
-        f"Date: 2026-05-10",
+        f"Date: {REPORT_DATE}",
         f"Outcome: **{outcome}**.",
         "",
         "## Method",
@@ -411,11 +432,27 @@ def markdown_report(
             "",
             "## Verification",
             "",
-            f"- Command: `python3 {Path(__file__).name} --max-k {max_k} --write-report {DEFAULT_REPORT.name}`.",
+            f"- Command: `python3 {Path(__file__).name} --max-k {max_k} --ap-table {ap_table_path} --write-report {report_target}`.",
             f"- Wall time: `{elapsed:.3f}s`.",
             f"- Rows computed: `{len(rows)}`.",
-            "- K=300000 command not run: `python3 Koyama_EC_NDC_mixed_residual.py --max-k 300000 --write-report Koyama_EC_NDC_mixed_residual_2026-05-10.md`.",
-            "- Reason: no complete K=100000 mixed product from available `a_p` source; K=300000 would be table-truncated to p=541.",
+        ]
+    )
+    if complete:
+        lines.extend(
+            [
+                "- K=300000 command not run in this report: `python3 Koyama_EC_NDC_mixed_residual.py --max-k 300000 --ap-table <complete-ap-table> --write-report <report.md>`.",
+                f"- Reason: source sweep rows are available only through K=`{max_seen_k}`; K=300000 needs recomputing `D_K*zeta(2)` as well as extending the `a_p` table.",
+            ]
+        )
+    else:
+        lines.extend(
+            [
+                "- K=300000 command not run: `python3 Koyama_EC_NDC_mixed_residual.py --max-k 300000 --write-report Koyama_EC_NDC_mixed_residual_2026-05-10.md`.",
+                f"- Reason: no complete K={max_k} mixed product from available `a_p` source; K=300000 would be table-truncated to p={max_table_prime}.",
+            ]
+        )
+    lines.extend(
+        [
             "",
             "## Residual Rows",
             "",
@@ -447,12 +484,21 @@ def markdown_report(
             "",
             "## Confidence",
             "",
-            "Low-to-medium for normalization decisions: formulas were implemented directly from the sprint theory note, "
-            "but the product is truncated at p=541 for every available checkpoint. High for the negative promotion decision "
-            "on this truncated diagnostic.",
-            "",
         ]
     )
+    if complete:
+        lines.append(
+            "Medium for normalization decisions: formulas were implemented directly from the sprint theory note, "
+            "and the residual products are complete for the source sweep checkpoints through K=100000. "
+            "High for the negative promotion decision at this checkpoint."
+        )
+    else:
+        lines.append(
+            "Low-to-medium for normalization decisions: formulas were implemented directly from the sprint theory note, "
+            f"but the product is truncated at p={max_table_prime} for at least one checkpoint. High for the negative "
+            "promotion decision on this truncated diagnostic."
+        )
+    lines.append("")
     return "\n".join(lines)
 
 
@@ -480,6 +526,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         args.ap_table,
         elapsed,
         args.max_k,
+        args.write_report,
     )
     if args.write_report:
         args.write_report.write_text(report + "\n")

@@ -949,19 +949,43 @@ half-plane that contains the critical strip. Apply Mellin--Perron to
 (of degree equal to the multiplicity of `L^{(+)}` at `s = 0`, which is
 typically zero or one). The contour-shift estimate is standard given
 the convexity bound for `1/L^{(+)}`; this bound is unconditional in
-the listed cases. The 12% mismatch between predicted slope `−0.303`
-and observed slope `−0.27` for `(L_1, L_2) = (ζ, L(\cdot, χ_3))` at
-`N = 3 \cdot 10^4` (slope-fit gives `−0.361` with 19% mismatch) is
-honestly recorded; sharper numerics at `N = 10^6` are listed as Open
-Problem 10.2. ∎
+the listed cases. For `(L_1, L_2) = (ζ, L(\cdot, χ_3))`, the former
+12–19% slope mismatch is resolved in §5.6 by the ramified factor
+`(1 - 3^{-2s})^{-1}` and its log-3 axis-pole lattice. This repair is
+local to the ramified factor and does not remove the higher-rank
+Selberg-class conditionality of Proposition 2.5. ∎
 
-This proposition is **stated as a proposition** (confidence 0.78–
-0.85), explicitly reflecting:
-(a) the conditional dependence on Selberg-class membership of `L^{(+)}`
-in higher rank;
-(b) the 12–19% numerical mismatch in the slope fit at moderate `N`,
-which suggests either a higher-order term we have not extracted or a
-finite-`N` lattice-of-zeros effect; both are Open Problem 10.2.
+This proposition is **stated as a proposition** (confidence 0.78–0.85),
+explicitly reflecting the conditional dependence on Selberg-class membership
+of `L^{(+)}` in higher rank. The local ramified divisor bookkeeping used in
+the resolved ζ × L(s, χ_3) case is isolated as Proposition 2.5b.
+
+> **Proposition 2.5b (Ramified correction divisor and axis-pole multiplicities).**
+> Let `S_ram` be a finite set of primes. For each `p in S_ram`, let
+> `P_p(z)=c_p prod_alpha (z-alpha)^{m_{p,alpha}}` with `P_p(0) != 0`.
+> Put `E_ram(s)=prod_{p in S_ram} P_p(p^{-s})^{-1}` and
+> `I(s)=A(s)M_W(s)E_ram(s)`, where `A(s)` is the remaining
+> global/unramified meromorphic factor and `M_W(s)` is the Mellin
+> transform factor. If `alpha = r exp(i theta)`, then the local
+> solutions of `p^{-s}=alpha` are
+> `s_{p,alpha,k} = -log r/log p - i(theta + 2*pi*k)/log p`, `k in Z`.
+> The local contribution lies on the imaginary axis if and only if
+> `|alpha|=1`. With divisor-order convention `ord_{s0}(zero)>0` and
+> `ord_{s0}(pole)<0`,
+> `ord_{s0} I = ord_{s0}(A M_W)
+> - sum_{p,alpha,k: s_{p,alpha,k}=s0} m_{p,alpha}`.
+> Hence the actual pole multiplicity at `s0` is `max(0,-ord_{s0} I)`.
+> Zeros of `A(s)M_W(s)` may cancel local ramified poles; in the
+> no-cancellation case, coincident local root multiplicities add.
+> Confidence: 0.90.
+
+*Proof.* Since `P_p(0) != 0`, every root `alpha` is nonzero. The map
+`s -> p^{-s}` has derivative `-log(p)p^{-s}`, nonzero at every preimage
+of `alpha`; therefore a root of `P_p` of multiplicity `m` pulls back to
+a zero of `P_p(p^{-s})` of multiplicity `m`, and hence to a pole of
+`P_p(p^{-s})^{-1}` of multiplicity `m`. Product divisor orders add,
+including the orders of `A(s)` and `M_W(s)`. The axis criterion is
+`Re(s_{p,alpha,k})=-log|alpha|/log p`. ∎
 
 ### 4.3. Functoriality: `Δ : S → E` is a monoid homomorphism
 
@@ -1352,11 +1376,11 @@ extension.)
 | `L(s, Δ)` | 3 | `2 · 10^3` | 10 | unconditional verification (degree 2) |
 | `L(s, E_{11a1})` | 3 | `2 · 10^3` | 10 | unconditional verification (degree 2) |
 | `Δ^2` (`μ * μ`) | 5 | `3 · 10^4` | 200 | falsifies strong-form polylog, confirms `√N (log N)^{k − 1}` |
-| Cross-Selberg (`ζ × χ_3`) | slope fit | `3 · 10^4` | 50 + 50 | proposition with 12–19% slope mismatch |
+| Cross-Selberg (`ζ × χ_3`) | 6+ | `3 · 10^5` | 30 ζ zeros + 100 log-3-axis poles | proposition with ramified-axis correction |
 
 The aggregate of §5 supports Theorems 2.1, 2.2, 2.3 unconditionally
 in the listed cases; supports Theorem 2.8 (multi-`L` convolution); and
-supports Proposition 2.5 with the noted slope mismatch. The
+supports Proposition 2.5 with the ramified-axis correction of Proposition 2.5b. The
 corrected `√N (log N)^{k − 1}` bound for the higher-order `Δ^k` is
 **confirmed at the 5σ level** by the regression in §5.5. The
 strong-form polylog conjecture is **falsified** (no `√N` amplitude).
@@ -1654,21 +1678,19 @@ unconditional version is a major open problem in random-matrix
 asymptotics, comparable to proving the Hughes--Keating--O'Connell
 conjecture itself.
 
-### Open 7.2. Cross-Selberg sharp slope: ζ × L(s, χ_3) at N = 10^6
+### Open 7.2'. Higher-rank ramified correction data
 
-> **Open Problem 7.2.** Push the numerical verification of Proposition
-> 2.5 (cross-Selberg pair) for `(L_1, L_2) = (ζ, L(s, χ_3))` to `N =
-> 10^6` (currently `N = 3 · 10^4` per §5.6). Distinguish at the 5σ
-> level the predicted slope `−0.303` from the observed slope `−0.27`
-> (12% mismatch) or `−0.361` via slope fit (19% mismatch). Decide
-> whether the gap is due to (a) the Macdonald--Cauchy error term
-> `ε_p(s)` of Lemma 4.2.1 (which would contribute a `(\log N)^{1/2}`
-> shift), or (b) the 50-zero truncation tail.
+> **Open Problem 7.2'.** For general cross-Selberg pairs, compute the
+> finite ramified correction polynomials `P_p`, identify all unit-circle
+> roots, axis-pole collisions, and possible cancellations against
+> `A(s)M_W(s)`. Proposition 2.5b gives the local divisor formula once
+> the `P_p` are known. The remaining work is higher-rank ramified input
+> data and global continuation, not the resolved ζ × L(s, χ_3) slope
+> mismatch.
 
-This open problem is computational. PARI/GP at `mp.dps = 50` and
-`zerotype = exact` should reach `N = 10^6` in `~ 6` hours of CPU on a
-single core. Resolution would either confirm or refute the
-unconditional cross-Selberg slope at higher confidence.
+For ζ × L(s, χ_3), the ramified factor `(1 - 3^{-2s})^{-1}` gives
+`P_3(z)=1-z^2`, roots `+1` and `-1`, and the axis lattice
+`s=i*pi*k/log 3`. This is already incorporated in §5.6.
 
 ### Open 7.3. Plus-tensor Selberg-class membership in higher rank
 
@@ -1818,11 +1840,12 @@ JPSS-type results and is the same difficulty as Open 7.3).
 
 ### 7.13. Summary of open problems
 
-The 12 open problems (7.1–7.12) are stratified by tractability:
+The 12 open problems (7.1–7.12, with 7.2 replaced by 7.2') are
+stratified by tractability:
 
 | Problem | Tractability (heuristic) | Confidence on resolution |
 |---------|--------------------------|--------------------------|
-| 7.2 | Easy (CPU-bound) | 0.95 |
+| 7.2' | Tractable (ramified local data) | 0.65 |
 | 7.5 | Tractable (Lean engineering) | 0.70 |
 | 7.4 | Hard but tractable | 0.45 |
 | 7.6 | Hard | 0.55 |
@@ -1835,7 +1858,7 @@ The 12 open problems (7.1–7.12) are stratified by tractability:
 | 7.9 | Lehmer's conjecture | < 0.05 |
 | 7.11 | Out of reach | < 0.01 |
 
-Several of these (7.2, 7.5, 7.8) are within reach of a 6–12 month
+Several of these (7.2', 7.5, 7.8) are within reach of a 6–12 month
 project. Others (7.1, 7.3, 7.9, 7.11, 7.12) are major open problems
 where the Δ-machine offers reformulation rather than progress.
 
@@ -2289,7 +2312,7 @@ implementation of the Δ-machine framework. The `selberg_class.py`,
 modules together implement the master theorem and its extensions to
 40-digit precision, reproduce the numerical tables of §5, and serve
 as a foundation for further numerical investigation (notably Open
-Problem 7.2 at `N = 10^6`).
+Problem 7.2' on higher-rank ramified correction data).
 
 End of §9.
 
@@ -2805,6 +2828,7 @@ applied consistently. Per the registry summary:
 | Theorem 2.3 | k = 2 residual bound (corrected) | 0.97 | Theorem |
 | Conjecture 2.4 | Polylog limiting (RMT-conditional) | 0.75 | Conjecture |
 | Proposition 2.5 | Cross-Selberg | 0.78–0.85 | Proposition |
+| Proposition 2.5b | Ramified correction divisor | 0.90 | Proposition |
 | Proposition 2.6 | Functoriality | 0.88 | Proposition |
 | Proposition 2.7 | Inverse direction | 0.84 | Proposition |
 | Theorem 2.8 | Multi-`L` convolution | 0.93 | Theorem |
@@ -2910,11 +2934,11 @@ following changes from the source bundle `Delta_machine_paper_bundle
    limiting-distribution under HKO + GUE phase-randomness; confidence
    0.75 (RMT-conditional).
 
-3. **Cross-Selberg (Proposition 2.5):** The 12% slope mismatch at `N
-   = 3 \cdot 10^4` for `(L_1, L_2) = (ζ, L(s, χ_3))` is honestly
-   acknowledged. Open Problem 7.2 lists the sharper numerics at `N =
-   10^6` to distinguish the predicted `−0.303` from observed `−0.27`
-   slope.
+3. **Cross-Selberg (Proposition 2.5):** The former 12–19% slope
+   mismatch for `(L_1, L_2) = (ζ, L(s, χ_3))` is resolved by the
+   ramified factor `(1 - 3^{-2s})^{-1}` and the log-3 axis-pole
+   lattice. Proposition 2.5b isolates the local divisor bookkeeping;
+   higher-rank ramified correction data remain Open Problem 7.2'.
 
 4. **Functoriality (Proposition 2.6):** The category `E` of explicit-
    formula data is now defined explicitly (§3.7), with morphisms and
@@ -3352,8 +3376,8 @@ applications cover smoothed Mertens Ω-bounds, Sato--Tate finite-`T`
 packaging, Liouville and squarefree counting, and twisted-Möbius and
 cusp-form Möbius. The Lean stub formalizes the algebraic backbone;
 the `deltamachine` Sage/SymPy package gives a reference numerical
-implementation. Twelve open problems --- ranging from CPU-tractable
-(Open 7.2) to deep (Open 7.1, 7.3, 7.9, 7.11) --- structure the
+implementation. Twelve open problems --- ranging from tractable
+(Open 7.2') to deep (Open 7.1, 7.3, 7.9, 7.11) --- structure the
 research programme. A definitive Murty--Murty 2009 chapter check
 before external submission is mandatory; we do not believe the master
 theorem appears verbatim there but record the audit gap honestly.
@@ -3542,13 +3566,14 @@ clauses for higher rank. The unconditional cases are `(d_1, d_2) ∈
 \{(1, 1), (1, 2), (2, 2)\}` via Liu--Wang--Ye 2005. Higher rank is
 listed as Open Problem 7.3.
 
-**Red flag #2: 12% slope mismatch in cross-Selberg numerics
-(§5.6).** A referee will note that the numerical agreement is at the
-12–19% level, far from the 5σ standard.
+**Red flag #2: stale cross-Selberg slope-mismatch language (§5.6).**
+The old 12–19% mismatch is no longer a live numerical gap for
+ζ × L(s, χ_3); it was a missing ramified-axis-pole term.
 
-*Disposition.* Acknowledged. Listed as Open Problem 7.2 (sharper
-numerics at `N = 10^6`). The proposition is **stated as proposition**
-(confidence 0.78), reflecting the gap.
+*Disposition.* Repaired by §5.6 and Proposition 2.5b. Proposition 2.5
+remains a **proposition** because higher-rank plus-tensor continuation
+and ramified correction data are still conditional/open, not because
+of the resolved ζ × L(s, χ_3) slope.
 
 **Red flag #3: Strong-form polylog conjecture demotion (§5.5,
 Theorem 2.3).** The original strong-form claim of `Delta_machine
@@ -4194,6 +4219,7 @@ Below is a one-page summary table.
 | Theorem 2.3 | Corrected `√N (\log N)^{k−1}` bound | Theorem | 0.97 |
 | Conjecture 2.4 | Polylog limiting (RMT-conditional) | Conjecture | 0.75 |
 | Proposition 2.5 | Cross-Selberg pair | Proposition | 0.78–0.85 |
+| Proposition 2.5b | Ramified correction divisor | Proposition | 0.90 |
 | Proposition 2.6 | Functoriality `Δ : S → E` | Proposition | 0.88 |
 | Proposition 2.7 | Inverse direction | Proposition | 0.84 |
 | Theorem 2.8 | Multi-`L` convolution | Theorem | 0.93 |
@@ -4244,9 +4270,9 @@ structural observation.
 modular and elliptic-curve cases. The smoothed framework gives
 genuinely sharper agreement than the unsmoothed analogue.
 
-(4) **Open problems are stratified by tractability.** Open 7.2 (CPU-
-bound) and Open 7.5 (Lean engineering) are within 6–12 months of
-work. Open 7.1, 7.3, 7.9, 7.11, 7.12 are major problems of
+(4) **Open problems are stratified by tractability.** Open 7.2'
+(higher-rank ramified correction data) and Open 7.5 (Lean engineering)
+are within 6–12 months of work. Open 7.1, 7.3, 7.9, 7.11, 7.12 are major problems of
 analytic number theory; the Δ-machine reformulates but does not
 solve them.
 

@@ -114,8 +114,10 @@ For each theorem / proposition / conjecture appearing in the paper draft
   Consequently, `Σ_n μ_{L_1}(n) μ_{L_2}(n) W(n/N) =
   P_{L_1, L_2}(log N) + (zero oscillation) + R_triv + O_A(N^{-A})`
   where `P_{L_1, L_2}` is a polynomial of degree at least 1.
-  Verified for ζ × L(s, χ_3) at leading-log order, slope predicted
-  −0.303, observed −0.27 (12 % match) at N = 3·10^4.
+  For ζ × L(s, χ_3), the old 12–19 % slope mismatch is resolved by the
+  ramified factor `(1 - 3^{-2s})^{-1}`: the full explicit formula with
+  the log-3 axis-pole lattice matches the direct sieved sum to 6+ digit
+  accuracy at `N = 3 * 10^5`.
 - **Source.** `Delta_machine_multi_L.md §3.2 / §5`,
   `Delta_machine_extended.md §3.2`,
   `Delta_machine_paper_bundle.md Theorem 2.4`.
@@ -127,9 +129,34 @@ For each theorem / proposition / conjecture appearing in the paper draft
   (Cauchy identity); Liu–Wang–Ye 2005 Theorem 1.1 (unconditional
   ζ × GL(2)); Jacquet–Piatetski-Shapiro–Shalika 1983 (general
   Rankin–Selberg).
-- **Comments.** The 12 % mismatch at N = 3·10^4 (and 19 % via slope
-  fit) is honestly acknowledged in §5.3 of the draft; sharper
-  numerics (N = 10^6) are listed as Open Problem 10.2.
+- **Comments.** The former ζ × L(s, χ_3) slope mismatch is not a
+  pending numerical problem. It was a missing ramified-axis-pole term
+  in the §5.6 explicit formula. The higher-rank/global conditionality
+  of Proposition 2.5 is unchanged.
+
+### Proposition 2.5b (Ramified correction divisor and axis-pole multiplicities)
+
+- **Statement.** Let `S_ram` be a finite set of primes and
+  `E_ram(s)=prod_{p in S_ram} P_p(p^{-s})^{-1}`, with each
+  `P_p(0) != 0`. If
+  `P_p(z)=c_p prod_alpha (z-alpha)^{m_{p,alpha}}`, then the local
+  divisor of `E_ram` is supported at
+  `s=-log|alpha|/log p - i(arg alpha + 2*pi*k)/log p`, `k in Z`.
+  The contribution is on the imaginary axis if and only if
+  `|alpha|=1`. For the full integrand `I(s)=A(s)M_W(s)E_ram(s)`,
+  `ord_{s0} I = ord_{s0}(A M_W)
+  - sum_{p,alpha,k: s_{p,alpha,k}=s0} m_{p,alpha}`. Hence zeros of
+  `A(s)M_W(s)` may cancel local ramified poles; without cancellation,
+  coincident local multiplicities add.
+- **Source.** `handoff-2026-05-11-breakthrough-wave-5/AGENT11_DELTA_2_5B_REGISTRY_EXECUTION_PLAN_2026-05-11.md`;
+  `handoff-2026-05-09-followup/Cross_Selberg_slope_diagnosis.md`.
+- **Confidence.** **0.90.**
+- **Bucket.** Proposition.
+- **Load-bearing citations.** None new. This is local finite complex
+  algebra after the finite ramified polynomials `P_p` are known.
+- **Comments.** This does not assert higher-rank Selberg-class
+  membership, global plus-tensor continuation, BCL transfer, or any
+  Theorem B upgrade.
 
 ### Proposition 2.6 (Functoriality)
 
@@ -296,9 +323,13 @@ strong evidence — they are stated as **Open Problems**.
 - **Open 10.1 — Higher-order polylog limiting distribution
   (unconditional).** Replace Conjecture 2.4 by an unconditional
   statement.
-- **Open 10.2 — Cross-Selberg sharp slope.** Push ζ × L(s, χ_3)
-  numerical verification to N = 10^6 to distinguish predicted
-  slope − 0.303 from observed − 0.361 at the 5σ level.
+- **Open 10.2 — Higher-rank ramified correction data.** For general
+  cross-Selberg pairs, compute the finite ramified correction
+  polynomials `P_p`, identify all axis-pole collisions, and check
+  cancellations against `A(s)M_W(s)`. Proposition 2.5b gives the
+  local divisor formula once the `P_p` are known; the remaining work is
+  higher-rank input data and global continuation, not the resolved
+  ζ × L(s, χ_3) numerical slope.
 - **Open 10.3 — Plus-tensor Selberg-class membership in higher
   rank.** Beyond GL(2), the identification `F_{L_1, L_2}(s) ↔
   Selberg-class L-function` is conditional on JPSS-type results.
@@ -330,7 +361,8 @@ strong evidence — they are stated as **Open Problems**.
 | Theorem 2.2 (Higher-order Δ^k)     | Proposition | 0.92 | Proven for k ≤ 2; k ≥ 3 schematic |
 | Theorem 2.3 (k = 2 residual bound) | Theorem    | 0.97 | Direct from 2.1 + 2.2 |
 | Conjecture 2.4 (Polylog limiting)  | Conjecture | 0.75 | RMT-conditional |
-| Proposition 2.5 (Cross-Selberg)    | Proposition | 0.82 | Macdonald–Cauchy + LWY 2005 |
+| Proposition 2.5 (Cross-Selberg)    | Proposition | 0.82 | Macdonald–Cauchy + LWY 2005; F2 ramified-axis correction included |
+| Proposition 2.5b (Ramified correction divisor) | Proposition | 0.90 | Local finite algebra; no new external theorem claim |
 | Proposition 2.6 (Functoriality)    | Proposition | 0.88 | Conrey–Ghosh + algebra |
 | Proposition 2.7 (Inverse direction)| Proposition | 0.84 | Selberg orthogonality |
 | Theorem 2.8 (Multi-L convolution)  | Theorem    | 0.93 | Direct corollary of 2.1 |

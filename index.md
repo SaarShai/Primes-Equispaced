@@ -14,3 +14,29 @@ Compact catalog. Update after material wiki changes.
 - Breakthrough wave 2 synthesis 2026-05-11: `handoff-2026-05-11-breakthrough-wave-2/BREAKTHROUGH_WAVE_2_SYNTHESIS_2026-05-11.md`
 - Breakthrough wave 3 plan 2026-05-11: `handoff-2026-05-11-breakthrough-wave-3-plan.md`
 - Breakthrough wave 3 synthesis 2026-05-11: `handoff-2026-05-11-breakthrough-wave-3/BREAKTHROUGH_WAVE_3_SYNTHESIS_2026-05-11.md`
+- GL2 Landau-Gonek DPMV split 2026-05-11: `handoff-2026-05-11-dpmv-continuation/GL2_LANDAU_GONEK_DPMV_SPLIT_2026-05-11.md`
+- Top 10 challenge wave synthesis 2026-05-11 (complete 10-agent wave): `handoff-2026-05-11-top10-challenge-wave/TOP10_CHALLENGE_WAVE_SYNTHESIS_2026-05-11.md`
+- Zero-sampling homogeneous BFMT DPMV route 2026-05-11: `handoff-2026-05-11-homogeneous-bfmt-dpmv/ZERO_SAMPLING_HOMOGENEOUS_BFMT_DPMV_2026-05-11.md`
+- Zero-sample BFMT substitution audit 2026-05-11: `handoff-2026-05-11-homogeneous-bfmt-dpmv/ZERO_SAMPLE_BFMT_SUBSTITUTION_AUDIT_2026-05-11.md`
+- BFMT EC transcription at k=1/2 2026-05-11: `handoff-2026-05-11-homogeneous-bfmt-dpmv/BFMT_EC_TRANSCRIPTION_K_HALF_2026-05-11.md`
+- Breakthrough wave 4 manifest 2026-05-11: `handoff-2026-05-11-breakthrough-wave-4/DISPATCH_MANIFEST_2026-05-11.md`
+- Breakthrough wave 4 synthesis 2026-05-11 (H1 BFMT conditional stack): `handoff-2026-05-11-breakthrough-wave-4/BREAKTHROUGH_WAVE_4_SYNTHESIS_2026-05-11.md`
+- Breakthrough wave 5 manifest 2026-05-11: `handoff-2026-05-11-breakthrough-wave-5/DISPATCH_MANIFEST_2026-05-11.md`
+- Breakthrough wave 5 synthesis 2026-05-11 (conductor-normalized BFMT no-go): `handoff-2026-05-11-breakthrough-wave-5/BREAKTHROUGH_WAVE_5_SYNTHESIS_2026-05-11.md`
+- Post-Wave-5 weak separated BFMT pivot 2026-05-11: `handoff-2026-05-11-post-wave5-pivot/WEAK_SEPARATED_BFMT_PIVOT_2026-05-11.md`
+- Weak separated BFMT H1 audit 2026-05-11: `handoff-2026-05-11-post-wave5-pivot/WEAK_SEPARATED_BFMT_H1_AUDIT_2026-05-11.md`
+- Cluster shift derivative comparison 2026-05-11: `handoff-2026-05-11-post-wave5-pivot/CLUSTER_SHIFT_DERIVATIVE_COMPARISON_2026-05-11.md`
+- Shifted cluster weight criterion 2026-05-11: `handoff-2026-05-11-post-wave5-pivot/SHIFTED_CLUSTER_WEIGHT_CRITERION_2026-05-11.md`
+- Degree2 weak shifted negative moment q=2 audit 2026-05-11: `handoff-2026-05-11-post-wave5-pivot/DEGREE2_WEAK_SHIFTED_NEG_Q2_AUDIT_2026-05-11.md`
+- Rooted inverse product correlation 2 reduction 2026-05-11: `handoff-2026-05-11-post-wave5-pivot/ROOTED_INVPROD_CORR2_REDUCTION_2026-05-11.md`
+- Rooted Palm repulsion source audit 2026-05-11: `handoff-2026-05-11-post-wave5-pivot/ROOTED_PALM_REPULSION_SOURCE_AUDIT_2026-05-11.md`
+- Uniform small gap source hunt 2026-05-11: `handoff-2026-05-11-post-wave5-pivot/UNIFORM_SMALL_GAP_SOURCE_HUNT_2026-05-11.md`
+- H1 simple zero conditional stack 2026-05-11: `handoff-2026-05-11-post-wave5-pivot/H1_SIMPLE_ZERO_CONDITIONAL_STACK_2026-05-11.md`
+- H1 multiple zero disposition current 2026-05-11: `handoff-2026-05-11-post-wave5-pivot/H1_MULTIPLE_ZERO_DISPOSITION_CURRENT_2026-05-11.md`
+- H1 displacement wall synthesis 2026-05-11: `handoff-2026-05-11-post-wave5-pivot/H1_DISPLACEMENT_WALL_SYNTHESIS_2026-05-11.md`
+- Implementation wave synthesis 2026-05-11: `handoff-2026-05-11-implementation-wave/IMPLEMENTATION_SYNTHESIS_2026-05-11.md`
+- H1 q>2 bad-set route 2026-05-11: `handoff-2026-05-11-implementation-wave/H1_Q_GT_2_BAD_SET_ROUTE_2026-05-11.md`
+- H2 right-lip renormalized endpoint 2026-05-11: `handoff-2026-05-11-implementation-wave/H2_RIGHT_LIP_RENORMALIZED_ENDPOINT_2026-05-11.md`
+- GL1 sharp Perron boundary 2026-05-11: `handoff-2026-05-11-implementation-wave/GL1_SHARP_PERRON_BOUNDARY_2026-05-11.md`
+- B+ tier 1B execution boundary 2026-05-11: `handoff-2026-05-11-implementation-wave/BPLUS_TIER1B_EXECUTION_BOUNDARY_2026-05-11.md`
+- EC C2-prime implementation 2026-05-11: `handoff-2026-05-11-implementation-wave/EC_C2_PRIME_IMPLEMENTATION_2026-05-11.md`

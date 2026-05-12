@@ -9,6 +9,12 @@ sources:
   - handoff-2026-05-09-followup/KOYAMA_RESEARCH_DECISION_MEMO_2026-05-10.md
   - handoff-2026-05-09-followup/Koyama_Perron_leading_gap_audit_2026-05-10.md
   - handoff-2026-05-09-followup/Koyama_EC_NDC_mixed_residual_2026-05-10.md
+  - handoff-2026-05-09-followup/Koyama_EC_NDC_build_ap_table.py
+  - handoff-2026-05-09-followup/Koyama_EC_NDC_ap_table_100000.csv
+  - handoff-2026-05-09-followup/Koyama_EC_NDC_mixed_residual_complete_2026-05-11.md
+  - handoff-2026-05-09-followup/Koyama_EC_NDC_L2E_complete_check_2026-05-11.md
+  - handoff-2026-05-09-followup/KOYAMA_MOONSHOT_SYNTHESIS_2026-05-11.md
+  - handoff-2026-05-09-followup/Koyama_EC_NDC_extended_sweep_2026-05-11.md
   - koyama-shared/results/PATH_B_CONTROL_QUEUE_2026-05-10.md
   - formal-conjectures/DPAC_NEXT_STEPS_2026-05-10.md
   - handoff-2026-05-09-followup/Koyama_GL1_claimsafe_note_outline_2026-05-10.md
@@ -31,7 +37,7 @@ and DPAC has exact safe replacement hypotheses for the unsafe LI bridge.
 | Workstream | Output | Status | Coordinator decision |
 |---|---|---|---|
 | GL(1) Perron-leading audit | `Koyama_Perron_leading_gap_audit_2026-05-10.md` | `DEFER` | Do not promote `c_K = log K/L' + o(log K)`. Local residue is `PROVED`; global nonlocal Perron remainder is still missing. |
-| EC mixed residual | `Koyama_EC_NDC_mixed_residual.py`, `Koyama_EC_NDC_mixed_residual_2026-05-10.md` | `NUMERICAL` / `DEFER` | No normalization promoted. Both tested truncated diagnostics are much worse than the current best cross-curve ratio `1.42083`. |
+| EC mixed residual | `Koyama_EC_NDC_mixed_residual.py`, `Koyama_EC_NDC_mixed_residual_complete_2026-05-11.md` | `NUMERICAL` / `DEFER` | No normalization promoted. Complete good-prime products through `K=100000` still have cross-curve ratios about `11`, far worse than the benchmark `1.42083`. |
 | Path B conductor controls | `PATH_B_CONTROL_QUEUE_2026-05-10.md` | `DEFER` | Run B1 and B2 conductor-matched controls before any rank-isolated sentence. Rank-4 remains a candidate-only queue. |
 | DPAC hygiene | `DPAC_NEXT_STEPS_2026-05-10.md` | `CONDITIONAL` / `DEFER` | Replace the unsafe LI bridge with explicit finite log-prime phase-avoidance hypotheses or a cited external phase theorem. |
 | Claim-safe GL(1) note | `Koyama_GL1_claimsafe_note_outline_2026-05-10.md` | `CONDITIONAL` | Short note can safely state AK under DRH/EDRH, local Perron residue, corrected `B_infty`, and negative EC/simple-constant results. |
@@ -74,29 +80,50 @@ Status: `NUMERICAL`, with promotion status `DEFER`.
 Agent B implemented the requested mixed residual script using the inverse
 convention `mu_E(p^2)=p` and avoiding the older `a_p^2-p` normalization.
 
-Coordinator rerun:
+Initial coordinator rerun used the bundled 100-prime table and was correctly
+marked truncated. The 2026-05-11 continuation removed that limitation by
+building a complete `a_p` table through `K=100000`. The later 2026-05-11
+moonshot then extended the base EC-NDC sweep itself through `K=1000000`.
+
+Complete-data commands:
 
 ```bash
-python3 handoff-2026-05-09-followup/Koyama_EC_NDC_mixed_residual.py --max-k 100000 --write-report handoff-2026-05-09-followup/Koyama_EC_NDC_mixed_residual_2026-05-10.md
-python3 handoff-2026-05-09-followup/Koyama_EC_NDC_mixed_residual.py --max-k 100000 --emit-csv
+python3 handoff-2026-05-09-followup/Koyama_EC_NDC_build_ap_table.py --max-k 100000 --out handoff-2026-05-09-followup/Koyama_EC_NDC_ap_table_100000.csv
+python3 handoff-2026-05-09-followup/Koyama_EC_NDC_mixed_residual.py --max-k 100000 --ap-table handoff-2026-05-09-followup/Koyama_EC_NDC_ap_table_100000.csv --write-report handoff-2026-05-09-followup/Koyama_EC_NDC_mixed_residual_complete_2026-05-11.md
 python3 -m py_compile handoff-2026-05-09-followup/Koyama_EC_NDC_mixed_residual.py
 ```
 
-Result:
+Complete `K=100000` result:
 
 | normalization | cross-curve ratio | max within-curve CV | promoted |
 |---|---:|---:|---:|
-| `D_mix_good_truncated` | `11.380239` | `0.16197044` | false |
-| `D_2_good_truncated` | `10.973293` | `0.16197044` | false |
+| `D_mix_good` | `11.365809` | `0.084975752` | false |
+| `D_2_good` | `10.955575` | `0.084965682` | false |
 
-The current best benchmark remains cross-curve ratio `1.42083` with better
-within-curve stability. Therefore neither residual wins even as a truncated
-diagnostic.
+The current best benchmark remains cross-curve ratio `1.42083`. The complete
+good-prime products improve within-curve stability enough to hit the old CV
+scale, but cross-curve collapse fails by almost an order of magnitude.
 
-Limitation: the available `Koyama_EC_NDC_ap_table.csv` stops at `p=541`, so
-the script correctly labels every `K=100000` row as incomplete. The
-`K=300000` run was not attempted because the complete `K=100000` product
-precondition was not met.
+Key `K=100000` values:
+
+| curve | D_mix | D_2 | complete |
+|---|---:|---:|---:|
+| `37a1` | `0.2834173726` | `0.3327962619` | true |
+| `11a1` | `0.8464364855` | `1.022145728` | true |
+| `389a1` | `0.0728996818` | `0.09133237325` | true |
+
+Moonshot extended-sweep result through `K=1000000`:
+
+| normalization | cross-curve ratio | max within-curve CV | promoted |
+|---|---:|---:|---:|
+| `D_zeta2_over_L2E_rank` | `1.423821385` | `0.09669211205` | false |
+| `D_zeta2` | `5.853565279` | `0.09670092958` | false |
+| `D_2_good` | `10.64951807` | `0.09601279473` | false |
+| `D_mix_good` | `11.04841098` | `0.09601227645` | false |
+
+This supersedes the earlier `K=300000` blocker note. The base sweep is now
+available through `K=1000000`; no tested sharp-cutoff normalization is
+promoted.
 
 ## Path B conductor-control queue
 
@@ -174,8 +201,10 @@ The short-note skeleton is safe if it keeps this hierarchy:
 
 1. Prove or cite the shifted Perron nonlocal remainder lemma. This is the only
    path to promoting the GL(1) NDC statement.
-2. Extend `Koyama_EC_NDC_ap_table.csv` to the actual requested `K=100000`
-   products, then rerun the mixed residual script.
+2. If pursuing EC residuals further, stop treating the four tested sharp-cutoff
+   normalizations as promotion candidates. Next useful work is a derived
+   bad-prime factor, a no-go theorem for this normalization class, or a
+   genuinely different smoothed/complex-zero diagnostic.
 3. On a PARI/GP machine with `pari-elldata`, execute B1 and B2 Path B conductor
    controls before drafting any rank-isolated claim.
 4. Patch `DPAC_full.lean` documentation and theorem names around finite
@@ -189,7 +218,10 @@ Completed in this sprint:
 
 - EC script compile: pass.
 - EC report rerun at `--max-k 100000`: pass.
-- EC CSV emit: pass; 15 rows, all incomplete because `p_table_max=541`.
+- EC CSV emit: pass; 15 complete rows after the 2026-05-11 `a_p` table
+  extension.
+- EC extended sweep: pass; 21 complete rows through `K=1000000`, max prime
+  `999983`, all `product_complete=True`.
 - EC baseline parse: reproduced the existing `D_K*zeta(2)` values at
   `K=100000` for `37a1`, `11a1`, and `389a1`.
 - Path B regression refit: pass using stdlib CSV plus NumPy, no pandas,

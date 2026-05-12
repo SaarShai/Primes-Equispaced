@@ -4,11 +4,12 @@ title: Koyama Correspondence
 type: project
 domain: project
 tier: semantic
-confidence: 0.9
+confidence: 0.98
 created: 2026-04-24
-updated: 2026-04-24
-verified: 2026-04-24
+updated: 2026-05-11
+verified: 2026-05-11
 sources:
+  - raw/farey-archive/correspondence/koyama-gmail-record-2026-05-11.md
   - raw/farey-archive/state-docs/KOYAMA_REPLY_DRAFT_V3.md.txt
   - raw/farey-archive/state-docs/KOYAMA_FOLLOWUP_QUESTIONS.md.txt
   - raw/farey-archive/state-docs/KOYAMA_CORRECTION_AND_WINS.md.txt
@@ -22,7 +23,18 @@ tags: [farey, koyama, correspondence, collaboration]
 
 ## Current State
 
-Prof. Shin-ya Koyama is an active collaborator/contact. The working record now spans the earlier DRH / Farey spectroscope exchange, the EDRH / normalized-duality phase, the GL(2) / elliptic-curve phase, and the current C1 / W2 prime / Dominance-of-`-1` phase.
+Prof. Shin-ya Koyama is an active collaborator/contact. Gmail was searched on 2026-05-11 for direct correspondence with `koyama@tmtv.ne.jp`: 54 messages were found across 3 Gmail threads. No direct messages were found for `koyama@toyo.jp`.
+
+The complete message-level Gmail record is now `raw/farey-archive/correspondence/koyama-gmail-record-2026-05-11.md`.
+
+The working record spans:
+
+- opening DRH / Farey spectroscope contact;
+- weighted prime-bias / DPAC / EDRH / NDC;
+- GL(2), elliptic-curve, C1, rank/conductor, and Delta;
+- Dominance-of-`-1`;
+- CREST role/budget/application materials;
+- Stage-1 Dominance replication and bundle delivery.
 
 No email should be sent without explicit user approval.
 
@@ -57,24 +69,29 @@ No email should be sent without explicit user approval.
   - a 22-point fit with a significant `log(N)` term
 - Koyama responded positively to the bugfix/recompute process, highlighted the apparent linear-in-rank pattern, and said the result was scientifically valuable even though the original Sym² picture was off.
 
-### 5. Current correspondence
+### 5. Dominance-of-`-1` / CREST phase
 
-Koyama’s latest email asked for a brief CV / background summary so he can justify a substantial grant budget in Japan. He specifically asked for:
+- Koyama opened a new Gmail thread on 2026-04-26 with draft `nontriv.pdf`, clarified the Dominance-of-`-1` target, and asked for replication at `10^12` and `13*10^12`, then dynamic extension toward `10^14` or `3*10^14`.
+- Saar replied with a two-stage replication/dynamic-extension plan, residue-class caution, reproducibility architecture, applied/social-impact draft, and 12M JPY/year role/budget structure.
+- Koyama accepted the 12M JPY/year structure and the "Strategic Research Architect" role title.
+- Koyama gave the team list and `koyama@toyo.jp`, but Gmail search found no direct messages to/from that address.
+- Koyama requested a Post-Bias Cryptographic Framework, Lean 4 lattice-crypto memo, and Stage-1 replication evidence for the CREST proposal.
 
-- degrees
-- past affiliations
-- specific skills, especially Lean 4 and large-scale parallel computation
-- whether Saar can be described as a specialist in formal verification and high-performance number theory
+### 6. Stage-1 replication / latest state
 
-He also said the grant can include a senior-level visiting position and that age is not a blocker. The same message introduced the “Dominance of `-1`” challenge and requested verification over much larger scales and, crucially, dynamic `x` ranges rather than just fixed points.
+- Saar sent the Lean 4 memo, then a replication report for Tables 3-7, then a proposal-ready executive one-pager, then the full replication bundle.
+- Koyama said the report was a "masterpiece", asked for the bundle as zip/download link, and said the independent-implementation and identity-verification evidence would help CREST feasibility.
+- Latest incoming from Koyama: 2026-05-04 19:46:20 +09:00, Gmail message `19df298d07b5d137`.
+  - Koyama received the full bundle.
+  - He thanked Saar for the professional/comprehensive packaging.
+  - He said the reproducibility manifest is a powerful evidence-base addition.
+  - He will focus on integrating final proposal parts with Prof. Aoki's team.
+  - He will get back after the deadline.
+- Latest outgoing from Saar: 2026-05-04 17:45:18 +01:00, Gmail message `19df3e1408b7bfe5`: "Best of luck. Looking forward to updates."
 
-## Latest Reply
+## Latest Correspondence Anchor
 
-Koyama replied positively to the bugfix-and-recompute update, framed the work as scientifically sound, and explicitly highlighted a linear-in-rank pattern in the current data as an interesting structural observation. He also said the age question is not a problem, that a senior visiting position can be included, and that a brief CV/background summary would help him justify the budget and role description.
-
-He then introduced a new challenge, the "Dominance of -1", asking whether we can help verify it at much larger scales than 13 trillion and, importantly, over dynamic ranges of `x`, not just fixed points.
-
-This reply is now the current correspondence anchor for future drafting.
+Current anchor: Koyama has the full replication bundle and is integrating it into the CREST proposal with Prof. Aoki's team. Wait for his post-deadline update. Table-discrepancy review is deferred until after the Kiban-S deadline on 2026-05-20.
 
 ## Must Correct In V4
 
@@ -82,8 +99,11 @@ This reply is now the current correspondence anchor for future drafting.
 - Present W2 prime: control tests show conductor matters, and the 22-point fit has a significant log-conductor term.
 - Keep the raw Sym2 falsification narrow: it falsifies that exact proportionality, not every completed/Deligne variant.
 - Keep Delta separate from EC rank discussion: Delta is a clean `0.950231842` anchor.
-- Mention the grant-admin request as part of the current correspondence state: brief CV, affiliations, Lean 4 / parallel compute skills, and visiting-position framing.
-- Ask for the precise "Dominance of -1" definition before committing compute, and distinguish fixed-point checks from dynamic-range verification.
+- Mention that the grant-admin/CV request was answered in the 2026-04-25 email, and that Koyama accepted the 12M JPY/year structure plus "Strategic Research Architect" title on 2026-04-27.
+- For Dominance-of-`-1`, distinguish:
+  - proposal-ready headline replication evidence already sent;
+  - table discrepancies deferred until after 2026-05-20;
+  - dynamic extension toward `10^14` / `3*10^14` not yet completed in the Gmail record.
 
 ## Pending Questions For Koyama
 
@@ -92,18 +112,19 @@ This reply is now the current correspondence anchor for future drafting.
 - Archimedean gamma factors for Delta in the proposed Sym2 correction.
 - Finite-`K` correction term for exponential smoothing.
 - Bad-prime treatment for conductor primes such as 389.
-- Exact Dominance-of-minus-one setup: modulus, residue class, fixed or dynamic `x`, and verification script.
-- Whether the verification should target the 13 trillion baseline first or jump directly to the next dynamic range.
-- Admin: Young Researcher age, city/airport, visiting researcher interest.
+- Post-2026-05-20 review of the table discrepancies flagged in Saar's replication report.
+- Whether the next Dominance run should target `10^14` or `3*10^14`, and on what dynamic grid.
+- Whether Koyama wants more CREST proposal text after the internal 2026-05-11 deadline.
 
 ## Source Archive
 
-All Koyama material was archived under:
+Gmail-derived record now archived under:
 
 - `raw/farey-archive/correspondence/`
-- `raw/farey-archive/state-docs/KOYAMA_*`
 
-Use those sources only for provenance or drafting; the current operational summary is this page plus [[people/shin-ya-koyama]].
+Key file: `raw/farey-archive/correspondence/koyama-gmail-record-2026-05-11.md`.
+
+Older state-doc references remain useful as local drafting provenance, but the Gmail record supersedes the previous April-only correspondence summary.
 
 ## Update Rule
 
