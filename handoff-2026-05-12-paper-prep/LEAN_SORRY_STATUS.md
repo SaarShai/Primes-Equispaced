@@ -18,12 +18,12 @@ Lean inventory, classified by the precise reason it cannot be closed.
 | `SmoothedDwfFormula_full.lean` | 2 | 2 | **Mathlib-prereq-blocked** (Aristotle round-2 verdict) |
 | `DPAC_full.lean` | 2 (round-2 closed 1) | 1 | **Research-open** (LI-Hypothesis difficulty) |
 | `DirichletPolynomialAvoidance.lean` | 1 | 1 | **Research-open** (same as above) |
-| `LocalPerronResidue.lean` | 1 (`True := sorry`) | 1 (real Laurent-limit statement) | **Statement upgraded; proof research-open** |
+| `LocalPerronResidue.lean` | 1 (`True := sorry`) | **0** (proved 2026-05-12 via Aristotle round-3) | **THEOREM** |
 | `CorrectedBInfty.lean` | 2 (statement + proof both `sorry`) | 1 (statement-as-defs; proof `sorry`) | **Statement upgraded; proof research-open** |
 | `FareyBridgeIdentity.lean` | 1 (`True := sorry`) | 1 (real exp-sum identity) | **Statement upgraded; proof Mathlib-Ramanujan-blocked** |
 | `FareySignPattern.lean` | 1 (`True := sorry`) | 3 (density-one + 2 falsifications) | **Statement upgraded; falsifications recorded; all 3 research-open in Lean** |
 | `MertensSpectroscopeUniversality.lean` | 1 (`True := sorry`) | 1 (real spectroscope-`Tendsto`) | **Statement upgraded; proof research-open** |
-| **Total** | **11** | **11** | (count unchanged; *content* of each upgraded) |
+| **Total** | **11** | **10** | LocalPerronResidue closed 2026-05-12; others have *content* upgraded |
 
 The sorry-count is the same, but **every previous `True := by sorry`
 placeholder has been replaced by a non-vacuous statement using

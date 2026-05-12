@@ -355,17 +355,18 @@ and branch conventions are syntactically explicit, and records each
 statement's proof status against a public audit trail.
 
 **Build status.** `lake build FormalConjectures` succeeds on all
-**8 files** in `formal-conjectures/` with 11 `sorry` warnings, each
-annotated in-source as `MATHLIB-PREREQ:` (an upstream Mathlib lemma
-not yet available) or `RESEARCH-OPEN:` (an open mathematical
-conjecture or pending formalisation). No `axiom` is introduced
-anywhere in the project. The full per-`sorry` inventory is in
-`LEAN_SORRY_STATUS.md` of the reproducibility bundle.
+**8 files** in `formal-conjectures/` with **10 `sorry` warnings**,
+each annotated in-source as `MATHLIB-PREREQ:` (an upstream Mathlib
+lemma not yet available) or `RESEARCH-OPEN:` (an open mathematical
+conjecture or pending formalisation). **`LocalPerronResidue.lean`
+is fully proved (0 sorries)** as of 2026-05-12. No `axiom` is
+introduced anywhere in the project. The full per-`sorry` inventory
+is in `LEAN_SORRY_STATUS.md` of the reproducibility bundle.
 
 | Paper object | Lean file | Status |
 |---|---|---|
 | Boundary residue $R_0 = -2$ for the smoothed $\Delta w_f$ explicit formula (Schwartz cutoff) and 25+ algebraic-glue theorems | `SmoothedDwfFormula_full.lean` | **THEOREM (chain).** All algebraic-glue lemmas closed without `sorry`. Two remaining `sorry`s are named analytic prerequisites: `mellin_decay` (Stirling on $\Gamma$ vertical strips) and `inv_zeta_polynomial_growth` (Titchmarsh §3.11) — Mathlib v4.28.0 has only the qualitative versions. |
-| Lemma X.3.1 (local Perron residue) | `LocalPerronResidue.lean` | **STATEMENT-CLOSED, PROOF research-open.** Auxiliary `perronResidue_eq` closed by `ring`; main theorem stated as a `Tendsto` limit with 1 `sorry` awaiting `AnalyticAt.hasFPowerSeriesAt`. |
+| Lemma X.3.1 (local Perron residue) | `LocalPerronResidue.lean` | **THEOREM (0 `sorry`).** Proved 2026-05-12. The residue identity is stated as a `Tendsto` limit at $L$ analytic with simple zero at $0$ (the general-$\rho$ case reduces by $L \mapsto L(\cdot + \rho)$). |
 | Theorem X.4.1 ($B_\infty$ identity) | `CorrectedBInfty.lean` | **STATEMENT-CLOSED, PROOF research-open.** Four-component identity stated against `noncomputable def`s of $T_\infty$, $T_{\ge 3}$, $\mathrm{BPC}_1$, $\mathrm{BPC}_2$, $L$. The single `sorry` is the proof, awaiting Akatsuka (2013) eq. (2.5). |
 | Farey bridge identity | `FareyBridgeIdentity.lean` | **SCAFFOLD.** Identity stated against a local `FareySet`; 1 `sorry`. `MATHLIB-PREREQ: Mathlib.NumberTheory.RamanujanSum`. |
 | Mertens spectroscope universality | `MertensSpectroscopeUniversality.lean` | **SCAFFOLD.** Stated as `Tendsto … atTop atTop` against an inline RH-for-$\zeta$ predicate; 1 `sorry`. |
