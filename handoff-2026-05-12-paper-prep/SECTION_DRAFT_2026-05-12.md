@@ -727,39 +727,75 @@ At $K = 2 \cdot 10^6$, 50 dps:
 | $\chi_5$        | $-0.0148+0.4365 i$ | $0$ | $0.0444-0.0456 i$ | $0.0340-0.0929 i$ | $0.06358+0.29804 i$ | $0.06362+0.29802 i$ | $4.24\!\cdot\!10^{-5}$ |
 | $\chi_{11}$     | $-0.2377+0.3292 i$ | $0$ | $-0.0333+0.0635 i$ | $0.0270-0.0315 i$ | $-0.24404+0.36122 i$ | $-0.24400+0.36123 i$ | $3.33\!\cdot\!10^{-5}$ |
 
-Convergence rates at $K \in \{2\cdot 10^5,\,10^6,\,2\cdot 10^6\}$
-exhibit $\approx K^{-1/2}/\log K$ decay for $\chi_5,\chi_{11}$ (no
-bad primes; pure boundary-line conditional-tail convergence of
+The mpmath proof packet reports convergence rates at
+$K \in \{2\cdot 10^5,\,10^6,\,2\cdot 10^6\}$ as
+**approximately** $K^{-1/2}/\log K$ for $\chi_5,\chi_{11}$ (no bad
+primes; pure boundary-line conditional-tail convergence of
 $\sum_p \chi^2(p)/p^{1+i\tau}$), and a uniformly slower decay for
 $\chi_{-4}$ traced to the bad-prime $p=2$ weight (where
-$\mathrm{BPC}_1$ is nontrivial).
+$\mathrm{BPC}_1$ is nontrivial). However the cross-stack
+comparison below (PARI/GP at $K = 10^7$) does *not* corroborate
+this rate at the extrapolated scale (see the *Honest reconciliation*
+paragraph below). The conservative reading of the present data is:
+the residual is bounded by $\sim 10^{-3}$ across $K \in [2\cdot 10^5,\, 10^7]$
+on every pair, consistent with the identity but not yet a clean
+slope measurement of the decay rate.
 
 **Cross-language extension to $K = 10^7$ on the clean-character
 pairs.** PARI/GP 2.17.3 (script
 [`pari_Binfty_K10M_chi5_chi11.gp`](pari_Binfty_K10M_chi5_chi11.gp),
-report [`BINFTY_K10M_run.log`](BINFTY_K10M_run.log)) computes
-$T_K(\chi, \rho)$ at $K = 10^7$ in ~7 s wall-clock per pair, and
-returns identity residuals
+reports [`BINFTY_K10M_run.log`](BINFTY_K10M_run.log) for $\mathrm{BPC}_2 / T_{\ge 3}$
+truncation at $p \le 10^6$ and
+[`BINFTY_K10M_TIGHT_run.log`](BINFTY_K10M_TIGHT_run.log) for the
+*tight* version at $p \le 10^7$) computes $T_K(\chi, \rho)$ at
+$K = 10^7$ in ~7 s wall-clock per pair and returns identity
+residuals
 
-| Pair | $|T_K - \mathrm{RHS}|$ at $K = 10^7$ |
-|---|---:|
-| $\chi_5$ | $5.12 \cdot 10^{-4}$ |
-| $\chi_{11}$ | $6.30 \cdot 10^{-4}$ |
+| Pair | $|T_K - \mathrm{RHS}|$ at $K = 10^7$ (loose $p \le 10^6$ truncation) | (tight $p \le 10^7$ truncation) |
+|---|---:|---:|
+| $\chi_5$ | $5.121 \cdot 10^{-4}$ | $5.121 \cdot 10^{-4}$ |
+| $\chi_{11}$ | $6.303 \cdot 10^{-4}$ | $6.303 \cdot 10^{-4}$ |
+
+**Both pairs show the same residual under loose and tight component
+truncations** (matching to 4+ significant digits), confirming that
+the BPC₂/T_{≥3} truncation is *not* the source of the gap.
 
 The $T_K(\chi, \rho)$ value at $K = 10^7$ matches the L1 mpmath
-$T_K$ at $K = 2\cdot 10^6$ to all reported decimal places of the L1
-display (better than $10^{-5}$ on each component); the L2 residual
-is larger than the L1 residual mainly because the PARI script
-truncates the *absolutely convergent* component sums
-$\mathrm{BPC}_2$ and $T_{\ge 3}$ at $p \le 10^6$, $k \le 12$, which
-introduces a methodology-level truncation at the $\sim 10^{-4}$ scale
-absent from the L1 packet's convention of computing both component
-sums and $T_K$ to consistent precision (`Koyama_B_infty.py`). Both
-calculations agree on the *identity itself* at the $\sim 10^{-3}$
-level on every pair. A consistent-precision PARI rerun (with the
-component sums extended to $p \le 10^7$) would tighten the residual
-to the L1 envelope; this is a $\sim 30$-minute additional compute
-and is recorded as a queued cross-check.
+$T_K$ at $K = 2\cdot 10^6$ to better than $10^{-5}$ on each component.
+**The PARI residual is essentially unchanged when the component sums
+$\mathrm{BPC}_2$ and $T_{\ge 3}$ are tightened from $p \le 10^6$ to
+$p \le 10^7$**, so the truncation in those absolutely convergent sums
+is *not* the source of the gap with the L1 residual.
+
+**Honest reconciliation with the K = 2·10⁶ mpmath residuals.** The
+mpmath proof packet (`Koyama_B_infty_proof.md §7.1`) reports
+$|T_K - \mathrm{RHS}|$ at $K = 2\cdot 10^6$ of $4.24 \cdot 10^{-5}$
+for $\chi_5$ and $3.33 \cdot 10^{-5}$ for $\chi_{11}$ — about an
+order of magnitude *smaller* than the PARI values at $K = 10^7$. We
+do not yet have a complete explanation; both calculations agree on
+the *identity itself* at the $\sim 10^{-3}$ level on every pair, but
+the apparent slowdown of the residual envelope from $\sim 4 \cdot
+10^{-5}$ at $K = 2\cdot 10^6$ to $\sim 5\cdot 10^{-4}$ at $K = 10^7$
+is in the *wrong direction* for a $K^{-1/2}/\log K$ decay rate
+(which predicts $\sim 1.9 \cdot 10^{-5}$ at $K = 10^7$ given $4 \cdot
+10^{-5}$ at $K = 2\cdot 10^6$). Likely candidates: (a) the
+$\sim 4 \cdot 10^{-5}$ figure at $K = 2 \cdot 10^6$ may be
+artificially small because of a methodology choice in
+`Koyama_B_infty.py` (e.g., a partial-summation convention in the
+$T_K$ evaluation, or component-sum truncation choices that happen
+to align with the partial $T_K$ at that specific $K$);
+(b) the empirical decay rate may genuinely be slower than the
+predicted $K^{-1/2}/\log K$; (c) precision-level numerical artifacts
+at the $\sim 10^{-4}$ scale are simply dominating at the cross-stack
+comparison level. We **do not retract** the identity itself
+(Theorem X.4.1 is established analytically in Appendix A,
+independent of finite-$K$ residual rates), but we **retract any
+quantitative claim of $K^{-1/2}/\log K$ decay**: the available
+cross-stack evidence at $K = 10^7$ is bounded by $\sim 10^{-3}$,
+consistent with the identity but not yet a clean slope measurement
+of the decay rate. A consistent-methodology mpmath rerun at $K = 10^7$
+(estimated $\sim 6$ hours single-core) is the queued cross-check that
+would resolve this.
 
 ### X.5.5 Elliptic-curve and $\Delta$-form spectroscope ensemble
 
