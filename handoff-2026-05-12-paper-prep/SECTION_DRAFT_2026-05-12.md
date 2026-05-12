@@ -1020,6 +1020,71 @@ or a superposition.
 > that the analytic-scale Dirichlet drift in §X.5.2 carries
 > stack-independent reproduction at the same $K$.
 
+### X.7.1 Halo-route reduction toward an unconditional (SP-L)
+
+The most material recent structural progress on Question Q:Perron
+is the *halo-route reduction* recorded in
+[`handoff-2026-05-12-halo-unconditional-plan/HALO_UNCONDITIONAL_PLAN_2026-05-12.md`](../handoff-2026-05-12-halo-unconditional-plan/HALO_UNCONDITIONAL_PLAN_2026-05-12.md).
+The plan is written for fixed-elliptic-curve / GL(2) newform $L$-functions
+(where it bears on the H1 off-target residue contribution), but the
+underlying mechanism transfers conceptually to the Dirichlet (GL(1))
+case (SP-L) of §X.4.4. We summarize it here for the reader.
+
+**Structural pivot.** Write the off-target residue sum as a *signed*
+contour residue over the boundary of a *halo region*
+$\Omega_T = \bigcup_{\rho \in Z_T^{\mathrm{red}}} D(\rho, R_T \alpha)$
+(union of disks of radius $R_T \alpha$ around the off-target zeros).
+For a cluster $C = \{\rho_1, \ldots, \rho_n\}$ of close-by zeros, the
+*cluster-summed* residue is a divided difference
+$[\rho_1, \ldots, \rho_n](\Phi_T / H_C)$, which stays bounded by a
+derivative *even though individual reciprocal derivatives blow up*
+as two zeros collide. The cluster-summed residue avoids the
+"rooted Palm wall" that obstructs the termwise-absolute-value
+estimate.
+
+**Halo theorem.** With $R_\Phi(T) := \sum_{\rho \in Z_T^{\mathrm{red}}} \mathop{\mathrm{Res}}_{s=\rho} \Phi_T(s)/L(s)$,
+Stokes gives
+$$
+R_\Phi(T) \;=\; \frac{1}{2\pi i}\!\int_{\partial \Omega_T} \frac{\Phi_T(s)}{L(s)}\, ds.
+$$
+Charging boundary length to the halo circles and applying Cauchy–Schwarz
+with $\#Z_T^{\mathrm{mult}} \ll T \log T$ and a $q=2$ shifted moment
+input
+$$
+\sum_{\rho}^{\mathrm{mult}} |L(\rho+\alpha)|^{-2} \;\ll\; T^{5/2+\varepsilon},
+$$
+yields $|R_\Phi(T)| \ll M_T \cdot T^{7/4 + \varepsilon + o(1)}$, where
+$M_T = \sup_{\partial \Omega_T} |\Phi_T|$. If $M_T = o(T^{1/4})$
+(in particular if $M_T = T^{o(1)}$), then $R_\Phi(T) = o(T^2)$.
+
+**Status of the four doors.**
+
+| Door | Statement | Status (2026-05-12) |
+|---|---|---|
+| **A** | `AllZeroShiftedNeg_2(E)`: $\sum_\rho^{\mathrm{mult}} |L(\rho+\alpha)|^{-2} \ll T^{5/2+\varepsilon}$ (or simple-zero version + multiple-zero disposition). | Open — the only remaining shifted-moment input. |
+| **B** | `HaloShiftComparison(E, A, R)`: $|L(s)|^{-1} \le T^{o(1)} |L(\rho_0 + \alpha)|^{-1}$ on every halo arc assigned to $\rho_0$. | **Theorem (proved 2026-05-12, §5.1 of the halo plan)** under the framework's standing GRH and $R > \sqrt{1+A^2}$. The proof uses the geometric fact that points $s \in \partial \Omega_T$ are forced outside every other halo by the definition of $\partial \Omega_T$; the cluster ratio is then a contraction of arbitrary order ($\le 1$ per cluster mate), and the noncluster part is bounded by the existing `ClusterShiftDerivativeComparison(E, A)` lemma. The naïve factorization estimate $C_A^{N_{\rho_0, A}(T)}$ is replaced by an absolute constant $O(1)$, with no local zero-count input needed. |
+| **C** | `ResidueFirstH1Rewrite`: identify the H1 step where the *budget* $R_B(T,c) = \sum_{\rho\text{ bad simple}} |L'(\rho)|^{-1}$ is used and replace it by the *signed* contour residue contribution. | Open (programmatic) — requires auditing the existing H1 lemma chain to verify that the H1 inequality consumes the signed residue, not its termwise absolute value. |
+| **D** | $M_T = \sup_{\partial \Omega_T} |\Phi_T| = o(T^{1/4})$, preferably $T^{o(1)}$. | Open — depends on the choice of test function $\Phi_T$. The standard Perron test functions in our setting satisfy $M_T = T^{o(1)}$, so this is expected to hold. |
+
+**What this kills, what it does not.** The halo theorem *kills the
+rooted Palm wall as a necessary input to the H1 contour
+contribution*: there is no need for a rooted Palm box law, no
+$W_A$ cluster weight, no $n$-level density obstruction. It does
+*not* kill the positive budget $R_B(T,c) = \sum |L'(\rho)|^{-1}$ as
+a meaningful object; a deterministic two-zero gadget shows $R_B$ is
+genuinely larger than the signed residue sum by an arbitrary
+amount, so any direct route to $R_B = o(T^2)$ still requires the
+Palm-style input.
+
+**For the Dirichlet (SP-L) analog.** The same divided-difference
+trick on cluster residues of $K^w / (w \cdot L(w + \rho, \chi))$
+transfers conceptually. The GL(1) analogues of Doors A, B, C, D are
+all writeable; we do not yet have a stand-alone GL(1) halo plan,
+but the GL(2) version is the cleaner forcing function and we cite
+it here as the program-organizing reduction for (SP-L). A full
+GL(1) writeup is the obvious next step for the joint paper's
+follow-up.
+
 ---
 
 ## X.8 Code, data, and certificate availability
@@ -1128,6 +1193,60 @@ page/equation, and verbatim quote recorded in
     now to push the cross-language L2 lane from $K = 200{,}000$ up
     to $K = 10^7$ (estimated 3 minutes wall-clock).
   - Mimo objection M1 (Fatal) is fully resolved.
+
+## Provenance and supersession of prior drafting attempts
+
+For internal record-keeping and to prevent accidental re-use of
+superseded content: an earlier drafting effort for a "Normalized
+Duality Constant" paper exists in
+[`primes-equispaced/experiments/`](../../experiments/). This prior
+corpus comprises ~25 paper-section drafts (file names beginning
+`NDC_PAPER_*`, `M1_NDC_PAPER_*`, `M5_NDC_PAPER_*`,
+`M5_NDC_MECHANISM_PAPER_SECTION.md`, `M5_NDC_BK_PROOF_PAPER.md`,
+`M5_NDC_UNIVERSALITY_THEORY.md`, etc.) and ~50 supporting analyses
+(adversarial reviews, decomposition notes, character analyses,
+high-$K$ numerical reports, "why $\zeta(2)$" historical arguments,
+Koyama-track literature searches). The corpus dates to roughly
+October 2023 through early 2026 and predates the 2026-05-09 audit
+that retracted the $1/\zeta(2)$ asymptotic target in favor of
+Aoki–Koyama's $e^{-\gamma}$.
+
+**Status of the prior corpus.** Superseded for theorem statements,
+asymptotic-constant statements, and load-bearing numerics by the
+present draft. Specifically:
+
+- Every prior occurrence of the asymptotic statement
+  $D_K \to 1/\zeta(2)$ is *retracted*. The corrected statement is
+  the conditional $D_K \to e^{-\gamma}$ of (\ref{eq:NDC}), under
+  Hypothesis AK and (SP-L).
+- The "why $\zeta(2)$" historical reasoning files
+  (`M1_NDC_WHY_ZETA2.md`, `NDC_WHY_ZETA2_LIMIT.md`, etc.) describe
+  the *pre-correction* heuristic and should be cited only as
+  historical context in any future introduction that explains the
+  constant correction.
+- High-$K$ numerical reports
+  (`M5_NDC_HIGH_K_OVERNIGHT.md`, `M5_NDC_HIGH_K_VERIFICATION.md`,
+  e.g. $K \in \{1, 2, 5, 10, 20\}\cdot 10^6$ for the same four
+  $(\chi, \rho)$ pairs) report $D_K \cdot \zeta(2)$ rather than
+  $D_K \cdot e^{\gamma}$; their raw numbers may be reinterpreted
+  under the corrected normalization but should not be lifted into
+  this draft without re-running.
+- Sym${}^2 / \langle f, f\rangle$ proportionality content in the
+  prior corpus is now negative (see §X.5.5 and Question Q:Sym2).
+- The prior corpus's claim that 422 Lean results validate the NDC
+  framework is retained as a *project-level* statement; the present
+  manuscript scopes its Lean inventory to the files actually
+  present in `formal-conjectures/` (see §X.6).
+
+**What is still usable.** The bibliography in
+`NDC_KOYAMA_LITERATURE_SEARCH.md` (with the constant-correction
+caveats noted above), the section-structure conventions of
+`M1_NDC_PAPER_SECTION1_INTRO.md`, the proof-step decomposition of
+`NDC_PROOF_STEP*.md` (after substituting the corrected constant),
+and the character-evaluation conventions of
+`T_INF_L2RHO_NUMERICAL_VERIFY.md` are all still consistent with
+the present draft. They may be drawn on for the introduction of
+the eventual full paper.
 
 ## TODO before this draft is shown to Koyama
 
