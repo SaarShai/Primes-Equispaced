@@ -1105,12 +1105,51 @@ Palm-style input.
 
 **For the Dirichlet (SP-L) analog.** The same divided-difference
 trick on cluster residues of $K^w / (w \cdot L(w + \rho, \chi))$
-transfers conceptually. The GL(1) analogues of Doors A, B, C, D are
-all writeable; we do not yet have a stand-alone GL(1) halo plan,
-but the GL(2) version is the cleaner forcing function and we cite
-it here as the program-organizing reduction for (SP-L). A full
-GL(1) writeup is the obvious next step for the joint paper's
-follow-up.
+transfers conceptually. A standalone GL(1) sketch of all four
+doors is at
+[`HALO_GL1_SKETCH_2026-05-12.md`](HALO_GL1_SKETCH_2026-05-12.md).
+The transfer's findings:
+
+- Door B' (halo shift comparison, GL(1) version) is **provable** by
+  the same proof as Door B of the GL(2) plan, with identical
+  constants — the geometric exclusion of $\partial \Omega_K$ from
+  every off-target halo is structure-free.
+- Door D' (the $M_K$ sup-bound) is **automatic** in GL(1) because
+  $|K^w|$ on the halo boundary is bounded by an absolute constant
+  $e^R$, since the halo radius is $R / \log K$.
+- Door A' (a Dirichlet shifted second moment
+  $\sum_{\rho'}^{\mathrm{mult}} |L(\rho' + \alpha, \chi)|^{-2}$)
+  remains open at the level of the GL(2) version, requiring a
+  $T_K (\log T_K)^{O(1)}$ bound.
+- The **halo theorem in GL(1)** yields
+  $|R_K(\chi, \rho)| \ll K^{1/2 + \varepsilon + o(1)}$
+  on the off-target aggregate, which is **far above** the $o(\log K)$
+  target of (SP-L). The GL(1) shifted-Perron problem operates at
+  the $\log K$ leading scale; the GL(2) halo route exploits the
+  much larger $T^2$ scale of the H1 problem. The naïve halo
+  transfer therefore does *not* close (SP-L) by itself.
+
+This is an honest negative finding: the halo route is the right
+*structural pivot* (signed cancellation, not termwise budgets), but
+the GL(1) shifted-Perron problem requires either a much stronger
+Door A' (a Dirichlet shifted second moment of order
+$(\log K)^{O(1)}$, i.e., near-Lindelöf strength) or a different
+mechanism exploiting the small $\log K$ scale. We do not assert
+this is impossible; we assert that the GL(2) halo theorem does not
+transfer to (SP-L) with the same closure-strength.
+
+The §X.7 Q:Perron now reads, precisely:
+
+> *To close (SP-L), it is sufficient to prove either
+> (a) a Dirichlet shifted second moment
+> $\sum_{\rho'}^{\mathrm{mult}} |L(\rho' + \alpha, \chi)|^{-2} \ll_\chi (\log K)^{O(1)}$
+> (much stronger than the natural $T_K(\log T_K)^{O(1)}$ expected
+> envelope), or
+> (b) a mechanism not based on the halo signed cancellation that
+> exploits the $\log K$ leading scale of the shifted Perron problem.*
+
+This is the precisely stated GL(1) version of Koyama's
+"shifted Perron remainder requirements."
 
 ---
 
