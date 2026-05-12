@@ -742,30 +742,31 @@ on every pair, consistent with the identity but not yet a clean
 slope measurement of the decay rate.
 
 **Cross-language extension to $K = 10^7$ on the clean-character
-pairs.** PARI/GP 2.17.3 (script
-[`pari_Binfty_K10M_chi5_chi11.gp`](pari_Binfty_K10M_chi5_chi11.gp),
-reports [`BINFTY_K10M_run.log`](BINFTY_K10M_run.log) for $\mathrm{BPC}_2 / T_{\ge 3}$
-truncation at $p \le 10^6$ and
-[`BINFTY_K10M_TIGHT_run.log`](BINFTY_K10M_TIGHT_run.log) for the
-*tight* version at $p \le 10^7$) computes $T_K(\chi, \rho)$ at
-$K = 10^7$ in ~7 s wall-clock per pair and returns identity
-residuals
+pairs.** PARI/GP 2.17.3 with the closed-form component evaluation
+matching mpmath (script
+[`pari_Binfty_closed_form.gp`](pari_Binfty_closed_form.gp);
+report [`BINFTY_CLOSED_FORM_run.log`](BINFTY_CLOSED_FORM_run.log))
+computes $T_K(\chi, \rho)$ at $K = 10^7$ in ~7 s wall-clock per pair
+and returns identity residuals
 
-| Pair | $|T_K - \mathrm{RHS}|$ at $K = 10^7$ (loose $p \le 10^6$ truncation) | (tight $p \le 10^7$ truncation) |
-|---|---:|---:|
-| $\chi_5$ | $5.121 \cdot 10^{-4}$ | $5.121 \cdot 10^{-4}$ |
-| $\chi_{11}$ | $6.303 \cdot 10^{-4}$ | $6.303 \cdot 10^{-4}$ |
+| Pair | $|T_K - \mathrm{RHS}|$ at $K = 10^7$ |
+|---|---:|
+| $\chi_{-4}/z_1$ | $2.58 \cdot 10^{-3}$ |
+| $\chi_{-4}/z_2$ | $1.52 \cdot 10^{-3}$ |
+| $\chi_5$ | $1.22 \cdot 10^{-5}$ |
+| $\chi_{11}$ | $1.75 \cdot 10^{-5}$ |
 
-**Both pairs show the same residual under loose and tight component
-truncations** (matching to 4+ significant digits), confirming that
-the BPC₂/T_{≥3} truncation is *not* the source of the gap.
-
-The $T_K(\chi, \rho)$ value at $K = 10^7$ matches the L1 mpmath
-$T_K$ at $K = 2\cdot 10^6$ to better than $10^{-5}$ on each component.
-**The PARI residual is essentially unchanged when the component sums
-$\mathrm{BPC}_2$ and $T_{\ge 3}$ are tightened from $p \le 10^6$ to
-$p \le 10^7$**, so the truncation in those absolutely convergent sums
-is *not* the source of the gap with the L1 residual.
+(Earlier versions of this paragraph reported larger residuals
+$5.12 \cdot 10^{-4}$ and $6.30 \cdot 10^{-4}$ from a PARI script that
+truncated the $k$-sum in $\mathrm{BPC}_2$ and $T_{\ge 3}$ at $k = 12$;
+those numbers are *not* the correct closed-form values and should be
+disregarded — see "Cross-stack reconciliation" below for the
+diagnostic chain.) The closed-form PARI numbers match the mpmath
+proof-packet residuals at $K = 2 \cdot 10^6$ to all displayed
+digits, and the $K = 10^7$ residuals on the clean-character pairs
+$\chi_5, \chi_{11}$ are smaller by a factor $1.9$–$3.5$ — consistent
+with the predicted $K^{-1/2}$ rate ($\sqrt 5 \approx 2.24$) within
+the oscillatory implicit-constant envelope.
 
 **Cross-stack reconciliation at $K = 2 \cdot 10^6$ and $K = 10^7$ —
 resolved.** An earlier draft of this paragraph reported an apparent
