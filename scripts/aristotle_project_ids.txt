@@ -4,3 +4,7 @@
 424973ae-8e9a-4ef1-8a6d-970ffa3b88ad SmoothedDwfFormula
 8e608890-f0ba-4a89-bbb0-a63b5bcab697 R1_B_plus
 59d181d5-b207-4882-a5ba-0786ec51d361 DPAC
+
+# 2026-05-12 — second-round dispatches against remaining sorries
+885c640c-55cd-48f4-9ce5-1168566619d6 SmoothedDwfFormula_sorries_round2
+bb0cd153-0364-48e2-85fd-564fd8ce4679 DPAC_sorries_round2
