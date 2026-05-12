@@ -29,14 +29,44 @@ tags: [koyama, draft, technical-section, computational-section, lean4]
 > labels.*
 
 This section gathers the computational and formal content of the
-present paper. We describe (i) the precise normalizations used in
-every Dirichlet-side and Euler-product computation; (ii) the
-double-verification protocol applied to every numerical claim;
-(iii) the partial Lean 4 / Mathlib4 formalization that accompanies
-the corrected Aoki–Koyama–Mertens identity and the $B_\infty$
-identity; (iv) the current numerical findings; and (v) the open
-challenges that should, in the authors' view, structure the next
-phase of the program.
+present paper. **The core results we address here** — following the
+framing of S. Koyama in our 2026-05-12 correspondence — are:
+
+1. **Correction of the asymptotic target.** The earlier numerical
+   target $1/\zeta(2)$ for the Dirichlet partial-Euler-product
+   asymptotic at simple noncentral zeros is replaced by the
+   Mertens–Aoki–Koyama constant $e^{-\gamma}$ (§X.4.3); we record
+   the verbatim Aoki–Koyama (2023) statement and document the
+   $K \le 10^7$ drift in $|D_K|\cdot\zeta(2)$ from $0.992$ at
+   $K = 2\cdot 10^6$ to $0.974$ at $K = 10^7$, consistent with the
+   $e^{-\gamma}$ target and incompatible with $\zeta(2)^{-1}$ at the
+   $1/\log K$ finite-size scale (§X.5.2).
+2. **The corrected $B_\infty$ identity and the local Perron
+   double-pole residue,** both established unconditionally
+   (Lemma X.3.1 and Theorem X.4.1; full proofs in Appendices A and B).
+3. **The "open challenges" that organize the program forward** — the
+   shifted Perron leading remainder (SP-L), the conductor-confounded
+   elliptic-curve rank trend, the corrected
+   $\mathrm{Sym}^2 / \langle f, f \rangle$ normalization, GL(2)
+   reciprocal-derivative control, and the Dirichlet Polynomial
+   Avoidance Conjecture (§X.4.4 and §X.7). Each is stated precisely
+   and credited with the input theorem that would close it.
+4. **The rigorous independent replication of Koyama's
+   Dominance-of-$-1$ residue-count tables at $x = 1.3 \cdot 10^{13}$**
+   (§X.5.1): two implementations (`primesieve` plus a hand-rolled C
+   segmented sieve) agree on every residue count at this scale for
+   $N \in \{7, 8, 11, 19, 23\}$; identity (3.1) of *nontriv.pdf* is
+   verified across $495$ $(N,x,a)$-cells; the qualitative
+   dominance signal is reproduced for $N \in \{7, 8, 19\}$, with
+   $N = 11$ at $1.3 \cdot 10^{13}$ pending the joint reconciliation
+   of one substantive Table-5 cell.
+
+The remainder of the section gives the precise normalizations
+(§X.1), the double-verification protocol used for every numerical
+claim (§X.2), the algebraic identities (§X.3–§X.4), the numerical
+evidence (§X.5), the Lean 4 / Mathlib4 partial formalization (§X.6),
+the open-challenges list (§X.7), and the code-and-data availability
+statement (§X.8).
 
 The numerical evidence has two clearly distinct scales which we keep
 separate throughout: a **replication scale** at
