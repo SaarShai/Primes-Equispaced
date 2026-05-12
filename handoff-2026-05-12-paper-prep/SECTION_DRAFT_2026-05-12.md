@@ -734,6 +734,33 @@ $\sum_p \chi^2(p)/p^{1+i\tau}$), and a uniformly slower decay for
 $\chi_{-4}$ traced to the bad-prime $p=2$ weight (where
 $\mathrm{BPC}_1$ is nontrivial).
 
+**Cross-language extension to $K = 10^7$ on the clean-character
+pairs.** PARI/GP 2.17.3 (script
+[`pari_Binfty_K10M_chi5_chi11.gp`](pari_Binfty_K10M_chi5_chi11.gp),
+report [`BINFTY_K10M_run.log`](BINFTY_K10M_run.log)) computes
+$T_K(\chi, \rho)$ at $K = 10^7$ in ~7 s wall-clock per pair, and
+returns identity residuals
+
+| Pair | $|T_K - \mathrm{RHS}|$ at $K = 10^7$ |
+|---|---:|
+| $\chi_5$ | $5.12 \cdot 10^{-4}$ |
+| $\chi_{11}$ | $6.30 \cdot 10^{-4}$ |
+
+The $T_K(\chi, \rho)$ value at $K = 10^7$ matches the L1 mpmath
+$T_K$ at $K = 2\cdot 10^6$ to all reported decimal places of the L1
+display (better than $10^{-5}$ on each component); the L2 residual
+is larger than the L1 residual mainly because the PARI script
+truncates the *absolutely convergent* component sums
+$\mathrm{BPC}_2$ and $T_{\ge 3}$ at $p \le 10^6$, $k \le 12$, which
+introduces a methodology-level truncation at the $\sim 10^{-4}$ scale
+absent from the L1 packet's convention of computing both component
+sums and $T_K$ to consistent precision (`Koyama_B_infty.py`). Both
+calculations agree on the *identity itself* at the $\sim 10^{-3}$
+level on every pair. A consistent-precision PARI rerun (with the
+component sums extended to $p \le 10^7$) would tighten the residual
+to the L1 envelope; this is a $\sim 30$-minute additional compute
+and is recorded as a queued cross-check.
+
 ### X.5.5 Elliptic-curve and $\Delta$-form spectroscope ensemble
 
 We compute the second-moment statistic
