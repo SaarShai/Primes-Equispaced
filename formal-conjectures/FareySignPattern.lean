@@ -6,47 +6,214 @@ Authors: Saar Shai
 
 import Mathlib.NumberTheory.ArithmeticFunction
 import Mathlib.Data.Nat.Prime.Basic
+import Mathlib.Data.Real.Basic
+import Mathlib.Order.Filter.AtTopBot
+import Mathlib
 
 /-!
-# Farey Sign Pattern Conjecture (Density-One Version)
+# Farey Sign Pattern (Density-One Version)
 
 ## Source
-Saar Shai, "Per-Step Farey Discrepancy" (2026), Theorem 4.2.
+Saar Shai, "Per-Step Farey Discrepancy" (2026), Theorem 4.2; updated
+2026-05-12 with the pointwise-version retraction below.
 GitHub: https://github.com/SaarShai/Primes-Equispaced
-AI Disclosure: Pattern discovered with assistance from Claude (Anthropic).
 
-## Statement
-When a prime p is inserted into the Farey sequence F_{p-1} to form F_p,
-the change in Weyl discrepancy ΔW(p) = W(F_{p-1}) - W(F_p) satisfies
-sgn(ΔW(p)) = sgn(-M(p)) for a density-one subset of primes.
+## Mathematical content
 
-Here M(p) = Σ_{k=1}^p μ(k) is the Mertens function, and
-W(N) = (1/|F_N|²) Σ_{f ∈ F_N} D(f)² where D(f) = rank(f)/|F_N| - f
-is the discrepancy at fraction f.
+When a prime `p` is inserted into the Farey sequence `F_{p-1}` to
+form `F_p`, the change in Weyl discrepancy
+`ΔW(p) := W(F_{p-1}) - W(F_p)` is conjecturally controlled by the
+Mertens function `M(p) := ∑_{k = 1}^p μ(k)`.
 
-## Evidence
-- Verified for ALL 4,617 primes p ≤ 100,000 with M(p) ≤ -3: zero violations.
-- First counterexample to the universal version: p = 243,799.
-- Approximately 73% of primes with M(p) ≤ -3 up to 10^7 satisfy the condition.
-- The sign pattern arises from the explicit formula:
-  ΔW(p) ~ -2 Σ_k Re[p^{iγ_k}/(ρ_k·ζ'(ρ_k))]
-  which is dominated by the first zero's contribution.
+The original conjecture was the **pointwise sign relation**
 
-## Difficulty
-Requires controlling the Chebyshev bias of ΔW(p), analogous to
-Rubinstein-Sarnak (1994) for prime counting functions.
+  sgn(ΔW(p)) = sgn(-M(p))   for every prime p with M(p) ≤ -3.
+
+**This pointwise version is FALSIFIED.**
+
+Concrete counterexamples in the Lean-canonical `crossTerm`
+definition (per the project's `handoff-2026-05-09-followup/
+B_plus_direct_counterexamples.md` record):
+
+* `p = 237 733`: `M(p) = -20`, but `ΔW(p) > 0` — wrong sign.
+* `p = 243 799`: `M(p) = -3`, but `ΔW(p) < 0`.
+
+The plausible surviving form is the **density-one** version:
+
+  The proportion of primes `p ≤ X` with `M(p) ≤ -3` that satisfy
+  `sgn(ΔW(p)) = sgn(-M(p))` tends to `1` as `X → ∞`.
+
+## Status
+
+The pointwise theorem (file's original positive content) is
+**retracted**.  The density-one theorem is research-open and stated
+below; the proof would require Chebyshev-bias control for `ΔW(p)`
+in the spirit of Rubinstein–Sarnak 1994 for prime counting
+functions.
+
+The Lean file *does not yet* contain a definition of `ΔW(p)` or the
+Weyl discrepancy `W(F_N)` — these depend on a Mathlib formalisation
+of the Farey sequence that is not yet upstream (see
+`FareyBridgeIdentity.lean` for the parallel discussion).  We
+therefore declare an abstract `DeltaW : ℕ → ℝ` and `mertens : ℕ → ℤ`
+in the local namespace and state the density-one theorem against
+them.  Concrete definitions can be substituted once the Farey API
+is upstreamed.
+
+## Falsification record
+
+We record the two specific counterexamples to the pointwise
+positive version as theorems below, so the Lean file faithfully
+preserves the negative result.
 -/
 
+namespace FareySignPattern
+
+open Nat ArithmeticFunction Filter
+
+/-- Abstract `ΔW : ℕ → ℝ`, the change in Farey Weyl discrepancy
+upon insertion of the prime `p`. Concrete definition is pending the
+upstreaming of a Farey-sequence library in Mathlib; see
+`FareyBridgeIdentity.lean` for the parallel discussion. -/
+opaque DeltaW : ℕ → ℝ
+
+/-- The Mertens function `M(n) := ∑_{k = 1}^{n} μ(k)`. -/
+noncomputable def mertens (n : ℕ) : ℤ :=
+  ∑ k ∈ Finset.range (n + 1), ArithmeticFunction.moebius k
+
+/-- The signed indicator `sgn : ℝ → {-1, 0, 1}` (with the convention
+`sgn 0 = 0`). -/
+def signR (x : ℝ) : ℤ :=
+  if x > 0 then 1 else if x < 0 then -1 else 0
+
+/-- Same `sgn` for the integer-valued Mertens function. -/
+def signZ (n : ℤ) : ℤ :=
+  if n > 0 then 1 else if n < 0 then -1 else 0
+
+/-- The "agreement" predicate: at prime `p`, `sgn(ΔW(p)) = sgn(-M(p))`. -/
+def Agrees (p : ℕ) : Prop :=
+  signR (DeltaW p) = signZ (- mertens p)
+
+/--
+**Density-one Farey sign pattern theorem (research-open).**
+
+For every `ε > 0`, the proportion of primes `p ≤ X` with
+`M(p) ≤ -3` that satisfy `sgn(ΔW(p)) = sgn(-M(p))` is at least
+`1 - ε` for sufficiently large `X`.
+
+Equivalently: as `X → ∞`,
+
+  #{p ≤ X : p prime, M(p) ≤ -3, Agrees p}
+  ----------------------------------------- → 1 .
+  #{p ≤ X : p prime, M(p) ≤ -3}
+
+Status: **research-open in Lean**.  The proof requires:
+
+* A concrete definition of `ΔW(p)` (pending Farey-sequence
+  formalisation in Mathlib, see `FareyBridgeIdentity.lean`).
+* A Chebyshev-bias control for `ΔW(p)` analogous to
+  Rubinstein–Sarnak 1994.
+
+The corresponding proportion at `X = 10^7` is approximately `73%`
+in the project's numerical record, with full density-one conjectured
+to hold under DRH for the relevant L-functions controlling the
+explicit-formula expansion of `ΔW(p)`.
+-/
 @[category research_open]
-@[AMS 11K06, 11N37]
-/-- The Farey sign pattern holds for a density-one subset of primes:
-among primes p with M(p) ≤ -3, the proportion satisfying
-sgn(ΔW(p)) = sgn(-M(p)) tends to 1. -/
 theorem farey_sign_pattern_density_one :
-    -- For the formal statement, we would need definitions of:
-    -- ΔW(p): change in Farey Weyl discrepancy at prime p
-    -- M(p): Mertens function
-    -- The density statement: lim_{X→∞} #{p≤X : sgn(ΔW(p))=sgn(-M(p))} / #{p≤X} = 1
-    -- Placeholder until Farey discrepancy is formalized in Mathlib:
-    True := by
+    ∀ ε > (0 : ℝ),
+      ∃ X₀ : ℕ, ∀ X ≥ X₀,
+        let total :=
+          ((Finset.filter
+              (fun p => Nat.Prime p ∧ mertens p ≤ -3)
+              (Finset.range (X + 1))).card : ℝ)
+        let agreeing :=
+          ((Finset.filter
+              (fun p => Nat.Prime p ∧ mertens p ≤ -3 ∧ Agrees p)
+              (Finset.range (X + 1))).card : ℝ)
+        total > 0 → (agreeing / total) ≥ 1 - ε := by
+  -- MATHLIB-PREREQ: concrete `DeltaW` definition (pending Farey
+  -- formalisation; see `FareyBridgeIdentity.lean`).
+  -- Mathematical input needed: Chebyshev-bias control on `ΔW(p)`
+  -- analogous to Rubinstein–Sarnak 1994.
   sorry
+
+/-! ## Falsification record for the pointwise version
+
+The original pointwise conjecture `sgn(ΔW(p)) = sgn(-M(p))` *for
+every* prime with `M(p) ≤ -3` is **falsified** by direct numerical
+computation in the Lean-canonical `crossTerm` definition (see
+`handoff-2026-05-09-followup/B_plus_direct_counterexamples.md`).
+The two known counterexamples:
+
+* `p = 237 733`, `M(p) = -20`, `ΔW(p)` has the opposite of the
+  predicted sign.
+* `p = 243 799`, `M(p) = -3`, same.
+
+We record these as Lean theorem statements with `sorry` proofs:
+
+* `DeltaW` is `opaque` in this file (pending Farey-sequence
+  formalisation), so the proofs cannot be discharged without a
+  concrete definition.
+* Even with a concrete definition, kernel-level evaluation of
+  `∑_{k = 1}^{237733} μ(k) = M(237733)` would require summing
+  237 734 terms, infeasible at compile time.
+
+Per project convention (no `axiom`), each falsification record is
+a `theorem` with `sorry`-with-`-- RESEARCH-OPEN` annotation
+pointing to the numerical witness.  An alternative path that would
+yield real proofs would be (a) define `DeltaW` concretely in
+Lean, (b) compute `M(237733)` via a verified `decide`-friendly
+representation (e.g., a precomputed table), and (c) reduce
+`mertens 237733` to that representation.  This is left as a
+research-open Lean obligation.
+-/
+
+/-- **Numerical falsification at `p = 237 733`.** The pointwise
+sign-pattern conjecture fails here: `M(237 733) = -20` (a project
+numerical fact established by direct computation), but `ΔW(237 733)`
+has the opposite sign from the prediction
+`sgn(-M(p)) = sgn(20) = 1`.
+
+Proof is `sorry` because `DeltaW` is `opaque` in this file pending
+Farey-sequence formalisation in Mathlib; the numerical witness
+lives in `koyama-shared/results/` of the project repository. -/
+@[category research_open]
+theorem pointwise_falsification_237733 :
+    ¬ Agrees 237733 := by
+  -- RESEARCH-OPEN: requires concrete `DeltaW` definition + the
+  -- project's numerical witness (`koyama-shared/results/...`).
+  sorry
+
+/-- **Numerical falsification at `p = 243 799`.** `M(243 799) = -3`,
+`ΔW(243 799)` has the opposite of the predicted sign. -/
+@[category research_open]
+theorem pointwise_falsification_243799 :
+    ¬ Agrees 243799 := by
+  -- RESEARCH-OPEN: requires concrete `DeltaW` definition + the
+  -- project's numerical witness.
+  sorry
+
+/-- The pointwise version of the conjecture is *false*: there exist
+primes `p` with `M(p) ≤ -3` for which `sgn(ΔW(p)) = sgn(-M(p))`
+fails.
+
+This theorem is **conditional** on the two `pointwise_falsification_*`
+lemmas above (which are themselves research-open in Lean pending
+the concrete `DeltaW` definition), and on the project's numerical
+fact `M(237 733) = -20` (which would require summing 237 734
+Möbius values inside the kernel — infeasible).
+
+The take-away is the *negative result*: the pointwise sign pattern
+is *not* a theorem.  The density-one version (above) is the
+plausible surviving form. -/
+@[category research_open]
+theorem pointwise_version_falsified
+    (h_mertens_237733 : mertens 237733 ≤ -3)
+    (h_prime_237733 : Nat.Prime 237733) :
+    ¬ ∀ p : ℕ, Nat.Prime p → mertens p ≤ -3 → Agrees p := by
+  intro h
+  exact pointwise_falsification_237733
+        (h 237733 h_prime_237733 h_mertens_237733)
+
+end FareySignPattern
