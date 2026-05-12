@@ -151,22 +151,17 @@ may unfold it through the exact finite prime-torus zero locus. -/
 def FiniteLogPrimePhaseIndependence (K : ℕ) (ρ : ℂ) : Prop :=
   LogPrimePhaseAvoidance K ρ
 
-/-
-Equality between the complex-power Dirichlet polynomial and the explicit
+/-- Equality between the complex-power Dirichlet polynomial and the explicit
 fixed-line exponential polynomial.
 
 Scaffold only: proving this requires careful handling of Lean's complex-power
-conventions for positive real bases.
--/
+conventions for positive real bases. -/
 theorem moebiusDirichletPoly_eq_gammaExponentialPoly
     (K : ℕ) (ρ : ℂ) :
     moebiusDirichletPoly K ρ = gammaExponentialPoly K ρ.re ρ.im := by
   -- TODO(aristotle): positive-real complex power convention:
   -- (n : ℂ) ^ (-(β + iγ)) = n^(-β) * exp(-iγ log n), for n > 0.
-  refine' Finset.sum_congr rfl fun x hx => _;
-  rw [ Complex.cpow_def_of_ne_zero ] <;> norm_cast ; norm_num;
-  norm_num [ Complex.ext_iff, Complex.exp_re, Complex.exp_im, Real.rpow_def_of_pos ( by positivity : 0 < ( x:ℝ ) + 2 ) ] ; ring;
-  norm_cast ; norm_num [ mul_comm ]
+  sorry
 
 /-- Claim-safe bridge: DPAC at a fixed zero follows from the explicit finite
 log-prime phase avoidance hypothesis at that zero. -/
@@ -315,23 +310,7 @@ theorem dirichlet_polynomial_avoidance_conjecture
   -- until the external zeta-zero and polynomial-zero counting inputs are
   -- formalized.
   --
-  -- RESEARCH-OPEN: The Dirichlet Polynomial Avoidance Conjecture is
-  -- comparable in difficulty to the Linear Independence Hypothesis (LI)
-  -- for zeta-zero ordinates.  No unconditional proof is known.
-  --
-  -- Missing Mathlib prerequisites that would be needed even for partial
-  -- progress:
-  --   • Zero-counting for finite exponential polynomials (Langer 1931):
-  --     no Mathlib analogue of N_{c_K}(T) = O(T).
-  --   • Riemann–von Mangoldt formula N(T) ~ (T/2π) log T: not in Mathlib.
-  --   • Joint distribution / independence of zeros of ζ and c_K: open.
-  --
-  -- The conditional bridges `dpac_of_logPrimePhaseAvoidance`,
-  -- `dpac_of_externalZetaZeroPhaseAvoidance`, and
-  -- `dpac_of_certifiedZetaZeroSample` reduce DPAC to explicit
-  -- phase-avoidance or interval-arithmetic inputs.  The algebraic
-  -- identity `moebiusDirichletPoly_eq_gammaExponentialPoly` (proved
-  -- above) validates the bridge layer.
+  -- TODO(aristotle): full unconditional proof of DPAC
   sorry
 
 end
