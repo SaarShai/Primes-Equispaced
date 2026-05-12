@@ -44,15 +44,30 @@ once its API stabilises across v4.28.0+; for now we keep the file
 self-contained. -/
 abbrev DChar := ℕ → ℂ
 
-/-- The partial prime-power tail
-`T_K(chi, ρ) := Σ_{p ≤ K, p prime} Σ_{k ≥ 2} chi(p)^k / (k · p^(k ρ))`.
+/-- Per-prime contribution to `T_K(chi, ρ)`: `Σ_{k ≥ 2} z^k/k` where
+`z := chi(p) / p^ρ`, given in closed form as `-log(1 - z) - z`. -/
+noncomputable def perPrime_TK (chi : DChar) (ρ : ℂ) (p : ℕ) : ℂ :=
+  -Complex.log (1 - chi p / (p : ℂ) ^ ρ) - chi p / (p : ℂ) ^ ρ
 
-The inner `k`-sum has the per-prime closed form
-`-log(1 - z) - z` where `z := chi(p) / p^ρ`. -/
+/-- Per-prime contribution to `T_{≥3}(chi, ρ)`: `Σ_{k ≥ 3} z^k/k`. -/
+noncomputable def perPrime_Tge3 (chi : DChar) (ρ : ℂ) (p : ℕ) : ℂ :=
+  -Complex.log (1 - chi p / (p : ℂ) ^ ρ)
+    - chi p / (p : ℂ) ^ ρ
+    - (chi p / (p : ℂ) ^ ρ) ^ 2 / 2
+
+/-- Per-prime contribution to `BPC_2(chi, ρ)`:
+`Σ_{k ≥ 2} y^k/k` where `y := chi(p)^2 / p^(2ρ)`, given in closed
+form as `-log(1 - y) - y`. -/
+noncomputable def perPrime_BPC2 (chi : DChar) (ρ : ℂ) (p : ℕ) : ℂ :=
+  Complex.log (1 - (chi p) ^ 2 / (p : ℂ) ^ (2 * ρ))
+    + (chi p) ^ 2 / (p : ℂ) ^ (2 * ρ)
+
+/-- The partial prime-power tail
+`T_K(chi, ρ) := Σ_{p ≤ K, p prime} Σ_{k ≥ 2} chi(p)^k / (k · p^(k ρ))`,
+evaluated via the per-prime closed form. -/
 noncomputable def T_K (chi : DChar) (ρ : ℂ) (K : ℕ) : ℂ :=
   ∑ p ∈ Finset.filter Nat.Prime (Finset.range (K + 1)),
-      let z : ℂ := chi p / (p : ℂ) ^ ρ
-      -Complex.log (1 - z) - z
+    perPrime_TK chi ρ p
 
 /-- `T_∞(chi, ρ)` is the limit of `T_K(chi, ρ)` as `K → ∞`.
 The existence of the limit is part of the Theorem X.4.1 statement;
@@ -62,12 +77,9 @@ noncomputable def T_inf (chi : DChar) (ρ : ℂ) : ℂ :=
     Filter.Tendsto (T_K chi ρ) Filter.atTop (nhds S))
 
 /-- The absolutely convergent `k ≥ 3` tail
-`T_{≥3}(chi, ρ) := Σ_p [-log(1 - z_p) - z_p - z_p² / 2]`,
-where `z_p := chi(p) / p^ρ`. -/
+`T_{≥3}(chi, ρ) := Σ_p [-log(1 - z_p) - z_p - z_p² / 2]`. -/
 noncomputable def T_ge3 (chi : DChar) (ρ : ℂ) : ℂ :=
-  ∑' p : { n : ℕ // Nat.Prime n },
-      let z : ℂ := chi p.val / (p.val : ℂ) ^ ρ
-      -Complex.log (1 - z) - z - z ^ 2 / 2
+  ∑' p : { n : ℕ // Nat.Prime n }, perPrime_Tge3 chi ρ p.val
 
 /-- The bad-prime correction `BPC₁`: for each prime `p` dividing the
 conductor `q` of `chi` but *not* dividing the conductor `f` of the
@@ -89,9 +101,7 @@ noncomputable def BPC_1 (psi : DChar) (q f : ℕ) (ρ : ℂ) : ℂ :=
 -/
 noncomputable def BPC_2 (chi : DChar) (ρ : ℂ) : ℂ :=
   (1 / 2 : ℂ) *
-    ∑' p : { n : ℕ // Nat.Prime n },
-        let y : ℂ := (chi p.val) ^ 2 / (p.val : ℂ) ^ (2 * ρ)
-        Complex.log (1 - y) + y
+    ∑' p : { n : ℕ // Nat.Prime n }, perPrime_BPC2 chi ρ p.val
 
 /-- `L(s, psi)` for the simple-character primitive `psi` modulo `f`.
 We define the L-value via the Dirichlet series in its half-plane of
@@ -130,7 +140,7 @@ boundary-line estimate `∑_{p ≤ X} χ²(p) / p^(1 + 2iτ) = c(τ) + O(1/log X
 (Akatsuka 2013, eq. (2.5)) or the equivalent Dirichlet PNT with
 explicit error term.
 -/
-@[category research_open]
+
 theorem corrected_B_infty
     (chi : DChar) (psi : DChar) (q f : ℕ) (ρ : ℂ)
     (hq : 2 ≤ q) (hf : f ∣ q)

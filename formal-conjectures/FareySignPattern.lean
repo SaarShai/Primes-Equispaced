@@ -4,10 +4,6 @@ Released under Apache 2.0 license as described in the LICENSE file.
 Authors: Saar Shai
 -/
 
-import Mathlib.NumberTheory.ArithmeticFunction
-import Mathlib.Data.Nat.Prime.Basic
-import Mathlib.Data.Real.Basic
-import Mathlib.Order.Filter.AtTopBot
 import Mathlib
 
 /-!
@@ -82,8 +78,8 @@ noncomputable def mertens (n : ℕ) : ℤ :=
   ∑ k ∈ Finset.range (n + 1), ArithmeticFunction.moebius k
 
 /-- The signed indicator `sgn : ℝ → {-1, 0, 1}` (with the convention
-`sgn 0 = 0`). -/
-def signR (x : ℝ) : ℤ :=
+`sgn 0 = 0`).  `noncomputable` because comparison on `ℝ` is. -/
+noncomputable def signR (x : ℝ) : ℤ :=
   if x > 0 then 1 else if x < 0 then -1 else 0
 
 /-- Same `sgn` for the integer-valued Mertens function. -/
@@ -93,6 +89,9 @@ def signZ (n : ℤ) : ℤ :=
 /-- The "agreement" predicate: at prime `p`, `sgn(ΔW(p)) = sgn(-M(p))`. -/
 def Agrees (p : ℕ) : Prop :=
   signR (DeltaW p) = signZ (- mertens p)
+
+section
+open Classical
 
 /--
 **Density-one Farey sign pattern theorem (research-open).**
@@ -119,7 +118,7 @@ in the project's numerical record, with full density-one conjectured
 to hold under DRH for the relevant L-functions controlling the
 explicit-formula expansion of `ΔW(p)`.
 -/
-@[category research_open]
+
 theorem farey_sign_pattern_density_one :
     ∀ ε > (0 : ℝ),
       ∃ X₀ : ℕ, ∀ X ≥ X₀,
@@ -178,7 +177,7 @@ has the opposite sign from the prediction
 Proof is `sorry` because `DeltaW` is `opaque` in this file pending
 Farey-sequence formalisation in Mathlib; the numerical witness
 lives in `koyama-shared/results/` of the project repository. -/
-@[category research_open]
+
 theorem pointwise_falsification_237733 :
     ¬ Agrees 237733 := by
   -- RESEARCH-OPEN: requires concrete `DeltaW` definition + the
@@ -187,7 +186,7 @@ theorem pointwise_falsification_237733 :
 
 /-- **Numerical falsification at `p = 243 799`.** `M(243 799) = -3`,
 `ΔW(243 799)` has the opposite of the predicted sign. -/
-@[category research_open]
+
 theorem pointwise_falsification_243799 :
     ¬ Agrees 243799 := by
   -- RESEARCH-OPEN: requires concrete `DeltaW` definition + the
@@ -207,7 +206,7 @@ Möbius values inside the kernel — infeasible).
 The take-away is the *negative result*: the pointwise sign pattern
 is *not* a theorem.  The density-one version (above) is the
 plausible surviving form. -/
-@[category research_open]
+
 theorem pointwise_version_falsified
     (h_mertens_237733 : mertens 237733 ≤ -3)
     (h_prime_237733 : Nat.Prime 237733) :
@@ -215,5 +214,7 @@ theorem pointwise_version_falsified
   intro h
   exact pointwise_falsification_237733
         (h 237733 h_prime_237733 h_mertens_237733)
+
+end
 
 end FareySignPattern

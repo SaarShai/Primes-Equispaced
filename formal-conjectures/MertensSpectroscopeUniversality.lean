@@ -107,7 +107,7 @@ recipe of Akatsuka 2013, eq. (2.5).
 Pen-and-paper proof: Shai 2026, "Prime Spectroscopy of Riemann
 Zeros", Theorem C.
 -/
-@[category research_open]
+
 theorem mertens_spectroscope_universality
     (P : ℕ → Prop) [DecidablePred P]
     -- "P is a set of primes" is encoded inside `spectroscope` already;

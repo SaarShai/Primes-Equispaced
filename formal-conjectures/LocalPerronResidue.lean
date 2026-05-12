@@ -85,7 +85,7 @@ step is verified, the proof is `sorry` with the *research-open*
 status for the Lean formalization; the mathematical proof is fully
 written out in Appendix B §B.2 of the joint manuscript.
 -/
-@[category research_open]
+
 theorem local_perron_residue
     (K : ℝ) (hK : (1 : ℝ) < K)
     (L : ℂ → ℂ) (ρ : ℂ)

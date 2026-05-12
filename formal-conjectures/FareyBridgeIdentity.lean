@@ -98,7 +98,7 @@ Status: **research-open in Lean**.  Mathlib v4.28.0 provides
 
 Pen-and-paper proof: see Saar Shai, "Per-Step Farey Discrepancy"
 (2026), §3.1. -/
-@[category research_open]
+
 theorem farey_bridge_identity
     (p : ℕ) (hp : Nat.Prime p) :
     ∑ pair ∈ FareySet (p - 1),

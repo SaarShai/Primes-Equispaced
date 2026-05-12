@@ -4,9 +4,7 @@ Released under Apache 2.0 license as described in the LICENSE file.
 Authors: Saar Shai
 -/
 
-import Mathlib.Analysis.SpecialFunctions.Complex.Log
-import Mathlib.NumberTheory.ArithmeticFunction
-import Mathlib.NumberTheory.ZetaFunction
+import Mathlib
 
 /-!
 # Dirichlet Polynomial Avoidance Conjecture
@@ -44,8 +42,6 @@ by all primes. Proving they never coincide requires understanding the
 arithmetic independence between these structures.
 -/
 
-@[category research_open]
-@[AMS 11M26, 30D15]
 /-- For fixed K ≥ 2 and any nontrivial zero ρ of the Riemann zeta function,
 the truncated Möbius Dirichlet polynomial c_K(ρ) = Σ_{k=2}^{K} μ(k) · k^{-ρ}
 is nonzero. -/
@@ -53,6 +49,6 @@ theorem dirichlet_polynomial_avoidance_conjecture
     (K : ℕ) (hK : K ≥ 2)
     (ρ : ℂ) (hρ : riemannZeta ρ = 0)
     (hρ_nontrivial : 0 < ρ.re ∧ ρ.re < 1) :
-    (∑ k in Finset.range (K - 1), (ArithmeticFunction.moebius (k + 2) : ℂ) *
+    (∑ k ∈ Finset.range (K - 1), (ArithmeticFunction.moebius (k + 2) : ℂ) *
       ((k + 2 : ℂ) ^ (-ρ))) ≠ 0 := by
   sorry

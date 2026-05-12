@@ -24,7 +24,6 @@ before the attribute block to comply with Lean 4 grammar.  The sum syntax
 `∑ k in` is replaced with `∑ k ∈` per Mathlib v4.28.0 convention.
 -/
 
-import RequestProject.Attrs
 import Mathlib
 
 /-!
@@ -295,7 +294,6 @@ theorem density_zero_from_growth_comparison
 /-- For fixed K ≥ 2 and any nontrivial zero ρ of the Riemann zeta function,
 the truncated Möbius Dirichlet polynomial c_K(ρ) = Σ_{k=2}^{K} μ(k) · k^{-ρ}
 is nonzero. -/
-@[category, AMS]
 theorem dirichlet_polynomial_avoidance_conjecture
     (K : ℕ) (hK : K ≥ 2)
     (ρ : ℂ) (hρ : riemannZeta ρ = 0)
