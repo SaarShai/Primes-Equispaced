@@ -1001,16 +1001,26 @@ formula; analytic prerequisites that Mathlib v4.28.0 does not yet
 supply are marked with named `MATHLIB-PREREQ` annotations rather than
 as bare `axiom`s.
 
+**Build status (2026-05-12, commit `bf6aeae`).**
+`lake build FormalConjectures` succeeds on **all 8 files** in
+`formal-conjectures/` under `leanprover/lean4:v4.28.0` + Mathlib
+`8f9d9cff…`, with **11 `sorry` warnings** total — each annotated
+in-source as `MATHLIB-PREREQ:` (an upstream Mathlib lemma not yet
+available) or `RESEARCH-OPEN:` (an open mathematical conjecture or
+pending formalisation). The full per-`sorry` inventory is in
+[`LEAN_SORRY_STATUS.md`](LEAN_SORRY_STATUS.md). No `axiom` is
+introduced anywhere in the project.
+
 | Paper object | Lean file (verified path) | Status |
 |---|---|---|
 | Boundary residue $R_0 = -2$ for the smoothed $\Delta w_f$ explicit formula (Schwartz cutoff $W(x)=e^{-x^2}$) and its algebraic-glue chain (sign, parity, antiderivative identity, residue factorization, Mellin residue at zero, complex/integer recasts) | `formal-conjectures/SmoothedDwfFormula_full.lean` | **THEOREM (chain).** 25+ specific theorems are closed without `sorry`, including `R0_value`, `R0_plus_two`, `R0_factored`, `zeta_at_zero` (using `riemannZeta_zero` from Mathlib), `inv_zeta_at_zero`, `mellinResidueGaussianAtZero_eq_one`, `R0_eq_neg_two`, `R0_complex_re`, `R0_complex_im`, `R0_complex_ne_zero`, `R0_complex_neg`, `R0_complex_double`, `log_lin_antideriv_at`, `log_lin_form`, `log_lin_deriv_form`, `dwf_leading_coeff`, `R0_neg_two_iff_plus_two_zero`. The chain establishes the boundary residue algebraically; the remaining analytic-input theorems are listed in the next row. |
 | Analytic prerequisites for the smoothed $\Delta w_f$ explicit formula | same file as above | **2 remaining `sorry`s** (after a fresh Aristotle dispatch on 2026-05-12, project ID `885c640c-55cd-48f4-9ce5-1168566619d6`, `lake build`-verified). Each is annotated with the precise missing Mathlib prerequisite. `mellin_decay`: unclosable for two independent reasons — (a) `AdmissibleWeight` currently lacks a decay field on `M`, so the theorem is over-stated for arbitrary $M$; the fix is to add `M_decay : ∀σ A, ∃ C, 0 ≤ C ∧ ∀t, ‖M⟨σ,t⟩‖ ≤ C·(1+|t|)^{-A}` to the structure; (b) for the Gaussian specialization $M(s) = \tfrac12\Gamma(s/2)$, Mathlib v4.28.0 lacks `Complex.Gamma.uniform_stirling_strip_bound`. `inv_zeta_polynomial_growth`: unclosable in Mathlib v4.28.0 (Titchmarsh, *The Theory of the Riemann Zeta-Function*, Theorem 3.11); Mathlib has individual non-vanishing on $\mathrm{Re}\,s \ge 1$ via `riemannZeta_ne_zero_of_one_le_re` but not the quantitative polynomial bound $\|1/\zeta(σ+it)\| \le C(1+|t|)^B$. The `contour_shift_one_to_minus_A` and `tail_bound` theorems consume these as hypotheses and are themselves closed conditional on them. **No `axiom` is introduced.** |
 | Dirichlet Polynomial Avoidance (DPAC) statement + phase-avoidance bridge layers | `formal-conjectures/DirichletPolynomialAvoidance.lean` (statement of conjecture, 1 `sorry`); `formal-conjectures/DPAC_full.lean` (8 theorems, **1 `sorry`** at line 335 after Aristotle round-2 dispatch `bb0cd153-0364-48e2-85fd-564fd8ce4679` on 2026-05-12; both files `lake build`-verified under Lean 4.28.0 / Mathlib v4.28.0) | **OPEN (the headline conjecture itself).** The earlier `dpac_of_LI` bridge was tombstoned (LI alone is insufficient); the file names four explicit phase-avoidance bridge layers (`dpac_of_logPrimePhaseAvoidance`, `dpac_of_finiteLogPrimePhaseIndependence`, `dpac_of_externalZetaZeroPhaseAvoidance`, `dpac_of_certifiedZetaZeroSample`) — **all closed without `sorry`**. The Aristotle round-2 dispatch additionally closed the algebraic-identity sorry `moebiusDirichletPoly_eq_gammaExponentialPoly` (uses only `propext`, `Classical.choice`, `Quot.sound`). The remaining `sorry` is precisely the headline DPAC conjecture, which Aristotle correctly diagnoses as comparable in difficulty to the Linear Independence Hypothesis for zeta-zero ordinates (no unconditional proof exists in the literature; the conditional bridges reduce DPAC to explicit phase-avoidance / interval-arithmetic inputs). Submitted to `google-deepmind/formal-conjectures` as PR #3716. |
-| Farey bridge identity (R1) | `formal-conjectures/FareyBridgeIdentity.lean` | SCAFFOLD (1 theorem, 2 `sorry`-occurrences); algebraic-identity-class proof skeleton |
-| Spectroscope universality conjecture | `formal-conjectures/MertensSpectroscopeUniversality.lean` | SCAFFOLD (1 theorem, 1 `sorry`); statement formalized, proof depends on the analytic results in the body of this paper |
-| Farey sign pattern (B+ Mertens-restricted positivity) | `formal-conjectures/FareySignPattern.lean` | **NEGATIVE — positive theorem is falsified.** $B_+$ Mertens-restricted positivity is directly falsified in the Lean-canonical `crossTerm` definition at $p = 237{,}733$ and $p = 243{,}799$. The file's positive theorem is no longer in scope; we keep the file as a record of the negative result. |
-| Lemma X.3.1 (local Perron residue) | `formal-conjectures/LocalPerronResidue.lean` (skeleton committed 2026-05-12) | **SCAFFOLD (statement only).** Statement type signature uses `residue` for the meromorphic-function residue functional. MATHLIB-PREREQ comments name the API gaps: meromorphic-function residue, `AnalyticAt.hasFPowerSeriesAt` for the Laurent expansion, higher derivatives at a point. Proof is `sorry`. The algebraic content is closed on paper (§X.3 of this section and Appendix B §B.2). |
-| Theorem X.4.1 ($B_\infty$ identity) | `formal-conjectures/CorrectedBInfty.lean` (skeleton committed 2026-05-12) | **SCAFFOLD (statement only).** Statement uses `DirichletCharacter`, `IsPrimitive`, `LFunction` from Mathlib v4.28.0 plus named MATHLIB-PREREQs for: an `induces` relation for $\chi^2$, simple-zero characterization, and the $T_\infty$ / $\mathrm{BPC}_1$ / $\mathrm{BPC}_2$ / $T_{\ge 3}$ definitions. Proof is `sorry`. The algebraic content is closed on paper (§X.4.1 + Appendix A). |
+| Farey bridge identity (R1) | `formal-conjectures/FareyBridgeIdentity.lean` | SCAFFOLD (1 theorem, **1 `sorry`** at :102); algebraic-identity-class statement against a local `FareySet` definition; `MATHLIB-PREREQ: Mathlib.NumberTheory.RamanujanSum`. |
+| Spectroscope universality conjecture | `formal-conjectures/MertensSpectroscopeUniversality.lean` | SCAFFOLD (1 theorem, 1 `sorry` at :111); statement formalized as `Tendsto … atTop atTop` against an inline RH-for-$\zeta$ predicate, proof depends on the analytic results in the body of this paper |
+| Farey sign pattern (B+ Mertens-restricted positivity) | `formal-conjectures/FareySignPattern.lean` | **NEGATIVE — positive theorem is falsified.** $B_+$ Mertens-restricted positivity is directly falsified in the Lean-canonical `crossTerm` definition at $p = 237{,}733$ and $p = 243{,}799$. The file contains: (i) the density-one surviving version as a `Tendsto` statement (1 `sorry` at :122), (ii) the two falsification witnesses recorded as `theorem … sorry` (lines :181, :190; the project's "no `axiom`" convention is preserved). The pointwise positive theorem is retracted. |
+| Lemma X.3.1 (local Perron residue) | `formal-conjectures/LocalPerronResidue.lean` (committed 2026-05-12, `lake build`-clean) | **STATEMENT-CLOSED, PROOF research-open.** Statement is a `Tendsto` limit relation against `perronDoublePole L ρ / w²` and `perronResidue K L ρ / w`, with `perronResidue = log K / L'(ρ) - L''(ρ) / (2 L'(ρ)²)` (the auxiliary algebraic identity `perronResidue_eq` is closed by `ring`, no `sorry`). The main theorem has 1 `sorry` at :89, awaiting `AnalyticAt.hasFPowerSeriesAt` extraction of the second-order Taylor coefficient. The algebraic content is closed on paper (§X.3 of this section and Appendix B §B.2). |
+| Theorem X.4.1 ($B_\infty$ identity) | `formal-conjectures/CorrectedBInfty.lean` (committed 2026-05-12, `lake build`-clean) | **STATEMENT-CLOSED, PROOF research-open.** Statement uses an abbrev `DChar := ℕ → ℂ` (deferring Mathlib's `DirichletCharacter` API which is moving across v4.28.0+) and defines `T_inf`, `T_ge3`, `BPC_1`, `BPC_2`, `L_value`, and per-prime helpers as `noncomputable def`s. The four-component identity is stated as a single equation; the one `sorry` at :144 is the proof, blocked on Akatsuka 2013 eq. (2.5). The algebraic content is closed on paper (§X.4.1 + Appendix A). |
 | Hypothesis AK and Hypothesis SP-L | (planned) named as Lean `axiom`s with manuscript references, in line with the project's protocol that analytic-input prerequisites are visible `axiom`s/named `MATHLIB-PREREQ`, not silent | **EXTERNAL** (AK) and **OPEN** (SP-L) |
 
 **On the broader project Lean inventory.** A separate, archived
@@ -1167,6 +1177,16 @@ yields $|R_\Phi(T)| \ll M_T \cdot T^{7/4 + \varepsilon + o(1)}$, where
 $M_T = \sup_{\partial \Omega_T} |\Phi_T|$. If $M_T = o(T^{1/4})$
 (in particular if $M_T = T^{o(1)}$), then $R_\Phi(T) = o(T^2)$.
 
+*Scope caveat.* The $T^{7/4 + \varepsilon}$ bound above is the
+**GL(2) halo result**. Its naïve transfer to the GL(1) setting
+relevant for (SP-L) yields only $|R_K| \ll K^{1/2+\varepsilon+o(1)}$
+under the analogous Dirichlet shifted-second-moment input — this
+is **far above** the $o(\log K)$ target needed to close (SP-L), so
+the halo route does *not*, in its present form, supply the
+shifted Perron leading remainder. The GL(1) accounting is recorded
+in [`HALO_GL1_SKETCH_2026-05-12.md`](HALO_GL1_SKETCH_2026-05-12.md)
+and §X.7.1 below.
+
 **Status of the four doors.**
 
 | Door | Statement | Status (2026-05-12) |
@@ -1267,10 +1287,14 @@ page/equation, and verbatim quote recorded in
   table in §X.4.1; (SP-L) phrased as open challenge in §X.4.4, not
   impossibility; "consistent with" rather than "demonstrates" for
   empirical decay rates).
-- **2026-05-12 v0.2.** Lean-memo additions: `c_W = -γ_E - E_1(1)`
-  kernel-constant theorem and Petersson family-average boundary
-  formalization added to §X.6 inventory as the strongest current
-  Lean items (delivered to Koyama on 2026-05-02). §X.5 opens with
+- **2026-05-12 v0.2.** Lean-memo updates: the §X.6 inventory's
+  strongest current items remain the *boundary-residue* and
+  *algebraic-glue* theorems for the smoothed $\Delta w_f$ explicit
+  formula (Schwartz cutoff $W(x) = e^{-x^2}$, $R_0 = -2$); the
+  Heaviside-cutoff kernel-constant $c_W = -\gamma_E - E_1(1)$
+  remains a paper-proven identity *not* in the Lean repository
+  (cross-referenced in §X.6 prose but not claimed as a Lean
+  theorem). §X.5 opens with
   an explicit two-scales framing sentence: replication at
   $x = 1.3\cdot10^{13}$ vs analytic at $K \le 2\cdot 10^6$–$10^7$,
   with a no-cross-extrapolation guarantee. §X.5.2 table filled with
@@ -1414,13 +1438,19 @@ deliberate rather than ad hoc. Status as of 2026-05-12 v0.3.)
    $\chi_{-4}/z_1$ and $\chi_{-4}/z_2$ at 250 bits via python-flint.
    Optional follow-up: extend the Arb spot-check to $\chi_5$ and
    $\chi_{11}$.
-3. **Lean files for Lemma X.3.1 and Theorem X.4.1.** Currently
-   tagged PLANNED in §X.6 because the files do not yet exist. Write
-   `LocalPerronResidue.lean` and `CorrectedBInfty.lean`,
-   `lake build`-verify, then upgrade the tag to
-   PROVED-UP-TO-MATHLIB-PREREQ in §X.6.
+3. **(DONE 2026-05-12 v0.5)** Lean files for Lemma X.3.1 and
+   Theorem X.4.1 written, `lake build`-verified under
+   Lean 4.28.0 + Mathlib `8f9d9cff…` (commit `bf6aeae`).
+   `LocalPerronResidue.lean` (1 `sorry` at :89) and
+   `CorrectedBInfty.lean` (1 `sorry` at :144) state the identities
+   non-vacuously against Mathlib API; the proof obligations are
+   research-open with the algebraic content closed in Appendix B
+   §B.2 and Appendix A respectively.
 4. **Aristotle audit of every existing `sorry`** in the Lean
-   project; document the result in the reproducibility bundle.
+   project; rounds 1–2 complete; round-3 (project
+   `dc276a90-66ac-4070-b5cb-de34d0ea5c5c`) still in progress at the
+   time of v0.5. Final inventory will be recorded in the
+   reproducibility bundle.
 5. **L3 adversarial re-run after v0.3 edits.** The current
    adversarial responses are against v0.1–v0.2. After the v0.3
    changes settle, re-run Mimo + Ollama (and a larger MLX model)
