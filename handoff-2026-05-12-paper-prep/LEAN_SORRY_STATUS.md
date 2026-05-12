@@ -276,12 +276,36 @@ The "no `axiom`" project convention is preserved throughout.
 ## What this delivery does NOT achieve
 
 - **Zero sorries** (we deliver 11 documented sorries, not 0).
-- **Compile-verification of the newly-upgraded files** in our local
-  environment (the lake build of `SmoothedDwfFormula_full` is still
-  running at the time of writing; we know the file *itself* compiles
-  per Aristotle round-2, and the new files use only standard
-  Mathlib v4.28.0 API surfaces, but local verification of the new
-  scaffolds is queued for the next iteration).
+
+## Local compile verification (added 2026-05-12, commit `bf6aeae`)
+
+`lake build FormalConjectures` against `leanprover/lean4:v4.28.0` +
+Mathlib commit `8f9d9cff…` now **succeeds on all 8 files** in
+`formal-conjectures/`, with only the expected 11 `sorry` warnings.
+
+Fixes applied in this round:
+
+- `DPAC_full.lean`: removed dead `import RequestProject.Attrs` and
+  the project-archive `@[category, AMS]` attribute (not recognised
+  by Lean 4.28.0).
+- `DirichletPolynomialAvoidance.lean`: replaced
+  `import Mathlib.NumberTheory.ZetaFunction` (renamed upstream)
+  with `import Mathlib`, dropped the same legacy attributes, and
+  modernised `∑ k in` → `∑ k ∈`.
+
+Build tail (key lines):
+
+```
+⚠ [8026/8034] Replayed CorrectedBInfty            (sorry at :144)
+⚠ [8027/8034] Replayed LocalPerronResidue         (sorry at :89)
+⚠ [8028/8034] Replayed SmoothedDwfFormula_full    (sorries at :214, :242)
+⚠ [8029/8034] Replayed MertensSpectroscopeUniversality (sorry at :111)
+⚠ [8030/8034] Replayed FareyBridgeIdentity        (sorry at :102)
+⚠ [8031/8034] Replayed FareySignPattern           (sorries at :122, :181, :190)
+⚠ [8033/8034] Built DirichletPolynomialAvoidance  (sorry at :48)
+⚠ [8033/8034] Built DPAC_full                     (sorry at :297)
+Build completed successfully (8034 jobs).
+```
 
 ## Path forward (Option C continued, future sessions)
 
