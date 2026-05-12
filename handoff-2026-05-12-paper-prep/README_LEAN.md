@@ -78,29 +78,32 @@ conjecture.
 
 ## Lakefile / build path note
 
-The repository root `primes-equispaced/lakefile.toml` declares
-`[[lean_lib]] name = "RequestProject"` and `defaultTargets =
-["RequestProject"]`. This points at an archived path
-(`archive/request-projects/RequestProject/`), not the current
-`formal-conjectures/` directory. As a result, `lake build` at the
-repo root does not currently build the formal-conjectures files.
-Both `SmoothedDwfFormula_full.lean` and `DPAC_full.lean` *do* build
-successfully when isolated (per the Aristotle round-2 result
-extracts at `formal-conjectures/SmoothedDwfFormula_aristotle_round2_extract/`
-and `formal-conjectures/DPAC_aristotle_round2_extract/`).
+The repository root `primes-equispaced/lakefile.toml` is configured
+(as of 2026-05-12) with one `[[lean_lib]]` entry per Lean file in
+`formal-conjectures/`, plus a roll-up `FormalConjectures` library
+that builds all eight files together:
 
-**Repair task (TODO before submission).** Either (a) move the
-`formal-conjectures/*.lean` files into a `FormalConjectures/`
-namespace directory and update the lakefile, or (b) update the
-lakefile globs to include `formal-conjectures/*`. The former is
-cleaner; the latter is one-line. This is cosmetic for the
-manuscript's claims (the Lean files individually compile) but
-necessary for a clean root-level `lake build` invocation.
+```
+defaultTargets = ["FormalConjectures"]
+
+[[lean_lib]]
+name = "FormalConjectures"
+globs = ["CorrectedBInfty", "LocalPerronResidue", "DPAC_full",
+         "DirichletPolynomialAvoidance", "SmoothedDwfFormula_full",
+         "MertensSpectroscopeUniversality",
+         "FareyBridgeIdentity", "FareySignPattern"]
+srcDir = "formal-conjectures"
+```
+
+This means `lake build` at the repo root builds every Lean file in
+the `formal-conjectures/` directory against the pinned Mathlib
+v4.28.0. Individual targets are also exposed (e.g.,
+`lake build SmoothedDwfFormula_full`).
 
 ## How to rebuild
 
-Once the lakefile is repaired, the following sequence will build
-the entire formal-conjectures subtree from a fresh checkout:
+The following sequence builds the entire formal-conjectures
+subtree from a fresh checkout:
 
 ```bash
 # install elan if needed:
