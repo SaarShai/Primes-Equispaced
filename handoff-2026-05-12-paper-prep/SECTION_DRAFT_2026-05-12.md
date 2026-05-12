@@ -372,10 +372,9 @@ anywhere in the project. The full per-`sorry` inventory is in
 | Farey sign pattern | `FareySignPattern.lean` | **NEGATIVE.** The pointwise version is falsified at $p = 237{,}733$ and $p = 243{,}799$ (recorded as theorems, not axioms — the project's "no `axiom`" convention is preserved). The density-one surviving version is stated as a `Tendsto`. 3 `sorry`s. |
 | Dirichlet Polynomial Avoidance (DPAC) statement + four phase-avoidance bridge layers | `DirichletPolynomialAvoidance.lean`, `DPAC_full.lean` | **OPEN (the headline conjecture).** The earlier LI-to-DPAC bridge is tombstoned; four explicit phase-avoidance bridges (`dpac_of_logPrimePhaseAvoidance`, …, `dpac_of_certifiedZetaZeroSample`) are **closed without `sorry`**. The remaining `sorry` is DPAC itself, diagnostically comparable to the Linear Independence Hypothesis. Submitted as `google-deepmind/formal-conjectures` PR #3716. |
 
-We do not claim a Lean-verified theorem for any object tagged
-STATEMENT-CLOSED, SCAFFOLD, or OPEN. The role of the Lean artifact
-is to fix the statements and provide a publicly inspectable audit
-trail of the proof obligations remaining.
+The role of the Lean artifact is to fix the statements and provide
+a publicly inspectable audit trail of the proof obligations
+remaining.
 
 ---
 

@@ -8,3 +8,9 @@
 # 2026-05-12 — second-round dispatches against remaining sorries
 885c640c-55cd-48f4-9ce5-1168566619d6 SmoothedDwfFormula_sorries_round2
 bb0cd153-0364-48e2-85fd-564fd8ce4679 DPAC_sorries_round2
+
+# 2026-05-12 — third-round dispatch on remaining 5 sorries
+dc276a90-66ac-4070-b5cb-de34d0ea5c5c remaining_5_sorries_round3
+
+# 2026-05-12 — fourth-round dispatch: DPAC headline closure attempt (long shot)
+4b194281-8fb6-474c-aaf3-15d227c445e3 DPAC_headline_round4
