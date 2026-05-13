@@ -28,8 +28,11 @@ In this Lean file we:
 
 * Define the four components as `noncomputable` partial-sum limits.
 
-* State the identity as a theorem with proof `sorry` (research-open
-  Lean obligation; pen-and-paper proof is in Appendix A).
+* Prove the identity conditional on a `Filter.Tendsto` hypothesis
+  packaging the four analytic ingredients of Appendix A; the proof
+  closes via `Classical.epsilon_spec` + `tendsto_nhds_unique`.
+  (Unconditional Lean proof is research-open pending upstream
+  Mathlib formalisation of Akatsuka 2013 eq. (2.5).)
 -/
 
 import Mathlib
@@ -131,9 +134,14 @@ Appendix A of the joint manuscript.  The Lean proof requires:
   bounds for absolute convergence).
 
 None of these are yet in Mathlib v4.28.0 in the precise form needed
-for an automated proof of `corrected_B_infty`. We therefore leave
-the Lean proof as `sorry` with a *research-open* annotation pointing
-to the manuscript's Appendix A.
+for a fully unconditional automated proof of `corrected_B_infty`.
+The current Lean theorem (below) is proved **conditional on a
+`Filter.Tendsto` hypothesis** that packages the four-component
+right-hand side as the limit of the partial-sum sequence
+`T_K(χ, ρ)`. The pen-and-paper proof in Appendix A establishes
+exactly this convergence from the inputs above; given it, the
+Lean proof is three lines (`Classical.epsilon_spec` +
+`tendsto_nhds_unique` on the Hausdorff space `ℂ`).
 
 `MATHLIB-PREREQ`: a quantitative version of the Mertens-type
 boundary-line estimate `∑_{p ≤ X} χ²(p) / p^(1 + 2iτ) = c(τ) + O(1/log X)`
