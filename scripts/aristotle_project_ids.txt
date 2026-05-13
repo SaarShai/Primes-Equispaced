@@ -21,3 +21,7 @@ dc276a90-66ac-4070-b5cb-de34d0ea5c5c remaining_5_sorries_round3
 # 2026-05-12 — sixth-round dispatch: MertensSpectroscope + FareyBridge + SmoothedDwf
 # (three remaining "blocked-on-named-input" sorries, conditional-closure pattern)
 92f977df-43c5-4fa7-9399-d3dad6988cb7 ThreeFiles_round6
+
+# 2026-05-13 — seventh-round dispatch: Ramanujan-sum-at-primes formalization
+# (would discharge FareyBridgeIdentity's h_ramanujan_decomp hypothesis)
+0873e8c7-b210-43a4-b2d1-d723f727e6cd RamanujanSum_round7
