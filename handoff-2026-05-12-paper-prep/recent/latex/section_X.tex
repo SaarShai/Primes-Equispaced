@@ -589,22 +589,40 @@ The following structure the next phase of the program.
 simple non-central \(\rho\).
 \end{quote}
 
-Sufficient packages: (a) all off-target zeros simple, and
-\(Z_\mathrm{simple}(K, T_K) := \sum_{\rho' \ne \rho,\,|\gamma'| \le T_K} K^{\rho'-\rho}/[(\rho'-\rho)\,L'(\rho',\chi)] = o(\log K)\)
-at a zero-avoiding height \(T_K \asymp K(\log K)^{-B}\); (b) a
-Dirichlet shifted second moment
-\(\sum_{\rho'}^\mathrm{mult} |L(\rho' + \alpha,\chi)|^{-2} \ll_\chi (\log K)^{O(1)}\).
-The total-Möbius bounds of Soundararajan type are too coarse to
-isolate the pointwise cancellation at the \(\log K\) scale.
+Three sufficient packages, in decreasing strength of input
+required (see \texttt{SP\_L\_SUFFICIENT\_PACKAGES\_2026-05-13.md} of the
+supplementary archive for the full discussion):
 
-A naïve GL(1) transfer of the GL(2) halo bound (cluster-summed
-contour residues over a halo region, giving \(\ll T^{7/4+\varepsilon}\)
-at \(T\)-scale) yields only \(K^{1/2+\varepsilon}\) for the off-target
-residue aggregate at \(K\)-scale, far above the \(o(\log K)\) target ---
-the halo route in its present form does not close (SP-L). The
-cluster-summed-residue pivot does, however, replace the rooted
-Palm wall that obstructs the termwise estimate. Details in the
-supplementary record.
+\begin{itemize}
+\item
+  \textbf{Route I (off-target simplicity + shifted negative second
+  moment).} All off-target zeros at the truncation height are
+  simple, and
+  \(\sum_{\rho'}^\mathrm{mult} |L(\rho' + \alpha,\chi)|^{-2} \ll_\chi (\log K)^{O(1)}\).
+  Near-Lindelöf strength; not unconditionally available.
+\item
+  \textbf{Route II (halo-route reduction).} The cluster-summed-residue
+  contour pivot (transferred from the GL(2) version) replaces the
+  termwise budget by a signed cancellation but yields only
+  \(|R_K| \ll K^{1/2 + \varepsilon}\) for the off-target aggregate ---
+  \textbf{far above the \(o(\log K)\) target}. The halo route in its
+  present form does not close (SP-L), though it does replace the
+  rooted Palm wall as the structural obstruction.
+\item
+  \textbf{Route III (direct partial summation).} Substantially weaker:
+  a Gonek--Hejhal-type bound
+  \(A(T) := \sum_{\gamma' \le T,\, \gamma' \ne \tau}
+  1/[(\rho' - \rho)\,|L'(\rho', \chi)|] \ll_\chi \log T\), combined
+  with a Mertens-style oscillation bound
+  \(\int_0^T K^{i(\gamma - \tau)}\, dA(\gamma) = o(\log T)\) uniformly
+  in \(K\) along the zero-avoiding heights. This is the cleanest
+  pen-and-paper analogue of \cite{AkatsukaH2013EulerProduct} eq.\textasciitilde(2.5) applied to the
+  off-target weight sequence.
+\end{itemize}
+
+The total-Möbius bounds of Soundararajan type are too coarse to
+isolate the pointwise cancellation at the \(\log K\) scale by
+themselves.
 
 \begin{quote}
 \textbf{Q:EC-recip (GL(2) reciprocal-derivative control).} Prove a

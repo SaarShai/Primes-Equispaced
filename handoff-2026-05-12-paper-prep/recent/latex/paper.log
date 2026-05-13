@@ -944,10 +944,9 @@ Overfull \hbox (14.23303pt too wide) in paragraph at lines 574--575
  []
 
 [6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 592--599
-[]\T1/lmr/m/n/10.95 Sufficient pack-ages: (a) all off-target ze-ros sim-ple, an
-d $\OML/lmm/m/it/10.95 Z[]\OT1/lmr/m/n/10.95 (\OML/lmm/m/it/10.95 K; T[]\OT1/lm
-r/m/n/10.95 ) :=
+Underfull \hbox (badness 10000) in paragraph at lines 592--595
+[]\T1/lmr/m/n/10.95 Three suf-fi-cient pack-ages, in de-creas-ing strength of i
+n-put re-quired (see
  []
 
 [8]) (appendix_A
@@ -972,7 +971,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 60.
 
-[10]
+[10] [11]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 202.
@@ -981,7 +980,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\ge' on input line 202.
 
-[11] [12]
+[12]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\leavevmode@ifvmode' on input line 377.
@@ -1055,11 +1054,11 @@ m/it/10.95 O\OT1/lmr/m/n/10.95 (([] [] \OML/lmm/m/it/10.95 K\OT1/lmr/m/n/10.95
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 321.
 
-[16]) [17] (paper.aux)
+[16]) [17] [18] (paper.aux)
 Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: C6F7AA930A6BA39142E20596C507F547;6593.
 Package logreq Info: Writing requests to 'paper.run.xml'.
 \openout1 = `paper.run.xml'.
 
  )
-Output written on paper.xdv (17 pages, 114616 bytes).
+Output written on paper.xdv (18 pages, 115988 bytes).
