@@ -12,19 +12,27 @@ in the parent folder.
 | `section_X.tex` | The §X main section (text). |
 | `appendix_A.tex` | Appendix A — proof of Theorem X.4.1 ($B_\infty$ identity). |
 | `appendix_B.tex` | Appendix B — proof of Theorem X.4.2 ($c_K$ leading + subleading identity). |
-| `references.bib` | BibTeX bibliography (11 external references cited in §X.3–§X.7 + appendices). |
+| `references.bib` | BibTeX bibliography (18 external references: 11 cited in §X.3–§X.7 + appendices, and 7 classical-context entries for the Introduction). |
 | `clean.py` | Conversion script: regenerates `section_X.tex` / `appendix_*.tex` from the markdown source via pandoc + post-cleanup. Idempotent. |
 
 ## Build
 
+The recommended driver is **tectonic** (a single-binary, self-contained
+LaTeX engine that pulls packages on demand). Build with:
+
 ```bash
-pdflatex paper
-bibtex paper
-pdflatex paper
-pdflatex paper
+tectonic paper.tex
 ```
 
-(or `latexmk -pdf paper`).
+For a standard TeX Live install:
+
+```bash
+pdflatex paper && biber paper && pdflatex paper && pdflatex paper
+```
+
+(or `latexmk -pdf paper`). Note that the bibliography uses
+`biblatex` with the `bibtex` backend; if your distribution has only
+the older `bibtex` binary, the bibliography will still build.
 
 ## Regenerate from markdown
 
