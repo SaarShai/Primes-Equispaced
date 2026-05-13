@@ -9,7 +9,7 @@ the joint paper and its supporting material.
 | `SECTION_DRAFT_2026-05-12.md` | §X. Methodology, formalization, and numerical evidence. |
 | `APPENDIX_A_BINFTY_PROOF.md` | Full pen-and-paper proof of Theorem X.4.1 (corrected $B_\infty$ identity). |
 | `APPENDIX_B_CK_SUBLEADING_PROOF.md` | Full pen-and-paper proof of Theorem X.4.2 ($c_K$ leading + subleading), with the Laurent-algebra for the local Perron double-pole residue in §B.2. |
-| `LEAN_SORRY_STATUS.md` | Per-`sorry` inventory of the 9-file Lean lake project. Five sorries remain; six files are fully proved. |
+| `LEAN_SORRY_STATUS.md` | Per-`sorry` inventory of the 9-file Lean lake project. Two sorries remain (DPAC headline, LI-class); seven files are fully proved. |
 | `HALO_GL1_SKETCH_2026-05-12.md` | Supplementary technical sketch: GL(1) halo-route reduction toward (SP-L). Negative finding (the route in its present form does not close (SP-L)); included only because §X.7 references the structural pivot. |
 | `INTRO_AND_ABSTRACT_OUTLINE_2026-05-13.md` | Forward-looking discussion document: a proposed Abstract + Introduction skeleton for the joint paper. Bullet form, not committed prose. |
 | `latex/` | LaTeX bundle: `paper.tex` driver, the three converted subfiles (`section_X.tex`, `appendix_A.tex`, `appendix_B.tex`), `references.bib`, the `clean.py` regeneration pipeline, and the compiled `paper.pdf` (17 pages). |

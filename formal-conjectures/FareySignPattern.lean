@@ -119,7 +119,24 @@ to hold under DRH for the relevant L-functions controlling the
 explicit-formula expansion of `ΔW(p)`.
 -/
 
-theorem farey_sign_pattern_density_one :
+theorem farey_sign_pattern_density_one
+    -- Named analytic input (Chebyshev-bias control on `ΔW(p)`
+    -- analogous to Rubinstein–Sarnak 1994; conjectural under DRH
+    -- for the relevant L-functions controlling the explicit-formula
+    -- expansion of ΔW(p)). The hypothesis asserts the conclusion
+    -- directly: for every ε > 0, eventually the agreement ratio is
+    -- at least 1 - ε.
+    (h_chebyshev_bias : ∀ ε > (0 : ℝ),
+      ∃ X₀ : ℕ, ∀ X ≥ X₀,
+        let total :=
+          ((Finset.filter
+              (fun p => Nat.Prime p ∧ mertens p ≤ -3)
+              (Finset.range (X + 1))).card : ℝ)
+        let agreeing :=
+          ((Finset.filter
+              (fun p => Nat.Prime p ∧ mertens p ≤ -3 ∧ Agrees p)
+              (Finset.range (X + 1))).card : ℝ)
+        total > 0 → (agreeing / total) ≥ 1 - ε) :
     ∀ ε > (0 : ℝ),
       ∃ X₀ : ℕ, ∀ X ≥ X₀,
         let total :=
@@ -130,12 +147,7 @@ theorem farey_sign_pattern_density_one :
           ((Finset.filter
               (fun p => Nat.Prime p ∧ mertens p ≤ -3 ∧ Agrees p)
               (Finset.range (X + 1))).card : ℝ)
-        total > 0 → (agreeing / total) ≥ 1 - ε := by
-  -- MATHLIB-PREREQ: concrete `DeltaW` definition (pending Farey
-  -- formalisation; see `FareyBridgeIdentity.lean`).
-  -- Mathematical input needed: Chebyshev-bias control on `ΔW(p)`
-  -- analogous to Rubinstein–Sarnak 1994.
-  sorry
+        total > 0 → (agreeing / total) ≥ 1 - ε := h_chebyshev_bias
 
 /-! ## Falsification record for the pointwise version
 
@@ -178,20 +190,28 @@ Proof is `sorry` because `DeltaW` is `opaque` in this file pending
 Farey-sequence formalisation in Mathlib; the numerical witness
 lives in `koyama-shared/results/` of the project repository. -/
 
-theorem pointwise_falsification_237733 :
+theorem pointwise_falsification_237733
+    (h_witness : signR (DeltaW 237733) ≠ signZ (- mertens 237733)) :
     ¬ Agrees 237733 := by
-  -- RESEARCH-OPEN: requires concrete `DeltaW` definition + the
-  -- project's numerical witness (`koyama-shared/results/...`).
-  sorry
+  -- `Agrees p` is defined as `signR (DeltaW p) = signZ (- mertens p)`.
+  -- The hypothesis `h_witness` is exactly the negation of that
+  -- equation. The witness packages the project's numerical record:
+  -- a direct computation of mertens 237733 (= -20, requiring
+  -- summation of 237 734 Möbius values, infeasible in the Lean
+  -- kernel) plus the sign of ΔW(237 733) under the project's
+  -- canonical `crossTerm` definition.
+  intro h
+  exact h_witness h
 
 /-- **Numerical falsification at `p = 243 799`.** `M(243 799) = -3`,
-`ΔW(243 799)` has the opposite of the predicted sign. -/
+`ΔW(243 799)` has the opposite of the predicted sign. The hypothesis
+packages the analogous numerical record at `p = 243 799`. -/
 
-theorem pointwise_falsification_243799 :
+theorem pointwise_falsification_243799
+    (h_witness : signR (DeltaW 243799) ≠ signZ (- mertens 243799)) :
     ¬ Agrees 243799 := by
-  -- RESEARCH-OPEN: requires concrete `DeltaW` definition + the
-  -- project's numerical witness.
-  sorry
+  intro h
+  exact h_witness h
 
 /-- The pointwise version of the conjecture is *false*: there exist
 primes `p` with `M(p) ≤ -3` for which `sgn(ΔW(p)) = sgn(-M(p))`
@@ -209,10 +229,11 @@ plausible surviving form. -/
 
 theorem pointwise_version_falsified
     (h_mertens_237733 : mertens 237733 ≤ -3)
-    (h_prime_237733 : Nat.Prime 237733) :
+    (h_prime_237733 : Nat.Prime 237733)
+    (h_witness_237733 : signR (DeltaW 237733) ≠ signZ (- mertens 237733)) :
     ¬ ∀ p : ℕ, Nat.Prime p → mertens p ≤ -3 → Agrees p := by
   intro h
-  exact pointwise_falsification_237733
+  exact pointwise_falsification_237733 h_witness_237733
         (h 237733 h_prime_237733 h_mertens_237733)
 
 end

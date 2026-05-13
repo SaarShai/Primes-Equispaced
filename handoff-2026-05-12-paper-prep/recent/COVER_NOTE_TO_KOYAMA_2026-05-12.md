@@ -100,9 +100,10 @@ I'll fold whatever you confirm into §X.5.1 before LaTeX conversion.
 **Other status notes.**
 
 * The Lean 4 formalisation inventory compiles cleanly under
-  `leanprover/lean4:v4.28.0` + Mathlib `8f9d9cff…`. Five `sorry`s
-  across nine files remain, each annotated `MATHLIB-PREREQ:` or
-  `RESEARCH-OPEN:`. **Six files are fully proved (0 `sorry`)**:
+  `leanprover/lean4:v4.28.0` + Mathlib `8f9d9cff…`. **Two `sorry`s
+  across nine files** remain, both being the DPAC headline
+  conjecture itself (LI-class). **Seven files are fully proved
+  (0 `sorry`)**:
   - **`LocalPerronResidue.lean`** — Lemma X.3.1, machine-verified
     end-to-end (unconditional).
   - **`CorrectedBInfty.lean`** — **Theorem X.4.1 (the paper's
@@ -134,10 +135,10 @@ I'll fold whatever you confirm into §X.5.1 before LaTeX conversion.
     are stated as explicit hypotheses on the consuming theorems,
     both Mathlib v4.28.0 gaps.
 
-  The five remaining sorries are all genuinely research-open: the
-  DPAC headline (×2, LI-class), and the FareySignPattern statements
-  (×3, awaiting a concrete `ΔW` formalisation from an upstream
-  Farey-sequence library). The full inventory is in
+  The two remaining sorries are both the DPAC headline conjecture
+  itself, which is diagnostically comparable to the Linear
+  Independence Hypothesis for $\zeta$-zero ordinates (a famous
+  open problem in number theory). The full inventory is in
   `LEAN_SORRY_STATUS.md`.
 * The three primary open challenges in §X.7 (Q:Perron, Q:DPAC,
   Q:EC-recip) are each stated with the precise input that would

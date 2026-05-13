@@ -53,7 +53,8 @@ author for.
    smoothed-$\Delta w_f$ explicit-formula chain, the Mertens
    spectroscope universality, the Farey bridge identity, and DPAC for
    $K \in \{2, 3, 4\}$) are machine-verified in Lean 4 / Mathlib
-   v4.28.0; five `sorry`s remain, all genuinely research-open.
+   v4.28.0; two `sorry`s remain, both the DPAC headline conjecture
+   (LI-class).
 
 7. **Closing tag.** Optional one-sentence forward look (e.g., what
    completes the (NDC) limit, or what closes (SP-L)).

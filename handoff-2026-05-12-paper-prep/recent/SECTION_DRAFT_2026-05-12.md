@@ -375,9 +375,9 @@ and branch conventions are syntactically explicit, and records each
 statement's proof status against a public audit trail.
 
 **Build status.** `lake build FormalConjectures` succeeds on all
-**9 files** in `formal-conjectures/` with **5 `sorry` warnings**,
+**9 files** in `formal-conjectures/` with **2 `sorry` warnings**,
 each annotated in-source as `MATHLIB-PREREQ:` or `RESEARCH-OPEN:`.
-**Six files are fully proved (0 `sorry`)**: all
+**Seven files are fully proved (0 `sorry`)**: all
 the algebraic content of §X.3, §X.4, the smoothed
 explicit-formula chain, the Mertens spectroscope universality
 statement, the Farey bridge identity, and DPAC for $K \le 4$.

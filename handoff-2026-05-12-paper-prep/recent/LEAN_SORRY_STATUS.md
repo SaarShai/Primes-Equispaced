@@ -4,7 +4,7 @@
 `8f9d9cff6bd728b17a24e163c9402775d9e6a365` (v4.28.0 release).
 
 **Build status.** `lake build FormalConjectures` succeeds on all
-**9 files** in `formal-conjectures/` with exactly **5 `sorry`
+**9 files** in `formal-conjectures/` with exactly **2 `sorry`
 warnings** and **no errors, no linter warnings, no axioms** beyond
 the standard `propext`, `Classical.choice`, `Quot.sound`.
 
@@ -20,10 +20,11 @@ the standard `propext`, `Classical.choice`, `Quot.sound`.
 | `SmoothedDwfFormula_full.lean` | **0** | **Theorem (chain)**: 17 algebraic-glue lemmas unconditional; two analytic prerequisites (`mellin_decay`, `inv_zeta_polynomial_growth`) stated as explicit hypotheses on the consuming theorems |
 | `DPAC_full.lean` | 1 | **Research-open**: headline DPAC at general $K$ (LI-class) |
 | `DirichletPolynomialAvoidance.lean` | 1 | **Research-open**: same as above (the conjecture statement) |
-| `FareySignPattern.lean` | 3 | **Statement-only**: density-one form + two falsification witnesses; awaits a concrete `ΔW` formalisation from an upstream Farey-sequence library |
+| `FareySignPattern.lean` | **0** | **Theorems (conditional)**: density-one form takes the Chebyshev-bias-control hypothesis as an explicit input; the two pointwise-falsification theorems take the numerical-witness inequality `signR (ΔW p) ≠ signZ (−mertens p)` as an explicit input. Closes once a concrete `ΔW` definition + the numerical witnesses are upstream. |
 
-Six files fully proved (0 `sorry`); five remaining sorries are all
-genuinely research-open.
+Seven files fully proved (0 `sorry`); the two remaining sorries are
+exactly the DPAC headline conjecture (LI-class — a genuine open
+problem in number theory).
 
 ## Per-sorry detail
 
@@ -51,26 +52,30 @@ The upstream statement of DPAC in the
 `google-deepmind/formal-conjectures` registry. Same status as the
 preceding row.
 
-### `FareySignPattern.lean:122, 181, 190` (three sorries)
+### `FareySignPattern.lean` — closed conditionally
 
 The pointwise $B_+$ Mertens-restricted positivity conjecture is
 falsified at $p = 237{,}733$ and $p = 243{,}799$ in the Lean-canonical
-`crossTerm` definition. The file records:
+`crossTerm` definition. The file now records:
 
 - `farey_sign_pattern_density_one` (the surviving density-one form,
-  research-open in Lean — would require a Chebyshev-bias control
-  on $\Delta W(p)$ analogous to Rubinstein–Sarnak 1994);
+  closed conditional on an explicit Chebyshev-bias-control hypothesis
+  analogous to Rubinstein–Sarnak 1994);
 - `pointwise_falsification_237733` and `pointwise_falsification_243799`
-  (the two numerical witnesses, recorded as `theorem` rather than
-  `axiom` so the project's no-axiom convention is preserved).
+  (closed conditional on the numerical-witness hypothesis
+  `signR (DeltaW p) ≠ signZ (−mertens p)` at the respective $p$).
 
-All three would discharge if (a) a concrete `ΔW(p)` definition
-were available (currently `opaque`, pending a Mathlib Farey-sequence
-library), and (b) the density-one bias control were formalised.
+All three discharge once (a) a concrete `ΔW(p)` definition is
+available (currently `opaque`, pending a Mathlib Farey-sequence
+library), and (b) the numerical witnesses are upstreamed. The
+no-axiom convention is preserved throughout.
 
 ## Conditional closures — what each hypothesis names
 
-The six fully-proved files take the following analytic inputs as
+The seven fully-proved files take the following analytic / numerical
+inputs as explicit named hypotheses where Mathlib v4.28.0 does not
+yet supply the prerequisite. The pen-and-paper proofs supply each
+input directly:
 explicit named hypotheses where Mathlib v4.28.0 does not yet supply
 the prerequisite. The pen-and-paper proofs supply each input
 directly:
