@@ -361,11 +361,11 @@ and resampling diagnostics:
 
 ## X.6 Lean 4 / Mathlib4 formalisation
 
-We accompany the paper with a Lean 4 / Mathlib4 lake project in the
-companion repository at
-`primes-equispaced/formal-conjectures/`. The toolchain is
-`leanprover/lean4:v4.28.0`; Mathlib is pinned at commit
-`8f9d9cff6bd728b17a24e163c9402775d9e6a365`. The Lean inventory fixes
+We accompany the paper with a Lean 4 / Mathlib4 lake project
+(`formal-conjectures/` directory of the supplementary archive).
+The toolchain is `leanprover/lean4:v4.28.0`; Mathlib is pinned at
+commit `8f9d9cff6bd728b17a24e163c9402775d9e6a365`. The Lean
+inventory fixes
 the **statements** of every identity of §X.4, ensures normalisations
 and branch conventions are syntactically explicit, and records each
 statement's proof status against a public audit trail.

@@ -99,11 +99,10 @@ I'll fold whatever you confirm into §X.5.1 before LaTeX conversion.
 
 **Other status notes.**
 
-* The Lean 4 formalisation inventory now compiles cleanly under
-  `leanprover/lean4:v4.28.0` + Mathlib `8f9d9cff…`. **Five `sorry`s
-  across nine files** remain (down from eleven at the start of the
-  session), each annotated `MATHLIB-PREREQ:` or `RESEARCH-OPEN:`.
-  **Six files are fully proved (0 `sorry`)**:
+* The Lean 4 formalisation inventory compiles cleanly under
+  `leanprover/lean4:v4.28.0` + Mathlib `8f9d9cff…`. Five `sorry`s
+  across nine files remain, each annotated `MATHLIB-PREREQ:` or
+  `RESEARCH-OPEN:`. **Six files are fully proved (0 `sorry`)**:
   - **`LocalPerronResidue.lean`** — Lemma X.3.1, machine-verified
     end-to-end (unconditional).
   - **`CorrectedBInfty.lean`** — **Theorem X.4.1 (the paper's

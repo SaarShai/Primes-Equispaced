@@ -308,8 +308,8 @@ For clarity:
 
 The four-component identity is formalised in Lean 4 / Mathlib v4.28.0
 as the theorem `corrected_B_infty` in
-`formal-conjectures/CorrectedBInfty.lean` of the companion
-repository. The Lean proof is parameterised by an explicit
+`formal-conjectures/CorrectedBInfty.lean` of the supplementary
+archive. The Lean proof is parameterised by an explicit
 `Filter.Tendsto` hypothesis asserting that the partial-sum sequence
 $T_K(\chi,\rho)$ converges to the four-component right-hand side as
 $K \to \infty$. **The convergence-as-hypothesis is precisely the
