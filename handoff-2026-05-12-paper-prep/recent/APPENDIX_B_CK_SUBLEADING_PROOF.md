@@ -102,6 +102,16 @@ one obtains (\ref{eq:Perron-truncated}).
 
 ## B.2 Pole-structure analysis at $w = 0$
 
+The pole-structure computation of this section is independently
+formalised in Lean 4 / Mathlib v4.28.0 as `local_perron_residue` in
+`formal-conjectures/LocalPerronResidue.lean`. The Lean theorem
+states the residue identity as a `Tendsto` limit at the canonical
+form $L$ analytic with a simple zero at $0$ (the general-$\rho$ case
+of this appendix reduces to the canonical form by the substitution
+$L \mapsto L(\,\cdot\, + \rho)$); the proof is **unconditional**
+(0 `sorry`, only `propext`, `Classical.choice`, `Quot.sound`
+axioms).
+
 We work in the shifted variable $w = s - \rho$. Define
 \[
 F(w) \;:=\; \frac{K^w}{w \cdot L(w + \rho, \chi)}.

@@ -17,3 +17,7 @@ dc276a90-66ac-4070-b5cb-de34d0ea5c5c remaining_5_sorries_round3
 
 # 2026-05-12 — fifth-round dispatch: CorrectedBInfty (Thm X.4.1) closure attempt
 85006714-72d5-4107-ba71-ee5d69590a80 CorrectedBInfty_round5
+
+# 2026-05-12 — sixth-round dispatch: MertensSpectroscope + FareyBridge + SmoothedDwf
+# (three remaining "blocked-on-named-input" sorries, conditional-closure pattern)
+92f977df-43c5-4fa7-9399-d3dad6988cb7 ThreeFiles_round6

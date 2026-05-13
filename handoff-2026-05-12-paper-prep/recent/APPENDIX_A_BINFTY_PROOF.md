@@ -312,7 +312,32 @@ For clarity:
   (\ref{eq:NDC}); for that, Hypothesis AK and the shifted Perron
   leading hypothesis (SP-L) are both needed (see §X.4.4 and §X.7).
 
-## A.7 Numerical verification (summary; full table in §X.5.4)
+## A.7 Lean formalisation
+
+The four-component identity is formalised in Lean 4 / Mathlib v4.28.0
+as the theorem `corrected_B_infty` in
+`formal-conjectures/CorrectedBInfty.lean` of the companion
+repository. The Lean proof is parameterised by an explicit
+`Filter.Tendsto` hypothesis asserting that the partial-sum sequence
+$T_K(\chi,\rho)$ converges to the four-component right-hand side as
+$K \to \infty$. **The convergence-as-hypothesis is precisely the
+conclusion of the present appendix** (\ref{eq:k1-isolation}) +
+(\ref{eq:Sigma2-id}) + the $k \ge 3$ tail of §A.3. Given the
+convergence, the Lean proof is three lines: `unfold T_inf` (the
+`Classical.epsilon` of the `Tendsto` predicate),
+`Classical.epsilon_spec` (which yields that $T_\infty$ inherits the
+same limit), and `tendsto_nhds_unique` (since $\mathbb{C}$ is
+Hausdorff). The file uses only the standard
+`propext`, `Classical.choice`, `Quot.sound` axioms.
+
+A fully unconditional Lean proof of `corrected_B_infty` (i.e., one
+that *derives* the convergence rather than taking it as a hypothesis)
+requires upstream Mathlib formalisations of Akatsuka 2013
+eq.\ (2.5) and the imprimitive-induction Euler-factor identity for
+$L(s, \chi^2)$; both are `MATHLIB-PREREQ` and not yet upstream as of
+v4.28.0.
+
+## A.8 Numerical verification (summary; full table in §X.5.4)
 
 The identity ($\star$) was verified numerically at $K = 2 \cdot 10^6$,
 $50$ decimal places of precision, on the four

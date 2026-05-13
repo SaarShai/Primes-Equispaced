@@ -106,12 +106,16 @@ I'll fold whatever you confirm into §X.5.1 before LaTeX conversion.
   - **`LocalPerronResidue.lean`** — Lemma X.3.1, machine-verified
     end-to-end (unconditional).
   - **`CorrectedBInfty.lean`** — **Theorem X.4.1 (the paper's
-    headline algebraic identity), machine-verified conditional on
-    a single named `h_convergence` hypothesis that packages the
-    four analytic inputs of Appendix A (Akatsuka 2013 eq. (2.5),
-    log-Euler-product expansion, imprimitive-induction Euler-factor
-    identity, geometric-series tails).** Closed via Aristotle
-    dispatch 2026-05-12.
+    headline algebraic identity), Lean-verified conditional on a
+    single named `Filter.Tendsto` hypothesis** asserting that the
+    partial prime-power tail $T_K(\chi,\rho)$ converges to the
+    four-component right-hand side. The pen-and-paper proof in
+    Appendix A establishes exactly that convergence from Akatsuka
+    2013 eq. (2.5) + log-Euler-product expansion + the imprimitive
+    Euler-factor identity + geometric-series tails; given the
+    convergence, the Lean proof is three lines
+    (`Classical.epsilon_spec` + `tendsto_nhds_unique`). Closed via
+    Aristotle dispatch 2026-05-12.
   - **`DPAC_closure_attempt.lean`** — proves DPAC unconditionally
     for $K \in \{2, 3, 4\}$, reformulates the general case as
     `FiniteLogRatioLI`, and records the precise obstruction
