@@ -1,5 +1,9 @@
 # §X. Methodology, formalization, and numerical evidence
 
+*The section number `X` and the equation / theorem / lemma tags
+(Lemma X.3.1, Theorem X.4.1, etc.) are placeholders to be assigned
+on integration into the full paper.*
+
 This section records the technical and computational content of the
 paper: the algebraic identities at the heart of the corrected
 $B_\infty$ framework (§X.3–§X.4), the open challenges that organise
