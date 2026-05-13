@@ -1,24 +1,4 @@
-<!--
-schema_version: 1
-title: "Cover note to S. Koyama accompanying the §X draft"
-date: 2026-05-12
-type: outgoing-correspondence-draft
-tier: working
-status: DRAFT_FOR_USER_REVIEW_NOT_SENT
-intended_recipient: shin-ya.koyama (per 2026-05-12 ask)
-attachments:
-  - handoff-2026-05-12-paper-prep/recent/SECTION_DRAFT_2026-05-12.md
-  - handoff-2026-05-12-paper-prep/recent/SCOPE_AUDIT_10E13_2026-05-12.md
-  - handoff-2026-05-12-paper-prep/recent/APPENDIX_A_BINFTY_PROOF.md
-  - handoff-2026-05-12-paper-prep/recent/APPENDIX_B_CK_SUBLEADING_PROOF.md
-  - handoff-2026-05-12-paper-prep/recent/LEAN_SORRY_STATUS.md
-  # Appendix C kept in reproducibility bundle (citation audit), not as a separate appendix.
-tags: [koyama, correspondence, manuscript-prep, scope-confirmation]
--->
-
-# Cover note — draft for user review
-
-**Subject:** First draft of the Technical/Computational section — two scope questions before we go further
+**Subject:** First draft of the Technical/Computational section — two scope questions before LaTeX
 
 ---
 
@@ -27,14 +7,14 @@ Dear Shin-ya,
 Thank you for your 2026-05-12 note. I'm honoured by the co-authorship
 offer and ready to push toward submission.
 
-Attached is a first internal draft of the Technical/Computational
+Attached is a first draft of the Technical/Computational
 section (§X. Methodology, formalization, and numerical evidence),
-together with two appendices (Appendix A: pen-and-paper proof of
-the corrected `B_∞` identity, Theorem X.4.1; Appendix B: proof of
-the $c_K$ leading + subleading identity, Theorem X.4.2, together
+together with two appendices — Appendix A (pen-and-paper proof of
+the corrected $B_\infty$ identity, Theorem X.4.1) and Appendix B
+(proof of the $c_K$ leading + subleading identity, Theorem X.4.2,
 with the Laurent-algebra for the local Perron double-pole residue
-in §B.2), the scope-audit note on what `10^{13}` does and does not
-verify, and a per-`sorry` inventory for the Lean 4 lake project.
+in §B.2) — and a per-`sorry` inventory for the Lean 4 lake
+project.
 
 The draft is organised around the four pillars you described as
 the core:
@@ -135,8 +115,7 @@ I'll fold whatever you confirm into §X.5.1 before LaTeX conversion.
     2013 eq. (2.5) + log-Euler-product expansion + the imprimitive
     Euler-factor identity + geometric-series tails; given the
     convergence, the Lean proof is three lines
-    (`Classical.epsilon_spec` + `tendsto_nhds_unique`). Closed via
-    Aristotle dispatch 2026-05-12.
+    (`Classical.epsilon_spec` + `tendsto_nhds_unique`).
   - **`DPAC_closure_attempt.lean`** — proves DPAC unconditionally
     for $K \in \{2, 3, 4\}$, reformulates the general case as
     `FiniteLogRatioLI`, and records the precise obstruction
@@ -180,22 +159,3 @@ are open placeholders; I defer both to you.
 With thanks and best wishes,
 
 Saar
-
----
-
-## Notes for the human author (not part of the email)
-
-* The two scope questions are the single biggest risk of expectation
-  mismatch with Koyama — surfacing them now (before LaTeX) costs
-  one email round-trip and avoids potentially rewriting §X.2 and
-  §X.5 later.
-* If Koyama answers "yes, that matches my framing" to both, we can
-  proceed straight to LaTeX + Abstract + Introduction.
-* If he answers "I meant something stronger," we re-scope before
-  sinking time into format-conversion.
-* The Lean-status paragraph is included because Koyama's 2026-05-12
-  note specifically asked for "the Lean 4 formalization path." It is
-  honest about the remaining sorries; we are not over-claiming.
-* The halo-route negative finding is mentioned only because we have
-  it; Koyama may or may not want it in the paper. Soft offer, his
-  decision.

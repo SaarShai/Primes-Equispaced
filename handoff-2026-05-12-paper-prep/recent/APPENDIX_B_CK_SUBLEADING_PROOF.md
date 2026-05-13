@@ -1,11 +1,3 @@
-<!--
-title: "Appendix B — Full proof of the c_K leading+subleading identity (Theorem X.4.2)"
-date: 2026-05-12
-type: appendix
-target: companion to SECTION_DRAFT_2026-05-12.md
-ports: handoff-2026-05-09-followup/Koyama_C1_subleading_proof.md
--->
-
 # Appendix B — Full proof of Theorem X.4.2 ($c_K$ leading + subleading identity)
 
 This appendix gives the full proof of Theorem X.4.2 of the main text:

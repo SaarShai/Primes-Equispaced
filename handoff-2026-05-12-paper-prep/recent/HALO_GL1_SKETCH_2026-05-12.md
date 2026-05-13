@@ -1,25 +1,13 @@
-<!--
-title: "Halo-route reduction in the GL(1) Dirichlet case — sketch toward (SP-L)"
-date: 2026-05-12
-type: theorem-sketch
-target: companion to SECTION_DRAFT_2026-05-12.md §X.7.1; addresses Koyama's
-        2026-05-12 "shifted Perron remainder requirements" framing.
-source: handoff-2026-05-12-halo-unconditional-plan/HALO_UNCONDITIONAL_PLAN_2026-05-12.md
-        (GL(2)/EC version, 2026-05-12, with Door B proved in §5.1).
--->
-
 # Halo-route reduction in the GL(1) Dirichlet case — sketch toward (SP-L)
 
-> *Internal sketch, 2026-05-12. This is a write-up of the GL(1)
-> specialization of the halo-route framework, transferring the
-> structural pivot of the GL(2)/EC halo plan
-> (`HALO_UNCONDITIONAL_PLAN_2026-05-12.md`) to the Dirichlet
-> $L$-function context relevant to (SP-L) and (NDC) of the
-> Saar–Koyama Technical/Computational section. The sketch is
-> presented at the level of a "what would the analogous statements
-> look like in GL(1)?" — not yet a full proof. It identifies precise
-> conditional doors A', B', C', D' and indicates which transfer
-> mechanically and which require new GL(1) input.*
+This note is the GL(1) Dirichlet specialization of the halo-route
+framework used in our GL(2)/EC programme, transferred to the
+context of (SP-L) and (NDC) (§X.4.4 and §X.7 of the main section).
+It is presented as a "what would the analogous statements look
+like?" sketch rather than a complete proof: it identifies four
+conditional doors A', B', C', D' and indicates which transfer
+mechanically from the GL(2) version and which require new GL(1)
+input.
 
 ## 1. Set-up — what we are bounding
 
@@ -164,9 +152,10 @@ $\widetilde R_K(\chi, \rho) := \sum_{\rho' \ne \rho} |L'(\rho', \chi)|^{-1}$
 residue $R_K(\chi, \rho)$ of (\ref{eq:halo-stokes-GL1}).
 
 **Status.** Programmatic — requires auditing the existing
-shifted-Perron-leading argument in `Koyama_Perron_remainder_theorem_hunt_2026-05-11.md`
-to verify that the o(log K) bound on the off-target aggregate can be
-weakened from termwise absolute values to the signed contour residue.
+shifted-Perron-leading argument (companion technical note,
+available on request) to verify that the $o(\log K)$ bound on the
+off-target aggregate can be weakened from termwise absolute values
+to the signed contour residue.
 
 The structural reason this should succeed: the budget bound's role
 in (SP-L) is to control the *aggregate* off-target contribution to

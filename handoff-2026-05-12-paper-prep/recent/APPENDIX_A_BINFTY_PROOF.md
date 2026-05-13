@@ -1,11 +1,3 @@
-<!--
-title: "Appendix A — Full proof of the corrected B_infty identity (Theorem X.4.1)"
-date: 2026-05-12
-type: appendix
-target: companion to SECTION_DRAFT_2026-05-12.md
-ports: handoff-2026-05-09-followup/Koyama_B_infty_proof.md
--->
-
 # Appendix A — Full proof of Theorem X.4.1 ($B_\infty$ identity)
 
 This appendix gives the full proof of Theorem X.4.1 of the main text:
