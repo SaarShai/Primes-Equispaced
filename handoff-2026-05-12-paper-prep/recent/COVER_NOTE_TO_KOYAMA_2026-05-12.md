@@ -42,10 +42,12 @@ the core:
 1. The `e^{-γ}` correction of the asymptotic target (Aoki–Koyama 2023);
 2. The corrected `B_∞` identity and the local Perron residue
    `C₁ = -L''(ρ)/(2 L'(ρ)²)`, both established unconditionally;
-3. The open challenges that organise the program forward — the
-   shifted Perron leading remainder (SP-L), the conductor-confounded
-   elliptic-curve rank trend, the `Sym² / ⟨f,f⟩` normalisation, GL(2)
-   reciprocal-derivative control, and DPAC;
+3. The three primary open challenges that organise the program
+   forward — the shifted Perron leading remainder (SP-L), the
+   Dirichlet Polynomial Avoidance Conjecture (DPAC) for general
+   $K$, and GL(2) reciprocal-derivative control; three further
+   EC-side questions appear in a "Further questions" block at the
+   end of §X.7;
 4. The rigorous Phase-1 replication of your Dominance-of-`-1`
    residue-count tables at `x = 1.3 · 10^{13}`.
 
@@ -93,9 +95,9 @@ $x = 1.3 \cdot 10^{13}$:
   $57{,}192$. Single-digit at the leading position; could be a
   3 vs 4 typo.
 - **Table 3, $N = 7$, $a = 6$**: our $26{,}129$ vs your
-  $26{,}179$ ($\Delta = 50$, clean digit-shift profile).
+  $26{,}179$ ($\Delta = 50$).
 - **Table 7, $N = 23$, $a = 19$**: our $79{,}327$ vs your
-  $79{,}227$ ($\Delta = 100$, digit-transposition profile).
+  $79{,}227$ ($\Delta = 100$, just the hundreds digit).
 - **Table 4, $N = 8$, small-$x$ rows**: all 11 small-$x$ rows
   disagree; one of our $x = 10^{12}$ row's values exact-matches
   one of your supposed $x = 1.3\cdot 10^{12}$ entries, which
@@ -103,14 +105,15 @@ $x = 1.3 \cdot 10^{13}$:
 
 Headline qualitative result, aligned with your *nontriv.pdf* p. 19
 discussion: $-1$-dominance is **cleanly observed for $N = 8$** at
-$x = 1.3 \cdot 10^{13}$; for $N = 19$, $-1$ is 3rd of 9
-non-residues in both our and your data (in the top group, not
-strict dominance); for $N = 11$, the picture turns on the Table-5
-$a = 10$ cell above; for $N = 7$ and $N = 23$ we agree with your
-analysis that the predicted bias is not yet cleanly observed at
-this scale and that the transient discrepancy is attributable to
-exceptionally low-lying first zeros, with strict dominance for
-$N = 23$ expected around $x = e^{33.4} \approx 3 \cdot 10^{14}$.
+$x = 1.3 \cdot 10^{13}$ ($-1 = 7$ strictly largest); for $N = 19$,
+$-1$ is 3rd of 9 non-residues in both our and your data (top
+group, not strict); for $N = 11$, the picture turns on the
+Table-5 $a = 10$ cell above; for $N = 7$ and $N = 23$ we agree
+with your analysis that the predicted bias is not yet cleanly
+observed at this scale and is attributable to exceptionally
+low-lying first zeros (your $N = 19$ illustrative estimate
+places the next sine-wave peak around
+$x = e^{33.4} \approx 3.2 \cdot 10^{14}$).
 
 I'll fold whatever you confirm into §X.5.1 before LaTeX conversion.
 

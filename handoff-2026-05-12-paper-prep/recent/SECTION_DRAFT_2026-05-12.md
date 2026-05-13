@@ -266,8 +266,12 @@ For $N = 7$ and $N = 23$, Koyama himself notes (*nontriv.pdf* p. 19)
 that the predicted bias is not yet cleanly observed at this scale
 and attributes it to the exceptionally low-lying first zero of the
 relevant $L$-functions; our data agrees ($-1$ is 2nd of 3 for
-$N = 7$, mid-rank for $N = 23$, dominance onset estimated at
-$x \approx e^{33.4} \approx 3 \cdot 10^{14}$).
+$N = 7$, mid-rank for $N = 23$). Koyama's illustrative estimate
+(*nontriv.pdf* p. 19, for $N = 19$) places the next sine-wave
+peak of the leading complex character at
+$x = e^{33.4} \approx 3.2 \cdot 10^{14}$, indicating that
+strict dominance for the harder moduli is expected only at
+substantially larger $x$.
 
 Replication bundle (delivered 2026-05-04): `koyama_replication_bundle/`
 with source, build hashes, TSV outputs, and `MANIFEST.txt`.
