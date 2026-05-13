@@ -77,5 +77,13 @@ globs = [
   "FareyBridgeIdentity",
   "FareySignPattern",
   "DPAC_closure_attempt",
+  "RamanujanSum",
 ]
+srcDir = "formal-conjectures"
+
+# Ramanujan sum at primes (Saar's hand-written formalisation, racing
+# Aristotle round-7).
+[[lean_lib]]
+name = "RamanujanSum"
+globs = ["RamanujanSum"]
 srcDir = "formal-conjectures"
