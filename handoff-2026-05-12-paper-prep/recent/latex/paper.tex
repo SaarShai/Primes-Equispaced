@@ -8,6 +8,7 @@
 \documentclass[11pt]{amsart}
 
 % ---------- packages ---------------------------------------------------------
+\usepackage[margin=1in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -16,8 +17,14 @@
 \usepackage{amsmath, amssymb, amsthm, mathtools}
 \usepackage{booktabs, longtable, array}
 \usepackage{enumitem}
+\usepackage{etoolbox}
+% Some wide tables (from the markdown source) overflow the text width
+% at \normalsize; render them at \small.
+\AtBeginEnvironment{longtable}{\small}
+\setlength{\tabcolsep}{4pt}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{hyperref}
-\hypersetup{colorlinks=true, linkcolor=blue!50!black, citecolor=blue!50!black, urlcolor=blue!50!black}
+\hypersetup{colorlinks=true, linkcolor=MidnightBlue, citecolor=MidnightBlue, urlcolor=MidnightBlue}
 
 % ---------- theorem environments --------------------------------------------
 \newtheorem{theorem}{Theorem}[section]
@@ -33,8 +40,8 @@
 \newtheorem*{hypothesis}{Hypothesis}
 
 % ---------- macros used in §X / appendices ----------------------------------
-\newcommand{\Re}{\operatorname{Re}}     % \Re is built-in but we re-bind to match the markdown
-\renewcommand{\Re}{\operatorname{Re}}
+% Note: the markdown source writes \mathrm{Re}(...) directly, so we don't
+% redefine \Re.
 \newcommand{\Res}{\operatorname{Res}}
 \newcommand{\BPC}{\mathrm{BPC}}
 \newcommand{\dps}{\mathrm{dps}}

@@ -29,11 +29,11 @@ via Soundararajan (2009) Theorem 1.
 \subsubsection{\texorpdfstring{B.1.1 The Dirichlet series for \(1/L(s, \chi)\)}{B.1.1 The Dirichlet series for 1/L(s, \textbackslash chi)}}\label{b.1.1-the-dirichlet-series-for-1ls-chi}
 
 For \(\chi\) primitive of conductor \(q \ge 2\) and \(\mathrm{Re}(s) > 1\),
-{[}
+\[
 \frac{1}{L(s, \chi)}
-;=;
-\sum\_\{n=1\}\^{}\{\infty\} \frac{\mu(n)\,\chi(n)}{n^s},
-{]}
+\;=\;
+\sum_{n=1}^{\infty} \frac{\mu(n)\,\chi(n)}{n^s},
+\]
 absolutely convergent on \(\mathrm{Re}(s) > 1\). The Dirichlet
 coefficients are \(a_n = \mu(n)\,\chi(n)\), and the partial sum
 \(c_K(\rho, \chi) = \sum_{n \le K} a_n n^{-\rho}\) is the spectroscope
@@ -61,13 +61,13 @@ where the kernel is \(K^w / w\) and the Dirichlet series factor is
 \(1/L(w + \rho, \chi)\), obtained by the substitution \(s = w + \rho\).
 The truncation error \(\mathcal{R}'(K, T, \rho)\) is bounded by Inoue
 (2021) Theorem 1 via the \(J_1, J_2, J_3\) estimates of that paper:
-{[}
+\[
 \mathcal{R}'(K, T, \rho)
-;\ll;
+\;\ll\;
 \frac{K^{\sigma_0' - 1/2}\log K}{T}
-;+;
-\min!\Bigl(1,, \frac{K^{1/2}}{T\langle K\rangle}\Bigr),
-{]}
+\;+\;
+\min\!\Bigl(1,\, \frac{K^{1/2}}{T\langle K\rangle}\Bigr),
+\]
 with \(\langle K \rangle\) the distance from \(K\) to the nearest integer.
 
 \subsubsection{B.1.3 Inoue (2021) Theorem 1 --- truncated explicit formula}
@@ -75,17 +75,17 @@ with \(\langle K \rangle\) the distance from \(K\) to the nearest integer.
 The following statement is verbatim from Inoue (2021), arXiv:1805.05015v1, page 3:
 
 \begin{quote}
-\emph{Theorem 1. Let \(x > 0\), \(q \ge 2\),
-\(T \ge \max\{T_0, \exp(q^{1/3}), 2/x\}\), \ldots{} Then, uniformly for all
+\textbf{Theorem 1} (Inoue 2021). Let \(x > 0\), \(q \ge 2\),
+\(T \ge \max\{T_0, \exp(q^{1/3}), 2/x\}\). Then, uniformly for all
 primitive Dirichlet characters \(\chi\) modulo \(d\) with \(d \le q\),
 there exists \(T_\nu \in [T, 2T]\) satisfying
-{[}
-M\^{}}(x, \chi)
-;=; \sum\emph{\{\textbar{}\gamma\textbar{} \textless{} T}\nu\} \frac{1}{(m(\rho)-1)!},
-\lim\emph{\{s \to \rho\} \frac{d^{m(\rho)-1}}{ds^{m(\rho)-1}}
-\Bigl((s - \rho)\textsuperscript{\{m(\rho)\},\textbackslash frac\{x}s\}\{L(s, \chi),s\}\Bigr)
-;+; \mathop{\mathrm{Res}}}\{s=0\}\Bigl(\frac{x^s}{L(s, \chi)\,s}\Bigr)
-;+; \cdots\$*
+
+\[M^*(x, \chi)
+  \;=\; \sum_{|\gamma| < T_\nu} \frac{1}{(m(\rho)-1)!}\,
+       \lim_{s \to \rho} \frac{d^{m(\rho)-1}}{ds^{m(\rho)-1}}
+       \Bigl((s - \rho)^{m(\rho)}\,\frac{x^s}{L(s, \chi)\,s}\Bigr)
+       \;+\; \mathop{\mathrm{Res}}_{s=0}\Bigl(\frac{x^s}{L(s, \chi)\,s}\Bigr)
+       \;+\; \cdots\]
 \end{quote}
 
 This is the unshifted form, applied to the partial-character-Möbius
@@ -107,9 +107,9 @@ of this appendix reduces to the canonical form by the substitution
 axioms).
 
 We work in the shifted variable \(w = s - \rho\). Define
-{[}
-F(w) ;:=; \frac{K^w}{w \cdot L(w + \rho, \chi)}.
-{]}
+\[
+F(w) \;:=\; \frac{K^w}{w \cdot L(w + \rho, \chi)}.
+\]
 Since \(L(w + \rho, \chi)\) has a \emph{simple} zero at \(w = 0\) (by hypothesis),
 \(1/L(w+\rho, \chi)\) has a simple pole at \(w = 0\). Combined with the
 simple pole of \(K^w / w\) at \(w = 0\), the integrand \(F\) has a
@@ -118,18 +118,18 @@ simple pole of \(K^w / w\) at \(w = 0\), the integrand \(F\) has a
 \subsubsection{\texorpdfstring{B.2.1 Laurent expansion of \(1/L(w+\rho, \chi)\)}{B.2.1 Laurent expansion of 1/L(w+\textbackslash rho, \textbackslash chi)}}\label{b.2.1-laurent-expansion-of-1lwrho-chi}
 
 By Taylor expansion at the simple zero,
-{[}
+\[
 L(w + \rho, \chi)
-;=;
-a\_1 w + a\_2 w\^{}2 + a\_3 w\^{}3 + \cdots,
-\qquad a\_k ;=; \frac{L^{(k)}(\rho, \chi)}{k!},\quad a\_1 = L'(\rho, \chi) \ne 0.
-{]}
+\;=\;
+a_1 w + a_2 w^2 + a_3 w^3 + \cdots,
+\qquad a_k \;=\; \frac{L^{(k)}(\rho, \chi)}{k!},\quad a_1 = L'(\rho, \chi) \ne 0.
+\]
 Therefore
-{[}
+\[
 \frac{1}{L(w + \rho, \chi)}
-;=;
+\;=\;
 \frac{1}{a_1 w} \cdot \frac{1}{1 + (a_2/a_1) w + (a_3/a_1) w^2 + \cdots}.
-{]}
+\]
 Expanding the geometric factor as \((1 + u)^{-1} = 1 - u + u^2 - \cdots\)
 and substituting \(a_1 = L'(\rho, \chi)\), \(a_2 = L''(\rho, \chi)/2\):
 \begin{equation}
@@ -146,23 +146,23 @@ O(w).
 \subsubsection{\texorpdfstring{B.2.2 Laurent expansion of \(K^w / w\)}{B.2.2 Laurent expansion of K\^{}w / w}}\label{b.2.2-laurent-expansion-of-kw-w}
 
 Trivially,
-{[}
+\[
 \frac{K^w}{w}
-;=;
-\frac{1}{w}\bigl(1 + (\log K),w + \tfrac{1}{2}(\log K)\^{}2 w\^{}2 + O(w\^{}3)\bigr)
-;=;
-\frac{1}{w} ;+; \log K ;+; \tfrac{1}{2}(\log K)\^{}2 ,w ;+; O(w\^{}2).
-{]}
-
-\subsubsection{B.2.3 Product expansion and the double-pole residue}
+\;=\;
+\frac{1}{w}\bigl(1 + (\log K)\,w + \tfrac{1}{2}(\log K)^2 w^2 + O(w^3)\bigr)
+\;=\;
+\frac{1}{w} \;+\; \log K \;+\; \tfrac{1}{2}(\log K)^2 \,w \;+\; O(w^2).
+\]
+\#\#\# B.2.3 Product expansion and the double-pole residue
 
 Multiplying the two expansions:
-{[}
+\[
 F(w)
-;=;
-\Bigl[\tfrac{1}{w} + \log K + \tfrac{1}{2}(\log K)^2 w + \cdots\Bigr]\cdot
+\;=\;
+\Bigl[\tfrac{1}{w} + \log K + \tfrac{1}{2}(\log K)^2 w + \cdots\Bigr]
+\cdot
 \Bigl[\tfrac{1}{L'(\rho,\chi)\,w} - \tfrac{L''(\rho,\chi)}{2 L'(\rho,\chi)^2} + O(w)\Bigr].
-{]}
+\]
 Collecting powers of \(w\):
 - \(w^{-2}\) coefficient: \(\tfrac{1}{L'(\rho,\chi)}\) (from \(\tfrac{1}{w} \cdot \tfrac{1}{L'(\rho,\chi)\,w}\));
 - \(w^{-1}\) coefficient: \(\tfrac{\log K}{L'(\rho,\chi)} - \tfrac{L''(\rho,\chi)}{2\,L'(\rho,\chi)^2}\) (cross-terms).
@@ -207,24 +207,24 @@ For each \(\rho' \ne \rho\) a nontrivial zero of \(L(s, \chi)\), write
 \(w_{\rho'} = \rho' - \rho\). Assuming \(\rho'\) is \emph{simple} (which is
 generically expected and is the regime relevant for the leading +
 subleading identity), the residue of \(F\) at \(w = w_{\rho'}\) is
-{[}
-\mathop{\mathrm{Res}}\emph{\{w = w}\{\rho`\}\} F(w)
-;=;
+\[
+\mathop{\mathrm{Res}}_{w = w_{\rho'}} F(w)
+\;=\;
 \frac{K^{w_{\rho'}}}{w_{\rho'} \cdot L'(\rho', \chi)}
-;=;
+\;=\;
 \frac{K^{\rho' - \rho}}{(\rho' - \rho)\,L'(\rho', \chi)}.
-{]}
+\]
 Under RH for \(L(s, \chi)\), \(|K^{\rho' - \rho}| = 1\) for all
 \(\rho' = \tfrac12 + i\gamma'\) with \(\gamma' \in \mathbb{R}\). The
 aggregate off-target sum (over zeros \(\rho'\) in the strip
 \(|\gamma'| \le T\)) is then bounded by
-{[}
-\Bigl\textbar!\sum\emph{\{\rho' \ne \rho,~\textbar{}\gamma'\textbar{} \le T\}
-\frac{K^{i(\gamma' - \tau)}}{(\rho' - \rho)\,L'(\rho', \chi)}\Bigr\textbar{}
-;\ll;
-\sum}\{\rho' \ne \rho,~\textbar{}\gamma'\textbar{} \le T\}
+\[
+\Bigl|\!\sum_{\rho' \ne \rho,\ |\gamma'| \le T}
+\frac{K^{i(\gamma' - \tau)}}{(\rho' - \rho)\,L'(\rho', \chi)}\Bigr|
+\;\ll\;
+\sum_{\rho' \ne \rho,\ |\gamma'| \le T}
 \frac{1}{|\gamma' - \tau|\,|L'(\rho', \chi)|}.
-{]}
+\]
 This is the off-target \emph{aggregate} whose control determines the
 \(o(1)\) rate.
 
@@ -241,11 +241,11 @@ The shifted contour \(\mathrm{Re}(w) = -A\) contributes, on a suitable
 zero-avoiding height \(T_K \in [K/(\log K)^B, 2K/(\log K)^B]\), an
 integral bounded by (using a reciprocal-\(L\) bound on the vertical
 shifted line)
-{[}
-\Bigl\textbar{}\frac{1}{2\pi i}\int\_\{(-A)\}!\frac{K^w}{w\,L(w+\rho,\chi)},dw\Bigr\textbar{}
-;\ll;
-K\^{}\{-A\} \cdot T\_K \cdot \exp\bigl(C,(\log\log T\_K)\^{}2\bigr).
-{]}
+\[
+\Bigl|\frac{1}{2\pi i}\int_{(-A)}\!\frac{K^w}{w\,L(w+\rho,\chi)}\,dw\Bigr|
+\;\ll\;
+K^{-A} \cdot T_K \cdot \exp\bigl(C\,(\log\log T_K)^2\bigr).
+\]
 For \(A > 1/2\) and \(T_K \le K/(\log K)^B\) with \(B\) sufficiently large,
 this is \(K^{-A + 1 + o(1)} \cdot \exp(O((\log\log K)^2))\), which is
 \(o(1)\).
@@ -257,13 +257,13 @@ Horizontal pieces give factors like \((T_K/K)^A \cdot \mathrm{polylog}\),
 
 By Inoue (2021) Theorem 1, the truncation error
 \(\mathcal{R}'(K, T_K, \rho)\) is bounded by
-{[}
-\mathcal{R}'(K, T\_K, \rho)
-;\ll;
+\[
+\mathcal{R}'(K, T_K, \rho)
+\;\ll\;
 \frac{K^{\sigma_0' - 1/2} \log K}{T_K}
-;+;
-\min!\Bigl(1,,\frac{K^{1/2}}{T_K \langle K\rangle}\Bigr).
-{]}
+\;+\;
+\min\!\Bigl(1,\,\frac{K^{1/2}}{T_K \langle K\rangle}\Bigr).
+\]
 For \(T_K \asymp K (\log K)^{-B}\) and \(\sigma_0' = 1/2 + 1/\log K\), both
 pieces are \(O(K^{-1/2 + \varepsilon}) \cdot (\log K)^{O(1)}\) for any
 \(\varepsilon > 0\), in particular \(o(1)\).
@@ -272,31 +272,31 @@ pieces are \(O(K^{-1/2 + \varepsilon}) \cdot (\log K)^{O(1)}\) for any
 
 Combining the local residue (\ref{eq:double-pole-residue}) with the
 off-target and contour pieces:
-{[}
-c\_K(\chi, \rho)
-;=;
+\[
+c_K(\chi, \rho)
+\;=\;
 \frac{\log K}{L'(\rho, \chi)}
-;+;
-C\_1(\chi, \rho)
-;+;
+\;+\;
+C_1(\chi, \rho)
+\;+\;
 \Bigl(\text{off-target aggregate}\Bigr)
-;+;
-O(K\^{}\{-1/2\})
-;+;
-O(K\^{}\{-A+1+o(1)\}\exp(O((\log\log K)\^{}2)))
-;+;
-\mathcal{R}'(K, T\_K, \rho).
-{]}
+\;+\;
+O(K^{-1/2})
+\;+\;
+O(K^{-A+1+o(1)}\exp(O((\log\log K)^2)))
+\;+\;
+\mathcal{R}'(K, T_K, \rho).
+\]
 All terms in the last three parentheses are \(o(1)\). The off-target
 aggregate is also \(o(1)\) under RH for \(L(s, \chi)\), by partial
 summation against Soundararajan (2009), \emph{Partial sums of the Möbius
 function}, Annals of Mathematics \textbf{170} (2009), 981--993, Theorem 1:
-{[}
+\[
 \text{(Soundararajan 2009)}
 \quad
 \text{under RH:}\quad
-M(x) ;\ll; \sqrt x ,\exp!\bigl((\log x)\^{}\{1/2\},(\log\log x)\^{}\{14\}\bigr).
-{]}
+M(x) \;\ll\; \sqrt x \,\exp\!\bigl((\log x)^{1/2}\,(\log\log x)^{14}\bigr).
+\]
 Translating to \(M^*(x, \chi)\) (the character analogue) gives the
 required \(o(1)\) rate for the off-target aggregate under RH for
 \(L(s, \chi)\).

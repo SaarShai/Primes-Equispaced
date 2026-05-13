@@ -24,16 +24,16 @@ The proof uses no hypothesis beyond simplicity of \(\rho\) as a zero of
 For a primitive non-principal Dirichlet character \(\chi\) modulo
 \(q \ge 2\) and a simple zero \(\rho = \tfrac12 + i\tau\) with \(\tau \ne 0\)
 of \(L(s, \chi)\) on the critical line, define
-{[}
-T\_K(\chi,\rho) ;:=; \sum\emph{\{p \le K\} \sum}\{k \ge 2\}
+\[
+T_K(\chi,\rho) \;:=\; \sum_{p \le K} \sum_{k \ge 2}
 \frac{\chi(p)^k}{k\, p^{k\rho}}.
-{]}
+\]
 Inside the partial sum, the order of summation may be swapped
 unconditionally because for each fixed prime \(p \ge 2\),
-{[}
-\sum\_\{k \ge 2\} \frac{(\chi(p)\, p^{-\rho})^k}{k}
-;=; -\log\bigl(1 - \chi(p),p\^{}\{-\rho\}\bigr) ;-; \chi(p),p\^{}\{-\rho\},
-{]}
+\[
+\sum_{k \ge 2} \frac{(\chi(p)\, p^{-\rho})^k}{k}
+\;=\; -\log\bigl(1 - \chi(p)\,p^{-\rho}\bigr) \;-\; \chi(p)\,p^{-\rho},
+\]
 with \(\bigl|\chi(p)\,p^{-\rho}\bigr| = p^{-1/2} \le 2^{-1/2} < 1\), so
 the inner series is absolutely convergent and the logarithm is taken
 along the principal branch with no ambiguity. Therefore we may
@@ -200,44 +200,44 @@ definition of \(\mathrm{BPC}_1\) from §X.1; the last term is
 For each fixed prime \(p\) and each \(k \ge 3\),
 \(|\chi(p)^k p^{-k\rho}| \le p^{-k/2}\), so the inner \(k\)-series is
 bounded by a geometric series:
-{[}
-\Bigl\textbar{}\sum\emph{\{k \ge 3\} \frac{\chi(p)^k}{k\,p^{k\rho}}\Bigr\textbar{}
-;\le;
-\sum}\{k \ge 3\} \frac{p^{-k/2}}{k}
-;\le;
+\[
+\Bigl|\sum_{k \ge 3} \frac{\chi(p)^k}{k\,p^{k\rho}}\Bigr|
+\;\le\;
+\sum_{k \ge 3} \frac{p^{-k/2}}{k}
+\;\le\;
 \frac{p^{-3/2}}{3} \cdot \frac{1}{1 - p^{-1/2}}.
-{]}
+\]
 Summing over primes:
-{[}
-\textbar T\_\{\ge 3\}\textbar{}
-;\le;
-\frac{1}{3} \sum\emph{p \frac{p^{-3/2}}{1 - p^{-1/2}}
-;\le;
-\frac{1}{3(1 - 2^{-1/2})} \sum\emph{p p\^{}\{-3/2\}
-;=;
+\[
+|T_{\ge 3}|
+\;\le\;
+\frac{1}{3} \sum_p \frac{p^{-3/2}}{1 - p^{-1/2}}
+\;\le\;
+\frac{1}{3(1 - 2^{-1/2})} \sum_p p^{-3/2}
+\;=\;
 \frac{P(3/2)}{3(1 - 2^{-1/2})}
-;\approx;
+\;\approx\;
 0.515,
-{]}
+\]
 where \(P(3/2) = \sum_p p^{-3/2} \approx 0.45224\) is the prime zeta
 function at \(s = 3/2\). The truncation tail is also estimable: by
 partial summation against PNT, for \(\alpha > 1\),
 \(\sum_{p > K} p^{-\alpha} \le \frac{2K^{1-\alpha}}{(\alpha-1)\log K}\),
 so
-{[}
-\textbar T}\{\ge 3\} - T}\{\ge 3, K\}\textbar{}
-;\le;
+\[
+|T_{\ge 3} - T_{\ge 3, K}|
+\;\le\;
 \frac{2}{3(1 - 2^{-1/2})} \cdot \frac{K^{-1/2}}{\log K},
-{]}
+\]
 which is \(\sim 3 \cdot 10^{-4}\) at \(K = 10^6\) and \(\sim 1 \cdot 10^{-4}\)
 at \(K = 2 \cdot 10^6\).
 
 \subsection{A.4 Assembling the identity}
 
 Define
-{[}
-T\_\infty(\chi,\rho) ;:=; \lim\_\{K \to \infty\} T\_K(\chi,\rho).
-{]}
+\[
+T_\infty(\chi,\rho) \;:=\; \lim_{K \to \infty} T_K(\chi,\rho).
+\]
 The limit exists by combining the two parts:
 
 \begin{itemize}
@@ -250,14 +250,14 @@ The limit exists by combining the two parts:
 \end{itemize}
 
 Hence
-{[}
-T\_\infty(\chi, \rho)
-;=;
+\[
+T_\infty(\chi, \rho)
+\;=\;
 \tfrac12 \log L(2\rho, \psi)
-;+; \mathrm{BPC}\_1(\chi, \rho)
-;+; \mathrm{BPC}\emph{2(\chi, \rho)
-;+; T}\{\ge 3\}(\chi, \rho),
-{]}
+\;+\; \mathrm{BPC}_1(\chi, \rho)
+\;+\; \mathrm{BPC}_2(\chi, \rho)
+\;+\; T_{\ge 3}(\chi, \rho),
+\]
 which is identity (\(\star\)). \(\hfill\square\)
 
 \subsection{A.5 Bad-prime correction for the four computational pairs}

@@ -74,17 +74,17 @@ with $\langle K \rangle$ the distance from $K$ to the nearest integer.
 
 The following statement is verbatim from Inoue (2021), arXiv:1805.05015v1, page 3:
 
-> *Theorem 1. Let $x > 0$, $q \ge 2$,
-> $T \ge \max\{T_0, \exp(q^{1/3}), 2/x\}$, ... Then, uniformly for all
+> **Theorem 1** (Inoue 2021). Let $x > 0$, $q \ge 2$,
+> $T \ge \max\{T_0, \exp(q^{1/3}), 2/x\}$. Then, uniformly for all
 > primitive Dirichlet characters $\chi$ modulo $d$ with $d \le q$,
 > there exists $T_\nu \in [T, 2T]$ satisfying
-> \[
-> M^*(x, \chi)
-> \;=\; \sum_{|\gamma| < T_\nu} \frac{1}{(m(\rho)-1)!}\,
->      \lim_{s \to \rho} \frac{d^{m(\rho)-1}}{ds^{m(\rho)-1}}
->      \Bigl((s - \rho)^{m(\rho)}\,\frac{x^s}{L(s, \chi)\,s}\Bigr)
->      \;+\; \mathop{\mathrm{Res}}_{s=0}\Bigl(\frac{x^s}{L(s, \chi)\,s}\Bigr)
->      \;+\; \cdots$*
+>
+> $$M^*(x, \chi)
+>   \;=\; \sum_{|\gamma| < T_\nu} \frac{1}{(m(\rho)-1)!}\,
+>        \lim_{s \to \rho} \frac{d^{m(\rho)-1}}{ds^{m(\rho)-1}}
+>        \Bigl((s - \rho)^{m(\rho)}\,\frac{x^s}{L(s, \chi)\,s}\Bigr)
+>        \;+\; \mathop{\mathrm{Res}}_{s=0}\Bigl(\frac{x^s}{L(s, \chi)\,s}\Bigr)
+>        \;+\; \cdots$$
 
 This is the unshifted form, applied to the partial-character-Möbius
 sum $M^*(x, \chi) = \sum_{n \le x}' \mu(n)\,\chi(n)$. Dividing by
