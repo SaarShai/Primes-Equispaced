@@ -18,10 +18,13 @@
 \usepackage{booktabs, longtable, array}
 \usepackage{enumitem}
 \usepackage{etoolbox}
-% Some wide tables (from the markdown source) overflow the text width
-% at \normalsize; render them at \small.
-\AtBeginEnvironment{longtable}{\small}
+% Wide tables (esp. §X.6 Lean inventory, §X.5 numerical residuals)
+% overflow the text width at \normalsize. Render them at \small with
+% tightened column spacing and a generous \emergencystretch so TeX
+% can find acceptable line breaks inside narrow cells.
+\AtBeginEnvironment{longtable}{\small\setlength{\emergencystretch}{3em}}
 \setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{hyperref}
 \hypersetup{colorlinks=true, linkcolor=MidnightBlue, citecolor=MidnightBlue, urlcolor=MidnightBlue}
@@ -51,13 +54,18 @@
 \addbibresource{references.bib}
 
 % ---------- meta -------------------------------------------------------------
-\title{Methodology, formalization, and numerical evidence \\
+\title[Technical / Computational section]{Methodology, formalization, and numerical evidence \\
        \large (Technical / Computational section --- draft)}
 \author{Shin-ya Koyama \and Saar Shai}
 \date{\today}
 
-% Short running header so the long title doesn't truncate awkwardly.
-\markboth{S.~Koyama and S.~Shai}{Technical / Computational section --- draft}
+% Allow TeX more flexibility with line breaks. Long inline-code
+% tokens (e.g. `formal-conjectures/LocalPerronResidue.lean`) and code
+% identifiers are otherwise unbreakable and cause overfull boxes.
+\sloppy
+\setlength{\emergencystretch}{3em}
+\hyphenpenalty=1000
+\exhyphenpenalty=1000
 
 \begin{document}
 \maketitle

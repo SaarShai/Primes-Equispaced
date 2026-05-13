@@ -407,7 +407,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip68
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 27.
+Package hyperref Info: Option `colorlinks' set `true' on input line 30.
 \c@theorem=\count301
  (biblatex.sty
 Package: biblatex 2022/02/02 v3.17 programmable bibliographies (PK/MW)
@@ -666,64 +666,64 @@ Package: blx-case-expl3 2022/02/02 v3.17 expl3 case changing code for biblatex
 (paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 62.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 6
-2.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 70.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 7
+0.
  (ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 6
-2.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 7
+0.
  (ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 6
-2.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 7
+0.
  (omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-62.
+70.
  (omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-62.
+70.
  (omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 62.
+(Font)              <9> on input line 70.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 62.
+(Font)              <6> on input line 70.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 62.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 62.
+(Font)              <5> on input line 70.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 70.
 
 
 (umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 62.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 70.
 
  (umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -762,11 +762,11 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \microtypecontext on input line 62.
-Package microtype Info: Applying patch `item' on input line 62.
-Package microtype Info: Applying patch `toc' on input line 62.
-Package microtype Info: Applying patch `eqnum' on input line 62.
-Package microtype Info: Applying patch `footnote' on input line 62.
+LaTeX Info: Redefining \microtypecontext on input line 70.
+Package microtype Info: Applying patch `item' on input line 70.
+Package microtype Info: Applying patch `toc' on input line 70.
+Package microtype Info: Applying patch `eqnum' on input line 70.
+Package microtype Info: Applying patch `footnote' on input line 70.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: No adjustment of tracking.
@@ -789,7 +789,7 @@ Package graphics Info: Driver file: xetex.def on input line 107.
 \Gin@req@height=\dimen190
 \Gin@req@width=\dimen191
 )
-Package hyperref Info: Link coloring ON on input line 62.
+Package hyperref Info: Link coloring ON on input line 70.
 
 (nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -800,9 +800,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count436
 )
-LaTeX Info: Redefining \ref on input line 62.
-LaTeX Info: Redefining \pageref on input line 62.
-LaTeX Info: Redefining \nameref on input line 62.
+LaTeX Info: Redefining \ref on input line 70.
+LaTeX Info: Redefining \pageref on input line 70.
+LaTeX Info: Redefining \nameref on input line 70.
  (paper.out) (paper.out)
 \@outlinefile=\write4
 \openout4 = `paper.out'.
@@ -826,12 +826,12 @@ Package biblatex Info: Data encoding 'utf8' specified.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'paper.bbl' found.
  (paper.bbl)
-Package biblatex Info: Reference section=0 on input line 62.
-Package biblatex Info: Reference segment=0 on input line 62.
+Package biblatex Info: Reference section=0 on input line 70.
+Package biblatex Info: Reference segment=0 on input line 70.
 
 
 Class amsart Warning: Abstract should precede \maketitle in AMS document classe
-s; reported on input line 65.
+s; reported on input line 73.
 
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/9'.
@@ -858,12 +858,10 @@ File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 ) (mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ) [1]
-Overfull \hbox (52.12552pt too wide) in paragraph at lines 164--169
-\T1/lmr/m/it/10.95 conditional; the un-con-di-tional Soundarara-jan (2009) boun
-d gives $\OML/lmm/m/it/10.95 o\OT1/lmr/m/n/10.95 (1) = \OML/lmm/m/it/10.95 O\OT
-1/lmr/m/n/10.95 (\OML/lmm/m/it/10.95 K[] []\OT1/lmr/m/n/10.95 (([] \OML/lmm/m/i
-t/10.95 K\OT1/lmr/m/n/10.95 )[]([] [] \OML/lmm/m/it/10.95 K\OT1/lmr/m/n/10.95 )
-[]))$\T1/lmr/m/it/10.95 . 
+Underfull \hbox (badness 6592) in paragraph at lines 164--169
+\T1/lmr/m/it/10.95 The iden-tity is un-con-di-tional in $\OML/lmm/m/it/10.95 ^^
+Z$ \T1/lmr/m/it/10.95 given off-target sim-plic-ity. The rate $\OML/lmm/m/it/10
+.95 o\OT1/lmr/m/n/10.95 (1) =
  []
 
 [2]
@@ -873,19 +871,10 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 269.
 
 Missing character: There is no ≈ ("2248) in font ec-lmr10!
-
-Overfull \hbox (132.82594pt too wide) has occurred while \output is active
- \T1/lmr/m/n/8 METHODOLOGY, FORMALIZATION, AND NUMERICAL EVIDENCE \T1/lmr/m/n/1
-2 (TECHNICAL / COMPUTATIONAL SECTION --- DRAFT) []
- []
-
 [3] [4]
-Overfull \hbox (15.87074pt too wide) in paragraph at lines 351--357
+Underfull \hbox (badness 1325) in paragraph at lines 351--357
 []\T1/lmr/m/n/10.95 L1b in-language cross-check (Hur-witz ex-pan-sion, in-de-pe
-n-dent sieve) agrees with L1 to $\OMS/lmsy/m/n/10.95 j\OT1/lmr/m/n/10.95 ^^A\OM
-L/lmm/m/it/10.95 L[]\OMS/lmsy/m/n/10.95 j\OML/lmm/m/it/10.95 ; \OMS/lmsy/m/n/10
-.95 j\OT1/lmr/m/n/10.95 ^^A\OML/lmm/m/it/10.95 L[]\OMS/lmsy/m/n/10.95 j \U/msa/
-m/n/10.95 .
+n-dent sieve) agrees with L1 to
  []
 
 
@@ -894,26 +883,31 @@ Overfull \hbox (8.59445pt too wide) in paragraph at lines 389--389
 e[]=\OMS/lmsy/m/n/10 j\OML/lmm/m/it/10 L[]\OMS/lmsy/m/n/10 j$|  
  []
 
-
-Overfull \hbox (132.82594pt too wide) has occurred while \output is active
- \T1/lmr/m/n/8 METHODOLOGY, FORMALIZATION, AND NUMERICAL EVIDENCE \T1/lmr/m/n/1
-2 (TECHNICAL / COMPUTATIONAL SECTION --- DRAFT) []
+[5]
+Underfull \hbox (badness 6559) in paragraph at lines 470--478
+ \T1/lmr/m/n/10.95 1.6.\T1/lmr/bx/n/10.95 Lean 4 / Math-lib4 for-mal-i-sa-tion.
+[][] \T1/lmr/m/n/10.95 We ac-com-pany the pa-per with a Lean
  []
 
-[5]
-Overfull \hbox (40.3763pt too wide) in paragraph at lines 470--478
-\T1/lmtt/m/n/10.95 leanprover/lean4:v4.28.0\T1/lmr/m/n/10.95 ; Math-lib is pinn
-ed at com-mit \T1/lmtt/m/n/10.95 8f9d9cff6bd728b17a24e163c9402775d9e6a365\T1/lm
-r/m/n/10.95 .
+
+Underfull \hbox (badness 10000) in paragraph at lines 470--478
+\T1/lmr/m/n/10.95 4 / Math-lib4 lake project (\T1/lmtt/m/n/10.95 formal-conject
+ures/ \T1/lmr/m/n/10.95 di-rec-tory of the sup-ple-men-tary
+ []
+
+
+Underfull \hbox (badness 2401) in paragraph at lines 470--478
+\T1/lmr/m/n/10.95 archive). The toolchain is \T1/lmtt/m/n/10.95 leanprover/lean
+4:v4.28.0\T1/lmr/m/n/10.95 ; Math-lib is pinned at com-mit
  []
 
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 480.
 
-Overfull \hbox (2.4073pt too wide) in paragraph at lines 479--489
+Underfull \hbox (badness 10000) in paragraph at lines 479--489
 []\T1/lmr/bx/n/10.95 Build sta-tus. \T1/lmtt/m/n/10.95 lake build FormalConject
 ures \T1/lmr/m/n/10.95 suc-ceeds on all \T1/lmr/bx/n/10.95 9 files \T1/lmr/m/n/
-10.95 in \T1/lmtt/m/n/10.95 formal-conjectures/
+10.95 in
  []
 
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
@@ -949,72 +943,14 @@ Overfull \hbox (14.23303pt too wide) in paragraph at lines 537--538
 \T1/lmtt/m/n/10 dpac_of_certifiedZetaZeroSample\T1/lmr/m/n/10 ) 
  []
 
-[6]
-Overfull \hbox (132.82594pt too wide) has occurred while \output is active
- \T1/lmr/m/n/8 METHODOLOGY, FORMALIZATION, AND NUMERICAL EVIDENCE \T1/lmr/m/n/1
-2 (TECHNICAL / COMPUTATIONAL SECTION --- DRAFT) []
- []
-
-[7]
-Overfull \hbox (8.36282pt too wide) in paragraph at lines 555--562
+[6] [7]
+Underfull \hbox (badness 10000) in paragraph at lines 555--562
 []\T1/lmr/m/n/10.95 Sufficient pack-ages: (a) all off-target ze-ros sim-ple, an
 d $\OML/lmm/m/it/10.95 Z[]\OT1/lmr/m/n/10.95 (\OML/lmm/m/it/10.95 K; T[]\OT1/lm
-r/m/n/10.95 ) := [][] \OML/lmm/m/it/10.95 K[]=\OT1/lmr/m/n/10.95 [(\OML/lmm/m/i
-t/10.95 ^^Z[] \OMS/lmsy/m/n/10.95 ^^@
+r/m/n/10.95 ) :=
  []
 
-[8]
-Overfull \hbox (15.24373pt too wide) in paragraph at lines 615--629
-\T1/lmr/m/n/10.95 DOI at ac-cep-tance. The bun-dle pins all soft-ware ver-sions
-: Lean toolchain \T1/lmtt/m/n/10.95 leanprover/lean4:v4.28.0\T1/lmr/m/n/10.95 ,
-
- []
-
-
-Overfull \hbox (4.90222pt too wide) in paragraph at lines 650--654
-[]\T1/lmr/bx/n/10.95 Davenport, H. \T1/lmr/m/it/10.95 Mul-ti-plica-tive Num-ber
- The-ory\T1/lmr/m/n/10.95 , 3rd ed., GTM \T1/lmr/bx/n/10.95 74\T1/lmr/m/n/10.95
- , Springer 2000. Hadamard--
- []
-
-
-Overfull \hbox (132.82594pt too wide) has occurred while \output is active
- \T1/lmr/m/n/8 METHODOLOGY, FORMALIZATION, AND NUMERICAL EVIDENCE \T1/lmr/m/n/1
-2 (TECHNICAL / COMPUTATIONAL SECTION --- DRAFT) []
- []
-
-[9]
-Overfull \hbox (41.40198pt too wide) in paragraph at lines 686--690
-\T1/lmr/m/n/10.95 OUP 1986. ^^9f3.11 (the polynomial-growth bound on $\OT1/lmr/
-m/n/10.95 1\OML/lmm/m/it/10.95 =^^P\OT1/lmr/m/n/10.95 (\OML/lmm/m/it/10.95 s\OT
-1/lmr/m/n/10.95 )$ \T1/lmr/m/n/10.95 used in \T1/lmtt/m/n/10.95 SmoothedDwfForm
-ula_full.lean
- []
-
-) (appendix_A [10]
-Overfull \hbox (7.72302pt too wide) in paragraph at lines 144--153
-\T1/lmr/m/n/10.95 pro-duc-ing the ap-pro-pri-ate can-cel-la-tion. We de-note th
-e limit by $\OT1/lmr/m/n/10.95 ^^F[](\OML/lmm/m/it/10.95 ^^_; ^^Z\OT1/lmr/m/n/1
-0.95 ) := [][] [][] \OML/lmm/m/it/10.95 ^^_[]\OT1/lmr/m/n/10.95 (\OML/lmm/m/it/
-10.95 p\OT1/lmr/m/n/10.95 ) \OML/lmm/m/it/10.95 p[]$\T1/lmr/m/n/10.95 . 
- []
-
-
-Overfull \hbox (132.82594pt too wide) has occurred while \output is active
- \T1/lmr/m/n/8 METHODOLOGY, FORMALIZATION, AND NUMERICAL EVIDENCE \T1/lmr/m/n/1
-2 (TECHNICAL / COMPUTATIONAL SECTION --- DRAFT) []
- []
-
-[11]
-Overfull \hbox (5.01982pt too wide) in paragraph at lines 184--187
- \T1/lmr/m/n/10.95 A.2.4.\T1/lmr/m/it/10.95 A.2.4 Mul-ti-ply-ing by $\OT1/lmr/m
-/n/10.95 1\OML/lmm/m/it/10.95 =\OT1/lmr/m/n/10.95 2$\T1/lmr/m/it/10.95 .[] \T1/
-lmr/m/n/10.95 Mul-ti-ply-ing ([][]9[][]) by $[]$ and rewrit-ing $[] \OML/lmm/m/
-it/10.95 L\OT1/lmr/m/n/10.95 (2\OML/lmm/m/it/10.95 ^^Z; ^^_[]\OT1/lmr/m/n/10.95
- )$ \T1/lmr/m/n/10.95 via the imprimitive-
- []
-
-[12]
+[8]) (appendix_A [9] [10] [11] [12]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\leavevmode@ifvmode' on input line 377.
@@ -1024,46 +960,14 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 2.09918pt
 (hyperref)                removed on input line 377.
 
-) (appendix_B
-Overfull \hbox (132.82594pt too wide) has occurred while \output is active
- \T1/lmr/m/n/8 METHODOLOGY, FORMALIZATION, AND NUMERICAL EVIDENCE \T1/lmr/m/n/1
-2 (TECHNICAL / COMPUTATIONAL SECTION --- DRAFT) []
- []
-
-[13]
-Overfull \hbox (10.96114pt too wide) in paragraph at lines 93--98
+) (appendix_B [13]
+Underfull \hbox (badness 1701) in paragraph at lines 93--98
 []\T1/lmr/m/n/10.95 This is the un-shifted form, ap-plied to the partial-charac
 ter-Möbius sum $\OML/lmm/m/it/10.95 M[]\OT1/lmr/m/n/10.95 (\OML/lmm/m/it/10.95 
-x; ^^_\OT1/lmr/m/n/10.95 ) = [][] \OML/lmm/m/it/10.95 ^^V\OT1/lmr/m/n/10.95 (\O
-ML/lmm/m/it/10.95 n\OT1/lmr/m/n/10.95 ) \OML/lmm/m/it/10.95 ^^_\OT1/lmr/m/n/10.
-95 (\OML/lmm/m/it/10.95 n\OT1/lmr/m/n/10.95 )$\T1/lmr/m/n/10.95 .
+x; ^^_\OT1/lmr/m/n/10.95 ) =
  []
 
-[14]
-Overfull \hbox (155.63348pt too wide) in paragraph at lines 101--110
-\T1/lmr/m/n/10.95 de-pen-dently for-malised in Lean 4 / Math-lib v4.28.0 as \T1
-/lmtt/m/n/10.95 local_perron_residue \T1/lmr/m/n/10.95 in \T1/lmtt/m/n/10.95 fo
-rmal-conjectures/LocalPerronResidue.lean\T1/lmr/m/n/10.95 .
- []
-
-
-Overfull \hbox (132.82594pt too wide) has occurred while \output is active
- \T1/lmr/m/n/8 METHODOLOGY, FORMALIZATION, AND NUMERICAL EVIDENCE \T1/lmr/m/n/1
-2 (TECHNICAL / COMPUTATIONAL SECTION --- DRAFT) []
- []
-
-[15]
-Overfull \hbox (16.55032pt too wide) in paragraph at lines 259--262
-[]\T1/lmr/m/n/10.95 For $\OML/lmm/m/it/10.95 A > \OT1/lmr/m/n/10.95 1\OML/lmm/m
-/it/10.95 =\OT1/lmr/m/n/10.95 2$ \T1/lmr/m/n/10.95 and $\OML/lmm/m/it/10.95 T[]
- \OMS/lmsy/m/n/10.95 ^^T \OML/lmm/m/it/10.95 K=\OT1/lmr/m/n/10.95 ([] \OML/lmm/
-m/it/10.95 K\OT1/lmr/m/n/10.95 )[]$ \T1/lmr/m/n/10.95 with $\OML/lmm/m/it/10.95
- B$ \T1/lmr/m/n/10.95 suf-fi-ciently large, this is $\OML/lmm/m/it/10.95 K[] \O
-MS/lmsy/m/n/10.95 ^^A []\OT1/lmr/m/n/10.95 (\OML/lmm/m/it/10.95 O\OT1/lmr/m/n/1
-0.95 (([] [] \OML/lmm/m/it/10.95 K\OT1/lmr/m/n/10.95 )[]))$\T1/lmr/m/n/10.95 ,
- []
-
-
+[14] [15]
 Overfull \hbox (128.1557pt too wide) detected at line 300
 \OML/lmm/m/it/10.95 c[]\OT1/lmr/m/n/10.95 (\OML/lmm/m/it/10.95 ^^_; ^^Z\OT1/lmr
 /m/n/10.95 )  =  []  +  \OML/lmm/m/it/10.95 C[]\OT1/lmr/m/n/10.95 (\OML/lmm/m/i
@@ -1075,38 +979,11 @@ m/it/10.95 O\OT1/lmr/m/n/10.95 (([] [] \OML/lmm/m/it/10.95 K\OT1/lmr/m/n/10.95
 ]; ^^Z\OT1/lmr/m/n/10.95 )\OML/lmm/m/it/10.95 :
  []
 
-[16]
-Overfull \hbox (34.12192pt too wide) in paragraph at lines 343--350
-\T1/lmr/m/n/10.95 Soundararajan-conditional rate within an $\OML/lmm/m/it/10.95
- O\OT1/lmr/m/n/10.95 (1)$ \T1/lmr/m/n/10.95 implicit-constant fac-tor (specif-i
--cally, $\OMS/lmsy/m/n/10.95 j\OML/lmm/m/it/10.95 R\OT1/lmr/m/n/10.95 (\OML/lmm
-/m/it/10.95 K\OT1/lmr/m/n/10.95 )\OMS/lmsy/m/n/10.95 j\OML/lmm/m/it/10.95 =\OT1
-/lmr/m/n/10.95 ([] \OML/lmm/m/it/10.95 K=[]\OT1/lmr/m/n/10.95 ) \OMS/lmsy/m/n/1
-0.95 2
- []
-
-
-Overfull \hbox (15.9381pt too wide) in paragraph at lines 367--372
-[]\T1/lmr/m/n/10.95 The proof does \T1/lmr/bx/n/10.95 not \T1/lmr/m/n/10.95 ad-
-dress the pos-si-bil-ity of off-target \T1/lmr/m/it/10.95 mul-ti-ple \T1/lmr/m/
-n/10.95 ze-ros, which un-der DRH/EDRH
- []
-
-)
-
-LaTeX Warning: Empty bibliography on input line 76.
-
-
-Overfull \hbox (132.82594pt too wide) has occurred while \output is active
- \T1/lmr/m/n/8 METHODOLOGY, FORMALIZATION, AND NUMERICAL EVIDENCE \T1/lmr/m/n/1
-2 (TECHNICAL / COMPUTATIONAL SECTION --- DRAFT) []
- []
-
-[17] (paper.aux)
+[16]) [17] (paper.aux)
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: 97A6B2FD4AD04F09D011DE485060DD3C;7114.
+(rerunfilecheck)             Checksum: 56CAC0DDCCC5A983C09FBC94845432A3;7014.
 Package logreq Info: Writing requests to 'paper.run.xml'.
 \openout1 = `paper.run.xml'.
 
  )
-Output written on paper.xdv (17 pages, 111232 bytes).
+Output written on paper.xdv (17 pages, 113996 bytes).

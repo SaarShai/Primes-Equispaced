@@ -135,7 +135,7 @@ function there.
 \textbf{Left-hand side analyticity.} The prime sum
 \(\sum_{p} \chi^2(p) p^{-s}\) on the line \(\mathrm{Re}(s) = 1\)
 (excluding \(s = 1\) if \(\chi^2\) is principal) converges conditionally
-by a partial-summation argument due to Akatsuka (2013), \emph{The Euler
+by a partial-summation argument due to Akatsuka~\cite{AkatsukaH2013EulerProduct}, \emph{The Euler
 product for the Riemann zeta function in the critical strip},
 Lemma 2.1 and equation (2.5), which establishes that for \(t_0 \ne 0\),
 \begin{equation}
@@ -164,7 +164,7 @@ Writing \(S(X) := \sum_{p \le X} \chi(p)^2/p^{2\rho}\) and applying
 Abel summation gives, for \(\sigma > 1\),
 \(\sum_p \chi(p)^2/p^s = (s - 2\rho)\int_2^\infty S(X)\,X^{-(s - 2\rho) - 1}\,dX
 + \lim_{X\to\infty} S(X)\,X^{-(s-2\rho)}\);
-Akatsuka (2013) Lemma 2.1 / eq. (2.5) provides \(S(X) = c(\chi,\rho) + O(1/\log X)\)
+Akatsuka~\cite[Lemma~2.1 \& eq.~(2.5)]{AkatsukaH2013EulerProduct} provides \(S(X) = c(\chi,\rho) + O(1/\log X)\)
 unconditionally as \(X \to \infty\), so the limit term equals
 \(c(\chi,\rho)\) at \(s = 2\rho\) and the integral converges to a
 continuous function of \(s\) in a neighbourhood. Hence
@@ -249,7 +249,7 @@ The limit exists by combining the two parts:
 \begin{itemize}
 \item
   The \(k = 2\) part is \(\tfrac12 \Sigma_2(\chi, \rho)\), whose limit
-  exists by Akatsuka (2013) Lemma 2.1 / eq. (2.5) and equals the
+  exists by Akatsuka~\cite[Lemma~2.1 \& eq.~(2.5)]{AkatsukaH2013EulerProduct} and equals the
   right-hand side of (\ref{eq:k=2-final}).
 \item
   The \(k \ge 3\) part is absolutely convergent by \S\,A.3.
@@ -329,7 +329,7 @@ For clarity:
   The proof does \textbf{not} use RH, GRH, EDRH, or DRH. The only
   conditional convergence on the boundary line \(\mathrm{Re}(s) = 1\) is
   the \(k = 1\) prime sum \(\sum_p \chi^2(p) p^{-2\rho}\), handled by
-  Akatsuka 2013 Lemma 2.1 / eq. (2.5), which itself is
+  Akatsuka~\cite[Lemma~2.1 \& eq.~(2.5)]{AkatsukaH2013EulerProduct}, which itself is
   \emph{unconditional} --- derived from PNT with explicit error term.
 \item
   The proof does \textbf{not} use any rate of convergence for the partial
@@ -367,7 +367,7 @@ Hausdorff). The file uses only the standard
 
 A fully unconditional Lean proof of \texttt{corrected\_B\_infty} (i.e., one
 that \emph{derives} the convergence rather than taking it as a hypothesis)
-requires upstream Mathlib formalisations of Akatsuka 2013
+requires upstream Mathlib formalisations of \cite{AkatsukaH2013EulerProduct}
 eq.~(2.5) and the imprimitive-induction Euler-factor identity for
 \(L(s, \chi^2)\); both are \texttt{MATHLIB-PREREQ} and not yet upstream as of
 v4.28.0.
