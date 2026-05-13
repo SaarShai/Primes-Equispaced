@@ -1,4 +1,4 @@
-\section{\texorpdfstring{Appendix B --- Full proof of Theorem X.4.2 (\(c_K\) leading + subleading identity)}{Appendix B --- Full proof of Theorem X.4.2 (c\_K leading + subleading identity)}}\label{appendix-b-full-proof-of-theorem-x.4.2-c_k-leading-subleading-identity}
+\section{Full proof of Theorem X.4.2 ($c_K$ leading + subleading identity)}
 
 This appendix gives the full proof of Theorem X.4.2 of the main text:
 under the hypotheses of Theorem X.4.1 (i.e., \(\chi\) primitive
@@ -24,9 +24,9 @@ is
 \(O\bigl(K^{-1/2} \exp\bigl((\log K)^{1/2}(\log\log K)^{14}\bigr)\bigr)\)
 via Soundararajan~\cite[Theorem~1]{Soundararajan2009}.
 
-\subsection{\texorpdfstring{B.1 Setup --- Perron formula for \(c_K\) via \(1/L(s, \chi)\)}{B.1 Setup --- Perron formula for c\_K via 1/L(s, \textbackslash chi)}}\label{b.1-setup-perron-formula-for-c_k-via-1ls-chi}
+\subsection{Setup --- Perron formula for \(c_K\) via \(1/L(s, \chi)\)}
 
-\subsubsection{\texorpdfstring{B.1.1 The Dirichlet series for \(1/L(s, \chi)\)}{B.1.1 The Dirichlet series for 1/L(s, \textbackslash chi)}}\label{b.1.1-the-dirichlet-series-for-1ls-chi}
+\subsubsection{The Dirichlet series for \(1/L(s, \chi)\)}
 
 For \(\chi\) primitive of conductor \(q \ge 2\) and \(\mathrm{Re}(s) > 1\),
 \[
@@ -96,7 +96,7 @@ sum \(M^*(x, \chi) = \sum_{n \le x}' \mu(n)\,\chi(n)\). Dividing by
 hypothesis on \(\rho\)), and after the change of variable \(w = s - \rho\),
 one obtains (\ref{eq:Perron-truncated}).
 
-\subsection{\texorpdfstring{B.2 Pole-structure analysis at \(w = 0\)}{B.2 Pole-structure analysis at w = 0}}\label{b.2-pole-structure-analysis-at-w-0}
+\subsection{Pole-structure analysis at \(w = 0\)}
 
 The pole-structure computation of this section is independently
 formalised in Lean 4 / Mathlib v4.28.0 as \texttt{local\_perron\_residue} in
@@ -118,7 +118,7 @@ Since \(L(w + \rho, \chi)\) has a \emph{simple} zero at \(w = 0\) (by hypothesis
 simple pole of \(K^w / w\) at \(w = 0\), the integrand \(F\) has a
 \textbf{double pole at \(w = 0\)}.
 
-\subsubsection{\texorpdfstring{B.2.1 Laurent expansion of \(1/L(w+\rho, \chi)\)}{B.2.1 Laurent expansion of 1/L(w+\textbackslash rho, \textbackslash chi)}}\label{b.2.1-laurent-expansion-of-1lwrho-chi}
+\subsubsection{Laurent expansion of \(1/L(w+\rho, \chi)\)}
 
 By Taylor expansion at the simple zero,
 \[
@@ -148,7 +148,7 @@ and substituting \(a_1 = L'(\rho, \chi)\), \(a_2 = L''(\rho, \chi)/2\):
 O(w).
 \end{equation}
 
-\subsubsection{\texorpdfstring{B.2.2 Laurent expansion of \(K^w / w\)}{B.2.2 Laurent expansion of K\^{}w / w}}\label{b.2.2-laurent-expansion-of-kw-w}
+\subsubsection{Laurent expansion of \(K^w / w\)}
 
 Trivially,
 \[
@@ -316,7 +316,7 @@ required \(o(1)\) rate for the off-target aggregate under RH for
 
 This establishes (\(\dagger\)). \(\hfill\square\)
 
-\subsection{\texorpdfstring{B.4 Rate of the \(o(1)\)}{B.4 Rate of the o(1)}}\label{b.4-rate-of-the-o1}
+\subsection{Rate of the \(o(1)\)}
 
 The proof above yields the following rates.
 
@@ -348,7 +348,7 @@ within an \(O(1)\) implicit-constant factor (specifically,
 \(|R(K)| / (\log K / \sqrt K) \in [3,\,36]\), well within the typical
 \(\exp(C(\log\log K)^{1/2}(\log\log K)^{14})\) envelope at this scale).
 
-\subsection{\texorpdfstring{B.5 What the proof does \emph{not} claim}{B.5 What the proof does not claim}}\label{b.5-what-the-proof-does-not-claim}
+\subsection{What the proof does \emph{not} claim}
 
 For clarity:
 

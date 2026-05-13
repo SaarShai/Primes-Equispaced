@@ -950,7 +950,38 @@ d $\OML/lmm/m/it/10.95 Z[]\OT1/lmr/m/n/10.95 (\OML/lmm/m/it/10.95 K; T[]\OT1/lm
 r/m/n/10.95 ) :=
  []
 
-[8]) (appendix_A [9] [10] [11] [12]
+[8]) (appendix_A
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\infty' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+[9]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 60.
+
+[10]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 202.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\ge' on input line 202.
+
+[11] [12]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\leavevmode@ifvmode' on input line 377.
@@ -960,11 +991,51 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 2.09918pt
 (hyperref)                removed on input line 377.
 
-) (appendix_B [13]
+) (appendix_B
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 29.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 29.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 29.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\chi' on input line 29.
+
+[13]
 Underfull \hbox (badness 1701) in paragraph at lines 93--98
 []\T1/lmr/m/n/10.95 This is the un-shifted form, ap-plied to the partial-charac
 ter-Möbius sum $\OML/lmm/m/it/10.95 M[]\OT1/lmr/m/n/10.95 (\OML/lmm/m/it/10.95 
 x; ^^_\OT1/lmr/m/n/10.95 ) =
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 101.
+
+
+Underfull \hbox (badness 1796) in paragraph at lines 101--110
+ \T1/lmr/m/n/10.95 B.2.\T1/lmr/bx/n/10.95 Pole-structure anal-y-sis at $\OML/lm
+m/m/it/10.95 w \OT1/lmr/m/n/10.95 = 0$\T1/lmr/bx/n/10.95 .[][] \T1/lmr/m/n/10.9
+5 The pole-structure com-pu-ta-tion of this sec-
  []
 
 [14] [15]
@@ -979,11 +1050,15 @@ m/it/10.95 O\OT1/lmr/m/n/10.95 (([] [] \OML/lmm/m/it/10.95 K\OT1/lmr/m/n/10.95
 ]; ^^Z\OT1/lmr/m/n/10.95 )\OML/lmm/m/it/10.95 :
  []
 
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 321.
+
 [16]) [17] (paper.aux)
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: 56CAC0DDCCC5A983C09FBC94845432A3;7014.
+(rerunfilecheck)             Checksum: C6F7AA930A6BA39142E20596C507F547;6593.
 Package logreq Info: Writing requests to 'paper.run.xml'.
 \openout1 = `paper.run.xml'.
 
  )
-Output written on paper.xdv (17 pages, 113996 bytes).
+Output written on paper.xdv (17 pages, 113600 bytes).

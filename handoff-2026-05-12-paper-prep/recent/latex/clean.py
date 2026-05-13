@@ -34,11 +34,108 @@ def run_pandoc(md: str) -> str:
     ).stdout
 
 
+def _match_brace_group(s, i):
+    """Given s[i] == '{', return j such that s[i:j+1] is the balanced group."""
+    assert s[i] == "{"
+    depth = 0
+    j = i
+    while j < len(s):
+        c = s[j]
+        if c == "\\":
+            j += 2
+            continue
+        if c == "{":
+            depth += 1
+        elif c == "}":
+            depth -= 1
+            if depth == 0:
+                return j
+        j += 1
+    return -1
+
+
+def _unwrap_texorpdfstring_and_strip_label(text):
+    """Brace-balanced replacement of:
+        \section{\texorpdfstring{A}{B}}\label{...}    →  \section{A}
+        \section{\texorpdfstring{A}{B}}               →  \section{A}
+        \section{A}\label{...}                         →  \section{A}
+       and similarly for subsection / subsubsection / paragraph.
+    """
+    out = []
+    i = 0
+    cmds = ("section", "subsection", "subsubsection", "paragraph")
+    while i < len(text):
+        m = re.match(r"\\(" + "|".join(cmds) + r")\{", text[i:])
+        if not m:
+            out.append(text[i])
+            i += 1
+            continue
+        cmd = m.group(1)
+        arg_start = i + m.end() - 1  # index of the opening brace
+        arg_end = _match_brace_group(text, arg_start)
+        if arg_end < 0:
+            out.append(text[i])
+            i += 1
+            continue
+        arg = text[arg_start + 1 : arg_end]
+        # If arg is \texorpdfstring{A}{B}, replace with just A.
+        tps = re.match(r"\\texorpdfstring\{", arg)
+        if tps:
+            a_start = tps.end() - 1
+            a_end = _match_brace_group(arg, a_start)
+            if a_end > 0:
+                # Now skip past the second argument {B}.
+                rest = arg[a_end + 1 :]
+                b_match = re.match(r"\{", rest)
+                if b_match:
+                    arg = arg[a_start + 1 : a_end]
+        new_segment = f"\\{cmd}{{{arg}}}"
+        # Look ahead for \label{...} immediately after, and drop it.
+        after = arg_end + 1
+        label_m = re.match(r"\\label\{[^}]*\}", text[after:])
+        if label_m:
+            after += label_m.end()
+        out.append(new_segment)
+        i = after
+    return "".join(out)
+
+
+def _three_col_table_to_description(m):
+    """Convert pandoc's 3-column longtable to a `description` list.
+
+    Cells are separated by ` & `; rows by ` \\\\` followed by newline.
+    Pandoc wraps the headers in \begin{minipage}... but the body rows
+    are plain `cellA & cellB & cellC \\`.
+    """
+    header_block, body_block = m.group(1), m.group(2)
+    rows = re.split(r"\s*\\\\\n", body_block.strip())
+    out = [r"\begin{description}[leftmargin=1em, style=nextline]"]
+    for row in rows:
+        if not row.strip():
+            continue
+        parts = [p.strip() for p in re.split(r"\s+&\s+", row)]
+        if len(parts) != 3:
+            # Cell text contains a stray ` & `? Fall back to longtable row.
+            return m.group(0)
+        paper_object, lean_file, status = parts
+        out.append(
+            r"\item[\textnormal{" + paper_object + r"} \quad "
+            r"\texttt{" + lean_file + r"}] " + status
+        )
+    out.append(r"\end{description}")
+    return "\n".join(out)
+
+
 def postprocess_latex(text: str, kind: str) -> str:
-    text = re.sub(
-        r"\\(section|subsection|subsubsection|paragraph)\{([^}]*)\}\\label\{[^}]*\}",
-        r"\\\1{\2}", text,
-    )
+    # 1. Strip pandoc auto-labels and unwrap \texorpdfstring{A}{B} -> A
+    #    in section/subsection/subsubsection titles. Inner braces may
+    #    occur in the math arg (e.g. K\^{}w), so we do a brace-balanced
+    #    scan rather than regex-with-[^}]*.
+    text = _unwrap_texorpdfstring_and_strip_label(text)
+
+    # 2. Strip "X.N ", "X.N.M ", "A.N ", "B.N ", "A.N.M ", "B.N.M "
+    #    prefixes from section/subsection/subsubsection titles so they
+    #    don't duplicate amsart's auto-numbering.
     text = re.sub(r"\\section\{§X\. ", r"\\section{", text)
     text = re.sub(r"\\subsection\{X\.\d+ ", r"\\subsection{", text)
     text = re.sub(r"\\subsubsection\{X\.\d+\.\d+ ", r"\\subsubsection{", text)
@@ -154,6 +251,23 @@ def postprocess_latex(text: str, kind: str) -> str:
             "",
             text, flags=re.DOTALL,
         )
+
+    # Add \hypertarget anchors at theorem / lemma markers so cross-
+    # references at integration (or PDF readers' internal links) can
+    # jump to them. We anchor the marker, not the whole statement.
+    def _anchor(m):
+        kind_, num = m.group(1), m.group(2)
+        key = f"{kind_.lower()}:X.{num}"
+        return r"\hypertarget{" + key + r"}{\textbf{" + kind_ + r" X." + num + r".}}"
+    text = re.sub(
+        r"\\textbf\{(Lemma|Theorem|Proposition|Corollary) X\.(\d+(?:\.\d+)?)\.\}",
+        _anchor, text,
+    )
+
+    # (We considered converting the §X.6 3-column file-by-file Lean
+    # inventory table to a description list to avoid overflow; the
+    # \small rendering plus \sloppy is acceptable for the draft and the
+    # complexity of a robust regex isn't worth it. Skip.)
 
     text = "\n".join(line.rstrip() for line in text.splitlines()) + "\n"
     text = re.sub(r"\n{3,}", "\n\n", text)
