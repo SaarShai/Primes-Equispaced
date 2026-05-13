@@ -96,7 +96,9 @@ Multiply by $K^w/w = w^{-1} + \log K + O(w)$ and read off the
 coefficient of $w^{-1}$. $\square$
 
 Lemma X.3.1 is unconditional given simplicity of $\rho$. The full
-algebraic derivation is in Appendix B §B.2.
+algebraic derivation is in Appendix B §B.2; the identity is also
+machine-verified in Lean 4 / Mathlib v4.28.0 (`LocalPerronResidue.lean`,
+0 `sorry`; see §X.6).
 
 ---
 
@@ -229,7 +231,7 @@ and a hand-rolled segmented C sieve). Headline numbers:
   $x = 1.3 \cdot 10^{12}$ on every residue class for every $N$.
 - Koyama's identity (3.1), a Dirichlet-orthogonality cross-check on
   the residue-count vector, is verified directly at all $495$
-  $(N, x, a)$-cells (worst real residual $1.4 \cdot 10^{-4}$).
+  $(N, x, a)$-cells (worst absolute residual $1.4 \cdot 10^{-4}$).
 
 Cell-by-cell comparison with Koyama's Tables 3–7 at all four
 checkpoints, all moduli:
@@ -241,7 +243,7 @@ checkpoints, all moduli:
 | 5 | 11 | 20 | 19 | 1 cell ($a = 10$: our $11{,}503$ vs Koyama $71{,}711$) |
 | 6 | 19 | 18 | 15 | 3 (2 substantive at $a = 13, 18$; 1 sign flip at small $x$) |
 | 7 | 23 | 30 | 29 | 1 cell ($\Delta = 100$, clean transposition profile) |
-| **Total** | | **92** | **75** | **17** (74/83 = 89% excluding the Table-4 small-$x$ rows) |
+| **Total** | | **92** | **75** | **17** (74/81 ≈ 91% excluding the 11 Table-4 small-$x$ rows) |
 
 The qualitative dominance-of-$-1$ signal at $x = 1.3 \cdot 10^{13}$
 is reproduced for $N \in \{7, 8, 19\}$. For $N = 11$ the dominance
@@ -283,7 +285,7 @@ The modulus $|D_K|$ statistic at $K = 2 \cdot 10^{6}$ and $K = 10^{7}$
 | Quantity | $K = 2 \cdot 10^{6}$ | $K = 10^{7}$ | $\zeta(2)^{-1}$ target | $e^{-\gamma}$ target |
 |---|---:|---:|---:|---:|
 | Mean $|D_K| \cdot \zeta(2)$ | $0.992$ | $0.974$ | $1.000$ | $\zeta(2)\,e^{-\gamma} \approx 0.9237$ |
-| Mean $|E_K \log K|\,e^{\gamma}/|L'|$ | --- | $0.942$ | --- | $1.000$ |
+| Mean $|E_K \log K|\,e^{\gamma}/|L'|$ | n/a | $0.942$ | n/a | $1.000$ |
 
 The drift from $0.992$ to $0.974$ between $K = 2 \cdot 10^{6}$ and
 $K = 10^{7}$ is consistent with the AK normalisation $e^{-\gamma}$
@@ -388,7 +390,7 @@ The following structure the next phase of the program.
 > (\ref{eq:Perron-leading}) for primitive non-principal $\chi$ and
 > simple non-central $\rho$.
 
-Sufficient packages: (a) all crossed off-target zeros simple and
+Sufficient packages: (a) all off-target zeros simple, and
 $Z_\mathrm{simple}(K, T_K) := \sum_{\rho' \ne \rho,\,|\gamma'| \le T_K} K^{\rho'-\rho}/[(\rho'-\rho)\,L'(\rho',\chi)] = o(\log K)$
 at a zero-avoiding height $T_K \asymp K(\log K)^{-B}$; (b) a
 Dirichlet shifted second moment
@@ -428,9 +430,15 @@ level of quantitative ensemble evidence.
 > empirically falsified raw $\mathrm{Sym}^2 / \langle f,f\rangle$
 > proportionality.
 
-> **Q:DPAC (Dirichlet Polynomial Avoidance).** Prove DPAC (the
-> phase-avoidance bridges are formalised in Lean; the headline
-> conjecture is open).
+> **Q:DPAC (Dirichlet Polynomial Avoidance).** Prove DPAC for
+> general $K$. We have an unconditional Lean proof for
+> $K \in \{2, 3, 4\}$ (`DPAC_closure_attempt.lean`,
+> `dpac_le_4`), the four phase-avoidance bridges of
+> `DPAC_full.lean` closed without `sorry`, and an obstruction
+> certificate (Pólya 1913 discreteness of the exponential-polynomial
+> zero set + a single open avoidance statement at $\zeta$-zero
+> ordinates). The general-$K$ case is diagnostically comparable to
+> the Linear Independence Hypothesis for $\zeta$-zero ordinates.
 
 > **Q:EC-NDC (EC NDC normalisation).** Find a normalisation of
 > $D_K^E$ for which the universal limit exists and survives a
