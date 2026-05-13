@@ -858,7 +858,7 @@ File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 ) (mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ) [1]
-Underfull \hbox (badness 6592) in paragraph at lines 164--169
+Underfull \hbox (badness 6592) in paragraph at lines 165--170
 \T1/lmr/m/it/10.95 The iden-tity is un-con-di-tional in $\OML/lmm/m/it/10.95 ^^
 Z$ \T1/lmr/m/it/10.95 given off-target sim-plic-ity. The rate $\OML/lmm/m/it/10
 .95 o\OT1/lmr/m/n/10.95 (1) =
@@ -866,85 +866,85 @@ Z$ \T1/lmr/m/it/10.95 given off-target sim-plic-ity. The rate $\OML/lmm/m/it/10
 
 [2]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 269.
+(Font)              <10> on input line 270.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 269.
+(Font)              <7> on input line 270.
 
 Missing character: There is no ≈ ("2248) in font ec-lmr10!
 [3] [4]
-Underfull \hbox (badness 1325) in paragraph at lines 351--357
+Underfull \hbox (badness 1325) in paragraph at lines 352--358
 []\T1/lmr/m/n/10.95 L1b in-language cross-check (Hur-witz ex-pan-sion, in-de-pe
 n-dent sieve) agrees with L1 to
  []
 
 
-Overfull \hbox (8.59445pt too wide) in paragraph at lines 389--389
+Overfull \hbox (8.59445pt too wide) in paragraph at lines 390--390
 \OMS/lmsy/m/n/10 j\OML/lmm/m/it/10 E[] [] K\OMS/lmsy/m/n/10 j \OML/lmm/m/it/10 
 e[]=\OMS/lmsy/m/n/10 j\OML/lmm/m/it/10 L[]\OMS/lmsy/m/n/10 j$|  
  []
 
 [5]
-Underfull \hbox (badness 6559) in paragraph at lines 470--478
+Underfull \hbox (badness 6559) in paragraph at lines 507--515
  \T1/lmr/m/n/10.95 1.6.\T1/lmr/bx/n/10.95 Lean 4 / Math-lib4 for-mal-i-sa-tion.
 [][] \T1/lmr/m/n/10.95 We ac-com-pany the pa-per with a Lean
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 470--478
+Underfull \hbox (badness 10000) in paragraph at lines 507--515
 \T1/lmr/m/n/10.95 4 / Math-lib4 lake project (\T1/lmtt/m/n/10.95 formal-conject
 ures/ \T1/lmr/m/n/10.95 di-rec-tory of the sup-ple-men-tary
  []
 
 
-Underfull \hbox (badness 2401) in paragraph at lines 470--478
+Underfull \hbox (badness 2401) in paragraph at lines 507--515
 \T1/lmr/m/n/10.95 archive). The toolchain is \T1/lmtt/m/n/10.95 leanprover/lean
 4:v4.28.0\T1/lmr/m/n/10.95 ; Math-lib is pinned at com-mit
  []
 
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 480.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 517.
 
-Underfull \hbox (badness 10000) in paragraph at lines 479--489
+Underfull \hbox (badness 10000) in paragraph at lines 516--526
 []\T1/lmr/bx/n/10.95 Build sta-tus. \T1/lmtt/m/n/10.95 lake build FormalConject
 ures \T1/lmr/m/n/10.95 suc-ceeds on all \T1/lmr/bx/n/10.95 9 files \T1/lmr/m/n/
 10.95 in
  []
 
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 531.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 568.
 
-Overfull \hbox (22.01399pt too wide) in paragraph at lines 534--535
+Overfull \hbox (22.01399pt too wide) in paragraph at lines 571--572
 \T1/lmtt/m/n/10 Mathlib.NumberTheory.RamanujanSum 
  []
 
 
-Overfull \hbox (37.76395pt too wide) in paragraph at lines 535--535
+Overfull \hbox (37.76395pt too wide) in paragraph at lines 572--572
 []|\T1/lmtt/m/n/10 MertensSpectroscopeUniversality.lean|  
  []
 
 
-Overfull \hbox (23.40175pt too wide) in paragraph at lines 537--537
+Overfull \hbox (23.40175pt too wide) in paragraph at lines 574--574
 \T1/lmtt/m/n/10 DirichletPolynomialAvoidance.lean\T1/lmr/m/n/10 , 
  []
 
 
-Overfull \hbox (39.1517pt too wide) in paragraph at lines 537--538
+Overfull \hbox (39.1517pt too wide) in paragraph at lines 574--575
 \T1/lmtt/m/n/10 DirichletPolynomialAvoidance.lean:48\T1/lmr/m/n/10 , 
  []
 
 
-Overfull \hbox (10.3708pt too wide) in paragraph at lines 537--538
+Overfull \hbox (10.3708pt too wide) in paragraph at lines 574--575
 \T1/lmr/m/n/10 (\T1/lmtt/m/n/10 dpac_of_logPrimePhaseAvoidance\T1/lmr/m/n/10 , 
 
  []
 
 
-Overfull \hbox (14.23303pt too wide) in paragraph at lines 537--538
+Overfull \hbox (14.23303pt too wide) in paragraph at lines 574--575
 \T1/lmtt/m/n/10 dpac_of_certifiedZetaZeroSample\T1/lmr/m/n/10 ) 
  []
 
 [6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 555--562
+Underfull \hbox (badness 10000) in paragraph at lines 592--599
 []\T1/lmr/m/n/10.95 Sufficient pack-ages: (a) all off-target ze-ros sim-ple, an
 d $\OML/lmm/m/it/10.95 Z[]\OT1/lmr/m/n/10.95 (\OML/lmm/m/it/10.95 K; T[]\OT1/lm
 r/m/n/10.95 ) :=
@@ -1004,6 +1004,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1.
 
+[13]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 29.
@@ -1020,7 +1021,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\chi' on input line 29.
 
-[13]
+
 Underfull \hbox (badness 1701) in paragraph at lines 93--98
 []\T1/lmr/m/n/10.95 This is the un-shifted form, ap-plied to the partial-charac
 ter-Möbius sum $\OML/lmm/m/it/10.95 M[]\OT1/lmr/m/n/10.95 (\OML/lmm/m/it/10.95 
@@ -1061,4 +1062,4 @@ Package logreq Info: Writing requests to 'paper.run.xml'.
 \openout1 = `paper.run.xml'.
 
  )
-Output written on paper.xdv (17 pages, 113628 bytes).
+Output written on paper.xdv (17 pages, 114532 bytes).

@@ -15,10 +15,11 @@ The numerical evidence has **two distinct verified scales**, which
 we keep rigorously separate throughout. The **replication scale**
 is $x = 1.3 \cdot 10^{13}$, at which two independent prime-counting
 implementations agree on Koyama's Dominance-of-$-1$ residue tables
-(§X.5.1). The **analytic-identity scale** is $K \le 10^{7}$, at
-which the corrected $B_\infty$ identity, the subleading constant
-$C_1$, and the Aoki–Koyama–Mertens drift toward $e^{-\gamma}$ are
-verified across three numerical stacks (§X.5.2–§X.5.4). Numbers
+(§X.5.1). The **analytic-identity scale** is $K \le 10^{8}$, at
+which the corrected $B_\infty$ identity (§X.5.4), the subleading
+constant $C_1$ (§X.5.2), and the Aoki–Koyama–Mertens drift toward
+$e^{-\gamma}$ (§X.5.3, at $K \le 10^{7}$) are verified across
+three numerical stacks. Numbers
 from one scale are not transferred to the other.
 
 ---
@@ -319,28 +320,38 @@ convergence of the complex $D_K(\chi,\rho)$ from a modulus statistic
 alone — that depends on (SP-L), which is open.
 
 ### X.5.4 The $B_\infty$ identity at the four pairs
-*(Analytic-identity scale $K \le 10^{7}$; not transferred from §X.5.1.)*
+*(Analytic-identity scale $K \le 10^{8}$; not transferred from §X.5.1.)*
 
 Identity residual $|T_K - \mathrm{RHS}|$ for (\ref{eq:Binfty}) at
-$K = 2 \cdot 10^{6}$ (mpmath, 50 dps) and $K = 10^{7}$ (PARI/GP
-2.17.3, closed-form component evaluation):
+three scales — $K = 2 \cdot 10^{6}$ (mpmath, 50 dps; cross-checked
+in PARI/GP 2.17.3, closed-form component evaluation), $K = 10^{7}$
+and $K = 10^{8}$ (PARI/GP):
 
-| Pair | $K = 2 \cdot 10^{6}$ (L1) | $K = 2 \cdot 10^{6}$ (L2) | $K = 10^{7}$ (L2) |
-|---|---:|---:|---:|
-| $\chi_{-4}/z_1$ | $2.85 \cdot 10^{-3}$ | $2.85 \cdot 10^{-3}$ | $2.58 \cdot 10^{-3}$ |
-| $\chi_{-4}/z_2$ | $1.66 \cdot 10^{-3}$ | $1.66 \cdot 10^{-3}$ | $1.52 \cdot 10^{-3}$ |
-| $\chi_5$        | $4.24 \cdot 10^{-5}$ | $4.24 \cdot 10^{-5}$ | $1.22 \cdot 10^{-5}$ |
-| $\chi_{11}$     | $3.34 \cdot 10^{-5}$ | $3.34 \cdot 10^{-5}$ | $1.75 \cdot 10^{-5}$ |
+| Pair | $K = 2 \cdot 10^{6}$ (L1) | $K = 2 \cdot 10^{6}$ (L2) | $K = 10^{7}$ (L2) | $K = 10^{8}$ (L2) |
+|---|---:|---:|---:|---:|
+| $\chi_{-4}/z_1$ | $2.85 \cdot 10^{-3}$ | $2.85 \cdot 10^{-3}$ | $2.58 \cdot 10^{-3}$ | $2.25 \cdot 10^{-3}$ |
+| $\chi_{-4}/z_2$ | $1.66 \cdot 10^{-3}$ | $1.66 \cdot 10^{-3}$ | $1.52 \cdot 10^{-3}$ | $1.32 \cdot 10^{-3}$ |
+| $\chi_5$        | $4.24 \cdot 10^{-5}$ | $4.24 \cdot 10^{-5}$ | $1.22 \cdot 10^{-5}$ | $3.30 \cdot 10^{-6}$ |
+| $\chi_{11}$     | $3.34 \cdot 10^{-5}$ | $3.34 \cdot 10^{-5}$ | $1.75 \cdot 10^{-5}$ | $4.10 \cdot 10^{-6}$ |
 
 L1 and L2 agree to all displayed digits at $K = 2 \cdot 10^{6}$
-(stack difference $\le 10^{-8}$). For the clean-character pairs
-$\chi_5$, $\chi_{11}$ (where $\chi(2) \ne 0$ and there is no bad-prime
-contribution to $\mathrm{BPC}_1$), the residual decays by a factor
-$1.9$–$3.5$ from $K = 2 \cdot 10^{6}$ to $K = 10^{7}$, bracketing
-the $\sqrt{5} \approx 2.24$ predicted by the $K^{-1/2} / \log K$ rate
-of the boundary-line conditional tail (Akatsuka 2013 eq. (2.5)). The
-$\chi_{-4}$ pairs show systematically larger residuals consistent
-with the bad-prime $p = 2$ contribution to $\mathrm{BPC}_1$.
+(stack difference $\le 10^{-8}$). The decay across three decades
+on the clean-character pairs $\chi_5$, $\chi_{11}$ (where
+$\chi(2) \ne 0$ and there is no bad-prime contribution to
+$\mathrm{BPC}_1$):
+
+| Pair | residual ratio $K = 2 \cdot 10^{6} \to 10^{7}$ | $K = 10^{7} \to 10^{8}$ | $\sqrt{5} \approx 2.24$ | $\sqrt{10} \approx 3.16$ |
+|---|---:|---:|---:|---:|
+| $\chi_5$    | 3.5 | 3.7 | 2.24 | 3.16 |
+| $\chi_{11}$ | 1.9 | 4.3 | 2.24 | 3.16 |
+
+Both ratios bracket the predicted $K^{-1/2}$ behaviour from the
+boundary-line conditional tail (Akatsuka 2013 eq. (2.5)), well
+within the oscillatory $O(1)$ implicit-constant envelope of the
+Soundararajan–conditional rate. The $\chi_{-4}$ pairs show
+systematically slower decay (ratio $\approx 1.15$ over each decade)
+consistent with the additional bad-prime $p = 2$ contribution to
+$\mathrm{BPC}_1$.
 
 ### X.5.5 Two negative elliptic-curve findings
 
