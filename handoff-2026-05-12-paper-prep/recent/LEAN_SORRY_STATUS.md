@@ -4,7 +4,7 @@
 `8f9d9cff6bd728b17a24e163c9402775d9e6a365` (v4.28.0 release).
 
 **Build status.** `lake build FormalConjectures` succeeds on all
-**9 files** in `formal-conjectures/` with exactly **2 `sorry`
+**10 files** in `formal-conjectures/` with exactly **2 `sorry`
 warnings** and **no errors, no linter warnings, no axioms** beyond
 the standard `propext`, `Classical.choice`, `Quot.sound`.
 
@@ -21,8 +21,9 @@ the standard `propext`, `Classical.choice`, `Quot.sound`.
 | `DPAC_full.lean` | 1 | **Research-open**: headline DPAC at general $K$ (LI-class) |
 | `DirichletPolynomialAvoidance.lean` | 1 | **Research-open**: same as above (the conjecture statement) |
 | `FareySignPattern.lean` | **0** | **Theorems (conditional)**: density-one form takes the Chebyshev-bias-control hypothesis as an explicit input; the two pointwise-falsification theorems take the numerical-witness inequality `signR (ΔW p) ≠ signZ (−mertens p)` as an explicit input. Closes once a concrete `ΔW` definition + the numerical witnesses are upstream. |
+| `RamanujanSum.lean` | **0** | **Theorem (unconditional)**: Hardy & Wright Thm 304: $c_q(p) = \mu(q)$ for prime $p$ coprime to $q$. Uses the Möbius-inversion form of the Ramanujan sum; the divisor set of $\gcd(q, p)$ reduces to $\{1\}$. |
 
-Seven files fully proved (0 `sorry`); the two remaining sorries are
+Eight files fully proved (0 `sorry`); the two remaining sorries are
 exactly the DPAC headline conjecture (LI-class — a genuine open
 problem in number theory).
 
