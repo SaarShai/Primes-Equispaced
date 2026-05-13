@@ -34,12 +34,13 @@ For \(\chi\) primitive of conductor \(q \ge 2\) and \(\mathrm{Re}(s) > 1\),
 \;=\;
 \sum_{n=1}^{\infty} \frac{\mu(n)\,\chi(n)}{n^s},
 \]
+
 absolutely convergent on \(\mathrm{Re}(s) > 1\). The Dirichlet
 coefficients are \(a_n = \mu(n)\,\chi(n)\), and the partial sum
 \(c_K(\rho, \chi) = \sum_{n \le K} a_n n^{-\rho}\) is the spectroscope
 object.
 
-\subsubsection{B.1.2 Perron formula (truncated)}
+\subsubsection{Perron formula (truncated)}
 
 The standard truncated Perron formula (Tenenbaum, \emph{Introduction to
 Analytic and Probabilistic Number Theory}, Theorem II.2.3; Inoue
@@ -68,9 +69,10 @@ The truncation error \(\mathcal{R}'(K, T, \rho)\) is bounded by Inoue
 \;+\;
 \min\!\Bigl(1,\, \frac{K^{1/2}}{T\langle K\rangle}\Bigr),
 \]
+
 with \(\langle K \rangle\) the distance from \(K\) to the nearest integer.
 
-\subsubsection{B.1.3 Inoue (2021) Theorem 1 --- truncated explicit formula}
+\subsubsection{Inoue (2021) Theorem 1 --- truncated explicit formula}
 
 The following statement is verbatim from Inoue (2021), arXiv:1805.05015v1, page 3:
 
@@ -110,6 +112,7 @@ We work in the shifted variable \(w = s - \rho\). Define
 \[
 F(w) \;:=\; \frac{K^w}{w \cdot L(w + \rho, \chi)}.
 \]
+
 Since \(L(w + \rho, \chi)\) has a \emph{simple} zero at \(w = 0\) (by hypothesis),
 \(1/L(w+\rho, \chi)\) has a simple pole at \(w = 0\). Combined with the
 simple pole of \(K^w / w\) at \(w = 0\), the integrand \(F\) has a
@@ -124,12 +127,14 @@ L(w + \rho, \chi)
 a_1 w + a_2 w^2 + a_3 w^3 + \cdots,
 \qquad a_k \;=\; \frac{L^{(k)}(\rho, \chi)}{k!},\quad a_1 = L'(\rho, \chi) \ne 0.
 \]
+
 Therefore
 \[
 \frac{1}{L(w + \rho, \chi)}
 \;=\;
 \frac{1}{a_1 w} \cdot \frac{1}{1 + (a_2/a_1) w + (a_3/a_1) w^2 + \cdots}.
 \]
+
 Expanding the geometric factor as \((1 + u)^{-1} = 1 - u + u^2 - \cdots\)
 and substituting \(a_1 = L'(\rho, \chi)\), \(a_2 = L''(\rho, \chi)/2\):
 \begin{equation}
@@ -153,7 +158,8 @@ Trivially,
 \;=\;
 \frac{1}{w} \;+\; \log K \;+\; \tfrac{1}{2}(\log K)^2 \,w \;+\; O(w^2).
 \]
-\#\#\# B.2.3 Product expansion and the double-pole residue
+
+\subsubsection{Product expansion and the double-pole residue}
 
 Multiplying the two expansions:
 \[
@@ -163,6 +169,7 @@ F(w)
 \cdot
 \Bigl[\tfrac{1}{L'(\rho,\chi)\,w} - \tfrac{L''(\rho,\chi)}{2 L'(\rho,\chi)^2} + O(w)\Bigr].
 \]
+
 Collecting powers of \(w\):
 - \(w^{-2}\) coefficient: \(\tfrac{1}{L'(\rho,\chi)}\) (from \(\tfrac{1}{w} \cdot \tfrac{1}{L'(\rho,\chi)\,w}\));
 - \(w^{-1}\) coefficient: \(\tfrac{\log K}{L'(\rho,\chi)} - \tfrac{L''(\rho,\chi)}{2\,L'(\rho,\chi)^2}\) (cross-terms).
@@ -184,7 +191,7 @@ the local part of (\ref{eq:cK-appendix}) is now done. It remains to
 control the off-target zero residues, the trivial-zero residues, and
 the contour pieces.
 
-\subsection{B.3 Off-target zero residues, trivial-zero residues, and contour pieces}
+\subsection{Off-target zero residues, trivial-zero residues, and contour pieces}
 
 We now shift the Perron contour from \(\mathrm{Re}(w) = \sigma_0' > \tfrac12\)
 leftward to a zero-avoiding line \(\mathrm{Re}(w) = -A\) for some \(A > 0\),
@@ -201,7 +208,7 @@ up the term \(\mathop{\mathrm{Res}}_{s = 0}\bigl(x^s/(L(s,\chi)\,s)\bigr)\) from
 \(K^\rho\) it contributes a term of magnitude \(K^{-\rho}/(L(0,\chi)) =
 O(K^{-1/2})\) in modulus, \(o(1)\)).
 
-\subsubsection{B.3.1 Off-target nontrivial-zero residues}
+\subsubsection{Off-target nontrivial-zero residues}
 
 For each \(\rho' \ne \rho\) a nontrivial zero of \(L(s, \chi)\), write
 \(w_{\rho'} = \rho' - \rho\). Assuming \(\rho'\) is \emph{simple} (which is
@@ -214,6 +221,7 @@ subleading identity), the residue of \(F\) at \(w = w_{\rho'}\) is
 \;=\;
 \frac{K^{\rho' - \rho}}{(\rho' - \rho)\,L'(\rho', \chi)}.
 \]
+
 Under RH for \(L(s, \chi)\), \(|K^{\rho' - \rho}| = 1\) for all
 \(\rho' = \tfrac12 + i\gamma'\) with \(\gamma' \in \mathbb{R}\). The
 aggregate off-target sum (over zeros \(\rho'\) in the strip
@@ -225,17 +233,18 @@ aggregate off-target sum (over zeros \(\rho'\) in the strip
 \sum_{\rho' \ne \rho,\ |\gamma'| \le T}
 \frac{1}{|\gamma' - \tau|\,|L'(\rho', \chi)|}.
 \]
+
 This is the off-target \emph{aggregate} whose control determines the
 \(o(1)\) rate.
 
-\subsubsection{B.3.2 Trivial-zero residues}
+\subsubsection{Trivial-zero residues}
 
 Trivial zeros of \(L(s, \chi)\) are at \(s = -2k\) (\(\chi\) even) or
 \(s = -2k - 1\) (\(\chi\) odd), \(k \ge 0\). After the shift \(w = s - \rho\),
 these contribute residues of size \(K^{-\mathrm{Re}(\rho) - 2k}
 = K^{-1/2 - 2k}\), summable to \(O(K^{-1/2})\), which is \(o(1)\).
 
-\subsubsection{B.3.3 Shifted contour pieces}
+\subsubsection{Shifted contour pieces}
 
 The shifted contour \(\mathrm{Re}(w) = -A\) contributes, on a suitable
 zero-avoiding height \(T_K \in [K/(\log K)^B, 2K/(\log K)^B]\), an
@@ -246,6 +255,7 @@ shifted line)
 \;\ll\;
 K^{-A} \cdot T_K \cdot \exp\bigl(C\,(\log\log T_K)^2\bigr).
 \]
+
 For \(A > 1/2\) and \(T_K \le K/(\log K)^B\) with \(B\) sufficiently large,
 this is \(K^{-A + 1 + o(1)} \cdot \exp(O((\log\log K)^2))\), which is
 \(o(1)\).
@@ -253,7 +263,7 @@ this is \(K^{-A + 1 + o(1)} \cdot \exp(O((\log\log K)^2))\), which is
 Horizontal pieces give factors like \((T_K/K)^A \cdot \mathrm{polylog}\),
 \(o(1)\) for \(T_K \le K (\log K)^{-B}\) and large enough \(B\).
 
-\subsubsection{B.3.4 The Perron truncation error}
+\subsubsection{The Perron truncation error}
 
 By Inoue (2021) Theorem 1, the truncation error
 \(\mathcal{R}'(K, T_K, \rho)\) is bounded by
@@ -264,11 +274,12 @@ By Inoue (2021) Theorem 1, the truncation error
 \;+\;
 \min\!\Bigl(1,\,\frac{K^{1/2}}{T_K \langle K\rangle}\Bigr).
 \]
+
 For \(T_K \asymp K (\log K)^{-B}\) and \(\sigma_0' = 1/2 + 1/\log K\), both
 pieces are \(O(K^{-1/2 + \varepsilon}) \cdot (\log K)^{O(1)}\) for any
 \(\varepsilon > 0\), in particular \(o(1)\).
 
-\subsubsection{B.3.5 Assembly}
+\subsubsection{Assembly}
 
 Combining the local residue (\ref{eq:double-pole-residue}) with the
 off-target and contour pieces:
@@ -287,6 +298,7 @@ O(K^{-A+1+o(1)}\exp(O((\log\log K)^2)))
 \;+\;
 \mathcal{R}'(K, T_K, \rho).
 \]
+
 All terms in the last three parentheses are \(o(1)\). The off-target
 aggregate is also \(o(1)\) under RH for \(L(s, \chi)\), by partial
 summation against Soundararajan (2009), \emph{Partial sums of the Möbius
@@ -297,6 +309,7 @@ function}, Annals of Mathematics \textbf{170} (2009), 981--993, Theorem 1:
 \text{under RH:}\quad
 M(x) \;\ll\; \sqrt x \,\exp\!\bigl((\log x)^{1/2}\,(\log\log x)^{14}\bigr).
 \]
+
 Translating to \(M^*(x, \chi)\) (the character analogue) gives the
 required \(o(1)\) rate for the off-target aggregate under RH for
 \(L(s, \chi)\).
@@ -327,7 +340,7 @@ Hypotheses
 \end{longtable}
 }
 
-In the numerical work of §X.5.3, the empirical residual
+In the numerical work of \S\,X.5.3, the empirical residual
 \(R(K) := c_K - \log K / L'(\rho, \chi) - C_1(\chi, \rho)\) at
 \(K = 2\cdot 10^6\) falls in the interval \([0.027,\,0.375]\) across the
 four pairs; this is consistent with the Soundararajan-conditional rate

@@ -15,11 +15,11 @@ T_\infty(\chi,\rho)
 \;+\; T_{\ge 3}(\chi,\rho),
 \tag{$\star$}
 \end{equation}
-with the four terms on the right defined in §X.1 of the main text.
+with the four terms on the right defined in \S\,X.1 of the main text.
 The proof uses no hypothesis beyond simplicity of \(\rho\) as a zero of
 \(L(s,\chi)\); in particular it does not use RH, GRH, EDRH, or DRH.
 
-\subsection{A.1 Setup --- partial-sum decomposition}
+\subsection{Setup --- partial-sum decomposition}
 
 For a primitive non-principal Dirichlet character \(\chi\) modulo
 \(q \ge 2\) and a simple zero \(\rho = \tfrac12 + i\tau\) with \(\tau \ne 0\)
@@ -28,12 +28,14 @@ of \(L(s, \chi)\) on the critical line, define
 T_K(\chi,\rho) \;:=\; \sum_{p \le K} \sum_{k \ge 2}
 \frac{\chi(p)^k}{k\, p^{k\rho}}.
 \]
+
 Inside the partial sum, the order of summation may be swapped
 unconditionally because for each fixed prime \(p \ge 2\),
 \[
 \sum_{k \ge 2} \frac{(\chi(p)\, p^{-\rho})^k}{k}
 \;=\; -\log\bigl(1 - \chi(p)\,p^{-\rho}\bigr) \;-\; \chi(p)\,p^{-\rho},
 \]
+
 with \(\bigl|\chi(p)\,p^{-\rho}\bigr| = p^{-1/2} \le 2^{-1/2} < 1\), so
 the inner series is absolutely convergent and the logarithm is taken
 along the principal branch with no ambiguity. Therefore we may
@@ -50,8 +52,8 @@ T_K(\chi,\rho)
 The only delicate object in passing to \(K \to \infty\) is the \(k=2\)
 piece, since \(\mathrm{Re}(2\rho) = 1\) lies on the boundary line where
 the Dirichlet prime sum \(\sum_p \chi^2(p) p^{-s}\) is conditionally
-(not absolutely) convergent. We address this in §A.2. The \(k \ge 3\)
-piece is absolutely convergent and is handled in §A.3.
+(not absolutely) convergent. We address this in \S\,A.2. The \(k \ge 3\)
+piece is absolutely convergent and is handled in \S\,A.3.
 
 \subsection{\texorpdfstring{A.2 Identification of the \(k = 2\) partial sum}{A.2 Identification of the k = 2 partial sum}}\label{a.2-identification-of-the-k-2-partial-sum}
 
@@ -192,7 +194,7 @@ Multiplying (\ref{eq:Sigma2-id}) by \(\tfrac12\) and rewriting
 \frac{\chi(p)^{2k}}{p^{2k\rho}}.
 \end{equation}
 The bad-prime correction in the middle term is precisely the
-definition of \(\mathrm{BPC}_1\) from §X.1; the last term is
+definition of \(\mathrm{BPC}_1\) from \S\,X.1; the last term is
 \(\mathrm{BPC}_2\).
 
 \subsection{\texorpdfstring{A.3 Absolute convergence of the \(k \ge 3\) tail}{A.3 Absolute convergence of the k \textbackslash ge 3 tail}}\label{a.3-absolute-convergence-of-the-k-ge-3-tail}
@@ -207,6 +209,7 @@ bounded by a geometric series:
 \;\le\;
 \frac{p^{-3/2}}{3} \cdot \frac{1}{1 - p^{-1/2}}.
 \]
+
 Summing over primes:
 \[
 |T_{\ge 3}|
@@ -219,6 +222,7 @@ Summing over primes:
 \;\approx\;
 0.515,
 \]
+
 where \(P(3/2) = \sum_p p^{-3/2} \approx 0.45224\) is the prime zeta
 function at \(s = 3/2\). The truncation tail is also estimable: by
 partial summation against PNT, for \(\alpha > 1\),
@@ -229,15 +233,17 @@ so
 \;\le\;
 \frac{2}{3(1 - 2^{-1/2})} \cdot \frac{K^{-1/2}}{\log K},
 \]
+
 which is \(\sim 3 \cdot 10^{-4}\) at \(K = 10^6\) and \(\sim 1 \cdot 10^{-4}\)
 at \(K = 2 \cdot 10^6\).
 
-\subsection{A.4 Assembling the identity}
+\subsection{Assembling the identity}
 
 Define
 \[
 T_\infty(\chi,\rho) \;:=\; \lim_{K \to \infty} T_K(\chi,\rho).
 \]
+
 The limit exists by combining the two parts:
 
 \begin{itemize}
@@ -246,7 +252,7 @@ The limit exists by combining the two parts:
   exists by Akatsuka (2013) Lemma 2.1 / eq. (2.5) and equals the
   right-hand side of (\ref{eq:k=2-final}).
 \item
-  The \(k \ge 3\) part is absolutely convergent by §A.3.
+  The \(k \ge 3\) part is absolutely convergent by \S\,A.3.
 \end{itemize}
 
 Hence
@@ -258,11 +264,12 @@ T_\infty(\chi, \rho)
 \;+\; \mathrm{BPC}_2(\chi, \rho)
 \;+\; T_{\ge 3}(\chi, \rho),
 \]
+
 which is identity (\(\star\)). \(\hfill\square\)
 
-\subsection{A.5 Bad-prime correction for the four computational pairs}
+\subsection{Bad-prime correction for the four computational pairs}
 
-For the four \((\chi, \rho)\) pairs used in the numerical work of §X.5.4,
+For the four \((\chi, \rho)\) pairs used in the numerical work of \S\,X.5.4,
 the bad-prime correction \(\mathrm{BPC}_1\) takes the following
 character-explicit forms:
 
@@ -305,7 +312,7 @@ For \(\rho = \tfrac12 + i\tau\), this is
 \(\le \tfrac{1}{2}\log(1/(1-1/2)) = \tfrac12 \log 2 \approx 0.347\).
 - For \(\chi_5\) and \(\chi_{11}\): \(\mathrm{BPC}_1 = 0\).
 
-This explains the numerical observation in §X.5.4 that the \(\chi_{-4}\)
+This explains the numerical observation in \S\,X.5.4 that the \(\chi_{-4}\)
 pairs show slower convergence of the \(B_\infty\) identity residual
 than \(\chi_5\) and \(\chi_{11}\): the bad-prime contribution from
 \(p = 2\) adds an extra layer of conditionally-convergent boundary
@@ -333,14 +340,14 @@ For clarity:
   The proof does \textbf{not} establish the Aoki--Koyama--Mertens limit
   (\ref{eq:AK}) for \(E_K \log K\), which is a separate statement on the
   \emph{additive} side and is cited as Hypothesis AK (with verbatim
-  quotation in §X.4.3).
+  quotation in \S\,X.4.3).
 \item
   The proof does \textbf{not} establish the conditional NDC limit
   (\ref{eq:NDC}); for that, Hypothesis AK and the shifted Perron
-  leading hypothesis (SP-L) are both needed (see §X.4.4 and §X.7).
+  leading hypothesis (SP-L) are both needed (see \S\,X.4.4 and \S\,X.7).
 \end{itemize}
 
-\subsection{A.7 Lean formalisation}
+\subsection{Lean formalisation}
 
 The four-component identity is formalised in Lean 4 / Mathlib v4.28.0
 as the theorem \texttt{corrected\_B\_infty} in
@@ -350,7 +357,7 @@ archive. The Lean proof is parameterised by an explicit
 \(T_K(\chi,\rho)\) converges to the four-component right-hand side as
 \(K \to \infty\). \textbf{The convergence-as-hypothesis is precisely the
 conclusion of the present appendix} (\ref{eq:k1-isolation}) +
-(\ref{eq:Sigma2-id}) + the \(k \ge 3\) tail of §A.3. Given the
+(\ref{eq:Sigma2-id}) + the \(k \ge 3\) tail of \S\,A.3. Given the
 convergence, the Lean proof is three lines: \texttt{unfold\ T\_inf} (the
 \texttt{Classical.epsilon} of the \texttt{Tendsto} predicate),
 \texttt{Classical.epsilon\_spec} (which yields that \(T_\infty\) inherits the
@@ -365,11 +372,11 @@ eq.~(2.5) and the imprimitive-induction Euler-factor identity for
 \(L(s, \chi^2)\); both are \texttt{MATHLIB-PREREQ} and not yet upstream as of
 v4.28.0.
 
-\subsection{A.8 Numerical verification (summary; full table in §X.5.4)}
+\subsection{Numerical verification (summary; full table in \S\,X.5.4)}
 
 The identity (\(\star\)) was verified numerically at \(K = 2 \cdot 10^6\),
 \(50\) decimal places of precision, on the four
-\((\chi, \rho)\) pairs of §X.5.2. The residuals are:
+\((\chi, \rho)\) pairs of \S\,X.5.2. The residuals are:
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}lr@{}}
@@ -388,6 +395,6 @@ Pair & residual \(|T_K - \mathrm{RHS}(\star)|\) at \(K = 2\cdot 10^6\) \\
 
 These match the predicted \(K^{-1/2}/\log K\) decay envelope at the
 \(O(1)\) implicit-constant level (with the \(\chi_{-4}\) pairs showing the
-predicted slower envelope due to the \(p=2\) bad-prime weight; see §A.5).
-The full table with per-component breakdown is at §X.5.4 of the main
+predicted slower envelope due to the \(p=2\) bad-prime weight; see \S\,A.5).
+The full table with per-component breakdown is at \S\,X.5.4 of the main
 text.

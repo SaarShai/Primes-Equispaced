@@ -4,11 +4,10 @@
 Pipeline:
   1. Read each markdown source.
   2. Preprocess: convert LaTeX-style `\\[ ... \\]` display-math blocks
-     to `$$ ... $$` (pandoc renders the latter cleanly into proper
-     LaTeX display math, but mangles the former).
+     to `$$ ... $$`.
   3. Pipe through pandoc to LaTeX.
   4. Post-process: strip pandoc auto-labels, drop horizontal-rule
-     artefacts, fix section titles.
+     artefacts, fix section titles, fix encoding issues, etc.
 
 Idempotent.
 """
@@ -23,9 +22,8 @@ PANDOC = "/Users/za/miniforge3/bin/pandoc"
 
 
 def preprocess_markdown(md: str) -> str:
-    # Convert `\[ ... \]` display-math blocks to `$$ ... $$`.
-    md = re.sub(r"^\\\[\s*\n", "$$\n", md, flags=re.MULTILINE)
-    md = re.sub(r"^\\\]\s*$", "$$", md, flags=re.MULTILINE)
+    md = re.sub(r"^\\\[[ \t]*\n", "$$\n", md, flags=re.MULTILINE)
+    md = re.sub(r"^\\\][ \t]*\n", "$$\n\n", md, flags=re.MULTILINE)
     return md
 
 
@@ -42,8 +40,10 @@ def postprocess_latex(text: str, kind: str) -> str:
         r"\\\1{\2}", text,
     )
     text = re.sub(r"\\section\{§X\. ", r"\\section{", text)
-    text = re.sub(r"\\subsection\{X\.(\d+) ", r"\\subsection{X.\1\\quad ", text)
-    text = re.sub(r"\\subsubsection\{X\.(\d+\.\d+) ", r"\\subsubsection{X.\1\\quad ", text)
+    text = re.sub(r"\\subsection\{X\.\d+ ", r"\\subsection{", text)
+    text = re.sub(r"\\subsubsection\{X\.\d+\.\d+ ", r"\\subsubsection{", text)
+    text = re.sub(r"\\subsection\{[AB]\.\d+ ", r"\\subsection{", text)
+    text = re.sub(r"\\subsubsection\{[AB]\.\d+\.\d+ ", r"\\subsubsection{", text)
     text = re.sub(
         r"\\begin\{center\}\\rule\{[^}]*\}\{[^}]*\}\\end\{center\}\n*", "", text,
     )
@@ -60,6 +60,26 @@ def postprocess_latex(text: str, kind: str) -> str:
             text,
         )
     text = text.replace("\\tightlist\n", "")
+
+    # § → \S\, : T1 fontenc maps 0xA7 to ğ; use the textcomp macro.
+    text = text.replace("§", "\\S\\,")
+
+    # Pandoc emits \#\#\# Header when a level-3 heading follows display
+    # math with no blank line. Recover as a \subsubsection.
+    def _subsub(m):
+        title = m.group(1)
+        title = re.sub(r"^X\.\d+\.\d+ ", "", title)
+        title = re.sub(r"^[AB]\.\d+\.\d+ ", "", title)
+        return r"\subsubsection{" + title + r"}"
+    text = re.sub(r"^\\#\\#\\# ([^\n]+)$", _subsub, text, flags=re.MULTILINE)
+
+    # Broken cross-reference: eq:W2 referenced the OLS regression we
+    # removed when compressing §X.5.5. Replace with textual cue.
+    text = text.replace(
+        r"(\ref{eq:W2})",
+        r"(the rank-vs-$\log N$ regression of \S\,X.5.5)",
+    )
+
     text = "\n".join(line.rstrip() for line in text.splitlines()) + "\n"
     text = re.sub(r"\n{3,}", "\n\n", text)
     return text
