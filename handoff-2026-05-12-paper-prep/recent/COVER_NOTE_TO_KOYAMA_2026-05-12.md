@@ -74,28 +74,43 @@ sense in mind (e.g. Lean ↔ numerical cross-check, or two independent
 symbolic derivations of the identity itself).
 
 **Phase-1 cell discrepancies pending your review.** Per your
-2026-05-12 note, you offered to resolve the table discrepancies. To
-save you a hunt through §X.5.1, here are the substantive ones at
-`x = 1.3 · 10^{13}` (74 of 81 cells exact, ~91%, excluding the 11
-Table-4 small-`x` rows which look like an `x`-label error):
+2026-05-12 note, you offered to resolve the table discrepancies.
+I re-checked `nontriv.pdf` Tables 3–7 against our counts; the
+values quoted as yours below all match your published tables
+exactly, so the discrepancy is genuine count-vs-count and not a
+transcription artefact on our side. Substantive cells at
+$x = 1.3 \cdot 10^{13}$:
 
-| Table | $N$ | cell ($a$) | our value | your value | note |
-|---|---:|---:|---:|---:|---|
-| 3 | 7 | $a = 6$ | — | — | $\Delta = 50$ between our value and yours; clean digit-shift profile |
-| 5 | 11 | $a = 10$ | $11{,}503$ | $71{,}711$ | **substantive** — dominance ranking for $N = 11$ at this checkpoint turns on this cell |
-| 6 | 19 | $a = 13$ | $24{,}559$ | $55{,}581$ | substantive |
-| 6 | 19 | $a = 18$ | $54{,}192$ | $57{,}192$ | substantive (single-digit, could be OCR) |
-| 7 | 23 | $a = 19$ | $79{,}327$ | $79{,}227$ | $\Delta = 100$, clean digit-transposition |
-| 4 | 8 | (small-`x` rows) | — | — | 11 rows; one row at the supposed $x = 1.3\cdot 10^{12}$ exact-matches our $x = 10^{12}$ row, suggesting an $x$-label error |
+- **Table 5, $N = 11$, $a = 10$**: our $11{,}503$ vs your
+  $71{,}711$. **This is the load-bearing one** — the qualitative
+  dominance signal for $N = 11$ at this checkpoint depends
+  entirely on it: with your $71{,}711$, $-1$ ranks 2nd of 5
+  non-residues (top group); with our $11{,}503$, $-1$ ranks 3rd
+  of 5 (outside the top-2 group).
+- **Table 6, $N = 19$, $a = 13$**: our $24{,}559$ vs your
+  $55{,}581$. Substantive.
+- **Table 6, $N = 19$, $a = 18$**: our $54{,}192$ vs your
+  $57{,}192$. Single-digit at the leading position; could be a
+  3 vs 4 typo.
+- **Table 3, $N = 7$, $a = 6$**: our $26{,}129$ vs your
+  $26{,}179$ ($\Delta = 50$, clean digit-shift profile).
+- **Table 7, $N = 23$, $a = 19$**: our $79{,}327$ vs your
+  $79{,}227$ ($\Delta = 100$, digit-transposition profile).
+- **Table 4, $N = 8$, small-$x$ rows**: all 11 small-$x$ rows
+  disagree; one of our $x = 10^{12}$ row's values exact-matches
+  one of your supposed $x = 1.3\cdot 10^{12}$ entries, which
+  suggests an $x$-label error in that table draft.
 
-The headline qualitative result — `-1 mod N` dominance at
-$x = 1.3 \cdot 10^{13}$ — is reproduced for $N \in \{7, 8, 19\}$.
-For $N = 11$, reproduction hinges entirely on the Table-5 $a = 10$
-cell; with our $11{,}503$, $-1$ ranks 4th of 5 non-residues, with
-your reported $71{,}711$, $-1$ ranks 2nd (comfortably in the top
-group). For $N = 23$ neither value enters the dominance regime
-(your nontriv.pdf attributes this to a low-lying $L$-zero modulo
-$23$ and an onset around $e^{33.4} \approx 3 \cdot 10^{14}$).
+Headline qualitative result, aligned with your *nontriv.pdf* p. 19
+discussion: $-1$-dominance is **cleanly observed for $N = 8$** at
+$x = 1.3 \cdot 10^{13}$; for $N = 19$, $-1$ is 3rd of 9
+non-residues in both our and your data (in the top group, not
+strict dominance); for $N = 11$, the picture turns on the Table-5
+$a = 10$ cell above; for $N = 7$ and $N = 23$ we agree with your
+analysis that the predicted bias is not yet cleanly observed at
+this scale and that the transient discrepancy is attributable to
+exceptionally low-lying first zeros, with strict dominance for
+$N = 23$ expected around $x = e^{33.4} \approx 3 \cdot 10^{14}$.
 
 I'll fold whatever you confirm into §X.5.1 before LaTeX conversion.
 

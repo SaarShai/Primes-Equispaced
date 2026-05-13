@@ -251,15 +251,23 @@ checkpoints, all moduli:
 | 7 | 23 | 30 | 29 | 1 cell ($\Delta = 100$, clean transposition profile) |
 | **Total** | | **92** | **75** | **17** (74/81 ≈ 91% excluding the 11 Table-4 small-$x$ rows) |
 
-The qualitative dominance-of-$-1$ signal at $x = 1.3 \cdot 10^{13}$
-is reproduced for $N \in \{7, 8, 19\}$. For $N = 11$ the dominance
-ranking turns on the single substantive cell $a = 10$ above and is
-**not reproduced** at this checkpoint pending Koyama's reconciliation;
-at the smaller $x = 10^{12}$ checkpoint, $-1$ ranks first for both
-$N = 11$ and $N = 19$, consistent with the Littlewood-style sign
-flips Koyama attributes to low-lying $L$-zeros. For $N = 23$ the
-dominance regime sets in around $e^{33.4} \approx 3 \cdot 10^{14}$,
-beyond our checkpoint.
+Comparing to the qualitative dominance-of-$-1$ statement of Koyama
+(*nontriv.pdf*, §3): the signal is **cleanly reproduced for
+$N = 8$** ($-1 = 7$ is the strict largest at $1.3 \cdot 10^{13}$,
+$\pi(\cdot ; 8, 7) - \pi(\cdot ; 8, 1) = 164{,}958$ vs $126{,}732$
+and $102{,}728$). For $N = 19$ the ranking of $-1$ at this checkpoint
+is 3rd of 9 non-residues in both our run and Koyama's table —
+consistent with $-1$ being in the top group but not strictly
+dominant. For $N = 11$ the dominance turns on the disputed cell
+$a = 10$ (Table 5; see below); with Koyama's reported $71{,}711$,
+$-1$ ranks 2nd of 5 (top group); with our $11{,}503$, $-1$ ranks
+3rd of 5 (outside top group). Pending reconciliation of that cell.
+For $N = 7$ and $N = 23$, Koyama himself notes (*nontriv.pdf* p. 19)
+that the predicted bias is not yet cleanly observed at this scale
+and attributes it to the exceptionally low-lying first zero of the
+relevant $L$-functions; our data agrees ($-1$ is 2nd of 3 for
+$N = 7$, mid-rank for $N = 23$, dominance onset estimated at
+$x \approx e^{33.4} \approx 3 \cdot 10^{14}$).
 
 Replication bundle (delivered 2026-05-04): `koyama_replication_bundle/`
 with source, build hashes, TSV outputs, and `MANIFEST.txt`.
