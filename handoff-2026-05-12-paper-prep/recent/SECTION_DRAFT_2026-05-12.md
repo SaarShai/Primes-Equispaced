@@ -461,3 +461,54 @@ table in §X.5 cites the L1 script and L2 reproducer; each external
 theorem cited in §X.4 has its PDF retrieval recipe, page/equation,
 and verbatim quote recorded in the citation audit
 (Supplementary S2, *Citation audit*).
+
+---
+
+## References (section)
+
+External references cited in §X.3–§X.7. Full page-and-equation
+provenance for each is in Supplementary S2 (citation audit).
+
+- **Akatsuka, H.** (2013). *The Euler product for the Riemann zeta
+  function in the critical strip*. The boundary-line Mertens-type
+  partial-summation estimate
+  $\sum_{p \le X} \chi(p) / p^{1 + 2i\tau} = c(\chi, \tau) + O(1 / \log X)$
+  used in §X.4.1, Appendix A §A.2.3; Lemma 2.1 / eq. (2.5).
+  Unconditional (derived from PNT with explicit error term).
+- **Aoki, T. and Koyama, S.** (2023). *Generalised Mertens constant
+  for Dirichlet $L$-functions.* J. Number Theory **245**, 233–262;
+  eq. (1.4), p. 235. The $e^{-m\gamma}$-normalised partial-Euler-product
+  asymptotic at noncentral zeros under DRH. Cited as Hypothesis (AK)
+  in §X.4.3.
+- **Davenport, H.** *Multiplicative Number Theory*, 3rd ed.,
+  GTM **74**, Springer 2000. Hadamard–de la Vallée Poussin
+  non-vanishing on $\mathrm{Re}(s) = 1$.
+- **Hardy, G.H. and Wright, E.M.** *An Introduction to the Theory of
+  Numbers*, 6th ed., Oxford 2008. Theorem 304 (Ramanujan-sum identity
+  at primes).
+- **Inoue, S.** (2021). *Truncated explicit formula for $M(x, \chi)$.*
+  Journal de Théorie des Nombres de Bordeaux **33**, Theorem 1. Used
+  in Appendix B §B.1, §B.3 to set up the contour integration for
+  Theorem X.4.2.
+- **Montgomery, H.L. and Vaughan, R.C.** *Multiplicative Number
+  Theory I. Classical Theory*, Cambridge 2007. Theorem 9.4 (textbook
+  bad-prime correction structure).
+- **Ng, N.** (2004). *The distribution of the summatory function of
+  the Möbius function.* Proc. London Math. Soc. **89**(3), 361–389.
+  Discussed alongside Soundararajan 2009 for the off-target zero
+  aggregate (Question Q:Perron, §X.7).
+- **Pólya, G.** (1913). *Über die Nullstellen gewisser ganzer
+  Funktionen.* Classical discreteness of the zero set of a finite
+  exponential polynomial; used in `DPAC_closure_attempt.lean` for
+  the obstruction certificate.
+- **Soundararajan, K.** (2009). *Partial sums of the Möbius
+  function.* Ann. of Math. **170**(2), 1409–1422; Theorem 1. The
+  RH-conditional and the unconditional rate bounds for the Möbius
+  partial sum used in Theorem X.4.2 and Appendix B §B.4.
+- **Tenenbaum, G.** *Introduction to Analytic and Probabilistic
+  Number Theory*, 3rd ed., GSM **163**, AMS 2015. Chapter II.5
+  (Hadamard–de la Vallée Poussin treatment).
+- **Titchmarsh, E.C.** *The Theory of the Riemann Zeta-Function*,
+  2nd ed., Heath-Brown rev., OUP 1986. §3.11 (the polynomial-growth
+  bound on $1/\zeta(s)$ used in `SmoothedDwfFormula_full.lean` and
+  cited as a Mathlib prerequisite in §X.6).
