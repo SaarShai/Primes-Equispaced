@@ -34,9 +34,11 @@ Compact catalog. Update after material wiki changes.
 - H1 simple zero conditional stack 2026-05-11: `handoff-2026-05-11-post-wave5-pivot/H1_SIMPLE_ZERO_CONDITIONAL_STACK_2026-05-11.md`
 - H1 multiple zero disposition current 2026-05-11: `handoff-2026-05-11-post-wave5-pivot/H1_MULTIPLE_ZERO_DISPOSITION_CURRENT_2026-05-11.md`
 - H1 displacement wall synthesis 2026-05-11: `handoff-2026-05-11-post-wave5-pivot/H1_DISPLACEMENT_WALL_SYNTHESIS_2026-05-11.md`
+- H1 displacement wall pro handoff: `handoff pro.md`
 - Implementation wave synthesis 2026-05-11: `handoff-2026-05-11-implementation-wave/IMPLEMENTATION_SYNTHESIS_2026-05-11.md`
 - H1 q>2 bad-set route 2026-05-11: `handoff-2026-05-11-implementation-wave/H1_Q_GT_2_BAD_SET_ROUTE_2026-05-11.md`
 - H2 right-lip renormalized endpoint 2026-05-11: `handoff-2026-05-11-implementation-wave/H2_RIGHT_LIP_RENORMALIZED_ENDPOINT_2026-05-11.md`
 - GL1 sharp Perron boundary 2026-05-11: `handoff-2026-05-11-implementation-wave/GL1_SHARP_PERRON_BOUNDARY_2026-05-11.md`
 - B+ tier 1B execution boundary 2026-05-11: `handoff-2026-05-11-implementation-wave/BPLUS_TIER1B_EXECUTION_BOUNDARY_2026-05-11.md`
 - EC C2-prime implementation 2026-05-11: `handoff-2026-05-11-implementation-wave/EC_C2_PRIME_IMPLEMENTATION_2026-05-11.md`
+- Koyama paper-prep bundle 2026-05-12: `handoff-2026-05-12-paper-prep/recent/README.md` (cover note, section draft, Appendices A/B, Lean status, scope audit, halo GL(1) sketch; 9 sorries across 9 Lean files, three fully proved).
