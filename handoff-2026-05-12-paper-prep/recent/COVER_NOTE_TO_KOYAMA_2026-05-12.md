@@ -68,11 +68,34 @@ agreeing to all displayed digits at `K = 2·10^{6}` and to
 independent prime-enumeration implementations (`primesieve` plus a
 hand-rolled C segmented sieve), with a second hardware path
 agreeing through `1.3 · 10^{12}`. Let me know if you had a different
-sense in mind.
+sense in mind (e.g. Lean ↔ numerical cross-check, or two independent
+symbolic derivations of the identity itself).
 
-If you had a different sense in mind (e.g. Lean ↔ numerical
-cross-check, or two independent symbolic derivations of the
-identity itself), I can adjust.
+**Phase-1 cell discrepancies pending your review.** Per your
+2026-05-12 note, you offered to resolve the table discrepancies. To
+save you a hunt through §X.5.1, here are the substantive ones at
+`x = 1.3 · 10^{13}` (74 of 81 cells exact, ~91%, excluding the 11
+Table-4 small-`x` rows which look like an `x`-label error):
+
+| Table | $N$ | cell ($a$) | our value | your value | note |
+|---|---:|---:|---:|---:|---|
+| 3 | 7 | $a = 6$ | (ours +50 from yours) | — | $\Delta = 50$, clean digit-shift |
+| 5 | 11 | $a = 10$ | $11{,}503$ | $71{,}711$ | **substantive** — dominance ranking for $N = 11$ at this checkpoint turns on this cell |
+| 6 | 19 | $a = 13$ | $24{,}559$ | $55{,}581$ | substantive |
+| 6 | 19 | $a = 18$ | $54{,}192$ | $57{,}192$ | substantive (single-digit, could be OCR) |
+| 7 | 23 | $a = 19$ | $79{,}327$ | $79{,}227$ | $\Delta = 100$, clean digit-transposition |
+| 4 | 8 | (small-`x` rows) | — | — | 11 rows; one row at the supposed $x = 1.3\cdot 10^{12}$ exact-matches our $x = 10^{12}$ row, suggesting an $x$-label error |
+
+The headline qualitative result — `-1 mod N` dominance at
+$x = 1.3 \cdot 10^{13}$ — is reproduced for $N \in \{7, 8, 19\}$.
+For $N = 11$, reproduction hinges entirely on the Table-5 $a = 10$
+cell; with our $11{,}503$, $-1$ ranks 4th of 5 non-residues, with
+your reported $71{,}711$, $-1$ ranks 2nd (comfortably in the top
+group). For $N = 23$ neither value enters the dominance regime
+(your nontriv.pdf attributes this to a low-lying $L$-zero modulo
+$23$ and an onset around $e^{33.4} \approx 3 \cdot 10^{14}$).
+
+I'll fold whatever you confirm into §X.5.1 before LaTeX conversion.
 
 **Other status notes.**
 
