@@ -72,9 +72,10 @@ $10^{-12}$ on each of the four component sums separately. Branch
 choices and external citation provenance are recorded independently
 in L1 and L2.
 
-For the Phase-1 prime-residue replication of §X.5.1, "L1" is a
-`primesieve` 12.13 segmented wheel sieve and "L2" is a hand-rolled
-plain-C segmented Eratosthenes sieve with no external dependency.
+For the Phase-1 prime-residue replication of §X.5.1, two analogous
+stacks **P1a** and **P1b** are used: `primesieve` 12.13 (segmented
+wheel sieve) and a hand-rolled plain-C segmented Eratosthenes sieve
+with no external dependency.
 
 ---
 
@@ -142,15 +143,20 @@ full proof is given in Appendix A.
 
 ### X.4.2 Subleading constant $C_1$ and the partial Möbius identity
 
-**Theorem X.4.2.** *Under the hypotheses of Theorem X.4.1,*
+**Theorem X.4.2.** *Under the hypotheses of Theorem X.4.1, and
+assuming every off-target nontrivial zero $\rho'$ of $L(s,\chi)$
+with $|\gamma' - \tau| \le T_K$ is simple (for a zero-avoiding
+height $T_K$ as in the truncated explicit formula of
+Inoue 2021 Theorem 1),*
 \begin{equation}
 \label{eq:cK}
 c_K(\chi,\rho) \;=\; \frac{\log K}{L'(\rho,\chi)} \;+\; C_1(\chi,\rho) \;+\; o(1)
 \qquad (K \to \infty).
 \end{equation}
-*The identity is unconditional. The rate $o(1) = O(K^{-1/2+\epsilon})$
-is RH-conditional; the unconditional Soundararajan (2009) bound
-gives $o(1) = O(K^{-1/2}\exp((\log K)^{1/2}(\log\log K)^{14}))$.*
+*The identity is unconditional in $\rho$ given off-target simplicity.
+The rate $o(1) = O(K^{-1/2+\epsilon})$ is RH-conditional; the
+unconditional Soundararajan (2009) bound gives
+$o(1) = O(K^{-1/2}\exp((\log K)^{1/2}(\log\log K)^{14}))$.*
 
 The proof combines Inoue (2021, Theorem 1)'s truncated explicit
 formula for $M^*(K,\chi)$ with Lemma X.3.1 to extract the double-pole
@@ -278,6 +284,7 @@ imaginary component. An Arb spot-check at 250 bits on the worst pair
 gives interval agreement on $|L'|$ within $3 \cdot 10^{-43}$.
 
 ### X.5.3 The Aoki–Koyama drift: $e^{-\gamma}$ vs $\zeta(2)^{-1}$
+*(Analytic-identity scale $K \le 10^{7}$; not transferred from §X.5.1.)*
 
 The modulus $|D_K|$ statistic at $K = 2 \cdot 10^{6}$ and $K = 10^{7}$
 (40 dps, mean over the four pairs):
@@ -295,6 +302,7 @@ convergence of the complex $D_K(\chi,\rho)$ from a modulus statistic
 alone — that depends on (SP-L), which is open.
 
 ### X.5.4 The $B_\infty$ identity at the four pairs
+*(Analytic-identity scale $K \le 10^{7}$; not transferred from §X.5.1.)*
 
 Identity residual $|T_K - \mathrm{RHS}|$ for (\ref{eq:Binfty}) at
 $K = 2 \cdot 10^{6}$ (mpmath, 50 dps) and $K = 10^{7}$ (PARI/GP
@@ -317,31 +325,24 @@ of the boundary-line conditional tail (Akatsuka 2013 eq. (2.5)). The
 $\chi_{-4}$ pairs show systematically larger residuals consistent
 with the bad-prime $p = 2$ contribution to $\mathrm{BPC}_1$.
 
-### X.5.5 Conductor-confounded rank trend
+### X.5.5 Two negative elliptic-curve findings
 
-A multivariate OLS regression of $E[C_1^2]$ on $(\mathrm{rank},\log N)$
-across 19 weight-2 elliptic curves (data in
-`koyama-shared/data/PATH_B_20FORMS.csv`) returns
-\begin{equation}
-\label{eq:W2}
-E[C_1^2] \;=\; -0.1811 \;+\; (-0.6773)\,\mathrm{rank} \;+\; 0.7345\,\log N,
-\qquad R^2 = 0.8144.
-\end{equation}
-The $\log N$ coefficient is statistically significant and stable
-under resampling; **the rank coefficient is not**. Leaving the
-rank-3 anchor ($5077a_1$) out shifts the rank coefficient from
-$-0.6773$ to $-0.2533$ (a 63% relative change). The bootstrap 95%
-CI for the rank coefficient is $[-1.222,\,+0.104]$, *includes zero*,
-and the sign-flip rate is $4.7\%$. We therefore describe
-(\ref{eq:W2}) as a **conductor-confounded trend**, not a clean rank
-law, and pose its resolution as Question Q:conductor (§X.7).
+We record two negative findings on the elliptic-curve side, both
+deferred to the supplementary record for the design data, source,
+and resampling diagnostics:
 
-The raw $\mathrm{Sym}^2 / \langle f, f \rangle$ proportionality
-across $\{37a_1, 389a_1, \Delta\}$ ranges over seven orders of
-magnitude (ratios $6.70$, $0.638$, $610{,}456$); the raw form is
-**empirically falsified**. A completed / archimedean-corrected
-normalisation may survive; we pose its identification as
-Question Q:Sym2 (§X.7).
+- *Conductor-confounded rank trend.* A multivariate OLS regression
+  of $E[C_1^2]$ on $(\mathrm{rank}, \log N)$ across 19 weight-$2$
+  elliptic curves shows a stable $\log N$ coefficient and an
+  *unstable* rank coefficient (bootstrap $95\%$ CI for the rank
+  coefficient includes zero; one rank-$3$ anchor swings the
+  coefficient by $63\%$). We describe this as a
+  conductor-confounded trend, not a rank law (Question Q:conductor,
+  §X.7).
+- *Raw $\mathrm{Sym}^2 / \langle f, f \rangle$ proportionality.*
+  The raw ratio ranges over seven orders of magnitude across
+  $\{37a_1, 389a_1, \Delta\}$ and is empirically falsified in its
+  raw form (Question Q:Sym2, §X.7).
 
 ---
 
@@ -398,20 +399,13 @@ $\sum_{\rho'}^\mathrm{mult} |L(\rho' + \alpha,\chi)|^{-2} \ll_\chi (\log K)^{O(1
 The total-Möbius bounds of Soundararajan type are too coarse to
 isolate the pointwise cancellation at the $\log K$ scale.
 
-We note a *structural* development that does not close (SP-L) but
-identifies the right pivot: the GL(2) **halo-route reduction**
-(divided-difference cluster residues + signed contour cancellation
-over a halo region) gives $|R_\Phi(T)| \ll M_T \cdot T^{7/4+\varepsilon}$
-in the elliptic-curve setting, with three of four "doors" closed and
-the remaining one a Dirichlet shifted second moment. Its naïve
-GL(1) transfer yields only $K^{1/2+\varepsilon}$, still far above
-$o(\log K)$ — so the halo route in its present form **does not close
-(SP-L)**, but the cluster-summed-residue pivot replaces the rooted
-Palm wall that obstructs the termwise estimate. The full GL(2)
-plan is in the supplementary repository
-([`HALO_UNCONDITIONAL_PLAN_2026-05-12.md`](../handoff-2026-05-12-halo-unconditional-plan/HALO_UNCONDITIONAL_PLAN_2026-05-12.md));
-the GL(1) accounting is in
-[`HALO_GL1_SKETCH_2026-05-12.md`](HALO_GL1_SKETCH_2026-05-12.md).
+A naïve GL(1) transfer of the GL(2) halo bound
+$|R_\Phi(T)| \ll M_T \cdot T^{7/4+\varepsilon}$ yields only
+$K^{1/2+\varepsilon}$, far above the $o(\log K)$ target — the halo
+route in its present form does not close (SP-L). The
+cluster-summed-residue pivot does, however, replace the rooted
+Palm wall that obstructs the termwise estimate. Details in the
+supplementary record.
 
 > **Q:EC-recip (GL(2) reciprocal-derivative control).** Prove a
 > fixed-curve theorem for
@@ -431,14 +425,11 @@ level of quantitative ensemble evidence.
 > proportionality.
 
 > **Q:DPAC (Dirichlet Polynomial Avoidance).** Prove DPAC for
-> general $K$. We have an unconditional Lean proof for
-> $K \in \{2, 3, 4\}$ (`DPAC_closure_attempt.lean`,
-> `dpac_le_4`), the four phase-avoidance bridges of
-> `DPAC_full.lean` closed without `sorry`, and an obstruction
-> certificate (Pólya 1913 discreteness of the exponential-polynomial
-> zero set + a single open avoidance statement at $\zeta$-zero
-> ordinates). The general-$K$ case is diagnostically comparable to
-> the Linear Independence Hypothesis for $\zeta$-zero ordinates.
+> general $K$. We give an unconditional Lean proof for
+> $K \in \{2, 3, 4\}$; the general case reduces, via Pólya 1913
+> discreteness of the finite-exponential-polynomial zero set, to
+> a single open avoidance statement at $\zeta$-zero ordinates
+> diagnostically comparable to the Linear Independence Hypothesis.
 
 > **Q:EC-NDC (EC NDC normalisation).** Find a normalisation of
 > $D_K^E$ for which the universal limit exists and survives a
@@ -465,4 +456,4 @@ is the version supplied to S. Koyama on 2026-05-04. Each numerical
 table in §X.5 cites the L1 script and L2 reproducer; each external
 theorem cited in §X.4 has its PDF retrieval recipe, page/equation,
 and verbatim quote recorded in the citation audit
-(Supplementary S2 / Appendix C).
+(Supplementary S2, *Citation audit*).

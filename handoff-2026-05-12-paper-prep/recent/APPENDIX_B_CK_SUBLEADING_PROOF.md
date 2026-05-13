@@ -11,7 +11,10 @@ ports: handoff-2026-05-09-followup/Koyama_C1_subleading_proof.md
 This appendix gives the full proof of Theorem X.4.2 of the main text:
 under the hypotheses of Theorem X.4.1 (i.e., $\chi$ primitive
 non-principal of conductor $q$, $\rho = \tfrac12 + i\tau$ a *simple*
-zero of $L(s,\chi)$ with $\tau \ne 0$),
+zero of $L(s,\chi)$ with $\tau \ne 0$), and assuming every
+off-target nontrivial zero $\rho' \ne \rho$ of $L(s,\chi)$ in the
+truncation height $|\gamma'| \le T_K$ of the Inoue (2021)
+explicit-formula box is also *simple*,
 \begin{equation}
 \label{eq:cK-appendix}
 c_K(\chi,\rho) \;=\; \frac{\log K}{L'(\rho,\chi)} \;+\; C_1(\chi,\rho) \;+\; o(1)
@@ -21,8 +24,8 @@ c_K(\chi,\rho) \;=\; \frac{\log K}{L'(\rho,\chi)} \;+\; C_1(\chi,\rho) \;+\; o(1
 where $C_1(\chi,\rho) = -L''(\rho,\chi) / (2\,L'(\rho,\chi)^2)$ and
 $c_K(\chi,\rho) = \sum_{n \le K} \mu(n)\,\chi(n)\,n^{-\rho}$.
 
-The identity ($\dagger$) is **unconditional** given simplicity of
-$\rho$ as a zero of $L(s, \chi)$. The $o(1)$ rate
+The identity ($\dagger$) is **unconditional in $\rho$** given
+simplicity of $\rho$ and of the crossed off-target zeros. The $o(1)$ rate
 $O(K^{-1/2 + \varepsilon})$ for every $\varepsilon > 0$ requires RH
 for $L(s, \chi)$; the *unconditional* rate (which still yields $o(1)$)
 is

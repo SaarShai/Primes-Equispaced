@@ -7,12 +7,12 @@ tier: working
 status: DRAFT_FOR_USER_REVIEW_NOT_SENT
 intended_recipient: shin-ya.koyama (per 2026-05-12 ask)
 attachments:
-  - handoff-2026-05-12-paper-prep/SECTION_DRAFT_2026-05-12.md
-  - handoff-2026-05-12-paper-prep/SCOPE_AUDIT_10E13_2026-05-12.md
-  - handoff-2026-05-12-paper-prep/APPENDIX_A_BINFTY_PROOF.md
-  - handoff-2026-05-12-paper-prep/APPENDIX_B_CK_SUBLEADING_PROOF.md
-  - handoff-2026-05-12-paper-prep/APPENDIX_C_CITATIONS.md
-  - handoff-2026-05-12-paper-prep/LEAN_SORRY_STATUS.md
+  - handoff-2026-05-12-paper-prep/recent/SECTION_DRAFT_2026-05-12.md
+  - handoff-2026-05-12-paper-prep/recent/SCOPE_AUDIT_10E13_2026-05-12.md
+  - handoff-2026-05-12-paper-prep/recent/APPENDIX_A_BINFTY_PROOF.md
+  - handoff-2026-05-12-paper-prep/recent/APPENDIX_B_CK_SUBLEADING_PROOF.md
+  - handoff-2026-05-12-paper-prep/recent/LEAN_SORRY_STATUS.md
+  # Appendix C kept in reproducibility bundle (citation audit), not as a separate appendix.
 tags: [koyama, correspondence, manuscript-prep, scope-confirmation]
 -->
 
