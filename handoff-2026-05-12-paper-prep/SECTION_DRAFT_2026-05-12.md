@@ -355,13 +355,14 @@ and branch conventions are syntactically explicit, and records each
 statement's proof status against a public audit trail.
 
 **Build status.** `lake build FormalConjectures` succeeds on all
-**8 files** in `formal-conjectures/` with **10 `sorry` warnings**,
+**9 files** in `formal-conjectures/` with **10 `sorry` warnings**,
 each annotated in-source as `MATHLIB-PREREQ:` (an upstream Mathlib
 lemma not yet available) or `RESEARCH-OPEN:` (an open mathematical
-conjecture or pending formalisation). **`LocalPerronResidue.lean`
-is fully proved (0 sorries)** as of 2026-05-12. No `axiom` is
-introduced anywhere in the project. The full per-`sorry` inventory
-is in `LEAN_SORRY_STATUS.md` of the reproducibility bundle.
+conjecture or pending formalisation). Two files are fully proved
+(0 sorries) as of 2026-05-12: `LocalPerronResidue.lean` and
+`DPAC_closure_attempt.lean`. No `axiom` is introduced anywhere in
+the project. The full per-`sorry` inventory is in
+`LEAN_SORRY_STATUS.md` of the reproducibility bundle.
 
 | Paper object | Lean file | Status |
 |---|---|---|
@@ -371,7 +372,7 @@ is in `LEAN_SORRY_STATUS.md` of the reproducibility bundle.
 | Farey bridge identity | `FareyBridgeIdentity.lean` | **SCAFFOLD.** Identity stated against a local `FareySet`; 1 `sorry`. `MATHLIB-PREREQ: Mathlib.NumberTheory.RamanujanSum`. |
 | Mertens spectroscope universality | `MertensSpectroscopeUniversality.lean` | **SCAFFOLD.** Stated as `Tendsto … atTop atTop` against an inline RH-for-$\zeta$ predicate; 1 `sorry`. |
 | Farey sign pattern | `FareySignPattern.lean` | **NEGATIVE.** The pointwise version is falsified at $p = 237{,}733$ and $p = 243{,}799$ (recorded as theorems, not axioms — the project's "no `axiom`" convention is preserved). The density-one surviving version is stated as a `Tendsto`. 3 `sorry`s. |
-| Dirichlet Polynomial Avoidance (DPAC) statement + four phase-avoidance bridge layers | `DirichletPolynomialAvoidance.lean`, `DPAC_full.lean` | **OPEN (the headline conjecture).** The earlier LI-to-DPAC bridge is tombstoned; four explicit phase-avoidance bridges (`dpac_of_logPrimePhaseAvoidance`, …, `dpac_of_certifiedZetaZeroSample`) are **closed without `sorry`**. The remaining `sorry` is DPAC itself, diagnostically comparable to the Linear Independence Hypothesis. Submitted as `google-deepmind/formal-conjectures` PR #3716. |
+| Dirichlet Polynomial Avoidance (DPAC) — partial closure + bridges | `DPAC_closure_attempt.lean`, `DirichletPolynomialAvoidance.lean`, `DPAC_full.lean` | **PARTIAL.** `DPAC_closure_attempt.lean` (0 `sorry`) proves DPAC unconditionally for $K \in \{2, 3, 4\}$ using only $0 < \mathrm{Re}(\rho) < 1$ (`dpac_K_eq_2`, `dpac_K_eq_3`, `dpac_K_eq_4`, `dpac_le_4`). It also reformulates the open case as `FiniteLogRatioLI` and records the obstruction certificate (Pólya 1913 discreteness of the exponential-polynomial zero set + a single open avoidance statement). The headline conjecture for general $K$ remains `sorry` in `DPAC_full.lean:297` and `DirichletPolynomialAvoidance.lean:48`, diagnostically comparable to the Linear Independence Hypothesis for $\zeta$-zero ordinates; the four explicit phase-avoidance bridges (`dpac_of_logPrimePhaseAvoidance`, …, `dpac_of_certifiedZetaZeroSample`) are closed without `sorry`. Submitted as `google-deepmind/formal-conjectures` PR #3716. |
 
 The role of the Lean artifact is to fix the statements and provide
 a publicly inspectable audit trail of the proof obligations

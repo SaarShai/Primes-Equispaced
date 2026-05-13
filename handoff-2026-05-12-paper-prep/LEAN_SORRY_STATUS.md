@@ -23,7 +23,8 @@ Lean inventory, classified by the precise reason it cannot be closed.
 | `FareyBridgeIdentity.lean` | 1 (`True := sorry`) | 1 (real exp-sum identity) | **Statement upgraded; proof Mathlib-Ramanujan-blocked** |
 | `FareySignPattern.lean` | 1 (`True := sorry`) | 3 (density-one + 2 falsifications) | **Statement upgraded; falsifications recorded; all 3 research-open in Lean** |
 | `MertensSpectroscopeUniversality.lean` | 1 (`True := sorry`) | 1 (real spectroscope-`Tendsto`) | **Statement upgraded; proof research-open** |
-| **Total** | **11** | **10** | LocalPerronResidue closed 2026-05-12; others have *content* upgraded |
+| `DPAC_closure_attempt.lean` (new file) | — | **0** (added 2026-05-12 via Aristotle round-4) | **PARTIAL THEOREMS** — DPAC for $K \le 4$ unconditional + FLRLI reformulation + obstruction certificate |
+| **Total** | **11** | **10** (across **9** files) | Two files fully proved: LocalPerronResidue (round-3), DPAC_closure_attempt (round-4) |
 
 The sorry-count is the same, but **every previous `True := by sorry`
 placeholder has been replaced by a non-vacuous statement using
