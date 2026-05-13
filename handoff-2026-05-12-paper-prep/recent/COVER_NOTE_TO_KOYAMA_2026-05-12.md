@@ -124,10 +124,11 @@ I'll fold whatever you confirm into §X.5.1 before LaTeX conversion.
     open, comparable to the Linear Independence Hypothesis.
 
   The full inventory is in `LEAN_SORRY_STATUS.md`.
-* The four "open challenges" (SP-L, conductor-confounded trend, the
-  `Sym² / ⟨f,f⟩` normalisation, GL(2) reciprocal-derivative control)
-  are each stated with the precise input that would close them,
-  rather than left informal.
+* The three primary open challenges in §X.7 (Q:Perron, Q:DPAC,
+  Q:EC-recip) are each stated with the precise input that would
+  close them; three further EC-side questions (conductor-confound,
+  Sym² normalisation, EC-NDC) appear in the "Further questions"
+  block at the end of §X.7.
 * On the GL(1) halo route, my honest assessment is that a naïve
   transfer of the GL(2) halo theorem yields only `K^{1/2+ε}`, which
   does not reach `o(log K)`. I have written this up as a negative
