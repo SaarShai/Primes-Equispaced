@@ -58,7 +58,7 @@ name = "FareySignPattern"
 globs = ["FareySignPattern"]
 srcDir = "formal-conjectures"
 
-# DPAC partial closure: K ≤ 4 unconditionally, FLRLI bridge, obstruction certificate.
+# DPAC closure attempt.
 [[lean_lib]]
 name = "DPAC_closure_attempt"
 globs = ["DPAC_closure_attempt"]
