@@ -308,7 +308,7 @@ The proof above yields the following rates.
 |---|---|
 | $o(1) = O\bigl(K^{-1/2 + \varepsilon}\bigr)$ for every $\varepsilon > 0$ | RH for $L(s, \chi)$. |
 | $o(1) = O\bigl(K^{-1/2}\exp\bigl((\log K)^{1/2}(\log\log K)^{14}\bigr)\bigr)$ | **unconditional** (Soundararajan 2009 applies under RH for $L(s, \chi)$, which holds for the four characters $\chi_{-4}, \chi_5, \chi_{11}, \ldots$ at the verified heights). |
-| $o(1) = O\bigl(\log K / \sqrt K\bigr)$ | RH plus a Gonek–Hejhal-type bound $\sum_{0 < \gamma < T} |L'(\rho, \chi)|^{-2} \ll T (\log T)^?$. |
+| $o(1) = O\bigl(\log K / \sqrt K\bigr)$ | RH plus a Gonek–Hejhal-type bound of the form $\sum_{0 < \gamma < T} |L'(\rho, \chi)|^{-2} \ll T (\log T)^{O(1)}$. |
 
 In the numerical work of §X.5.3, the empirical residual
 $R(K) := c_K - \log K / L'(\rho, \chi) - C_1(\chi, \rho)$ at

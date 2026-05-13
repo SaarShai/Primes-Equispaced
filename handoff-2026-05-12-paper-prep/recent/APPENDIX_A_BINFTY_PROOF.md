@@ -157,11 +157,25 @@ character orthogonality producing the appropriate cancellation. We
 denote the limit by
 $\Sigma_2(\chi,\rho) := \lim_{X \to \infty} \sum_{p \le X} \chi^2(p)\,p^{-2\rho}$.
 
-By analytic continuation (specifically, by an Abel-summation argument
-turning (\ref{eq:k1-isolation}) into an identity between continuous
-functions on a neighbourhood of $s = 2\rho$ on the boundary line),
-identity (\ref{eq:k1-isolation}) holds in the boundary-value sense
-at $s = 2\rho$:
+We pass to the boundary $s = 2\rho$ by Abel summation. For
+$\sigma > 1$, identity (\ref{eq:k1-isolation}) reads
+$\log L(s,\chi^2) - \sum_{k\ge 2}(1/k)\sum_p \chi(p)^{2k}/p^{ks}
+= \sum_p \chi(p)^2/p^s$,
+the left side analytic in a neighbourhood of $s = 2\rho$ (here we
+use Hadamard–de la Vallée Poussin: $L(s, \psi) \ne 0$ on
+$\mathrm{Re}(s) = 1$ with $s \ne 1$, where $\psi$ is the primitive
+character inducing $\chi^2$, together with the imprimitive Euler-factor
+identity $L(s,\chi^2) = L(s,\psi)\prod_{p\mid q,\,p\nmid f}(1 - \psi(p)/p^s)$).
+Writing $S(X) := \sum_{p \le X} \chi(p)^2/p^{2\rho}$ and applying
+Abel summation gives, for $\sigma > 1$,
+$\sum_p \chi(p)^2/p^s = (s - 2\rho)\int_2^\infty S(X)\,X^{-(s - 2\rho) - 1}\,dX
++ \lim_{X\to\infty} S(X)\,X^{-(s-2\rho)}$;
+Akatsuka (2013) Lemma 2.1 / eq. (2.5) provides $S(X) = c(\chi,\rho) + O(1/\log X)$
+unconditionally as $X \to \infty$, so the limit term equals
+$c(\chi,\rho)$ at $s = 2\rho$ and the integral converges to a
+continuous function of $s$ in a neighbourhood. Hence
+(\ref{eq:k1-isolation}) extends by continuity to $s = 2\rho$ as the
+boundary-value identity
 \begin{equation}
 \label{eq:Sigma2-id}
 \Sigma_2(\chi,\rho)

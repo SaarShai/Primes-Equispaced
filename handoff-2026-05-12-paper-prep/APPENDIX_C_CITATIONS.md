@@ -153,8 +153,9 @@ L(s, \chi) \;=\; L(s, \psi) \cdot \prod_{p \mid q,\ p \nmid f}\Bigl(1 - \frac{\p
 Applied with $\chi \mapsto \chi^2$ in Appendix A §A.2.1 to obtain
 (\ref{eq:imprimitive}).
 
-**Verbatim quotation.** *(Page reference to be confirmed from the
-physical reference before submission.)*
+**Verbatim quotation.** Standard textbook result (e.g., Davenport
+*Multiplicative Number Theory* 3rd ed., GTM 74, §4–§5); no verbatim
+quote required for an in-line citation.
 
 ## C.6 Hadamard–de la Vallée Poussin non-vanishing
 

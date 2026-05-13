@@ -47,46 +47,28 @@ the core:
 4. The rigorous Phase-1 replication of your Dominance-of-`-1`
    residue-count tables at `x = 1.3 · 10^{13}`.
 
-Before I polish further or begin LaTeX conversion, **two scope
-questions** where I want to make sure we are aligned:
+Two scope confirmations before I begin LaTeX conversion:
 
-**1. What "verification at `10^{13}`" means in the manuscript.**
+**1. "Verification at `10^{13}`" — Phase-1 only.** Our `10^{13}`-scale
+evidence is the Phase-1 Dominance-of-`-1` replication (two
+implementations agreeing on every `π(x; q, a)` count at
+`x = 1.3 · 10^{13}` for `N ∈ {7, 8, 11, 19, 23}`; identity (3.1)
+verified across 495 cells; bundle sent 2026-05-04). The analytic
+identities (`B_∞` residuals, `C_1` subleading, the `|D_K| · ζ(2)`
+drift toward `e^{-γ}`) are verified at `K = 2·10^{6}`–`10^{7}` with
+50-decimal precision across mpmath / PARI 2.17.3 / Arb 250-bit, and
+the manuscript keeps the two scales rigorously separate. Please
+confirm this matches your framing.
 
-Internally, our `10^{13}`-scale evidence is **only** the Phase-1
-Dominance-of-`-1` replication: two independent implementations
-(`primesieve` plus a hand-rolled C segmented sieve) agree on every
-`π(x; q, a)` count at `x = 1.3 · 10^{13}` for
-`N ∈ {7, 8, 11, 19, 23}`, identity (3.1) of *nontriv.pdf* is verified
-across 495 `(N, x, a)` cells, and the qualitative dominance signal
-is reproduced for `N ∈ {7, 8, 19}`. This is the bundle we sent on
-2026-05-04.
-
-The **analytic identities** (`B_∞` residuals, `C_1` subleading,
-the `|D_K| · ζ(2)` drift toward `e^{-γ}`) are verified at much
-smaller `K`: `K = 2·10^{6}` to `10^{7}` with 50-decimal precision
-across mpmath / PARI 2.17.3 / Arb 250-bit. They do *not* extend to
-`10^{13}` with any current technology, and the manuscript keeps
-the two scales rigorously separate.
-
-If your mental picture of "`10^{13}` rigor" matches the Phase-1
-replication scope above, we are aligned. If you had a stronger
-sense in mind (e.g. an analytic identity verified at `10^{13}`),
-please let me know and I will re-scope.
-
-**2. What "double-verification" means in §X.2.**
-
-I have drafted §X.2 with two notions of "double-verification":
-
-* **Analytic stack:** the same identity computed by three independent
-  numerical stacks (mpmath, PARI/GP 2.17.3, Arb 250-bit via
-  python-flint) with the per-prime closed-form expansion to avoid
-  truncation drift; agreement is to all displayed digits at
-  `K = 2·10^{6}` and to within `≈ 10^{-5}` at `K = 10^{7}`,
-  consistent with `K^{-1/2}/\log K` decay.
-* **Phase-1 stack:** the same residue counts computed by two
-  independent prime-enumeration implementations (`primesieve` library
-  and a hand-rolled C segmented sieve), with a second hardware path
-  agreeing through `1.3 · 10^{12}`.
+**2. "Double-verification" — two stacks per claim.** §X.2 uses two
+notions: (i) for the analytic identities, the same quantity computed
+by mpmath, PARI/GP 2.17.3, and Arb 250-bit via python-flint,
+agreeing to all displayed digits at `K = 2·10^{6}` and to
+`≈ 10^{-5}` at `K = 10^{7}`; (ii) for the Phase-1 counts, two
+independent prime-enumeration implementations (`primesieve` plus a
+hand-rolled C segmented sieve), with a second hardware path
+agreeing through `1.3 · 10^{12}`. Let me know if you had a different
+sense in mind.
 
 If you had a different sense in mind (e.g. Lean ↔ numerical
 cross-check, or two independent symbolic derivations of the
