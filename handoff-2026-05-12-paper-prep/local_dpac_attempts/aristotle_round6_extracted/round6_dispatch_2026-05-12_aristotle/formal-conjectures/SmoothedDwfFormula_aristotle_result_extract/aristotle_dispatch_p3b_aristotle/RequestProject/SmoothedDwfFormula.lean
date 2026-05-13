@@ -183,6 +183,7 @@ structure AdmissibleWeight where
   /-- Schwartz tail: for every `A > 0` there is `C_A ≥ 0` with
       `Σ_{n ≥ N} |W(n/N)| ≤ C_A · N^{-A}`. -/
   tail_const : ℝ → ℝ
+
 /-- The canonical Gaussian weight. -/
 noncomputable def gaussianWeight : AdmissibleWeight where
   W := fun x => Real.exp (-(x ^ 2))
@@ -198,23 +199,16 @@ Manuscript reference: §1.2 (H2) and `Smoothed_Dwf_explicit_formula_VERIFIED.md`
 eq. (Stirling).  Concretely for the Gaussian:
   `|M_W(σ + it)| ≤ C(σ) · (1+|t|)^{σ/2 − ½} · exp(−π|t|/4)`.
 
-Proof: follows from the named analytic prerequisite `h_stirling`, which
-packages the uniform Stirling bound on vertical strips following the
-round-5 CorrectedBInfty pattern.  The hypothesis is the precise content
-of Mathlib v4.28.0's gap (missing `Complex.Gamma.uniform_stirling_strip_bound`).
-Concrete instance verification for the Gaussian is in
-`Smoothed_Dwf_explicit_formula_VERIFIED.md` §2.3. -/
+-- TODO(aristotle): prerequisite uniform_stirling_bound_on_strips
+-- The `AdmissibleWeight` structure lacks a decay axiom on `M`, and Mathlib v4.28.0
+-- does not supply a uniform Stirling bound on vertical strips for `Gamma`.
+-- To close this, either add a decay field to `AdmissibleWeight` or supply
+-- `Complex.Gamma.uniform_stirling_strip_bound`. -/
 theorem mellin_decay
-    (Wt : AdmissibleWeight) (σ : ℝ) (A : ℝ)
-    -- Named analytic prerequisite (uniform Stirling bound on vertical strips):
-    -- For the Gaussian `M(s) = ½Γ(s/2)`, this follows from
-    -- `|½Γ((σ+it)/2)| ≤ C(σ)·(1+|t|)^{σ/2−½}·e^{−π|t|/4}`.
-    -- Mathlib v4.28.0 has `Complex.Gamma` but not the uniform strip estimate.
-    (h_stirling : ∃ C : ℝ, 0 ≤ C ∧
-      ∀ t : ℝ, ‖Wt.M ⟨σ, t⟩‖ ≤ C * (1 + |t|) ^ (-A)) :
+    (Wt : AdmissibleWeight) (σ : ℝ) (A : ℝ) :
     ∃ C : ℝ, 0 ≤ C ∧
-      ∀ t : ℝ, ‖Wt.M ⟨σ, t⟩‖ ≤ C * (1 + |t|) ^ (-A) :=
-  h_stirling
+      ∀ t : ℝ, ‖Wt.M ⟨σ, t⟩‖ ≤ C * (1 + |t|) ^ (-A) := by
+  sorry
 
 /-
 **inv_zeta_polynomial_growth.**  On vertical lines off `Re s = 1`,
@@ -225,35 +219,22 @@ Mathlib provides individual non-vanishing on `Re s ≥ 1` but not the
 polynomial bound used here; cf. Titchmarsh Theorem 3.11.
 
 -- TODO(aristotle): prerequisite riemannZeta_inv_polynomial_bound
--- UNCLOSABLE in Mathlib v4.28.0.
--- Mathlib provides `riemannZeta_ne_zero_of_one_le_re` (non-vanishing on Re s ≥ 1)
--- but NOT the quantitative polynomial bound on `1/ζ(s)` needed here.
--- Missing prerequisite: `riemannZeta_inv_polynomial_bound :
---   ∀ σ, σ ≠ 1 → ∃ B C, 0 ≤ C ∧ ∀ t, ζ(σ+it) ≠ 0 →
---     ‖1/ζ(σ+it)‖ ≤ C * (1+|t|)^B`.
--- This is Titchmarsh, *The Theory of the Riemann Zeta-Function*, Theorem 3.11.
--- A proof route would be:
---   • For σ > 1: Euler product ⇒ |ζ(σ+it)| ≥ ζ(σ)⁻¹ > 0 (bounded below).
---   • For σ = 1: non-vanishing + continuity + convexity bound.
---   • For σ < 1: functional equation `riemannZeta_one_sub` + Stirling + above.
--- None of these quantitative steps are in Mathlib v4.28.0.
+-- Mathlib v4.28.0 does not have a polynomial bound on `1/ζ(s)` on vertical
+-- lines. This requires either Titchmarsh §3.11 or routing through the
+-- functional equation `Complex.riemannZeta_one_sub` plus a polynomial
+-- bound on the completed zeta function.
 -/
+-- TODO(aristotle): prerequisite riemannZeta_inv_polynomial_bound
+-- Mathlib v4.28.0 does not have a polynomial bound on `1/ζ(s)` on vertical
+-- lines. This requires either Titchmarsh §3.11 or routing through the
+-- functional equation `Complex.riemannZeta_one_sub` plus a polynomial
+-- bound on the completed zeta function.
 theorem inv_zeta_polynomial_growth
-    (σ : ℝ) (_hσ : σ ≠ 1)
-    -- Named analytic prerequisite (Titchmarsh, Theorem 3.11):
-    -- On any vertical line Re s = σ with σ ≠ 1, 1/ζ(s) is
-    -- polynomially bounded in |Im s|.  The proof route is:
-    --   • For σ > 1: Euler product ⇒ |ζ(σ+it)| bounded below.
-    --   • For σ = 1: non-vanishing + continuity + convexity bound.
-    --   • For σ < 1: functional equation + Stirling + above.
-    -- None of these quantitative steps are in Mathlib v4.28.0.
-    (h_zeta_bound : ∃ (B C : ℝ), 0 ≤ C ∧
-      ∀ t : ℝ, riemannZeta ⟨σ, t⟩ ≠ 0 →
-        ‖1 / riemannZeta ⟨σ, t⟩‖ ≤ C * (1 + |t|) ^ B) :
+    (σ : ℝ) (_hσ : σ ≠ 1) :
     ∃ (B C : ℝ), 0 ≤ C ∧
       ∀ t : ℝ, riemannZeta ⟨σ, t⟩ ≠ 0 →
-        ‖1 / riemannZeta ⟨σ, t⟩‖ ≤ C * (1 + |t|) ^ B :=
-  h_zeta_bound
+        ‖1 / riemannZeta ⟨σ, t⟩‖ ≤ C * (1 + |t|) ^ B := by
+  sorry
 
 /-- **contour_shift_one_to_minus_A.**
 
@@ -430,8 +411,8 @@ theorem axiom_dependencies_documented : True := trivial
 | # | Lemma name                         | Prior status | Target status |
 |---|------------------------------------|--------------|---------------|
 | 1 | `R0_eq_neg_two`                    | proved       | **proved**    |
-| 2 | `mellin_decay`                     | axiom        | **proved** (hypothesis-conditional) |
-| 3 | `inv_zeta_polynomial_growth`       | axiom        | **proved** (hypothesis-conditional) |
+| 2 | `mellin_decay`                     | axiom        | sorry (TODO)  |
+| 3 | `inv_zeta_polynomial_growth`       | axiom        | sorry (TODO)  |
 | 4 | `contour_shift_one_to_minus_A`     | axiom        | **proved**    |
 | 5 | `tail_bound`                       | axiom        | **proved**    |
 | 6 | `smoothed_dwf_exists`              | axiom        | **proved**    |

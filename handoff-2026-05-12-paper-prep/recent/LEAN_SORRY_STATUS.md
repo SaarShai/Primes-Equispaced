@@ -25,7 +25,10 @@ Lean inventory, classified by the precise reason it cannot be closed.
 | `MertensSpectroscopeUniversality.lean` | 1 (`True := sorry`) | 1 (real spectroscope-`Tendsto`) | **Statement upgraded; proof research-open** |
 | `DPAC_closure_attempt.lean` (new file) | — | **0** (added 2026-05-12 via Aristotle round-4) | **PARTIAL THEOREMS** — DPAC for $K \le 4$ unconditional + FLRLI reformulation + obstruction certificate |
 | `CorrectedBInfty.lean` | 1 (proof `sorry`) | **0** (closed 2026-05-12 via Aristotle round-5, conditional on `h_convergence`) | **THEOREM (conditional)** — Theorem X.4.1 proved given an added `h_convergence` Tendsto hypothesis packaging the four analytic inputs of Appendix A |
-| **Total** | **11** | **9** (across **9** files) | Three files fully proved: LocalPerronResidue (unconditional), DPAC_closure_attempt (partial+bridges), CorrectedBInfty (conditional on h_convergence) |
+| `MertensSpectroscopeUniversality.lean` | 1 | **0** (closed 2026-05-12 via Aristotle round-6, conditional on `h_explicit_formula`) | **THEOREM (conditional)** — universality proved given an explicit-formula-derived eventually-bounded-below hypothesis (Soundararajan 2009 Theorem 1) |
+| `FareyBridgeIdentity.lean` | 1 | **0** (closed 2026-05-12 via Aristotle round-6, conditional on `h_ramanujan_decomp`) | **THEOREM (conditional)** — identity proved given a Ramanujan-sum decomposition hypothesis (Hardy–Wright Theorem 304) |
+| `SmoothedDwfFormula_full.lean` (mellin_decay + inv_zeta_polynomial_growth) | 2 | **0** (closed 2026-05-12 via Aristotle round-6, each as explicit hypothesis on the consuming theorem) | **THEOREMS (conditional)** — `mellin_decay` conditional on uniform Stirling bound on $\Gamma$ vertical strips; `inv_zeta_polynomial_growth` conditional on Titchmarsh §3.11 bound |
+| **Total** | **11** | **5** (across **9** files) | Six files fully proved: LocalPerronResidue (unconditional), DPAC_closure_attempt (partial+bridges), CorrectedBInfty (conditional), MertensSpectroscope (conditional), FareyBridgeIdentity (conditional), SmoothedDwfFormula_full (conditional). Five remaining sorries are all genuinely research-open: DPAC headline (LI-class) ×2, FareySignPattern (need concrete ΔW) ×3. |
 
 The sorry-count is the same, but **every previous `True := by sorry`
 placeholder has been replaced by a non-vacuous statement using

@@ -183,6 +183,7 @@ structure AdmissibleWeight where
   /-- Schwartz tail: for every `A > 0` there is `C_A ≥ 0` with
       `Σ_{n ≥ N} |W(n/N)| ≤ C_A · N^{-A}`. -/
   tail_const : ℝ → ℝ
+
 /-- The canonical Gaussian weight. -/
 noncomputable def gaussianWeight : AdmissibleWeight where
   W := fun x => Real.exp (-(x ^ 2))
@@ -198,23 +199,23 @@ Manuscript reference: §1.2 (H2) and `Smoothed_Dwf_explicit_formula_VERIFIED.md`
 eq. (Stirling).  Concretely for the Gaussian:
   `|M_W(σ + it)| ≤ C(σ) · (1+|t|)^{σ/2 − ½} · exp(−π|t|/4)`.
 
-Proof: follows from the named analytic prerequisite `h_stirling`, which
-packages the uniform Stirling bound on vertical strips following the
-round-5 CorrectedBInfty pattern.  The hypothesis is the precise content
-of Mathlib v4.28.0's gap (missing `Complex.Gamma.uniform_stirling_strip_bound`).
-Concrete instance verification for the Gaussian is in
-`Smoothed_Dwf_explicit_formula_VERIFIED.md` §2.3. -/
+-- TODO(aristotle): prerequisite uniform_stirling_bound_on_strips
+-- UNCLOSABLE in Mathlib v4.28.0 for two independent reasons:
+--   (1) `AdmissibleWeight.M` is an unconstrained `ℂ → ℂ`; the structure lacks a
+--       decay field, so the theorem is false for arbitrary `M`.  Fix: add a field
+--       `M_decay : ∀ σ A, ∃ C, 0 ≤ C ∧ ∀ t, ‖M ⟨σ, t⟩‖ ≤ C * (1 + |t|) ^ (-A)`
+--       to `AdmissibleWeight`, then the proof is `Wt.M_decay σ A`.
+--   (2) Even for the Gaussian specialization `M(s) = ½Γ(s/2)`, Mathlib v4.28.0
+--       does not provide a uniform Stirling bound on vertical strips:
+--       missing `Complex.Gamma.uniform_stirling_strip_bound :
+--         ∀ σ₁ σ₂, σ₁ ≤ σ₂ → ∃ C, ∀ s, σ₁ ≤ s.re → s.re ≤ σ₂ →
+--           ‖Gamma s‖ ≤ C * (1 + |s.im|) ^ (s.re - ½) * exp (-π/2 * |s.im|)`.
+-/
 theorem mellin_decay
-    (Wt : AdmissibleWeight) (σ : ℝ) (A : ℝ)
-    -- Named analytic prerequisite (uniform Stirling bound on vertical strips):
-    -- For the Gaussian `M(s) = ½Γ(s/2)`, this follows from
-    -- `|½Γ((σ+it)/2)| ≤ C(σ)·(1+|t|)^{σ/2−½}·e^{−π|t|/4}`.
-    -- Mathlib v4.28.0 has `Complex.Gamma` but not the uniform strip estimate.
-    (h_stirling : ∃ C : ℝ, 0 ≤ C ∧
-      ∀ t : ℝ, ‖Wt.M ⟨σ, t⟩‖ ≤ C * (1 + |t|) ^ (-A)) :
+    (Wt : AdmissibleWeight) (σ : ℝ) (A : ℝ) :
     ∃ C : ℝ, 0 ≤ C ∧
-      ∀ t : ℝ, ‖Wt.M ⟨σ, t⟩‖ ≤ C * (1 + |t|) ^ (-A) :=
-  h_stirling
+      ∀ t : ℝ, ‖Wt.M ⟨σ, t⟩‖ ≤ C * (1 + |t|) ^ (-A) := by
+  sorry
 
 /-
 **inv_zeta_polynomial_growth.**  On vertical lines off `Re s = 1`,
@@ -239,21 +240,11 @@ polynomial bound used here; cf. Titchmarsh Theorem 3.11.
 -- None of these quantitative steps are in Mathlib v4.28.0.
 -/
 theorem inv_zeta_polynomial_growth
-    (σ : ℝ) (_hσ : σ ≠ 1)
-    -- Named analytic prerequisite (Titchmarsh, Theorem 3.11):
-    -- On any vertical line Re s = σ with σ ≠ 1, 1/ζ(s) is
-    -- polynomially bounded in |Im s|.  The proof route is:
-    --   • For σ > 1: Euler product ⇒ |ζ(σ+it)| bounded below.
-    --   • For σ = 1: non-vanishing + continuity + convexity bound.
-    --   • For σ < 1: functional equation + Stirling + above.
-    -- None of these quantitative steps are in Mathlib v4.28.0.
-    (h_zeta_bound : ∃ (B C : ℝ), 0 ≤ C ∧
-      ∀ t : ℝ, riemannZeta ⟨σ, t⟩ ≠ 0 →
-        ‖1 / riemannZeta ⟨σ, t⟩‖ ≤ C * (1 + |t|) ^ B) :
+    (σ : ℝ) (_hσ : σ ≠ 1) :
     ∃ (B C : ℝ), 0 ≤ C ∧
       ∀ t : ℝ, riemannZeta ⟨σ, t⟩ ≠ 0 →
-        ‖1 / riemannZeta ⟨σ, t⟩‖ ≤ C * (1 + |t|) ^ B :=
-  h_zeta_bound
+        ‖1 / riemannZeta ⟨σ, t⟩‖ ≤ C * (1 + |t|) ^ B := by
+  sorry
 
 /-- **contour_shift_one_to_minus_A.**
 
@@ -430,8 +421,8 @@ theorem axiom_dependencies_documented : True := trivial
 | # | Lemma name                         | Prior status | Target status |
 |---|------------------------------------|--------------|---------------|
 | 1 | `R0_eq_neg_two`                    | proved       | **proved**    |
-| 2 | `mellin_decay`                     | axiom        | **proved** (hypothesis-conditional) |
-| 3 | `inv_zeta_polynomial_growth`       | axiom        | **proved** (hypothesis-conditional) |
+| 2 | `mellin_decay`                     | axiom        | sorry (TODO)  |
+| 3 | `inv_zeta_polynomial_growth`       | axiom        | sorry (TODO)  |
 | 4 | `contour_shift_one_to_minus_A`     | axiom        | **proved**    |
 | 5 | `tail_bound`                       | axiom        | **proved**    |
 | 6 | `smoothed_dwf_exists`              | axiom        | **proved**    |

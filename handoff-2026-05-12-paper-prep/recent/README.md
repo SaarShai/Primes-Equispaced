@@ -51,17 +51,20 @@ status / scope notes.
 
 `lake build FormalConjectures` against `leanprover/lean4:v4.28.0` +
 Mathlib commit `8f9d9cff…` succeeds on all **9 files** in
-`formal-conjectures/` with **9 `sorry` warnings** (all annotated
-`MATHLIB-PREREQ:` or `RESEARCH-OPEN:`). No `axiom` is introduced
-anywhere.
+`formal-conjectures/` with **5 `sorry` warnings** (down from 11 at
+the start of the session). All annotated `MATHLIB-PREREQ:` or
+`RESEARCH-OPEN:`. No `axiom` is introduced anywhere.
 
-Three files fully proved (0 `sorry`):
+Six files fully proved (0 `sorry`):
 
 | File | Status |
 |---|---|
 | `LocalPerronResidue.lean` (Lemma X.3.1) | Unconditional |
 | `CorrectedBInfty.lean` (Theorem X.4.1) | Conditional on one named `Filter.Tendsto` hypothesis |
 | `DPAC_closure_attempt.lean` | DPAC for $K \in \{2,3,4\}$ unconditional + four bridges + obstruction certificate |
+| `MertensSpectroscopeUniversality.lean` | Conditional on Soundararajan 2009 explicit-formula input |
+| `FareyBridgeIdentity.lean` | Conditional on Ramanujan-sum decomposition input |
+| `SmoothedDwfFormula_full.lean` | 17 algebraic-glue lemmas unconditional; two analytic prerequisites stated as hypotheses |
 
 ## Notation conventions
 

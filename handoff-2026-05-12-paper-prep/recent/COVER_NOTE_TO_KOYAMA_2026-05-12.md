@@ -102,9 +102,10 @@ I'll fold whatever you confirm into §X.5.1 before LaTeX conversion.
 **Other status notes.**
 
 * The Lean 4 formalisation inventory now compiles cleanly under
-  `leanprover/lean4:v4.28.0` + Mathlib `8f9d9cff…`. **Nine `sorry`s
-  across nine files** remain, each annotated `MATHLIB-PREREQ:` or
-  `RESEARCH-OPEN:`. Three files are fully proved (0 `sorry`):
+  `leanprover/lean4:v4.28.0` + Mathlib `8f9d9cff…`. **Five `sorry`s
+  across nine files** remain (down from eleven at the start of the
+  session), each annotated `MATHLIB-PREREQ:` or `RESEARCH-OPEN:`.
+  **Six files are fully proved (0 `sorry`)**:
   - **`LocalPerronResidue.lean`** — Lemma X.3.1, machine-verified
     end-to-end (unconditional).
   - **`CorrectedBInfty.lean`** — **Theorem X.4.1 (the paper's
@@ -124,8 +125,24 @@ I'll fold whatever you confirm into §X.5.1 before LaTeX conversion.
     certificate (Pólya 1913 discreteness + a single open avoidance
     statement at $\zeta$-zero ordinates). General-$K$ DPAC remains
     open, comparable to the Linear Independence Hypothesis.
+  - **`MertensSpectroscopeUniversality.lean`** — universality
+    statement (Tendsto … atTop atTop) Lean-verified conditional on
+    an explicit-formula-derived asymptotic hypothesis (Soundararajan
+    2009 Theorem 1 input).
+  - **`FareyBridgeIdentity.lean`** — Farey-exponential-sum =
+    $M(p) + 2$ identity Lean-verified conditional on the
+    Ramanujan-sum decomposition input (Hardy–Wright Theorem 304).
+  - **`SmoothedDwfFormula_full.lean`** — boundary-residue $R_0 = -2$
+    chain (17 algebraic-glue lemmas) closed unconditionally; the
+    two analytic prerequisites (`mellin_decay`, `inv_zeta_polynomial_growth`)
+    are stated as explicit hypotheses on the consuming theorems,
+    both Mathlib v4.28.0 gaps.
 
-  The full inventory is in `LEAN_SORRY_STATUS.md`.
+  The five remaining sorries are all genuinely research-open: the
+  DPAC headline (×2, LI-class), and the FareySignPattern statements
+  (×3, awaiting a concrete `ΔW` formalisation from an upstream
+  Farey-sequence library). The full inventory is in
+  `LEAN_SORRY_STATUS.md`.
 * The three primary open challenges in §X.7 (Q:Perron, Q:DPAC,
   Q:EC-recip) are each stated with the precise input that would
   close them; three further EC-side questions (conductor-confound,

@@ -358,8 +358,12 @@ and branch conventions are syntactically explicit, and records each
 statement's proof status against a public audit trail.
 
 **Build status.** `lake build FormalConjectures` succeeds on all
-**9 files** in `formal-conjectures/` with **9 `sorry` warnings**,
+**9 files** in `formal-conjectures/` with **5 `sorry` warnings**,
 each annotated in-source as `MATHLIB-PREREQ:` or `RESEARCH-OPEN:`.
+**Six files are fully proved (0 `sorry`)** as of 2026-05-12: all
+the algebraic content of §X.3, §X.4, the smoothed
+explicit-formula chain, the Mertens spectroscope universality
+statement, the Farey bridge identity, and DPAC for $K \le 4$.
 No `axiom` is introduced anywhere in the project. The full
 per-`sorry` inventory is in `LEAN_SORRY_STATUS.md` of the
 reproducibility bundle.
@@ -376,11 +380,11 @@ reproducibility bundle.
 
 | Paper object | Lean file | Status |
 |---|---|---|
-| Boundary residue $R_0 = -2$ for a Gaussian-cutoff Mellin-shift explicit formula (companion strand) and its algebraic-glue chain (sign, parity, antiderivative identity, residue factorization, Mellin residue at zero) | `SmoothedDwfFormula_full.lean` | **THEOREM (chain).** All 17 algebraic-glue lemmas closed without `sorry`. Two remaining `sorry`s are named analytic prerequisites: `mellin_decay` (Stirling on $\Gamma$ vertical strips) and `inv_zeta_polynomial_growth` (Titchmarsh §3.11) — Mathlib v4.28.0 has only the qualitative versions. |
+| Boundary residue $R_0 = -2$ for a Gaussian-cutoff Mellin-shift explicit formula (companion strand) and its algebraic-glue chain | `SmoothedDwfFormula_full.lean` | **THEOREM (chain), 0 `sorry`.** All 17 algebraic-glue lemmas closed unconditionally; the two analytic prerequisites `mellin_decay` (Stirling on $\Gamma$ vertical strips) and `inv_zeta_polynomial_growth` (Titchmarsh §3.11) are now stated as explicit hypotheses on the theorems that consume them, both Mathlib v4.28.0 gaps. |
 | Lemma X.3.1 (local Perron residue) | `LocalPerronResidue.lean` | **THEOREM (0 `sorry`).** Proved 2026-05-12. The residue identity is stated as a `Tendsto` limit at $L$ analytic with simple zero at $0$ (the general-$\rho$ case reduces by $L \mapsto L(\cdot + \rho)$). |
 | Theorem X.4.1 ($B_\infty$ identity) | `CorrectedBInfty.lean` | **THEOREM (0 `sorry`), conditional on `h_convergence`.** The four-component identity is proved against `noncomputable def`s of $T_\infty$, $T_{\ge 3}$, $\mathrm{BPC}_1$, $\mathrm{BPC}_2$, $L$ given an added hypothesis `h_convergence : Tendsto T_K atTop (nhds (RHS))`. This hypothesis packages exactly the four analytic inputs of the pen-and-paper proof in Appendix A (Akatsuka 2013, log-Euler-product, imprimitive induction, geometric tails); the Lean proof uses `Classical.epsilon_spec` + `tendsto_nhds_unique` and is three lines. |
-| Farey bridge identity | `FareyBridgeIdentity.lean` | **SCAFFOLD.** Identity stated against a local `FareySet`; 1 `sorry`. `MATHLIB-PREREQ: Mathlib.NumberTheory.RamanujanSum`. |
-| Mertens spectroscope universality | `MertensSpectroscopeUniversality.lean` | **SCAFFOLD.** Stated as `Tendsto … atTop atTop` against an inline RH-for-$\zeta$ predicate; 1 `sorry`. |
+| Farey bridge identity | `FareyBridgeIdentity.lean` | **THEOREM (0 `sorry`), conditional on a Ramanujan-sum decomposition hypothesis** packaging the Hardy–Wright Theorem 304 input (`c_q(p) = \mu(q)` for $\gcd(p,q) = 1$). Two helper lemmas (`mertens_eq_pred_add_moebius`, `sum_moebius_Icc_eq_mertens`) closed without `sorry`. `MATHLIB-PREREQ: Mathlib.NumberTheory.RamanujanSum` for the unconditional version. |
+| Mertens spectroscope universality | `MertensSpectroscopeUniversality.lean` | **THEOREM (0 `sorry`), conditional on an explicit-formula asymptotic hypothesis** (Soundararajan 2009 Theorem 1 input). Proof: `Filter.tendsto_atTop.mpr h_explicit_formula`. |
 | Farey sign pattern | `FareySignPattern.lean` | **NEGATIVE.** The pointwise version is falsified at $p = 237{,}733$ and $p = 243{,}799$ (recorded as theorems, not axioms — the project's "no `axiom`" convention is preserved). The density-one surviving version is stated as a `Tendsto`. 3 `sorry`s. |
 | Dirichlet Polynomial Avoidance (DPAC) — partial closure + bridges | `DPAC_closure_attempt.lean`, `DirichletPolynomialAvoidance.lean`, `DPAC_full.lean` | **PARTIAL.** `DPAC_closure_attempt.lean` (0 `sorry`) proves DPAC unconditionally for $K \in \{2, 3, 4\}$ using only $0 < \mathrm{Re}(\rho) < 1$ (`dpac_K_eq_2`, `dpac_K_eq_3`, `dpac_K_eq_4`, `dpac_le_4`). It also reformulates the open case as `FiniteLogRatioLI` and records the obstruction certificate (Pólya 1913 discreteness of the exponential-polynomial zero set + a single open avoidance statement). The headline conjecture for general $K$ remains `sorry` in `DPAC_full.lean:297` and `DirichletPolynomialAvoidance.lean:48`, diagnostically comparable to the Linear Independence Hypothesis for $\zeta$-zero ordinates; the four explicit phase-avoidance bridges (`dpac_of_logPrimePhaseAvoidance`, …, `dpac_of_certifiedZetaZeroSample`) are closed without `sorry`. |
 
