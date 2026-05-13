@@ -29,10 +29,12 @@ offer and ready to push toward submission.
 
 Attached is a first internal draft of the Technical/Computational
 section (§X. Methodology, formalization, and numerical evidence),
-together with three appendices (proofs of the corrected `B_∞`
-identity and the local Perron double-pole residue, plus a verbatim
-citations appendix), and a short status note on the Lean 4
-inventory.
+together with two appendices (Appendix A: pen-and-paper proof of
+the corrected `B_∞` identity, Theorem X.4.1; Appendix B: proof of
+the $c_K$ leading + subleading identity, Theorem X.4.2, together
+with the Laurent-algebra for the local Perron double-pole residue
+in §B.2), the scope-audit note on what `10^{13}` does and does not
+verify, and a per-`sorry` inventory for the Lean 4 lake project.
 
 The draft is organised around the four pillars you described as
 the core:
@@ -79,7 +81,7 @@ Table-4 small-`x` rows which look like an `x`-label error):
 
 | Table | $N$ | cell ($a$) | our value | your value | note |
 |---|---:|---:|---:|---:|---|
-| 3 | 7 | $a = 6$ | (ours +50 from yours) | — | $\Delta = 50$, clean digit-shift |
+| 3 | 7 | $a = 6$ | — | — | $\Delta = 50$ between our value and yours; clean digit-shift profile |
 | 5 | 11 | $a = 10$ | $11{,}503$ | $71{,}711$ | **substantive** — dominance ranking for $N = 11$ at this checkpoint turns on this cell |
 | 6 | 19 | $a = 13$ | $24{,}559$ | $55{,}581$ | substantive |
 | 6 | 19 | $a = 18$ | $54{,}192$ | $57{,}192$ | substantive (single-digit, could be OCR) |

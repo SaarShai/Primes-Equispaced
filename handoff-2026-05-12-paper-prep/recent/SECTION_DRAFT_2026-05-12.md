@@ -313,7 +313,7 @@ $K = 2 \cdot 10^{6}$ (mpmath, 50 dps) and $K = 10^{7}$ (PARI/GP
 | $\chi_{-4}/z_1$ | $2.85 \cdot 10^{-3}$ | $2.85 \cdot 10^{-3}$ | $2.58 \cdot 10^{-3}$ |
 | $\chi_{-4}/z_2$ | $1.66 \cdot 10^{-3}$ | $1.66 \cdot 10^{-3}$ | $1.52 \cdot 10^{-3}$ |
 | $\chi_5$        | $4.24 \cdot 10^{-5}$ | $4.24 \cdot 10^{-5}$ | $1.22 \cdot 10^{-5}$ |
-| $\chi_{11}$     | $3.33 \cdot 10^{-5}$ | $3.34 \cdot 10^{-5}$ | $1.75 \cdot 10^{-5}$ |
+| $\chi_{11}$     | $3.34 \cdot 10^{-5}$ | $3.34 \cdot 10^{-5}$ | $1.75 \cdot 10^{-5}$ |
 
 L1 and L2 agree to all displayed digits at $K = 2 \cdot 10^{6}$
 (stack difference $\le 10^{-8}$). For the clean-character pairs
