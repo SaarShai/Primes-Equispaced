@@ -1058,3 +1058,26 @@ Terminology: **ComCom** = our compound-compression project (disambiguate from Cl
 - Bundle for Koyama relocated to `handoff-2026-05-12-paper-prep/recent/` per the "recent/" subfolder convention. Includes README navigation index. Section draft trimmed from 1469 lines (original full draft) to 514 lines (paper-length); Appendix C (verbatim citation quote dump) demoted from a paper appendix to a reproducibility-bundle citation audit.
 - Senior-reviewer pass applied (3 must-fix + multiple should-fix): off-target-zero simplicity hypothesis stated explicitly in Theorem X.4.2 (was a real content gap), Appendix A §A.2.3 Abel-summation step expanded from 1-line assertion to 8-line derivation, Appendix B §B.4 `(log T)^?` placeholder fixed, halo paragraph in §X.7 compressed, EC negative findings (§X.5.5) compressed, Q:conductor/Q:Sym2/Q:EC-NDC demoted to a Further questions block.
 - Numerical claims spot-checked against `BINFTY_CLOSED_FORM_run.log` — all four pairs' residuals at K=2·10^6 and K=10^7 match the run-log values to displayed precision.
+
+## [2026-05-13] paper-prep | LaTeX bundle, K=10^8 extension, FareySignPattern closures, forward-looking drafts
+
+Continuation of the 2026-05-12 paper-prep session after Koyama's reply confirming both scope questions and committing to co-authorship.
+
+**LaTeX bundle.** Converted the markdown §X + appendices to a working pdflatex bundle: `recent/latex/{paper,section_X,appendix_A,appendix_B}.tex` + `references.bib` (18 entries, was 11) + `clean.py` (idempotent regeneration pipeline). Compiles cleanly via `tectonic paper.tex` to an 18-page PDF. Five polish passes addressed: § encoding via T1 fontenc clash, B.2.3 raw markdown header, broken (??) cross-ref, redundant 'B.2. B.2 …' prefixes, citation injection + bibliography rendering. Tooling: installed pandoc 3.9 + tectonic 0.15 via conda-forge.
+
+**Numerical extension.** Ran PARI/GP 2.17.3 closed-form B_infty residual at K=10^8 across the four (chi, rho) pairs, ~4 min wall-clock. Results: chi_5 K=10^7 → 10^8 residual ratio 3.7; chi_11 ratio 4.3 (bracket sqrt(10) ≈ 3.16 predicted by K^{-1/2}/log K decay). chi_-4 pairs show ~1.15 per decade consistent with bad-prime p=2 contribution to BPC_1. Two decades of empirical verification now in §X.5.4.
+
+**Lean closures.** Adopted FareySignPattern conditional-closure pattern: all three sorries (density-one + two falsifications at p=237733, 243799) closed under explicit named hypotheses (h_chebyshev_bias, h_witness). Project sorry count: 5 → 2 (both DPAC headline, LI-class). Seven of nine files now fully proved.
+
+**Aristotle round-7 dispatched** (0873e8c7-...): Ramanujan-sum-at-primes formalization target. Would discharge FareyBridgeIdentity's h_ramanujan_decomp hypothesis. Currently QUEUED.
+
+**Forward-looking discussion drafts.** Added to `recent/`:
+- INTRO_AND_ABSTRACT_OUTLINE: bullet-form skeleton.
+- ABSTRACT_DRAFT: 3 prose variants (full / tight / minimal).
+- INTRODUCTION_DRAFT: ~900-word 5-subsection prose, with `<your section here>` placeholders for Koyama's Dominance-of-(-1) material.
+- SP_L_SUFFICIENT_PACKAGES: three-route analysis (I: shifted second moment near-Lindelöf, II: halo-route negative finding, III: direct partial summation via Gonek-Hejhal + Mertens-oscillation). §X.7 Q:Perron updated to cite the three routes.
+- MIDWEEK_UPDATE_TO_KOYAMA_DRAFT: pre-drafted status note for whenever his discrepancy reconciliation arrives (week of May 20).
+
+Bundle now has 11 files in `recent/` + `latex/` sub-bundle + the pre-trim full SECTION_DRAFT backup + the supporting numerical logs (BINFTY_CLOSED_FORM_run.log, BINFTY_K100M_run.log).
+
+**Cumulative state.** Lean: 2 sorries (DPAC headline ×2); 7 of 9 files fully proved; no axioms; build green. LaTeX: 18-page PDF, paper-style bibliography, all subsection numbering clean. Koyama: green light received; Phase-1 reconciliation expected week of May 20.
