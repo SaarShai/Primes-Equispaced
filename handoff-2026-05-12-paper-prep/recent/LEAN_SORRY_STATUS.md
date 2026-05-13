@@ -16,12 +16,12 @@ the standard `propext`, `Classical.choice`, `Quot.sound`.
 | `CorrectedBInfty.lean` (Theorem X.4.1) | **0** | **Theorem (conditional on one `Filter.Tendsto` hypothesis derived in Appendix A)** |
 | `DPAC_closure_attempt.lean` | **0** | **Theorems**: DPAC for $K \in \{2, 3, 4\}$ unconditional; `FiniteLogRatioLI` reformulation; obstruction certificate (Pólya 1913 + the open ordinate-avoidance statement) |
 | `MertensSpectroscopeUniversality.lean` | **0** | **Theorem (conditional on an explicit-formula-derived asymptotic hypothesis;** Soundararajan 2009 Thm 1 input) |
-| `FareyBridgeIdentity.lean` | **0** | **Theorem (conditional on a Ramanujan-sum decomposition hypothesis;** Hardy–Wright Thm 304 input) |
+| `FareyBridgeIdentity.lean` | **0** | **Theorem (unconditional)**: `farey_bridge_identity_unconditional` requires only `Nat.Prime p` and Mathlib v4.28.0; the Ramanujan-sum hypothesis is discharged by `RamanujanSum.farey_ramanujan_decomp` |
 | `SmoothedDwfFormula_full.lean` | **0** | **Theorem (chain)**: 17 algebraic-glue lemmas unconditional; two analytic prerequisites (`mellin_decay`, `inv_zeta_polynomial_growth`) stated as explicit hypotheses on the consuming theorems |
 | `DPAC_full.lean` | 1 | **Research-open**: headline DPAC at general $K$ (LI-class) |
 | `DirichletPolynomialAvoidance.lean` | 1 | **Research-open**: same as above (the conjecture statement) |
 | `FareySignPattern.lean` | **0** | **Theorems (conditional)**: density-one form takes the Chebyshev-bias-control hypothesis as an explicit input; the two pointwise-falsification theorems take the numerical-witness inequality `signR (ΔW p) ≠ signZ (−mertens p)` as an explicit input. Closes once a concrete `ΔW` definition + the numerical witnesses are upstream. |
-| `RamanujanSum.lean` | **0** | **Theorem (unconditional)**: Hardy & Wright Thm 304: $c_q(p) = \mu(q)$ for prime $p$ coprime to $q$. Uses the Möbius-inversion form of the Ramanujan sum; the divisor set of $\gcd(q, p)$ reduces to $\{1\}$. |
+| `RamanujanSum.lean` | **0** | **Theorems (unconditional)**: geometric sum for roots of unity (`geom_sum_roots_of_unity`); sum of primitive $q$-th roots equals $\mu(q)$ via Dirichlet convolution + strong induction (`primRootsSum_eq_moebius`); the coprime Ramanujan-sum identity $c_q(n) = \mu(q)$; FareySet decomposition (`farey_ramanujan_decomp`) that discharges `FareyBridgeIdentity`'s old conditional hypothesis. |
 
 Eight files fully proved (0 `sorry`); the two remaining sorries are
 exactly the DPAC headline conjecture (LI-class — a genuine open

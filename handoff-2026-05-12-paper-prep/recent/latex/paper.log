@@ -913,13 +913,25 @@ ures \T1/lmr/m/n/10.95 suc-ceeds on all \T1/lmr/bx/n/10.95 10 files \T1/lmr/m/n
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 568.
 
-Overfull \hbox (22.01399pt too wide) in paragraph at lines 571--572
-\T1/lmtt/m/n/10 Mathlib.NumberTheory.RamanujanSum 
+Overfull \hbox (39.95973pt too wide) in paragraph at lines 571--572
+\T1/lmr/m/n/10 (\T1/lmtt/m/n/10 farey_bridge_identity_unconditional\T1/lmr/m/n/
+10 ). 
+ []
+
+
+Overfull \hbox (33.90172pt too wide) in paragraph at lines 571--572
+\T1/lmtt/m/n/10 RamanujanSum.farey_ramanujan_decomp\T1/lmr/m/n/10 ; 
  []
 
 
 Overfull \hbox (37.76395pt too wide) in paragraph at lines 572--572
 []|\T1/lmtt/m/n/10 MertensSpectroscopeUniversality.lean|  
+ []
+
+
+Overfull \hbox (35.25975pt too wide) in paragraph at lines 574--575
+\T1/lmr/m/n/10 (\T1/lmtt/m/n/10 ramanujanSum_eq_moebius_of_coprime\T1/lmr/m/n/1
+0 ); 
  []
 
 
@@ -966,12 +978,11 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1.
 
-[10]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 60.
 
-[11]
+[10] [11]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 202.
@@ -980,7 +991,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\ge' on input line 202.
 
-[12] [13]
+[12]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\leavevmode@ifvmode' on input line 377.
@@ -1003,6 +1014,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1.
 
+[13]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 29.
@@ -1019,7 +1031,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\chi' on input line 29.
 
-[14]
+
 Underfull \hbox (badness 1701) in paragraph at lines 93--98
 []\T1/lmr/m/n/10.95 This is the un-shifted form, ap-plied to the partial-charac
 ter-Möbius sum $\OML/lmm/m/it/10.95 M[]\OT1/lmr/m/n/10.95 (\OML/lmm/m/it/10.95 
@@ -1037,7 +1049,7 @@ m/m/it/10.95 w \OT1/lmr/m/n/10.95 = 0$\T1/lmr/bx/n/10.95 .[][] \T1/lmr/m/n/10.9
 5 The pole-structure com-pu-ta-tion of this sec-
  []
 
-[15] [16]
+[14] [15]
 Overfull \hbox (128.1557pt too wide) detected at line 300
 \OML/lmm/m/it/10.95 c[]\OT1/lmr/m/n/10.95 (\OML/lmm/m/it/10.95 ^^_; ^^Z\OT1/lmr
 /m/n/10.95 )  =  []  +  \OML/lmm/m/it/10.95 C[]\OT1/lmr/m/n/10.95 (\OML/lmm/m/i
@@ -1053,11 +1065,11 @@ m/it/10.95 O\OT1/lmr/m/n/10.95 (([] [] \OML/lmm/m/it/10.95 K\OT1/lmr/m/n/10.95
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 321.
 
-[17]) [18] (paper.aux)
+[16]) [17] [18] (paper.aux)
 Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: C6F7AA930A6BA39142E20596C507F547;6593.
 Package logreq Info: Writing requests to 'paper.run.xml'.
 \openout1 = `paper.run.xml'.
 
  )
-Output written on paper.xdv (18 pages, 116904 bytes).
+Output written on paper.xdv (18 pages, 116172 bytes).
