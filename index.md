@@ -41,4 +41,5 @@ Compact catalog. Update after material wiki changes.
 - GL1 sharp Perron boundary 2026-05-11: `handoff-2026-05-11-implementation-wave/GL1_SHARP_PERRON_BOUNDARY_2026-05-11.md`
 - B+ tier 1B execution boundary 2026-05-11: `handoff-2026-05-11-implementation-wave/BPLUS_TIER1B_EXECUTION_BOUNDARY_2026-05-11.md`
 - EC C2-prime implementation 2026-05-11: `handoff-2026-05-11-implementation-wave/EC_C2_PRIME_IMPLEMENTATION_2026-05-11.md`
-- Koyama paper-prep bundle 2026-05-12: `handoff-2026-05-12-paper-prep/recent/README.md` (cover note, section draft, Appendices A/B, Lean status, scope audit, halo GL(1) sketch; 9 sorries across 9 Lean files, three fully proved).
+- Koyama paper-prep bundle 2026-05-12 (sent + replied to): `handoff-2026-05-12-paper-prep/recent/README.md` — cover note, section draft §X, Appendices A/B, Lean status, scope audit, halo GL(1) sketch.
+- Koyama paper-prep continuation 2026-05-13: LaTeX bundle (`handoff-2026-05-12-paper-prep/recent/latex/`, 18-page PDF), §X.5.4 extended to K=10^8, FareySignPattern closures (Lean sorry count 5 → 2), discussion drafts (Abstract, Intro, SP-L sufficient packages, midweek update). Two Lean sorries remain, both DPAC headline (LI-class); seven of nine files fully proved.
