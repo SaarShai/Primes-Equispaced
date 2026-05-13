@@ -14,3 +14,6 @@ dc276a90-66ac-4070-b5cb-de34d0ea5c5c remaining_5_sorries_round3
 
 # 2026-05-12 — fourth-round dispatch: DPAC headline closure attempt (long shot)
 4b194281-8fb6-474c-aaf3-15d227c445e3 DPAC_headline_round4
+
+# 2026-05-12 — fifth-round dispatch: CorrectedBInfty (Thm X.4.1) closure attempt
+85006714-72d5-4107-ba71-ee5d69590a80 CorrectedBInfty_round5

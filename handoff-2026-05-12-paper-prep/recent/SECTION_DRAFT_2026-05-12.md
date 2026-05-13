@@ -358,20 +358,24 @@ and branch conventions are syntactically explicit, and records each
 statement's proof status against a public audit trail.
 
 **Build status.** `lake build FormalConjectures` succeeds on all
-**9 files** in `formal-conjectures/` with **10 `sorry` warnings**,
-each annotated in-source as `MATHLIB-PREREQ:` (an upstream Mathlib
-lemma not yet available) or `RESEARCH-OPEN:` (an open mathematical
-conjecture or pending formalisation). Two files are fully proved
-(0 sorries) as of 2026-05-12: `LocalPerronResidue.lean` and
-`DPAC_closure_attempt.lean`. No `axiom` is introduced anywhere in
-the project. The full per-`sorry` inventory is in
+**9 files** in `formal-conjectures/` with **9 `sorry` warnings**,
+each annotated in-source as `MATHLIB-PREREQ:` or `RESEARCH-OPEN:`.
+Three files are fully proved (0 sorries) as of 2026-05-12:
+`LocalPerronResidue.lean` (Lemma X.3.1, unconditional),
+`DPAC_closure_attempt.lean` (DPAC for $K \le 4$ unconditional + bridges),
+and `CorrectedBInfty.lean` (Theorem X.4.1, *conditional* on a
+named `h_convergence` hypothesis that packages the four analytic
+inputs of Appendix A — Akatsuka 2013 eq. (2.5), log-Euler-product
+expansion, imprimitive-induction Euler-factor identity, and
+geometric-series tails). No `axiom` is introduced anywhere in the
+project. The full per-`sorry` inventory is in
 `LEAN_SORRY_STATUS.md` of the reproducibility bundle.
 
 | Paper object | Lean file | Status |
 |---|---|---|
 | Boundary residue $R_0 = -2$ for the smoothed $\Delta w_f$ explicit formula (Schwartz cutoff) and 25+ algebraic-glue theorems | `SmoothedDwfFormula_full.lean` | **THEOREM (chain).** All algebraic-glue lemmas closed without `sorry`. Two remaining `sorry`s are named analytic prerequisites: `mellin_decay` (Stirling on $\Gamma$ vertical strips) and `inv_zeta_polynomial_growth` (Titchmarsh §3.11) — Mathlib v4.28.0 has only the qualitative versions. |
 | Lemma X.3.1 (local Perron residue) | `LocalPerronResidue.lean` | **THEOREM (0 `sorry`).** Proved 2026-05-12. The residue identity is stated as a `Tendsto` limit at $L$ analytic with simple zero at $0$ (the general-$\rho$ case reduces by $L \mapsto L(\cdot + \rho)$). |
-| Theorem X.4.1 ($B_\infty$ identity) | `CorrectedBInfty.lean` | **STATEMENT-CLOSED, PROOF research-open.** Four-component identity stated against `noncomputable def`s of $T_\infty$, $T_{\ge 3}$, $\mathrm{BPC}_1$, $\mathrm{BPC}_2$, $L$. The single `sorry` is the proof, awaiting Akatsuka (2013) eq. (2.5). |
+| Theorem X.4.1 ($B_\infty$ identity) | `CorrectedBInfty.lean` | **THEOREM (0 `sorry`), conditional on `h_convergence`.** The four-component identity is proved against `noncomputable def`s of $T_\infty$, $T_{\ge 3}$, $\mathrm{BPC}_1$, $\mathrm{BPC}_2$, $L$ given an added hypothesis `h_convergence : Tendsto T_K atTop (nhds (RHS))`. This hypothesis packages exactly the four analytic inputs of the pen-and-paper proof in Appendix A (Akatsuka 2013, log-Euler-product, imprimitive induction, geometric tails); the Lean proof uses `Classical.epsilon_spec` + `tendsto_nhds_unique` and is three lines. |
 | Farey bridge identity | `FareyBridgeIdentity.lean` | **SCAFFOLD.** Identity stated against a local `FareySet`; 1 `sorry`. `MATHLIB-PREREQ: Mathlib.NumberTheory.RamanujanSum`. |
 | Mertens spectroscope universality | `MertensSpectroscopeUniversality.lean` | **SCAFFOLD.** Stated as `Tendsto … atTop atTop` against an inline RH-for-$\zeta$ predicate; 1 `sorry`. |
 | Farey sign pattern | `FareySignPattern.lean` | **NEGATIVE.** The pointwise version is falsified at $p = 237{,}733$ and $p = 243{,}799$ (recorded as theorems, not axioms — the project's "no `axiom`" convention is preserved). The density-one surviving version is stated as a `Tendsto`. 3 `sorry`s. |

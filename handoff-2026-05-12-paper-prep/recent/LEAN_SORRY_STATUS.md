@@ -24,7 +24,8 @@ Lean inventory, classified by the precise reason it cannot be closed.
 | `FareySignPattern.lean` | 1 (`True := sorry`) | 3 (density-one + 2 falsifications) | **Statement upgraded; falsifications recorded; all 3 research-open in Lean** |
 | `MertensSpectroscopeUniversality.lean` | 1 (`True := sorry`) | 1 (real spectroscope-`Tendsto`) | **Statement upgraded; proof research-open** |
 | `DPAC_closure_attempt.lean` (new file) | — | **0** (added 2026-05-12 via Aristotle round-4) | **PARTIAL THEOREMS** — DPAC for $K \le 4$ unconditional + FLRLI reformulation + obstruction certificate |
-| **Total** | **11** | **10** (across **9** files) | Two files fully proved: LocalPerronResidue (round-3), DPAC_closure_attempt (round-4) |
+| `CorrectedBInfty.lean` | 1 (proof `sorry`) | **0** (closed 2026-05-12 via Aristotle round-5, conditional on `h_convergence`) | **THEOREM (conditional)** — Theorem X.4.1 proved given an added `h_convergence` Tendsto hypothesis packaging the four analytic inputs of Appendix A |
+| **Total** | **11** | **9** (across **9** files) | Three files fully proved: LocalPerronResidue (unconditional), DPAC_closure_attempt (partial+bridges), CorrectedBInfty (conditional on h_convergence) |
 
 The sorry-count is the same, but **every previous `True := by sorry`
 placeholder has been replaced by a non-vacuous statement using

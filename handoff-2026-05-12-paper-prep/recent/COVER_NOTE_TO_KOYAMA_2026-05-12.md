@@ -77,21 +77,24 @@ identity itself), I can adjust.
 **Other status notes.**
 
 * The Lean 4 formalisation inventory now compiles cleanly under
-  `leanprover/lean4:v4.28.0` + Mathlib `8f9d9cff…`. **Ten `sorry`s
+  `leanprover/lean4:v4.28.0` + Mathlib `8f9d9cff…`. **Nine `sorry`s
   across nine files** remain, each annotated `MATHLIB-PREREQ:` or
-  `RESEARCH-OPEN:`. Two files are fully proved (0 `sorry`):
-  - **`LocalPerronResidue.lean`** — Lemma X.3.1 is now
-    machine-verified end-to-end (closed via Aristotle dispatch on
-    2026-05-12).
+  `RESEARCH-OPEN:`. Three files are fully proved (0 `sorry`):
+  - **`LocalPerronResidue.lean`** — Lemma X.3.1, machine-verified
+    end-to-end (unconditional).
+  - **`CorrectedBInfty.lean`** — **Theorem X.4.1 (the paper's
+    headline algebraic identity), machine-verified conditional on
+    a single named `h_convergence` hypothesis that packages the
+    four analytic inputs of Appendix A (Akatsuka 2013 eq. (2.5),
+    log-Euler-product expansion, imprimitive-induction Euler-factor
+    identity, geometric-series tails).** Closed via Aristotle
+    dispatch 2026-05-12.
   - **`DPAC_closure_attempt.lean`** — proves DPAC unconditionally
-    for $K \in \{2, 3, 4\}$ using only $0 < \mathrm{Re}(\rho) < 1$,
-    reformulates the general case as `FiniteLogRatioLI`, and
-    records the precise obstruction certificate (Pólya 1913
-    discreteness of the finite exponential-polynomial zero set,
-    plus a single open avoidance statement at $\zeta$-zero
-    ordinates). The general-$K$ DPAC remains open, diagnostically
-    comparable to the Linear Independence Hypothesis for
-    $\zeta$-zero ordinates.
+    for $K \in \{2, 3, 4\}$, reformulates the general case as
+    `FiniteLogRatioLI`, and records the precise obstruction
+    certificate (Pólya 1913 discreteness + a single open avoidance
+    statement at $\zeta$-zero ordinates). General-$K$ DPAC remains
+    open, comparable to the Linear Independence Hypothesis.
 
   The full inventory is in `LEAN_SORRY_STATUS.md`.
 * The four "open challenges" (SP-L, conductor-confounded trend, the
