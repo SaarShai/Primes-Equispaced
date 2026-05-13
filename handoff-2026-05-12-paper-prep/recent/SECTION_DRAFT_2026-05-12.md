@@ -273,13 +273,14 @@ $x = e^{33.4} \approx 3.2 \cdot 10^{14}$, indicating that
 strict dominance for the harder moduli is expected only at
 substantially larger $x$.
 
-Replication bundle (delivered 2026-05-04): `koyama_replication_bundle/`
-with source, build hashes, TSV outputs, and `MANIFEST.txt`.
+The full replication bundle (source code, build hashes, TSV
+outputs, and reproducibility manifest) is deposited as
+Supplementary Material S1.
 
 ### X.5.2 Numerical values of the four Dirichlet pairs
 
 The four pairs $(\chi, \rho)$ used throughout §X.5.2–§X.5.4 (all
-values computed at 50 dps via `Koyama_C1.py`):
+values computed in mpmath at 50 decimal places):
 
 | Pair | $\chi$ (conductor) | $\rho = \tfrac12 + i\tau$ | $L'(\rho,\chi)$ | $L''(\rho,\chi)$ |
 |---|---|---|---|---|
@@ -372,7 +373,7 @@ statement's proof status against a public audit trail.
 **Build status.** `lake build FormalConjectures` succeeds on all
 **9 files** in `formal-conjectures/` with **5 `sorry` warnings**,
 each annotated in-source as `MATHLIB-PREREQ:` or `RESEARCH-OPEN:`.
-**Six files are fully proved (0 `sorry`)** as of 2026-05-12: all
+**Six files are fully proved (0 `sorry`)**: all
 the algebraic content of §X.3, §X.4, the smoothed
 explicit-formula chain, the Mertens spectroscope universality
 statement, the Farey bridge identity, and DPAC for $K \le 4$.
@@ -393,7 +394,7 @@ reproducibility bundle.
 | Paper object | Lean file | Status |
 |---|---|---|
 | Boundary residue $R_0 = -2$ for a Gaussian-cutoff Mellin-shift explicit formula (companion strand) and its algebraic-glue chain | `SmoothedDwfFormula_full.lean` | **THEOREM (chain), 0 `sorry`.** All 17 algebraic-glue lemmas closed unconditionally; the two analytic prerequisites `mellin_decay` (Stirling on $\Gamma$ vertical strips) and `inv_zeta_polynomial_growth` (Titchmarsh §3.11) are now stated as explicit hypotheses on the theorems that consume them, both Mathlib v4.28.0 gaps. |
-| Lemma X.3.1 (local Perron residue) | `LocalPerronResidue.lean` | **THEOREM (0 `sorry`).** Proved 2026-05-12. The residue identity is stated as a `Tendsto` limit at $L$ analytic with simple zero at $0$ (the general-$\rho$ case reduces by $L \mapsto L(\cdot + \rho)$). |
+| Lemma X.3.1 (local Perron residue) | `LocalPerronResidue.lean` | **THEOREM (0 `sorry`).** The residue identity is stated as a `Tendsto` limit at $L$ analytic with simple zero at $0$ (the general-$\rho$ case reduces by $L \mapsto L(\cdot + \rho)$). |
 | Theorem X.4.1 ($B_\infty$ identity) | `CorrectedBInfty.lean` | **THEOREM (0 `sorry`), conditional on `h_convergence`.** The four-component identity is proved against `noncomputable def`s of $T_\infty$, $T_{\ge 3}$, $\mathrm{BPC}_1$, $\mathrm{BPC}_2$, $L$ given an added hypothesis `h_convergence : Tendsto T_K atTop (nhds (RHS))`. This hypothesis packages exactly the four analytic inputs of the pen-and-paper proof in Appendix A (Akatsuka 2013, log-Euler-product, imprimitive induction, geometric tails); the Lean proof uses `Classical.epsilon_spec` + `tendsto_nhds_unique` and is three lines. |
 | Farey bridge identity | `FareyBridgeIdentity.lean` | **THEOREM (0 `sorry`), conditional on a Ramanujan-sum decomposition hypothesis** packaging the Hardy–Wright Theorem 304 input (`c_q(p) = \mu(q)` for $\gcd(p,q) = 1$). Two helper lemmas (`mertens_eq_pred_add_moebius`, `sum_moebius_Icc_eq_mertens`) closed without `sorry`. `MATHLIB-PREREQ: Mathlib.NumberTheory.RamanujanSum` for the unconditional version. |
 | Mertens spectroscope universality | `MertensSpectroscopeUniversality.lean` | **THEOREM (0 `sorry`), conditional on an explicit-formula asymptotic hypothesis** (Soundararajan 2009 Theorem 1 input). Proof: `Filter.tendsto_atTop.mpr h_explicit_formula`. |
@@ -475,8 +476,8 @@ The bundle pins all software versions: Lean toolchain
 `leanprover/lean4:v4.28.0`, Mathlib commit
 `8f9d9cff6bd728b17a24e163c9402775d9e6a365`, `mpmath` 1.4,
 PARI/GP 2.17.3, FLINT 3.3 / python-flint 0.8.0. The Phase-1
-Dominance-of-$-1$ replication bundle (`koyama_replication_bundle.zip`)
-is the version supplied to S. Koyama on 2026-05-04. Each numerical
+Dominance-of-$-1$ replication bundle is included as the
+Supplementary Material S1 archive. Each numerical
 table in §X.5 cites the L1 script and L2 reproducer; each external
 theorem cited in §X.4 has its PDF retrieval recipe, page/equation,
 and verbatim quote recorded in the citation audit
