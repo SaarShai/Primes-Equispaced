@@ -360,16 +360,19 @@ statement's proof status against a public audit trail.
 **Build status.** `lake build FormalConjectures` succeeds on all
 **9 files** in `formal-conjectures/` with **9 `sorry` warnings**,
 each annotated in-source as `MATHLIB-PREREQ:` or `RESEARCH-OPEN:`.
-Three files are fully proved (0 sorries) as of 2026-05-12:
-`LocalPerronResidue.lean` (Lemma X.3.1, unconditional),
-`DPAC_closure_attempt.lean` (DPAC for $K \le 4$ unconditional + bridges),
-and `CorrectedBInfty.lean` (Theorem X.4.1, *conditional* on a
-named `h_convergence` hypothesis that packages the four analytic
-inputs of Appendix A — Akatsuka 2013 eq. (2.5), log-Euler-product
-expansion, imprimitive-induction Euler-factor identity, and
-geometric-series tails). No `axiom` is introduced anywhere in the
-project. The full per-`sorry` inventory is in
-`LEAN_SORRY_STATUS.md` of the reproducibility bundle.
+No `axiom` is introduced anywhere in the project. The full
+per-`sorry` inventory is in `LEAN_SORRY_STATUS.md` of the
+reproducibility bundle.
+
+**Status of headline theorems** in §X.3–§X.4:
+
+| Paper object | Lean status |
+|---|---|
+| Lemma X.3.1 (local Perron residue) | **Lean-verified unconditional** (`LocalPerronResidue.lean`, 0 `sorry`) |
+| Theorem X.4.1 (corrected $B_\infty$ identity) | **Lean-verified conditional** on the convergence-of-partial-sum hypothesis derived in Appendix A (`CorrectedBInfty.lean`, 0 `sorry`) |
+| Theorem X.4.2 ($c_K$ leading + subleading) | Pen-and-paper proof in Appendix B; off-target-zero-simplicity hypothesis stated explicitly |
+| (AK), (SP-L), (NDC) | (AK) cited (Aoki–Koyama 2023); (SP-L) and (NDC) open challenges (Q:Perron, §X.7) |
+| DPAC | **Lean-verified for $K \le 4$ unconditional** (`DPAC_closure_attempt.lean`, 0 `sorry`); general $K$ open (LI-class), with obstruction certificate via Pólya 1913 |
 
 | Paper object | Lean file | Status |
 |---|---|---|
