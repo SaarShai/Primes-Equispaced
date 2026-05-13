@@ -17,6 +17,11 @@ See DPAC_full.lean for the full conjecture statement and existing bridges.
 
 import Mathlib
 
+-- Some hypotheses are kept for mathematical content even when the (short,
+-- conditional) proof does not consume them. Silence the unused-variable
+-- linter for this file.
+set_option linter.unusedVariables false
+
 noncomputable section
 
 open Complex Finset BigOperators

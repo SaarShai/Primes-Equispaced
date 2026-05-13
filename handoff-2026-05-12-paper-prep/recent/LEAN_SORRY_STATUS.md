@@ -285,8 +285,10 @@ The "no `axiom`" project convention is preserved throughout.
 ## Local compile verification (added 2026-05-12, commit `bf6aeae`)
 
 `lake build FormalConjectures` against `leanprover/lean4:v4.28.0` +
-Mathlib commit `8f9d9cff…` now **succeeds on all 8 files** in
-`formal-conjectures/`, with only the expected 11 `sorry` warnings.
+Mathlib commit `8f9d9cff…` **succeeds on all 9 files** in
+`formal-conjectures/` with **exactly 5 warnings** (all `sorry`
+warnings for the genuinely-open theorems; zero linter warnings,
+zero errors). Six files are fully proved (0 `sorry`).
 
 Fixes applied in this round:
 

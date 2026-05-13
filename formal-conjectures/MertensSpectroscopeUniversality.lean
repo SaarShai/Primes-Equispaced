@@ -112,13 +112,13 @@ theorem mertens_spectroscope_universality
     (P : ℕ → Prop) [DecidablePred P]
     -- "P is a set of primes" is encoded inside `spectroscope` already;
     -- we add the divergence-of-reciprocals hypothesis:
-    (hP_div : ¬ Summable (fun n : ℕ =>
+    (_hP_div : ¬ Summable (fun n : ℕ =>
         if Nat.Prime n ∧ P n then (1 : ℝ) / (n : ℝ) else 0))
     -- The Riemann Hypothesis for `ζ`:
-    (hRH : RiemannHypothesisForZeta)
+    (_hRH : RiemannHypothesisForZeta)
     -- A nontrivial zero of `ζ`:
-    (ρ : ℂ) (hρ : riemannZeta ρ = 0)
-    (hρ_nontrivial : 0 < ρ.re ∧ ρ.re < 1)
+    (ρ : ℂ) (_hρ : riemannZeta ρ = 0)
+    (_hρ_nontrivial : 0 < ρ.re ∧ ρ.re < 1)
     -- Named analytic prerequisite (Soundararajan 2009, Theorem 1):
     -- The explicit formula for `M(x)` with quantitative error term,
     -- applied to the spectroscope partial sums, gives that for every

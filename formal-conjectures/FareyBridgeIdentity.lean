@@ -6,6 +6,11 @@ Authors: Saar Shai
 
 import Mathlib
 
+-- Some hypotheses are kept for mathematical content even when the (short,
+-- conditional) proof does not consume them. Silence the unused-variable
+-- linter for this file.
+set_option linter.unusedVariables false
+
 /-!
 # Farey Bridge Identity (Lemma 3.1 of Shai 2026)
 

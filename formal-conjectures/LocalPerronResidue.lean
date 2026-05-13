@@ -6,6 +6,13 @@ Authors: Saar Shai
 
 import Mathlib
 
+-- Aristotle's auto-generated proof of `local_perron_residue` emits a
+-- handful of redundant simp-argument linter warnings. The proof is
+-- correct (0 sorry, only the standard `propext` / `Classical.choice` /
+-- `Quot.sound` axioms); we silence the cosmetic linter warnings.
+set_option linter.unusedSimpArgs false
+set_option linter.unusedTactic false
+
 /-!
 # Local Perron Residue Formula
 

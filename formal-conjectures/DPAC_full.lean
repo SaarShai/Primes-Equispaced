@@ -26,6 +26,11 @@ before the attribute block to comply with Lean 4 grammar.  The sum syntax
 
 import Mathlib
 
+-- Some hypotheses are kept for mathematical content even when the (short,
+-- conditional) proof does not consume them. Silence the unused-variable
+-- linter for this file.
+set_option linter.unusedVariables false
+
 /-!
 # Dirichlet Polynomial Avoidance Conjecture
 

@@ -37,6 +37,11 @@ In this Lean file we:
 
 import Mathlib
 
+-- Some hypotheses are kept for mathematical content even when the (short,
+-- conditional) proof does not consume them. Silence the unused-variable
+-- linter for this file.
+set_option linter.unusedVariables false
+
 namespace CorrectedBInfty
 
 open Complex BigOperators
