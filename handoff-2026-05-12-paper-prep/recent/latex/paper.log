@@ -906,8 +906,8 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
 
 Underfull \hbox (badness 10000) in paragraph at lines 516--526
 []\T1/lmr/bx/n/10.95 Build sta-tus. \T1/lmtt/m/n/10.95 lake build FormalConject
-ures \T1/lmr/m/n/10.95 suc-ceeds on all \T1/lmr/bx/n/10.95 9 files \T1/lmr/m/n/
-10.95 in
+ures \T1/lmr/m/n/10.95 suc-ceeds on all \T1/lmr/bx/n/10.95 10 files \T1/lmr/m/n
+/10.95 in
  []
 
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
@@ -923,33 +923,33 @@ Overfull \hbox (37.76395pt too wide) in paragraph at lines 572--572
  []
 
 
-Overfull \hbox (23.40175pt too wide) in paragraph at lines 574--574
+Overfull \hbox (23.40175pt too wide) in paragraph at lines 575--575
 \T1/lmtt/m/n/10 DirichletPolynomialAvoidance.lean\T1/lmr/m/n/10 , 
  []
 
 
-Overfull \hbox (39.1517pt too wide) in paragraph at lines 574--575
+Overfull \hbox (39.1517pt too wide) in paragraph at lines 575--576
 \T1/lmtt/m/n/10 DirichletPolynomialAvoidance.lean:48\T1/lmr/m/n/10 , 
  []
 
 
-Overfull \hbox (10.3708pt too wide) in paragraph at lines 574--575
+Overfull \hbox (10.3708pt too wide) in paragraph at lines 575--576
 \T1/lmr/m/n/10 (\T1/lmtt/m/n/10 dpac_of_logPrimePhaseAvoidance\T1/lmr/m/n/10 , 
 
  []
 
 
-Overfull \hbox (14.23303pt too wide) in paragraph at lines 574--575
+Overfull \hbox (14.23303pt too wide) in paragraph at lines 575--576
 \T1/lmtt/m/n/10 dpac_of_certifiedZetaZeroSample\T1/lmr/m/n/10 ) 
  []
 
-[6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 592--595
+[6] [7] [8]
+Underfull \hbox (badness 10000) in paragraph at lines 593--596
 []\T1/lmr/m/n/10.95 Three suf-fi-cient pack-ages, in de-creas-ing strength of i
 n-put re-quired (see
  []
 
-[8]) (appendix_A
+[9]) (appendix_A
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1.
@@ -966,12 +966,12 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1.
 
-[9]
+[10]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 60.
 
-[10] [11]
+[11]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 202.
@@ -980,7 +980,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\ge' on input line 202.
 
-[12]
+[12] [13]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\leavevmode@ifvmode' on input line 377.
@@ -1003,7 +1003,6 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1.
 
-[13]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 29.
@@ -1020,7 +1019,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\chi' on input line 29.
 
-
+[14]
 Underfull \hbox (badness 1701) in paragraph at lines 93--98
 []\T1/lmr/m/n/10.95 This is the un-shifted form, ap-plied to the partial-charac
 ter-Möbius sum $\OML/lmm/m/it/10.95 M[]\OT1/lmr/m/n/10.95 (\OML/lmm/m/it/10.95 
@@ -1038,7 +1037,7 @@ m/m/it/10.95 w \OT1/lmr/m/n/10.95 = 0$\T1/lmr/bx/n/10.95 .[][] \T1/lmr/m/n/10.9
 5 The pole-structure com-pu-ta-tion of this sec-
  []
 
-[14] [15]
+[15] [16]
 Overfull \hbox (128.1557pt too wide) detected at line 300
 \OML/lmm/m/it/10.95 c[]\OT1/lmr/m/n/10.95 (\OML/lmm/m/it/10.95 ^^_; ^^Z\OT1/lmr
 /m/n/10.95 )  =  []  +  \OML/lmm/m/it/10.95 C[]\OT1/lmr/m/n/10.95 (\OML/lmm/m/i
@@ -1054,11 +1053,11 @@ m/it/10.95 O\OT1/lmr/m/n/10.95 (([] [] \OML/lmm/m/it/10.95 K\OT1/lmr/m/n/10.95
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 321.
 
-[16]) [17] [18] (paper.aux)
+[17]) [18] (paper.aux)
 Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: C6F7AA930A6BA39142E20596C507F547;6593.
 Package logreq Info: Writing requests to 'paper.run.xml'.
 \openout1 = `paper.run.xml'.
 
  )
-Output written on paper.xdv (18 pages, 115988 bytes).
+Output written on paper.xdv (18 pages, 116904 bytes).

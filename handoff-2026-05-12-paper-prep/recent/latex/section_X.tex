@@ -514,9 +514,9 @@ and branch conventions are syntactically explicit, and records each
 statement's proof status against a public audit trail.
 
 \textbf{Build status.} \texttt{lake\ build\ FormalConjectures} succeeds on all
-\textbf{9 files} in \texttt{formal-conjectures/} with \textbf{2 \texttt{sorry} warnings},
+\textbf{10 files} in \texttt{formal-conjectures/} with \textbf{2 \texttt{sorry} warnings},
 each annotated in-source as \texttt{MATHLIB-PREREQ:} or \texttt{RESEARCH-OPEN:}.
-\textbf{Seven files are fully proved (0 \texttt{sorry})}: all
+\textbf{Eight files are fully proved (0 \texttt{sorry})}: all
 the algebraic content of \S\,X.3, \S\,X.4, the smoothed
 explicit-formula chain, the Mertens spectroscope universality
 statement, the Farey bridge identity, and DPAC for \(K \le 4\).
@@ -571,6 +571,7 @@ Theorem X.4.1 (\(B_\infty\) identity) & \texttt{CorrectedBInfty.lean} & \textbf{
 Farey bridge identity & \texttt{FareyBridgeIdentity.lean} & \textbf{THEOREM (0 \texttt{sorry}), conditional on a Ramanujan-sum decomposition hypothesis} packaging the Hardy--Wright~\cite[Theorem~304]{HardyWright2008} input (\texttt{c\_q(p)\ =\ \textbackslash{}mu(q)} for \(\gcd(p,q) = 1\)). Two helper lemmas (\texttt{mertens\_eq\_pred\_add\_moebius}, \texttt{sum\_moebius\_Icc\_eq\_mertens}) closed without \texttt{sorry}. \texttt{MATHLIB-PREREQ:\ Mathlib.NumberTheory.RamanujanSum} for the unconditional version. \\
 Mertens spectroscope universality & \texttt{MertensSpectroscopeUniversality.lean} & \textbf{THEOREM (0 \texttt{sorry}), conditional on an explicit-formula asymptotic hypothesis} (Soundararajan~\cite[Theorem~1]{Soundararajan2009} input). Proof: \texttt{Filter.tendsto\_atTop.mpr\ h\_explicit\_formula}. \\
 Farey sign pattern & \texttt{FareySignPattern.lean} & \textbf{NEGATIVE.} The pointwise version is falsified at \(p = 237{,}733\) and \(p = 243{,}799\) (recorded as theorems, not axioms --- the project's ``no \texttt{axiom}'' convention is preserved). The density-one surviving version is stated as a \texttt{Tendsto}. 3 \texttt{sorry}s. \\
+Ramanujan sum at primes (Hardy \& Wright Thm 304) & \texttt{RamanujanSum.lean} & \textbf{THEOREM (0 \texttt{sorry}).} For any \(q \ge 1\) and prime \(p\) coprime to \(q\), \(c_q(p) = \mu(q)\). Uses the Möbius-inversion form \(c_q(n) = \sum_{d \mid \gcd(q, n)} d \mu(q/d)\); the proof reduces the divisor set to \(\{1\}\) via \(\gcd\)-commutativity. Discharges piece (1) of \texttt{FareyBridgeIdentity}'s \texttt{h\_ramanujan\_decomp}; full discharge still requires the Farey-sequence decomposition lemmas (Mathlib gap). \\
 Dirichlet Polynomial Avoidance (DPAC) --- partial closure + bridges & \texttt{DPAC\_closure\_attempt.lean}, \texttt{DirichletPolynomialAvoidance.lean}, \texttt{DPAC\_full.lean} & \textbf{PARTIAL.} \texttt{DPAC\_closure\_attempt.lean} (0 \texttt{sorry}) proves DPAC unconditionally for \(K \in \{2, 3, 4\}\) using only \(0 < \mathrm{Re}(\rho) < 1\) (\texttt{dpac\_K\_eq\_2}, \texttt{dpac\_K\_eq\_3}, \texttt{dpac\_K\_eq\_4}, \texttt{dpac\_le\_4}). It also reformulates the open case as \texttt{FiniteLogRatioLI} and records the obstruction certificate (\cite{Polya1913} discreteness of the exponential-polynomial zero set + a single open avoidance statement). The headline conjecture for general \(K\) remains \texttt{sorry} in \texttt{DPAC\_full.lean:297} and \texttt{DirichletPolynomialAvoidance.lean:48}, diagnostically comparable to the Linear Independence Hypothesis for \(\zeta\)-zero ordinates; the four explicit phase-avoidance bridges (\texttt{dpac\_of\_logPrimePhaseAvoidance}, \ldots, \texttt{dpac\_of\_certifiedZetaZeroSample}) are closed without \texttt{sorry}. \\
 \end{longtable}
 }

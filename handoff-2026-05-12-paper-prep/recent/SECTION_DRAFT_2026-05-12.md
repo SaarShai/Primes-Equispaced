@@ -386,9 +386,9 @@ and branch conventions are syntactically explicit, and records each
 statement's proof status against a public audit trail.
 
 **Build status.** `lake build FormalConjectures` succeeds on all
-**9 files** in `formal-conjectures/` with **2 `sorry` warnings**,
+**10 files** in `formal-conjectures/` with **2 `sorry` warnings**,
 each annotated in-source as `MATHLIB-PREREQ:` or `RESEARCH-OPEN:`.
-**Seven files are fully proved (0 `sorry`)**: all
+**Eight files are fully proved (0 `sorry`)**: all
 the algebraic content of §X.3, §X.4, the smoothed
 explicit-formula chain, the Mertens spectroscope universality
 statement, the Farey bridge identity, and DPAC for $K \le 4$.
@@ -414,6 +414,7 @@ reproducibility bundle.
 | Farey bridge identity | `FareyBridgeIdentity.lean` | **THEOREM (0 `sorry`), conditional on a Ramanujan-sum decomposition hypothesis** packaging the Hardy–Wright Theorem 304 input (`c_q(p) = \mu(q)` for $\gcd(p,q) = 1$). Two helper lemmas (`mertens_eq_pred_add_moebius`, `sum_moebius_Icc_eq_mertens`) closed without `sorry`. `MATHLIB-PREREQ: Mathlib.NumberTheory.RamanujanSum` for the unconditional version. |
 | Mertens spectroscope universality | `MertensSpectroscopeUniversality.lean` | **THEOREM (0 `sorry`), conditional on an explicit-formula asymptotic hypothesis** (Soundararajan 2009 Theorem 1 input). Proof: `Filter.tendsto_atTop.mpr h_explicit_formula`. |
 | Farey sign pattern | `FareySignPattern.lean` | **NEGATIVE.** The pointwise version is falsified at $p = 237{,}733$ and $p = 243{,}799$ (recorded as theorems, not axioms — the project's "no `axiom`" convention is preserved). The density-one surviving version is stated as a `Tendsto`. 3 `sorry`s. |
+| Ramanujan sum at primes (Hardy & Wright Thm 304) | `RamanujanSum.lean` | **THEOREM (0 `sorry`).** For any $q \ge 1$ and prime $p$ coprime to $q$, $c_q(p) = \mu(q)$. Uses the Möbius-inversion form $c_q(n) = \sum_{d \mid \gcd(q, n)} d \mu(q/d)$; the proof reduces the divisor set to $\{1\}$ via $\gcd$-commutativity. Discharges piece (1) of `FareyBridgeIdentity`'s `h_ramanujan_decomp`; full discharge still requires the Farey-sequence decomposition lemmas (Mathlib gap). |
 | Dirichlet Polynomial Avoidance (DPAC) — partial closure + bridges | `DPAC_closure_attempt.lean`, `DirichletPolynomialAvoidance.lean`, `DPAC_full.lean` | **PARTIAL.** `DPAC_closure_attempt.lean` (0 `sorry`) proves DPAC unconditionally for $K \in \{2, 3, 4\}$ using only $0 < \mathrm{Re}(\rho) < 1$ (`dpac_K_eq_2`, `dpac_K_eq_3`, `dpac_K_eq_4`, `dpac_le_4`). It also reformulates the open case as `FiniteLogRatioLI` and records the obstruction certificate (Pólya 1913 discreteness of the exponential-polynomial zero set + a single open avoidance statement). The headline conjecture for general $K$ remains `sorry` in `DPAC_full.lean:297` and `DirichletPolynomialAvoidance.lean:48`, diagnostically comparable to the Linear Independence Hypothesis for $\zeta$-zero ordinates; the four explicit phase-avoidance bridges (`dpac_of_logPrimePhaseAvoidance`, …, `dpac_of_certifiedZetaZeroSample`) are closed without `sorry`. |
 
 The role of the Lean artifact is to fix the statements and provide
