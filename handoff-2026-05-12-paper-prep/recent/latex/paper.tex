@@ -1,0 +1,68 @@
+% Minimal wrapper for the Saar–Koyama §X technical/computational
+% section. Designed for drop-in compilation while the host paper
+% structure is being assembled; on integration the host paper will
+% replace this preamble and \input the three subfiles.
+%
+% Compile: pdflatex paper && bibtex paper && pdflatex paper && pdflatex paper
+
+\documentclass[11pt]{amsart}
+
+% ---------- packages ---------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{booktabs, longtable, array}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue!50!black, citecolor=blue!50!black, urlcolor=blue!50!black}
+
+% ---------- theorem environments --------------------------------------------
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{hypothesis}{Hypothesis}
+
+% ---------- macros used in §X / appendices ----------------------------------
+\newcommand{\Re}{\operatorname{Re}}     % \Re is built-in but we re-bind to match the markdown
+\renewcommand{\Re}{\operatorname{Re}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\BPC}{\mathrm{BPC}}
+\newcommand{\dps}{\mathrm{dps}}
+
+% ---------- bibliography ----------------------------------------------------
+\usepackage[backend=bibtex,style=alphabetic,maxbibnames=4]{biblatex}
+\addbibresource{references.bib}
+
+% ---------- meta -------------------------------------------------------------
+\title{Methodology, formalization, and numerical evidence \\
+       \large (Technical / Computational section --- draft)}
+\author{Shin-ya Koyama \and Saar Shai}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Placeholder. The abstract for the full paper will be drafted jointly
+once the technical section is finalised.
+\end{abstract}
+
+\input{section_X}
+
+\appendix
+\input{appendix_A}
+\input{appendix_B}
+
+\printbibliography
+
+\end{document}
