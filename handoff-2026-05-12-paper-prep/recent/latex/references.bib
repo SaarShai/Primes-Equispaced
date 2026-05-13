@@ -46,11 +46,13 @@
 
 @article{Inoue2021,
   author  = {Inoue, Shuya},
-  title   = {Truncated explicit formula for {$M(x, \chi)$}},
+  title   = {Some explicit formulas for partial sums of {M\"obius} functions},
   journal = {Journal de Th\'eorie des Nombres de Bordeaux},
   volume  = {33},
+  number  = {1},
   year    = {2021},
-  note    = {Theorem 1: truncated explicit formula used in Appendix~B \S{}B.1, \S{}B.3 to set up the contour integration for Theorem~X.4.2.},
+  pages   = {273--315},
+  note    = {Theorem 1 and eq.~(4.1): the truncated explicit formula for $M^*(x, \chi)$ used in Appendix~B \S{}B.1, \S{}B.3 to set up the contour integration for Theorem~X.4.2.},
 }
 
 @book{MontgomeryVaughan2007,
@@ -110,4 +112,76 @@
   publisher = {Oxford University Press},
   year      = {1986},
   note      = {Heath-Brown revision. \S{}3.11: the polynomial-growth bound on $1/\zeta(s)$ used in \texttt{SmoothedDwfFormula\_full.lean} and cited as a Mathlib prerequisite in \S{}X.6.},
+}
+
+% ---- Classical context (cited in the Introduction) -----------------
+
+@article{RubinsteinSarnak1994,
+  author  = {Rubinstein, Michael and Sarnak, Peter},
+  title   = {{Chebyshev's} bias},
+  journal = {Experimental Mathematics},
+  volume  = {3},
+  number  = {3},
+  year    = {1994},
+  pages   = {173--197},
+  note    = {Foundational paper introducing the logarithmic-density framework for Chebyshev's bias under GRH and the Grand Simplicity Hypothesis.},
+}
+
+@article{Littlewood1914,
+  author  = {Littlewood, J.~E.},
+  title   = {Distribution des Nombres Premiers},
+  journal = {Comptes Rendus de l'Acad\'emie des Sciences Paris},
+  volume  = {158},
+  year    = {1914},
+  pages   = {1869--1872},
+  note    = {Infinite sign changes of $\pi(x; 4, 3) - \pi(x; 4, 1)$ and other classical prime-counting differences.},
+}
+
+@article{HardyLittlewood1918,
+  author  = {Hardy, G.~H. and Littlewood, J.~E.},
+  title   = {Contributions to the theory of the {Riemann} zeta-function and the theory of the distribution of primes},
+  journal = {Acta Mathematica},
+  volume  = {41},
+  year    = {1918},
+  pages   = {119--196},
+}
+
+@article{Stark1971,
+  author  = {Stark, H.~M.},
+  title   = {A problem in comparative prime number theory},
+  journal = {Acta Arithmetica},
+  volume  = {XVIII},
+  year    = {1971},
+  pages   = {311--320},
+  note    = {Generalisation of Littlewood's sign-change theorem to arbitrary modulus $N$, under the assumption that $L(s, \chi)$ has no real nontrivial zeros.},
+}
+
+@article{Ingham1942,
+  author  = {Ingham, A.~E.},
+  title   = {On two conjectures in the theory of numbers},
+  journal = {American Journal of Mathematics},
+  volume  = {64},
+  year    = {1942},
+  pages   = {313--319},
+}
+
+@article{FeuervergerMartin2000,
+  author  = {Feuerverger, A. and Martin, G.},
+  title   = {Biases in the {Shanks--R\'enyi} Prime Number Race},
+  journal = {Experimental Mathematics},
+  volume  = {9},
+  number  = {4},
+  year    = {2000},
+  pages   = {535--570},
+  note    = {Computes the logarithmic densities $\delta_{N; a_1, a_2, a_3}$ of triples of residue classes; reveals fine bias structure among quadratic non-residues that motivates the Dominance-of-$-1$ framework.},
+}
+
+@article{ShimadaKoyama2025,
+  author  = {Shimada, K. and Koyama, S.},
+  title   = {Weighted prime number theorem on arithmetic progressions with refinements},
+  journal = {Mathematics},
+  volume  = {13},
+  year    = {2025},
+  pages   = {2564},
+  note    = {Proves that for $0 \le w < 1/2$ the weighted prime-counting difference $\pi_w(x; N, b) - \pi_w(x; N, a)$ is unbounded and changes sign infinitely often, complementing Aoki--Koyama 2023 for $w = 1/2$ and $w > 1/2$.},
 }
