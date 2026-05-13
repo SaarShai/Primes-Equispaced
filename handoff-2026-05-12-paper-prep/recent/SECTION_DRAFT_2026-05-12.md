@@ -211,10 +211,10 @@ $$
 K^{\lambda - \rho}\,(\log K)^{m-1}\big/\bigl((m-1)!\,(\lambda - \rho)\,a_m(\lambda)\bigr),
 $$
 and the $(\log K)^{m-1}$ factor is not absorbed by simplicity of
-$\rho$. We have searched the relevant literature (Inoue 2021,
-Soundararajan 2009, Ng 2004, Akatsuka 2013) and have not found a
-theorem that closes (SP-L); we state (NDC) as **conditional on (AK)
-and (SP-L)** (Question Q:Perron, §X.7).
+$\rho$. A literature search (Inoue 2021, Soundararajan 2009,
+Ng 2004, Akatsuka 2013) did not surface a theorem that closes
+(SP-L); we state (NDC) as **conditional on (AK) and (SP-L)**
+(Question Q:Perron, §X.7).
 
 ---
 
@@ -410,10 +410,11 @@ $\sum_{\rho'}^\mathrm{mult} |L(\rho' + \alpha,\chi)|^{-2} \ll_\chi (\log K)^{O(1
 The total-Möbius bounds of Soundararajan type are too coarse to
 isolate the pointwise cancellation at the $\log K$ scale.
 
-A naïve GL(1) transfer of the GL(2) halo bound
-$|R_\Phi(T)| \ll M_T \cdot T^{7/4+\varepsilon}$ yields only
-$K^{1/2+\varepsilon}$, far above the $o(\log K)$ target — the halo
-route in its present form does not close (SP-L). The
+A naïve GL(1) transfer of the GL(2) halo bound (cluster-summed
+contour residues over a halo region, giving $\ll T^{7/4+\varepsilon}$
+at $T$-scale) yields only $K^{1/2+\varepsilon}$ for the off-target
+residue aggregate at $K$-scale, far above the $o(\log K)$ target —
+the halo route in its present form does not close (SP-L). The
 cluster-summed-residue pivot does, however, replace the rooted
 Palm wall that obstructs the termwise estimate. Details in the
 supplementary record.
