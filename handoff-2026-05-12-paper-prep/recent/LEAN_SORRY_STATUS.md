@@ -72,13 +72,12 @@ no-axiom convention is preserved throughout.
 
 ## Conditional closures — what each hypothesis names
 
-The seven fully-proved files take the following analytic / numerical
-inputs as explicit named hypotheses where Mathlib v4.28.0 does not
-yet supply the prerequisite. The pen-and-paper proofs supply each
-input directly:
-explicit named hypotheses where Mathlib v4.28.0 does not yet supply
-the prerequisite. The pen-and-paper proofs supply each input
-directly:
+Where Mathlib v4.28.0 (or a project-side concrete definition) does
+not yet supply the analytic / numerical prerequisite, the
+conditionally-closed theorems take it as an explicit named
+hypothesis. The pen-and-paper proof of each prerequisite is either
+in the appendices of this manuscript or in the cited external
+source:
 
 - **`CorrectedBInfty.corrected_B_infty`** — `h_convergence`: the
   partial prime-power tail $T_K(\chi, \rho)$ converges (as
@@ -102,31 +101,67 @@ directly:
   `h_zeta_bound`: $\|1/\zeta(\sigma + it)\| \ll (1 + |t|)^{B}$
   away from $s = 1$ (Titchmarsh, *The Theory of the Riemann
   Zeta-Function*, Theorem 3.11). Not yet in Mathlib v4.28.0.
+- **`FareySignPattern.farey_sign_pattern_density_one`** —
+  `h_chebyshev_bias`: density-one asymptotic for the proportion of
+  primes $p \le X$ with $M(p) \le -3$ that satisfy
+  $\mathrm{sgn}(\Delta W(p)) = \mathrm{sgn}(-M(p))$. Conjectural;
+  expected under DRH for the relevant $L$-functions controlling the
+  explicit-formula expansion of $\Delta W(p)$ (Rubinstein–Sarnak
+  1994 analogue).
+- **`FareySignPattern.pointwise_falsification_237733`** /
+  **`...243799`** — `h_witness`: the numerical-witness inequality
+  $\mathrm{sgn}_{\mathbb R}(\Delta W(p)) \ne
+  \mathrm{sgn}_{\mathbb Z}(-M(p))$ at the specific $p$. The
+  project's numerical record (`koyama-shared/results/`) establishes
+  both witnesses; kernel evaluation is infeasible (summing $\sim p$
+  Möbius values) so the witness is supplied as a hypothesis.
 
 For each, the algebraic plumbing is fully Lean-verified; the
 hypothesis is exactly what the corresponding pen-and-paper proof
-proves. Upstream Mathlib formalisation of any of these would
-upgrade the conditional Lean theorem to unconditional.
+or external numerical record establishes. Upstream Mathlib
+formalisation of any analytic prerequisite, or upstream availability
+of a numerical record table, would upgrade the conditional Lean
+theorem to unconditional.
 
 ## Path to unconditional Lean
 
 The shortest path to a fully unconditional Lean inventory (zero
-`sorry`, zero `MATHLIB-PREREQ`) is, in increasing difficulty:
+`sorry`, zero conditional-hypothesis) is, in increasing difficulty:
 
-1. **Three Mathlib upstream contributions** (each estimated at
-   a few weeks of focused formalisation):
-   - $\Gamma$ uniform Stirling bound on vertical strips;
+1. **Three Mathlib upstream contributions** (each estimated at a
+   few weeks of focused formalisation):
+   - $\Gamma$ uniform Stirling bound on vertical strips
+     (discharges `SmoothedDwfFormula_full.mellin_decay`'s
+     `h_stirling`);
    - $1/\zeta(s)$ polynomial bound away from $s = 1$
-     (Titchmarsh §3.11);
+     (Titchmarsh §3.11) (discharges
+     `SmoothedDwfFormula_full.inv_zeta_polynomial_growth`'s
+     `h_zeta_bound`);
    - Ramanujan-sum library `Mathlib.NumberTheory.RamanujanSum`
-     with the $c_q(p) = \mu(q)$ identity.
-2. **One project-side Lean formalisation**: a concrete
-   $\Delta W(p)$ definition from a Farey-sequence formalisation,
-   which would discharge the three `FareySignPattern.lean` sorries.
-3. **Two open mathematical problems** would still need to be
-   resolved:
+     with the $c_q(p) = \mu(q)$ identity (discharges
+     `FareyBridgeIdentity`'s `h_ramanujan_decomp`).
+2. **One project-side Lean formalisation**: a Farey-sequence
+   library upstream, supplying both a concrete $\Delta W(p)$
+   definition (discharges the `h_witness` hypotheses in
+   `FareySignPattern`) and the certified numerical record
+   `M(237{,}733) = -20`, `M(243{,}799) = -3`.
+3. **Two analytic / number-theoretic contributions** (each
+   substantial):
+   - A Lean formalisation of Akatsuka 2013 eq. (2.5), discharging
+     `CorrectedBInfty.corrected_B_infty`'s `h_convergence`;
+   - A Lean formalisation of the RH-conditional explicit formula
+     for $M(x)$ (Soundararajan 2009 Theorem 1), discharging
+     `MertensSpectroscope`'s `h_explicit_formula` and providing
+     the Chebyshev-bias control input for
+     `FareySignPattern.density_one`'s `h_chebyshev_bias`.
+4. **Two open mathematical problems** would still need to be
+   resolved by the human-NT community:
    - DPAC at general $K$ (LI-Hypothesis-class);
-   - The density-one Farey sign pattern under DRH-style hypotheses.
+   - The density-one Farey sign pattern beyond what RH conditional
+     bias control provides.
+
+Items 1–3 are formalisation milestones, each measured in weeks to
+months of dedicated effort. Item 4 is the genuine open mathematics.
 
 Item (1) alone takes the conditional Lean theorems for Theorem X.4.1
 (via Akatsuka's input), Theorem C, and the Farey bridge identity
