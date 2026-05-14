@@ -25,3 +25,7 @@ dc276a90-66ac-4070-b5cb-de34d0ea5c5c remaining_5_sorries_round3
 # 2026-05-13 — seventh-round dispatch: Ramanujan-sum-at-primes formalization
 # (would discharge FareyBridgeIdentity's h_ramanujan_decomp hypothesis)
 0873e8c7-b210-43a4-b2d1-d723f727e6cd RamanujanSum_round7
+
+# 2026-05-13 — eighth-round dispatch: Mertens spectroscope universality unconditional
+# (would discharge h_explicit_formula via Soundararajan 2009 Thm 1)
+a25797bf-bbe0-4a56-84d6-49a2c4b2487f MertensUnconditional_round8
