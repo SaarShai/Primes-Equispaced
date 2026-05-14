@@ -904,59 +904,59 @@ Underfull \hbox (badness 2401) in paragraph at lines 507--515
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 517.
 
-Underfull \hbox (badness 10000) in paragraph at lines 516--526
+Underfull \hbox (badness 10000) in paragraph at lines 516--534
 []\T1/lmr/bx/n/10.95 Build sta-tus. \T1/lmtt/m/n/10.95 lake build FormalConject
 ures \T1/lmr/m/n/10.95 suc-ceeds on all \T1/lmr/bx/n/10.95 10 files \T1/lmr/m/n
 /10.95 in
  []
 
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 568.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 576.
 
-Overfull \hbox (39.95973pt too wide) in paragraph at lines 571--572
+Overfull \hbox (39.95973pt too wide) in paragraph at lines 579--580
 \T1/lmr/m/n/10 (\T1/lmtt/m/n/10 farey_bridge_identity_unconditional\T1/lmr/m/n/
 10 ). 
  []
 
 
-Overfull \hbox (33.90172pt too wide) in paragraph at lines 571--572
+Overfull \hbox (33.90172pt too wide) in paragraph at lines 579--580
 \T1/lmtt/m/n/10 RamanujanSum.farey_ramanujan_decomp\T1/lmr/m/n/10 ; 
  []
 
 
-Overfull \hbox (37.76395pt too wide) in paragraph at lines 572--572
+Overfull \hbox (37.76395pt too wide) in paragraph at lines 580--580
 []|\T1/lmtt/m/n/10 MertensSpectroscopeUniversality.lean|  
  []
 
 
-Overfull \hbox (35.25975pt too wide) in paragraph at lines 574--575
+Overfull \hbox (35.25975pt too wide) in paragraph at lines 582--583
 \T1/lmr/m/n/10 (\T1/lmtt/m/n/10 ramanujanSum_eq_moebius_of_coprime\T1/lmr/m/n/1
 0 ); 
  []
 
 
-Overfull \hbox (23.40175pt too wide) in paragraph at lines 575--575
+Overfull \hbox (23.40175pt too wide) in paragraph at lines 583--583
 \T1/lmtt/m/n/10 DirichletPolynomialAvoidance.lean\T1/lmr/m/n/10 , 
  []
 
 
-Overfull \hbox (39.1517pt too wide) in paragraph at lines 575--576
+Overfull \hbox (39.1517pt too wide) in paragraph at lines 583--584
 \T1/lmtt/m/n/10 DirichletPolynomialAvoidance.lean:48\T1/lmr/m/n/10 , 
  []
 
 
-Overfull \hbox (10.3708pt too wide) in paragraph at lines 575--576
+Overfull \hbox (10.3708pt too wide) in paragraph at lines 583--584
 \T1/lmr/m/n/10 (\T1/lmtt/m/n/10 dpac_of_logPrimePhaseAvoidance\T1/lmr/m/n/10 , 
 
  []
 
 
-Overfull \hbox (14.23303pt too wide) in paragraph at lines 575--576
+Overfull \hbox (14.23303pt too wide) in paragraph at lines 583--584
 \T1/lmtt/m/n/10 dpac_of_certifiedZetaZeroSample\T1/lmr/m/n/10 ) 
  []
 
 [6] [7] [8]
-Underfull \hbox (badness 10000) in paragraph at lines 593--596
+Underfull \hbox (badness 10000) in paragraph at lines 601--604
 []\T1/lmr/m/n/10.95 Three suf-fi-cient pack-ages, in de-creas-ing strength of i
 n-put re-quired (see
  []
@@ -1072,4 +1072,4 @@ Package logreq Info: Writing requests to 'paper.run.xml'.
 \openout1 = `paper.run.xml'.
 
  )
-Output written on paper.xdv (18 pages, 116172 bytes).
+Output written on paper.xdv (18 pages, 116796 bytes).

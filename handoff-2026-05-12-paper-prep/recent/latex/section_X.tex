@@ -520,9 +520,17 @@ each annotated in-source as \texttt{MATHLIB-PREREQ:} or \texttt{RESEARCH-OPEN:}.
 the algebraic content of \S\,X.3, \S\,X.4, the smoothed
 explicit-formula chain, the Mertens spectroscope universality
 statement, the Farey bridge identity, and DPAC for \(K \le 4\).
-No \texttt{axiom} is introduced anywhere in the project. The full
-per-\texttt{sorry} inventory is in \texttt{LEAN\_SORRY\_STATUS.md} of the
-reproducibility bundle.
+No \texttt{axiom} declarations are introduced anywhere in the project.
+A \texttt{\_AxiomCheck.lean} file runs \texttt{\#print\ axioms} on every headline
+theorem; the result confirms that all eight headline theorems
+depend only on the standard Lean trust base (\texttt{propext},
+\texttt{Classical.choice}, \texttt{Quot.sound}), with the single exception of
+\texttt{dpac\_le\_4} (unconditional DPAC for \(K \in \{2, 3, 4\}\)), which
+additionally uses \texttt{Lean.ofReduceBool} and \texttt{Lean.trustCompiler}
+because it evaluates Möbius values at small primes in the kernel.
+The full per-\texttt{sorry} inventory and the cumulative axiom audit are
+in the companion \texttt{LEAN\_SORRY\_STATUS.md} of the reproducibility
+bundle.
 
 \textbf{Status of headline theorems} in \S\,X.3--\S\,X.4:
 
