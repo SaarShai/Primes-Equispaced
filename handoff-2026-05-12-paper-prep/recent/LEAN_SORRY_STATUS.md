@@ -28,7 +28,7 @@ project-specific.
 | `LocalPerronResidue.lean` (Lemma X.3.1) | **0** | **Theorem (unconditional)** |
 | `CorrectedBInfty.lean` (Theorem X.4.1) | **0** | **Theorem (conditional on one `Filter.Tendsto` hypothesis derived in Appendix A)** |
 | `DPAC_closure_attempt.lean` | **0** | **Theorems**: DPAC for $K \in \{2, 3, 4\}$ unconditional; `FiniteLogRatioLI` reformulation; obstruction certificate (Pólya 1913 + the open ordinate-avoidance statement) |
-| `MertensSpectroscopeUniversality.lean` | **0** | **Theorem (conditional on an explicit-formula-derived asymptotic hypothesis;** Soundararajan 2009 Thm 1 input) |
+| `MertensSpectroscopeUniversality.lean` | **0** | **Theorem (conditional)** on an explicit-formula-derived asymptotic hypothesis (Soundararajan 2009 Thm 1 input). Also contains: a 5-step blueprint documenting the precise Mathlib gap (Perron inversion, explicit formula for $M(x)$, oscillatory-integral partial summation), plus two unconditionally-proved infrastructure lemmas (`spectroscope_nonneg`, `reciprocal_sqrt_not_summable`). |
 | `FareyBridgeIdentity.lean` | **0** | **Theorem (unconditional)**: `farey_bridge_identity_unconditional` requires only `Nat.Prime p` and Mathlib v4.28.0; the Ramanujan-sum hypothesis is discharged by `RamanujanSum.farey_ramanujan_decomp` |
 | `SmoothedDwfFormula_full.lean` | **0** | **Theorem (chain)**: 17 algebraic-glue lemmas unconditional; two analytic prerequisites (`mellin_decay`, `inv_zeta_polynomial_growth`) stated as explicit hypotheses on the consuming theorems |
 | `DPAC_full.lean` | 1 | **Research-open**: headline DPAC at general $K$ (LI-class) |
