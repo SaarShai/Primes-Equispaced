@@ -87,3 +87,9 @@ srcDir = "formal-conjectures"
 name = "RamanujanSum"
 globs = ["RamanujanSum"]
 srcDir = "formal-conjectures"
+
+# Cumulative axiom check (transient).
+[[lean_lib]]
+name = "_AxiomCheck"
+globs = ["_AxiomCheck"]
+srcDir = "formal-conjectures"

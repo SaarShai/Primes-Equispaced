@@ -5,8 +5,21 @@
 
 **Build status.** `lake build FormalConjectures` succeeds on all
 **10 files** in `formal-conjectures/` with exactly **2 `sorry`
-warnings** and **no errors, no linter warnings, no axioms** beyond
-the standard `propext`, `Classical.choice`, `Quot.sound`.
+warnings** and **no errors, no linter warnings, no `axiom`
+declarations**.
+
+**Cumulative axiom audit.** A `_AxiomCheck.lean` file runs
+`#print axioms` on every headline theorem. Six of the eight
+headline theorems (the `RamanujanSum` chain, `FareyBridgeIdentity`,
+`LocalPerronResidue`, `CorrectedBInfty`,
+`MertensSpectroscopeUniversality`, `FareySignPattern`) depend only
+on the standard `propext`, `Classical.choice`, `Quot.sound` triple.
+The remaining headline `dpac_le_4` (unconditional DPAC for
+$K \in \{2, 3, 4\}$) additionally depends on `Lean.ofReduceBool`
+and `Lean.trustCompiler` — Mathlib's standard kernel-reduction
+primitives, used because this theorem computes Möbius values at
+small primes in the kernel. None of the axioms is unstable or
+project-specific.
 
 ## Summary by file
 
