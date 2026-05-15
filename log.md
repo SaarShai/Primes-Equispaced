@@ -1,5 +1,20 @@
 # Log
 
+## [2026-05-14] research | Route IV family-isolation dichotomy — the last "escape hatch" is also analytic; reduction theorem is now status-complete
+
+Audit: `handoff-2026-05-14-research-track-split/ROUTE_IV_FAMILY_ISOLATION_DICHOTOMY_2026-05-14.md`. Verdict: **the log headline "Route IV obstruction is paper-architecture, not analysis" is an overclaim** — it contradicts its own underlying pivot audit (§5.2, §5.5, lines 373, 832–838). Corrected.
+
+**The family-isolation dichotomy** (exhaustive; both horns analytic):
+
+| Horn | Setup | Outcome |
+|---|---|---|
+| A | Fixed finite family `B_2(N_E)` containing `E` | Petersson identity has **no asymptotic cancellation** (off-diagonal beats diagonal only as `k,N → ∞`). Bounding the `E`-term by the finite signed family sum gains nothing ⇒ **reduces to TSDB**. |
+| B | Family enlarged for trace-formula savings, `N → ∞` | `f_E` is one of `≍ N` forms; harmonic weight `h_{f_E}^{-1} ≍ N^{1+o(1)}`. Fixed-`E` `o(T^2)` **iff** `B_avg(T) = o(T^2/N)` — a **negative-moment-over-family** bound (`Σ_f 1/L_f^*'(ρ_f)`, *not* `Σ_f λ_f(m)λ_f(n)` — "not a Petersson-type sum", pivot audit l.373), itself open at TSDB-depth. |
+
+Positivity drop fails twice analytically: (1) `R_Φ^f` is a signed residue aggregate (drop invalid); (2) `R_B^f ≥ 0` gives a family *lower* bound, but H1 needs a single-`f` *upper* bound — conversion needs an unknown family lower bound (pivot audit §5.2).
+
+**Net effect**: reduction theorem now has **no surviving exception**. Every surveyed route (I–X.1) reduces to TSDB, its negative-moment-over-family sibling of equal depth (VI t-aspect; **IV Horn B**), or bounds the wrong object / has no framework (V, IX). The theorem is **status-complete: there is no known route, full stop.** This is the **4th instance today** of the recurring pattern (3 silent GRH deps + density "illusory positivity advantage" + this). Confidence dichotomy exhaustive & both horns analytic: **0.9**. The conditional halo theorem `R_Φ(T) ≪ T^{7/4+ε}` under GRH remains the genuine positive deliverable.
+
 ## [2026-05-14] research | Palm wall REDUCED to Bourgade-decoupling for L_E — fresh angle, MIMO-validated
 
 User pushed: "you are a once-in-a-generation mathematician... be brilliant. solve this."
@@ -1289,7 +1304,7 @@ R_Phi(T)  <<_E  T^{15/8 + eps}   for fixed E/Q,  unconditional.
 **Other genuine surprises**:
 
 1. Route VI (mean-Lindelöf k=2 t-aspect) is a **sibling** open problem, not strictly TSDB. The "unconditional H1 reduces to one open problem" narrative is refined to **two of comparable depth**.
-2. Route IV (Petersson/Kuznetsov trace formula) gives **unconditional family-averaged H1**. The obstruction to fixed-E unconditional is paper-architecture (isolating fixed E from the family), not GL2 zero location.
+2. Route IV (Petersson/Kuznetsov trace formula) gives **unconditional family-averaged H1**. ~~The obstruction to fixed-E unconditional is paper-architecture, not GL2 zero location.~~ **[SUPERSEDED 2026-05-14 — see Route IV family-isolation dichotomy entry below; obstruction is analytic, not paper-architecture; Route IV is NOT an exception.]**
 
 **The un-commissioned audit (highest-leverage near-term task)**:
 
