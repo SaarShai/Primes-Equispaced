@@ -1,5 +1,19 @@
 # Log
 
+## [2026-05-14] research | Gonek–Hejhal spine — the joint paper's two open frontiers are ONE conjecture (GL2 + GL1)
+
+Structural theorem: `handoff-2026-05-14-research-track-split/GONEK_HEJHAL_UNIFICATION_2026-05-14.md`. **Not a resolution — a reduction + unification** that collapses the paper's analytic surface from two independent open inputs to one named classical conjecture.
+
+**Unification.** Define `GH(Λ;T) := Σ_{0<γ≤T} |Λ'(ρ)|^{-2}` (negative second moment over zeros).
+- H1 frontier (status-complete reduction, this session) = **GL(2)** instantiation `Λ=L_E^*`, needs *soft* `GH ≪_E T^{c}, c<3` (= index l.63's recorded H1 input).
+- (SP-L) frontier (corrected `B_∞`/`c_K` chain, App. A) = **GL(1)** instantiation `Λ=L(·,χ)`, needs *sharp* `GH ≪_χ T(log T)^{O(1)}` (= `SP_L_SUFFICIENT_PACKAGES` §Route I clean substitute, via Cauchy–Schwarz on the `1/|γ'-τ|` weight).
+
+Both are the **same functional** `GH(·;T)` at degree 2 / degree 1. Proof is the trivial algebra of identifying two *already-recorded* project reductions; the content is the *identification*, not the algebra.
+
+**Strength gradient kept honest (not flattened — would repeat today's 4×-caught error class):** (SP-L) is the *harder* instantiation (sharp Gonek–Hejhal envelope, `c→1` end); H1 the *softer* (any sub-cubic). For `ζ` this is the classical Gonek–Hejhal conjecture (RH-strength+ in full). **Neither proved here.**
+
+**Value to paper:** §X.7 (Q:Perron) + H1/§X.4 can cite ONE referee-recognized conjecture instead of two bespoke "sufficient packages"; conditional menu becomes uniform: (i) GRH ⇒ halo `R_Φ≪T^{7/4+ε}` (proved); (ii) soft GH(`L_E^*`) ⇒ H1 `=o(T^2)` GRH-free; (iii) sharp GH(Dirichlet) ⇒ `c_K→e^{-γ}`. (ii)+(iii) = same conjecture, GL2/GL1. Abstract-worthy companion theorem: *"H1(`E/Q`) and the corrected duality constant are governed by a single Gonek–Hejhal negative second moment, at GL(2) and GL(1)."* Confidence on the identification: **0.97**.
+
 ## [2026-05-14] research | Route IV family-isolation dichotomy — the last "escape hatch" is also analytic; reduction theorem is now status-complete
 
 Audit: `handoff-2026-05-14-research-track-split/ROUTE_IV_FAMILY_ISOLATION_DICHOTOMY_2026-05-14.md`. Verdict: **the log headline "Route IV obstruction is paper-architecture, not analysis" is an overclaim** — it contradicts its own underlying pivot audit (§5.2, §5.5, lines 373, 832–838). Corrected.
