@@ -199,9 +199,14 @@ no surviving route). ∎
   simple-stratum core is solid).
 - (PC-gap) at `T^{2-η}` is *strictly weaker* than the full GL(2) pair
   correlation conjecture and *plausibly* within reach of an extended RS
-  window: **0.5** (genuinely uncertain — but this is the first frontier
-  this session that is not GRH-equivalent, so 0.5 here ≫ the ~0 of the
-  TSDB routes).
+  window: ~~**0.5**~~ **[DOWN-REVISED 2026-05-14 to ≈ 0.15 — see
+  `DIOPHANTINE_ROOT_UNIFICATION_2026-05-14.md` §1: a Paley–Wiener
+  argument *proves* the RS-unconditional band-limited window is
+  structurally blind to the small-gap tail (`η ≤ 0` from RS alone). The
+  re-classification (GH = small-gap functional) STANDS and is correct;
+  the optimism that the *unconditional* slice of the pair-correlation
+  class reaches the binding direction does NOT. 6th instance of the
+  recurring over-optimism pattern.]**
 
 ## 7. Forward program (concrete, for the next working session)
 

@@ -1,5 +1,17 @@
 # Log
 
+## [2026-05-14] research | THE DIOPHANTINE ROOT — both terminal frontiers are ONE non-resonance statement; + no-go on unconditional pair correlation
+
+`handoff-2026-05-14-research-track-split/DIOPHANTINE_ROOT_UNIFICATION_2026-05-14.md`. Continued into the heart. Two deliverables:
+
+**1. No-go theorem (rigorous; 6th over-optimism self-correction).** Paley–Wiener: any test function with boundedly-supported `f̂` is entire of exponential type, **bounded on ℝ**; the small-gap kernel `g(x)=x^{-2}` blows up at 0. ⇒ **No** finite combination of RS-unconditional (band-limited, support `[-α_0,α_0]`) pair-correlation functionals can majorize `Σδ̃_n^{-2}`. So the RS-unconditional window gives `η ≤ 0` for (PC-gap): it sees *average* repulsion (positive-proportion-simple, Montgomery 2/3) but is **structurally incapable** of an *upper* bound on a negative gap moment. The HEART re-classification (GH = small-gap functional) **stands**; the hope that the *unconditional* slice reaches the binding direction does not. HEART §6 "0.5" → **≈0.15**.
+
+**2. Deepest synthesis of the session — the single Diophantine root.** Worst-single-zero (non-averageable) ⇒ binding object is the *pointwise* **(NoCollide)**: `δ_n ≫_E γ_n^{-A}` for every consecutive zero pair of `L_E^*` (no super-polynomial near-collision). A near-collision = near-ℚ-linear-dependence of two ordinates ⇒ (NoCollide) is a **quantitative-LI / Diophantine non-resonance** statement on `{γ_n}`. This is the **same class** as **DPAC at general K** (the last Lean `sorry`, explicitly `FiniteLogRatioLI`, LI-class — prime-phase side `{γ log p}`). Hence:
+
+> Both project terminal frontiers — **analytic** (unconditional offcentral H1, via the full chain: status-complete reduction → soft GH → small-gap tail → (NoCollide)) and **algebraic/formal** (DPAC general K, the last Lean sorry) — are instances of **one** arithmetic-independence phenomenon: quantitative LI of an `L`-spectrum. **The whole programme has a single Diophantine root.** "Under LI for the relevant `L`" is the *single* hypothesis that simultaneously gives unconditional H1, closes the last Lean sorry, and (via Gonek–Hejhal spine) feeds `c_K→e^{-γ}`.
+
+Strictly deeper than the Gonek–Hejhal spine (which unified only the two *analytic* frontiers). Confidences: no-go §1 **0.92**; (NoCollide) irreducible **0.9**; (NoCollide)∈LI-class **0.7** (classification, not proven equivalence); single-root synthesis **0.75**. §7: only unexcluded unconditional escape is a *non-correlation* Diophantine/Baker-type effective gap bound — exactly the LI class, ties to the DPAC/Lean obstruction (one attack serves both frontiers); flagged as the correct non-GRH non-band-limited forward push.
+
 ## [2026-05-14] research | INTO THE HEART — Gonek–Hejhal moment IS a pair-correlation small-gap problem (OFF the GRH wall)
 
 `handoff-2026-05-14-research-track-split/GONEK_HEJHAL_HEART_PAIR_CORRELATION_2026-05-14.md`. Attacked the one heart `GH(Λ;T):=Σ_{0<γ≤T}|Λ'(ρ)|^{-2}` directly. Did **not** prove it (RH-strength+ in full). Three honest deliverables:
