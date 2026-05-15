@@ -1,5 +1,15 @@
 # Log
 
+## [2026-05-14] research | INTO THE HEART — Gonek–Hejhal moment IS a pair-correlation small-gap problem (OFF the GRH wall)
+
+`handoff-2026-05-14-research-track-split/GONEK_HEJHAL_HEART_PAIR_CORRELATION_2026-05-14.md`. Attacked the one heart `GH(Λ;T):=Σ_{0<γ≤T}|Λ'(ρ)|^{-2}` directly. Did **not** prove it (RH-strength+ in full). Three honest deliverables:
+
+**1. Self-correction (5th instance of the recurring pattern — corrects MY OWN prior note).** `GONEK_HEJHAL_UNIFICATION` §4(ii) "soft `c<3` form closes H1 cheaply" is **wrong**. `GH ≥ |L'(ρ_0)|^{-2}` for every single zero ⇒ one zero with `|L'|=T^{-A}` forces `GH ≥ T^{2A}`. Soft target *necessarily* requires no zero with `|L_E^*'(ρ)|<T^{-3/2+δ}` and is implied only by *uniform pointwise* `|L'(ρ)|≫T^{-1+δ}`. Soft exponent buys ≈nothing — obstruction is the worst single zero, a quantitative-simple-zero statement. Prior note marked CORRECTED.
+
+**2. Re-classification (genuine progress).** Gap–derivative dictionary (Hadamard, order-1 degree-2; Conrey–Ghosh/Ng template): on simple zeros `|L_E^*'(ρ_n)|^{-2} ≪_E δ_n^{-2}(\log)^{O(1)}`, `δ_n` = neighbour gap. Hence `GH ≪ (\log)^{O(1)} Σδ_n^{-2}` = **small-gap pair-correlation tail**. The terminal obstruction is a **Montgomery–Rudnick–Sarnak pair-correlation** statement, **NOT** GRH/TSDB. RS 1996 give *unconditional* automorphic correlations in restricted windows; TSDB has no unconditional analogue. **First statement this session that takes the terminal obstruction OFF the GRH wall.**
+
+**3. One-directional unconditional reduction (bankable).** *Theorem:* (PC-gap) `Σ_{simple, γ≤T} δ_n^{-2} ≪_E T^{2-η}, η>0` + unconditional fixed-`E` Kowalski–Michel/Luo zero-density (handles off-critical & non-simple strata, `≪T^{2-η'}`) ⇒ `GH(L_E^*;T) ≪ T^{3-δ}` ⇒ (status-complete H1 reduction) **unconditional offcentral H1, no GRH**. Open piece = (PC-gap), a *non-sharp* (`T^{2-η}`, far below full pair-correlation conjecture) small-gap bound — open in a *softer, non-GRH* class. Confidences: dictionary 0.85; self-correction 0.97; re-classification 0.9; reduction-as-stated 0.8; (PC-gap) reachable via extended RS window 0.5 (genuinely uncertain — but 0.5 here ≫ ~0 of all TSDB routes since it is not GRH-equivalent). Forward program (4 concrete steps) in §7.
+
 ## [2026-05-14] research | Gonek–Hejhal spine — the joint paper's two open frontiers are ONE conjecture (GL2 + GL1)
 
 Structural theorem: `handoff-2026-05-14-research-track-split/GONEK_HEJHAL_UNIFICATION_2026-05-14.md`. **Not a resolution — a reduction + unification** that collapses the paper's analytic surface from two independent open inputs to one named classical conjecture.

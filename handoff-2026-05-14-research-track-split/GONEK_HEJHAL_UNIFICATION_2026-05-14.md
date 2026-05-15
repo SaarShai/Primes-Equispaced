@@ -123,6 +123,7 @@ unification*, explicitly not a resolution.
    sharp `c_K → e^{-γ}` chain (GL(1)) *and* unconditional offcentral H1
    (GL(2), via the soft form, which the GRH-conditional halo theorem
    `R_Φ ≪ T^{7/4+ε}` already over-delivers — see remark below).
+   **[CORRECTION 2026-05-14, see `GONEK_HEJHAL_HEART_PAIR_CORRELATION_2026-05-14.md` §1: the "soft form closes H1 cheaply" reading below in the Remark and in §3 is over-optimistic. The soft `c<3` exponent still binds on a *uniform pointwise* lower bound for `|L_E^*'(ρ)|` (a single anomalously small derivative destroys any polynomial bound). The soft/sharp gradient is real for the averaged/sharp distinction but does NOT make the H1 leg analytically cheap. The honest route to the soft leg is the pair-correlation small-gap reduction of the HEART note, not the bare soft exponent.]**
 3. **The companion theorem writes itself**: "Offcentral H1 for fixed
    `E/Q` and the corrected duality constant are governed by one
    conjecture" is a crisp abstract-worthy sentence; the status-complete
