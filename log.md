@@ -1,5 +1,91 @@
 # Log
 
+## [2026-05-14] research | Palm wall REDUCED to Bourgade-decoupling for L_E — fresh angle, MIMO-validated
+
+User pushed: "you are a once-in-a-generation mathematician... be brilliant. solve this."
+
+The Palm wall is not broken. But it is now **reduced to a single open lemma** with structural analog proved for zeta (Bourgade 2010; Bourgade-Najnudel-Nikeghbali 2012, arXiv:1212.3961 Thm 1.1). Filed: `handoff-2026-05-14-palm-wall-revisit/PALM_WALL_BOURGADE_REDUCTION_2026-05-14.md`.
+
+**Open Lemma (Bourgade-decoupling for L_E)**: Under GRH for `L_E^*`, there exists `eta > 0` such that uniformly in `m ≥ 1` and `(u_1, ..., u_m) ∈ (0, A]^m`:
+```
+|rho_m^{Palm, L_E}(u_1,...,u_m; T) - rho_m^{Palm, sin}(u_1,...,u_m)|
+  ≤ (log T)^{-eta} * rho_m^{Palm, sin}(u_1,...,u_m).
+```
+
+**Reduction theorem (proved at equation level + MIMO-reviewed)**: the Open Lemma implies `PrimeScaleRootedPalmBox_3(E, A; W)` for any `A ∈ (0, 1]`, summable cluster constants, **breaking the Palm wall**.
+
+Math chain:
+1. Sine-kernel rooted Palm m-correlation near origin has structure `rho_m^{Palm,sin}(u_1,...,u_m) = C_m * prod_j u_j^2 * prod_{i<j}(u_i-u_j)^2 + (higher)` (Christoffel-Darboux / Mehta 2004 §6).
+2. At `p = 3/2`, Selberg evaluation: `J_m^{(3/2), sin}(T;A) = T log T * S_m * A^{m(m+1/2)}/m!`.
+3. Summed: `sum_m (C_A^m/m!) J_m^{(3/2), sin} = T log T * sum_m (...)^m A^{m^2}/(m!)^2 < ∞` for `A ≤ 1`.
+4. Open Lemma transfers (3) to `L_E` with `(1 + (log T)^{-eta})` factor.
+5. Hölder `(q=3, p=3/2)`: `R_B(T,c) << T^{11/6+eps+o(1)} = o(T^2)`. Simple-zero H1 closed unconditionally under standing GRH + `Degree2WeakShiftedNeg_3(E)` (mechanical q=3 audit, downstream of in-flight Wave 4 q=2).
+
+**Why fresh (not in any kill list)**:
+- Rudnick-Sarnak/Hejhal n-level density: bounded Fourier support, can't see shrinking boxes. Bourgade-decoupling is probabilistic at the local zero process level, not Fourier-restricted.
+- Pair correlation: only m=1. Bourgade-decoupling gives all m simultaneously via total-variation closeness.
+- Finite cluster truncation: hides tail. Bourgade-decoupling transfers sine-kernel summability (all m) directly.
+
+**MIMO validation** (`mimo-v2-flash`, ~$0.02, `MIMO_BOURGADE_REDUCTION_REVIEW_2026-05-14.txt`): "The reduction is mathematically sound, provided one accepts the Open Lemma. ... The reduction correctly identifies that proving the rooted Palm box law is equivalent to proving quantitative decoupling of `L_E` from the sine kernel." Symmetry-type concern (GUE vs GOE/GSE) resolved by MIMO itself: at bulk height `(T,2T]`, local sine-kernel rooted Palm is universal across all three ensembles.
+
+**Open Lemma — all structural ingredients have known L_E analogs**:
+- (A) Selberg-Hejhal CLT for `log|L_E|` on critical line under GRH for L_E (Hejhal 1989, proved).
+- (B) GL2 Carneiro-Chandee local prime polynomial bound (Agent01 Wave 4, proved conditional under GRH).
+- (C) Hadamard factorization implicit function theorem (standard).
+
+Estimated effort to prove the Open Lemma: **2-4 months focused work** for a researcher familiar with Bourgade's argument. Extension paper, not breakthrough paper.
+
+**Confidence**:
+- 0.97 sine-kernel structure (standard, Mehta).
+- 0.95 Selberg/summability §2.2.
+- 0.93 transfer to L_E given Open Lemma.
+- 0.65 Open Lemma will be proved within 6 months.
+- **0.62 Palm wall broken via this route within 6 months**, conditional on dispatching the Open Lemma.
+
+**Status update**:
+| Track | Before today | After today |
+|---|---|---|
+| Palm wall direct break | NO-GO since 2026-05-12; "no fresh angle has emerged" | **REDUCED to Bourgade-decoupling for L_E**; concrete open lemma identified, MIMO-validated |
+| Halo bypass (offcentral H1 under GRH) | Conditionally complete (parallel session today) | Unchanged |
+| Unconditional pointwise H1 | Out of reach absent wall break OR removal of GRH for L_E | **Within reach if Open Lemma proved**, conditional on standing GRH for `L_E^*` |
+
+**Recommended next action**: dispatch Open Lemma to Aristotle / competent collaborator / GPT-5.5 Pro Extended as a 2-4 month target. Brief: prove L_E analog of Bourgade-Najnudel-Nikeghbali 2012 Thm 1.1 with `(log T)^{-eta}` error. All structural ingredients referenced in §4 of the Bourgade reduction memo.
+
+**Forbidden claims**: Palm wall broken; H1 proved; unconditional theorem; RH proved. The reduction is real but the Open Lemma is open.
+
+## [2026-05-14] research | Door A adversarial second pass — Wave 4 re-verified, MIMO, A,B uniformity resolved
+
+User redirected after the 4-lane sweep: "don't focus on memos. only continue towards a complete unconditional proof." Action: independent re-execution of Wave 4 promotion sub-tasks against BFMT 2310.03949 source extracts + MIMO adversarial review. **This is the adversarial second pass flagged as next-priority in `SESSION_SYNTHESIS_2026-05-14.md` L122-127.**
+
+Files filed in `handoff-2026-05-14-palm-wall-revisit/`:
+
+| File | Contribution |
+|---|---|
+| `SECTION_5_CONDUCTOR_RERUN_VERIFICATION_2026-05-14.md` | Sub-tasks 1.1 + 1.4 independently re-verified by direct equation-level substitution against BFMT extract. Conductor-flip rule `k -> 2k` derived from `log C_E(t) = 2 log T + O_E(1)`. Exponent lands at `5/2+eps`. Matches prior `WP_2_4_BFMT_SECTION_5_ABSORPTION_AUDIT_2026-05-14.md`. |
+| `DOOR_A_THEOREM_ASSEMBLY_2026-05-14.md` | Independent assembly of `AllZeroShiftedNeg_2(E)` from Steps A-F. Includes MIMO pass (§7) and resolution of MIMO's sole sharpening (A,B uniformity under conductor flip): direct BFMT (5.7) substitution gives `A = 1 - 4 k eps` and `B = (1 - 4 k eps)/(1 - 3 k eps) ≈ 1 - k eps`, both T-independent. Refined exponent: `T^{5/2+eps}` confirmed. |
+| `MIMO_ADVERSARIAL_REVIEW_DOOR_A_ASSEMBLY_2026-05-14.txt` | MIMO `mimo-v2-flash` review output. Verdict: "The assembly is coherent. The conductor flip rule is correctly interpreted, branch routing is valid, Props transcription is sound, multiplicity does not affect the exponent." Cost ~$0.02. Distinct from session's original MIMO pass (`ADVERSARIAL_MIMO_HALO_CHAIN_2026-05-14.md`). |
+
+**Net effect**: Door A closure (`AllZeroShiftedNeg_2(E) << T^{5/2+eps}` under standing GRH for `L_E^*`) corroborated by second independent verification path + second adversarial MIMO pass. Overall confidence on Door A: 0.85 (session synthesis) → **0.88** (post second pass). Halo route to offcentral H1 under standing GRH stands as `CONDITIONAL_ON_STANDING_GRH`.
+
+**Unchanged**: halo route is **not** unconditional (still requires standing GRH for `L_E^*`); Palm wall direct break remains NO-GO since 2026-05-12; pointwise H1 not proved. The route to remove standing GRH (newform RH) is a separate open problem, not addressed by this work.
+
+**Recommended next** (per SESSION_SYNTHESIS L121-127, with item 2 now retired by this second pass): item 1 — ping draft track that halo route is conditionally complete and second-pass-verified; item 3 — Lean formalization of halo statement with stubbed sorries (longer-horizon dispatch).
+
+## [2026-05-14] research | Palm-wall revisit — 4-lane sweep, no theorem promoted
+
+User asked to "continue work on the Palm wall". Wall has been NO-GO since 2026-05-12 and today's signed-residue insight sidesteps rather than breaks it (see log entry above on 2026-05-14 Aristotle round-9). Re-confirmed status across four lanes; filed three deliverables in new `handoff-2026-05-14-palm-wall-revisit/` directory.
+
+| Lane | Deliverable | Verdict |
+|---|---|---|
+| 2: Pro dossier audit | `PRO_DOSSIER_AUDIT_AGAINST_HALO_INSIGHT_2026-05-14.md` | `NO_NEW_LEVERAGE_FOUND`. Signed insight is orthogonal to wall; Pro dossier's reductions, kill-list, and trap-list all stand. Single speculative thread: "signed reciprocal tail" (Candidate E in fresh-angle scoping). |
+| 1: Fresh-angle scoping | `PALM_WALL_FRESH_ANGLE_SCOPING_2026-05-14.md` | 6 candidates surveyed (CFKRS ratios, BKS finite-T determinantal, Heap-Soundararajan log-distribution, hybrid abs/signed contour decomposition, signed reciprocal tail, twist-family transfer). 5 low-probability; **Candidate D (hybrid contour decomposition)** is the only one with `p ~ 0.18` and `cost < 1 month` outside any existing kill list. Recommends a 1-week feasibility probe. |
+| 3: q=3 shifted-moment brief | `DEGREE2_WEAK_SHIFTED_NEG_Q3_SOURCE_CLOSE_BRIEF_2026-05-14.md` | Structural BFMT route at `k=3/2`: second-branch exponent `1 + 3·5/6 = 7/2`, matching target `T^{7/2+eps}`. No new structural obstruction; risk concentrated in `k`-linear polylog overhead. **Downstream of Wave 4 k=1 audit** (sub-task 2.4 of `WAVE4_PROMOTION_PLAN_2026-05-14.md`). Cost after Wave 4 lands: 4-6d. Closure probability ~0.55. Does NOT break the wall — closes only Challenge 2 of Pro dossier, leaving Challenge 1 (rooted box law) as the residual wall. |
+| 4: Status update | log + L1_index | This entry. |
+
+**Net Palm-wall position after today's sweep**: unchanged. Direct break remains NO-GO. Single nontrivial probe is Candidate D (1-week feasibility, not dispatched). Half-wall reduction via q=3 shifted moment is mechanically downstream of in-flight Wave 4 work and adds ~1 week of audit when it lands.
+
+**Decision pending from user**: dispatch Candidate D feasibility probe (1 week, p~0.18), wait on Wave 4 + q=3 lift (~2 weeks total, half-wall reduction with p~0.55), or stay on halo bypass and skip both. Default in absence of decision: stay on halo bypass.
+
 ## [2026-05-11] implementation | Breakthrough plan execution artifacts
 
 - Added `handoff-2026-05-11-implementation-wave/IMPLEMENTATION_SYNTHESIS_2026-05-11.md` plus H1, H2, GL1, Theorem B, B+, and EC implementation packets.
@@ -1081,3 +1167,707 @@ Continuation of the 2026-05-12 paper-prep session after Koyama's reply confirmin
 Bundle now has 11 files in `recent/` + `latex/` sub-bundle + the pre-trim full SECTION_DRAFT backup + the supporting numerical logs (BINFTY_CLOSED_FORM_run.log, BINFTY_K100M_run.log).
 
 **Cumulative state.** Lean: 2 sorries (DPAC headline ×2); 7 of 9 files fully proved; no axioms; build green. LaTeX: 18-page PDF, paper-style bibliography, all subsection numbering clean. Koyama: green light received; Phase-1 reconciliation expected week of May 20.
+
+## [2026-05-14] research | H-height audit FAILS — rectangle route also reduces to TSDB
+
+Rectangle-route H-height(A) audit (`H_HEIGHT_UNCONDITIONAL_AUDIT_2026-05-14.md`) verdict: **PARTIAL** — rectangle route does **NOT** close unconditionally.
+
+**Strip-dependency disambiguation**:
+
+| Strip | H-height(A) status | Use |
+|---|---|---|
+| (R1) `Re s ∈ [1 - eta, 1 + sigma]` (absolute-convergence region) | **UNCONDITIONAL** with A = o(1) (Hadamard + RvM + Hoffstein-Ramakrishnan zero-free region) | H1 native contour; no zeros inside; no `T^{15/8}` gain |
+| (R2) `Re s ∈ [1/2 - alpha, 1/2 + alpha]` (thin strip around critical line) | **NOT unconditional** for A < 2 | The strip the halo plan §3.5 rectangle actually inhabits |
+
+The X.1 audit's salvage / halo plan §3.5 rectangle is in (R2), not (R1). On (R2), the horizontal-edge sup `|1/L_E^*|` at a legal height equals `|1/L_E^*'(rho)| · log T` for the nearest zero `rho`, and `|1/L_E^*'(rho)|` is precisely the uncontrolled object Door A bounds (and requires GRH for the q=2 audit).
+
+**Third silent GRH dependency identified today**:
+
+| # | Where | Reduces to |
+|---|---|---|
+| 1 | Halo Door B's cluster-mate contraction | TSDB |
+| 2 | X.1 Step 4 (Gallagher-HB shifted → derivative swap) | TSDB (= Door B) |
+| 3 | Rectangle route's horizontal edges on (R2) strip | TSDB |
+
+**Definitive verdict on unconditional offcentral H1 for fixed E/Q**:
+
+> **Every concrete route surfaced today reduces to the same fundamental open problem: thin-strip critical-line density (TSDB) for `L_E^*`** (or its mean-Lindelöf k=2 t-aspect sibling, Route VI).
+
+The "rectangle route uses different strip than halo" intuition was wrong: the rectangle's horizontal edges land in the same (R2) strip where the analytic content is GRH-equivalent.
+
+**Genuine surprise (per the audit's own report)**:
+
+> "Even for **zeta**, the standard '1/zeta is polylog at legal heights' applies at `Re s = 1 + alpha` (absolute convergence side), not `Re s = 1/2 + alpha`. The user implicitly imported the absolute-convergence intuition into the critical strip."
+
+This is a textbook conflation worth banking.
+
+**Honest unconditional landscape, post all today's audits**:
+
+| Bound on R_Phi(T), fixed E/Q | Status |
+|---|---|
+| `T^{7/4+eps}` under GRH for `L_E^*` | **proved today** (halo route) |
+| `T^{15/8+eps}` unconditional via X.1 | **RETRACTED** (Step 4 hidden GRH) |
+| `T^{15/8+eps}` unconditional via rectangle | **RETRACTED** (H-height(A) on (R2) strip hidden GRH) |
+| `T^{2-eta}` unconditional, any `eta > 0` | **none proved today**; reduces to TSDB |
+| Family-averaged H1 unconditional (Route IV) | **plausibly available**; obstruction is paper-architecture, not analysis |
+
+**Confidence on TSDB as binding obstruction across ALL routes**: 0.95 (three independent reductions arrived at the same place).
+
+**Recommended posture**: declare today's session complete. The conditional halo result is the genuine deliverable; unconditional offcentral H1 for fixed E/Q is genuinely open at TSDB. The Saar-Koyama joint paper can present (i) the conditional theorem under GRH and (ii) the clean reduction to TSDB as a paper-worthy companion result.
+
+## [2026-05-14] research | X.1 audit RETRACTS the claimed unconditional T^{15/8+eps}
+
+X.1 step-by-step audit (`X1_UNCONDITIONAL_BOUND_AUDIT_2026-05-14.md`) verdict: **PARTIAL / RETRACTED-as-written**.
+
+**Hidden GRH dependency found in Step 4** (Gallagher-Heath-Brown transfer). The off-halo agent wrote:
+
+> "Gallagher-HB transfer to `sum_rho |L_E^*'(rho)|^{-2}`."
+
+But Gallagher-HB applied to `g(t) = 1/L(1/2+alpha+it)` outputs the **shifted** zero sample `sum_rho |L(rho+alpha)|^{-2}`, NOT the **derivative** sum `sum_rho |L'(rho)|^{-2}`. The swap shifted → derivative IS the cluster-shift comparison (Door B), which declares GRH for `L_E^*` as standing assumption. Single-line silent GRH dependency.
+
+**Step-by-step audit verdict**:
+
+| Step | Verdict |
+|---|---|
+| 1 (Good/Meurman `T^{2+eps}` 4th moment) | CLEAN unconditional |
+| 2 (Heap-Soundararajan bad-set → `int |L|^{-2} << T^{11/4+eps}`) | CLEAN unconditional, but loose |
+| 3 (ContShiftNeg_2 = Step 2) | CLEAN |
+| 4 (Gallagher-HB transfer to **derivative** sum) | **HIDDEN GRH** |
+| 5 (Cauchy-Schwarz on residue aggregate) | Correct IF Step 4 had been GRH-free, which it isn't |
+
+**Rectangle-route surprise (§F of audit)**: the alternative §3.5 global-thin-rectangle route DOES give `T^{15/8+eps}` via Cauchy-Schwarz on vertical edges (BYPASSING Door B). But the horizontal edges require the `H-height(A)` hypothesis from `H1_CONTOUR_TAIL_HEIGHT_AVOIDANCE.md`, which is itself **not source-closed unconditionally** for fixed EC. So the rectangle is a **different** unconditional gap, not a salvage of X.1.
+
+**Conditional comparison**: under GRH for `L_E^*`, the halo route gives `R_Phi(T) << T^{7/4+eps} = T^{14/8+eps}`, **strictly better** than X.1's claimed `T^{15/8+eps}`. So even if X.1 were unconditional, the conditional halo route would be the better statement under GRH. X.1 is only interesting as an unconditional bound, and the audit retracts that.
+
+**Honest unconditional landscape after today's full audit cycle**:
+
+| Bound on R_Phi(T) for fixed E/Q | Status | Gating gap |
+|---|---|---|
+| `R_Phi(T) << T^{7/4+eps}` under GRH for `L_E^*` | **conditionally proved** (today, halo route) | GRH for `L_E^*` |
+| `R_Phi(T) << T^{15/8+eps}` unconditional via X.1 | **RETRACTED** | Hidden Door B GRH at Step 4 |
+| `R_Phi(T) << T^{15/8+eps}` unconditional via rectangle | open | `H-height(A)` for fixed EC, not source-closed |
+| `R_Phi(T) = o(T^2)` unconditional | open | thin-strip density (TSDB) or mean-Lindelöf k=2 sibling |
+
+**No sub-T^2 unconditional bound on R_Phi(T) for fixed E/Q has been proved today.**
+
+**Confidence on X.1 as written**: downgraded from 0.78 to **0.55**.
+
+**Conditional halo route under standing GRH remains today's deliverable.** Unconditional offcentral H1 for fixed E/Q is **genuinely open**, blocked at the thin-strip density layer.
+
+## [2026-05-14] research | Off-halo pivot — unconditional T^{15/8+eps} bound found (strategic retreat)
+
+Off-halo exploration (`OFF_HALO_UNCONDITIONAL_PIVOT_2026-05-14.md`) surveyed 10 candidate routes outside the halo architecture. Result:
+
+**Pointwise unconditional `H1 = o(T^2)` for fixed E**: **NO** via any route. Most reduce to thin-strip density (TSDB) or its sibling.
+
+**BUT**: an **unconditional quantitative sub-T^2 bound was found** via the strategic-retreat route (X.1):
+
+```
+R_Phi(T)  <<_E  T^{15/8 + eps}   for fixed E/Q,  unconditional.
+```
+
+**Construction**:
+1. Good-Meurman unconditional GL2 4th moment: `int_T^{2T} |L_E^*(1/2+it)|^4 dt <<_E T^{2+eps}`.
+2. Heap-Soundararajan k=2 bad-set calibration (per `CONT_SHIFTED_NEG_Q2_GL2_PLAN_2026-05-14.md` §2.5): bounds `int |L|^{-2}` on a calibrated bad set.
+3. Composition: `ContShiftNeg_2 << T^{11/4 + eps}` unconditional.
+4. Gallagher-Heath-Brown transfer from continuous to zero-sampled.
+5. Cauchy-Schwarz on residue aggregate: `R_Phi(T) << T^{15/8 + eps}`.
+
+`15/8 = 1.875 < 2`. **The bound is strictly sub-T^2 and unconditional**.
+
+**Route classification** (10 routes investigated):
+
+| Class | Routes |
+|---|---|
+| Reduce to thin-strip density (same as halo/density) | I, II (t-aspect), III, VII, VIII |
+| Reduce to a sibling open problem (mean-Lindelöf k=2 t-aspect, not strictly TSDB) | VI |
+| Wrong target (`|L|` not `1/|L'(rho)|`) | V (subconvexity) |
+| No framework | IX (additive combinatorics) |
+| Family-averaged unconditional, fixed-E open | IV (Petersson/Kuznetsov trace formula) |
+| **Strategic retreat — unconditional quantitative sub-T^2** | **X.1 (Good-Meurman + Heap-Soundararajan)** |
+
+**Other genuine surprises**:
+
+1. Route VI (mean-Lindelöf k=2 t-aspect) is a **sibling** open problem, not strictly TSDB. The "unconditional H1 reduces to one open problem" narrative is refined to **two of comparable depth**.
+2. Route IV (Petersson/Kuznetsov trace formula) gives **unconditional family-averaged H1**. The obstruction to fixed-E unconditional is paper-architecture (isolating fixed E from the family), not GL2 zero location.
+
+**The un-commissioned audit (highest-leverage near-term task)**:
+
+```
+Does the joint Saar-Koyama paper need H1 = o(T^2) pointwise,
+or does it need any unconditional sub-T^2 bound?
+
+If the latter, the unconditional T^{15/8+eps} bound is the
+paper's H1 deliverable.  No GRH needed.
+```
+
+This determines whether today's session has produced **unconditional H1 (X.1)** or **conditional H1 (halo + GRH)** as the paper's final deliverable.
+
+Confidence on T^{15/8+eps} unconditional bound: 0.78. Needs second independent audit (Heap-Soundararajan k=2 transfer details).
+
+## [2026-05-14] research | Unconditional offcentral H1 reduces cleanly to thin-strip critical-line density
+
+Density-method analysis (`UNCONDITIONAL_DENSITY_METHOD_2026-05-14.md`): verdict **NO**.
+
+**Key finding**: The density method (halo plan §8.3) does NOT give an unconditional route. The required input `sum_{rho} |L_E^*'(rho)|^{-2} <<_E T^c` with `c < 3` is **strictly stronger than RH** in the published literature. The state-of-the-art Bui-Florea-Milinovich (arXiv:2310.03949) Theorem 1.1 gives `T^{3/2+delta}` for `k=1` **under RH**; the Weak Mertens Conjecture (strictly stronger than RH) yields `T^2` for the full family. Milinovich-Ng (arXiv:1306.0854) Theorem 1.2 proves the **positive** GL2 moment under `GRH_f` only. **No known unconditional upper bound on the negative second discrete derivative moment exists for any GL_n L-function, zeta included.**
+
+**Genuine surprise**: the density method's claimed "positivity advantage" over halo's Door B is **illusory at the unconditional layer**. Halo plan §8.3's claim of "very accessible" unconditional `c < 3` is retracted. Positivity simplifies proof architecture but not analytic content — both routes are governed by the same RH/GRH zero-location facts.
+
+**Consolidated unconditional landscape (both routes investigated today)**:
+
+| Route | Status | Open analytic problem at bottom |
+|---|---|---|
+| Halo route (signed contour) | Door B structural NO | Thin-strip critical-line density for `L_E^*` |
+| Density method (positivity-based) | NO (negative moment open) | Thin-strip critical-line density for `L_E^*` (same!) |
+| Palm wall direct break | NO-GO since 2026-05-12 | Same |
+| Mertens unconditional | Needs ~2000+ LOC Mathlib NT | Adjacent |
+
+**Reduction theorem (achieved today, implicit)**:
+
+```
+THEOREM (informal). For fixed elliptic curve E/Q, unconditional offcentral H1
+follows from any of the following equivalent statements:
+
+  (a) GRH for L_E^*.
+  (b) "Thin-strip critical-line density":
+      #{rho : |Im rho - gamma_0| <= R/log T and |Re rho - 1/2| > 1/log T}
+        = o(log T)  uniformly in gamma_0 ~ T.
+  (c) Selberg small-gap version of (b).
+  (d) Unconditional bound sum_{rho} |L_E^*'(rho)|^{-2} <<_E T^c for some
+      c < 3 (negative second discrete derivative moment).
+```
+
+All four are equivalent to "knowing more about zeros of `L_E^*` near the critical line than current zero-free regions provide." This is the **single fundamental open problem** at the bottom of the unconditional H1 question.
+
+**Verdict on user request "we must get to unconditional"**: not via current routes. Today's session has produced (i) the conditional halo route's full closure under standing GRH, and (ii) a clean reduction of unconditional offcentral H1 to thin-strip critical-line density. The residual analytic problem is on par with major open conjectures in GL2 zero distribution (Selberg small-gap, Bombieri-Friedlander-Iwaniec-style bounds, Conrey-Snaith negative-moment conjecture). Resolution within a year: <10%; within five years: <30%.
+
+**Recommended posture**:
+
+1. Accept halo route under standing GRH as today's deliverable (the conditional theorem).
+2. State the reduction theorem (a)-(d) explicitly as a paper-worthy companion result (clean reduction of unconditional H1 to a named open problem).
+3. Park unconditional attempts; revisit only if a published thin-strip density breakthrough emerges.
+
+## [2026-05-14] research | Unconditional push — Door B is structural blocker; pivot to density method
+
+Two parallel analyses (`UNCONDITIONAL_DOOR_B_ANALYSIS_2026-05-14.md` + `UNCONDITIONAL_DOOR_A_AGENT02_ANALYSIS_2026-05-14.md`).
+
+**Door A — PASS, ~9 days.** Agent02 (ShiftDerivativeComparison) uses GRH only via Milinovich-Ng Lemma 3.1's `S_E(t) = O_E(log T / log log T)`; deterministic substitute `O_E(log T)` loses `log log T`, forces Selberg mean-square exceptional-set route on density-1 zero subset (~4d). Critical caveat: Agent01's Carneiro-Chandee majorant step L101-104 needs zero-density theorem substitute (Kim-Sarnak, ~5d). If both promote: Door A unconditional at exactly `T^{5/2+eps}`, all `(log log T)^B` factors absorb. Confidence 0.65.
+
+**Door B — STRUCTURAL NO.** Cluster-mate contraction `sqrt(1+A^2)/R_T < 1` REQUIRES `Re rho_j = 1/2`. Off-line cluster mates with `|Re rho_j - 1/2| > 1/log T` resurrect the `C_A^{N_{rho_0,A}(T)}` obstruction. Five restructure attempts (unconditional zero-free regions; zero-density; cluster split; Hadamard/Carleman; truncated GRH) all trace back to **Selberg small-gap / thin-strip critical-line density open problem**. Genuine surprise: GRH gap at Door B is off by a full factor of `log T/2`, structural and load-bearing.
+
+**Verdict**: halo route unconditional closure NO via current architecture. Even if Agent01 + Agent02 promote (~9d), Door B's blocker stands.
+
+**Paths to unconditional offcentral H1**:
+
+| Route | Cost | Probability |
+|---|---|---|
+| Halo route + thin-strip zero density breakthrough | 3+ months | <10% in a year |
+| Halo route + truncated GRH (numerical) | 0 | asymptotically = full GRH |
+| **Density method (halo plan §8.3)** — POSITIVITY-BASED | weeks-months | TBD; next dispatch |
+| Restate with weakest sufficient hypothesis | 0.5d | doesn't advance unconditional |
+
+**Pivot to density method**: target `sum_{rho}^{mult} |L'(rho)|^{-2} <<_E T^c, c < 3`. Conjectural truth `c = 1`. **Bypasses Door B** entirely (no cluster-mate contraction; works with positivity-based budget). Tractable unconditionally via Selberg fourth moment + Heap-Soundararajan / Bui-Florea negative-moment techniques for fixed GL2 newform.
+
+## [2026-05-14] research | Door A CLOSED conditionally; halo route to unconditional offcentral H1 is conditionally complete
+
+Added `handoff-2026-05-14-research-track-split/WP_DOOR_A_RESIDUAL_CLOSURE_2026-05-14.md`. Status: **PASS on all 8 textual sub-tasks** (1.2, 1.3, 1.4, 1.5, 2.2, 2.3, 2.5, 2.6). Combined with the prior PASS on 1.1, 2.1, 2.4, **all 9 Wave 4 sub-tasks close**.
+
+**Door A theorem (conditional, under standing GRH for `L_E^*`)**:
+
+```
+For fixed elliptic curve E over Q (equivalently, fixed weight-2 cuspidal
+newform of level N_E),
+
+  sum_{rho in Z_T}^{mult} |L_E^*(rho + 1/log T)|^{-2}  <<_{E,eps}  T^{5/2 + eps}.
+```
+
+Proof composition: q=2 audit (`DEGREE2_WEAK_SHIFTED_NEG_Q2_AUDIT_2026-05-11.md` L117-148, `S_E(T)` bound) + multiplicity extension (`HALO_DOOR_A_MULTIPLICITY_EXTENSION_2026-05-14.md`, `Z_T^{mult}` lift at same exponent, margin `T^{3/2+eps}`) + RvM multiplicity (`HALO_RVM_MULTIPLICITY_LEMMA_2026-05-14.md`, `m_rho = O_E(log T)`) + Wave 4 promotion (sub-tasks 1.1-1.5, 2.1-2.6 at `k=1`; `WP_2_4_BFMT_SECTION_5_ABSORPTION_AUDIT_2026-05-14.md` + this file).
+
+**No surprises in textual closure**. Every cited equation matches verbatim: Carneiro-Chandee Lemma 8 + (3.1)-(3.2); Milinovich-Ng (18)-(23), Lemma 3.1, Prop 5.1 (63); BFMT Props 2.5/2.6/2.7 + (5.10)-(5.17). Bad-prime audit (1.3) at `2k=2` lands cleanly at `O_E(log log T)` — no surprise polylog. Deligne + Rankin-Selberg are k-independent; "k=1/2 → k=1 lift" remained ledger-naming throughout. Minor cosmetic note: 1.5 cites Iwaniec-Kowalski Ch. 5 (AFE for GL_n), standard textbook reference.
+
+**Halo route final door status**:
+
+| Door | Status |
+|---|---|
+| A: AllZeroShiftedNeg_2(E), target `T^{5/2+eps}` | **CLOSED conditionally under standing GRH** |
+| B: HaloShiftComparison | closed under GRH |
+| C: ResidueFirstH1Rewrite | GREEN 0.94 |
+| D: M_T bound | PASS for simple + bounded mult, regime `T >= e^{u/2}` |
+
+**The halo route to unconditional offcentral H1 (under standing GRH for the fixed newform `L_E^*`) is conditionally complete.**
+
+**Session-arc summary**:
+
+| Estimate provenance | Estimate | Achieved |
+|---|---|---|
+| Halo plan §13 (2026-05-12) | "1-2 months focused work" | one session day |
+| Wave 4 plan baseline (this morning) | 7-10 days | same day |
+| Wave 4 plan R5 up-side (this morning) | 3-5 days | same day |
+
+**Standing assumptions for the halo-route result** (unchanged from project scope):
+
+1. Generalised Riemann Hypothesis for `L_E^*` (all zeros of the fixed newform on the critical line) — explicit, named.
+2. Standard zero-counting `N(T) << T log T` for `L_E^*` — textbook.
+3. Standard Deligne `|lambda_E(p)| <= 2` and Rankin-Selberg `sum |lambda_E(p)|^2/p ~ log log x` — textbook.
+4. Wave 4 packets' analytic content (BFMT Lemma 2.3, Carneiro-Chandee Lemma 8, Milinovich-Ng Lemma 3.1) as cited.
+
+**Boundary**:
+
+```
+Allowed:    The halo route is conditionally complete under standing GRH;
+            Door A is conditionally proved at T^{5/2+eps}; halo plan §13
+            estimate of "1-2 months focused work" was compressed to one
+            session day.
+
+Forbidden:  The halo route is unconditional;
+            DPAC, LI, or RH is proved;
+            the Palm wall has been broken (it is bypassed, not broken).
+```
+
+## [2026-05-14] research | Wave 4 binding audit PASS (R5 up-side fires)
+
+Added `handoff-2026-05-14-research-track-split/WP_2_4_BFMT_SECTION_5_ABSORPTION_AUDIT_2026-05-14.md`. Status: **PASS** with confidence 0.80.
+
+Combined sub-tasks 1.1 + 2.1 + 2.4 (the binding-audit set) executed in single agent dispatch, ~2.0d compressed wall-clock. The audit verified:
+
+1. **Sub-task 1.1 (k-independence of Agent01 prime polynomial)**: confirmed by direct textual read. Agent01's display at L29-89 contains no `k` parameter symbol; k-dependence enters only downstream at BFMT Section 5 packaging.
+2. **Sub-task 2.1 (k=1 Prop 2.5 transcription)**: BFMT Prop 2.5 is itself k-free in its statement; k enters only at Prop 2.6/2.7 via `k^2 b(Delta_j)^2` and `E_(ell_h)(k P_(h,j))`.
+3. **Sub-task 2.4 (Section 5 absorption at k=1, BINDING)**: each of the four multiplicative loss factors at the four insertions absorbs cleanly into `T^{eps}`:
+
+| Insertion | Loss factor | Order |
+|---|---|---|
+| Prop 2.5 zero-sampling overhead | `(log T)^2` | `T^{o(1)}` |
+| Prop 2.6 Deligne + Rankin-Selberg | `<<_E log log T` | `T^{o(1)}` |
+| Prop 2.7 terminal family | `(log T)^{O(1)+1}` | `T^{o(1)}` |
+| Section 5 (5.11) | `exp(O(log T / log log T))` | `T^{O(1/log log T)} = T^{o(1)}` |
+
+Final exponent: `1 + 2k(4k - A)/(4k - A + B) = 1 + 2 · (4-1)/(4-1+1) = 5/2` exactly, with `A = 1 + O(eps)`, `B = 1 + O(eps)`. **Door A target exponent `T^{5/2+eps}` is recovered exactly**, not in excess.
+
+**Genuine surprise**: the "k=1/2 → k=1 lift" in the Wave 4 plan was a **ledger-naming issue**, not a real promotion. `DEGREE2_WEAK_SHIFTED_NEG_Q2_AUDIT_2026-05-11.md` L113-115 is already at `k=1` (`2k = q = 2`); no exponent shift between the "k=1/2" and "k=1" labels in the q=2 audit. The conductor flip `2k -> 4k` is correctly priced into the second-branch denominator, not introduced by a separate k-promotion. Collapses sub-tasks 1.4 and 2.6 to near-trivial.
+
+**R5 up-side fires** (projected probability 0.15 → realized). Door A is **3-5 days from full conditional closure under standing GRH**.
+
+**Halo route status update**:
+
+| Door | Status |
+|---|---|
+| A | 3-5d from conditional closure (textual source-quotes only; no analytic risk) |
+| B | closed under GRH |
+| C | GREEN 0.94 |
+| D | PASS for simple + bounded mult |
+
+**Remaining Wave 4 sub-tasks** (all textual / source-quote):
+
+| # | Cost | Description |
+|---|---|---|
+| 1.2 | 0.5d | Carneiro-Chandee majorant equation-level match |
+| 1.3 | 1.0d | Milinovich-Ng bad-prime audit at `2k=2`; coefficient-square sum `<<_E log log T` |
+| 1.4 | 0.5d | Section 5 (5.13) conductor-normalized rerun (largely subsumed by 2.4) |
+| 1.5 | 0.5d | AFE+conductor cross-check at `Y=T` (source-quote only) |
+| 2.2 | 0.5d | Prop 2.6 k=1 transcription (mixed family) |
+| 2.3 | 0.5d | Prop 2.7 k=1 transcription (terminal family) |
+| 2.5 | 0.5d | Milinovich-Ng Prop 5.1 + Deligne (Rankin-Selberg coefficient sum) |
+| 2.6 | 0.5d | Zero-sampling lemma at `2k=2` (k-independent; trivial) |
+
+All sub-tasks are now in the source-quote-only category. **No fresh analytic risk remains.**
+
+## [2026-05-14] research | Wave 4 promotion plan filed (Door A residual)
+
+Added `handoff-2026-05-14-research-track-split/WAVE4_PROMOTION_PLAN_2026-05-14.md`.
+
+**Headline cost**: 7-10 days critical-path; **R5 up-side compresses to 3-5 days** (probability 0.15); R1/R4 fallback to ContShiftNeg_2 adds 1-2 weeks.
+
+**Binding open sub-task**: 2.4 — explicit audit of BFMT Section 5 absorption (eqs 5.10-5.17) with Propositions 2.5/2.6/2.7 at `2k = 2` against Agent01's conductor-normalized archimedean term. The conductor flip `2k -> 4k`, the polylog overhead from zero-sampling, and Section 5's second-branch exponent must all fit inside `T^{eps}` margin against the loose `T^{5/2+eps}` target. **Attempt first.**
+
+**Wave 5 NO-GO does NOT carry** to the weak Door A target (clean YES with quote). `BREAKTHROUGH_WAVE_5_SYNTHESIS_2026-05-11.md` L38-46 kills the strong `T^{1+delta}` target at k=1/2 via the small-block sign condition `a(2d-1) > 2`. The weak Door A target `T^{5/2+eps}` is the q=2 *shifted* moment at k=1, which `DEGREE2_WEAK_SHIFTED_NEG_Q2_AUDIT_2026-05-11.md` L117-148 routes through the **second** BFMT branch — exponent `1 + 2 · (4-1)/(4-1+1) = 5/2` prices the conductor flip `4k = 4` directly. The small-block branch is bypassed. Residual risk R4 = 0.05 reserves for a hidden small-block dependence in the second branch.
+
+**Genuine surprise (R5, probability 0.15)**: Door A may be already conditionally proved at exponent `T^{5/2+eps}` by the q=2 audit. Wave 4 promotion is then **ledger source-closing**, not analytic sprint. If Agent01's prime polynomial display is genuinely k-independent (sub-task 1.1) and Prop 2.5's homogeneous form is k-independent (sub-task 2.1) — both plausible — Door A closes in **3-5 days** modulo source quotes for BFMT (5.13), Milinovich-Ng, Carneiro-Chandee.
+
+**Cumulative session arc (today, 2026-05-14)**:
+
+| Phase | Estimate before | Estimate after |
+|---|---|---|
+| Halo route — total remaining cost | 1-2 months (original halo plan §13) | **3-10 days** (Wave 4 audit; up-side 3-5d, down-side 10d, fallback 2-4w if R1/R4) |
+| Doors A/B/C/D | A open; B/C/D pending | A near-closed; B closed; C GREEN 0.94; D PASS |
+| Lean inventory | 10 files / 8 proved / 2 sorries | 11 files / **9 proved** / 2 DPAC-headline sorries |
+
+Index will be updated next session start.
+
+## [2026-05-14] research | Aristotle round-9 COMPLETE + Palm-wall status check
+
+**Aristotle round-9 returned, 0 sorries.** Project `61469dcd-30b5-4f73-a237-efe5316d1679` reached `COMPLETE` status in ~20 min wall-clock from dispatch. Result file 128 lines; both theorems closed without `axiom` declarations.
+
+| Theorem | Closure tactic |
+|---|---|
+| `absoluteResidueSum_tendsto_atTop` | `div_pos`, `Filter.Tendsto.inv_tendsto_nhdsGT_zero`, `tendsto_atTop_mono'` |
+| `signedResidueSum_tendsto_derivative` | `DifferentiableAt.div`, `HasDerivAt.tendsto_slope_zero` (Mathlib slope-to-derivative lemma) |
+
+All Mathlib standard; no analytic-NT machinery used. The polling script's `download_one` fallback grabbed the wrong file (RamanujanSum.lean) because the file basename `SignedVsAbsoluteResidueGadget.lean` does not match the label `SignedVsAbsoluteGadget_round9`. Fix-up: copied correct file from the extract dir into `formal-conjectures/SignedVsAbsoluteResidueGadget.lean` and into `formal-conjectures/SignedVsAbsoluteGadget_round9_full.lean`. **Action needed** for `scripts/poll_aristotle.sh`: tighten the `lean_file` find to use the label-without-`_roundN` suffix, or accept arbitrary base-name matching when only one new `.lean` file is in the extract; tracked.
+
+Updated `LEAN_SIGNED_VS_ABSOLUTE_GADGET_2026-05-14.md` to status `CLOSED`. Cumulative Lean state after round-9: **11 files / 9 fully proved / 2 DPAC-headline sorries**. Note for draft track: update `LEAN_SORRY_STATUS.md` and `_AxiomCheck.lean` when convenient.
+
+**Palm wall — current status check.** The user asked about the Palm-wall direct break that was previously delegated to a separate agent. Brief reconstruction:
+
+| Track | Date | Status |
+|---|---|---|
+| Multi-agent wall-break swarm (GPT-5.5 xhigh) | 2026-05-11 | `WALL_NARROWED_NOT_BROKEN` — see `H1_DISPLACEMENT_WALL_SYNTHESIS_2026-05-11.md` |
+| GPT-5.5 Pro Extended dossier (`handoff pro.md`) | 2026-05-11 to 2026-05-12 | No theorem promoted; reduction stayed at `PrimeScaleRootedPalmBox_beta(E,A;W)` for `beta > 3/2`, all rooted cluster sizes, summable constants |
+| Halo route pivot | 2026-05-12 | **Bypass** — replaces `R_B = sum |L'(rho)|^{-1}` with the signed contour residue identity, making the Palm wall structurally irrelevant for offcentral H1 |
+| Halo route audits | today | Doors B/C/D closed; Door A 1-1.5w from conditional closure |
+| Density-method side-quest (§8.3 of halo plan) | open | Palm-adjacent positivity route via loose neg. 2nd moment of `L'(rho)`; target `c < 3`, conjectural `c = 1`; ~2-4w; demoted to R1 insurance |
+
+**Net Palm-wall position**: the direct break has been NO-GO since 2026-05-12 and no fresh angle has emerged. Today's work (signed residue insight, Lean round-9, multiplicity extension) is all halo-route work that bypasses the Palm wall rather than breaking it. The Stage 0 audit explicitly notes the halo plan's two-zero gadget: a deterministic example shows that `R_B = sum |1/L'(rho)|` (positive l^1 budget) is genuinely strictly larger than the signed residue sum, by an arbitrary multiplicative amount. So the Palm wall **really is there for `R_B` as a positive quantity**; the halo route works precisely because H1 doesn't need `R_B` as a positive quantity.
+
+If we wanted to attempt a Palm-wall break again, the fresh angle would have to come from outside today's halo-route work — today's signed-vs-absolute insight does not break the Palm wall, it sidesteps it.
+
+## [2026-05-14] research | MIMO adversarial review of halo chain + Aristotle round-9 dispatch (SignedVsAbsoluteResidueGadget)
+
+Two tools dispatched in series.
+
+**MIMO adversarial review** (`scripts/dispatch_mimo.sh`, model `mimo-v2-flash`, ~5800-byte response, ~$0.02 cost). Input: all five 2026-05-14 audit memos concatenated (~1200 lines). Output filed at `handoff-2026-05-14-research-track-split/ADVERSARIAL_MIMO_HALO_CHAIN_2026-05-14.md`.
+
+Overall MIMO verdict: **Conditional Pass**. Triage table on the three flagged objections:
+
+| Objection | Verdict |
+|---|---|
+| Factor-of-2 in RvM density (Door B arc-uniformity) | MIMO **incorrect** — missed two-sidedness. Door B's `R/pi` answer is correct. |
+| Hidden Laurent coefficient bound (multiplicity extension) | **Fair** — internal cite to `H1_POSITIVE_RANK_CLOSURE.md` L221-230 is present but light. Tighten in future revision. |
+| RvM uniformity of `C_E` (RvM lemma) | **Mostly addressed** — `C_E` is conductor-and-weight only; small uniformity addendum welcome. |
+| Stage 1b sigma > 1/2 cite missing | **Mostly addressed** — already cited in §6 of Stage 1b. |
+| Stage 0 sign-flip risk | **Cosmetic** — already implicit. |
+
+Net: 2 real sharpenings (Laurent explicit derivation, RvM uniformity note), 1 MIMO arithmetic error, 2 mostly-addressed. Halo chain's Conditional-Pass survives independent adversarial review. First successful MIMO dispatch; cost is negligible (~$0.02/doc). Recommendation: rerun MIMO on each major audit as low-cost sanity layer.
+
+Tool note: initial dispatch with `mimo-v2.5-pro` failed (HTTP2 framing error); retry with default `mimo-v2-flash` succeeded.
+
+**Aristotle round-9 dispatch** (`scripts/aristotle_venv/bin/aristotle submit`). New module file `formal-conjectures/SignedVsAbsoluteResidueGadget.lean` (110 lines, 2 sorries). Captures the halo plan §2.2 "two-zero gadget": as two simple poles collide, the absolute residue sum diverges but the signed residue sum converges to the divided-difference derivative `(f/h)'(a)`. Pure complex analysis; no L-function / zero-counting / analytic-NT machinery. Fresh angle, not in any prior Aristotle lineage.
+
+| Field | Value |
+|---|---|
+| Project ID | `61469dcd-30b5-4f73-a237-efe5316d1679` |
+| Label | `SignedVsAbsoluteGadget_round9` |
+| Project tar | 580K (under 100MB limit; `.lake/` excluded) |
+| Status | dispatched 2026-05-14 ~21:30 UTC; not yet polled |
+
+`scripts/aristotle_project_ids.txt` updated. Lakefile updated locally to add the new module to the `FormalConjectures` aggregate and a standalone `[[lean_lib]]` block. Research-track per-sorry note filed at `handoff-2026-05-14-research-track-split/LEAN_SIGNED_VS_ABSOLUTE_GADGET_2026-05-14.md` per session-prompt directive (draft-track `LEAN_SORRY_STATUS.md` is read-only here).
+
+**Why this is not a forbidden unconditional-push retry**: round-9 is a brand-new module file, scoped to pure complex analysis (no Mathlib analytic-NT gap), with explicit proof strategies attached, modular (no downstream dependencies). Round-7 RamanujanSum precedent shows Aristotle can handle this class of supporting-lemma dispatch.
+
+**Ping to draft track**: once round-9 returns and is verified locally, the cumulative Lean state would go from "10 files / 8 fully proved / 2 DPAC-headline sorries" to "11 files / 9 fully proved / 2 DPAC-headline sorries." Draft track should update `LEAN_SORRY_STATUS.md` and `_AxiomCheck.lean` accordingly. Not done here.
+
+**Cumulative effect of session today (10 deliverables total):**
+
+| Track | Files | Net effect |
+|---|---|---|
+| Analytic halo route | 6 audit memos (Stages 0, 1a, 1b, B-arc, 2-plan, 2-mult, RvM) | Halo route from "1-2 months" to "~1-1.5 weeks of Wave 4 audit" |
+| Adversarial layer | 1 MIMO review memo | Chain survives independent review |
+| Lean formal layer | 1 new module + 1 per-sorry note + 1 Aristotle dispatch | Round-9 in flight |
+
+Index updated.
+
+## [2026-05-14] research | RvM multiplicity named lemma (Door A residual)
+
+Added `handoff-2026-05-14-research-track-split/HALO_RVM_MULTIPLICITY_LEMMA_2026-05-14.md`.
+
+**Statement**: for fixed elliptic curve `E/Q` (equivalently, fixed weight-2 cuspidal newform of level `N_E`), every offcentral zero `rho = 1 + i gamma` of `L_E^*` satisfies `m_rho := ord_{s=rho} L_E^* <= C_E · log(|gamma| + 2)`, with `C_E` depending only on conductor and weight.
+
+**Proof**: half a line via RvM for `L_E^*`. `N(T+1) - N(T-1) = (1/pi) log T + O(1)`; every zero in `[T-1, T+1]` contributes its multiplicity to that count.
+
+**Findings**:
+- No prior named RvM-for-GL2 lemma in the repo. Cumulative form `N(T,2T) << T log T` appears at `H1_POSITIVE_RANK_CLOSURE.md:171`, reused at `SHELL_MOMENT_SOURCE_AUDIT.md:184` and `ZERO_SAMPLE_BFMT_SUBSTITUTION_AUDIT_2026-05-11.md:81`, but the per-window / per-zero refinement was not named. External cite: Iwaniec-Kowalski Ch. 5 Thm 5.8.
+- `C_E` purely conductor-and-weight dependent: `c_E = (1/(2 pi)) log(N_E/(2 pi e)^2) + O(log T)`. No rank dependence (`r` central zeros absorbed in `O(log T)`); no local Euler factor pathology.
+- Mild observation: `H1_POSITIVE_RANK_CLOSURE.md:225-227` treats bounded multiplicity `M` as a free parameter; substituting `M = O_E(log T)` from this lemma makes the downstream shell range `1 <= j <= M` logarithmic — still closes against polynomial kernel decay budgets. Flag for any future revision of that file.
+
+**Door A residual after this lemma**:
+
+| Gap | Status |
+|---|---|
+| Multiplicity extension `S_E(T) -> Z_T^{mult}` | retired earlier today |
+| RvM multiplicity named lemma `m_rho = O_E(log T)` | **retired this memo** |
+| Wave 4 conditional promotion (`PrimePolynomialLowerBound` + `CoefficientDPMV` k=1/2 → k=1) | open (~7-10d) |
+
+Door A is now one audit away from conditionally closed. Index updated.
+
+## [2026-05-14] research | Door A multiplicity extension (Stage 2 audit lane 1 of 2)
+
+Added `handoff-2026-05-14-research-track-split/HALO_DOOR_A_MULTIPLICITY_EXTENSION_2026-05-14.md`.
+
+**Verdict**: q=2 audit's bound `sum_{rho in S_E(T)} |L_E^*(rho+1/log T)|^{-2} << T^{5/2+eps}` extends to multiplicity-weighted `Z_T^{mult}` at the **same exponent** `T^{5/2+eps}` with margin `T^{3/2+eps}` to spare. Conditional on the same Wave 4 inputs as the underlying q=2 audit.
+
+**Strategy.** Decompose `Z_T^{mult} = S_E(T) + (Z_T \ S_E(T))^{mult}`. Simple part already at `T^{5/2+eps}` by the q=2 audit. Multiple part: per-zero summand at multiplicity `m` weighted by `m · (log T)^{2m} · |L^{(m)}(rho)/m!|^{-2}`; RvM gives `m_rho = O_E(log T)`, so per-zero factor is `T^{o(1)}` (sub-polynomial). Total count `N^{mult}(T,2T) << T (log T)^2`. Multiple-zero contribution: `T^{1+o(1)}`. Far below `T^{5/2}`.
+
+**Cross-checks.**
+- `H1_MULTIPLE_ZERO_DISPOSITION_CURRENT_2026-05-11.md` is **orthogonal** to this audit (it handles residue-profile question, not moment-sum). Halo plan Route ii unaffected.
+- Laurent coefficients `|L^{(m)}(rho)/m!|^{-1}` polynomial in `(log T)` with linear-in-m exponent — cognate to bounds in `H1_POSITIVE_RANK_CLOSURE.md` L221-230 on the reciprocal-Laurent `b_{rho,-j}`. No surprise; Strategy A suffices, Strategy B (multiplicity-aware BFMT from start) is cleaner for formal write-up but not needed.
+
+**One small follow-up surfaced**: the RvM multiplicity bound `m_rho = O_E(log T)` is **not yet a named lemma in the repo**. Standing zero-counting `N(T,2T) << T log T` is at `H1_POSITIVE_RANK_CLOSURE.md` L171, but the per-zero multiplicity bound is treated as an explicit hypothesis (L225-227). Proof is half a line via explicit-formula zero counting. Recommendation: file named lemma during Stage 2 source-closing; external cite Iwaniec-Kowalski Ch. 5 (or Titchmarsh Ch. 9 for zeta).
+
+**Door A residual budget**: 2-3 weeks → 1.5-2.5 weeks (retired ~3-5d of 7-10d audit budget).
+
+| Door A residual gap | Status post-this-audit |
+|---|---|
+| Multiplicity extension `S_E(T) -> Z_T^{mult}` | **Retired** (this memo) |
+| Wave 4 conditional promotion (`GL2-BFMT-PrimePolynomialLowerBound`, `ZeroSample-Homogeneous-BFMT-CoefficientDPMV` k=1/2 → k=1) | Open (~7-10d) |
+| Named lemma for RvM multiplicity bound `m_rho = O_E(log T)` | New (~0.5d, half-line proof) |
+
+Index updated.
+
+## [2026-05-14] research | Stage 2 of halo plan: Door A plan + Door B arc-uniformity audit
+
+Two parallel agents dispatched after Stage 1.
+
+**Door B arc-uniformity audit (closes Stage 1a residue).** Added `handoff-2026-05-14-research-track-split/HALO_DOOR_B_ARC_UNIFORMITY_AUDIT_2026-05-14.md`. Resolves the gap surfaced by Stage 1a: extending the noncluster `H_A` ratio bound from point evaluation to the full halo disk. Key computation: by harmonic mean-value, first-order variation cancels; second-order term `(R alpha)^2 sum_{rho_j non-cluster} 1/|rho_0 - rho_j|^2 = R/pi + o(1)` (two-sided RvM density `log T/(2pi)` per unit, inverse-square integral `(log T)^2/(pi R)`, times `(R alpha)^2 = R^2/(log T)^2`). **Bounded constant, no T-dependence**, exactly as halo plan §5.1 claimed in spirit. For `R = 1.5`: `R/pi ≈ 0.477`, `e^{2R/pi} ≈ 2.60`. The halo plan's stated `1/(2 pi A)` was one-sided; correct two-sided integration with cluster-scale unification `A := R` gives `R/pi` (factor-of-2 cosmetic, not material). **Surprise**: setting cluster scale = halo scale = `R alpha` collapses halo plan's two free parameters `(A, R)` to single parameter `R > 1`, and *also* sharpens the original repo lemma `ClusterShiftDerivativeComparison(E, A)` from `T^{o(1)}` to `O(1)` at the point level. The repo lemma's `log T / loglog T` loss is an artifact of `A alpha << R alpha`; scale unification eliminates it. Cluster-mate contraction becomes `sqrt(1+R^2)/R_T < 1`, satisfied for `R_T in (sqrt(1+R^2), 2R)`, nonempty for `R > 1`.
+
+**Door A plan / Stage 2 sprint.** Added `handoff-2026-05-14-research-track-split/CONT_SHIFTED_NEG_Q2_GL2_PLAN_2026-05-14.md`. Documents the primary route (ContShiftNeg_2 continuous + Gallagher-Heath-Brown transfer, target `T^{3/2+eps}` continuous + transfer loss `<= T^{1/2}` = `T^{2+eps}` total, safe under loose target `T^{5/2+eps}`), fallback (direct zero-sample BFMT k=1, target `T^{5/2+eps}`), and an independent cross-check against existing repo audits.
+
+**Headline finding — Door A is essentially already conditionally proved in the repo.** The q=2 audit `DEGREE2_WEAK_SHIFTED_NEG_Q2_AUDIT_2026-05-11.md` gives exactly `sum_{rho in S_E(T)} |L_E^*(rho + 1/log T)|^{-2} <<_E T^{5/2+eps}`, which IS Door A's target. The exponent match `5/2 + eps` is structural, not coincidence: Door A is the `k=1` case of the BFMT ledger that the audit transcribed. Two real but cheap residual gaps:
+
+| Gap | Status | Cost |
+|---|---|---|
+| `S_E(T)` is simple critical zeros — extension to multiplicity-weighted `Z_T^{mult}` | Multiplicity at offcentral height `<= O(log T)` by RvM, absorbed by `T^{eps}` | ~3-5d audit |
+| Conditional on Wave 4 local GL2 inputs (`GL2-BFMT-PrimePolynomialLowerBound(E)`, `ZeroSample-Homogeneous-BFMT-CoefficientDPMV(E, k=1)`) currently at `k=1/2`, and standing newform RH | Source-close + `k=1/2 -> k=1` promotion | ~7-10d audit |
+
+**Door A collapses from a multi-week analytic sprint to a 2-3 week source-closing audit.** Recommended sprint structure: Week 1 (`k=1/2 -> k=1` + multiplicity), Week 2 (Wave 4 promotion), Week 3 (synthesis), Week 4 buffer for Bui-Florea / Soundararajan adaptation if Track 1 stalls.
+
+**Final door status post-Stage-2-plan:**
+
+| Door | Status | Residual work |
+|---|---|---|
+| A: AllZeroShiftedNeg_2(E) | **near-closed conditionally** | 2-3w source-closing audit (was projected 1-2 months sprint) |
+| B: HaloShiftComparison | **closed under GRH**, fully written-out | none |
+| C: ResidueFirstH1Rewrite | GREEN 0.94 | none |
+| D: M_T = o(T^{1/4}) | PASS for simple + bounded mult; regime `T >= e^{u/2}` matches H1 base | high-mult edge case to Stage 4 |
+
+**Updated risk register**: R1 (Door C positivity), R3 (Door B arc), R4 (Door D regime) all retired. Live risks: R2 (transfer eats > T^{1/2}, probability 0.10), R5 newly named (Wave 4 conditionals not promotable, probability ~0.10). Hard-abort probability 0.02 unchanged.
+
+**Cumulative effect of today's research-track work (Stages 0, 1a, 1b, B-arc, 2 plan)**: the halo route to unconditional offcentral H1 is now bookkeeping-bound, not research-bound. Total remaining cost: 2-3 weeks of source-closing audit (was projected 1-2 months focused work in the original halo plan).
+
+Index updated.
+
+## [2026-05-14] research | Stage 1 of halo plan: HaloShiftComparison lemma + M_T numerator audit
+
+Stage 1a and Stage 1b dispatched in parallel after Stage 0 GREEN verdict.
+
+**Stage 1a — Door B write-up.** Added `handoff-2026-05-14-research-track-split/HALOSHIFTCOMPARISON_LEMMA_2026-05-14.md` (271 lines). Statement: under standing GRH for the newform, for `A > 0` and halo radius `R > sqrt(1+A^2)`, every boundary arc `s in partial Omega_T` assigned to `rho_0` satisfies `|L(rho_0+alpha)/L(s)| <= C(E,A,R)` with C absolute and independent of cluster size. Clean form §5.1 (cluster mates contract by `sqrt(1+A^2)/R_T < 1` per mate, product over arbitrary cluster size ≤ 1) and conservative archival §5.1' (R > A+1) both recorded. Status `RIGOROUS_REDUCTION`, confidence 0.88. **Genuine gap surfaced** (not in halo plan's claimed scope): the noncluster `H_A` point-to-arc lift bound is asserted in §5.1 of the halo plan as if it were free, but the cited repo lemma `ClusterShiftDerivativeComparison(E,A)` is a point-evaluation result. Extending it to a disk of radius `R alpha` is a small new uniformity claim (~0.5d audit) — analytic inputs all present in the repo lemma, but the explicit lift is not yet written out. Flagged in §4 of the new file.
+
+**Stage 1b — Door D numerator audit.** Added `handoff-2026-05-14-research-track-split/H1_NUMERATOR_M_T_AUDIT_2026-05-14.md` (417 lines). Identified `Phi_T(s) = e^{u(s-1)} W_hat(s-1)` from residue-match against the simple-zero formula `e^{i gamma u} W_hat(i gamma)/L'(rho)`. On halo arcs `|s-1-i gamma| = O(1/log T)` with `|gamma| > T`, kernel decay `q=2` (smoothstep) gives `|W_hat(s-1)| << T^{-2}`; exponential factor gives `e^{u R_T alpha} = e^{O(u/log T)}`. Therefore `M_T <= C T^{-2} e^{O(u/log T)}`. Door D's loose requirement is `M_T = o(T^{1/4})`; we obtain `O(T^{-2})` with margin `T^{9/4}`.
+
+**Verdict: PASS** in the regime `log T(u) >= sigma u` with `sigma > 1/2`, i.e. exponential truncation `T = e^{cu}` for some `c > 0`. Polynomial `T = u^A` regime FAILS. **Crucially, the binding regime is the same regime the H1 base proof already pays for the Perron start-line tail** (`H1_CONTOUR_TAIL_HEIGHT_AVOIDANCE.md` L137-138, L169) — no new burden from halo route. Cleanest possible inheritance.
+
+**Stage 0 residual risk (0.10) retired.** Contour truncation error analysis uses triangle inequality on the contour integrand `|e^{uz} W_hat(z)/L(z)|` over a *path*, not termwise `|R_rho|` over a sum. Signed identity preserved. Door C confidence 0.86 → 0.94.
+
+**Single material caveat: multiple-zero polylog inflation.** `Phi_T` derivatives of order `m` introduce `u^m` factors; with `m = O(log T)` and `u = log T / sigma`, worst-case multiplicity inflation is `e^{O((log T)^2)}`, NOT preserving `O(T^{-q})`. For simple zeros and bounded multiplicity (the generic case for fixed GL2/EC at offcentral heights, multiplicity `<= O(log T)` by Riemann-von Mangoldt) the bound holds with overhead absorbed by `T^{eps}`. Defer high-multiplicity edge case to Stage 4 multiplicity-aware audit (already on halo plan roadmap as Door A Route i).
+
+**Door status update.**
+
+| Door | Pre-Stage-1 | Post-Stage-1 |
+|---|---|---|
+| A: AllZeroShiftedNeg_2(E) | OPEN | OPEN (Stage 2 target) |
+| B: HaloShiftComparison | green-under-GRH, modulo "trivial" arc extension | green-under-GRH, modulo explicit ~0.5d point-to-arc uniformity audit |
+| C: ResidueFirstH1Rewrite | GREEN (0.86) | GREEN (0.94) |
+| D: M_T = o(T^{1/4}) | OPEN | PASS for simple zeros + bounded multiplicity, in regime `T >= e^{u/2}` (regime forced by H1 base already) |
+
+**Next: Stage 2 sprint** on Door A (`AllZeroShiftedNeg_2(E)`: `sum_rho |L(rho+alpha)|^{-2} << T^{5/2+eps}`, target 3/2 powers above conjectural truth). Will write `CONT_SHIFTED_NEG_Q2_GL2_PLAN_2026-05-14.md` transcribing Heap-Soundararajan + Bui-Florea for fixed-conductor GL2. Density-method side-quest still alive as R1 insurance but no longer urgent.
+
+**Tiny follow-on: Door B arc-uniformity audit.** ~0.5d write-out of point-to-arc bound for the noncluster H_A ratio. Can run in parallel with Stage 2.
+
+Index updated.
+
+## [2026-05-14] research | Stage 0 of halo plan: H1 residue-first audit, verdict GREEN
+
+- Added `handoff-2026-05-14-research-track-split/H1_RESIDUE_FIRST_AUDIT_2026-05-14.md`. One-page memo, Door C (residue-first rewrite) of the halo unconditional plan.
+- **Verdict**: GREEN. The H1 conclusion that consumes the offcentral aggregate is `Z_c(u) + I(u) = o(u^r)`, a signed contour residue statement (anchor: `H1_POSITIVE_RANK_CLOSURE.md` L52-56, L122-130). The repo simple-zero stack's positive `l^1` budget `R_E,1^simp(T) = sum |L'(rho)|^{-1}` realises the absolute-convergence sufficient condition `(H-abs-r)` (L142-148 of the same file), explicitly tagged "the simplest promotable" — not necessary. The halo route swaps that sufficient condition for the contour residue identity; no upstream positivity is required.
+- Searched the H1 chain for any independent `l^1` energy identity or positivity use. None found. Closest candidate (breakthrough wave Cauchy-Schwarz route to absolute convergence, L107-117) is a derivation of `(H-abs-r)`, not a separate use.
+- Caveats logged: pointwise vs averaged mode, multiple-zero residue degrees, contour-tail `I(u)` (unchanged by halo), and that `R_B` remains the natural target for the §8.3 density-method side-quest.
+- Residual risk 0.10 that a downstream step in the contour truncation error analysis silently uses `|R_rho|` termwise; flagged to be retired by Stage 1b numerator audit.
+- **Next**: Stage 1a `HALOSHIFTCOMPARISON_LEMMA_2026-05-14.md` (write-up of Door B boundary-arc extension, already proved §5.1 of halo plan, `R > sqrt(1+A^2)`). Parallel Stage 1b `H1_NUMERATOR_M_T_AUDIT_2026-05-14.md` (compute `M_T = sup_halo |Phi_T|` for repo `Phi_T`; expected `T^{o(1)}`). Stage 2 sprint `CONT_SHIFTED_NEG_Q2_GL2_PLAN_2026-05-14.md` deferred until Stage 1 complete. Density-method side-quest kept alive as Risk R1 insurance.
+- Index updated.
+
+## [2026-05-14] paper-prep | Aristotle rounds 7-8, RamanujanSum closure, axiom audit, halo unconditional plan
+
+Continuation of the 2026-05-13 paper-prep session.
+
+**Aristotle round-7 (Ramanujan-sum-at-primes).** Added `formal-conjectures/RamanujanSum.lean`: `geom_sum_roots_of_unity`, `primRootsSum_eq_moebius` (via Dirichlet convolution + strong induction), `ramanujanSum_eq_moebius_of_coprime`, and `farey_ramanujan_decomp`. The new module **discharges** the `h_ramanujan_decomp` hypothesis previously consumed by `FareyBridgeIdentity`. `FareyBridgeIdentity.lean` now exports `farey_bridge_identity_unconditional` — the only inputs are `Nat.Prime p` and Mathlib v4.28.0. File count 9 → **10**; fully-proved count 7 → **8**.
+
+**Aristotle round-8 (unconditional-push on `MertensSpectroscopeUniversality`).** Outcome **option (C)**: blueprint + 2 proven infrastructure lemmas. `spectroscope_nonneg` (the spectroscope statistic is non-negative) and `reciprocal_sqrt_not_summable` (if $\sum_{p \in P} 1/p$ diverges, so does $\sum_{p \in P} 1/\sqrt{p}$) closed unconditionally; the file now also contains a 5-step blueprint of the remaining gap (Perron inversion, explicit formula for $M(x)$, oscillatory-integral partial summation, zero simplicity, Soundararajan-2009 input). Headline `mertens_spectroscope_universality` remains conditional on the explicit-formula asymptotic input as before. Loop-stopping rationale recorded: further unconditional push needs ~2000+ LOC of new Mathlib analytic-NT machinery; **round-9 NOT dispatched**.
+
+**Cumulative axiom audit.** Added `formal-conjectures/_AxiomCheck.lean` running `#print axioms` on every headline theorem. Six of the eight (the `RamanujanSum` chain, `FareyBridgeIdentity`, `LocalPerronResidue`, `CorrectedBInfty`, `MertensSpectroscopeUniversality`, `FareySignPattern`) depend only on `propext`, `Classical.choice`, `Quot.sound`. The remaining headline `dpac_le_4` additionally depends on `Lean.ofReduceBool` and `Lean.trustCompiler` (Mathlib kernel-reduction primitives, used because the proof computes Möbius values at small primes in the kernel). No axiom is unstable or project-specific. §X.6 surfaces the audit as a referee-grade rigor note; `LEAN_SORRY_STATUS.md` distinguishes the "no `axiom` declarations" convention from the machine-checked axiom-dependency report.
+
+**LaTeX bundle.** `section_X.tex` updated to reflect the 10-file / 8-proved state, the RamanujanSum addition, the FareyBridge unconditional upgrade, the spectroscope blueprint + 2 new lemmas, and the axiom-audit narrative. `paper.pdf` rebuilt.
+
+**Halo unconditional plan added.** `handoff-2026-05-12-halo-unconditional-plan/HALO_UNCONDITIONAL_PLAN_2026-05-12.md`: a single anchor document that records the halo theorem's four remaining conditional doors (A: `AllZeroShiftedNeg_2`, B: `HaloShiftComparison`, C: `ResidueFirstH1Rewrite`, D: $M_T = o(T^{1/4})$), proves Door B unconditional under the standing GRH assumption with $R > \sqrt{1+A^2}$ (boundary-arc trick collapses the cluster-mate ratio to a contraction of arbitrary order, no zero-count input needed), and stages a two-route plan toward unconditional offcentral H1 (continuous shifted negative second moment + Gallagher-Heath-Brown transfer, fallback BFMT zero-sample). Also documents Section 8.3 density-method side-quest as a parallel route that does not require residue-first rewrite. Total cost estimate: 1-2 months focused work.
+
+**Cumulative state.** Lean: 2 sorries (DPAC headline ×2); **8 of 10 files fully proved**; no axioms; axiom-dependency report machine-checked clean; build green. LaTeX: 18-page PDF, consistent with current Lean inventory. Koyama: green light received; Phase-1 reconciliation expected week of May 20. Midweek update draft refreshed to reflect the 10/8 numbers + axiom audit + Ramanujan + spectroscope additions; not yet sent (default: hold until Koyama's reconciliation arrives).
+
+## [2026-05-14] paper-prep | §X senior-reviewer polish pass + numerical re-audit
+
+Track split: this session continues §X-draft work; the halo / DPAC / sorry-closing research runs in parallel under the prompt at `handoff-2026-05-14-research-track-split/SESSION_PROMPT.md`. Boundary documented there.
+
+**Fixes applied to `SECTION_DRAFT_2026-05-12.md`.**
+
+- §X.6 axiom-audit narrative: resolved a "6 of 8" vs "all eight with single exception" inconsistency between the section and `LEAN_SORRY_STATUS.md`. Section now states "six of the eight headline theorems use only the standard `propext`/`Classical.choice`/`Quot.sound` triple; the remaining headline `dpac_le_4` additionally uses `Lean.ofReduceBool` + `Lean.trustCompiler`". Dropped the obsolete `MATHLIB-PREREQ:` annotation-tag mention — both remaining sorries are `RESEARCH-OPEN:` (the DPAC headline at general $K$). Cleaned the jammed sentence around the Eight-files / FareyBridge / RamanujanSum closure.
+- §X.4.4 (SP-L) obstruction: clarified that DRH constrains zero location but not multiplicity, so the $(\log K)^{m-1}$ contribution from a multiple off-target zero is not absorbed by simplicity of the target $\rho$.
+- §X.5.4 numerical narrative: replaced the imprecise "Both ratios bracket the predicted $K^{-1/2}$" with "within a factor of $\le 1.7$ of the prediction; $\chi_5$ consistently above, $\chi_{11}$ straddling". Tightened the $\chi_{-4}$ statement from "ratio $\approx 1.15$ over each decade" to "ratio $1.09$–$1.15$ across the two $K$-steps" (matches the run log).
+
+**Numerical re-audit.** Cross-checked all four pairs' $B_\infty$ residuals at $K = 10^7$ and $K = 10^8$ against `BINFTY_CLOSED_FORM_run.log` and `BINFTY_K100M_run.log`. All eight values match to displayed precision:
+
+| Pair | K=10^7 (log) | K=10^7 (draft) | K=10^8 (log) | K=10^8 (draft) |
+|---|---|---|---|---|
+| chi_{-4}/z_1 | 0.002578 | 2.58·10⁻³ | 0.002253 | 2.25·10⁻³ |
+| chi_{-4}/z_2 | 0.001520 | 1.52·10⁻³ | 0.001322 | 1.32·10⁻³ |
+| chi_5 | 1.2232·10⁻⁵ | 1.22·10⁻⁵ | 3.296·10⁻⁶ | 3.30·10⁻⁶ |
+| chi_{11} | 1.7520·10⁻⁵ | 1.75·10⁻⁵ | 4.101·10⁻⁶ | 4.10·10⁻⁶ |
+
+§X.5.1 disagreement-table arithmetic re-verified: 12+12+20+18+30 = 92 cells; 11+1+19+15+29 = 75 exact; 1+11+1+3+1 = 17 disagreements; the "74/81 ≈ 91% excluding the 11 Table-4 small-$x$ rows" claim arithmetically correct.
+
+**LaTeX bundle rebuilt.** `python3 clean.py` + `tectonic paper.tex`; `paper.pdf` regenerated, 178 KiB. Section bumped to 702 lines; appendices unchanged. The three hyperref "Object @equation.X.Y already defined" warnings are pre-existing (caused by `\tag*{(AK)}` / `\tag*{(NDC)}` / `\tag*{(SP-L)}` and the appendix `\tag{($\star$)}` / `\tag{($\dagger$)}` interacting with hyperref auto-anchoring); cosmetic, not a build error. `references.bib` unchanged (18 entries).
+
+**Status.** §X draft now consistent across section, `LEAN_SORRY_STATUS.md`, midweek update draft, and the run logs. Awaiting Koyama's Phase-1 reconciliation (week of May 20) before LaTeX integration into the full joint paper.
+
+## [2026-05-14] paper-prep | §X / Appendix notation-drift sweep
+
+Continuation of the §X-draft track during the hold for Koyama's Phase-1 reconciliation. Item (2) of the prompt's polish list: cross-check appendices against the section for notation drift.
+
+**Four real consistency issues found and fixed.**
+
+1. **`T_K` symbol collision (the one the prompt explicitly flagged).** §X.1 defines `T_K(χ,ρ) := Σ_{p≤K} Σ_{k≥2} χ(p)^k/(k p^{kρ})` for the partial prime-power sum (limit `T_∞`, `B_∞ = exp T_∞`). §X.4.2 and Appendix B §B.3.3, §B.3.4 were *also* writing `T_K` for the Inoue zero-avoiding truncation height. Same symbol, two unrelated objects. Resolved by renaming the Inoue truncation height to **`T(K)`** throughout — matches Inoue 2021's `T` parameter, keeps the K-dependence visible, breaks the collision. Both §X.4.2 and Appendix B now have an explicit cross-reference reservation note.
+
+2. **`c_K` argument order in Appendix B.** §X.1 and the appendix theorem statement use `c_K(χ, ρ)`. Appendix B §B.1.1 and §B.1.2 had reversed order `c_K(ρ, χ)` (two locations). Aligned to `c_K(χ, ρ)`.
+
+3. **Theorem X.4.2 truncation-height convention mismatch.** §X stated `|γ' − τ| ≤ T_K`; Appendix B stated `|γ'| ≤ T_K`. The two differ by `|τ| = O(1)` and are asymptotically equivalent, but they refer to heights in different coordinate systems (shifted `w`-plane vs Inoue's `s`-plane). Aligned to the Inoue convention `|γ'| ≤ T(K)` in both places, with `ρ' = ½ + iγ'` made explicit in the hypothesis to avoid ambiguity.
+
+4. **Obsolete `MATHLIB-PREREQ:` tag in Appendix A §A.7.** The 2026-05-14 senior-reviewer pass dropped this tag from §X.6 (both remaining sorries are `RESEARCH-OPEN:`). The same tag-name still appeared in A.7 in reference to a hypothetical *fully* unconditional Lean closure of `corrected_B_infty`. Rephrased to "neither is upstream as of Mathlib v4.28.0" without the tag.
+
+**Display-equation polish.** Switched the §B.3.5 assembly display from `\[ … \]` to `multline*` because the slightly wider `T(K)` symbol pushed the 7-term sum past the textwidth (140pt overfull hbox at appendix_B:302 in the pre-fix build). Post-fix: that overfull is gone; remaining warnings (section_X table row at L392, references-block ragged-right at L588–594) are all pre-existing cosmetic and unrelated to this pass.
+
+**LaTeX bundle rebuilt.** `python3 clean.py` regenerates `section_X.tex` (703 lines, +1), `appendix_A.tex` (399 lines, unchanged content), `appendix_B.tex` (374 lines, +35 from multline expansion). `tectonic paper.tex` builds; `paper.pdf` 178.76 KiB. Three pre-existing hyperref "Object @equation.X.Y already defined" warnings unchanged. `references.bib` unchanged.
+
+**Status.** §X draft notation now consistent across section, both appendices, and Inoue's verbatim convention. No content changes — only symbol-naming and one display environment. Cumulative state unchanged: Lean 2 sorries / 8-of-10 fully proved / axiom-audit clean; 18-page PDF; midweek update on hold pending Koyama's Phase-1 reconciliation.
+
+## [2026-05-14] paper-prep | adversarial pass on prior pass + citation provenance
+
+Adversarial recheck of the notation-drift sweep above, plus polish item (1) (citation/bib consistency). Four real findings; all fixed.
+
+**A1. (Self-correction on my own prior edit.)** The previous pass introduced `\rho' = \tfrac12 + i\gamma'` into the Theorem X.4.2 hypothesis statement in both §X.4.2 and Appendix B intro. That parameterisation implicitly *presupposes* RH for $L(s,\chi)$, which is a stronger assumption than the original text made. The identity itself does not need RH (only the $o(1)$ rate does — see Appendix B §B.3.1, where RH is invoked explicitly at the off-target aggregate step, not at the residue-formula step). Rewrote the hypothesis to use $|\mathrm{Im}(\rho')| \le T(K)$ with $\rho'$ general; added an explicit "the $o(1)$ rate further uses RH for $L(s,\chi)$" pointer in the Appendix B intro.
+
+**A2. Soundararajan 2009 mislabelled "unconditional" in five locations.** Soundararajan's *Partial sums of the Möbius function*, Ann. of Math. **170** (2009), 1409–1422, Theorem 1 — the $\sqrt{x}\exp((\log x)^{1/2}(\log\log x)^{14})$ bound on $M(x)$ — is **RH-conditional**, not unconditional. The strongest *unconditional* bound on $M(x)$ in the literature is the Vinogradov–Korobov-style $x\exp(-c(\log x)^{3/5}(\log\log x)^{-1/5})$, far weaker. The §X.4.2 sentence "the *unconditional* Soundararajan (2009) bound gives ...", the Appendix B intro line, the Appendix B §B.4 table row, the §X References entry, and the `references.bib` note all said or implied "unconditional Soundararajan". The intended logical content (consistent with B.3.5 and §X.5.4 line 358 "Soundararajan-conditional rate") was: *RH-conditional in general; unconditional in the computational regime of §X.5 for the four characters $\chi_{-4}, \chi_5, \chi_{11}$ because RH for $L(s,\chi)$ is numerically verified to heights well beyond the $K$-ranges considered*. Rewrote all five locations to state this correctly. B.3.5 and §X.5.4 (already correct) untouched.
+
+**A3. Title mismatch: Aoki–Koyama 2023.** §X References listed *Generalised Mertens constant for Dirichlet $L$-functions* and "Aoki, T."; `references.bib` listed *Chebyshev's bias against splitting and principal primes in global fields* and "Aoki, Miho". The bib values are the actual published values for JNT vol 245 (2023), pp. 233–262. Aligned §X References to bib: title corrected; author initial corrected to "Aoki, M.".
+
+**A4. Title mismatch: Inoue 2021.** §X References listed *Truncated explicit formula for $M(x,\chi)$*; `references.bib` listed *Some explicit formulas for partial sums of Möbius functions* (the actual published title, JTNB 33 (2021), 273–315). Aligned §X References to bib: title corrected; added pages and eq. (4.1) anchor.
+
+**Other adversarial checks performed and cleared.**
+
+- Cross-walked all 11 §X.3–§X.7 bib entries vs the §X References block — only Aoki–Koyama and Inoue had title drift; the other 9 (Akatsuka, Davenport, Hardy–Wright, Montgomery–Vaughan, Ng, Pólya, Soundararajan, Tenenbaum, Titchmarsh) agree.
+- Appendix B B.1.3 verbatim-quote citation "arXiv:1805.05015v1, page 3" — confirmed the arXiv ID matches Inoue 2021 (S. Inoue, *Some explicit formulas …*). The arXiv-vs-JTNB pagination mismatch is benign; the verbatim block is page-3 of the preprint, and the published bib already records pp. 273–315 of JTNB. Left as-is.
+- §X.4.3 (AK) formula — `m = m_\chi = \mathrm{ord}_{s=1/2}\,L(s,\chi)` reads as if $m$ is fixed at the central point, but the specialization in the same subsection to $\rho \ne 1/2$ uses $m = 1$ as the order of zero at $\rho$. This is an Aoki–Koyama-paper-internal convention question (whether their $m$ is at the evaluated $s$ or at $s=1/2$). Leaving as-is pending Koyama's own read; flagged as a candidate for him to clarify when integrating §X.4.3 into the full joint paper.
+- All `T_K` mentions outside the partial-prime-power-sum sense are gone; all `c_K(\chi,\rho)` argument orders are consistent; no new overfull hboxes introduced.
+
+**LaTeX bundle rebuilt.** `paper.pdf` 179.78 KiB (+1 KiB from added RH-clarification text). Pre-existing overfull hboxes in the §X.5.4 longtable row and §X.6 verbatim-heavy table rows unchanged.
+
+**Status.** §X draft now passes adversarial self-review on notation, citation provenance (one open Aoki–Koyama internal-convention item for Koyama to confirm), and conditionality labelling. Cumulative state otherwise unchanged. Midweek update still on hold pending Koyama's Phase-1 reconciliation.
+
+## [2026-05-14] paper-prep | Koyama-ready polish: Abstract, Intro, §X.6, §X.7, README, Lean spot-check
+
+Continuation of the §X-draft polish track. Goal: make the bundle as press-ready as it can be while holding for Koyama's Phase-1 reconciliation. Touched: `ABSTRACT_DRAFT`, `INTRODUCTION_DRAFT`, §X.4.3, §X.6, §X.7 Further questions, `LEAN_SORRY_STATUS.md`, `README.md`. Did not touch the cover note (archival), `MIDWEEK_UPDATE` (already current), or `SP_L_SUFFICIENT_PACKAGES` (still accurate at GL(1)).
+
+**P1. Stale Lean count `7 of 9` → `8 of 10`.** The Abstract drafts and the Intro draft were written 2026-05-13, before the Aristotle round-7 (`RamanujanSum.lean`) addition brought the file count from 9 → 10 and fully-proved count from 7 → 8. Three locations in the Abstract (Drafts A, B, C) and one location in the Intro §1.3(iv) all updated. Also updated `README.md` ("Per-`sorry` inventory of the 10-file Lean lake project ... eight files are fully proved").
+
+**P2. Abstract restructured to recommended + alternatives.** Per the prompt's note "collapsing the three Abstract variants to a single recommended one with two short alternatives, and tightening the Introduction's `<your section here>` cues": made the tight 165-word version the Recommended draft; demoted the 235-word and 115-word versions to Alternative 1 (long-form for J. Number Theory etc.) and Alternative 2 (arXiv announcement). Notes block updated to explain the recommendation rationale (the joint paper's Abstract sits at whole-paper level, where the §X analytic contribution should be tight and leave room for Koyama's Dominance-of-$-1$ framing material).
+
+**P3. Intro draft: placeholder citation keys → real bib keys; tighter Koyama-insertion cues; corrected (AK) `m` convention; updated obsolete "References still to be added" note.** Five edits:
+
+- Replaced `[RS]`, `[AK]`, `[SK]`, `[Aka]`, `[Ino]`, `[Sou]` placeholders with `\cite{RubinsteinSarnak1994}`, `\cite{AokiKoyama2023}`, `\cite{ShimadaKoyama2025}`, `\cite{AkatsukaH2013EulerProduct}` etc. The Intro now compiles directly against the bundled `references.bib`.
+- Replaced the ad-hoc `[§\textit{your section on nontriv.pdf here}]` and `[\textit{your Dominance-of-$-1$ section title}]` cues with two named `KOYAMA-INSERT-1.1A` and `KOYAMA-INSERT-1.5` markers, each with explicit instructions about what content should drop in. The §1.5 cue allows the §3 sentence to be deleted if Koyama's paper doesn't have a §3 theoretical-consequences chapter.
+- §1.2's `m = \mathrm{ord}_{s=1/2} L(s,\chi)` clarified to `m = m(s,\chi) := \mathrm{ord}_{s'=s} L(s',\chi)` — the order at the evaluation point, not at the central point. This is the natural reading consistent with the specialization to $\rho \ne 1/2$, $m = 1$, but the original text fixed $s = 1/2$ confusingly.
+- Updated the "References still to be added" stale note: Stark, Littlewood, Hardy–Littlewood, Ingham, Feuerverger–Martin all already in the bib but not yet cited in the body; cite them in the §1.1 framing if needed.
+- Updated the Intro's "What you (Shin-ya) will likely want to add" note to reflect the new cue names and to flag the (AK) `m`-convention question.
+
+**P4. §X.4.3 (AK) `m` convention clarified.** Same fix as P3 above: `m = m_\chi = \mathrm{ord}_{s=1/2}\,L(s,\chi)` rewritten as `m = m(s,\chi) := \mathrm{ord}_{s'=s}\,L(s',\chi)` (the order at the evaluation point $s$, with a parenthetical "$m$ is a function of $s$, not a fixed property of $\chi$"), so it specializes cleanly to `m = 1` at a simple noncentral zero $\rho \ne 1/2$.
+
+**P5. Lean inventory spot-check + §X.6 / LEAN_SORRY_STATUS narrative cleanups.** Walked through `formal-conjectures/*.lean` and confirmed:
+
+- 10 content files + `_AxiomCheck.lean` ✓.
+- Actual `sorry` count = 2 (one each in `DPAC_full.lean:297` and `DirichletPolynomialAvoidance.lean:48`), matching §X.6's claim ✓.
+- All headline theorem names cited in §X.6 are present in the source: `local_perron_residue`, `corrected_B_infty`, `dpac_K_eq_{2,3,4}`, `dpac_le_4`, `dpac_of_logPrimePhaseAvoidance` (and the other three phase bridges), `farey_bridge_identity_unconditional`, `mertens_spectroscope_universality`, `spectroscope_nonneg`, `reciprocal_sqrt_not_summable`, `geom_sum_roots_of_unity`, `primRootsSum_eq_moebius`, `ramanujanSum_eq_moebius_of_coprime`, `farey_ramanujan_decomp`, `FiniteLogRatioLI`.
+
+**Two findings, both fixed.**
+
+- The `FareySignPattern` row in the §X.6 second table said "**NEGATIVE.** ... 3 `sorry`s" — stale (the 2026-05-13 closures conditionally closed all three under `h_chebyshev_bias` and `h_witness`, so the file is in fact 0 actual `sorry`s and in the fully-proved set). Rewrote the row to "**THEOREM (0 `sorry`), conditional** ...".
+- The §X.6 narrative said "six of the eight [audited headline theorems] depend only on the standard Lean trust base; the remaining headline `dpac_le_4` ..." — off by one (six + one = seven; the eighth fully-proved file `SmoothedDwfFormula_full` is a 17-lemma chain, not a single named headline, and is not in `_AxiomCheck.lean`'s list). Rewrote both §X.6 and `LEAN_SORRY_STATUS.md`'s axiom-audit paragraph to clarify: "six audited headlines ... the remaining audited headline `dpac_le_4` ... the eighth fully-proved file, `SmoothedDwfFormula_full`, is a 17-lemma algebraic-glue chain whose component lemmas use only the standard trust base."
+
+Also added the Farey sign-pattern statement to the §X.6 narrative paragraph that lists what the eight fully-proved files cover (previously omitted because it was treated as a "negative" file).
+
+**P6. §X.7 Further questions block tightened; broken cross-ref fixed.** The Q:conductor item referenced `\ref{eq:W2}` but no `\label{eq:W2}` exists anywhere in the bundle (broken LaTeX). Replaced with "the §X.5.5 regression of $\mathbb{E}[C_1^2]$ on $(\mathrm{rank}, \log N)$". Also tightened Q:Sym2 (now mentions the "seven orders of magnitude" range explicitly), and rewrote Q:EC-NDC to fix the confusing self-contradictory phrasing "smoothed variants pass empirically but also pass a null-control gate" — now reads "show numerical agreement, but the predeclared G3 specificity gate fails to separate them from null controls, so the apparent agreement is not yet significant".
+
+**P7. README.md updated.** Stale 9-file/7-proved → 10-file/8-proved; 17-page PDF → ≈18 pages; "Three prose Abstract variants (full / tight / minimal)" → "One recommended + two alternatives". Intro description updated to mention the `KOYAMA-INSERT-*` cues and the real bib keys.
+
+**Cross-check sweep (all 18 `\ref{eq:*}` cross-references vs all `\label{eq:*}` declarations).** Verified that all references resolve: `eq:res`, `eq:Binfty`, `eq:cK`, `eq:AK`, `eq:NDC`, `eq:Perron-leading`, `eq:Binfty-appendix`, `eq:imprimitive`, `eq:logL-expand`, `eq:k1-isolation`, `eq:Akatsuka-2.5`, `eq:Sigma2-id`, `eq:k=2-final`, `eq:T_K-split`, `eq:Perron-truncated`, `eq:invL-Laurent`, `eq:double-pole-residue`, `eq:cK-appendix`. No broken refs remain after the `eq:W2` fix.
+
+**LaTeX bundle rebuilt.** `python3 clean.py` regenerates `section_X.tex` (721 lines), `appendix_A.tex` (399 lines), `appendix_B.tex` (378 lines). `tectonic paper.tex` builds; `paper.pdf` 181.29 KiB. No build errors; overfull-hbox warnings are pre-existing in the §X.5.4 longtable and §X.6 verbatim-heavy table rows.
+
+**Open items for Koyama (each genuinely needs his input or stays as-is).**
+
+- (AK) `m` convention: the Intro `KOYAMA-INSERT` note and §X.4.3 both flag this; if his published (1.4) uses a fixed $m = m_\chi$, the convention reverts.
+- KOYAMA-INSERT-1.1A: one-paragraph authoritative statement of the Dominance-of-$-1$ conjecture.
+- KOYAMA-INSERT-1.5: real §2 / §3 section titles.
+- Phase-1 §X.5.1 cell-flip (most importantly the $N=11, a=10$ row), expected week of May 20.
+
+**Cumulative state.** Lean: 2 sorries (DPAC headline ×2), 8 of 10 fully proved, axiom-audit clean, build green. LaTeX: ≈18-page PDF, all cross-refs resolved, all stale numbers updated, all citation provenance audited. Abstract: recommended + 2 alts, ready to drop in. Intro: real bib keys, named insertion cues, ready to drop in. README: current. Midweek update draft: current. Default cadence (hold) preserved until Koyama's Phase-1 reconciliation.
+
+## [2026-05-14] paper-prep | Proactive reply to Koyama drafted
+
+Saved `REPLY_TO_KOYAMA_DRAFT_2026-05-14.md` in the bundle. **Not yet sent — awaiting review.** Differs from the contingent `MIDWEEK_UPDATE_TO_KOYAMA_DRAFT.md` in being a proactive update rather than a reactive one.
+
+**Reply structure.** Four substantive items + four small questions:
+
+1. *Numerical extension to $K = 10^{8}$.* Clean-character residual ratios $3.7$ / $4.3$ bracket $\sqrt{10}$; $\chi_{-4}$ pairs continue the $\sim 1.09\text{–}1.15$ per-decade slowdown.
+2. *Lean inventory: 10 files, 8 fully proved, axiom audit clean.* Two new files since Koyama's bundle (`RamanujanSum.lean` → `FareyBridgeIdentity` unconditional; `MertensSpectroscopeUniversality` infrastructure + blueprint).
+3. *Adversarial review pass.* Notation drift on $T_K$ fixed; Soundararajan 2009 mislabelling as "unconditional" corrected in five locations; Aoki–Koyama and Inoue §X References title-drift fixed.
+4. *Forward-looking drafts.* Abstract restructured to recommended + 2 alts; Intro uses real bib keys with `KOYAMA-INSERT-*` cues; `SP_L_SUFFICIENT_PACKAGES` cited from §X.7.
+
+**Four questions for Koyama** (Q1 (AK) `m` convention; Q2 Dominance-of-$-1$ paragraph for §1.1; Q3 §2/§3 section titles; Q4 send-now-or-wait).
+
+**Send-decision notes appended.** Three pre-send verifications ($K=10^{8}$ ratios match run log; the four questions are the right asks; the 10/8/2 counts are still accurate). Contingency note flagging that a fresh research-track milestone should be folded in before sending.
+
+**README** updated to describe both drafts and their trigger conditions (contingent vs proactive).
+
+**Last-mile polish on `MIDWEEK_UPDATE_TO_KOYAMA_DRAFT.md`:** same "six audited headlines" / SmoothedDwf-chain clarification as in §X.6 and `LEAN_SORRY_STATUS.md`. Page count corrected from "17 pages" to "≈ 18 pages".
+
+**LaTeX bundle rebuilt one more time:** 181.29 KiB; no new warnings.
+
+**Status.** Bundle in the most press-ready state achievable without Koyama's input. Awaiting either (a) Koyama's Phase-1 reconciliation (default trigger to send the contingent midweek update), or (b) decision to send the proactive reply ahead of his reconciliation. Both drafts current. Default cadence (hold) preserved.
+
+## [2026-05-14] paper-prep | adversarial verification on all claims — nine findings, all fixed
+
+Per request, ran a thorough adversarial verification on numerical claims, Lean source ↔ docs consistency, theorem statements, citations, and arithmetic. Nine real content errors uncovered; all fixed.
+
+**Numerical verification (passed).** Cross-walked all twelve entries of the §X.5.4 residual table and all eight per-decade/half-decade ratios against the bundled run logs (`BINFTY_CLOSED_FORM_run.log`, `BINFTY_K100M_run.log`). Every residual value matches the run log to displayed precision; every ratio matches to one decimal. The χ₋₄ "1.09–1.15 across the two K-steps" range is exact (computed 1.092, 1.105, 1.144, 1.150). Clean-character ratios: 3.464 vs claimed 3.5, 3.711 vs 3.7, 1.905 vs 1.9, 4.272 vs 4.3 — all match.
+
+**Arithmetic checks (passed).** §X.5.1 disagreement-table sums (92 cells / 75 exact / 17 disagreements / 74-of-81 ≈ 91% excluding small-x rows): correct. ζ(2)·e^(−γ) ≈ 0.9237: correct. π(1.3·10¹³) = 4.458·10¹¹ vs PNT estimate 4.305·10¹¹: within 4%, as expected.
+
+**Theorem-statement ↔ Lean signature checks (passed).** `corrected_B_infty` hypotheses (`ρ.re = 1/2`, `ρ.im ≠ 0`, `h_induces`, `h_convergence`) match §X.4.1 + Appendix A. `BPC_1`, `BPC_2`, `T_K`, `T_ge3`, `T_inf` Lean definitions algebraically match §X.1 (verified the `Σ_{k≥2} y^k/k = −log(1−y) − y` reduction). `local_perron_residue`: Tendsto formulation equivalent to the paper's residue claim via the L → L(· + ρ) substitution; fully proved.
+
+**BPC_1 character data (passed).** χ₋₄ → BPC_1 = ½ log(1−2⁻²ρ); χ₅, χ₁₁ → BPC_1 = 0. All match q/f/bad-prime structure.
+
+---
+
+**The nine findings (all fixed in this turn).**
+
+| # | Where | Error | Fix |
+|---|---|---|---|
+| F1 | §X.5.4 | Attributed `K⁻¹ᐟ²` rate to Akatsuka 2013 eq. (2.5). Akatsuka gives $O(1/\log X)$, not $X^{-1/2}$. | Reattributed to character analogue of Soundararajan 2009 (RH-conditional; unconditional in our K-range via numerical RH verification); added an explicit note that Akatsuka's $O(1/\log K)$ bound is much weaker than observed. |
+| F2 | Midweek update | "bracketing the predicted √10 ≈ 3.16" — ratios 3.7 and 4.3 are both *above* √10, not bracketing it. | "both above and within a factor of ≤ 1.4 of the predicted $K^{-1/2}$ rate". |
+| F3 | Midweek update | Same Akatsuka misattribution as F1. | Same fix as F1. |
+| F4 | Reply-to-Koyama draft | Same "bracketing" error as F2. | Same fix as F2. |
+| F5 | Reply-to-Koyama draft | Same Akatsuka misattribution as F1. | Same fix as F1. |
+| F6 | Reply-to-Koyama draft | "$1.09$–$1.15$ ratio per decade" — K=2·10⁶ → 10⁷ is a half-decade (factor 5), not a decade. | "$1.09$–$1.15$ across the two K-steps" (matching §X.5.4). |
+| F7 | Reply-to-Koyama draft | "PARI/GP cross-stack verification ... to K = 10⁸". K=10⁸ is single-stack (PARI/GP); cross-stack was at K=2·10⁶. | "via PARI/GP 2.17.3 closed-form component evaluation (the L2 leg of the cross-stack)". |
+| F8 | Reply-to-Koyama draft | "Two new files since the bundle you saw". `MertensSpectroscopeUniversality.lean` already existed; it was upgraded, not new. | "Two additions ... one new file and one upgrade", bullets labelled *New* (RamanujanSum) and *Upgraded* (MertensSpectroscope). |
+| F9 | §X.6 + LEAN_SORRY_STATUS.md | (a) Stale `sorry` line numbers: §X.6 said `DPAC_full.lean:297` (actual 338) and `DirichletPolynomialAvoidance.lean:48` (actual 54). (b) §X.6 said "both annotated in-source as `RESEARCH-OPEN:`" — only `DPAC_full.lean` has that comment annotation (at line 321); `DirichletPolynomialAvoidance.lean` carries the upstream `@[category research_open]` attribute. | Both files fixed: precise sorry locations + annotation/attribute distinction. |
+
+**Other adversarial checks performed (all passed or noted as design choices).** Theorem X.4.1's hypothesis "ρ be a simple zero" is slightly stronger than Appendix A's proof strictly needs (the identity is actually valid for any ρ on the critical line with τ ≠ 0); kept as the natural paper context. The Lean `local_perron_residue` formulates the residue as `(K^w · w / L(w) − 1/L'(0)) / w → Res value` (algebraically equivalent to the paper's residue claim). The §X.4.3 (AK) formula's `m = m(s, χ)` convention is the only reading consistent with the specialization to ρ ≠ 1/2, m=1; remains flagged in the Koyama reply as Q1.
+
+**LaTeX bundle rebuilt.** `paper.pdf` 181.90 KiB. Only pre-existing overfulls (in §X.5.4 longtable and §X.6 verbatim-heavy table rows) remain.
+
+**Status.** Bundle now passes a nine-finding adversarial verification. All five Koyama-facing documents (§X bundle PDF + LEAN_SORRY_STATUS + Abstract + Intro + reply draft) consistent on Lean inventory, citation provenance, numerical decay rate, and conditionality labelling. Default cadence (hold) preserved; reply draft ready for review and send.

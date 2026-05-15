@@ -5,8 +5,11 @@ under the hypotheses of Theorem X.4.1 (i.e., $\chi$ primitive
 non-principal of conductor $q$, $\rho = \tfrac12 + i\tau$ a *simple*
 zero of $L(s,\chi)$ with $\tau \ne 0$), and assuming every
 off-target nontrivial zero $\rho' \ne \rho$ of $L(s,\chi)$ in the
-truncation height $|\gamma'| \le T_K$ of the Inoue (2021)
-explicit-formula box is also *simple*,
+truncation height $|\mathrm{Im}(\rho')| \le T(K)$ of the Inoue (2021)
+explicit-formula box is also *simple* (we write $T(K)$ for the
+truncation height, distinct from the partial prime-power sum
+$T_K(\chi,\rho)$ of §X.1 of the main text; the $o(1)$ rate further
+uses RH for $L(s,\chi)$, see §B.3 and §B.4),
 \begin{equation}
 \label{eq:cK-appendix}
 c_K(\chi,\rho) \;=\; \frac{\log K}{L'(\rho,\chi)} \;+\; C_1(\chi,\rho) \;+\; o(1)
@@ -18,11 +21,14 @@ $c_K(\chi,\rho) = \sum_{n \le K} \mu(n)\,\chi(n)\,n^{-\rho}$.
 
 The identity ($\dagger$) is **unconditional in $\rho$** given
 simplicity of $\rho$ and of the crossed off-target zeros. The $o(1)$ rate
-$O(K^{-1/2 + \varepsilon})$ for every $\varepsilon > 0$ requires RH
-for $L(s, \chi)$; the *unconditional* rate (which still yields $o(1)$)
-is
+$O(K^{-1/2 + \varepsilon})$ for every $\varepsilon > 0$, and the
+sharper rate
 $O\bigl(K^{-1/2} \exp\bigl((\log K)^{1/2}(\log\log K)^{14}\bigr)\bigr)$
-via Soundararajan (2009) Theorem 1.
+obtained via the character analogue of Soundararajan (2009) Theorem 1,
+are both conditional on RH for $L(s, \chi)$. For the four characters
+$\chi_{-4}, \chi_5, \chi_{11}$ of §X.5, RH for $L(s,\chi)$ is
+numerically verified to heights well beyond the $K$-ranges considered,
+so these rates apply unconditionally in our computational regime.
 
 ## B.1 Setup — Perron formula for $c_K$ via $1/L(s, \chi)$
 
@@ -36,8 +42,8 @@ For $\chi$ primitive of conductor $q \ge 2$ and $\mathrm{Re}(s) > 1$,
 \]
 absolutely convergent on $\mathrm{Re}(s) > 1$. The Dirichlet
 coefficients are $a_n = \mu(n)\,\chi(n)$, and the partial sum
-$c_K(\rho, \chi) = \sum_{n \le K} a_n n^{-\rho}$ is the spectroscope
-object.
+$c_K(\chi, \rho) = \sum_{n \le K} a_n n^{-\rho}$ is the spectroscope
+object (argument order matching §X.1 of the main text).
 
 ### B.1.2 Perron formula (truncated)
 
@@ -51,7 +57,7 @@ For any $\sigma_0' > \tfrac12$ and $T \ge 2$, with the convention that
 $c_K$ uses the half-weight at integer $K$,
 \begin{equation}
 \label{eq:Perron-truncated}
-c_K(\rho, \chi)
+c_K(\chi, \rho)
 \;=\;
 \frac{1}{2\pi i} \int_{\sigma_0' - iT}^{\sigma_0' + iT}
 \frac{K^w}{w} \cdot \frac{1}{L(w + \rho, \chi)} \,dw
@@ -237,33 +243,33 @@ these contribute residues of size $K^{-\mathrm{Re}(\rho) - 2k}
 ### B.3.3 Shifted contour pieces
 
 The shifted contour $\mathrm{Re}(w) = -A$ contributes, on a suitable
-zero-avoiding height $T_K \in [K/(\log K)^B, 2K/(\log K)^B]$, an
+zero-avoiding truncation height $T(K) \in [K/(\log K)^B, 2K/(\log K)^B]$, an
 integral bounded by (using a reciprocal-$L$ bound on the vertical
 shifted line)
 \[
 \Bigl|\frac{1}{2\pi i}\int_{(-A)}\!\frac{K^w}{w\,L(w+\rho,\chi)}\,dw\Bigr|
 \;\ll\;
-K^{-A} \cdot T_K \cdot \exp\bigl(C\,(\log\log T_K)^2\bigr).
+K^{-A} \cdot T(K) \cdot \exp\bigl(C\,(\log\log T(K))^2\bigr).
 \]
-For $A > 1/2$ and $T_K \le K/(\log K)^B$ with $B$ sufficiently large,
+For $A > 1/2$ and $T(K) \le K/(\log K)^B$ with $B$ sufficiently large,
 this is $K^{-A + 1 + o(1)} \cdot \exp(O((\log\log K)^2))$, which is
 $o(1)$.
 
-Horizontal pieces give factors like $(T_K/K)^A \cdot \mathrm{polylog}$,
-$o(1)$ for $T_K \le K (\log K)^{-B}$ and large enough $B$.
+Horizontal pieces give factors like $(T(K)/K)^A \cdot \mathrm{polylog}$,
+$o(1)$ for $T(K) \le K (\log K)^{-B}$ and large enough $B$.
 
 ### B.3.4 The Perron truncation error
 
 By Inoue (2021) Theorem 1, the truncation error
-$\mathcal{R}'(K, T_K, \rho)$ is bounded by
+$\mathcal{R}'(K, T(K), \rho)$ is bounded by
 \[
-\mathcal{R}'(K, T_K, \rho)
+\mathcal{R}'(K, T(K), \rho)
 \;\ll\;
-\frac{K^{\sigma_0' - 1/2} \log K}{T_K}
+\frac{K^{\sigma_0' - 1/2} \log K}{T(K)}
 \;+\;
-\min\!\Bigl(1,\,\frac{K^{1/2}}{T_K \langle K\rangle}\Bigr).
+\min\!\Bigl(1,\,\frac{K^{1/2}}{T(K) \langle K\rangle}\Bigr).
 \]
-For $T_K \asymp K (\log K)^{-B}$ and $\sigma_0' = 1/2 + 1/\log K$, both
+For $T(K) \asymp K (\log K)^{-B}$ and $\sigma_0' = 1/2 + 1/\log K$, both
 pieces are $O(K^{-1/2 + \varepsilon}) \cdot (\log K)^{O(1)}$ for any
 $\varepsilon > 0$, in particular $o(1)$.
 
@@ -271,21 +277,22 @@ $\varepsilon > 0$, in particular $o(1)$.
 
 Combining the local residue (\ref{eq:double-pole-residue}) with the
 off-target and contour pieces:
-\[
+\begin{multline*}
 c_K(\chi, \rho)
 \;=\;
 \frac{\log K}{L'(\rho, \chi)}
 \;+\;
 C_1(\chi, \rho)
 \;+\;
-\Bigl(\text{off-target aggregate}\Bigr)
+\bigl(\text{off-target aggregate}\bigr)
 \;+\;
 O(K^{-1/2})
+\\
 \;+\;
-O(K^{-A+1+o(1)}\exp(O((\log\log K)^2)))
+O\!\bigl(K^{-A+1+o(1)}\exp(O((\log\log K)^2))\bigr)
 \;+\;
-\mathcal{R}'(K, T_K, \rho).
-\]
+\mathcal{R}'(K, T(K), \rho).
+\end{multline*}
 All terms in the last three parentheses are $o(1)$. The off-target
 aggregate is also $o(1)$ under RH for $L(s, \chi)$, by partial
 summation against Soundararajan (2009), *Partial sums of the Möbius
@@ -309,7 +316,7 @@ The proof above yields the following rates.
 | Rate | Hypotheses |
 |---|---|
 | $o(1) = O\bigl(K^{-1/2 + \varepsilon}\bigr)$ for every $\varepsilon > 0$ | RH for $L(s, \chi)$. |
-| $o(1) = O\bigl(K^{-1/2}\exp\bigl((\log K)^{1/2}(\log\log K)^{14}\bigr)\bigr)$ | **unconditional** (Soundararajan 2009 applies under RH for $L(s, \chi)$, which holds for the four characters $\chi_{-4}, \chi_5, \chi_{11}, \ldots$ at the verified heights). |
+| $o(1) = O\bigl(K^{-1/2}\exp\bigl((\log K)^{1/2}(\log\log K)^{14}\bigr)\bigr)$ | RH for $L(s, \chi)$, via the character analogue of Soundararajan (2009) Theorem 1. Applies unconditionally in the $K$-range of §X.5 for the four characters $\chi_{-4}, \chi_5, \chi_{11}$, where RH for $L(s, \chi)$ is numerically verified to heights well beyond $10^{8}$. |
 | $o(1) = O\bigl(\log K / \sqrt K\bigr)$ | RH plus a Gonek–Hejhal-type bound of the form $\sum_{0 < \gamma < T} |L'(\rho, \chi)|^{-2} \ll T (\log T)^{O(1)}$. |
 
 In the numerical work of §X.5.3, the empirical residual

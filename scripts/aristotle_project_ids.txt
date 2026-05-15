@@ -29,3 +29,10 @@ dc276a90-66ac-4070-b5cb-de34d0ea5c5c remaining_5_sorries_round3
 # 2026-05-13 — eighth-round dispatch: Mertens spectroscope universality unconditional
 # (would discharge h_explicit_formula via Soundararajan 2009 Thm 1)
 a25797bf-bbe0-4a56-84d6-49a2c4b2487f MertensUnconditional_round8
+
+# 2026-05-14 — ninth-round dispatch: SignedVsAbsoluteResidueGadget (halo structural
+# lemma — pure complex analysis, two small sorries: absolute residue sum diverges
+# as poles collide; signed residue sum tends to divided-difference derivative).
+# Research-track Aristotle dispatch motivated by Stage 0 of the halo unconditional
+# plan.  Not in DPAC lineage; new module file.
+61469dcd-30b5-4f73-a237-efe5316d1679 SignedVsAbsoluteGadget_round9

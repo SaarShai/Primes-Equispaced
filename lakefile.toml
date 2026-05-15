@@ -78,6 +78,7 @@ globs = [
   "FareySignPattern",
   "DPAC_closure_attempt",
   "RamanujanSum",
+  "SignedVsAbsoluteResidueGadget",
 ]
 srcDir = "formal-conjectures"
 
@@ -86,6 +87,13 @@ srcDir = "formal-conjectures"
 [[lean_lib]]
 name = "RamanujanSum"
 globs = ["RamanujanSum"]
+srcDir = "formal-conjectures"
+
+# Halo-residue structural lemma — signed vs absolute residue gadget
+# (Aristotle round-9 target, dispatched 2026-05-14).
+[[lean_lib]]
+name = "SignedVsAbsoluteResidueGadget"
+globs = ["SignedVsAbsoluteResidueGadget"]
 srcDir = "formal-conjectures"
 
 # Cumulative axiom check (transient).

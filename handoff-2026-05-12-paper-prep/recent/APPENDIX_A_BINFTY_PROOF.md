@@ -326,8 +326,7 @@ A fully unconditional Lean proof of `corrected_B_infty` (i.e., one
 that *derives* the convergence rather than taking it as a hypothesis)
 requires upstream Mathlib formalisations of Akatsuka 2013
 eq.\ (2.5) and the imprimitive-induction Euler-factor identity for
-$L(s, \chi^2)$; both are `MATHLIB-PREREQ` and not yet upstream as of
-v4.28.0.
+$L(s, \chi^2)$; neither is upstream as of Mathlib v4.28.0.
 
 ## A.8 Numerical verification (summary; full table in §X.5.4)
 

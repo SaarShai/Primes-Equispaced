@@ -24,24 +24,53 @@ PARI/GP cross-stack verification of the corrected $B_\infty$
 identity to $K = 10^{8}$ on the four pairs (≈ 4 min wall-clock).
 The clean-character pairs ($\chi_5$ and $\chi_{11}$) now give
 residual ratios $3.7$ and $4.3$ from $K = 10^7$ to $K = 10^8$,
-bracketing the predicted $\sqrt{10} \approx 3.16$ of the
-$K^{-1/2}/\log K$ decay rate (Akatsuka 2013 eq.~(2.5)); the
-$\chi_{-4}$ pairs continue to show the slower $\sim 1.15$ ratio per
-decade attributable to the bad-prime $p = 2$ contribution to
-$\mathrm{BPC}_1$. Across the two decades $K \in
-[2 \cdot 10^{6}, 10^{8}]$, the empirical decay envelope is now
-verified at three scales. §X.5.4 in the section draft has been
-updated.
+both above and within a factor of $\le 1.4$ of the predicted
+$K^{-1/2}$ rate (per-decade factor $\sqrt{10} \approx 3.16$;
+RH-conditional via the character analogue of Soundararajan 2009,
+applicable unconditionally for our four characters via numerical
+verification of RH); the $\chi_{-4}$ pairs continue to show the
+slower $\sim 1.09$–$1.15$ ratio across both $K$-steps,
+attributable to the bad-prime $p = 2$ contribution to
+$\mathrm{BPC}_1$. The empirical decay envelope is now verified at
+three $K$-scales across two decades. §X.5.4 in the section draft
+has been updated.
 
-**2. Lean inventory tightened.** Eight Lean files in
+**2. Lean inventory tightened.** Ten Lean files in
 `formal-conjectures/` now compile under Lean 4.28.0 with **two
 `sorry`s** remaining (down from five at the time of my first email);
 the two remaining are both the headline Dirichlet Polynomial
-Avoidance Conjecture itself, diagnostically LI-class. Seven of nine
-files are now fully proved. `FareySignPattern.lean` (the file
-recording the $p = 237{,}733$ and $p = 243{,}799$ falsifications) is
-now closed under explicit named hypotheses naming the numerical
-witnesses; the no-`axiom` convention is preserved throughout.
+Avoidance Conjecture itself, diagnostically LI-class. **Eight of
+ten** files are now fully proved. Two additions since the bundle
+you have:
+
+- **`RamanujanSum.lean`** — geometric sum identity for roots of
+  unity, primitive-roots-sum = Möbius via Dirichlet convolution +
+  strong induction, the coprime $c_q(n) = \mu(q)$ case, and the
+  FareySet decomposition. This discharges the
+  `h_ramanujan_decomp` hypothesis of `FareyBridgeIdentity`, which
+  is therefore now **unconditional** (`farey_bridge_identity_unconditional`).
+- **`MertensSpectroscopeUniversality.lean`** gained two new
+  unconditionally-proved infrastructure lemmas
+  (`spectroscope_nonneg`, `reciprocal_sqrt_not_summable`) plus a
+  5-step blueprint documenting the precise Mathlib gap (Perron
+  inversion, explicit formula for $M(x)$, oscillatory-integral
+  partial summation, zero simplicity). The headline universality
+  statement remains conditional on a Soundararajan-2009-style
+  explicit-formula input as before.
+
+A cumulative `_AxiomCheck.lean` running `#print axioms` on each
+audited headline theorem confirms six audited headlines depend only
+on the standard `propext`, `Classical.choice`, `Quot.sound` triple;
+the remaining audited headline `dpac_le_4` additionally pulls in
+`Lean.ofReduceBool` and `Lean.trustCompiler` (Mathlib's standard
+kernel-reduction primitives, expected for a theorem that computes
+Möbius values at small primes in the kernel). The eighth
+fully-proved file, `SmoothedDwfFormula_full`, is a 17-lemma chain
+whose component lemmas use only the standard trust base. The
+no-`axiom` convention is preserved throughout;
+`FareySignPattern.lean`'s pointwise falsifications at
+$p = 237{,}733$ and $p = 243{,}799$ are closed under explicit
+named hypotheses naming the numerical witnesses.
 
 **3. Supplementary drafts ready for your review.** A sketch
 Introduction (≈ 900 words, 5 subsections) and three Abstract
@@ -55,7 +84,7 @@ whichever venue you prefer.
 integrated full paper as soon as you signal which discrepancies
 resolved. The whole §X bundle (cover note + section + appendices +
 Lean inventory + supporting notes) is in
-`handoff-2026-05-12-paper-prep/recent/`; the typeset PDF (17 pages)
+`handoff-2026-05-12-paper-prep/recent/`; the typeset PDF (≈ 18 pages)
 builds reproducibly via `tectonic paper.tex` from the source.
 
 Best,

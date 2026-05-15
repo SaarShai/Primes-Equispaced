@@ -9,16 +9,19 @@ warnings** and **no errors, no linter warnings, no `axiom`
 declarations**.
 
 **Cumulative axiom audit.** A `_AxiomCheck.lean` file runs
-`#print axioms` on every headline theorem. Six of the eight
-headline theorems (the `RamanujanSum` chain, `FareyBridgeIdentity`,
+`#print axioms` on each audited headline theorem. Six audited
+headlines (the `RamanujanSum` chain, `FareyBridgeIdentity`,
 `LocalPerronResidue`, `CorrectedBInfty`,
 `MertensSpectroscopeUniversality`, `FareySignPattern`) depend only
 on the standard `propext`, `Classical.choice`, `Quot.sound` triple.
-The remaining headline `dpac_le_4` (unconditional DPAC for
+The remaining audited headline `dpac_le_4` (unconditional DPAC for
 $K \in \{2, 3, 4\}$) additionally depends on `Lean.ofReduceBool`
 and `Lean.trustCompiler` — Mathlib's standard kernel-reduction
 primitives, used because this theorem computes Möbius values at
-small primes in the kernel. None of the axioms is unstable or
+small primes in the kernel. The eighth fully-proved file,
+`SmoothedDwfFormula_full`, is a 17-lemma algebraic-glue chain
+rather than a single headline; its component lemmas all use only
+the standard trust base. None of the axioms is unstable or
 project-specific.
 
 ## Summary by file
@@ -42,7 +45,7 @@ problem in number theory).
 
 ## Per-sorry detail
 
-### `DPAC_full.lean:297` — headline DPAC
+### `DPAC_full.lean:338` — headline DPAC (annotated `RESEARCH-OPEN:` at line 321)
 
 **Statement.** For every $K \ge 2$ and every nontrivial zero $\rho$
 of $\zeta$, $\sum_{n = 2}^{K} \mu(n)\,n^{-\rho} \ne 0$.
@@ -60,11 +63,14 @@ $K \in \{2, 3, 4\}$, reformulates the general case as
 Pólya 1913 (discreteness of the zero set of the finite exponential
 polynomial) plus a single open ordinate-avoidance statement.
 
-### `DirichletPolynomialAvoidance.lean:48`
+### `DirichletPolynomialAvoidance.lean:54`
 
 The upstream statement of DPAC in the
-`google-deepmind/formal-conjectures` registry. Same status as the
-preceding row.
+`google-deepmind/formal-conjectures` registry (theorem
+declared at line 48, `sorry` at line 54). Carries the original
+upstream attribute `@[category research_open]` rather than a
+project-side `RESEARCH-OPEN:` comment annotation. Same status as
+the preceding row.
 
 ### `FareySignPattern.lean` — closed conditionally
 
