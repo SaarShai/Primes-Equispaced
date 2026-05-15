@@ -203,6 +203,16 @@ LI-class statement.
 
 ## 7. The one remaining unconditional escape to check (next session)
 
+**[SUPERSEDED 2026-05-14 — see `BAKER_PATH_CATEGORY_OBSTRUCTION_2026-05-14.md`.
+The Baker / effective-Diophantine flag below was itself over-optimistic
+(7th instance of the pattern). It is closed by a *category obstruction*:
+Baker–Wüstholz / Schmidt / Wüstholz / Nesterenko all require algebraic
+(period) inputs; the `γ_n` of `L_E^*` carry no known algebraic/period
+structure, so there is no admissible input slot — plus an independent
+term-count-explosion kill. The single Diophantine root has NO known
+attack of any class. Read the section below only as the (now closed)
+motivation that led to that no-go.]**
+
 The no-go §1 forecloses *correlation-type* unconditional inputs. It does
 **not** by itself foreclose a *non-correlation* unconditional pointwise
 gap bound — e.g. a **Diophantine/transcendence** input proving

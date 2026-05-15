@@ -1,5 +1,17 @@
 # Log
 
+## [2026-05-14] research | BAKER PATH CLOSED — category obstruction; the single root has NO known attack of any class
+
+`handoff-2026-05-14-research-track-split/BAKER_PATH_CATEGORY_OBSTRUCTION_2026-05-14.md`. Asked to break through the only named forward path (effective linear-forms-in-logarithms, Baker). Honest mathematician's answer: **the path is provably closed by a category obstruction**, plus an independent quantitative kill. Proving the tempting method *cannot* work is the result.
+
+**Obstruction 1 (decisive, qualitative — category mismatch).** Baker–Wüstholz / Wüstholz analytic subgroup theorem produce effective lower bounds for linear forms in logs **only for algebraic-number / algebraic-group-period inputs**. The zero ordinates `γ_n` of `L_E^*` are defined analytically, conjecturally transcendental, **not known to be logs of algebraics nor periods of any algebraic group**. There is **no admissible input slot** — not a weak bound, a *non-existent* one. Generalises: the *entire* effective-Diophantine toolbox (Baker, Schmidt subspace, Wüstholz, Nesterenko) has the same category mismatch with L-zeros (why the smallest-gap problem is open even for ζ and never approached by Baker). The §7 flag conflated "obstruction is *of LI class*" (true classification) with "attackable by the *effective-Diophantine toolbox*" (false — category error). **7th over-optimism instance; closes my own forward flag.**
+
+**Obstruction 2 (independent, quantitative — term explosion).** Even granting a hypothetical explicit-formula bridge to the algebraic Frobenius integers `a_p`: resolving a super-polynomially small `δ_n` needs primes up to `exp(γ_n^A)`, giving a linear form with `≍ exp(γ_n^A)` terms; Baker–Wüstholz degrades super-exponentially in term count ⇒ bound astronomically weaker than trivial. Inert.
+
+**Back doors also shut** (earlier records): averaged escape — no (non-averageable, single collision kills GH); signed-cancellation — no (= halo route, audited to Door B = TSDB); band-limited pair correlation — no (Paley–Wiener no-go).
+
+**Final honest status:** (NoCollide) ⇔ quantitative LI for the `L_E^*` spectrum is the single root under *both* terminal frontiers (analytic uncond.-H1 + formal DPAC/Lean) and has **NO known attack of any class** — not GRH-type, not pair-correlation-type, not effective-Diophantine-type. Genuine, isolated, deep open problem. Every candidate route now individually and rigorously closed. Confidences: Obstruction 1 **0.9**; Obstruction 2 **0.95**; toolbox generalisation **0.85**; final-status **0.85**. §6: concrete paper guidance — claim the conditional theorem + the reduction-to-LI companion; do **not** gesture at Baker (referee-exposed category error); document the last Lean sorry as *the same root*, not a separate defect.
+
 ## [2026-05-14] research | THE DIOPHANTINE ROOT — both terminal frontiers are ONE non-resonance statement; + no-go on unconditional pair correlation
 
 `handoff-2026-05-14-research-track-split/DIOPHANTINE_ROOT_UNIFICATION_2026-05-14.md`. Continued into the heart. Two deliverables:
