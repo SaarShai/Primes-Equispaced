@@ -1,102 +1,113 @@
-# formal-conjectures PR — readiness package + HONEST verdict (2026-05-16)
+# formal-conjectures PR — readiness package (FINALIZED 2026-05-16)
 
-User authorized the PR. This documents (a) why I did **not** auto-submit
-(hard blockers + an honest fit problem — submitting as-is would be the
-project's #1 failure mode, inflation, in a high-visibility Google repo under
-the user's name), (b) what is genuinely contributable, (c) the exact steps
-only the user can take.
+Status: **cleaned, build-verified, presentable — ready pending user-only
+steps.** Reframed honestly: this is **not** a "proven theorem" submission
+(the pointwise Sign Theorem is false). It is a **legitimate open-conjecture
+contribution** — formal-conjectures' primary category
+(`@[category research open]`, stated with `sorry`). In that framing it is a
+correct, clean fit.
 
-## A. HONEST FIT VERDICT — do not submit the current artifact as a "theorem"
+## Deliverable
 
-`primes-equispaced/formal-conjectures/FareySignPattern.lean`, read in full:
-- The **pointwise** Sign Theorem `sgn(ΔW(p))=sgn(−M(p))` is **FALSIFIED**
-  (the file itself records counterexamples p=237733, p=243799).
-- The surviving **density-one** statement is **research-open**, and its Lean
-  encoding is a **vacuous tautology** `theorem … (h_chebyshev_bias : P) : P
-  := h_chebyshev_bias`, with `opaque DeltaW : ℕ → ℝ` (no definition — Farey
-  discrepancy is not in Mathlib). A conjecture stated against an `opaque`
-  symbol has **no mathematical content** and would (correctly) be rejected by
-  formal-conjectures maintainers.
-- The "0 sorries / 0 axioms" Lean artifact referenced elsewhere in the
-  project is a **different** file (`SignedVsAbsoluteResidueGadget.lean`, the
-  Palm-wall two-zero gadget) — NOT the Sign Theorem.
+`formal_conjectures_submission/FareyDiscrepancySign.lean` — the density-one
+Farey-discrepancy sign conjecture, in formal-conjectures' exact file
+template:
+- Apache 2.0 header ("The Formal Conjectures Authors"),
+  `import FormalConjectures.Util.ProblemImports`, namespace, reference,
+  `@[category research open, AMS 11]`, body `:= by sorry`.
+- **Concrete** definitions (no `opaque`): `fareySet`, `fareyCount`,
+  `fareyDiscrepancy`, `W` (the `∫₀¹ D_N²` Weyl L² second moment), `ΔW`,
+  `mertens`, `signR/signZ`, `Agrees`. The statement therefore has genuine
+  mathematical content.
+- Docstring is honest: records that the **pointwise** form is *false*
+  (counterexamples p=237733, 243799) and that this **density-one** form is
+  the surviving open problem (≈73% at X=10⁷).
 
-**Verdict: there is no clean proven "Lean Sign Theorem" to contribute.** The
-only legitimately contributable item is the **density-one Farey sign
-conjecture as an `@[category research open]` conjecture** — and only if it is
-(i) restated properly (not the tautology) and (ii) given a *concrete* Lean
-definition of the Farey set and its Weyl/L² discrepancy `W(F_N)` so the
-statement is meaningful. (ii) is real Mathlib-grade work, **not done**, and is
-the actual prerequisite for a credible PR.
+## Build verification (done — strong honest position)
 
-## B. HARD BLOCKERS (independent of fit; cannot be done from this machine)
+`_buildcheck_FareyDiscrepancySign.lean` = same file with
+`import FormalConjectures.Util.ProblemImports` → `import Mathlib` and the
+FC-only attribute stripped. Compiled with the project's pinned toolchain:
 
-1. **`gh` not installed; no GitHub auth/token present.** Cannot fork, push,
-   or open an issue/PR autonomously. (Verified: `gh` command not found.)
-2. **Google CLA** must be signed by **you personally** at
-   https://cla.developers.google.com/ (legal act; non-delegable). Mandatory
-   before any google-deepmind PR is accepted.
-3. **Issue-first policy:** formal-conjectures requires opening a GitHub issue
-   describing the contribution *before* the PR.
+```
+$ lake env lean _buildcheck_FareyDiscrepancySign.lean
+_buildcheck_FareyDiscrepancySign.lean:99:8: warning: declaration uses `sorry`
+```
 
-## C. RECOMMENDATION (honest)
+→ **Zero errors. Single expected `sorry` warning** (the open conjecture).
+All definitions + the statement **typecheck against Mathlib v4.28.0**
+(`leanprover/lean4:v4.28.0`). Evidence: `_buildcheck_output.txt`.
 
-**Do not PR the current state.** Options, best→worst:
-1. **Hold.** The Sign Theorem is dictionary-tier and the pointwise form is
-   falsified; the density-one form is an open conjecture with no concrete Lean
-   `ΔW`. Low payoff for the effort + reputational cost of a thin Google PR.
-2. **Invest first, then PR.** Formalize the Farey sequence + Weyl L²
-   discrepancy `W(F_N)` + `ΔW(p)` concretely in Lean (real work; a genuine
-   Mathlib-adjacent contribution in its own right), then submit the
-   density-one statement as a proper `@[category research open]` conjecture.
-   This is the only path to a *credible* PR.
-3. A different, genuinely-clean project result might fit better as
-   `@[category research solved]` (e.g. the Bridge Identity
-   `Σ_{f∈F_{p−1}} e(pf)=M(p)+2`, IF `FareyBridgeIdentity.lean` actually
-   proves it with a <50-line proof — **must be verified first**, not assumed;
-   same inflation risk applies).
+**Only unverified:** the formal-conjectures wrapper itself
+(`FormalConjectures.Util.ProblemImports` import + `@[category …]`/`@[AMS …]`
+attributes). These are standard packaging their repo defines; verifiable only
+inside a clone of their repo via their `lake build`. Low risk, but I do **not**
+claim it; the maintainers/build will confirm on PR (their CONTRIBUTING expects
+`lake build` green — step 7 below).
 
-My recommendation: **option 1 or 2**, your call. Not a quick win; the earlier
-"Lean-verified Sign Theorem, ready to PR" framing was over-optimistic and is
-corrected here.
+## Honest scope (do not oversell in the issue/PR)
 
-## D. EXACT STEPS (if you choose to proceed — only you can do these)
+Specialist, Experimental-Math tier. The pointwise Sign Theorem is **false**
+(stated, not hidden). The density-one form is genuinely open with numerical
+evidence only. No RH claim. This is a *clean honest open conjecture*, not a
+breakthrough — frame it exactly that way to the maintainers.
 
-1. Sign the Google CLA: https://cla.developers.google.com/ (once per
-   person/employer).
-2. Install + auth GitHub CLI: `brew install gh && gh auth login`.
-3. Decide fit per §C. If proceeding, first produce a **build-verified** Lean
-   file with a concrete `W(F_N)`/`ΔW` (NOT `opaque`) — I can draft this on
-   request but it MUST pass `lake build` before PR (I cannot run their build
-   here).
-4. Open the issue (draft text below), fork, branch, add file under
-   `FormalConjectures/Arxiv/` (source = the project's arXiv note once posted)
-   or `FormalConjectures/Other/`, `lake build`, PR linked to the issue.
+## WHAT I NEED FROM YOU (only you can do these)
 
-### Ready-to-paste GitHub ISSUE (use only after §C decision + a real statement)
-> **Title:** Formalize: density-one Farey discrepancy sign pattern (open conjecture)
+1. **Sign the Google CLA** — https://cla.developers.google.com/ (individual;
+   once per person/employer; legal; non-delegable). Tell me when done.
+2. **GitHub access on this machine** — either
+   `brew install gh && gh auth login`, **or** create the fork yourself
+   (`SaarShai` → fork `google-deepmind/formal-conjectures`) and give me a
+   way to push (auth'd `gh`, a PAT, or SSH key). Without one of these I
+   cannot fork/branch/push/PR at all.
+3. **Confirm GitHub handle / attribution** for the PR + file header
+   (assume `SaarShai` unless you say otherwise).
+4. **One choice:** definitions *inline* in the conjecture file (recommended —
+   cleanest for a single conjecture review) vs. split into a
+   `FormalConjecturesForMathlib` companion (their CONTRIBUTING's general
+   suggestion). Default: inline.
+
+## What I will do once 1–3 are in place (no further input needed)
+
+5. Fork → branch `farey-discrepancy-density-one`.
+6. Place file at `FormalConjectures/Other/FareyDiscrepancySign.lean` (or
+   `Arxiv/` once the project note has an arXiv id), finalize the reference
+   line, `lake build` in the clone, fix any FC-wrapper-only issues.
+7. **Issue first** (their required sequence), then PR linked to it.
+
+### Ready-to-paste GitHub ISSUE
+
+> **Title:** Add open conjecture: density-one sign pattern for the prime-step
+> Farey L² discrepancy (Mertens-controlled)
 >
-> **Body:** Proposing an `@[category research open, AMS 11]` conjecture: as
-> X→∞, the proportion of primes p ≤ X with Mertens M(p) ≤ −3 for which
-> sgn(ΔW(p)) = sgn(−M(p)) tends to 1, where W(F_N) is the L² (Weyl)
-> discrepancy of the order-N Farey sequence and ΔW(p)=W(F_{p−1})−W(F_p). The
-> pointwise form is *false* (explicit counterexamples); the density-one form
-> is the surviving conjecture (numerically ≈73% at X=10⁷; full density-one
-> conjectured under the relevant L-function hypotheses). Supporting Farey/
-> discrepancy definitions would go in `FormalConjecturesForMathlib`. Source:
-> S. Shai, per-step Farey discrepancy note (arXiv: TBD). Requesting guidance
-> on whether a concrete in-repo Farey-discrepancy definition is acceptable
-> vs. waiting for a Mathlib Farey API.
+> **Body:** I'd like to contribute one `@[category research open, AMS 11]`
+> conjecture. Setup: `W N` = L² (Weyl) discrepancy of the order-`N` Farey
+> sequence; `ΔW p = W (p-1) − W p` the prime-step increment; `M` the Mertens
+> function. The *pointwise* relation `sgn(ΔW p)=sgn(−M p)` for every prime
+> with `M p ≤ −3` is **false** (explicit counterexamples). The **density-one**
+> form — proportion of qualifying primes `≤ X` that agree → 1 as `X→∞` — is
+> open (numerically ≈73% at `X=10⁷`; expected density-one under the
+> L-function hypotheses controlling the explicit-formula expansion of `ΔW`).
+> The statement uses concrete (non-opaque) Farey/discrepancy definitions and
+> typechecks against Mathlib v4.28.0 (single expected `sorry`). Source:
+> S. Shai, *The per-step Farey discrepancy* (2026), project `Primes-
+> Equispaced`. Question for maintainers: keep the concrete Farey/discrepancy
+> defs inline, or move them to `FormalConjecturesForMathlib`?
 
-### PR body skeleton
-> Implements the issue #NN conjecture. `@[category research open, AMS 11]`,
-> Apache header, reference link, `by sorry`. Concrete `W`/`ΔW` defs in a
-> separate `FormalConjecturesForMathlib` file, indexed. `lake build` green.
-> CLA signed.
+### Ready-to-paste PR body
 
-## E. What I DID lock this session (the other authorized task)
+> Closes #NN. Adds `FormalConjectures/Other/FareyDiscrepancySign.lean`: one
+> `@[category research open, AMS 11]` conjecture (density-one Farey
+> discrepancy sign pattern), Apache header, reference, `by sorry`. Concrete
+> definitions; honest docstring (pointwise form is false, recorded). Verified
+> to typecheck against Mathlib v4.28.0 outside the repo; `lake build` green
+> in-repo. Google CLA signed.
 
-KR citation: **LOCKED from primary** (ar5iv + arXiv abstract) — see
-`KR_CITATION_LOCK.md`. That BLOCKED-FOR-USER item is resolved (modulo one
-soft theorem-number). This formal-conjectures item remains **user-gated** by
-the CLA + the honest fit decision above; nothing was submitted.
+## Prior context
+
+Earlier this session I (correctly) refused to auto-submit the *original*
+`FareySignPattern.lean` — it was a vacuous tautology against `opaque DeltaW`
+and would have been inflation. This finalized file fixes that: concrete defs,
+honest open-conjecture framing, build-verified. The contribution is now
+clean. It remains user-gated solely by the CLA + GitHub access above.
