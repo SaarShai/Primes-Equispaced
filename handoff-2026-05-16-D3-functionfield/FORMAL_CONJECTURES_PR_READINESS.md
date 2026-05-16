@@ -111,3 +111,13 @@ Earlier this session I (correctly) refused to auto-submit the *original*
 and would have been inflation. This finalized file fixes that: concrete defs,
 honest open-conjecture framing, build-verified. The contribution is now
 clean. It remains user-gated solely by the CLA + GitHub access above.
+
+
+## EXECUTED 2026-05-16T13:20:47-07:00
+PR #3716 REWORKED & PUSHED (not new PR — existing draft had maintainer feedback).
+- FareySignPattern.lean: placeholder `True := by sorry` -> concrete density-one conjecture (build-verified).
+- DirichletPolynomialAvoidance.lean: kept concrete stmt; header/attrs/namespace fixed; docstring de-inflated.
+- FareyBridgeIdentity.lean: REMOVED (was placeholder + over-claimed docstring).
+- `lake --wfail build` Lean v4.27.0: PASSED (7983 jobs, both modules, only expected research-open sorry).
+- PR title/body de-inflated; point-by-point honest reply posted to @mo271; left as DRAFT (deferring to maintainer).
+- commit 657a32a on SaarShai:farey-spectroscopy-conjectures; PR https://github.com/google-deepmind/formal-conjectures/pull/3716
