@@ -208,12 +208,18 @@ landing):
 - Karvonen–Zhigljavsky, arXiv:2407.10214: MMD/RKHS Farey–RH; *not*
   Cox–Ghosh–Sultanow (correct the recurring misattribution). [VERIFIED.]
 - Keating–Rudnick, Algebra & Number Theory 10(2) 375–420, 2016
-  (arXiv:1504.03444): Möbius variance in AP & short intervals, `U(N)`, Katz.
-  **[CITATION-UNVERIFIED at theorem-number granularity — PDF/Project Euclid
-  access blocked in autonomous run.]**
-- **BLOCKED-FOR-USER:** lock KR 1504.03444 from the primary PDF (institutional
-  access) — exact theorem numbers, the `U(N)` `N`, the limiting integral,
-  q→∞/range conditions — before any external use of §6.
+  (arXiv:1504.03444): Möbius variance in AP & short intervals = unitary
+  matrix integrals via Dirichlet-character/L-function + Katz equidistribution,
+  q→∞. **[CITATION-LOCKED 2026-05-16 from ar5iv full text + arXiv abstract —
+  see `KR_CITATION_LOCK.md`.]** Locked: Möbius short-interval = **Thm 1.2**
+  (`Var~H=q^{h+1}`, monodromy `U(n−h−2)`); Möbius arithmetic-progressions =
+  **§8** (`Var_Q=Φ(Q)^{-1}Σ_{(A,Q)=1}|S_{μ,n,Q}(A)|²`, monodromy
+  `U(n−deg Q−2)`); μ² AP = Thm 1.5. §1.3 states the AP/short-interval ⇒
+  Dirichlet-character ⇒ L-function ⇒ unitary-Katz reduction explicitly — i.e.
+  exactly our §6 duality. Soft residual: the AP-Möbius theorem *number*
+  (vs Thm 1.2 / 1.5) not verbatim-pinned; confirm vs published PDF before
+  final submission. The D3 verdict no longer depends on this citation (the §6
+  duality is self-proved) but is now additionally backed by it.
 
 ---
 
