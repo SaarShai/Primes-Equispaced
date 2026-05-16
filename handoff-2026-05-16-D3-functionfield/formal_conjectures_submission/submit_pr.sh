@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Submit the Farey-discrepancy density-one conjecture to google-deepmind/formal-conjectures.
+export PATH="$HOME/.local/bin:$PATH"   # gh installed here (no brew on this machine)
 # Prereqs (USER): Google CLA signed (done); `gh` installed & authed as SaarShai
 #   (`brew install gh && gh auth login`).  Run this from anywhere.
 # It is idempotent-ish: safe to re-run; will skip fork if it exists.
