@@ -2156,3 +2156,36 @@ that killed a multi-week dead end. Recorded to memory.
 sub-agent transcripts under /private/tmp). No destructive cleanup taken
 (user freed space). Memory + this log entry committed on resume; memory
 file integrity confirmed (failed write errored at open(), no corruption).
+
+## [2026-05-16] D4-DPAC | certified avoidance evidence + obstruction note; "9×–52× margin" REFUTED
+
+**Numerical [NUMERICAL, interval-rigorous].** Fresh reproducible harness
+`handoff-2026-05-16-D3-functionfield/dpac_certified_numerics.py` (mpmath
+interval arithmetic over a box around each ζ-zero). Main run: 500 nontrivial
+ζ-zeros × K∈{2,3,5,6,7,10,20,50,100,200,500,1000} = **6000/6000 certified
+c_K(ρ)≠0**, lower bounds ≳1e-2 (closest K=200, |c_200|≈0.0175). Rigorous in
+c_K; conditional only on standard `mpmath.zetazero` (ζ-residual ≤5e-48).
+Double-check (10× wider boxes, prec70/iv60, diff seed): 1200/1200 certified.
+Bug caught+fixed via adversarial check: prefix-snapshot mis-handled μ(k)=0
+indices (K=4 wrongly ≡ K=5); fixed (snapshot at k==K); results post-fix.
+
+**Obstruction [characterization, not a proof].** `DPAC_OBSTRUCTION_NOTE.md`:
+unconditional iff K≤4; first open case is exactly K=5 (2^-β−3^-β−5^-β<0 on
+(0,1)). DPAC ≡ PREREQ-2 (no ζ-ordinate is a root of f_{K,β}) modulo classical
+Pólya–Langer. LI-class = comparable Diophantine depth, NOT reducible to LI
+(neither implies the other; GRH insufficient). Do not attempt to discharge.
+
+**De-inflation [REFUTED].** The "min|c_K| at zeros 9×(K=10)–52×(K=20) larger
+than generic … supports DPAC" claim (origin `experiments/
+OPUS_CK_AVOIDANCE_ANALYSIS.md:159`; in local DPAC_full.lean / local
+DirichletPolynomialAvoidance.lean docstrings / M1_THREE_TIER writeup) is a
+sample-size artifact. Matched-sample: min@zeros/median@control ∈[0.014,1.0],
+median@zeros≈median@control — |c_K| at ζ-zeros statistically indistinguishable
+from generic. No repulsion. Already absent from the de-inflated PR file.
+
+**PR #3716 stewardship (no push/send).** DRAFT/OPEN; live fork file verified
+clean (2 files; FareyBridgeIdentity removed; no 9x/52x/opaque; `@[category
+research open, AMS 11]`; honest docstring). No maintainer response since the
+2026-05-16T20:20 rework reply (commit 657a32a89). **BLOCKER: `cla/google`
+check = FAIL** — user-only legal action (sign CLA with commit email);
+non-delegable. Nothing pushed or sent. Memory updated (project_dpac_status).

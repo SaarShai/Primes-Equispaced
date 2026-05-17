@@ -74,8 +74,10 @@ def run(n_zeros, k_set, prec_digits, iv_digits, eps_ord_exp, delta_re_exp,
     EPS_ORD = mpf(10) ** (-eps_ord_exp)
     DELTA_RE = mpf(10) ** (-delta_re_exp)
 
-    # squarefree k in [2, kmax] with their mobius value (mu=0 terms vanish)
-    terms = [(k, mobius(k)) for k in range(2, kmax + 1) if mobius(k) != 0]
+    # mobius over ALL k in [2, kmax]; snapshot c_K exactly at k == K so that
+    # mu(k)=0 indices (e.g. K=4,20,50,...) are handled correctly.
+    mu = {k: mobius(k) for k in range(2, kmax + 1)}
+    kset_set = set(k_set)
 
     # ---- zeta zeros (high precision) -------------------------------------
     t0 = time.time()
@@ -89,8 +91,8 @@ def run(n_zeros, k_set, prec_digits, iv_digits, eps_ord_exp, delta_re_exp,
     t_zeros = time.time() - t0
     max_resid = max(zeta_resid)
 
-    # ---- interval log(k) constants ---------------------------------------
-    ivlog = {k: iv.log(iv.mpf(k)) for k, _ in terms}
+    # ---- interval log(k) constants (only k with mu != 0) -----------------
+    ivlog = {k: iv.log(iv.mpf(k)) for k in range(2, kmax + 1) if mu[k] != 0}
 
     # ---- certified box evaluation ----------------------------------------
     t0 = time.time()
@@ -107,40 +109,27 @@ def run(n_zeros, k_set, prec_digits, iv_digits, eps_ord_exp, delta_re_exp,
         re_acc = iv.mpf(0)
         im_acc = iv.mpf(0)
         snap_re, snap_im = {}, {}
-        next_k_set = sorted(k_set)
-        ptr = 0
-        for (k, muk) in terms:
-            lk = ivlog[k]
-            mag = iv.exp(-sigma * lk)          # k^{-sigma}  (>0)
-            phase = -tau * lk
-            re_acc = re_acc + muk * mag * iv.cos(phase)
-            im_acc = im_acc + muk * mag * iv.sin(phase)
-            while ptr < len(next_k_set) and k >= next_k_set[ptr]:
-                Ksnap = next_k_set[ptr]
-                snap_re[Ksnap] = re_acc
-                snap_im[Ksnap] = im_acc
-                ptr += 1
-        # any K beyond last contributing term: c_K == c_lastterm
-        while ptr < len(next_k_set):
-            snap_re[next_k_set[ptr]] = re_acc
-            snap_im[next_k_set[ptr]] = im_acc
-            ptr += 1
+        for k in range(2, kmax + 1):
+            muk = mu[k]
+            if muk != 0:
+                lk = ivlog[k]
+                mag = iv.exp(-sigma * lk)         # k^{-sigma}  (>0)
+                phase = -tau * lk
+                re_acc = re_acc + muk * mag * iv.cos(phase)
+                im_acc = im_acc + muk * mag * iv.sin(phase)
+            if k in kset_set:
+                snap_re[k] = re_acc
+                snap_im[k] = im_acc
 
         # high-precision point value at rho = 1/2 + i*g
         s_pt = mpmath.mpc(mpf(1) / 2, g)
-        run_re = mpf(0)
-        run_im = mpf(0)
         pt_partial = mpmath.mpc(0)
-        kptr = 0
-        ks_sorted = sorted(k_set)
-        for (k, muk) in terms:
-            pt_partial += muk * mpmath.power(k, -s_pt)
-            while kptr < len(ks_sorted) and k >= ks_sorted[kptr]:
-                pt_at_zeros[ks_sorted[kptr]].append(abs(pt_partial))
-                kptr += 1
-        while kptr < len(ks_sorted):
-            pt_at_zeros[ks_sorted[kptr]].append(abs(pt_partial))
-            kptr += 1
+        for k in range(2, kmax + 1):
+            muk = mu[k]
+            if muk != 0:
+                pt_partial += muk * mpmath.power(k, -s_pt)
+            if k in kset_set:
+                pt_at_zeros[k].append(abs(pt_partial))
 
         for K in k_set:
             rib = dist_from_zero(snap_re[K])
@@ -165,19 +154,15 @@ def run(n_zeros, k_set, prec_digits, iv_digits, eps_ord_exp, delta_re_exp,
         control_t.append(g_lo + (g_hi - g_lo) * mpf(rng.random()))
 
     pt_control = {K: [] for K in k_set}
-    ks_sorted = sorted(k_set)
     for t in control_t:
         s_pt = mpmath.mpc(mpf(1) / 2, t)
         pt_partial = mpmath.mpc(0)
-        kptr = 0
-        for (k, muk) in terms:
-            pt_partial += muk * mpmath.power(k, -s_pt)
-            while kptr < len(ks_sorted) and k >= ks_sorted[kptr]:
-                pt_control[ks_sorted[kptr]].append(abs(pt_partial))
-                kptr += 1
-        while kptr < len(ks_sorted):
-            pt_control[ks_sorted[kptr]].append(abs(pt_partial))
-            kptr += 1
+        for k in range(2, kmax + 1):
+            muk = mu[k]
+            if muk != 0:
+                pt_partial += muk * mpmath.power(k, -s_pt)
+            if k in kset_set:
+                pt_control[k].append(abs(pt_partial))
 
     def stats(xs):
         ys = sorted(xs)
