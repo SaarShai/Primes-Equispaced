@@ -76,7 +76,7 @@ tail $T_\infty(\chi, \rho)$ (Theorem~X.4.1), isolating the primitive
 $L$-factor $\tfrac12 \log L(2\rho, \psi)$, a finite bad-prime
 correction $\mathrm{BPC}_1$, the residual $\mathrm{BPC}_2$, and the
 absolutely-convergent $k \ge 3$ tail; the only analytic input is
-Akatsuka~\cite[eq.~(2.5)]{AkatsukaH2013EulerProduct}, itself
+Akatsuka~\cite[eq.~(2.5)]{Akatsuka2017EulerProduct}, itself
 unconditional.
 
 (ii) A **local Perron double-pole residue identity** (Lemma~X.3.1)
@@ -159,7 +159,7 @@ numerical artefacts are in the reproducibility bundle
 - **Citation keys.** All bibliographic references now use the
   `references.bib` keys directly (`RubinsteinSarnak1994`,
   `AokiKoyama2023`, `ShimadaKoyama2025`,
-  `AkatsukaH2013EulerProduct`, `Inoue2021`, `Soundararajan2009`,
+  `Akatsuka2017EulerProduct`, `Inoue2021`, `Soundararajan2009`,
   etc.), so the file is ready to compile with the bundled bibliography.
 - **Classical Chebyshev-bias references** (Stark 1971,
   Littlewood 1914, Hardy–Littlewood 1918, Ingham 1942) are all

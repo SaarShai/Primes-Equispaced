@@ -1,0 +1,211 @@
+HARDENED B_infty / C_1 / e^{-gamma} verification  (2026-05-16, D3)
+engines: mpmath 1.3.0 (dps 50 & 80) + python-flint/Arb 0.6.0 (rigorous balls)
+
+[P(3/2) AUDIT]  P(3/2) = 0.84956268362157    P(2) = 0.45224742004107
+  crude |T_>=3| <= P(3/2)/(3(1-2^-1/2)) = 0.96686281   <-- Appendix A 5A.3 / Koyama_B_infty_proof 55 wrongly print 0.515 (used P(2))
+
+sieving to 2,000,000 ...
+  pi(2,000,000) = 148,933  (0.0s)
+
+==============================================================================================
+chi_-4/z1   (chi_-4, mod 4)
+==============================================================================================
+refined rho = 0.5... + 6.0209489046975966549025... i   |L(rho,chi)|_mp = 3.80e-81
+chi^2 -> primitive psi conductor f=1  (psi trivial: L=zeta, chi^2 PRINCIPAL); bad primes [2]
+|L(rho,chi)|_arb = 9.32e-68   (independent-engine zero check)
+base=1/2logL+BPC1+BPC2 :  mp50=0.1756573376-0.03349053075j
+  engine agree |mp50-arb|=0.00e+00   precision-double |mp50-mp80|=0.00e+00   rig.tails: BPC2<= 5.0e-07, T>=3<= 1.6e-03
+
+  k=2 boundary identity   R2(K)=1/2 sum_{p<=K} chi^2(p)p^(-2rho) - base     [UNCOND O(1/lnK) [Akatsuka 2017 (2.5)]]
+          K |    |R2| arb   |R2| mp50 |   eng|Δ|   arb rad  C/lnK fit
+      10000 |  4.3407e-03  4.3407e-03 |  0.0e+00   2.5e-67     0.0400
+     100000 |  3.6287e-03  3.6287e-03 |  0.0e+00   1.5e-66     0.0418
+    1000000 |  3.0202e-03  3.0202e-03 |  0.0e+00   1.1e-65     0.0417
+    2000000 |  2.8501e-03  2.8501e-03 |  0.0e+00   2.2e-65     0.0414
+
+  full (*) residual  Rfull(K)=T_K-[base+T>=3,->K];  R2(K) plus rigorously-bounded abs-conv tail
+          K |  |Rfull| arb |Rfull| mp50 | rig tail<=
+      10000 |   4.3407e-03   4.3407e-03 |   2.28e-02
+     100000 |   3.6287e-03   3.6287e-03 |   7.20e-03
+    1000000 |   3.0202e-03   3.0202e-03 |   2.28e-03
+    2000000 |   2.8501e-03   2.8501e-03 |   1.61e-03
+
+  C_1 = -L''/(2 L'^2) = 0.52034519+0.018459323j   [identity UNCONDITIONAL given simple rho]
+  L'(rho,chi)=1.2964996+0.1827651j  L''(rho,chi)=-1.6970497-0.55401707j  (|L|=3.9e-62)
+  AK drift @K=2e+06: |E_K logK|/|L'/e^gamma|=1.0140 (->1 DRH)   /|L'/zeta2|=0.9365 (->e^g/z2=0.9237)   [DRH-CONDITIONAL, AK 2023]
+
+==============================================================================================
+chi_-4/z2   (chi_-4, mod 4)
+==============================================================================================
+refined rho = 0.5... + 10.243770304166554552137... i   |L(rho,chi)|_mp = 6.87e-81
+chi^2 -> primitive psi conductor f=1  (psi trivial: L=zeta, chi^2 PRINCIPAL); bad primes [2]
+|L(rho,chi)|_arb = 1.46e-67   (independent-engine zero check)
+base=1/2logL+BPC1+BPC2 :  mp50=-0.1585411939-0.1262301056j
+  engine agree |mp50-arb|=0.00e+00   precision-double |mp50-mp80|=0.00e+00   rig.tails: BPC2<= 5.0e-07, T>=3<= 1.6e-03
+
+  k=2 boundary identity   R2(K)=1/2 sum_{p<=K} chi^2(p)p^(-2rho) - base     [UNCOND O(1/lnK) [Akatsuka 2017 (2.5)]]
+          K |    |R2| arb   |R2| mp50 |   eng|Δ|   arb rad  C/lnK fit
+      10000 |  2.3703e-03  2.3703e-03 |  0.0e+00   3.2e-67     0.0218
+     100000 |  1.9790e-03  1.9790e-03 |  0.0e+00   1.6e-66     0.0228
+    1000000 |  1.8026e-03  1.8026e-03 |  0.0e+00   1.2e-65     0.0249
+    2000000 |  1.6582e-03  1.6582e-03 |  0.0e+00   2.2e-65     0.0241
+
+  full (*) residual  Rfull(K)=T_K-[base+T>=3,->K];  R2(K) plus rigorously-bounded abs-conv tail
+          K |  |Rfull| arb |Rfull| mp50 | rig tail<=
+      10000 |   2.3703e-03   2.3703e-03 |   2.28e-02
+     100000 |   1.9790e-03   1.9790e-03 |   7.20e-03
+    1000000 |   1.8026e-03   1.8026e-03 |   2.28e-03
+    2000000 |   1.6582e-03   1.6582e-03 |   1.61e-03
+
+  C_1 = -L''/(2 L'^2) = 0.51508848+0.05433693j   [identity UNCONDITIONAL given simple rho]
+  L'(rho,chi)=1.788467-0.29677591j  L''(rho,chi)=-3.3197675+0.75554793j  (|L|=8.2e-61)
+  AK drift @K=2e+06: |E_K logK|/|L'/e^gamma|=1.0121 (->1 DRH)   /|L'/zeta2|=0.9348 (->e^g/z2=0.9237)   [DRH-CONDITIONAL, AK 2023]
+
+==============================================================================================
+chi_8 /z1   (chi_8, mod 8)
+==============================================================================================
+refined rho = 0.5... + 4.8999739970070365010383... i   |L(rho,chi)|_mp = 6.07e-81
+chi^2 -> primitive psi conductor f=1  (psi trivial: L=zeta, chi^2 PRINCIPAL); bad primes [2]
+|L(rho,chi)|_arb = 1.47e-67   (independent-engine zero check)
+base=1/2logL+BPC1+BPC2 :  mp50=-0.0714519843+0.2022998969j
+  engine agree |mp50-arb|=0.00e+00   precision-double |mp50-mp80|=0.00e+00   rig.tails: BPC2<= 5.0e-07, T>=3<= 1.6e-03
+
+  k=2 boundary identity   R2(K)=1/2 sum_{p<=K} chi^2(p)p^(-2rho) - base     [UNCOND O(1/lnK) [Akatsuka 2017 (2.5)]]
+          K |    |R2| arb   |R2| mp50 |   eng|Δ|   arb rad  C/lnK fit
+      10000 |  5.4654e-03  5.4654e-03 |  0.0e+00   2.4e-67     0.0503
+     100000 |  4.4362e-03  4.4362e-03 |  0.0e+00   1.5e-66     0.0511
+    1000000 |  3.6970e-03  3.6970e-03 |  0.0e+00   1.1e-65     0.0511
+    2000000 |  3.5100e-03  3.5100e-03 |  0.0e+00   2.2e-65     0.0509
+
+  full (*) residual  Rfull(K)=T_K-[base+T>=3,->K];  R2(K) plus rigorously-bounded abs-conv tail
+          K |  |Rfull| arb |Rfull| mp50 | rig tail<=
+      10000 |   5.4654e-03   5.4654e-03 |   2.28e-02
+     100000 |   4.4362e-03   4.4362e-03 |   7.20e-03
+    1000000 |   3.6970e-03   3.6970e-03 |   2.28e-03
+    2000000 |   3.5100e-03   3.5100e-03 |   1.61e-03
+
+  C_1 = -L''/(2 L'^2) = 0.52863841+0.052207709j   [identity UNCONDITIONAL given simple rho]
+  L'(rho,chi)=1.7170121-0.13109412j  L''(rho,chi)=-3.145826+0.16992945j  (|L|=2.3e-61)
+  AK drift @K=2e+06: |E_K logK|/|L'/e^gamma|=0.9945 (->1 DRH)   /|L'/zeta2|=0.9185 (->e^g/z2=0.9237)   [DRH-CONDITIONAL, AK 2023]
+
+==============================================================================================
+chi_5 /z1   (chi_5, mod 5)
+==============================================================================================
+refined rho = 0.5... + 6.1835781954508539143775... i   |L(rho,chi)|_mp = 2.54e-81
+chi^2 -> primitive psi conductor f=5  (chi^2 NON-principal); bad primes none
+|L(rho,chi)|_arb = 1.85e-67   (independent-engine zero check)
+base=1/2logL+BPC1+BPC2 :  mp50=0.02960417959+0.390959923j
+  engine agree |mp50-arb|=0.00e+00   precision-double |mp50-mp80|=0.00e+00   rig.tails: BPC2<= 5.0e-07, T>=3<= 1.6e-03
+
+  k=2 boundary identity   R2(K)=1/2 sum_{p<=K} chi^2(p)p^(-2rho) - base     [uncond o(1); ~K^-1/2 = RH(psi)-COND]
+          K |    |R2| arb   |R2| mp50 |   eng|Δ|   arb rad  C/lnK fit
+      10000 |  5.3328e-04  5.3328e-04 |  0.0e+00   4.3e-67     0.0049
+     100000 |  2.7969e-04  2.7969e-04 |  0.0e+00   2.9e-66     0.0032
+    1000000 |  6.6503e-05  6.6503e-05 |  0.0e+00   2.3e-65     0.0009
+    2000000 |  4.2373e-05  4.2373e-05 |  0.0e+00   4.3e-65     0.0006
+
+  full (*) residual  Rfull(K)=T_K-[base+T>=3,->K];  R2(K) plus rigorously-bounded abs-conv tail
+          K |  |Rfull| arb |Rfull| mp50 | rig tail<=
+      10000 |   5.3328e-04   5.3328e-04 |   2.28e-02
+     100000 |   2.7969e-04   2.7969e-04 |   7.20e-03
+    1000000 |   6.6503e-05   6.6503e-05 |   2.28e-03
+    2000000 |   4.2373e-05   4.2373e-05 |   1.61e-03
+
+  C_1 = -L''/(2 L'^2) = 0.66018146+0.13690197j   [identity UNCONDITIONAL given simple rho]
+  L'(rho,chi)=1.1129302-0.44883017j  L''(rho,chi)=-1.6429735+1.0351066j  (|L|=3.3e-61)
+  AK drift @K=2e+06: |E_K logK|/|L'/e^gamma|=0.9934 (->1 DRH)   /|L'/zeta2|=0.9175 (->e^g/z2=0.9237)   [DRH-CONDITIONAL, AK 2023]
+
+==============================================================================================
+chi_7 /z1   (chi_7, mod 7)
+==============================================================================================
+refined rho = 0.5... + 5.1981161994665455860842... i   |L(rho,chi)|_mp = 1.79e-81
+chi^2 -> primitive psi conductor f=7  (chi^2 NON-principal); bad primes none
+|L(rho,chi)|_arb = 3.10e-67   (independent-engine zero check)
+base=1/2logL+BPC1+BPC2 :  mp50=-0.3919894618-0.1387314701j
+  engine agree |mp50-arb|=0.00e+00   precision-double |mp50-mp80|=0.00e+00   rig.tails: BPC2<= 5.0e-07, T>=3<= 1.6e-03
+
+  k=2 boundary identity   R2(K)=1/2 sum_{p<=K} chi^2(p)p^(-2rho) - base     [uncond o(1); ~K^-1/2 = RH(psi)-COND]
+          K |    |R2| arb   |R2| mp50 |   eng|Δ|   arb rad  C/lnK fit
+      10000 |  1.0360e-03  1.0360e-03 |  0.0e+00   4.6e-67     0.0095
+     100000 |  1.8497e-04  1.8497e-04 |  0.0e+00   2.9e-66     0.0021
+    1000000 |  3.0442e-05  3.0442e-05 |  0.0e+00   2.3e-65     0.0004
+    2000000 |  4.4220e-05  4.4220e-05 |  0.0e+00   4.3e-65     0.0006
+
+  full (*) residual  Rfull(K)=T_K-[base+T>=3,->K];  R2(K) plus rigorously-bounded abs-conv tail
+          K |  |Rfull| arb |Rfull| mp50 | rig tail<=
+      10000 |   1.0360e-03   1.0360e-03 |   2.28e-02
+     100000 |   1.8497e-04   1.8497e-04 |   7.20e-03
+    1000000 |   3.0442e-05   3.0442e-05 |   2.28e-03
+    2000000 |   4.4220e-05   4.4220e-05 |   1.61e-03
+
+  C_1 = -L''/(2 L'^2) = 0.4932377+0.10367255j   [identity UNCONDITIONAL given simple rho]
+  L'(rho,chi)=1.7044624-0.35384085j  L''(rho,chi)=-2.9924936+0.61348622j  (|L|=3.6e-61)
+  AK drift @K=2e+06: |E_K logK|/|L'/e^gamma|=0.9769 (->1 DRH)   /|L'/zeta2|=0.9022 (->e^g/z2=0.9237)   [DRH-CONDITIONAL, AK 2023]
+
+==============================================================================================
+chi_11/z1   (chi_11, mod 11)
+==============================================================================================
+refined rho = 0.5... + 3.5470410917194500766644... i   |L(rho,chi)|_mp = 3.42e-81
+chi^2 -> primitive psi conductor f=11  (chi^2 NON-principal); bad primes none
+|L(rho,chi)|_arb = 2.43e-67   (independent-engine zero check)
+base=1/2logL+BPC1+BPC2 :  mp50=-0.2710166551+0.3926895553j
+  engine agree |mp50-arb|=0.00e+00   precision-double |mp50-mp80|=0.00e+00   rig.tails: BPC2<= 5.0e-07, T>=3<= 1.6e-03
+
+  k=2 boundary identity   R2(K)=1/2 sum_{p<=K} chi^2(p)p^(-2rho) - base     [uncond o(1); ~K^-1/2 = RH(psi)-COND]
+          K |    |R2| arb   |R2| mp50 |   eng|Δ|   arb rad  C/lnK fit
+      10000 |  4.2612e-04  4.2612e-04 |  0.0e+00   4.2e-67     0.0039
+     100000 |  1.0252e-04  1.0252e-04 |  0.0e+00   2.9e-66     0.0012
+    1000000 |  4.1755e-05  4.1755e-05 |  0.0e+00   2.3e-65     0.0006
+    2000000 |  3.3350e-05  3.3350e-05 |  0.0e+00   4.3e-65     0.0005
+
+  full (*) residual  Rfull(K)=T_K-[base+T>=3,->K];  R2(K) plus rigorously-bounded abs-conv tail
+          K |  |Rfull| arb |Rfull| mp50 | rig tail<=
+      10000 |   4.2612e-04   4.2612e-04 |   2.28e-02
+     100000 |   1.0252e-04   1.0252e-04 |   7.20e-03
+    1000000 |   4.1755e-05   4.1755e-05 |   2.28e-03
+    2000000 |   3.3350e-05   3.3350e-05 |   1.61e-03
+
+  C_1 = -L''/(2 L'^2) = 0.52076147+0.11113669j   [identity UNCONDITIONAL given simple rho]
+  L'(rho,chi)=1.6965824-0.25098805j  L''(rho,chi)=-3.1215983+0.26121879j  (|L|=1.7e-61)
+  AK drift @K=2e+06: |E_K logK|/|L'/e^gamma|=0.9847 (->1 DRH)   /|L'/zeta2|=0.9094 (->e^g/z2=0.9237)   [DRH-CONDITIONAL, AK 2023]
+
+==============================================================================================
+chi_13/z1   (chi_13, mod 13)
+==============================================================================================
+refined rho = 0.5... + 4.2446093426458496715957... i   |L(rho,chi)|_mp = 3.90e-81
+chi^2 -> primitive psi conductor f=13  (chi^2 NON-principal); bad primes none
+|L(rho,chi)|_arb = 3.55e-67   (independent-engine zero check)
+base=1/2logL+BPC1+BPC2 :  mp50=0.1118184031+0.572911535j
+  engine agree |mp50-arb|=0.00e+00   precision-double |mp50-mp80|=0.00e+00   rig.tails: BPC2<= 5.0e-07, T>=3<= 1.6e-03
+
+  k=2 boundary identity   R2(K)=1/2 sum_{p<=K} chi^2(p)p^(-2rho) - base     [uncond o(1); ~K^-1/2 = RH(psi)-COND]
+          K |    |R2| arb   |R2| mp50 |   eng|Δ|   arb rad  C/lnK fit
+      10000 |  7.5799e-04  7.5799e-04 |  0.0e+00   8.0e-67     0.0070
+     100000 |  1.7037e-04  1.7037e-04 |  0.0e+00   5.7e-66     0.0020
+    1000000 |  7.0199e-05  7.0199e-05 |  0.0e+00   4.6e-65     0.0010
+    2000000 |  3.3755e-05  3.3755e-05 |  0.0e+00   8.6e-65     0.0005
+
+  full (*) residual  Rfull(K)=T_K-[base+T>=3,->K];  R2(K) plus rigorously-bounded abs-conv tail
+          K |  |Rfull| arb |Rfull| mp50 | rig tail<=
+      10000 |   7.5799e-04   7.5799e-04 |   2.28e-02
+     100000 |   1.7037e-04   1.7037e-04 |   7.20e-03
+    1000000 |   7.0199e-05   7.0199e-05 |   2.28e-03
+    2000000 |   3.3755e-05   3.3755e-05 |   1.61e-03
+
+  C_1 = -L''/(2 L'^2) = 0.86027747+0.34193701j   [identity UNCONDITIONAL given simple rho]
+  L'(rho,chi)=0.89251379-0.92820065j  L''(rho,chi)=-1.021292+2.8951603j  (|L|=2.2e-61)
+  AK drift @K=2e+06: |E_K logK|/|L'/e^gamma|=0.9326 (->1 DRH)   /|L'/zeta2|=0.8613 (->e^g/z2=0.9237)   [DRH-CONDITIONAL, AK 2023]
+
+==============================================================================================
+ERROR-BUDGET SUMMARY  (base = 1/2 logL(2rho,psi)+BPC1+BPC2)
+==============================================================================================
+pair        chi^2   f   |L(rho)|mp  |L(rho)|arb eng|Δ|base  precdbl   
+chi_-4/z1   princ   1   3.8e-81     9.3e-68     0.0e+00     0.0e+00   
+chi_-4/z2   princ   1   6.9e-81     1.5e-67     0.0e+00     0.0e+00   
+chi_8 /z1   princ   1   6.1e-81     1.5e-67     0.0e+00     0.0e+00   
+chi_5 /z1   nonpr   5   2.5e-81     1.8e-67     0.0e+00     0.0e+00   
+chi_7 /z1   nonpr   7   1.8e-81     3.1e-67     0.0e+00     0.0e+00   
+chi_11/z1   nonpr   11  3.4e-81     2.4e-67     0.0e+00     0.0e+00   
+chi_13/z1   nonpr   13  3.9e-81     3.5e-67     0.0e+00     0.0e+00   
+
+wall 826.6s. Conditional/unconditional labels are on each line above.

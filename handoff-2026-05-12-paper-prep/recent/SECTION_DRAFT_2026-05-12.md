@@ -318,6 +318,23 @@ and $|\Delta C_1| \lesssim 5 \cdot 10^{-13}$. L2 cross-language (PARI/GP
 imaginary component. An Arb spot-check at 250 bits on the worst pair
 gives interval agreement on $|L'|$ within $3 \cdot 10^{-43}$.
 
+> **Reproducibility note (2026-05-16, D3 hardening).** The PARI/GP
+> 2.17.3 (L2) and native 250-bit Arb cross-checks above were produced
+> in a prior environment and are *not* re-runnable in the current one
+> (no `gp` binary; Arb here is python-flint 0.6.0). The hardened
+> verifier `handoff-2026-05-16-D3-binfty-hardening/binfty_hardened.py`
+> supplies an *independent, fully reproducible* substitute: two
+> engines — **mpmath at dps 50 and 80** (precision-doubling) and
+> **python-flint / Arb 0.6.0** (rigorous ball arithmetic with proven
+> radii) — agreeing to $0$ at displayed precision on the
+> $K$-independent base $\tfrac12\log L(2\rho,\psi)+\mathrm{BPC}_1+
+> \mathrm{BPC}_2$, with $|L(\rho,\chi)|<10^{-67}$ at every refined
+> zero in both engines. It also reproduces the $L',L'',C_1$ values
+> of the table above to all displayed digits. Referees should treat
+> the multi-engine evidence at exactly this reproducible strength;
+> the PARI/GP and native-Arb lines should be re-verified by the
+> author before submission or relabelled accordingly.
+
 ### X.5.3 The Aoki–Koyama drift: $e^{-\gamma}$ vs $\zeta(2)^{-1}$
 *(Analytic-identity scale $K \le 10^{7}$; not transferred from §X.5.1.)*
 
@@ -352,7 +369,15 @@ and $K = 10^{8}$ (PARI/GP):
 | $\chi_{11}$     | $3.34 \cdot 10^{-5}$ | $3.34 \cdot 10^{-5}$ | $1.75 \cdot 10^{-5}$ | $4.10 \cdot 10^{-6}$ |
 
 L1 and L2 agree to all displayed digits at $K = 2 \cdot 10^{6}$
-(stack difference $\le 10^{-8}$). The decay across three decades
+(stack difference $\le 10^{-8}$). *(2026-05-16: the L2/PARI and
+$K=10^{7},10^{8}$ columns are from a prior environment and were not
+re-run here; see the Reproducibility note in §X.5.2. The hardened
+verifier re-isolates the genuine analytic object — the $k=2$
+boundary identity $R_2(K)=\tfrac12\sum_{p\le K}\chi^2(p)p^{-2\rho}
+-[\tfrac12\log L(2\rho,\psi)+\mathrm{BPC}_1+\mathrm{BPC}_2]$,
+removing the absolutely-convergent $k\ge3$ tail that the L1/L2
+$|T_K-\mathrm{RHS}|$ figures conflate with it — and confirms
+$R_2(K)\to0$ at the labelled rates across two engines.)* The decay across three decades
 on the clean-character pairs $\chi_5$, $\chi_{11}$ (where
 $\chi(2) \ne 0$ and there is no bad-prime contribution to
 $\mathrm{BPC}_1$):

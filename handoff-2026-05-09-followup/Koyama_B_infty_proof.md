@@ -12,6 +12,25 @@ companion_code: Koyama_B_infty.py
 
 # Proof of the B_∞ Explicit Formula
 
+> **⚠ CORRECTION BANNER (2026-05-16, D3 hardening audit).** This is a
+> historical proof-of-record; two factual errors in it are corrected
+> below and fully addressed in the current Appendix A. See
+> `handoff-2026-05-16-D3-binfty-hardening/AUDIT_MEMO_2026-05-16.md`.
+> 1. **Citation year:** every "Akatsuka 2013" / "Akatsuka (2013)" in
+>    this file should read **Akatsuka 2017**, *The Euler product for
+>    the Riemann zeta-function in the critical strip*, **Kodai Math.
+>    J. 40 (2017), 79–101** (DOI 10.2996/kmj/1490083225). There is no
+>    Akatsuka 2013 paper. Lemma 2.1 / eq. (2.5) is its §2 *preliminary*
+>    and is **unconditional** (PNT-with-error; eqs. (2.6)–(2.7)) —
+>    primary-verified against the PDF.
+> 2. **Prime zeta value (§5):** "P(3/2)=∑ₚp^{−3/2}≈0.45224" is wrong —
+>    0.45224742… is P(2). Correct **P(3/2)=0.8495626836…**, so the
+>    crude bound is **|T≥3|≤0.967**, not 0.515. (Slack bound on an
+>    absolutely convergent quantity; the identity is unaffected.)
+>
+> The §8 verdict ("identity unconditional given simple ρ") **stands**
+> — independently re-derived and numerically re-hardened 2026-05-16.
+
 ## 1.  Confidence aggregation rule
 
 A single confidence on the whole claim is reported. Sub-confidences are recorded when honest.

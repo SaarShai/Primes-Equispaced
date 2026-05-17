@@ -145,7 +145,7 @@ is unconditional given simplicity of \(\rho\).}
 
 The \(k = 1\) prime sum \(\sum_p \chi^2(p) / p^{2\rho}\) is only
 conditionally convergent on \(\mathrm{Re}(s) = 1\); its convergence is
-supplied by Akatsuka~\cite[Lemma~2.1 \& eq.~(2.5)]{AkatsukaH2013EulerProduct}, which is itself
+supplied by Akatsuka~\cite[Lemma~2.1 \& eq.~(2.5)]{Akatsuka2017EulerProduct}, which is itself
 unconditional (derived from PNT with explicit error term). \(\mathrm{BPC}_2\)
 and \(T_{\ge 3}\) are absolutely convergent (minimum exponents
 \(\mathrm{Re}(2k\rho) = 2\) and \(\mathrm{Re}(k\rho) = \tfrac32\)). The
@@ -174,7 +174,7 @@ explicit-formula range are numerically verified to lie on the
 critical line (provenance in the Supplementary computation audit),
 so these RH-conditional rates are the operative ones for the
 finite \(K\) reported here; the unconditional fallback is the weaker
-Akatsuka (2017) eq. (2.5) bound.}
+Akatsuka~\cite{Akatsuka2017EulerProduct} eq. (2.5) bound.}
 
 The proof combines Inoue~\cite[Theorem~1]{Inoue2021}'s truncated explicit
 formula for \(M^*(K,\chi)\) with Lemma X.3.1 to extract the double-pole
@@ -233,7 +233,7 @@ K^{\lambda - \rho}\,(\log K)^{m-1}\big/\bigl((m-1)!\,(\lambda - \rho)\,a_m(\lamb
 \]
 and the \((\log K)^{m-1}\) factor is not absorbed by simplicity of the
 target \(\rho\). A literature search (\cite{Inoue2021}, \cite{Soundararajan2009},
-Ng~\cite{Ng2004}, \cite{AkatsukaH2013EulerProduct}) did not surface a theorem that closes
+Ng~\cite{Ng2004}, \cite{Akatsuka2017EulerProduct}) did not surface a theorem that closes
 (SP-L); we state (NDC) as \textbf{conditional on (AK) and (SP-L)}
 (Question Q:Perron, \S\,X.7).
 
@@ -373,6 +373,25 @@ and \(|\Delta C_1| \lesssim 5 \cdot 10^{-13}\). L2 cross-language (PARI/GP
 imaginary component. An Arb spot-check at 250 bits on the worst pair
 gives interval agreement on \(|L'|\) within \(3 \cdot 10^{-43}\).
 
+\begin{quote}
+\textbf{Reproducibility note (2026-05-16, D3 hardening).} The PARI/GP
+2.17.3 (L2) and native 250-bit Arb cross-checks above were produced
+in a prior environment and are \emph{not} re-runnable in the current one
+(no \texttt{gp} binary; Arb here is python-flint 0.6.0). The hardened
+verifier \texttt{handoff-2026-05-16-D3-binfty-hardening/binfty\_hardened.py}
+supplies an \emph{independent, fully reproducible} substitute: two
+engines --- \textbf{mpmath at dps 50 and 80} (precision-doubling) and
+\textbf{python-flint / Arb 0.6.0} (rigorous ball arithmetic with proven
+radii) --- agreeing to \(0\) at displayed precision on the
+\(K\)-independent base \(\tfrac12\log L(2\rho,\psi)+\mathrm{BPC}_1+
+\mathrm{BPC}_2\), with \(|L(\rho,\chi)|<10^{-67}\) at every refined
+zero in both engines. It also reproduces the \(L',L'',C_1\) values
+of the table above to all displayed digits. Referees should treat
+the multi-engine evidence at exactly this reproducible strength;
+the PARI/GP and native-Arb lines should be re-verified by the
+author before submission or relabelled accordingly.
+\end{quote}
+
 \subsubsection{The Aoki--Koyama drift: \(e^{-\gamma}\) vs \(\zeta(2)^{-1}\)}
 
 \emph{(Analytic-identity scale \(K \le 10^{7}\); not transferred from \S\,X.5.1.)}
@@ -455,7 +474,15 @@ Pair
 }
 
 L1 and L2 agree to all displayed digits at \(K = 2 \cdot 10^{6}\)
-(stack difference \(\le 10^{-8}\)). The decay across three decades
+(stack difference \(\le 10^{-8}\)). \emph{(2026-05-16: the L2/PARI and
+\(K=10^{7},10^{8}\) columns are from a prior environment and were not
+re-run here; see the Reproducibility note in \S\,X.5.2. The hardened
+verifier re-isolates the genuine analytic object --- the \(k=2\)
+boundary identity \(R_2(K)=\tfrac12\sum_{p\le K}\chi^2(p)p^{-2\rho}
+-[\tfrac12\log L(2\rho,\psi)+\mathrm{BPC}_1+\mathrm{BPC}_2]\),
+removing the absolutely-convergent \(k\ge3\) tail that the L1/L2
+\(|T_K-\mathrm{RHS}|\) figures conflate with it --- and confirms
+\(R_2(K)\to0\) at the labelled rates across two engines.)} The decay across three decades
 on the clean-character pairs \(\chi_5\), \(\chi_{11}\) (where
 \(\chi(2) \ne 0\) and there is no bad-prime contribution to
 \(\mathrm{BPC}_1\)):
@@ -498,7 +525,7 @@ residual's slow component is the boundary-line \(k = 1\) sum
 it is a different partial sum. The square-root-type decay is the
 character analogue of Soundararajan~\cite{Soundararajan2009}'s RH-conditional bound.
 We do not claim this rate unconditionally: what is unconditional
-is the (much weaker) Akatsuka 2017 eq. (2.5) bound \(O(1/\log K)\)
+is the (much weaker) \cite{Akatsuka2017EulerProduct} eq. (2.5) bound \(O(1/\log K)\)
 for that \(k = 1\) partial sum. The observed decay is faster than
 this unconditional floor and consistent with the RH-conditional
 rate; for \(\chi_{-4}, \chi_5, \chi_{11}\) the relevant zeros of
@@ -642,7 +669,7 @@ Status
 \endlastfoot
 Boundary residue \(R_0 = -2\) for a Gaussian-cutoff Mellin-shift explicit formula (companion strand) and its algebraic-glue chain & \texttt{SmoothedDwfFormula\_full.lean} & \textbf{THEOREM (chain), 0 \texttt{sorry}.} All 17 algebraic-glue lemmas closed unconditionally; the two analytic prerequisites \texttt{mellin\_decay} (Stirling on \(\Gamma\) vertical strips) and \texttt{inv\_zeta\_polynomial\_growth} (Titchmarsh~\cite[\S\,3.11]{Titchmarsh1986RZF}) are now stated as explicit hypotheses on the theorems that consume them, both Mathlib v4.28.0 gaps. \\
 Lemma X.3.1 (local Perron residue) & \texttt{LocalPerronResidue.lean} & \textbf{THEOREM (0 \texttt{sorry}).} The residue identity is stated as a \texttt{Tendsto} limit at \(L\) analytic with simple zero at \(0\) (the general-\(\rho\) case reduces by \(L \mapsto L(\cdot + \rho)\)). \\
-Theorem X.4.1 (\(B_\infty\) identity) & \texttt{CorrectedBInfty.lean} & \textbf{THEOREM (0 \texttt{sorry}), conditional on \texttt{h\_convergence}.} The four-component identity is proved against \texttt{noncomputable\ def}s of \(T_\infty\), \(T_{\ge 3}\), \(\mathrm{BPC}_1\), \(\mathrm{BPC}_2\), \(L\) given an added hypothesis \texttt{h\_convergence\ :\ Tendsto\ T\_K\ atTop\ (nhds\ (RHS))}. This hypothesis packages exactly the four analytic inputs of the pen-and-paper proof in Appendix A (\cite{AkatsukaH2013EulerProduct}, log-Euler-product, imprimitive induction, geometric tails); the Lean proof uses \texttt{Classical.epsilon\_spec} + \texttt{tendsto\_nhds\_unique} and is three lines. \\
+Theorem X.4.1 (\(B_\infty\) identity) & \texttt{CorrectedBInfty.lean} & \textbf{THEOREM (0 \texttt{sorry}), conditional on \texttt{h\_convergence}.} The four-component identity is proved against \texttt{noncomputable\ def}s of \(T_\infty\), \(T_{\ge 3}\), \(\mathrm{BPC}_1\), \(\mathrm{BPC}_2\), \(L\) given an added hypothesis \texttt{h\_convergence\ :\ Tendsto\ T\_K\ atTop\ (nhds\ (RHS))}. This hypothesis packages exactly the four analytic inputs of the pen-and-paper proof in Appendix A (\cite{Akatsuka2017EulerProduct}, log-Euler-product, imprimitive induction, geometric tails); the Lean proof uses \texttt{Classical.epsilon\_spec} + \texttt{tendsto\_nhds\_unique} and is three lines. \\
 Farey bridge identity & \texttt{FareyBridgeIdentity.lean} & \textbf{THEOREM (0 \texttt{sorry}), unconditional} (\texttt{farey\_bridge\_identity\_unconditional}). The \texttt{h\_ramanujan\_decomp} hypothesis is now discharged by \texttt{RamanujanSum.farey\_ramanujan\_decomp}; the only inputs are \texttt{Nat.Prime\ p} and Mathlib v4.28.0. \emph{Provenance:} the underlying static Farey--Mertens identity (the \(m = p\) slice \(\sum_{f \in \mathcal{F}_{p-1}} e^{2\pi i p f} = M(p) + 2\)) is classical, in the Mikol\'as~\cite{Mikolas1949} tradition and a special case of the Farey-discrepancy Fourier spectrum; the contribution recorded here is the unconditional machine formalisation, not the identity itself. The genuinely novel mathematical content of this strand is the \emph{differential, per-step} refinement (the sign behaviour as a single prime denominator enters), developed in the companion Dominance/Chebyshev-bias chapter, not \S\,X. \\
 Mertens spectroscope universality & \texttt{MertensSpectroscopeUniversality.lean} & \textbf{THEOREM (0 \texttt{sorry}), conditional on an explicit-formula asymptotic hypothesis} (Soundararajan~\cite[Theorem~1]{Soundararajan2009} input). The file additionally contains a 5-step blueprint documenting the precise Mathlib gap (Perron inversion, explicit formula for \(M(x)\), oscillatory-integral partial summation, zero simplicity) and two new unconditionally-proved infrastructure lemmas: \texttt{spectroscope\_nonneg} (the spectroscope statistic is non-negative) and \texttt{reciprocal\_sqrt\_not\_summable} (if \(\sum_{p \in P} 1/p\) diverges, so does \(\sum_{p \in P} 1/\sqrt p\)). \\
 Farey sign pattern & \texttt{FareySignPattern.lean} & \textbf{THEOREM (0 \texttt{sorry}), conditional.} Three theorems closed under explicit named hypotheses: \texttt{farey\_sign\_pattern\_density\_one} (density-one \texttt{Tendsto} version, under \texttt{h\_chebyshev\_bias}); \texttt{pointwise\_falsification\_237733} and \texttt{pointwise\_falsification\_243799} (the two pointwise falsifications, each under a \texttt{h\_witness} hypothesis stating that the relevant signs disagree), packaged into \texttt{pointwise\_version\_falsified}. Negative result for the pointwise conjecture; the falsifications are recorded as theorems, not axioms --- the project's ``no \texttt{axiom}'' convention is preserved. \\
@@ -692,7 +719,7 @@ supplementary archive for the full discussion):
   with a Mertens-style oscillation bound
   \(\int_0^T K^{i(\gamma - \tau)}\, dA(\gamma) = o(\log T)\) uniformly
   in \(K\) along the zero-avoiding heights. This is the cleanest
-  pen-and-paper analogue of \cite{AkatsukaH2013EulerProduct} eq.\textasciitilde(2.5) applied to the
+  pen-and-paper analogue of \cite{Akatsuka2017EulerProduct} eq.\textasciitilde(2.5) applied to the
   off-target weight sequence.
 \end{itemize}
 

@@ -2189,3 +2189,42 @@ research open, AMS 11]`; honest docstring). No maintainer response since the
 2026-05-16T20:20 rework reply (commit 657a32a89). **BLOCKER: `cla/google`
 check = FAIL** — user-only legal action (sign CLA with commit email);
 non-delegable. Nothing pushed or sent. Memory updated (project_dpac_status).
+
+---
+
+## 2026-05-16 — D3 numerical hardening: corrected B∞ / C₁ / e^{−γ} (user's own work)
+
+**Citations primary-verified** (journal/arXiv + local published PDFs read
+this session; detail `handoff-2026-05-16-D3-binfty-hardening/AUDIT_MEMO_2026-05-16.md`):
+Akatsuka = **2017** Kodai Math. J. 40, 79–101 (NO 2013 paper; eq.(2.5)
+UNCONDITIONAL, PNT-with-error, §2 preliminary, independent of its
+RH/DRH-conditional Thm 1). Soundararajan = **Crelle 631 (2009) 141–152**
+(RH-conditional). Aoki–Koyama = JNT 245 (2023) 233–262 (eq.(1.4) e^{−γ}
+**DRH-conditional** char 0). Inoue = JTNB 33(2) 2021 273–315 (unconditional).
+
+**Defects fixed.** (1) Akatsuka year 2013→2017 across Appendix A `.md`+`.tex`,
+SECTION_DRAFT, INTRODUCTION_DRAFT, clean.py; bibkey
+`AkatsukaH2013EulerProduct→Akatsuka2017EulerProduct`; `.tex` regenerated
+(no LaTeX engine here → PDF rebuild is the user's `tectonic` step).
+(2) **P(3/2) arithmetic error**: drafts printed P(3/2)≈0.45224 (= P(2));
+correct P(3/2)=0.8495626836…, crude |T≥3|≤0.967 not 0.515 (slack bound;
+identity unaffected). Appendix A §A.3 corrected; Koyama_B_infty_proof.md
+got a dated correction banner. (3) A.2.3 non-principal-ψ leg made precise
+(PNT-for-ψ / Siegel–Walfisz, unconditional O(exp(−c√logK)); observed
+K^{−1/2} is RH(ψ)-conditional). (4) **log.md:1816 fabricated locus**
+("Soundararajan = Ann. of Math. 170 (2009) 1409–1422") flagged — wrong,
+contained to log.md, never reached live artifacts; memory landmine recorded.
+
+**Hardened verifier** `handoff-2026-05-16-D3-binfty-hardening/binfty_hardened.py`:
+two engines (mpmath dps 50 & 80 + python-flint/Arb 0.6.0 rigorous balls),
+genuine high-precision (ρ + exact roots of unity per engine; the prior
+python-`complex` funnel that capped precision at ~1e-16 removed), isolates
+the genuine k=2 boundary identity R2(K) from the abs-conv k≥3 tail (prior
+scripts conflated them via mismatched cutoffs), rigorous tail bounds,
+extended to 6 characters / 7 pairs (q=4,5,7,8,11,13). Verified: engine &
+precision-double agreement = 0 at displayed precision; |L(ρ,χ)|<1e-67 both
+engines; reproduces paper L′,L″,C₁ and the AK-drift table exactly;
+conditional/unconditional labels correct on every line. PARI/GP +
+native-250bit-Arb NOT reproducible here → §X.5.2/§X.5.4 given dated
+reproducibility notes (flagged for user, not silently deleted). Nothing
+sent to Koyama; nothing pushed. Memory: project_d3_binfty_citation_lock.

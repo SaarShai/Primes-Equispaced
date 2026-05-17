@@ -216,21 +216,33 @@ def postprocess_latex(text: str, kind: str) -> str:
         # after the parenthesised forms above so it doesn't pre-empt
         # them.
         (r"Aoki--Koyama 2023\b", r"Aoki--Koyama~\\cite{AokiKoyama2023}"),
-        # Akatsuka 2013, Lemma 2.1 / eq. (2.5) — several phrasings
+        # Akatsuka (2017), Kodai Math. J. 40, 79-101 -- Lemma 2.1 / eq.(2.5).
+        # (The cited paper is the 2017 Kodai paper; there is NO Akatsuka 2013
+        # paper. Bibkey renamed Akatsuka2017EulerProduct 2026-05-16. Both the
+        # 2017 phrasings (current .md masters) and any residual legacy "2013"
+        # phrasings map to the SAME correct key, so stale prose auto-corrects
+        # to the right (2017) bibliography entry.)  Order: specific -> general.
+        (r"Akatsuka 2017 \(Kodai Math\. J\. \\textbf\{40\}, 79--101\) Lemma 2\.1 / eq\. \(2\.5\)",
+         r"Akatsuka~\\cite[Lemma~2.1 \\& eq.~(2.5)]{Akatsuka2017EulerProduct}"),
+        (r"Akatsuka \(2017\) Lemma 2\.1 / eq\. \(2\.5\)",
+         r"Akatsuka~\\cite[Lemma~2.1 \\& eq.~(2.5)]{Akatsuka2017EulerProduct}"),
+        (r"Akatsuka 2017, eqs?\. \(2\.5\)",
+         r"Akatsuka~\\cite[eq.~(2.5)]{Akatsuka2017EulerProduct}"),
+        (r"Akatsuka \(2017\)", r"Akatsuka~\\cite{Akatsuka2017EulerProduct}"),
+        (r"\bAkatsuka 2017\b", r"\\cite{Akatsuka2017EulerProduct}"),
+        # legacy 2013 phrasings (residual stale prose) -> correct 2017 key
         (r"Akatsuka \(2013, Lemma 2\.1 / eq\. \(2\.5\)\)",
-         r"Akatsuka~\\cite[Lemma~2.1 \\& eq.~(2.5)]{AkatsukaH2013EulerProduct}"),
+         r"Akatsuka~\\cite[Lemma~2.1 \\& eq.~(2.5)]{Akatsuka2017EulerProduct}"),
         (r"Akatsuka \(2013\) Lemma 2\.1 / eq\. \(2\.5\)",
-         r"Akatsuka~\\cite[Lemma~2.1 \\& eq.~(2.5)]{AkatsukaH2013EulerProduct}"),
+         r"Akatsuka~\\cite[Lemma~2.1 \\& eq.~(2.5)]{Akatsuka2017EulerProduct}"),
         (r"Akatsuka 2013 Lemma 2\.1 / eq\. \(2\.5\)",
-         r"Akatsuka~\\cite[Lemma~2.1 \\& eq.~(2.5)]{AkatsukaH2013EulerProduct}"),
-        (r"Akatsuka 2013, eq\. \(2\.5\)",
-         r"Akatsuka~\\cite[eq.~(2.5)]{AkatsukaH2013EulerProduct}"),
-        (r"Akatsuka 2013 eq\. \(2\.5\)",
-         r"Akatsuka~\\cite[eq.~(2.5)]{AkatsukaH2013EulerProduct}"),
+         r"Akatsuka~\\cite[Lemma~2.1 \\& eq.~(2.5)]{Akatsuka2017EulerProduct}"),
+        (r"Akatsuka 2013,? eq\. \(2\.5\)",
+         r"Akatsuka~\\cite[eq.~(2.5)]{Akatsuka2017EulerProduct}"),
         (r"\(Akatsuka \(2013\),[^)]*The Euler product[^)]*Lemma 2\.1 and equation \(2\.5\)\)",
-         r"(\\cite[Lemma~2.1 \\& eq.~(2.5)]{AkatsukaH2013EulerProduct})"),
-        (r"Akatsuka \(2013\)", r"Akatsuka~\\cite{AkatsukaH2013EulerProduct}"),
-        (r"\bAkatsuka 2013\b", r"\\cite{AkatsukaH2013EulerProduct}"),
+         r"(\\cite[Lemma~2.1 \\& eq.~(2.5)]{Akatsuka2017EulerProduct})"),
+        (r"Akatsuka \(2013\)", r"Akatsuka~\\cite{Akatsuka2017EulerProduct}"),
+        (r"\bAkatsuka 2013\b", r"\\cite{Akatsuka2017EulerProduct}"),
         # Mikolás 1949 (classical Farey--Mertens identity / prior art)
         (r"Mikol[aá]s \(1949(?:/50)?\)", r"Mikol\\'as~\\cite{Mikolas1949}"),
         (r"\bMikol[aá]s 1949\b", r"\\cite{Mikolas1949}"),

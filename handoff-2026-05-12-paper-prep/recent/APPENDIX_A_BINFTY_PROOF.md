@@ -133,20 +133,47 @@ function there.
 **Left-hand side analyticity.** The prime sum
 $\sum_{p} \chi^2(p) p^{-s}$ on the line $\mathrm{Re}(s) = 1$
 (excluding $s = 1$ if $\chi^2$ is principal) converges conditionally
-by a partial-summation argument due to Akatsuka (2013), *The Euler
-product for the Riemann zeta function in the critical strip*,
-Lemma 2.1 and equation (2.5), which establishes that for $t_0 \ne 0$,
+by a partial-summation argument due to Akatsuka (2017), *The Euler
+product for the Riemann zeta-function in the critical strip*,
+**Kodai Math. J. 40 (2017), 79–101**, Lemma 2.1 and equation (2.5),
+which establishes that for $t_0 \ne 0$,
 \begin{equation}
 \label{eq:Akatsuka-2.5}
 \sum_{p \le X} \frac{1}{p^{1 + 2it_0}} \;=\; c(t_0) \;+\; O\!\bigl((\log X)^{-1}\bigr),
 \end{equation}
-proved by partial summation against the prime number theorem with
-explicit error term. The estimate (\ref{eq:Akatsuka-2.5}) is
-**unconditional** (it does not require RH or any GRH-type
-hypothesis); the same partial-summation argument applies with
-$\chi^2(p)/p^{1+2i\tau}$ in place of $p^{-1-2it_0}$, with the
-character orthogonality producing the appropriate cancellation. We
-denote the limit by
+proved (Akatsuka 2017, eqs. (2.6)–(2.7)) by integration by parts
+against the prime number theorem in the form
+$\pi(x) = x/\log x + O\bigl(x/(\log x)^2\bigr)$. The estimate
+(\ref{eq:Akatsuka-2.5}) is therefore **unconditional** — it uses
+only PNT with its classical error term and does *not* require RH,
+GRH, EDRH, or DRH. (This is the §2 *preliminary* lemma of Akatsuka
+2017; it is logically independent of that paper's Theorem 1, whose
+critical-strip Euler-product asymptotic is the RH/DRH-conditional
+result. There is **no** `Akatsuka-2013` paper: the author's only
+relevant works are *Kodai Math. J.* **40** (2017), 79–101 and *J.
+Number Theory* **132** (2012), 2242–2257; the year `2013` in
+earlier drafts was a citation-year error, corrected here and
+primary-verified against the published PDF this session.)
+
+The estimate (\ref{eq:Akatsuka-2.5}) covers the case
+$\chi^2$ **principal** (e.g. $\chi_{-4}, \chi_8$, where $\psi$ is
+trivial and $\sum_p\chi^2(p)p^{-s} = \sum_{p\nmid q} p^{-s}$ differs
+from $\sum_p p^{-1-2i\tau}$ by finitely many Euler factors)
+*literally*. For $\chi^2$ **non-principal** (e.g. $\chi_5,
+\chi_7, \chi_{11}, \chi_{13}$) one repeats Akatsuka's
+integration-by-parts (eq. (2.6)) verbatim with $\pi(u)$ replaced by
+the character sum $\pi(u;\psi) := \sum_{p \le u}\psi(p)$ and the
+prime-number-theorem input replaced by its non-principal analogue
+$\sum_{p\le u}\psi(p) \ll u\exp(-c\sqrt{\log u})$ (de la Vallée
+Poussin / Siegel–Walfisz at *fixed* conductor $f$, **unconditional**).
+Since $\psi$ non-principal has no main term, the analogue of
+(\ref{eq:Akatsuka-2.5}) holds with an unconditional remainder that
+is in fact $O(\exp(-c\sqrt{\log X}))$, stronger than
+$O(1/\log X)$. (The *observed* $\sim K^{-1/2}$ rate of §X.5.4 for
+these clean pairs is sharper still and is the RH$(L(\cdot,\psi))$-
+**conditional** character analogue of Soundararajan 2009 — it is
+*not* claimed unconditionally; only the $O(\exp(-c\sqrt{\log X}))$
+floor above is.) We denote the limit by
 $\Sigma_2(\chi,\rho) := \lim_{X \to \infty} \sum_{p \le X} \chi^2(p)\,p^{-2\rho}$.
 
 We pass to the boundary $s = 2\rho$ by Abel summation. For
@@ -162,8 +189,10 @@ Writing $S(X) := \sum_{p \le X} \chi(p)^2/p^{2\rho}$ and applying
 Abel summation gives, for $\sigma > 1$,
 $\sum_p \chi(p)^2/p^s = (s - 2\rho)\int_2^\infty S(X)\,X^{-(s - 2\rho) - 1}\,dX
 + \lim_{X\to\infty} S(X)\,X^{-(s-2\rho)}$;
-Akatsuka (2013) Lemma 2.1 / eq. (2.5) provides $S(X) = c(\chi,\rho) + O(1/\log X)$
-unconditionally as $X \to \infty$, so the limit term equals
+Akatsuka (2017) Lemma 2.1 / eq. (2.5) provides $S(X) = c(\chi,\rho) + O(1/\log X)$
+unconditionally as $X \to \infty$ (for $\chi^2$ principal; for
+$\chi^2$ non-principal the sharper unconditional
+$O(\exp(-c\sqrt{\log X}))$ of §A.2.3 applies), so the limit term equals
 $c(\chi,\rho)$ at $s = 2\rho$ and the integral converges to a
 continuous function of $s$ in a neighbourhood. Hence
 (\ref{eq:k1-isolation}) extends by continuity to $s = 2\rho$ as the
@@ -217,20 +246,37 @@ Summing over primes:
 \;=\;
 \frac{P(3/2)}{3(1 - 2^{-1/2})}
 \;\approx\;
-0.515,
+1.13807 \times 0.84956
+\;\approx\;
+0.967,
 \]
-where $P(3/2) = \sum_p p^{-3/2} \approx 0.45224$ is the prime zeta
-function at $s = 3/2$. The truncation tail is also estimable: by
-partial summation against PNT, for $\alpha > 1$,
-$\sum_{p > K} p^{-\alpha} \le \frac{2K^{1-\alpha}}{(\alpha-1)\log K}$,
-so
+where $P(3/2) = \sum_p p^{-3/2} = 0.8495626836\ldots$ is the prime
+zeta function at $s = 3/2$ (mpmath/Arb verified, this session).
+*(Correction note: drafts before 2026-05-16 printed
+"$P(3/2)\approx 0.45224$" and the bound "$\approx 0.515$"; the value
+$0.45224742\ldots$ is the prime zeta at $s = 2$, not $s = 3/2$. The
+corrected crude bound is $|T_{\ge 3}| \le 0.967$. This is a slack
+upper bound on an absolutely convergent quantity and does not affect
+the identity; the corrected numeral is recorded for referee
+safety.)* The truncation tail is bounded elementarily by
+$\sum_{p>K} p^{-3/2} \le \sum_{n>K} n^{-3/2} \le \int_K^\infty
+x^{-3/2}\,dx = 2K^{-1/2}$, giving the fully rigorous
 \[
 |T_{\ge 3} - T_{\ge 3, K}|
 \;\le\;
-\frac{2}{3(1 - 2^{-1/2})} \cdot \frac{K^{-1/2}}{\log K},
+\frac{2}{3(1 - 2^{-1/2})}\,K^{-1/2}
+\;\approx\;
+2.276\,K^{-1/2},
 \]
-which is $\sim 3 \cdot 10^{-4}$ at $K = 10^6$ and $\sim 1 \cdot 10^{-4}$
-at $K = 2 \cdot 10^6$.
+and, with the PNT-sharpened prime tail
+$\sum_{p>K}p^{-3/2}\le 4K^{-1/2}/\log K$ (partial summation against
+$\pi(x)\sim x/\log x$), the sharper
+$|T_{\ge 3}-T_{\ge 3,K}|\le \frac{4}{3(1-2^{-1/2})}\cdot
+\frac{K^{-1/2}}{\log K}\approx 4.55\,K^{-1/2}/\log K$, which is
+$\sim 3.3\cdot 10^{-4}$ at $K = 10^6$ and $\sim 2.2\cdot 10^{-4}$
+at $K = 2 \cdot 10^6$. (The clean isolation of §X.5.4 — verifying
+the $k=2$ boundary identity directly — removes this $k\ge3$ tail
+from the reported residual entirely; see the hardened verifier.)
 
 ## A.4 Assembling the identity
 
@@ -241,7 +287,7 @@ T_\infty(\chi,\rho) \;:=\; \lim_{K \to \infty} T_K(\chi,\rho).
 The limit exists by combining the two parts:
 
 - The $k = 2$ part is $\tfrac12 \Sigma_2(\chi, \rho)$, whose limit
-  exists by Akatsuka (2013) Lemma 2.1 / eq. (2.5) and equals the
+  exists by Akatsuka (2017) Lemma 2.1 / eq. (2.5) and equals the
   right-hand side of (\ref{eq:k=2-final}).
 - The $k \ge 3$ part is absolutely convergent by §A.3.
 
@@ -256,36 +302,48 @@ T_\infty(\chi, \rho)
 \]
 which is identity ($\star$). $\hfill\square$
 
-## A.5 Bad-prime correction for the four computational pairs
+## A.5 Bad-prime correction for the computational pairs
 
-For the four $(\chi, \rho)$ pairs used in the numerical work of §X.5.4,
-the bad-prime correction $\mathrm{BPC}_1$ takes the following
-character-explicit forms:
+For the $(\chi, \rho)$ pairs used in the hardened numerical work of
+§X.5.4 (the original four plus the extended set $\chi_8, \chi_7,
+\chi_{13}$ added 2026-05-16), the bad-prime correction
+$\mathrm{BPC}_1$ takes the following character-explicit forms:
 
-| Character | $q$ | $\chi^2$ order | primitive $\psi$ inducing $\chi^2$ | $f$ | bad primes $\{p \mid q,\ p \nmid f\}$ |
+| Character | $q$ | $\chi^2$ | primitive $\psi$ inducing $\chi^2$ | $f$ | bad primes $\{p \mid q,\ p \nmid f\}$ |
 |---|---:|:---:|---|---:|---|
-| $\chi_{-4}$ | $4$ | $1$ (principal mod 4) | trivial character ($\Rightarrow L = \zeta$) | $1$ | $\{2\}$ |
-| $\chi_5$    | $5$ | $2$ | Legendre symbol $(\cdot/5)$ | $5$ | $\emptyset$ |
-| $\chi_{11}$ | $11$ | $5$ | order-$5$ character mod $11$ | $11$ | $\emptyset$ |
+| $\chi_{-4}$ | $4$ | principal mod $4$ | trivial character ($\Rightarrow L = \zeta$) | $1$ | $\{2\}$ |
+| $\chi_8$ | $8$ | principal mod $8$ | trivial character ($\Rightarrow L = \zeta$) | $1$ | $\{2\}$ |
+| $\chi_5$    | $5$ | order $2$ | Legendre symbol $(\cdot/5)$ | $5$ | $\emptyset$ |
+| $\chi_7$ | $7$ | order $3$ | primitive cubic character mod $7$ | $7$ | $\emptyset$ |
+| $\chi_{11}$ | $11$ | order $5$ | order-$5$ character mod $11$ | $11$ | $\emptyset$ |
+| $\chi_{13}$ | $13$ | order $6$ | primitive order-$6$ character mod $13$ | $13$ | $\emptyset$ |
+
+(The $\chi^2$ inducing-character/conductor and bad-prime set are
+recomputed mechanically by `squared_primitive()` in the hardened
+verifier; the table above is its output.)
 
 Explicitly:
-- For $\chi_{-4}$: $\mathrm{BPC}_1 = \tfrac{1}{2}\log(1 - 2^{-2\rho})$.
-  For $\rho = \tfrac12 + i\tau$, this is
+- For $\chi_{-4}$ and $\chi_8$ (both $\chi^2$ principal, $\psi$
+  trivial, bad prime $p=2$): $\mathrm{BPC}_1 = \tfrac{1}{2}\log(1 -
+  2^{-2\rho})$. For $\rho = \tfrac12 + i\tau$ this is
   $\tfrac{1}{2}\log(1 - 2^{-1 - 2i\tau})$, of modulus
   $\le \tfrac{1}{2}\log(1/(1-1/2)) = \tfrac12 \log 2 \approx 0.347$.
-- For $\chi_5$ and $\chi_{11}$: $\mathrm{BPC}_1 = 0$.
+- For $\chi_5, \chi_7, \chi_{11}, \chi_{13}$ ($\chi^2$ non-principal,
+  $f = q$, no bad primes): $\mathrm{BPC}_1 = 0$.
 
-This explains the numerical observation in §X.5.4 that the $\chi_{-4}$
-pairs show slower convergence of the $B_\infty$ identity residual
-than $\chi_5$ and $\chi_{11}$: the bad-prime contribution from
-$p = 2$ adds an extra layer of conditionally-convergent boundary
-mass to the $\chi_{-4}$ identity that is absent for $\chi_5,
-\chi_{11}$. The $K^{-1/2}/\log K$ form is the *unconditional*
-truncation envelope provable here (§A.3); the clean pairs
-$\chi_5, \chi_{11}$ are empirically observed to decay somewhat
-faster than this envelope (square-root-type cancellation; see the
-rate discussion and ratio table of §X.5.4), while the $\chi_{-4}$
-pairs decay more slowly because of the $p = 2$ bad-prime mass.
+This explains the numerical observation in §X.5.4 that the $\chi^2$-
+principal pairs ($\chi_{-4}, \chi_8$) show slower convergence of the
+$B_\infty$ identity residual than the non-principal pairs ($\chi_5,
+\chi_7, \chi_{11}, \chi_{13}$): for the former the boundary $k=1$
+sum is $\sum_p p^{-1-2i\tau}$ (up to finitely many Euler factors),
+whose decay is governed *unconditionally* only at the
+Akatsuka-2017 $O(1/\log K)$ rate; for the latter the boundary sum
+$\sum_p\psi(p)p^{-1-2i\tau}$ has no main term, decays
+unconditionally at $O(\exp(-c\sqrt{\log K}))$, and empirically
+exhibits the sharper $\sim K^{-1/2}$ (square-root cancellation)
+rate, which is the RH$(L(\cdot,\psi))$-**conditional** character
+analogue of Soundararajan 2009 — *not* claimed unconditionally
+(see §A.2.3 and the rate/ratio discussion of §X.5.4).
 
 ## A.6 What the proof does *not* use
 
@@ -294,8 +352,10 @@ For clarity:
 - The proof does **not** use RH, GRH, EDRH, or DRH. The only
   conditional convergence on the boundary line $\mathrm{Re}(s) = 1$ is
   the $k = 1$ prime sum $\sum_p \chi^2(p) p^{-2\rho}$, handled by
-  Akatsuka 2013 Lemma 2.1 / eq. (2.5), which itself is
-  *unconditional* — derived from PNT with explicit error term.
+  Akatsuka 2017 (Kodai Math. J. **40**, 79–101) Lemma 2.1 / eq.
+  (2.5), which itself is *unconditional* — derived from PNT with
+  classical explicit error term $\pi(x)=x/\log x+O(x/(\log x)^2)$
+  (primary-verified against the published PDF this session).
 - The proof does **not** use any rate of convergence for the partial
   Möbius / spectroscope sum $c_K(\chi, \rho)$. The $B_\infty$ identity
   is a statement about the limit $T_\infty$; it makes no claim about
