@@ -155,3 +155,36 @@ the C₁ o(1) rate remain DRH- / RH-conditional respectively and are
 labelled as such everywhere. The K^{−1/2} clean-pair decay is
 RH(L(·,ψ))-conditional and is **not** stated unconditionally. No
 claim here advances RH/DRH.
+
+---
+
+## 6. Net gain (adversarial / who-cares — applied to this pass itself)
+
+So this pass does not become its own inflation:
+
+- **No new mathematics. Zero.** The B∞ identity was already a correct
+  identity; the e^{−γ} correction and the C₁ formula were already
+  right. Nothing moved toward RH/DRH. The strategic verdict in
+  `project_farey_forward_verdict` is **unchanged**.
+- **The gain is negative knowledge + defensibility, not progress.**
+  Three referee-catchable errors removed (non-existent "Akatsuka
+  2013"; P(3/2)=0.45224 which is actually P(2); a fabricated
+  "Annals 170" locus in `log.md`); the conditional/unconditional
+  line is now primary-verified rather than agent-asserted; a
+  precision bug that made the prior "50-digit" check partly hollow
+  is fixed. Net effect: the work can survive a referee and is not
+  embarrassing as the user's own independent write-up.
+- **Residual soft spots, not papered over.** The non-principal-ψ
+  leg of A.2.3 is unconditional but by a *standard* argument
+  (Siegel–Walfisz) that is ours, not a cited theorem — labelled as
+  such. Two-engine agreement is "0 at displayed precision" with a
+  rigorous Arb radius ~1e-65 (the Arb enclosure is rigorous; the
+  mpmath side is heuristic but an independent codebase).
+  PARI/native-Arb remain non-reproducible here.
+- **Most of this value is contingent.** It matters chiefly if the
+  Koyama collaboration is real (memory: unverified/risky). Absent
+  that, the gain is that the user's standalone note is correct
+  rather than refutable. Worth doing — but hygiene, not a result.
+  This pass is **specialist-tier error-correction**; a future
+  summary must not re-describe it as a breakthrough or as "B∞
+  progress".

@@ -2228,3 +2228,12 @@ conditional/unconditional labels correct on every line. PARI/GP +
 native-250bit-Arb NOT reproducible here → §X.5.2/§X.5.4 given dated
 reproducibility notes (flagged for user, not silently deleted). Nothing
 sent to Koyama; nothing pushed. Memory: project_d3_binfty_citation_lock.
+
+**Net-gain verdict (adversarial, applied to this pass).** NO new
+mathematics — B∞ identity / e^{−γ} / C₁ were already correct. Gain =
+negative knowledge + referee-defensibility only (3 catchable errors
+removed; conditional boundary primary-verified; precision bug fixed).
+`project_farey_forward_verdict` UNCHANGED; value contingent on Koyama
+(unverified). Specialist-tier error-correction/hygiene, not progress —
+do not re-describe as a breakthrough. AUDIT_MEMO §6; honest_map updated.
+Committed 564df1c; this honest-verdict update follows.
