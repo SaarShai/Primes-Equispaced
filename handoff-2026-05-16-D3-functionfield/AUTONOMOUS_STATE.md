@@ -1,3 +1,7 @@
+# >>> LOOP STOPPED BY USER 2026-05-16T12:24:37-07:00 <<<
+# If this file is read by a fired ScheduleWakeup: DO NOT re-arm, DO NOT do work.
+# Append one PROGRESS LOG line acknowledging stop and END. Loop is terminated by user request.
+
 # D3 Autonomous Run — state & work queue
 
 **Mode:** self-paced autonomous loop (no user input until deadline).
@@ -46,3 +50,5 @@
 - 2026-05-16T11:42:19-07:00 — C_FF CLOSED FORM PROVEN: **C_FF(q)=(q+1)²** [DERIVED+VERIFIED 3 ways] (enum converges up to closed S_D; exact R_D->(q+1)^2 q=2,3,5,7; exact extrapolation). Corrected earlier truncation-biased '9.4/17/37'. Adversarial check: 2 independent computation paths agree (divisor-enum vs bilinear b(M)), Phi_D cross-checked vs Farey counts -> robust. Updated D3_NOTE_DRAFT.md §5, FINAL_REPORT.md, memory. Honest scope unchanged: elegant elementary fact, dictionary-tier, no char-0 consequence, verdict stands. RESEARCH NOW FULLY COMPLETE incl bonus closed form. Returning to long-interval SAFETY MODE (no substantive work remains; no manufacturing low-value work).
 - 2026-05-16T11:47:41-07:00 — D4 (Steinerberger, last untouched forward lead) OPENED + CLOSED honest-NEGATIVE in one cycle: primary read shows Steinerberger energy = LOG pairwise kernel (not L² ∫E²); classical Fejér + cyclotomic Π2sin(πk/p)=p ⇒ prime equispaced block is log-energy OPTIMAL, opposite of a greediness failure ⇒ hypothesis refuted & reversed. No strawman probe (inflation-avoidance). D4_STEINERBERGER_FORMULATION.md, FINAL_REPORT.md, memory updated. RESEARCH SURFACE NOW GENUINELY EXHAUSTED: D3 done (+bonus C_FF=(q+1)²), D4 closed-neg; all remaining real work is BLOCKED-FOR-USER (Koyama paper; lock KR citation; ship/shelve; D1 note = user call). Returning to long-interval safety mode; will NOT manufacture work.
 - 2026-05-16T11:49:08-07:00 — SAFETY MODE (stale queued wakeup; C_FF & D4 already locked). Integrity check PASS: C_FF=(q+1)^2 consistent in note/FINAL_REPORT/memory; D4 negative recorded; no inflation (grep hits = the 'NOT new mathematics' anti-inflation framing). No work manufactured. ~130min to deadline; all remaining = BLOCKED-FOR-USER.
+- 2026-05-16T12:22:27-07:00 — SAFETY MODE. User tasks complete & committed (d21695e session+NOVEL_ACHIEVEMENTS; 1a992a0 OPPORTUNITIES; agent citation errors corrected not propagated). 6/6 deliverables present, consistent, non-inflated. ~97min to deadline. No work manufactured. All remaining = BLOCKED-FOR-USER.
+- 2026-05-16T12:24:37-07:00 — **USER COMMANDED: STOP THE LOOP.** Loop terminated. No re-arm. Any pending wakeup must self-exit on read. Deliverables committed (d21695e,1a992a0). Done.
