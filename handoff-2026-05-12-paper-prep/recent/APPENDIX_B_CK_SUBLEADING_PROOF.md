@@ -26,9 +26,13 @@ sharper rate
 $O\bigl(K^{-1/2} \exp\bigl((\log K)^{1/2}(\log\log K)^{14}\bigr)\bigr)$
 obtained via the character analogue of Soundararajan (2009) Theorem 1,
 are both conditional on RH for $L(s, \chi)$. For the four characters
-$\chi_{-4}, \chi_5, \chi_{11}$ of §X.5, RH for $L(s,\chi)$ is
-numerically verified to heights well beyond the $K$-ranges considered,
-so these rates apply unconditionally in our computational regime.
+$\chi_{-4}, \chi_5, \chi_{11}$ of §X.5, the nontrivial zeros of
+$L(s,\chi)$ in the relevant explicit-formula range are numerically
+verified to lie on the critical line (provenance in the Supplementary
+computation audit), so these RH-conditional rates are the operative
+ones for the finite $K$ reported here; we do not assert them as
+unconditional theorems. The unconditional fallback is the weaker
+Akatsuka (2017) eq. (2.5) $O(1/\log K)$ bound.
 
 ## B.1 Setup — Perron formula for $c_K$ via $1/L(s, \chi)$
 
@@ -296,7 +300,8 @@ O\!\bigl(K^{-A+1+o(1)}\exp(O((\log\log K)^2))\bigr)
 All terms in the last three parentheses are $o(1)$. The off-target
 aggregate is also $o(1)$ under RH for $L(s, \chi)$, by partial
 summation against Soundararajan (2009), *Partial sums of the Möbius
-function*, Annals of Mathematics **170** (2009), 981–993, Theorem 1:
+function*, J. reine angew. Math. (Crelle's Journal) **631** (2009),
+141–152, Theorem 1:
 \[
 \text{(Soundararajan 2009)}
 \quad
@@ -316,7 +321,7 @@ The proof above yields the following rates.
 | Rate | Hypotheses |
 |---|---|
 | $o(1) = O\bigl(K^{-1/2 + \varepsilon}\bigr)$ for every $\varepsilon > 0$ | RH for $L(s, \chi)$. |
-| $o(1) = O\bigl(K^{-1/2}\exp\bigl((\log K)^{1/2}(\log\log K)^{14}\bigr)\bigr)$ | RH for $L(s, \chi)$, via the character analogue of Soundararajan (2009) Theorem 1. Applies unconditionally in the $K$-range of §X.5 for the four characters $\chi_{-4}, \chi_5, \chi_{11}$, where RH for $L(s, \chi)$ is numerically verified to heights well beyond $10^{8}$. |
+| $o(1) = O\bigl(K^{-1/2}\exp\bigl((\log K)^{1/2}(\log\log K)^{14}\bigr)\bigr)$ | RH for $L(s, \chi)$, via the character analogue of Soundararajan (2009) Theorem 1. The operative rate for §X.5: for $\chi_{-4}, \chi_5, \chi_{11}$ the nontrivial zeros of $L(s,\chi)$ in the relevant explicit-formula range are numerically verified on the critical line (Supplementary computation audit); not asserted as an unconditional theorem. |
 | $o(1) = O\bigl(\log K / \sqrt K\bigr)$ | RH plus a Gonek–Hejhal-type bound of the form $\sum_{0 < \gamma < T} |L'(\rho, \chi)|^{-2} \ll T (\log T)^{O(1)}$. |
 
 In the numerical work of §X.5.3, the empirical residual
@@ -325,7 +330,8 @@ $K = 2\cdot 10^6$ falls in the interval $[0.027,\,0.375]$ across the
 four pairs; this is consistent with the Soundararajan-conditional rate
 within an $O(1)$ implicit-constant factor (specifically,
 $|R(K)| / (\log K / \sqrt K) \in [3,\,36]$, well within the typical
-$\exp(C(\log\log K)^{1/2}(\log\log K)^{14})$ envelope at this scale).
+$\exp\bigl(C\,(\log K)^{1/2}(\log\log K)^{14}\bigr)$ envelope at this
+scale).
 
 ## B.5 What the proof does *not* claim
 

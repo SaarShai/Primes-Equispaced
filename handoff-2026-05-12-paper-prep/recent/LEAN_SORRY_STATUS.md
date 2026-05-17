@@ -3,10 +3,18 @@
 **Toolchain.** `leanprover/lean4:v4.28.0`; Mathlib commit
 `8f9d9cff6bd728b17a24e163c9402775d9e6a365` (v4.28.0 release).
 
-**Build status.** `lake build FormalConjectures` succeeds on all
-**10 files** in `formal-conjectures/` with exactly **2 `sorry`
-warnings** and **no errors, no linter warnings, no `axiom`
-declarations**.
+**Build status.** The §X formalisation is the **10 modules**
+listed in the inventory table below. The lake `FormalConjectures`
+roll-up target builds these plus one out-of-scope module,
+`SignedVsAbsoluteResidueGadget.lean` (a halo-route structural
+lemma for the companion GL(2) strand; 0 `sorry`), for **11
+modules in the build target**. `lake build FormalConjectures`
+succeeds with exactly **2 `sorry` warnings** (both DPAC headline
+at general $K$) and **no errors, no linter warnings, no `axiom`
+declarations**. The `formal-conjectures/` directory also contains
+the transient `_AxiomCheck.lean` harness and a round-9 scratch
+extract, neither in the build target — the raw directory file
+count (13) is not the module count.
 
 **Cumulative axiom audit.** A `_AxiomCheck.lean` file runs
 `#print axioms` on each audited headline theorem. Six audited
@@ -32,7 +40,7 @@ project-specific.
 | `CorrectedBInfty.lean` (Theorem X.4.1) | **0** | **Theorem (conditional on one `Filter.Tendsto` hypothesis derived in Appendix A)** |
 | `DPAC_closure_attempt.lean` | **0** | **Theorems**: DPAC for $K \in \{2, 3, 4\}$ unconditional; `FiniteLogRatioLI` reformulation; obstruction certificate (Pólya 1913 + the open ordinate-avoidance statement) |
 | `MertensSpectroscopeUniversality.lean` | **0** | **Theorem (conditional)** on an explicit-formula-derived asymptotic hypothesis (Soundararajan 2009 Thm 1 input). Also contains: a 5-step blueprint documenting the precise Mathlib gap (Perron inversion, explicit formula for $M(x)$, oscillatory-integral partial summation), plus two unconditionally-proved infrastructure lemmas (`spectroscope_nonneg`, `reciprocal_sqrt_not_summable`). |
-| `FareyBridgeIdentity.lean` | **0** | **Theorem (unconditional)**: `farey_bridge_identity_unconditional` requires only `Nat.Prime p` and Mathlib v4.28.0; the Ramanujan-sum hypothesis is discharged by `RamanujanSum.farey_ramanujan_decomp` |
+| `FareyBridgeIdentity.lean` | **0** | **Theorem (unconditional)**: `farey_bridge_identity_unconditional` requires only `Nat.Prime p` and Mathlib v4.28.0; the Ramanujan-sum hypothesis is discharged by `RamanujanSum.farey_ramanujan_decomp`. *Provenance:* the underlying static Farey–Mertens identity is classical (Mikolás 1949 tradition); what is formalised here is the unconditional machine proof, not a new identity. |
 | `SmoothedDwfFormula_full.lean` | **0** | **Theorem (chain)**: 17 algebraic-glue lemmas unconditional; two analytic prerequisites (`mellin_decay`, `inv_zeta_polynomial_growth`) stated as explicit hypotheses on the consuming theorems |
 | `DPAC_full.lean` | 1 | **Research-open**: headline DPAC at general $K$ (LI-class) |
 | `DirichletPolynomialAvoidance.lean` | 1 | **Research-open**: same as above (the conjecture statement) |
@@ -65,12 +73,15 @@ polynomial) plus a single open ordinate-avoidance statement.
 
 ### `DirichletPolynomialAvoidance.lean:54`
 
-The upstream statement of DPAC in the
-`google-deepmind/formal-conjectures` registry (theorem
-declared at line 48, `sorry` at line 54). Carries the original
-upstream attribute `@[category research_open]` rather than a
-project-side `RESEARCH-OPEN:` comment annotation. Same status as
-the preceding row.
+A statement-only mirror of DPAC (theorem
+`dirichlet_polynomial_avoidance_conjecture` declared at line 48,
+`sorry` at line 54), authored in-project (Saar Shai, *Prime
+Spectroscopy of Riemann Zeros*, §3; header records the AI
+disclosure). It carries a **bare `sorry`** with no in-source
+annotation or category attribute — the annotated discussion of
+the obstruction lives in `DPAC_full.lean` (`-- RESEARCH-OPEN:`
+at line 321) and `DPAC_closure_attempt.lean`. Same research-open
+status as the preceding row.
 
 ### `FareySignPattern.lean` — closed conditionally
 

@@ -63,17 +63,39 @@
 % tokens (e.g. `formal-conjectures/LocalPerronResidue.lean`) and code
 % identifiers are otherwise unbreakable and cause overfull boxes.
 \sloppy
-\setlength{\emergencystretch}{3em}
+\setlength{\emergencystretch}{4em}
 \hyphenpenalty=1000
 \exhyphenpenalty=1000
+% Presentation-only line-breaking tolerance (does not alter content):
+% lets TeX accept slightly looser lines instead of emitting overfull
+% \hbox rules inside the dense \S X.5/\S X.6 tables.
+\tolerance=2000
+\hbadness=2000
+% Permit breaks inside long unbreakable code tokens (Lean module
+% paths/identifiers) as a last resort, which is the dominant source
+% of the residual overfull boxes in the inventory tables.
+\appto\ttfamily{\hyphenchar\font=`\-}
 
 \begin{document}
-\maketitle
 
 \begin{abstract}
-Placeholder. The abstract for the full paper will be drafted jointly
-once the technical section is finalised.
+This is the technical and computational section (\S X) and its two
+proof appendices of the joint manuscript, circulated as a
+self-contained draft. It records the corrected $B_\infty$
+framework: the four-component $B_\infty$ identity
+(Theorem~X.4.1, unconditional given simplicity of the zero
+$\rho$; full proof in Appendix~A), the leading-plus-%
+subleading partial-M\"obius identity (Theorem~X.4.2, Appendix~B),
+the local Perron double-pole residue (Lemma~X.3.1), a double-%
+verified numerical study at two rigorously separated scales (the
+Phase-1 Dominance-of-$-1$ replication at $x = 1.3\cdot10^{13}$ and
+the analytic-identity verification to $K = 10^{8}$), and a Lean~4
+/ Mathlib formalisation inventory with a cumulative axiom audit.
+The full paper's abstract and introduction are drafted jointly and
+are not part of this technical draft.
 \end{abstract}
+
+\maketitle
 
 \input{section_X}
 

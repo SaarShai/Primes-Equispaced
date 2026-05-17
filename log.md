@@ -1934,3 +1934,225 @@ Per request, ran a thorough adversarial verification on numerical claims, Lean s
 **LaTeX bundle rebuilt.** `paper.pdf` 181.90 KiB. Only pre-existing overfulls (in §X.5.4 longtable and §X.6 verbatim-heavy table rows) remain.
 
 **Status.** Bundle now passes a nine-finding adversarial verification. All five Koyama-facing documents (§X bundle PDF + LEAN_SORRY_STATUS + Abstract + Intro + reply draft) consistent on Lean inventory, citation provenance, numerical decay rate, and conditionality labelling. Default cadence (hold) preserved; reply draft ready for review and send.
+
+## [2026-05-15] correspondence | proactive reply SENT to Koyama; Koyama replied — all four questions answered
+
+**Outbound (sent).** Saar sent `REPLY_TO_KOYAMA_DRAFT_2026-05-14.md` ("§X bundle — progress update and four small questions") to Koyama, no PDF attached (Q4 left as an offer per the send decision). This supersedes the contingent `MIDWEEK_UPDATE_TO_KOYAMA_DRAFT.md`, which is now obsolete and should not be sent.
+
+**Inbound (Koyama reply, 2026-05-15).** Substance of his answers to the four questions:
+
+| Q | Topic | Koyama's answer | Action taken |
+|---|---|---|---|
+| Q1 | `m` convention | **Confirmed our definition** $m = m(s,\chi) := \mathrm{ord}_{s'=s}L(s',\chi)$ — "the most consistent framing for our specific evaluations". | No math change needed; §X.4.3 (SECTION_DRAFT line 186) and Intro §1.2 already state exactly this. Q1 **resolved** — was the last open adversarial-sweep flag. |
+| Q2 | Intro §1.1A framing | Current draft "captures my core message well"; **keep as placeholder**. He supplies definitive $(\chi_{a,1},\dots)$ notation + formal statement of **Conjecture 2** during final review after May 20. | `KOYAMA-INSERT-1.1A` kept; annotation updated in INTRODUCTION_DRAFT to record his instruction. Still the one remaining insertion cue. |
+| Q3 | §2 / §3 titles | §2 = *The Dominance of $-1 \pmod N$ and Hierarchical Structure of Chebyshev's Bias*; §3 = *Theoretical Consequences and Applications to Cryptographic Hardness*. | `KOYAMA-INSERT-1.5` **resolved** — both titles written into INTRODUCTION_DRAFT §1.5; placeholder comment + remaining-cues list updated. |
+| Q4 | Send updated PDF? | **Yes, send `paper.pdf` now.** Wants to cite results — *especially the Lean 4 status and the $10^8$ verification* — in his **current grant application** as "state-of-the-art" collaboration progress; calls it a "visual proof" for grant reviewers. | **Action pending: send the current `latex/paper.pdf` to Koyama.** See note below. |
+
+**New consideration — external reviewer audience.** The PDF will now be read by Koyama's grant reviewers, not just Koyama. This makes the nine-finding sweep's conditionality-labelling fixes (F1/F3/F5 Soundararajan-not-Akatsuka attribution; Soundararajan RH-conditional labelling; the 8-of-10 / two-`sorry` Lean count + axiom audit) **externally load-bearing**: the document must not overstate unconditionality or Lean proof state to a third party. Current bundle already passes this — the sweep is retroactively validated as the right call before any external exposure. The PDF that goes out **must be the post-sweep rebuild** (`paper.pdf` 181.90 KiB).
+
+**Next action.** Send `primes-equispaced/handoff-2026-05-12-paper-prep/recent/latex/paper.pdf` (post-sweep build) to Koyama. Recommend a one-line accompanying note flagging, for grant-application use, that the headline Lean state is *8 of 10 files fully proved, two `sorry`s (DPAC at general $K$, LI-class), no `axiom`s*, and that the Soundararajan-rate results are RH-conditional (unconditional only in the verified $K$-range) — so any text he lifts for reviewers inherits the correct conditionality. Drafting that note is the only open item; the four substantive questions are all closed.
+
+**Status.** All four open questions with Koyama resolved or scheduled (Q2 → his post-May-20 review). Intro §1.5 finalized; one insertion cue (`KOYAMA-INSERT-1.1A`, Conjecture 2) remains, owned by Koyama post-May-20. Contingent midweek draft retired. Sole open action: transmit post-sweep `paper.pdf` + a short conditionality-flag note for his grant application.
+
+## [2026-05-15] paper-prep | full perfection pass for the grant-reviewer PDF — 8 fixes, sources build-clean
+
+Triggered by "make it as perfect as it can be" ahead of Koyama showing the PDF to grant reviewers. Constraint: no TeX engine / PDF tooling in this env (tectonic, pdflatex, poppler, mpmath, PARI all absent). Worked at source level + pandoc regeneration; final `tectonic` build must run in the user's interactive shell. Ground-truth audit against the actual Lean tree, `lakefile.toml`, `lake-manifest.json`, and `BINFTY_K100M_run.log`.
+
+**Verified correct (no change):** all K=10⁸ residuals (2.25e-3 / 1.32e-3 / 3.30e-6 / 4.10e-6) and K=2e6 residuals exact vs `BINFTY_K100M_run.log`; Mathlib commit pin `8f9d9cff…` is exactly what `lake-manifest.json` resolves `v4.28.0` to; "no `axiom` declarations" true across all 11 build-target modules; DPAC_full RESEARCH-OPEN at line 321 / sorry at 338 and DirichletPolynomialAvoidance sorry at 54 all confirmed; every `\ref` resolves to a `\label` (no `??`); all `\cite` keys resolve to `references.bib`.
+
+**8 defects fixed:**
+
+| # | File(s) | Defect | Fix |
+|---|---|---|---|
+| P1 | §X.6 SECTION_DRAFT + LEAN_SORRY_STATUS | "build succeeds on all **10 files** in `formal-conjectures/`" — false: dir has 13 `.lean`, `FormalConjectures` target globs **11** (adds `SignedVsAbsoluteResidueGadget`). | Reworded to: 10 §X modules (8 fully proved, 2 DPAC `sorry`s) + 1 out-of-scope halo-route module = 11 in build target; dir also has transient `_AxiomCheck`+scratch; "directory file count ≠ module count". |
+| P2 | §X.6 + LEAN_SORRY_STATUS | `DirichletPolynomialAvoidance.lean` described as "upstream `google-deepmind/formal-conjectures` registry version carrying `@[category research_open]`" — false: it is Saar-authored, statement-only, bare `sorry`, no attribute/annotation. | Corrected to accurate provenance (Saar Shai, *Prime Spectroscopy of Riemann Zeros* §3; bare `sorry`; annotation lives in DPAC_full/DPAC_closure_attempt). |
+| P3 | Appendix A §A.8 | χ₁₁ K=2·10⁶ residual `3.33·10⁻⁵` contradicts §X.5.4 (`3.34`) and run log (`3.3372`). | → `3.34·10⁻⁵`. |
+| P4 | Appendix A §A.5 | "clean pairs decay as $K^{-1/2}/\log K$ **exactly**" contradicts §X.5.4 table (observed faster than pure $K^{-1/2}$). | Reframed: $K^{-1/2}/\log K$ = unconditional truncation envelope; clean pairs empirically faster (cross-ref §X.5.4). |
+| P5 | Appendix B §B.3.5 | Soundararajan 2009 cited as "Annals **170** (2009), **981–993**"; §X refs + `references.bib` say **170**(2), **1409–1422**. | → `170(2) (2009), 1409–1422` (matches rendered bibliography). |
+| P6 | Appendix B §B.4 | Soundararajan envelope mistyped `exp(C(log log K)^{1/2}(log log K)^¹⁴)` — first factor should be `(log K)^{1/2}`. | → `exp(C(\log K)^{1/2}(\log\log K)^{14})`. |
+| P7 | `paper.tex` | amsart "Abstract should precede \maketitle" warning; literal "Placeholder." abstract (bad optics for grant reviewers). | Abstract moved before `\maketitle`; replaced with an honest scoped abstract that explicitly defers the joint abstract/intro to Koyama. |
+| P8 | sources + `clean.py` | text-mode `≈` (→ "Missing character" in PDF) and `…` in §X tables. | Fixed at source; added an idempotent Unicode→LaTeX safety map to `clean.py` postprocess so the defect class cannot recur. |
+
+**Also:** `clean.py` citation converter hardened (tolerates pandoc's `p.~235` tie; bare "Aoki--Koyama 2023" now cited) so Hypothesis-AK provenance renders as a proper `\cite`. `paper.tex` line-breaking tolerance raised (content-neutral) to shrink residual overfull boxes in the dense §X.5/§X.6 tables. `.tex` regenerated via pandoc and statically verified.
+
+**Open / not done (environment-bounded):** (a) final `tectonic paper.tex` build — **must be run by the user**; the on-disk `paper.pdf` (186 261 B, May 14) is now STALE and must NOT be sent. (b) L′/L″ anchor table not independently recomputed (no mpmath/PARI in env) — but its downstream residual table is fully run-log-verified. (c) one low-confidence flag left for human check: `references.bib` lists Soundararajan 2009 as issue **(2)**; the journal issue may be no. 3 (page range 1409–1422 is high-confidence and consistent).
+
+**Build command for the user (run where tectonic lives):**
+`cd primes-equispaced/handoff-2026-05-12-paper-prep/recent/latex && python3 clean.py && tectonic paper.tex` — then send the freshly built `paper.pdf` (NOT the stale one) with the `PDF_TRANSMITTAL_NOTE_TO_KOYAMA_2026-05-15.md`.
+
+**Status.** All Koyama-facing §X sources perfected and internally consistent; bundle is build-clean and statically verified. One environment-bounded step remains: the user runs the two-command build and sends the regenerated PDF.
+
+## [2026-05-15] paper-prep | found build+verify tooling — PDF rebuilt, citation error corrected, numerics independently re-verified
+
+Earlier "environment-bounded" blockers were wrong: tooling exists in conda envs. `/Users/za/miniforge3/envs/tex/bin/tectonic` (0.15.0), `/Users/za/miniforge3/envs/pari-arb/bin/gp` (PARI/GP 2.17.3 — the paper's L2 stack), and `mpmath` 1.4.1 in the pari-arb env (the paper's L1b stack). This unblocked the actual build and independent numeric verification.
+
+**Major citation error caught and fixed (P5 was under-corrected).** Crossref (DOI 10.1515/crelle.2009.044) + zbMATH + arXiv 0705.0723: Soundararajan, *Partial sums of the Möbius function*, is **J. reine angew. Math. (Crelle's Journal) 631 (2009), 141–152** — **not** "Annals of Mathematics 170". `references.bib`, Appendix B §B.3.5, and §X References all had the wrong journal/volume/pages (the prior pass only made the wrong venue internally consistent). Now corrected to Crelle 631 (2009) 141–152, DOI added, in all three places. Separately, Crossref shows Inoue 2021 is **JTNB 33(2)** (was cited as 33(1)); corrected in `references.bib` and §X References. This was the highest-severity remaining defect — a famous paper mis-attributed to the wrong journal is an instant credibility hit on an analytic-NT grant panel.
+
+**PDF built (non-stale).** `python3 clean.py && tectonic paper.tex` → `paper.pdf`, **194 566 B, 20 pp, built 2026-05-15 09:07**. Log-verified: **0 undefined references, 0 undefined citations**, biblatex bibliography rendered, no missing-character glyphs. tectonic's "stopping at 6 passes" bbl-convergence note is benign (refs/cites all resolved). Remaining warnings cosmetic: overfull/underfull boxes in dense §X.5/§X.6 tables; a benign hyperref duplicate-destination on the `\tag*`'d (AK)/(NDC)/(SP-L) display equations (no effect on numbering/refs/text; verified no duplicate `\label`s). The stale May-14 PDF was removed.
+
+**Numerics independently re-verified.** §X.5.2 was the only numeric claim not previously checkable. Recomputed $L'(\rho,\chi_{-4})$ and $L''(\rho,\chi_{-4})$ at both anchors via mpmath's Hurwitz-zeta method (the paper's L1b algorithm): **matches the §X.5.2 table to all displayed digits** (z1: $L'=1.2964996+0.18276493i$ vs table $1.296500+0.182765i$; z2 likewise; $L''$ likewise). Combined with the earlier run-log cross-walk of all §X.5.4 residuals, every reviewer-facing number is now independently verified.
+
+**The non-stale PDF location (answer to "where is the non-stale?"):** there was none until now — it had to be built. It now exists at `primes-equispaced/handoff-2026-05-12-paper-prep/recent/latex/paper.pdf` (the on-disk file IS now current). Send this one with `PDF_TRANSMITTAL_NOTE_TO_KOYAMA_2026-05-15.md`.
+
+**Status.** Reviewer-facing PDF is built, current, internally consistent, citation-correct, and numerically re-verified end-to-end. Ready to send. No open accuracy items; one minor cosmetic class (table overfulls) consciously accepted for a draft technical section.
+
+## [2026-05-15] paper-prep | adversarial grant-reviewer pass on the rendered PDF — 2 more citation errors + 6 fixes
+
+Extracted the rendered PDF text (pdfminer in pari-arb env) and read it as an ANT grant referee. Crossref/arXiv/Project-Euclid used to ground-truth every load-bearing citation.
+
+**Two further citation errors (both load-bearing), now fixed in `references.bib`:**
+- **Akatsuka** "The Euler product for the Riemann zeta-function in the critical strip" was cited as *Acta Arithmetica 160.2 (2013), 137–158* — actually **Kodai Math. J. 40(1), 79–101 (2017)**, DOI 10.2996/kmj/1490083225 (Crossref + Project Euclid). This is the citation that backs Theorem X.4.1's unconditionality, so a wrong venue here is maximally damaging on a panel. Fixed in bib + §X-refs source.
+- **Inoue's first name** was "Shuya" — arXiv metadata (1805.05015, which *is* the correct preprint id) gives **Shōta**. Fixed → `Inoue, Sh\={o}ta`.
+  (Prior pass already fixed Soundararajan Annals→Crelle and Inoue issue 1→2; the Akatsuka error was the third wrong venue. Pattern: the whole bib needed independent verification, now done for all load-bearing entries.)
+
+**Rendering/consistency fixes:**
+- Titchmarsh in-text cite rendered as broken glyph **"ğ3.11"** (a literal `§` injected by `clean.py`'s Titchmarsh replacement *after* the global §→`\S\,` pass). Fixed in `clean.py` (uses `\S\,3.11`).
+- Abstract said "the **unconditional** four-component $B_\infty$ identity"; Theorem X.4.1 says "unconditional **given simplicity of $\rho$**". Tightened the abstract to match the theorem (no abstract-overclaims-vs-body).
+- Q:Perron rendered "Prove (SP-L) ((SP-L))" (prose "(SP-L)" + `\ref` to the (SP-L)-tagged eq). Reworded to a single clean reference.
+- §X.5.1 "verified directly at all 495 (N,x,a)-cells" then a table summing to 92 — added one sentence explaining the two denominators (495 = all residue classes for the internal orthogonality identity; 92 = the subset appearing in Koyama's *published* Tables 3–7).
+
+**Substantive rigor fix (the top likely future-referee objection):** the claim "RH numerically verified ⇒ these rates **apply unconditionally** in our computational regime" (3 places: §X.4.2, §X.5.4, App. B §B/§B.4) overstated finite numerical verification as unconditionality. Softened everywhere to a precise, defensible statement: the relevant zeros are numerically verified on the critical line in the explicit-formula range (provenance → Supplementary computation audit), so the RH-conditional rate is the *operative* one for the finite $K$ reported; the unconditional fallback is the weaker Akatsuka (2017) $O(1/\log K)$ bound; *not asserted as an unconditional theorem*. Also added a clause in §X.5.4 explaining why it invokes RH for $L(s,\chi^2)$ while Theorem X.4.2 invokes RH for $L(s,\chi)$ (different partial sums ⇒ different $L$-functions) — preempts the most likely technical referee query. No mathematical claim changed; Akatsuka's estimate is unconditional regardless of venue/year.
+
+**Rebuilt + verified.** `paper.pdf` 196 296 B, 20 pp, built 2026-05-15 09:23, **0 undefined refs/cites**; rendered References confirmed: Akatsuka→Kodai 40.1 (2017), Inoue→Shōta JTNB 33.2 (2021), Soundararajan→Crelle 631 (2009) 141–152, Titchmarsh→§3.11 (no broken glyph).
+
+**Open FLAGS for the authors/Koyama (judgement calls — deliberately NOT silently changed):**
+- (A) The "character analogue of Soundararajan / Akatsuka" is *asserted* ("the same argument applies"), not backed by a cited χ²-twisted partial-summation theorem. Acceptable at grant stage; **#1 journal-referee item** — needs a citation or an explicit stated+proved lemma before submission.
+- (B) §X.5.1 N=11 disputed cell (our 11,503 vs Koyama 71,711, ~6×): the dominance-of-$-1$ conclusion for N=11 flips on it. Honestly disclosed; this is exactly what Koyama's post-May-20 Phase-1 re-run resolves. Scientific soft spot, not a text defect.
+- (C) Theorem X.4.2 phrased "unconditional in $\rho$ given off-target simplicity" — defensible, but a strict referee may prefer "conditional on off-target simplicity." Labeling nuance.
+- (D) The numerical-RH provenance (zero-verification heights/source) must actually exist in Supplementary S1/S2 before journal submission; the PDF now points there rather than asserting unconditionality.
+
+**Status.** Full adversarial grant-reviewer pass complete. All discoverable accuracy/citation/consistency defects fixed and verified in the rebuilt PDF. Four substantive items flagged for author/Koyama judgement (not unilaterally changed). PDF at `…/recent/latex/paper.pdf` is send-ready.
+
+## [2026-05-15] paper-prep | cross-session reconciliation: sessions "asymptotic of p·W(p) at primes" + "cont. research" vs the Koyama §X deliverable
+
+User asked whether two recent CCD sessions (`local_b75596e0…` "asymptotic of p·W(p) at primes", last active 14:20; `local_8b79601d…` "cont. research") bear on the §X grant PDF. Read both transcripts (`~/.claude/projects/-Users-za-Documents-Farey-NOW/f6e68618….jsonl`, `448f4f35….jsonl`). The p·W(p) session is in fact a deep prior-art/novelty adversarial audit (auto-titled). Reconciliation:
+
+**No blocking change to the deliverable; safe to send as-is.** Concretely verified:
+- The §X bundle does **not** carry the session's RETRACTED claim "N·W(N) ∼ C log N resolving Aistleitner's question at the level of order." That claim (now corrected: N·W(N) *saturates* ≈ 0.63, i.e. W(N)∼C/N ↔ Mertens square-root-in-mean, constant = Ng 2004 ∑_ρ|ρζ′(ρ)|⁻²) lived only in the Direction-C Farey-discrepancy exploration, never in the corrected-B∞ / Dominance-of-−1 / c_K / DPAC paper. Deliverable clean.
+- The §X PDF does **not** overclaim the Farey bridge identity: §X.6 lists it only as a Lean *status* row ("THEOREM (0 sorry), unconditional"), no novelty assertion; the PDF abstract is scope-only. No edit required for this send.
+
+**Two genuine implications (flags, deliberately not unilaterally edited — they touch Koyama-owned framing and need verified citations given this project's documented fabrication history):**
+1. **Mikolás 1949 prior art.** The session (corroborated by Aistleitner directly) establishes that the *static* Farey↔Mertens identity — i.e. the project's "Bridge Identity", the m=p slice — is essentially classical (Mikolás 1949; "Theorem A ≈ classical Ramanujan-sum partial summation, Theorem B *is* Mikolás 1949"). Genuinely novel = only the differential per-step ΔW(p) framing + the (finite, qualitative) Sign Theorem, which Aistleitner confirmed is unseen. The §X technical section is safe (status-only mention), but the **joint paper's Introduction/abstract (Koyama-owned, `KOYAMA-INSERT-1.1A`, post-May-20) must credit Mikolás 1949 + Aistleitner** or "a referee will (correctly) flag it." `references.bib` currently has no Mikolás entry. Recommend: add a *verified* Mikolás 1949 citation when the Introduction is finalized — do not insert unverified (the project has 15 fabricated-citation catches since 2026-05-03; this session's whole point).
+2. **Gonek–Hejhal "three-problems-are-one" reinforced.** H1 (GL2), SP-L / c_K→e^{−γ} (GL1), and Direction C all reduce to the same ∑_ρ|ζ′(ρ)|⁻² / Mertens-variance (Ng 2004) RH-depth constant. Same forward-implication already logged: post-May-20, with Koyama, sharpen §X.7's vague "diagnostically comparable to LI" using this identification (also addresses reviewer flag A).
+
+**Reinforcement of the citation-rigor work:** the session independently documents a sustained agent-citation-fabrication pattern ("15 misattributions caught since 2026-05-03"). This corroborates the three wrong venues I caught (Soundararajan→Crelle, Akatsuka→Kodai, Inoue author/issue). The load-bearing citations are now verified; recommend a full independent verification of the remaining textbook citations (Montgomery–Vaughan, Tenenbaum, Davenport, Hardy–Wright, Ng, Pólya, Titchmarsh, Stark, Ingham) before *journal* submission — not required for the grant send.
+
+**Status.** Cross-session check complete. Deliverable does not carry any retracted/overclaimed material and requires no edit before the grant send. Two items added to the post-May-20 Koyama round (Mikolás attribution in the Introduction; §X.7 LI sharpening). PDF remains send-ready.
+
+## [2026-05-15] paper-prep | cross-session implications IMPLEMENTED into the PDF + docs
+
+Per user direction ("implement everything into the PDF, your documentations as well"), the two flagged cross-session implications were implemented now (not deferred), with the citation verified first (the project's fabrication history forbids adding an unverified reference).
+
+**Mikolás 1949 — verified, then added.** Cross-checked the Szeged primary repository + literature: **M. Mikolás, "Farey series and their connection with the prime number problem. I", Acta Sci. Math. (Szeged) 13 (1949), 93–117** (vol. 13 spans 1949–50; cited in the conventional split-year form, not a fabricated single year). Implemented:
+- New `references.bib` entry `Mikolas1949` (refs count 11→12); header comment updated.
+- `clean.py` citation-conversion rule for "Mikolás (1949)"/"Mikolás 1949" → `\cite{Mikolas1949}` (idempotent, accent-tolerant).
+- §X.6 build-status prose: the Farey bridge identity is now stated as *the unconditional Lean formalisation of a classical Farey–Mertens identity in the Mikolás (1949) tradition* — not a new identity.
+- §X.6 inventory row: added a *Provenance* sentence (the $m=p$ slice $\sum_{f\in\mathcal F_{p-1}}e^{2\pi i pf}=M(p)+2$ is classical / a special case of the Farey-discrepancy Fourier spectrum; the genuinely novel content is the differential per-step refinement, in the companion Dominance chapter, not §X).
+- `LEAN_SORRY_STATUS.md` FareyBridgeIdentity row: matching provenance clause (bundle-internal consistency).
+This removes any reading of the bundle as implicitly claiming the static identity is new — the exact overclaim the p·W(p) session warned "a referee will (correctly) flag."
+
+**§X.7 LI/Gonek–Hejhal sharpening — implemented.** Replaced the vague "diagnostically comparable to the Linear Independence Hypothesis" with a precise **Structural remark (shared obstruction)**: (SP-L) [Q:Perron] and `FiniteLogRatioLI` [Q:DPAC] are the sharp ($c\to1$) and discrete instantiations of one negative-second-moment / quantitative-LI phenomenon — the $\sum_\rho|\zeta'(\rho)|^{-2}$-family (Ng 2004) — with the companion GL(2) Q:EC-recip strand reducing softly ($c<3$) to the same family. Phrased strictly as an *identification of the form of the obstruction, not a resolution, not a theorem* (honest hedging; the source unification is conf-0.97 identification, unproven, and the originating session had retractions). This also closes adversarial-reviewer flag (A) ("character/LI hand-wave"). Cites Ng 2004 (already in bib; resolves).
+
+**Rebuilt + verified.** `paper.pdf` 202 082 B, 20 pp, 2026-05-15 09:41, tectonic exit 0, **0 undefined refs/cites**. Rendered checks pass: `[Mik]` in-text + bibliography entry "Acta Sci. Math. (Szeged) 13 (1949)…"; §X.6 Provenance note renders; §X.7 Structural remark renders with correct hedging; "((SP-L))" still gone; no new warnings beyond the known cosmetic table overfulls.
+
+**Docs updated:** this log entry; `recent/README.md` (12 refs, Mikolás + §X.7 remark, rebuild time 09:41); `LEAN_SORRY_STATUS.md` provenance clause.
+
+**Process note (accepted).** User's point is correct: checking recent sessions' impact on an in-flight deliverable should be a standing pre-send step, not prompted. Adopting it as routine for this deliverable: before any future send, reconcile the latest `log.md` + recent CCD sessions against the bundle's claims.
+
+**Status.** Both cross-session implications now implemented in the PDF and propagated through the bundle docs; PDF rebuilt, verified, internally consistent, send-ready. No remaining flagged-but-unimplemented items for the grant send (the Introduction-side Mikolás framing remains Koyama's, post-May-20, but the §X bundle no longer overclaims independently of it).
+
+## [2026-05-15] paper-prep | final pre-send sweep + Koyama cover reply
+
+Final verification battery on the on-disk `paper.pdf` (202 082 B, 2026-05-15 09:41): no source newer than the PDF (not stale); 20 pp; **0 undefined refs, 0 undefined cites, 0 duplicate `\newlabel`**; every `\cite` resolves to `references.bib`; no stray math-unicode / broken glyphs. Rendered re-read of the changed prose: abstract honestly scoped ("unconditional given simplicity of the zero ρ"); §X.7 Structural remark coherent and strongly hedged; §X.6 provenance + `[Mik]` bib entry render correctly. Honest residuals (non-blocking, stated to user): cosmetic table overfulls in §X.5/§X.6; the ~9 non-load-bearing textbook citations not yet independently re-verified (recommended pre-journal, not pre-grant); Introduction-side framing is Koyama's post-May-20.
+
+**Stale-artifact catch.** `PDF_TRANSMITTAL_NOTE_TO_KOYAMA_2026-05-15.md` was written before the corrections and still told Koyama to quote "unconditional in our computational range … the one we make in §X.5.4" — i.e. the precise overclaim later removed — and "≈18 pp". Sending it would have reintroduced the overclaim to grant reviewers. Marked **SUPERSEDED — DO NOT SEND** with a banner; replaced by a fresh brief cover reply.
+
+**New deliverable.** `REPLY_TO_KOYAMA_2026-05-15_PDF.md` — very brief cover email, consistent with the corrected 20-pp PDF: corrected Lean headline (10 §X modules, 8 fully proved, 2 DPAC `sorry`s, no `axiom`); 10⁸ verification phrased as the *operative* RH-conditional rate (not "unconditional"); one-line novelty-boundary note (static Farey–Mertens identity = Mikolás 1949; differential per-step framing is the contribution) so Koyama doesn't overclaim to a panel. Attachment recommendation: send `paper.pdf` only; offer `LEAN_SORRY_STATUS.md` on request; do not include the stale note / sources / logs.
+
+**Status.** Draft verified send-ready; brief Koyama reply drafted; stale transmittal note neutralised. Awaiting user review of the reply before send.
+
+---
+
+## 2026-05-15 — D4 (Vallée transfer-operator dynamical analysis) handoff
+
+**Op:** new research direction, deliverable `handoff-2026-05-15-D4-vallee/`.
+
+**Established (PROVEN, exact):** Farey per-step increment is exactly the
+Ramanujan sum, `A_N(m)−A_{N−1}(m)=c_N(m)` (F4); prime scale `c_p(m)=−1+p·1[p|m]`
+(F2). Bridge identity `Σ_N c_N(m) N^{−s}=σ_{1−s}(m)/ζ(s)` re-verified to
+machine precision. Arithmetic↔cocycle↔transfer-operator dictionary built and
+calibrated against BV05 (verbatim citations, eq (1.4)–(1.7)).
+
+**Key result (two-part, honest):**
+(i) NEGATIVE — Ramanujan/Möbius modulation is provably subdominant-only
+(`1/ζ(1)=0`, no dominant-eigenvalue perturbation); no new *mean*-cost theorem
+from the reweight reading; re-derives existing `N·W(N)→C` fluctuation picture.
+(ii) POSITIVE (executed probe D4-3, robust across discretization) — the
+*coprimality-restriction* reading DOES move the dominant eigenvalue:
+`λ_full(1)=0.99993` (calibration ✓ vs BV05 `λ(1)=1`), `λ_{q=2}=0.646`,
+`λ_3=0.819`, `λ_6=0.513`; `λ_2=λ_4` internal-consistency check passes. Isolates
+a new computable arithmetic-weighted average-case constant `μ_q=2/|λ_q′(1)|`
+for a coprimality-restricted Euclid algorithm.
+
+**Next step:** prove `E_N[#steps]∼μ_q log N` via finite-index gap-stability +
+verbatim BV05 §3 Tauberian transcription (~1 week; numerics in hand).
+
+**Scripts:** `verify_facts.py`, `verify_dirichlet.py`,
+`probe_dominant_eigenvalue.py` (all runnable, reproduce reported numbers).
+
+---
+
+## 2026-05-15 — D1/D4 continuation + gating audits (who-cares filter)
+
+**Op:** continuation + adversarial gating; deliverables in
+`handoff-2026-05-15-D1-bcz-cocycle/` and `handoff-2026-05-15-D4-vallee/`.
+All numeric claims spot-verified independently except R-pretest (verified on
+resume after a disk-full interruption).
+
+**D1 (BCZ cocycle) — RESOLVED, NO-GO on theorem (R):**
+- PROVEN (exact arith): Farey discrepancy `E_Q` = Birkhoff sum of explicit
+  BCZ cocycle `g=1−Φ·gap`; founding prime/composite dichotomy = lattice
+  primitivity/visibility (#new=φ(Q)). Verified structural win: Hall-normalized
+  TRUNCATED cocycle autocovariance `c_0(M)` is Q-stable (correct
+  renormalization). Clean NEGATIVE: raw cocycle not L², no diffusive CLT;
+  the "1/6" Brownian-bridge constant refuted and removed.
+- Citations LOCKED verbatim: Athreya–Cheung IMRN 2014 no.10 2643–2690
+  (arXiv:1206.6597) Thm 1.1–1.4, `R(a,b)=1/(ab)`; Strömbergsson JMD 7 (2013)
+  Thm 1 exponent ½; Cheung–Quas arXiv:2403.14976 (weak mixing only).
+- GATE 1 (prior-art) = PASS: dynamical/per-step formulation is
+  NOVEL-as-formulation; occupies the explicit open question Athreya–Cheung
+  §8. CITATION CORRECTION: arXiv:2407.10214 is Karvonen–Zhigljavsky
+  *Maximum mean discrepancies of Farey sequences* (NOT a Cox–Ghosh follow-up;
+  earlier misattribution corrected at primary source). Cox–Ghosh–Sultanow =
+  arXiv:2105.12352 (2021) only.
+- GATE 2 (R-pretest) = FAIL: theorem-(R) closing route NUMERICALLY
+  FALSIFIED — α≈½ (not Q-stable, never→1; Σ|c_L| non-summable) and the
+  twist is NUMERICALLY INERT (α(m=0)=α(m=1)=α(m=3) to 3 dp; Farey nodes
+  O(1/Q²) apart ⇒ phase≈1). Twisting does NOT give ½→1+η. Multi-week proof
+  push correctly NOT opened.
+- Honest landing: a SPECIALIST NOTE = verified dictionary + renormalization
+  correction (N·W(N)→C≈0.66 bounded; earlier log-N belief was wrong) +
+  open problem characterized α≈½/twist-inert, framed as occupying AC §8.
+
+**D4 (Vallée) — μ_q corrected, low value:**
+- Reweight reading provably subdominant-only (DEAD). Coprimality-restriction
+  object: alphabet `A_q={gcd(m,q)=1}` deletes infinitely many digits (NOT
+  finite-index; gap via infinite-conformal-IFS, λ_q(1)<1 strictly).
+- REFUTED & corrected: headline `μ_q=2/|λ_q′(1)|` is WRONG; pole moves to
+  `s_q<1` (`λ_q(s_q)=1`), `μ_q=2/(s_q|λ_q′(s_q)|)`. Citations LOCKED
+  (BV05 Thm 3(b)(c), Lemma 12 eq.4.12; Vallée Thm B [Delange]). q=1
+  calibration STRONG (sim 0.8426 = classical 12ln2/π² = corrected 0.8444,
+  0.2%); q≥2 NOT yet pinned (24–46% off at N≤6400; slow pre-asymptotic).
+- WHO-CARES = LOW (~10–20 analysis-of-algorithms people; existing
+  machinery on a self-defined object). Park as short note contingent on
+  cheap q≥2 confirmation; no major investment.
+
+**Method:** established a reusable "who-cares" filter (who specifically /
+what they get / counterfactual / substitution / 5-yr citation). It
+converted the D1 "should we prove C?" question into a cheap decisive test
+that killed a multi-week dead end. Recorded to memory.
+
+**Env note:** main volume hit ENOSPC twice mid-session (heavy background
+sub-agent transcripts under /private/tmp). No destructive cleanup taken
+(user freed space). Memory + this log entry committed on resume; memory
+file integrity confirmed (failed write errored at open(), no corruption).

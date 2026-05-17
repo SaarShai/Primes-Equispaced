@@ -161,6 +161,28 @@ def postprocess_latex(text: str, kind: str) -> str:
     # § → \S\, : T1 fontenc maps 0xA7 to ğ; use the textcomp macro.
     text = text.replace("§", "\\S\\,")
 
+    # Unicode safety net. The markdown sources write all *math* with
+    # LaTeX commands inside $...$ (e.g. \approx, \le), so any literal
+    # Unicode math glyph surviving in the pandoc output is necessarily
+    # in *text* mode, where the T1/lmodern fonts have no glyph and TeX
+    # emits "Missing character" (a silent rendering defect in the PDF).
+    # Map the dangerous text-mode glyphs to robust LaTeX. Idempotent:
+    # re-running on already-clean LaTeX is a no-op (none of these
+    # glyphs occur in valid generated LaTeX).
+    _uni = {
+        "≈": r"$\approx$", "≤": r"$\le$", "≥": r"$\ge$",
+        "≠": r"$\ne$", "∼": r"$\sim$", "×": r"$\times$",
+        "∞": r"$\infty$", "→": r"$\to$", "⇒": r"$\Rightarrow$",
+        "−": r"$-$", "±": r"$\pm$", "∈": r"$\in$", "∉": r"$\notin$",
+        "⋅": r"$\cdot$", "∣": r"$\mid$", "∤": r"$\nmid$",
+        "⩽": r"$\le$", "⩾": r"$\ge$", "≅": r"$\cong$",
+        "…": r"\dots{}", "⋯": r"$\cdots$", "∅": r"$\emptyset$",
+        "≪": r"$\ll$", "≫": r"$\gg$", "∘": r"$\circ$",
+        "⟶": r"$\longrightarrow$", "↦": r"$\mapsto$",
+    }
+    for _g, _r in _uni.items():
+        text = text.replace(_g, _r)
+
     # Pandoc emits \#\#\# Header when a level-3 heading follows display
     # math with no blank line. Recover as a \subsubsection.
     def _subsub(m):
@@ -184,11 +206,16 @@ def postprocess_latex(text: str, kind: str) -> str:
     # double-cite.
     cite_patterns = [
         # Aoki--Koyama 2023, eq. (1.4) p. 235
-        (r"Aoki--Koyama \(2023, \\emph\{J\. Number Theory\} \\textbf\{245\}, eq\. \(1\.4\), p\. 235\)",
+        (r"Aoki--Koyama \(2023, \\emph\{J\. Number Theory\} \\textbf\{245\}, eq\. \(1\.4\), p\.[~ ]?235\)",
          r"Aoki--Koyama~\\cite[eq.~(1.4), p.~235]{AokiKoyama2023}"),
-        (r"Aoki--Koyama \(2023, Proposition 2\.1, p\. 244\)",
+        (r"Aoki--Koyama \(2023, Proposition 2\.1, p\.[~ ]?244\)",
          r"Aoki--Koyama~\\cite[Proposition~2.1, p.~244]{AokiKoyama2023}"),
         (r"Aoki--Koyama \(2023\)", r"Aoki--Koyama~\\cite{AokiKoyama2023}"),
+        # Bare "Aoki--Koyama 2023" (no parenthesised year), e.g. in
+        # table cells: "(AK) cited (Aoki--Koyama 2023)". Must run
+        # after the parenthesised forms above so it doesn't pre-empt
+        # them.
+        (r"Aoki--Koyama 2023\b", r"Aoki--Koyama~\\cite{AokiKoyama2023}"),
         # Akatsuka 2013, Lemma 2.1 / eq. (2.5) — several phrasings
         (r"Akatsuka \(2013, Lemma 2\.1 / eq\. \(2\.5\)\)",
          r"Akatsuka~\\cite[Lemma~2.1 \\& eq.~(2.5)]{AkatsukaH2013EulerProduct}"),
@@ -204,6 +231,9 @@ def postprocess_latex(text: str, kind: str) -> str:
          r"(\\cite[Lemma~2.1 \\& eq.~(2.5)]{AkatsukaH2013EulerProduct})"),
         (r"Akatsuka \(2013\)", r"Akatsuka~\\cite{AkatsukaH2013EulerProduct}"),
         (r"\bAkatsuka 2013\b", r"\\cite{AkatsukaH2013EulerProduct}"),
+        # Mikolás 1949 (classical Farey--Mertens identity / prior art)
+        (r"Mikol[aá]s \(1949(?:/50)?\)", r"Mikol\\'as~\\cite{Mikolas1949}"),
+        (r"\bMikol[aá]s 1949\b", r"\\cite{Mikolas1949}"),
         # Inoue 2021
         (r"Inoue \(2021, Theorem 1\)", r"Inoue~\\cite[Theorem~1]{Inoue2021}"),
         (r"Inoue \(2021\) Theorem 1", r"Inoue~\\cite[Theorem~1]{Inoue2021}"),
@@ -229,7 +259,7 @@ def postprocess_latex(text: str, kind: str) -> str:
         (r"Ng \(2004\)", r"Ng~\\cite{Ng2004}"),
         # Titchmarsh §3.11
         (r"Titchmarsh[^,.]*Theorem 3\.11", r"Titchmarsh~\\cite[Theorem~3.11]{Titchmarsh1986RZF}"),
-        (r"Titchmarsh[^,.]*\\S\\,3\.11", r"Titchmarsh~\\cite[§3.11]{Titchmarsh1986RZF}"),
+        (r"Titchmarsh[^,.]*\\S\\,3\.11", r"Titchmarsh~\\cite[\\S\\,3.11]{Titchmarsh1986RZF}"),
         # Montgomery--Vaughan Theorem 9.4
         (r"Montgomery--Vaughan[^,.]*Theorem 9\.4(?: / Corollary 9\.5)?",
          r"Montgomery--Vaughan~\\cite[Theorem~9.4]{MontgomeryVaughan2007}"),

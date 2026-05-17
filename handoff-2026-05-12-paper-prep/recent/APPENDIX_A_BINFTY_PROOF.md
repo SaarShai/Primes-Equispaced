@@ -279,9 +279,13 @@ This explains the numerical observation in §X.5.4 that the $\chi_{-4}$
 pairs show slower convergence of the $B_\infty$ identity residual
 than $\chi_5$ and $\chi_{11}$: the bad-prime contribution from
 $p = 2$ adds an extra layer of conditionally-convergent boundary
-mass to the $\chi_{-4}$ identity that is absent for $\chi_5, \chi_{11}$
-(the latter pure conditional-tail decay scales as $K^{-1/2}/\log K$
-exactly).
+mass to the $\chi_{-4}$ identity that is absent for $\chi_5,
+\chi_{11}$. The $K^{-1/2}/\log K$ form is the *unconditional*
+truncation envelope provable here (§A.3); the clean pairs
+$\chi_5, \chi_{11}$ are empirically observed to decay somewhat
+faster than this envelope (square-root-type cancellation; see the
+rate discussion and ratio table of §X.5.4), while the $\chi_{-4}$
+pairs decay more slowly because of the $p = 2$ bad-prime mass.
 
 ## A.6 What the proof does *not* use
 
@@ -339,7 +343,7 @@ $(\chi, \rho)$ pairs of §X.5.2. The residuals are:
 | $\chi_{-4}/z_1$ | $2.85 \cdot 10^{-3}$ |
 | $\chi_{-4}/z_2$ | $1.66 \cdot 10^{-3}$ |
 | $\chi_5$ | $4.24 \cdot 10^{-5}$ |
-| $\chi_{11}$ | $3.33 \cdot 10^{-5}$ |
+| $\chi_{11}$ | $3.34 \cdot 10^{-5}$ |
 
 These match the predicted $K^{-1/2}/\log K$ decay envelope at the
 $O(1)$ implicit-constant level (with the $\chi_{-4}$ pairs showing the

@@ -122,17 +122,13 @@ in §X.7.
 
 ### 1.5 Paper structure
 
-<!-- KOYAMA-INSERT-1.5: replace the §2 and §3 placeholders below
-with your actual section titles for the Dominance-of-$-1$ chapter
-and any subsequent theoretical-consequence chapter you intend to
-include. Keep the §X / Appendix A / Appendix B / Supplementary S1
-sentences as-is. -->
-§2 [\textit{section title for the Dominance-of-$-1$ chapter}]
-reviews the Aoki–Koyama framework and presents the
-Dominance-of-$-1$ conjectures in detail.
-§3 [\textit{section title for the theoretical-consequences chapter,
-if present; delete this sentence if not}]
-develops the further theoretical consequences.
+<!-- Section titles confirmed by Koyama, reply of 2026-05-15. -->
+§2 (\textit{The Dominance of $-1 \pmod N$ and Hierarchical
+Structure of Chebyshev's Bias}) reviews the Aoki–Koyama framework
+and presents the Dominance-of-$-1$ conjectures in detail.
+§3 (\textit{Theoretical Consequences and Applications to
+Cryptographic Hardness}) develops the further theoretical
+consequences.
 §X (the present technical/computational section) treats the
 analytic dual, the Lean 4 formalisation inventory, and the open
 challenges. Appendix A gives the full proof of Theorem~X.4.1;
@@ -146,16 +142,17 @@ numerical artefacts are in the reproducibility bundle
 ## Notes for the integration pass
 
 - **Author-voice.** Collective "we" throughout, consistent with §X.
-- **What you (Shin-ya) will likely want to add / replace.** Two
-  explicit insertion cues mark the spots:
+- **What you (Shin-ya) will likely want to add / replace.** One
+  insertion cue remains (`KOYAMA-INSERT-1.5` resolved 2026-05-15
+  with Koyama's confirmed §2/§3 titles):
   - `KOYAMA-INSERT-1.1A` (§1.1): authoritative one-paragraph
     statement of the Dominance-of-$-1$ conjecture — what
     $\chi_{a,1}$ denotes, what numerical signature distinguishes
     $a=-1$, which moduli $N$ are in scope, and (for instance) the
-    role of $\chi_{a, 1}$ vs $\chi_{1, a}$.
-  - `KOYAMA-INSERT-1.5` (§1.5): real section titles for §2 (the
-    Dominance-of-$-1$ chapter) and §3 (theoretical consequences, if
-    present).
+    role of $\chi_{a, 1}$ vs $\chi_{1, a}$. Per Koyama's
+    2026-05-15 reply, current holding text stays as placeholder;
+    he supplies the definitive notation and the formal statement
+    of Conjecture 2 during his final review after May 20.
 - **What's optional.** §1.4 could be folded into §1.3(iv) for a
   tighter paper. §1.2 could be shorter if the Abstract already names
   $e^{-\gamma}$ vs $\zeta(2)^{-1}$.

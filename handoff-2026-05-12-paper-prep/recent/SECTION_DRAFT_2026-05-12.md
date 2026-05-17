@@ -163,10 +163,13 @@ c_K(\chi,\rho) \;=\; \frac{\log K}{L'(\rho,\chi)} \;+\; C_1(\chi,\rho) \;+\; o(1
 The $o(1)$ rate $O(K^{-1/2+\epsilon})$ (every $\epsilon > 0$) and
 the sharper $O(K^{-1/2}\exp((\log K)^{1/2}(\log\log K)^{14}))$ via
 the character analogue of Soundararajan (2009) Theorem 1 are both
-conditional on RH for $L(s,\chi)$; for the four characters of §X.5,
-RH for $L(s,\chi)$ is numerically verified to heights well beyond
-the $K$-ranges considered, so these rates apply unconditionally in
-our computational regime.*
+conditional on RH for $L(s,\chi)$. For the four characters of §X.5
+the nontrivial zeros of $L(s,\chi)$ in the relevant
+explicit-formula range are numerically verified to lie on the
+critical line (provenance in the Supplementary computation audit),
+so these RH-conditional rates are the operative ones for the
+finite $K$ reported here; the unconditional fallback is the weaker
+Akatsuka (2017) eq. (2.5) bound.*
 
 The proof combines Inoue (2021, Theorem 1)'s truncated explicit
 formula for $M^*(K,\chi)$ with Lemma X.3.1 to extract the double-pole
@@ -251,6 +254,12 @@ and a hand-rolled segmented C sieve). Headline numbers:
 - Koyama's identity (3.1), a Dirichlet-orthogonality cross-check on
   the residue-count vector, is verified directly at all $495$
   $(N, x, a)$-cells (worst absolute residual $1.4 \cdot 10^{-4}$).
+  Here $495$ counts *every* residue class $a$ across all five
+  moduli and four checkpoints (the internal orthogonality identity
+  holds for every class); the $92$-cell table below is the
+  distinct subset of $(N, x, a)$ values that appear in Koyama's
+  *published* Tables 3–7 and can therefore be compared
+  number-for-number against his manuscript.
 
 Cell-by-cell comparison with Koyama's Tables 3–7 at all four
 checkpoints, all moduli:
@@ -262,7 +271,7 @@ checkpoints, all moduli:
 | 5 | 11 | 20 | 19 | 1 cell ($a = 10$: our $11{,}503$ vs Koyama $71{,}711$) |
 | 6 | 19 | 18 | 15 | 3 (2 substantive at $a = 13, 18$; 1 sign flip at small $x$) |
 | 7 | 23 | 30 | 29 | 1 cell ($\Delta = 100$, clean transposition profile) |
-| **Total** | | **92** | **75** | **17** (74/81 ≈ 91% excluding the 11 Table-4 small-$x$ rows) |
+| **Total** | | **92** | **75** | **17** ($74/81 \approx 91\%$ excluding the 11 Table-4 small-$x$ rows) |
 
 Comparing to the qualitative dominance-of-$-1$ statement of Koyama
 (*nontriv.pdf*, §3): the signal is **cleanly reproduced for
@@ -354,12 +363,23 @@ $\mathrm{BPC}_1$):
 | $\chi_{11}$ | 1.9 | 4.3 | 2.24 | 3.16 |
 
 Both pairs' ratios sit within a factor of $\le 1.7$ of the
-predicted $K^{-1/2}$ rate — RH-conditional for $L(s, \chi^2)$ via
-the character analogue of Soundararajan (2009), applicable
-unconditionally in our $K$-range since RH for the four characters
-is numerically verified well beyond $10^{8}$. (The unconditional
-Akatsuka 2013 eq. (2.5) bound $O(1/\log K)$ for the boundary-line
-$k = 1$ partial sum is much weaker than the observed decay.)
+predicted $K^{-1/2}$ rate. The relevant conditional input here is
+RH for $L(s, \chi^2)$ (equivalently $L(s,\psi)$) — the $B_\infty$
+residual's slow component is the boundary-line $k = 1$ sum
+$\sum_p \chi^2(p)\,p^{-2\rho}$, governed by the $\chi^2$/$\psi$
+$L$-function; this is a *different* $L$-function from the
+$L(s,\chi)$ that governs the $c_K$ rate of Theorem X.4.2, because
+it is a different partial sum. The square-root-type decay is the
+character analogue of Soundararajan (2009)'s RH-conditional bound.
+We do not claim this rate unconditionally: what is unconditional
+is the (much weaker) Akatsuka 2017 eq. (2.5) bound $O(1/\log K)$
+for that $k = 1$ partial sum. The observed decay is faster than
+this unconditional floor and consistent with the RH-conditional
+rate; for $\chi_{-4}, \chi_5, \chi_{11}$ the relevant zeros of
+$L(s,\chi^2)$ lie on the critical line throughout the numerically
+verified range (provenance in the Supplementary computation
+audit), so the RH-conditional rate is the operative one across
+the $K$-scales reported here.
 $\chi_5$ sits consistently above the prediction, $\chi_{11}$
 straddles it across the two $K$-steps — well within the
 oscillatory $O(1)$ implicit-constant envelope of the
@@ -400,22 +420,37 @@ the **statements** of every identity of §X.4, ensures normalisations
 and branch conventions are syntactically explicit, and records each
 statement's proof status against a public audit trail.
 
-**Build status.** `lake build FormalConjectures` succeeds on all
-**10 files** in `formal-conjectures/` with **2 `sorry` warnings**,
-both for the DPAC headline conjecture at general $K$: one in the
-project file `DPAC_full.lean:338` (annotated in-source as
-`RESEARCH-OPEN:` at line 321) and one in the upstream registry
-version `DirichletPolynomialAvoidance.lean:54` (which carries the
-original `google-deepmind/formal-conjectures` attribute
-`@[category research_open]` rather than a comment annotation).
-**Eight files are fully proved (0 `sorry`)**, covering the algebraic
-content of §X.3, §X.4, the smoothed explicit-formula chain, the
-Mertens spectroscope universality statement, the Farey bridge
-identity (now unconditional, since `RamanujanSum.lean` discharged
-the Ramanujan-sum hypothesis), the Farey sign-pattern statement
-(conditional on `h_chebyshev_bias` and the two pointwise falsification
-witnesses at $p = 237{,}733$ and $p = 243{,}799$), and DPAC for
-$K \le 4$.
+**Build status.** The §X formalisation comprises the **10 Lean
+modules** enumerated in the inventory table below. The lake
+roll-up target `FormalConjectures` builds these together with one
+further module, `SignedVsAbsoluteResidueGadget.lean` (a halo-route
+structural lemma belonging to the companion GL(2) strand of
+Question Q:EC-recip, §X.7, and outside the scope of §X), for a
+total of **11 modules in the build target**, all of which compile
+under `leanprover/lean4:v4.28.0`. (The `formal-conjectures/`
+directory additionally holds the transient `_AxiomCheck.lean`
+audit harness and one round-9 scratch extract, neither part of the
+build target; file counts in the directory listing should not be
+read as module counts.) Across the build there are exactly
+**2 `sorry`s**, both the DPAC headline conjecture at general $K$:
+one in `DPAC_full.lean:338` (the obstruction annotated in-source
+as `-- RESEARCH-OPEN:` at line 321) and one in
+`DirichletPolynomialAvoidance.lean:54`, a statement-only mirror of
+the conjecture (Saar Shai, *Prime Spectroscopy of Riemann Zeros*,
+§3) carrying a bare `sorry` with no in-source annotation or
+category attribute. Of the 10 §X modules, **8 are fully proved
+(0 `sorry`)** — and the out-of-scope 11th module is likewise
+`sorry`-free — covering the algebraic content of §X.3, §X.4, the
+smoothed explicit-formula chain, the Mertens spectroscope
+universality statement, the Farey bridge identity (the
+underlying static Farey–Mertens identity is classical, in the
+Mikolás (1949) tradition; what is contributed here is its
+unconditional Lean formalisation, now that `RamanujanSum.lean`
+has discharged the Ramanujan-sum hypothesis), the Farey
+sign-pattern statement
+(conditional on `h_chebyshev_bias` and the two pointwise
+falsification witnesses at $p = 237{,}733$ and $p = 243{,}799$),
+and DPAC for $K \le 4$.
 
 No `axiom` declarations are introduced anywhere in the project. A
 companion `_AxiomCheck.lean` file runs `#print axioms` on each
@@ -451,11 +486,11 @@ the companion `LEAN_SORRY_STATUS.md` of the reproducibility bundle.
 | Boundary residue $R_0 = -2$ for a Gaussian-cutoff Mellin-shift explicit formula (companion strand) and its algebraic-glue chain | `SmoothedDwfFormula_full.lean` | **THEOREM (chain), 0 `sorry`.** All 17 algebraic-glue lemmas closed unconditionally; the two analytic prerequisites `mellin_decay` (Stirling on $\Gamma$ vertical strips) and `inv_zeta_polynomial_growth` (Titchmarsh §3.11) are now stated as explicit hypotheses on the theorems that consume them, both Mathlib v4.28.0 gaps. |
 | Lemma X.3.1 (local Perron residue) | `LocalPerronResidue.lean` | **THEOREM (0 `sorry`).** The residue identity is stated as a `Tendsto` limit at $L$ analytic with simple zero at $0$ (the general-$\rho$ case reduces by $L \mapsto L(\cdot + \rho)$). |
 | Theorem X.4.1 ($B_\infty$ identity) | `CorrectedBInfty.lean` | **THEOREM (0 `sorry`), conditional on `h_convergence`.** The four-component identity is proved against `noncomputable def`s of $T_\infty$, $T_{\ge 3}$, $\mathrm{BPC}_1$, $\mathrm{BPC}_2$, $L$ given an added hypothesis `h_convergence : Tendsto T_K atTop (nhds (RHS))`. This hypothesis packages exactly the four analytic inputs of the pen-and-paper proof in Appendix A (Akatsuka 2013, log-Euler-product, imprimitive induction, geometric tails); the Lean proof uses `Classical.epsilon_spec` + `tendsto_nhds_unique` and is three lines. |
-| Farey bridge identity | `FareyBridgeIdentity.lean` | **THEOREM (0 `sorry`), unconditional** (`farey_bridge_identity_unconditional`). The `h_ramanujan_decomp` hypothesis is now discharged by `RamanujanSum.farey_ramanujan_decomp`; the only inputs are `Nat.Prime p` and Mathlib v4.28.0. |
+| Farey bridge identity | `FareyBridgeIdentity.lean` | **THEOREM (0 `sorry`), unconditional** (`farey_bridge_identity_unconditional`). The `h_ramanujan_decomp` hypothesis is now discharged by `RamanujanSum.farey_ramanujan_decomp`; the only inputs are `Nat.Prime p` and Mathlib v4.28.0. *Provenance:* the underlying static Farey–Mertens identity (the $m = p$ slice $\sum_{f \in \mathcal{F}_{p-1}} e^{2\pi i p f} = M(p) + 2$) is classical, in the Mikolás (1949) tradition and a special case of the Farey-discrepancy Fourier spectrum; the contribution recorded here is the unconditional machine formalisation, not the identity itself. The genuinely novel mathematical content of this strand is the *differential, per-step* refinement (the sign behaviour as a single prime denominator enters), developed in the companion Dominance/Chebyshev-bias chapter, not §X. |
 | Mertens spectroscope universality | `MertensSpectroscopeUniversality.lean` | **THEOREM (0 `sorry`), conditional on an explicit-formula asymptotic hypothesis** (Soundararajan 2009 Theorem 1 input). The file additionally contains a 5-step blueprint documenting the precise Mathlib gap (Perron inversion, explicit formula for $M(x)$, oscillatory-integral partial summation, zero simplicity) and two new unconditionally-proved infrastructure lemmas: `spectroscope_nonneg` (the spectroscope statistic is non-negative) and `reciprocal_sqrt_not_summable` (if $\sum_{p \in P} 1/p$ diverges, so does $\sum_{p \in P} 1/\sqrt p$). |
 | Farey sign pattern | `FareySignPattern.lean` | **THEOREM (0 `sorry`), conditional.** Three theorems closed under explicit named hypotheses: `farey_sign_pattern_density_one` (density-one `Tendsto` version, under `h_chebyshev_bias`); `pointwise_falsification_237733` and `pointwise_falsification_243799` (the two pointwise falsifications, each under a `h_witness` hypothesis stating that the relevant signs disagree), packaged into `pointwise_version_falsified`. Negative result for the pointwise conjecture; the falsifications are recorded as theorems, not axioms — the project's "no `axiom`" convention is preserved. |
 | Ramanujan sum + Farey decomposition (Hardy & Wright Thms 271, 304) | `RamanujanSum.lean` | **THEOREMS (0 `sorry`), unconditional.** Geometric sum identity for roots of unity (`geom_sum_roots_of_unity`); primitive-roots-sum equals Möbius (`primRootsSum_eq_moebius`, via Dirichlet convolution + strong induction); the coprime case $c_q(n) = \mu(q)$ (`ramanujanSum_eq_moebius_of_coprime`); FareySet sum decomposition (`farey_ramanujan_decomp`) discharging the `h_ramanujan_decomp` hypothesis above. |
-| Dirichlet Polynomial Avoidance (DPAC) — partial closure + bridges | `DPAC_closure_attempt.lean`, `DirichletPolynomialAvoidance.lean`, `DPAC_full.lean` | **PARTIAL.** `DPAC_closure_attempt.lean` (0 `sorry`) proves DPAC unconditionally for $K \in \{2, 3, 4\}$ using only $0 < \mathrm{Re}(\rho) < 1$ (`dpac_K_eq_2`, `dpac_K_eq_3`, `dpac_K_eq_4`, `dpac_le_4`). It also reformulates the open case as `FiniteLogRatioLI` and records the obstruction certificate (Pólya 1913 discreteness of the exponential-polynomial zero set + a single open avoidance statement). The headline conjecture for general $K$ remains `sorry` in `DPAC_full.lean:338` and `DirichletPolynomialAvoidance.lean:54`, diagnostically comparable to the Linear Independence Hypothesis for $\zeta$-zero ordinates; the four explicit phase-avoidance bridges (`dpac_of_logPrimePhaseAvoidance`, …, `dpac_of_certifiedZetaZeroSample`) are closed without `sorry`. |
+| Dirichlet Polynomial Avoidance (DPAC) — partial closure + bridges | `DPAC_closure_attempt.lean`, `DirichletPolynomialAvoidance.lean`, `DPAC_full.lean` | **PARTIAL.** `DPAC_closure_attempt.lean` (0 `sorry`) proves DPAC unconditionally for $K \in \{2, 3, 4\}$ using only $0 < \mathrm{Re}(\rho) < 1$ (`dpac_K_eq_2`, `dpac_K_eq_3`, `dpac_K_eq_4`, `dpac_le_4`). It also reformulates the open case as `FiniteLogRatioLI` and records the obstruction certificate (Pólya 1913 discreteness of the exponential-polynomial zero set + a single open avoidance statement). The headline conjecture for general $K$ remains `sorry` in `DPAC_full.lean:338` and `DirichletPolynomialAvoidance.lean:54`, diagnostically comparable to the Linear Independence Hypothesis for $\zeta$-zero ordinates (made precise in the §X.7 Structural remark); the four explicit phase-avoidance bridges (`dpac_of_logPrimePhaseAvoidance` through `dpac_of_certifiedZetaZeroSample`) are closed without `sorry`. |
 
 The role of the Lean artifact is to fix the statements and provide
 a publicly inspectable audit trail of the proof obligations
@@ -467,9 +502,9 @@ remaining.
 
 The following structure the next phase of the program.
 
-> **Q:Perron (Shifted Perron leading theorem).** Prove (SP-L)
-> (\ref{eq:Perron-leading}) for primitive non-principal $\chi$ and
-> simple non-central $\rho$.
+> **Q:Perron (Shifted Perron leading theorem).** Prove the shifted
+> Perron leading statement (SP-L) for primitive non-principal
+> $\chi$ and simple non-central $\rho$.
 
 Three sufficient packages, in decreasing strength of input
 required (see `SP_L_SUFFICIENT_PACKAGES_2026-05-13.md` of the
@@ -515,7 +550,29 @@ level of quantitative ensemble evidence.
 > $K \in \{2, 3, 4\}$; the general case reduces, via Pólya 1913
 > discreteness of the finite-exponential-polynomial zero set, to
 > a single open avoidance statement at $\zeta$-zero ordinates
-> diagnostically comparable to the Linear Independence Hypothesis.
+> (made precise in the Structural remark below).
+
+**Structural remark (shared obstruction).** We record an
+identification of the *form* of the obstruction common to the open
+items above — an observation about structure, not a resolution,
+and not asserted as a theorem. The shifted-Perron leading
+statement (SP-L) of Q:Perron and the general-$K$ reduction
+`FiniteLogRatioLI` of Q:DPAC are, respectively, the sharp
+($c \to 1$) and discrete instantiations of a single
+negative-second-moment / linear-independence phenomenon for the
+zero ordinates: both are controlled by a Gonek–Hejhal-type
+reciprocal-derivative second moment of the
+$\sum_{\rho} |\zeta'(\rho)|^{-2}$ family (Ng 2004) together with a
+quantitative linear-independence input on the relevant ordinates.
+The companion GL(2) strand of Q:EC-recip reduces (softly, $c < 3$)
+to the same family at GL(2). Thus "diagnostically comparable to
+the Linear Independence Hypothesis", used loosely above, is here
+made precise: under a quantitative LI hypothesis for the relevant
+$L$-function's zero ordinates the shared second moment is
+controlled, simultaneously closing the GL(1) `FiniteLogRatioLI`
+obstruction and feeding (SP-L); neither instantiation is proved
+unconditionally, and locating this common barrier precisely (not
+moving it) is the present contribution.
 
 **Further questions** (from the EC and ensemble negatives of §X.5.5
 and from the §X.5-companion EC-NDC programme; deferred to the
@@ -564,9 +621,10 @@ and verbatim quote recorded in the citation audit
 External references cited in §X.3–§X.7. Full page-and-equation
 provenance for each is in Supplementary S2 (citation audit).
 
-- **Akatsuka, H.** (2013). *The Euler product for the Riemann zeta
-  function in the critical strip*. The boundary-line Mertens-type
-  partial-summation estimate
+- **Akatsuka, H.** (2017). *The Euler product for the Riemann
+  zeta-function in the critical strip*. Kodai Math. J. **40**(1),
+  79–101; DOI 10.2996/kmj/1490083225. The boundary-line
+  Mertens-type partial-summation estimate
   $\sum_{p \le X} \chi(p) / p^{1 + 2i\tau} = c(\chi, \tau) + O(1 / \log X)$
   used in §X.4.1, Appendix A §A.2.3; Lemma 2.1 / eq. (2.5).
   Unconditional (derived from PNT with explicit error term).
@@ -583,7 +641,7 @@ provenance for each is in Supplementary S2 (citation audit).
   at primes).
 - **Inoue, S.** (2021). *Some explicit formulas for partial sums of
   Möbius functions.* Journal de Théorie des Nombres de Bordeaux
-  **33**(1), 273–315; Theorem 1 and eq. (4.1). Used in Appendix B
+  **33**(2), 273–315; Theorem 1 and eq. (4.1). Used in Appendix B
   §B.1, §B.3 to set up the contour integration for Theorem X.4.2.
 - **Montgomery, H.L. and Vaughan, R.C.** *Multiplicative Number
   Theory I. Classical Theory*, Cambridge 2007. Theorem 9.4 (textbook
@@ -597,7 +655,9 @@ provenance for each is in Supplementary S2 (citation audit).
   exponential polynomial; used in `DPAC_closure_attempt.lean` for
   the obstruction certificate.
 - **Soundararajan, K.** (2009). *Partial sums of the Möbius
-  function.* Ann. of Math. **170**(2), 1409–1422; Theorem 1. The
+  function.* J. reine angew. Math. (Crelle's Journal) **631**,
+  141–152; DOI 10.1515/CRELLE.2009.044 (arXiv:0705.0723);
+  Theorem 1. The
   RH-conditional rate bound $M(x) \ll \sqrt{x}\exp((\log x)^{1/2}(\log\log x)^{14})$
   for the Möbius partial sum, used (via the character analogue at
   numerically-verified RH heights) in Theorem X.4.2 and Appendix B §B.4.

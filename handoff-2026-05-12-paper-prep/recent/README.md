@@ -18,7 +18,7 @@ the joint paper and its supporting material.
 
 | Folder | Purpose |
 |---|---|
-| `latex/` | `paper.tex` driver, the three converted subfiles (`section_X.tex`, `appendix_A.tex`, `appendix_B.tex`), `references.bib` (18 entries), the `clean.py` regeneration pipeline, and the compiled `paper.pdf` (≈18 pages). Builds reproducibly via `python3 clean.py && tectonic paper.tex`. |
+| `latex/` | `paper.tex` driver, the three converted subfiles (`section_X.tex`, `appendix_A.tex`, `appendix_B.tex`), `references.bib` (18 entries), the `clean.py` regeneration pipeline, and `paper.pdf` (≈18 pages). Builds reproducibly via `python3 clean.py && tectonic paper.tex`. **NOTE (2026-05-15):** `paper.pdf` was rebuilt 2026-05-15 09:41 with tectonic 0.15.0 after the perfection pass, citation corrections, and the cross-session reconciliation (see `log.md`): it now carries the **Mikolás (1949) prior-art attribution** for the static Farey–Mertens identity (§X.6 provenance note + bib entry, 12 references) and a **§X.7 Structural remark** making the shared (SP-L)/DPAC/LI obstruction precise (Ng 2004). It is **current, not stale**, 20 pp, 0 undefined refs/cites, bibliography rendered. `clean.py` now carries an idempotent Unicode safety map and hardened citation conversion. Remaining build warnings are cosmetic only (overfull/underfull boxes in the dense §X.5/§X.6 tables; a benign hyperref duplicate-destination on the (AK)/(NDC)/(SP-L) display equations). |
 
 ## Forward-looking discussion documents (drafted while Koyama is reviewing Phase-1 cells)
 
