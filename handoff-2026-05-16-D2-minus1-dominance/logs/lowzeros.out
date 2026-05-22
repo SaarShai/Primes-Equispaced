@@ -1,0 +1,9 @@
+  N #nonprinc χ   γ_min(N)  2π/γ_min    e^(π/γ_min)
+  7           5     2.5094     2.504      3.497e+00
+  8           3     4.9000     1.282      1.899e+00
+ 11           9     2.6960     2.331      3.207e+00
+ 19          17     1.4601     4.303      8.599e+00
+ 23          21     0.6893     9.116      9.538e+01
+
+Note: γ_min is the lowest zero ordinate over all non-principal χ mod N (modest precision; an anchor).
+Reversal persists ~ a half-period in log x: Δlog x ~ π/γ_min.

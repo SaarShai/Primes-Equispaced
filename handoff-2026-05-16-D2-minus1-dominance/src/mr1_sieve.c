@@ -34,15 +34,25 @@
 #include <math.h>
 #include <time.h>
 
-/* ----- modulus set under study (matches Phase-1: {7,8,11,19,23}) ----- */
+/* ----- modulus set under study (matches Phase-1: {7,8,11,19,23}) -----
+ * The five moduli are COMPILE-TIME CONSTANTS so the per-prime residue
+ * tally (the hot path: ~5*pi(Xmax) operations) strength-reduces to
+ * multiply-shift / mask instead of hardware division.  Changing the set
+ * requires editing both Ns[] and the hardcoded block in record_prime(). */
 static const int Ns[] = {7, 8, 11, 19, 23};
 #define NN  ((int)(sizeof(Ns)/sizeof(Ns[0])))
 #define MAXMOD 23
+#define M0 7
+#define M1 8
+#define M2 11
+#define M3 19
+#define M4 23
 
 /* ----- segment geometry -----
  * SEG_ODDS odd integers per segment; bitset = SEG_ODDS/8 bytes.
- * 2^21 odds -> 256 KiB bitset, covering 2^22 integers per segment. */
-#define SEG_ODDS  (1u << 21)
+ * 2^18 odds -> 32 KiB bitset == M1 L1d size: small base primes (which do
+ * the bulk of the marking) stay resident in L1.  Covers 2^19 ints/seg. */
+#define SEG_ODDS  (1u << 18)
 #define SEG_BYTES (SEG_ODDS >> 3)
 
 static uint64_t cur[NN][MAXMOD];          /* running residue counts      */
@@ -93,10 +103,16 @@ static void maybe_snapshot(uint64_t p) {
     }
 }
 
+/* hot path: hardcoded constant moduli -> strength-reduced, no hw divide.
+ * snapshot fast-check is inlined; the (rare) crossing calls maybe_snapshot. */
 static inline void record_prime(uint64_t p) {
-    maybe_snapshot(p);
-    for (int i = 0; i < NN; ++i)
-        cur[i][(unsigned)(p % (uint64_t)Ns[i])] += 1;
+    if (__builtin_expect(g_ptr < G && p > grid[g_ptr], 0))
+        maybe_snapshot(p);
+    cur[0][p % M0] += 1;
+    cur[1][p % M1] += 1;
+    cur[2][p % M2] += 1;
+    cur[3][p % M3] += 1;
+    cur[4][p % M4] += 1;
     ++total;
 }
 
@@ -169,6 +185,7 @@ int main(int argc, char **argv) {
         uint8_t *seg = malloc(SEG_BYTES);
         if (!seg) { perror("malloc seg"); return 1; }
         double t0 = now_s();
+        uint64_t next_prog = (1ULL << 30);
 
         uint64_t low = 3;                     /* low is always odd          */
         while (low <= Xmax) {
@@ -180,8 +197,9 @@ int main(int argc, char **argv) {
             uint64_t A      = (low - 3ULL) >> 1;         /* base odd-index  */
             uint64_t A_end  = A + (((high - low) >> 1) + 1); /* exclusive    */
             uint32_t n_odds = (uint32_t)(A_end - A);
+            uint32_t n_words = (n_odds + 63u) >> 6;
 
-            memset(seg, 0, (n_odds + 7) >> 3);
+            memset(seg, 0, (size_t)n_words << 3);         /* clear full words */
 
             for (size_t k = 0; k < nbp; ++k) {
                 uint64_t p = bp[k];
@@ -195,18 +213,28 @@ int main(int argc, char **argv) {
                 bp_next[k] = j;                   /* absolute: no carry bug */
             }
 
-            for (uint32_t i = 0; i < n_odds; ++i) {
-                if (!(seg[i >> 3] & (1u << (i & 7)))) {
-                    uint64_t pv = low + 2ULL * i;
-                    record_prime(pv);
-                    if ((total & ((1ULL << 30) - 1)) == 0) {
-                        double s = now_s() - t0;
-                        fprintf(stderr,
-                          "[mr1] primes=%llu p=%llu elapsed=%.1fs rate=%.3e p/s\n",
-                          (unsigned long long)total, (unsigned long long)pv,
-                          s, total / (s > 0 ? s : 1));
-                    }
+            /* word-at-a-time extraction: 1-bit (after complement) = prime */
+            const uint64_t *segw = (const uint64_t *)seg;
+            for (uint32_t w = 0; w < n_words; ++w) {
+                uint64_t bits = ~segw[w];
+                if (w == n_words - 1) {
+                    uint32_t rem = n_odds - (w << 6);     /* 1..64 valid    */
+                    if (rem < 64) bits &= ((uint64_t)1 << rem) - 1;
                 }
+                uint64_t vbase = low + ((uint64_t)(w << 6) << 1);
+                while (bits) {
+                    uint32_t t  = (uint32_t)__builtin_ctzll(bits);
+                    record_prime(vbase + ((uint64_t)t << 1));
+                    bits &= bits - 1;
+                }
+            }
+            if (total >= next_prog) {
+                double s = now_s() - t0;
+                fprintf(stderr,
+                  "[mr1] primes=%llu p~=%llu elapsed=%.1fs rate=%.3e p/s\n",
+                  (unsigned long long)total, (unsigned long long)high,
+                  s, total / (s > 0 ? s : 1));
+                next_prog += (1ULL << 30);
             }
             low = high + 2;                       /* stays odd */
         }
