@@ -1,0 +1,13 @@
+{
+  "id": "saarshai/farey-cluster-2-universality-at-n-10-7",
+  "title": "Farey Cluster=2 Universality at N up to 2M",
+  "code_file": "farey_cluster2.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": false,
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": []
+}
